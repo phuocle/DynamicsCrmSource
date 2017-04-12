@@ -1,0 +1,41 @@
+CREATE TABLE [dbo].[DelveActionHubBase]
+(
+[MailWebLink] [nvarchar] (250) COLLATE Latin1_General_CI_AI NULL,
+[VersionNumber] [timestamp] NULL,
+[ModifiedBy] [uniqueidentifier] NULL,
+[TimeZoneRuleVersionNumber] [int] NULL,
+[SenderImageUrl] [nvarchar] (250) COLLATE Latin1_General_CI_AI NULL,
+[MessageId] [nvarchar] (320) COLLATE Latin1_General_CI_AI NULL,
+[Description] [nvarchar] (max) COLLATE Latin1_General_CI_AI NULL,
+[Subject] [nvarchar] (200) COLLATE Latin1_General_CI_AI NULL,
+[UTCConversionTimeZoneCode] [int] NULL,
+[CreatedOn] [datetime] NULL,
+[ModifiedTime] [datetime] NULL,
+[CreatedBy] [uniqueidentifier] NULL,
+[StateCode] [int] NOT NULL,
+[OrganizationId] [uniqueidentifier] NULL,
+[CreatedTime] [datetime] NULL,
+[StatusCode] [int] NULL,
+[SenderEntityObjectTypeCode] [int] NULL,
+[MessageTime] [datetime] NULL,
+[RecordId] [uniqueidentifier] NULL,
+[ModifiedOn] [datetime] NULL,
+[ModifiedOnBehalfBy] [uniqueidentifier] NULL,
+[CardType] [int] NOT NULL CONSTRAINT [DF_DelveActionHubBase_CardType] DEFAULT ((0)),
+[RegardingObjectId] [uniqueidentifier] NULL,
+[DelveActionHubId] [uniqueidentifier] NOT NULL,
+[IconClassName] [nvarchar] (160) COLLATE Latin1_General_CI_AI NULL,
+[ExchangeRate] [decimal] (23, 10) NULL,
+[Sender] [nvarchar] (250) COLLATE Latin1_General_CI_AI NULL,
+[RelatedMailIds] [nvarchar] (max) COLLATE Latin1_General_CI_AI NULL,
+[SenderEntityId] [uniqueidentifier] NULL,
+[CreatedOnBehalfBy] [uniqueidentifier] NULL,
+[TransactionCurrencyId] [uniqueidentifier] NULL,
+[RegardingObjectTypeCode] [int] NULL,
+[RecordIdObjectTypeCode] [int] NULL,
+[RegardingObjectIdName] [nvarchar] (4000) COLLATE Latin1_General_CI_AI NULL,
+[RecordIdName] [nvarchar] (4000) COLLATE Latin1_General_CI_AI NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[DelveActionHubBase] ADD CONSTRAINT [TransactionCurrency_delveactionhub] FOREIGN KEY ([TransactionCurrencyId]) REFERENCES [dbo].[TransactionCurrencyBase] ([TransactionCurrencyId])
+GO

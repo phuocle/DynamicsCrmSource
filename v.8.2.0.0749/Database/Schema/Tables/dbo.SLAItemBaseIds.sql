@@ -1,0 +1,7 @@
+CREATE TABLE [dbo].[SLAItemBaseIds]
+(
+[SLAItemId] [uniqueidentifier] NOT NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[SLAItemBaseIds] ADD CONSTRAINT [PK_SLAItemBaseIds] PRIMARY KEY CLUSTERED  ([SLAItemId]) ON [PRIMARY]
+GO

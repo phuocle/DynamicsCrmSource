@@ -1,0 +1,5 @@
+IF NOT EXISTS (SELECT * FROM master.dbo.syslogins WHERE loginname = N'PHUOCLE\ReportingGroup {8ff092ff-6d16-41c8-aeb9-43e799050400}')
+CREATE LOGIN [PHUOCLE\ReportingGroup {8ff092ff-6d16-41c8-aeb9-43e799050400}] FROM WINDOWS
+GO
+CREATE USER [PHUOCLE\ReportingGroup {8ff092ff-6d16-41c8-aeb9-43e799050400}] FOR LOGIN [PHUOCLE\ReportingGroup {8ff092ff-6d16-41c8-aeb9-43e799050400}]
+GO
