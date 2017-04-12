@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<GenericDesigner>
+  <Library>
+    <!--This group will contain only Library Tiles and reference to its properties.
+			For propertyPageType="html" PropertyPageId is mandatory attribute and for MDD type it will be optional. Even if user has added propertyPageType="html"
+			we will be adding MDDProperties as it will be very easy to switch from html to MDD and vice-versa.-->
+    <LibraryGroup name="ProcessDesignerControl_BPF_LibraryGroupTiles">
+      <LibraryTile propertyPageType="html" PropertyPageId="1" name="ProcessDesignerControl_BPF_LibraryTileName_stage"
+                   imageRenderType="FontIcon" activitytypeid="stage" icon="stageTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText"
+                   tooltip="ProcessDesignerControl_BPF_LibraryTileStageTooltip" tileClass="stageTile"
+                   addCommandTooltip="ProcessDesignerControl_BPF_AddCommandStageTooltip">
+        <MDDProperties title="ProcessDesignerControl_BPF_StageTitle">
+          <Property propertyId="1" />
+          <Property propertyId="2" />
+          <Property propertyId="6" />
+          <Property propertyId="7" />
+          <Property propertyId="8" />
+          <Property propertyId="4" />
+          <Property propertyId="5" />
+        </MDDProperties>
+      </LibraryTile>
+      <LibraryTile propertyPageType="html" PropertyPageId="2"
+                   name="ProcessDesignerControl_BPF_LibraryTileName_condition" imageRenderType="FontIcon"
+                   activitytypeid="condition" icon="conditionTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText"
+                   tooltip="ProcessDesignerControl_BPF_LibraryTileConditionTooltip" tileClass="conditionTile"
+                   addCommandTooltip="ProcessDesignerControl_BPF_AddCommandConditionTooltip">
+        <MDDProperties title="ProcessDesignerControl_BPF_ConditionTitle">
+          <Property propertyId="9" />
+          <Property propertyId="10" />
+          <Property propertyId="4" />
+          <Property propertyId="5" />
+        </MDDProperties>
+      </LibraryTile>
+    </LibraryGroup>
+    <LibraryGroup name="ProcessDesignerControl_BPF_LibraryGroupActions">
+      <LibraryTile propertyPageType="html" PropertyPageId="3" name="ProcessDesignerControl_BPF_LibraryTileName_step"
+                   imageRenderType="FontIcon" activitytypeid="step" icon="stepTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText"
+                   tooltip="ProcessDesignerControl_BPF_LibraryTileStepTooltip" tileClass="stepTile"
+                   addCommandTooltip="ProcessDesignerControl_BPF_AddCommandStepTooltip">
+        <MDDProperties title="ProcessDesignerControl_BPF_StepTitle">
+          <Property propertyId="11" />
+          <Property propertyId="12" />
+          <Property propertyId="3" />
+          <Property propertyId="4" />
+          <Property propertyId="5" />
+        </MDDProperties>
+      </LibraryTile>
+      <LibraryTile propertyPageType="html" PropertyPageId="4"
+                   name="ProcessDesignerControl_BPF_LibraryTileName_workflow" imageRenderType="FontIcon"
+                   activitytypeid="workflow" icon="workflowSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText"
+                   tooltip="ProcessDesignerControl_BPF_LibraryTileWorkflowTooltip" tileClass="connectTile"
+                   addCommandTooltip="ProcessDesignerControl_BPF_AddCommandWorkflowTooltip">
+        <MDDProperties title="ProcessDesignerControl_BPF_WorkflowTitle" />
+      </LibraryTile>
+    </LibraryGroup>
+    <!--This group will contain all html page URLs.-->
+    <PropertyPageGroup>
+      <PropertyPage propertyPageId="1" URL="./StagePropertyDetails.html">
+      </PropertyPage>
+      <PropertyPage propertyPageId="2" URL="./BranchPropertyDetails.html">
+      </PropertyPage>
+      <PropertyPage propertyPageId="3" URL="./StepPropertyDetails.html">
+      </PropertyPage>
+      <PropertyPage propertyPageId="4" URL="./WorkflowPropertyDetails.html">
+      </PropertyPage>
+    </PropertyPageGroup>
+    <!--This group will contain all MDD properties.-->
+    <MDDPropertyGroup>
+      <Property propertyId="1" name="ProcessDesignerControl_BPF_MDDPropertyEntity" description="Entity Name"
+                datatype="optionset" id="_entityName" editable="true" />
+      <Property propertyId="2" name="ProcessDesignerControl_BPF_MDDPropertyName" description="Name" datatype="text"
+                id="_name" editable="true" />
+      <Property propertyId="3" name="ProcessDesignerControl_BPF_MDDPropertyRequired" description="Required field"
+                datatype="checkbox" id="_isRequired" editable="true" />
+      <Property propertyId="4" name="ProcessDesignerControl_BPF_MDDPropertyDiscard"
+                description="Reset stage properties" datatype="button" id="discardButton" editable="true" />
+      <Property propertyId="5" name="ProcessDesignerControl_BPF_MDDPropertySave" description="Save stage properties"
+                datatype="button" id="saveButton" editable="true" />
+      <Property propertyId="6" name="ProcessDesignerControl_BPF_MDDPropertyStageCategory"
+                description="Category of stage" datatype="optionset" id="_category" editable="true" />
+      <Property propertyId="7" name="ProcessDesignerControl_BPF_MDDPropertyStepsAndButtonActions"
+                description="Description of stage" datatype="text" id="count" editable="true" />
+      <Property propertyId="8" name="ProcessDesignerControl_BPF_MDDPropertyDescription"
+                description="Description of stage" datatype="textarea" id="_description" editable="true" />
+      <Property propertyId="9" name="ProcessDesignerControl_BPF_MDDPropertyEntityName" description="Entity Name"
+                datatype="text" id="parentStageEntityName" editable="true" />
+      <Property propertyId="10" name="ProcessDesignerControl_BPF_MDDPropertyConditionExpression"
+                description="Condition expression" datatype="list" id="_conditionExpression" editable="true" />
+      <Property propertyId="11" name="ProcessDesignerControl_BPF_MDDPropertyStepName" description="Step Name"
+                datatype="text" id="_description" editable="true" />
+      <Property propertyId="12" name="ProcessDesignerControl_BPF_MDDPropertyDataField" description="Data Field"
+                datatype="optionset" id="_attributeName" editable="true" />
+    </MDDPropertyGroup>
+  </Library>
+  <ZoomIcons>
+    <ZoomIconItem itemId="zoomOut" title="ProcessDesignerControl_BPF_ToolBarItemZoomOut" fontIconSymbol="zoomOutSymbol"></ZoomIconItem>
+    <ZoomIconItem itemId="zoomIn" title="ProcessDesignerControl_BPF_ToolBarItemZoomIn" fontIconSymbol="zoomInSymbol"></ZoomIconItem>
+    <ZoomIconItem itemId="fitToScreen" title="ProcessDesignerControl_BPF_ToolBarItemFitToScreen"
+                  fontIconSymbol="fitToScreenSymbol">
+    </ZoomIconItem>
+  </ZoomIcons>
+  <Toolbar>
+    <ToolBarItem itemId="Add" title="ProcessDesignerControl_BPF_ToolBarItemAdd"
+                 tooltip="ProcessDesignerControl_BPF_AddProcessFlow" fontIconSymbol="addToolbarSymbol"
+                 section="section1">
+    </ToolBarItem>
+    <ToolBarItem itemId="cut" title="HtmlBar_Title_Cut" tooltip="ProcessDesignerControl_BPF_ToolBarItemCutToolTip"
+                 fontIconSymbol="cutToolbarSymbol" section="section2">
+    </ToolBarItem>
+    <ToolBarItem itemId="copy" title="ProcessDesignerControl_BPF_ToolBarItemCopy"
+                 tooltip="ProcessDesignerControl_BPF_ToolBarItemCopyToolTip" fontIconSymbol="copyToolbarSymbol"
+                 section="section2">
+    </ToolBarItem>
+    <ToolBarItem itemId="paste" title="ProcessDesignerControl_BPF_ToolBarItemPaste"
+                 tooltip="ProcessDesignerControl_BPF_ToolBarItemPasteToolTip" fontIconSymbol="pasteToolbarSymbol"
+                 section="section2">
+    </ToolBarItem>
+    <ToolBarItem itemId="delete" title="ProcessDesignerControl_BPF_ToolBarItemDelete"
+                 tooltip="ProcessDesignerControl_BPF_DeleteSelectedComponent" fontIconSymbol="deleteToolbarSymbol"
+                 section="section2">
+    </ToolBarItem>
+    <ToolBarItem itemId="snapshot" title="ProcessDesignerControl_BPF_ToolBarItemSnapshot"
+                 tooltip="ProcessDesignerControl_BPF_ToolBarItemSnapshotToolTip" fontIconSymbol="snapshotToolbarSymbol"
+                 section="section2">
+    </ToolBarItem>
+    <ToolBarItem itemId="connector" title="ProcessDesignerControl_BPF_ToolBarItemConnector"
+                 tooltip="ProcessDesignerControl_BPF_ToolBarItemConnectorToolTip"
+                 fontIconSymbol="connectorToolbarSymbol" section="section2">
+    </ToolBarItem>
+  </Toolbar>
+</GenericDesigner>

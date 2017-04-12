@@ -1,0 +1,78 @@
+<div class="mscrm-createAppForm">
+    <div class="mscrm-createAppFormFields" role="group">
+        <form name="createAppForm" novalidate>
+            <div aria-live="assertive" role="alert">
+                <div class="ErrorContainer" ng-if="!wizardController.isTitleValid" aria-live="assertive">
+                    <div class="validate-Error">
+                        <span class="ErrorMessage" name="title-Error">
+                            <mscrm-locale mscrm-resource-key="AppDesigner.NameInvalidError"/>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="mscrm-createAppFieldContainer">
+                <div class="mscrm-createAppFieldContainerLabel required" mscrm-locale mscrm-resource-key="AppDesigner.Name" mscrm-target-attr="title">
+                    <label for="AppDesigner.Title"><mscrm-locale mscrm-resource-key="AppDesigner.Name"/>:</label>
+                </div>
+                <input id="AppDesigner.Title" tabindex="-1" class="mscrm-createAppFieldContainerControl" ng-model="wizardController.AppInfo.title" ng-blur="wizardController.OnTitleBlur()" type="text" name="title" required maxlength="100" mscrm-locale mscrm-resource-key="AppDesigner.Name" mscrm-target-attr="title" mscrm-trap-focus-on-error/>
+            </div>
+            <div aria-live="assertive" role="alert">
+                <div class="ErrorContainer" ng-if="!wizardController.isUniqueNameValid" aria-live="assertive">
+                    <div class="validate-Error">
+                        <span class="ErrorMessage" name="uniquename-Error">
+                            <mscrm-locale mscrm-resource-key="AppDesigner.UniqueNameInvalidError"/>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="mscrm-createAppFieldContainer">
+                <div class="mscrm-createAppFieldContainerLabel required" mscrm-locale mscrm-resource-key="AppDesigner.UniqueName" mscrm-target-attr="title">
+                    <label for="AppDesigner.UniqueName"><mscrm-locale mscrm-resource-key="AppDesigner.UniqueName"/>:</label>
+                </div>
+                <div dir="ltr" class="mscrm-createAppFieldContainerControl mscrm-createAppFieldUniqueNameContainer">
+                    <div class="mscrm-createAppFieldPublisherPrefix" ng-show="wizardController.NewApp" mscrm-locale mscrm-resource-key="AppDesigner.PublisherPrefix.ToolTip" mscrm-target-attr="title">{{wizardController.AppInfo.publisherPrefix}}</div>
+                    <input id="AppDesigner.UniqueName" ng-readonly="!wizardController.NewApp" tabindex="-1" class="mscrm-createAppFieldUniqueName" type="text" name="uniquename"
+                           maxlength="{{wizardController.UniqueNameMaxLengthAllowed}}" ng-change="wizardController.OnUniqueNameModified()"
+                           ng-blur="wizardController.OnUniqueNameBlur()" ng-model="wizardController.AppInfo.uniqueName"
+                           title="{{wizardController.UniqueNameToolTip}}" required mscrm-restrict-non-alpha-numeric mscrm-trap-focus-on-error/>
+                </div>
+            </div>
+            <div class="mscrm-createAppFieldContainer">
+                <div class="mscrm-createAppFieldContainerLabel" mscrm-locale mscrm-resource-key="AppDesigner.Description" mscrm-target-attr="title">
+                    <label for="AppDesigner.Description"><mscrm-locale mscrm-resource-key="AppDesigner.Description"/>:</label>
+                </div>
+                <textarea id="AppDesigner.Description" tabindex="-1" class="mscrm-createAppFieldContainerControl" ng-model="wizardController.AppInfo.description" maxlength="2000" mscrm-locale mscrm-resource-key="AppDesigner.Description" mscrm-target-attr="title"></textarea>
+            </div>
+            <div class="mscrm-createAppFieldContainer mscrm-createAppThumbnailField">
+                <div class="mscrm-createAppFieldContainerLabel" mscrm-locale mscrm-resource-key="AppDesigner.Icon" mscrm-target-attr="title">
+                    <label for="useDefaultThumbnail"><mscrm-locale mscrm-resource-key="AppDesigner.Icon"/>: </label>
+                </div>
+                <div class="mscrm-createAppFieldContainerControl mscrm-createAppThumbnailFieldControl">
+                    <input class="mscrm-createAppThumbnailDefaultCheckbox" tabindex="-1" type="checkbox" mscrm-action-on-select value="useDefaultThumbnail" id="useDefaultThumbnail" ng-model="wizardController.ThumbnailContext.useDefaultThumbnail" ng-disabled="!wizardController.ThumbnailContext.thumbnailListAvailable" mscrm-locale mscrm-resource-key="AppDesigner.UseDefaultImage" mscrm-target-attr="title"/>
+                    <label class="mscrm-createAppThumbnailDefaultLabel" for="useDefaultThumbnail" mscrm-locale mscrm-resource-key="AppDesigner.UseDefaultImage" mscrm-target-attr="title">
+                        <mscrm-locale mscrm-resource-key="AppDesigner.UseDefaultImage"/>
+                    </label>
+                </div>
+            </div>
+            <div class="mscrm-createAppFieldContainer" ng-if="!wizardController.ThumbnailContext.useDefaultThumbnail">
+                <div class="mscrm-createAppFieldContainerLabel"><!-- Empty label for styling the dropdown to the right subcolumn --></div>
+                <select class="mscrm-createAppFieldContainerControl" id="thumbnailDropdown" ng-init="wizardController.AppInfo.webResourceItem.displayName" ng-model="wizardController.AppInfo.webResourceItem" ng-options="imageWebResource.displayname for imageWebResource in wizardController.MetadataService.imageWebResourceList" mscrm-locale mscrm-resource-key="AppDesigner.Thumbnail" mscrm-target-attr="title" ng-disabled="!wizardController.ThumbnailContext.thumbnailListAvailable">
+                    <option style="display: none" value=""/>
+                </select>
+            </div>
+            <div class="mscrm-createAppFieldContainer">
+                <div class="mscrm-createAppFieldContainerLabel" mscrm-locale mscrm-resource-key="AppDesigner.ApplicationURL" mscrm-target-attr="title">
+                    <label id="AppDesigner.ApplicationURL"><mscrm-locale mscrm-resource-key="AppDesigner.ApplicationURL"/>:</label>
+                </div>
+                <input aria-labelledby="AppDesigner.ApplicationURL mscrm-AppUrlStatic" ng-readonly="!wizardController.NewApp" tabindex="-1" type="text" name="AppUrl" class="mscrm-createAppFieldContainerControl" ng-change="wizardController.OnAppUrlModified()" ng-model="wizardController.AppInfo.appUrl" maxlength="20" mscrm-locale mscrm-resource-key="AppDesigner.ApplicationURL.Tooltip" mscrm-target-attr="title" mscrm-restrict-non-alpha-numeric/>
+            </div>
+            <div class="mscrm-createAppFieldContainer" ng-if="wizardController.AppInfo.appUrl.length > 0">
+                <div class="mscrm-createAppFieldContainerLabel"><!-- Empty label for styling the text to the right subcolumn --></div>
+                <div dir="ltr" id="mscrm-AppUrlStatic" class="mscrm-createAppFieldContainerControl mscrm-AppUrlField" ng-attr-title="{{wizardController.clientUrl + '/' + wizardController.AppInfo.appUrl}}">
+                    <div class="mscrm-AppUrlOverflow">{{wizardController.clientUrl + "/" + wizardController.AppInfo.appUrl}}</div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <mscrm-tile-preview></mscrm-tile-preview>
+</div>

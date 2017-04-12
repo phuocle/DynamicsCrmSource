@@ -1,0 +1,1102 @@
+<public:component lightweight="true" tagName="AdvancedFind">
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:property name="EntityName"/>
+<public:property name="IsDirty" get="getIsDirty" put="putIsDirty"/>
+<public:property name="IsNameOrDescDirty"/>
+<public:property name="ShownInSimple" get="getShownInSimple"/>
+<public:property name="Mode"/>
+<public:property name="Modes"/>
+<public:property name="Buttons"/>
+<public:property name="ButtonsEnum"/>
+<public:property name="ModesEnum"/>
+<public:property name="FetchMode"/>
+<public:property name="FetchModesEnum"/>
+<public:property name="CanCreateUserQuery"/>
+<public:property name="CanWriteUserQuery"/>
+<public:property name="SaveChangesAlert" get="getSaveChangesAlert" put="putSaveChangesAlert"/>
+<public:property name="ClientCache"/>
+<public:property name="ValidQueryType"/>
+<public:property name="QueryObjectType"/>
+<public:property name="IncludeSystemQuery"/>
+<public:property name="IncludeAPIQuery"/>
+<public:property name="IncludeUserQuery"/>
+<public:property name="QueryId"/>
+<public:property name="TitleVisible"/>
+<public:property name="EntityListVisible"/>
+<public:property name="QueryListVisible"/>
+<public:property name="DistinctFetch"/>
+<public:property name="RelatedEntitiesVisible"/>
+<public:property name="FilterControlVisible"/>
+<public:property name="LayoutXml"/>
+<public:property name="FetchXml" get="GetFetchXml" put="SetFetchXml"/>
+<public:property name="DefaultAdvancedFindViewId" get="getDefaultAdvFindViewId"/>
+<public:property name="FetchXmlLoaded" get="getFetchXmlLoaded"/>
+<public:property name="DisableValueControlInSimpleMode"/>
+<public:property name="ShowChangeGroupMenu"/>
+<public:property name="UIProvider"/>
+<public:property name="DataProvider"/>
+<public:property name="OnPopulateFieldList"/>
+<public:property name="OnPopulatePrimaryEntityList"/>
+<public:property name="OnPopulateRelatedEntityList"/>
+<public:property name="OnPopulateOperatorList"/>
+<public:property name="OnCreateValueControl"/>
+<public:property name="OnGetViewInfo"/>
+<public:property name="OnGetFetchAttributes"/>
+<public:event name="onsave" id="OnSaveEvent"/>
+<public:event name="onsaveas" id="OnSaveAsEvent"/>
+<public:event name="onaftersave" id="OnAfterSaveEvent"/>
+<public:event name="onaftersaveas" id="OnAfterSaveAsEvent"/>
+<public:event name="onload" id="OnLoadEvent"/>
+<public:event name="onnew" id="OnNewEvent"/>
+<public:event name="onclear" id="OnClearEvent"/>
+<public:event name="ongroup" id="OnGroupEvent"/>
+<public:event name="onaddrow" id="OnAddRowEvent"/>
+<public:event name="onchange" id="OnChangeEvent"/>
+<public:method name="ConfigureMode"/>
+<public:method name="Save"/>
+<public:method name="SaveAs"/>
+<public:method name="Load"/>
+<public:method name="New"/>
+<public:method name="Clear"/>
+<public:method name="Group"/>
+<public:method name="EditView"/>
+<public:method name="EditProperties"/>
+<public:method name="Clone"/>
+<html xmlns:Crm>
+<head>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           var _bInitComplete = false,
+                                               _sFetchXml;
+                                           Sys.Application.add_load(SysInit);
+
+                                           function SysInit() {
+                                               Init()
+                                           }
+
+                                           function InitOnDocReady() {
+                                               Sys.Application.get_isInitialized() &&
+                                                   !_bInitComplete &&
+                                                   Init()
+                                           }
+
+                                           var _oDetailed,
+                                               _sFetchAttributes,
+                                               _sName = "",
+                                               _sDesc = "",
+                                               _bSaveChangesAlert,
+                                               _bIsDirty,
+                                               _oXMLDoc;
+
+                                           function Init() {
+                                               IsDirty = false;
+                                               IsNameOrDescDirty = false;
+                                               createButtonsEnum();
+                                               createModesEnum();
+                                               createFetchModesEnum();
+                                               QueryListVisible = QueryListVisible == 1;
+                                               TitleVisible = TitleVisible == 1;
+                                               EntityListVisible = EntityListVisible == 1;
+                                               RelatedEntitiesVisible = RelatedEntitiesVisible == 1;
+                                               IncludeAPIQuery = IncludeAPIQuery == 1;
+                                               IncludeSystemQuery = IncludeSystemQuery == 1;
+                                               IncludeUserQuery = IncludeUserQuery == 1;
+                                               QueryObjectType =
+                                                   IsNull(QueryObjectType) ? UserQuery : parseInt(QueryObjectType, 10);
+                                               Mode = IsNull(Mode) ? ModesEnum.None : parseInt(Mode, 10);
+                                               Modes = IsNull(Modes) ? ModesEnum.None : parseInt(Modes, 10);
+                                               FetchMode = IsNull(FetchMode)
+                                                   ? FetchModesEnum.AlertEmpty
+                                                   : parseInt(FetchMode, 10);
+                                               Buttons = IsNull(Buttons) ? ButtonsEnum.None : parseInt(Buttons, 10);
+                                               CanCreateUserQuery = CanCreateUserQuery == 1;
+                                               CanWriteUserQuery = CanWriteUserQuery == 1;
+                                               DistinctFetch = DistinctFetch == 1;
+                                               SaveChangesAlert = SaveChangesAlert == 1;
+                                               FilterControlVisible = FilterControlVisible == 1;
+                                               DisableValueControlInSimpleMode = DisableValueControlInSimpleMode == 1;
+                                               ShowChangeGroupMenu = ShowChangeGroupMenu == 1;
+                                               ConfigureToolbars(element);
+                                               if (IsNull(_oClientCache)) {
+                                                   _oClientCache = new CacheManager;
+                                                   _oClientCache.Initialize();
+                                                   _oClientCache.OnPopulateFieldList = element.OnPopulateFieldList
+                                               }
+                                               ClientCache = _oClientCache;
+                                               if (QueryListVisible)
+                                                   element.all.ctrlQueryList.onquerychange = HandleQueryChange;
+                                               if (IsNull(_oControlsCache)) {
+                                                   _oControlsCache = [];
+                                                   CacheClientControls()
+                                               }
+                                               ConfigurePriEntity();
+                                               ConfigureQuery();
+                                               _bInitComplete = true;
+                                               SetFetchXml(_sFetchXml);
+                                               _sFetchXml = null
+                                           }
+
+                                           function Clone(sNewId, fnHandleNewElement) {
+                                               var elementArray = [],
+                                                   oNew = element.cloneNode(true);
+                                               oNew.id = sNewId;
+                                               oNew.ButtonsEnum = ButtonsEnum;
+                                               oNew.Mode = Mode;
+                                               oNew.ModesEnum = ModesEnum;
+                                               oNew.FetchMode = FetchMode;
+                                               oNew.FetchModesEnum = FetchModesEnum;
+                                               oNew.DistinctFetch = DistinctFetch;
+                                               oNew.SaveChangesAlert = SaveChangesAlert;
+                                               oNew.RelatedEntitiesVisible = RelatedEntitiesVisible;
+                                               ProcessMenuBarControl(sNewId, oNew, elementArray);
+                                               !IsNull(fnHandleNewElement) &&
+                                                   fnHandleNewElement(oNew);
+                                               for (var i = 0; i < elementArray.length; i++)
+                                                   crmCreate(Microsoft.Crm.CommandBar.MenuBarControl,
+                                                       null,
+                                                       null,
+                                                       null,
+                                                       elementArray[i]);
+                                               return oNew
+                                           }
+
+                                           function ProcessMenuBarControl(sNewAfId, oNew, elementArray) {
+                                               for (var elements = oNew.getElementsByTagName("DIV"),
+                                                   menuFound = 0,
+                                                   i = 0,
+                                                   length = elements.length;
+                                                   i < length;
+                                                   i++) {
+                                                   var element = elements[i];
+                                                   if (element.className == "ms-crm-ActionBar") {
+                                                       var oldMenuId = element.id;
+                                                       element
+                                                           .id =
+                                                           sNewAfId + oldMenuId.substring(id.length, oldMenuId.length);
+                                                       elementArray[elementArray.length] = element;
+                                                       menuFound = menuFound + 1;
+                                                       if (menuFound == 2)
+                                                           break
+                                                   }
+                                               }
+                                           }
+
+                                           function getShownInSimple() {
+                                               if (_bInitComplete)
+                                                   return _oDetailed.style.display == "inline";
+                                               else if (IsNull(_sFetchXml))
+                                                   return false;
+                                               else {
+                                                   var oXml = XUI.Xml.LoadXml(_sFetchXml);
+                                                   return !IsNull(oXml.selectSingleNode(XPATH_SHOWNINSIMPLE))
+                                               }
+                                           }
+
+                                           function getSaveChangesAlert() {
+                                               return _bSaveChangesAlert
+                                           }
+
+                                           function putSaveChangesAlert(bShow) {
+                                               _bSaveChangesAlert = bShow;
+                                               if (bShow)
+                                                   attachWindowOnBeforeUnload(OnBeforeUnload);
+                                               else
+                                                   detachWindowOnBeforeUnload(OnBeforeUnload)
+                                           }
+
+                                           function getIsDirty() {
+                                               return _bIsDirty
+                                           }
+
+                                           function putIsDirty(bDirty) {
+                                               _bIsDirty = bDirty;
+                                               RaiseEvent(OnChangeEvent)
+                                           }
+
+                                           function createButtonsEnum() {
+                                               if (IsNull(_AdvFindButtonsEnum)) {
+                                                   _AdvFindButtonsEnum = {};
+                                                   _AdvFindButtonsEnum.None = 0;
+                                                   _AdvFindButtonsEnum.SwitchModes = 1;
+                                                   _AdvFindButtonsEnum.GroupAnd = 2;
+                                                   _AdvFindButtonsEnum.GroupOr = 4;
+                                                   _AdvFindButtonsEnum.Ungroup = 8;
+                                                   _AdvFindButtonsEnum.New = 16;
+                                                   _AdvFindButtonsEnum.Save = 32;
+                                                   _AdvFindButtonsEnum.SaveAs = 64;
+                                                   _AdvFindButtonsEnum.Clear = 128;
+                                                   _AdvFindButtonsEnum.EditView = 256;
+                                                   with (_AdvFindButtonsEnum)
+                                                       _AdvFindButtonsEnum
+                                                           .All =
+                                                           SwitchModes |
+                                                           GroupAnd |
+                                                           GroupOr |
+                                                           Ungroup |
+                                                           New |
+                                                           Save |
+                                                           SaveAs |
+                                                           Clear |
+                                                           EditView
+                                               }
+                                               ButtonsEnum = _AdvFindButtonsEnum
+                                           }
+
+                                           function createModesEnum() {
+                                               if (IsNull(_AdvFindModesEnum)) {
+                                                   _AdvFindModesEnum = {};
+                                                   _AdvFindModesEnum.None = 0;
+                                                   _AdvFindModesEnum.Simple = 1;
+                                                   _AdvFindModesEnum.Detailed = 2;
+                                                   with (_AdvFindModesEnum)
+                                                       _AdvFindModesEnum.All = Simple | Detailed
+                                               }
+                                               ModesEnum = _AdvFindModesEnum
+                                           }
+
+                                           function createFetchModesEnum() {
+                                               if (IsNull(_FetchModesEnum)) {
+                                                   _FetchModesEnum = {};
+                                                   _FetchModesEnum.None = 0;
+                                                   _FetchModesEnum.Summary = 1;
+                                                   _FetchModesEnum.AlertEmpty = 2;
+                                                   _FetchModesEnum.IgnoreEmpty = 4;
+                                                   _FetchModesEnum.SkipEmpty = 8
+                                               }
+                                               FetchModesEnum = _FetchModesEnum
+                                           }
+
+                                           function OnBeforeUnload(oEvent) {
+                                               oEvent = oEvent.rawEvent;
+                                               if (IsDirty || IsNameOrDescDirty) {
+                                                   var msg =
+                                                       LOCID_AF_SEARCHMODIFIED_TITLE + "\n\n" + LOCID_AF_ONWINCLOSE_MSG;
+                                                   oEvent.returnValue = msg;
+                                                   return msg
+                                               }
+                                           }
+
+                                           function ConfigureQuery() {
+                                               QueryListVisible &&
+                                                   ConfigureQueryList();
+                                               if (!IsNull(QueryId) && !IsNull(QueryObjectType))
+                                                   return Load(QueryId, QueryObjectType);
+                                               else if (IsNull(_sFetchXml))
+                                                   return StartNewQuery();
+                                               else
+                                                   return LoadFetchQuery()
+                                           }
+
+                                           function ConfigurePriEntity() {
+                                               if (!EntityListVisible)
+                                                   return;
+                                               var oEntitySelect = $get("slctPrimaryEntity"),
+                                                   oEntitySelectComponent = $find("slctPrimaryEntity");
+                                               if (!IsNull(oEntitySelect)) {
+                                                   oEntitySelect.onchange = PrimaryEntity_OnChange;
+                                                   oEntitySelect.selectedIndex = -1;
+                                                   oEntitySelectComponent.set_dataValue(EntityName);
+                                                   EntityName = oEntitySelectComponent.get_dataValue();
+                                                   if (IsNull(EntityName) && oEntitySelect.options[0]) {
+                                                       oEntitySelect
+                                                           .set_dataValue(oEntitySelectComponent.options[0].value);
+                                                       EntityName = oEntitySelectComponent.get_dataValue();
+                                                       QueryId = null
+                                                   }
+                                               }
+                                           }
+
+                                           function PrimaryEntity_OnChange() {
+                                               var sOldEntityName = EntityName,
+                                                   entityCtrl = $find(event.srcElement.id);
+                                               EntityName = entityCtrl.get_dataValue();
+                                               if (!(IsDirty || IsNameOrDescDirty) ||
+                                                   confirm(LOCID_AF_SEARCHMODIFIED_TITLE +
+                                                       "\n\n" +
+                                                       LOCID_AF_SEARCHMODIFIED_MSG)) {
+                                                   QueryId = null;
+                                                   if (ConfigureQuery()) {
+                                                       refreshRibbon();
+                                                       return true
+                                                   }
+                                               }
+                                               EntityName = sOldEntityName;
+                                               entityCtrl.set_dataValue(EntityName);
+                                               refreshRibbon()
+                                           }
+
+                                           function CreateInnerControls() {
+                                               _oDetailed = window.document.createElement(FILTER_CTRL);
+                                               _oDetailed.id = element.id + "E";
+                                               _oDetailed.ParentControl = this;
+                                               _oDetailed.Container = this;
+                                               _oDetailed.EntityName = EntityName;
+                                               var oSpanDetailed = element.all.spnDetailed;
+                                               if (!IsNull(oSpanDetailed.firstChild))
+                                                   oSpanDetailed.innerHTML = "";
+                                               oSpanDetailed.appendChild(_oDetailed);
+                                               prepareMode()
+                                           }
+
+                                           function ConfigureMode() {
+                                               prepareMode(Mode);
+                                               HideVisibleControl(element);
+                                               var aoStack = [],
+                                                   abGotChildren = [],
+                                                   iLen;
+                                               aoStack.push(_oDetailed);
+                                               var aoChildren,
+                                                   oItem;
+                                               while ((oItem = aoStack.pop()) != null)
+                                                   if (abGotChildren[oItem.uniqueID] == true) {
+                                                       oItem.SetMode(Mode);
+                                                       delete abGotChildren[oItem.uniqueID]
+                                                   } else {
+                                                       aoChildren = oItem.Children;
+                                                       if (IsNull(aoChildren) || aoChildren.length == 0)
+                                                           oItem.SetMode(Mode);
+                                                       else {
+                                                           abGotChildren[oItem.uniqueID] = true;
+                                                           aoStack.push(oItem);
+                                                           iLen = aoChildren.length;
+                                                           while (iLen > 0) {
+                                                               aoStack.push(aoChildren.pop());
+                                                               iLen--
+                                                           }
+                                                       }
+                                                   }
+                                               ToggleInlineMessage()
+                                           }
+
+                                           function ToggleInlineMessage() {
+                                               if (IsNull(_oDetailed))
+                                                   return;
+                                               if (Mode == ModesEnum.Simple)
+                                                   if (_oDetailed.style.display == "inline") {
+                                                       element.all.spnInlineMsg.style.display = "none";
+                                                       element.all.spnDetailed.style.display = "inline"
+                                                   } else {
+                                                       element.all.spnInlineMsg.innerText = LOCID_AF_ALLHIDDENMSG;
+                                                       element.all.spnInlineMsg.style.display = "inline";
+                                                       element.all.spnDetailed.style.display = "none"
+                                                   }
+                                               else if (element.all.spnInlineMsg.style.display == "inline")
+                                                   element.all.spnInlineMsg.style.display = "none";
+                                               element.all.spnDetailed.style.display = "inline"
+                                           }
+
+                                           function prepareMode() {
+                                               var o = element.all;
+                                               if (IsNull(o.tdDetailedToolBar) || IsNull(o.tdSimpleToolBar))
+                                                   return;
+                                               switch (Mode) {
+                                               case ModesEnum.Detailed:
+                                                   with (o) {
+                                                       tdDetailedToolBar.style.display = "inline";
+                                                       if (Modes & ModesEnum.Simple) {
+                                                           spnInlineMsg.style.display = "none";
+                                                           tdSimpleToolBar.style.display = "none"
+                                                       }
+                                                       spnDetailed.style.display = "inline"
+                                                   }
+                                                   break;
+                                               case ModesEnum.Simple:
+                                                   with (o) {
+                                                       spnInlineMsg.innerText = LOCID_AF_ALLHIDDENMSG;
+                                                       spnInlineMsg.style.display = "inline";
+                                                       spnDetailed.style.display = "none";
+                                                       if (Modes & ModesEnum.Detailed)
+                                                           tdDetailedToolBar.style.display = "none";
+                                                       if (!IsNull(element.all("mnuBar6")))
+                                                           tdSimpleToolBar.style.display = "inline";
+                                                       else
+                                                           tdSimpleToolBar.style.display = "none"
+                                                   }
+                                                   break
+                                               }
+                                           }
+
+                                           function CacheClientControls() {
+                                               var o = element.all;
+                                               ClientCache
+                                                   .PutElement("ValueControl",
+                                                       "lookup",
+                                                       o.lookup.removeChild(o.lookup.firstChild));
+                                               ClientCache
+                                                   .PutElement("ValueControl",
+                                                       "date",
+                                                       o.date.removeChild(o.date.firstChild));
+                                               ClientCache
+                                                   .PutElement("ValueControl",
+                                                       "string",
+                                                       o.txt.removeChild(o.txt.firstChild));
+                                               ClientCache
+                                                   .PutElement("ValueControl",
+                                                       "number",
+                                                       o.num.removeChild(o.num.firstChild));
+                                               ClientCache
+                                                   .PutElement("ValueControl",
+                                                       "picklist",
+                                                       o.picklist.removeChild(o.picklist.firstChild));
+                                               ClientCache
+                                                   .PutElement("ValueControl",
+                                                       "fiscalperiodandyear",
+                                                       o.fiscalperiodandyear
+                                                       .removeChild(o.fiscalperiodandyear.firstChild))
+                                           }
+
+                                           function GetFetchXml() {
+                                               var sFetchXml = "",
+                                                   s,
+                                                   bErrorInFetch = false;
+                                               _sAliasForLinkEntity = "";
+                                               var aoStack = [],
+                                                   iLen;
+                                               aoStack.push(_oDetailed);
+                                               var aoChildren,
+                                                   oItem,
+                                                   bXToManyRelationshipPresent = false;
+                                               while ((oItem = aoStack.pop()) != null) {
+                                                   if (typeof oItem == "string") {
+                                                       sFetchXml += oItem;
+                                                       continue
+                                                   }
+                                                   if ("undefined" != typeof oItem.GetFetchStartElement) {
+                                                       s = oItem.GetFetchStartElement();
+                                                       if (s == null) {
+                                                           bErrorInFetch = true;
+                                                           break
+                                                       }
+                                                       sFetchXml += s
+                                                   }
+                                                   if ("undefined" != typeof oItem.GetFetchEndElement) {
+                                                       s = oItem.GetFetchEndElement();
+                                                       if (s == null) {
+                                                           bErrorInFetch = true;
+                                                           break
+                                                       }
+                                                       aoStack.push(s)
+                                                   }
+                                                   aoChildren = oItem.Children;
+                                                   if (!IsNull(aoChildren) && aoChildren.length != 0) {
+                                                       iLen = aoChildren.length;
+                                                       while (iLen > 0) {
+                                                           aoStack.push(aoChildren.pop());
+                                                           iLen--
+                                                       }
+                                                   }
+                                                   if (!IsNull(oItem.RelationshipType) &&
+                                                       "many-to-one" != oItem.RelationshipType)
+                                                       bXToManyRelationshipPresent = true
+                                               }
+                                               if (bErrorInFetch) {
+                                                   iLen = aoStack.length;
+                                                   while (iLen > 0) {
+                                                       aoStack.pop();
+                                                       iLen--
+                                                   }
+                                                   return null
+                                               }
+                                               var sFetchAttrs = null;
+                                               if (!IsNull(OnGetFetchAttributes) &&
+                                                   typeof OnGetFetchAttributes == "function") {
+                                                   var fnCallback = OnGetFetchAttributes;
+                                                   sFetchAttrs = fnCallback()
+                                               } else
+                                                   sFetchAttrs = _sFetchAttributes;
+                                               var bDistinct =
+                                                   DistinctFetch && sFetchXml.search(/<\s*link-entity\s/m) != -1;
+                                               bDistinct &= bXToManyRelationshipPresent;
+                                               var sFullFetchXml =
+                                                   '<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="' + (bDistinct ? "true" : "false") + '"><entity name="' + CrmEncodeDecode.CrmXmlEncode(EntityName) + '">' + sFetchAttrs + sFetchXml + "</entity></fetch>";
+                                               createFetchModesEnum();
+                                               if (FetchMode == FetchModesEnum.SkipEmpty) {
+                                                   for (var oXml = XUI.Xml.LoadXml(sFullFetchXml),
+                                                       emptyFilters = oXml.selectNodes(XPATH_EMPTYFILTER),
+                                                       i = 0;
+                                                       i < emptyFilters.length;
+                                                       i++)
+                                                       emptyFilters[i].parentNode.removeChild(emptyFilters[i]);
+                                                   sFullFetchXml = oXml.xml
+                                               }
+                                               return sFullFetchXml
+                                           }
+
+                                           function SetFetchXml(sFetchXml) {
+                                               _oXMLDoc = null;
+                                               if (IsNull(sFetchXml) || sFetchXml.length == 0) {
+                                                   _oXMLDoc = XUI.Xml.LoadXml("<fetch/>");
+                                                   element.aliasesInInitialFetch = "";
+                                                   return false
+                                               }
+                                               if (!_bInitComplete)
+                                                   if (IsNull(_sFetchXml)) {
+                                                       _sFetchXml = sFetchXml;
+                                                       return
+                                                   }
+                                               _oXMLDoc = XUI.Xml.LoadXml(sFetchXml);
+                                               _oXMLDoc.setProperty("SelectionLanguage", "XPath");
+                                               if (handleXMLErr(_oXMLDoc) != ERROR_NONE)
+                                                   return false;
+                                               for (var usedAliases = new StringBuilder,
+                                                   aliasNodes = _oXMLDoc
+                                                       .selectNodes("//fetch/entity//link-entity[@alias]"),
+                                                   i = 0;
+                                                   i < aliasNodes.length;
+                                                   i++)
+                                                   usedAliases.Append("|" + aliasNodes[i].getAttribute("alias") + "|");
+                                               element.aliasesInInitialFetch = usedAliases.ToString();
+                                               if (Mode == ModesEnum.Simple)
+                                                   if (_oXMLDoc.selectSingleNode(XPATH_SHOWNINSIMPLE)) {
+                                                       element.all.spnInlineMsg.style.display = "none";
+                                                       element.all.spnDetailed.style.display = "inline"
+                                                   } else {
+                                                       element.all.spnInlineMsg.style.display = "inline";
+                                                       element.all.spnDetailed.style.display = "none"
+                                                   }
+                                               if (IsNull(_oDetailed))
+                                                   return false;
+                                               _oDetailed.FetchXml = _oXMLDoc.selectSingleNode("//fetch/entity");
+                                               _sFetchAttributes = GetFetchAttributes(sFetchXml);
+                                               return true
+                                           }
+
+                                           function getFetchXmlLoaded() {
+                                               if (!_bInitComplete || IsNull(_oXMLDoc))
+                                                   return false;
+                                               return _oXMLDoc
+                                                   .selectSingleNode("//condition[not(@done)]|//link-entity[not(@done)]") ==
+                                                   null
+                                           }
+
+                                           function Save() {
+                                               return SaveHelper(false)
+                                           }
+
+                                           function SaveAs() {
+                                               return SaveHelper(true)
+                                           }
+
+                                           function SaveHelper(bSaveAs) {
+                                               var bReturnValue = true,
+                                                   oEvent = RaiseEvent(bSaveAs ? OnSaveAsEvent : OnSaveEvent);
+                                               bReturnValue = oEvent.returnValue;
+                                               if ((bSaveAs ||
+                                                       IsDirty ||
+                                                       IsNameOrDescDirty ||
+                                                       IsDefaultAdvancedFindView(QueryId, EntityName, ClientCache)) &&
+                                                   bReturnValue)
+                                                   bReturnValue = SaveQuery(bSaveAs);
+                                               if (bReturnValue) {
+                                                   oEvent = RaiseEvent(bSaveAs ? OnAfterSaveAsEvent : OnAfterSaveEvent);
+                                                   bReturnValue = oEvent.returnValue
+                                               }
+                                               return bReturnValue
+                                           }
+
+                                           function Group(sOp) {
+                                               var oEvent = createEventObject();
+                                               oEvent.returnValue = true;
+                                               oEvent.operation = sOp;
+                                               OnGroupEvent.fire(oEvent);
+                                               if (oEvent.returnValue == false)
+                                                   return false;
+                                               if (Mode == ModesEnum.Detailed) {
+                                                   var aoStack = [],
+                                                       bOnlyOneClause = false,
+                                                       iLen,
+                                                       iNumSelected = 0,
+                                                       iGrpResult;
+                                                   aoStack.push(_oDetailed);
+                                                   var aoChildren,
+                                                       oItem;
+                                                   while ((oItem = aoStack.pop()) != null) {
+                                                       aoChildren = oItem.Children;
+                                                       if (oItem.tagName == "FilterFieldGroup") {
+                                                           iGrpResult = oItem.Group(sOp);
+                                                           iNumSelected += iGrpResult;
+                                                           bOnlyOneClause |= iGrpResult == 1
+                                                       }
+                                                       if (IsNull(aoChildren) || aoChildren.length == 0)
+                                                           continue;
+                                                       iLen = aoChildren.length;
+                                                       while (iLen > 0) {
+                                                           aoStack.push(aoChildren.pop());
+                                                           iLen--
+                                                       }
+                                                   }
+                                                   (bOnlyOneClause || iNumSelected == 0) &&
+                                                       alert(LOCID_AF_ERRORGROUPING_MSG);
+                                                   IsDirty = true
+                                               }
+                                           }
+
+                                           function EditProperties() {
+                                               IsNameOrDescDirty |= GetViewInfo(QueryId, QueryObjectType)
+                                           }
+
+                                           function EditView() {
+                                               if (IsNull(QueryId)) {
+                                                   var oQueryList = element.all.ctrlQueryList;
+                                                   QueryId = oQueryList.QueryId
+                                               }
+                                               var oArgs = {},
+                                                   iOldFetchMode = FetchMode;
+                                               FetchMode = FetchModesEnum.IgnoreEmpty;
+                                               var sFetchXml = GetFetchXml();
+                                               FetchMode = iOldFetchMode;
+                                               if (sFetchXml == null)
+                                                   return false;
+                                               oArgs.FetchXml = sFetchXml;
+                                               oArgs.LayoutXml = LayoutXml;
+                                               var oResult =
+                                                   openStdDlg(Mscrm.CrmUri
+                                                       .create("/AdvancedFind/dialogs/dlg_editview.aspx?EntityName=" +
+                                                           EntityName),
+                                                       oArgs,
+                                                       800,
+                                                       450);
+                                               if (!IsNull(oResult) && oResult.IsDirty) {
+                                                   Clear(false);
+                                                   iOldFetchMode = FetchMode;
+                                                   FetchMode = FetchModesEnum.IgnoreEmpty;
+                                                   SetFetchXml(oResult.FetchXml);
+                                                   var handler = new resetModeWhenFetchLoaded(iOldFetchMode, this);
+                                                   window.setTimeout(handler.OnFetchLoaded, 3);
+                                                   LayoutXml = oResult.LayoutXml;
+                                                   IsDirty = true
+                                               }
+                                           }
+
+                                           function resetModeWhenFetchLoaded(iMode, oAdvFind) {
+                                               var _iMode = iMode,
+                                                   _oAdvFind = oAdvFind;
+                                               this.OnFetchLoaded = _handleFetchLoaded;
+
+                                               function _handleFetchLoaded() {
+                                                   if (_oAdvFind.FetchXmlLoaded)
+                                                       _oAdvFind.FetchMode = _iMode;
+                                                   else
+                                                       window.setTimeout(_handleFetchLoaded, 3)
+                                               }
+                                           }
+
+                                           function ConfigureSaveButtons(oToolBar, oButtonContainer, oQryData) {
+                                               var o = $get("btnSave", oButtonContainer);
+                                               if (!IsNull(o))
+                                                   if (
+                                                       IsDefaultAdvancedFindView(oQryData.QueryId,
+                                                               oQryData.EntityName,
+                                                               ClientCache) &&
+                                                           CanCreateUserQuery ||
+                                                           oQryData.QueryType == UserQuery &&
+                                                           CanWriteUserQuery &&
+                                                           oQryData.CanWrite)
+                                                       oToolBar.disableItem(o, false);
+                                                   else
+                                                       oToolBar.disableItem(o, true);
+                                               o = $get("btnSave", oButtonContainer);
+                                               if (!IsNull(o))
+                                                   if (!CanCreateUserQuery)
+                                                       oToolBar.disableItem(o, true);
+                                                   else
+                                                       oToolBar.disableItem(o, false)
+                                           }
+
+                                           function ConfigureButtons(oQryData) {
+                                               var oToolbar,
+                                                   bSplQuery =
+                                                       IsNull(oQryData.FetchXml) || Trim(oQryData.FetchXml).length == 0,
+                                                   oShared = $find(id + "mnuBar7");
+                                               if (!IsNull(oShared)) {
+                                                   var obuttonContainer = XUI.Html.DomUtils
+                                                       .GetFirstChild(oShared.get_element());
+                                                   with (oShared) {
+                                                       PerformToolbarOperation("disable",
+                                                           oShared,
+                                                           $get("btnSave", obuttonContainer),
+                                                           bSplQuery);
+                                                       PerformToolbarOperation("disable",
+                                                           oShared,
+                                                           $get("btnSaveAs", obuttonContainer),
+                                                           bSplQuery);
+                                                       PerformToolbarOperation("disable",
+                                                           oShared,
+                                                           $get("btnEditView", obuttonContainer),
+                                                           bSplQuery);
+                                                       PerformToolbarOperation("disable",
+                                                           oShared,
+                                                           $get("btnNew", obuttonContainer),
+                                                           false)
+                                                   }
+                                               }
+                                               oShared = $find(id + "mnuBar5");
+                                               if (!IsNull(oShared) && Modes & ModesEnum.Detailed) {
+                                                   var obuttonContainer = XUI.Html.DomUtils
+                                                       .GetFirstChild(oShared.get_element());
+                                                   PerformToolbarOperation("disable",
+                                                       oShared,
+                                                       $get("btnSimple", obuttonContainer),
+                                                       bSplQuery);
+                                                   PerformToolbarOperation("disable",
+                                                       oShared,
+                                                       $get("btnAnd", obuttonContainer),
+                                                       bSplQuery);
+                                                   PerformToolbarOperation("disable",
+                                                       oShared,
+                                                       $get("btnOr", obuttonContainer),
+                                                       bSplQuery);
+                                                   PerformToolbarOperation("disable",
+                                                       oShared,
+                                                       $get("btnClear", obuttonContainer),
+                                                       bSplQuery);
+                                                   !bSplQuery &&
+                                                       !IsNull(oShared) &&
+                                                       ConfigureSaveButtons(oShared, obuttonContainer, oQryData)
+                                               }
+                                               oShared = $find(id + "mnuBar5");
+                                               if (!IsNull(oShared) && Modes & ModesEnum.Simple) {
+                                                   var obuttonContainer = XUI.Html.DomUtils
+                                                       .GetFirstChild(oShared.get_element());
+                                                   PerformToolbarOperation("disable",
+                                                       oShared,
+                                                       $get("btnDetailed", obuttonContainer),
+                                                       bSplQuery);
+                                                   !bSplQuery &&
+                                                       !IsNull(oShared) &&
+                                                       ConfigureSaveButtons(oShared, obuttonContainer, oQryData)
+                                               }
+                                           }
+
+                                           function Load(sQueryId, iQueryType) {
+                                               var sCmd = iQueryType == SavedQuery ? "SystemQuery" : "UserQuery",
+                                                   oQryData = ClientCache.GetElement(sCmd, sQueryId, null);
+                                               if (IsNull(oQryData))
+                                                   return false;
+                                               return LoadQuery(oQryData)
+                                           }
+
+                                           function LoadFetchQuery() {
+                                               var oXml = XUI.Xml.LoadXml(_sFetchXml),
+                                                   sEntityName = oXml.selectSingleNode("fetch/entity/@name").value,
+                                                   oQryData = new ClientCache.QueryData;
+                                               oQryData.QueryId = "";
+                                               oQryData.QueryType = UserQuery;
+                                               oQryData.Name = "";
+                                               oQryData.Description = "";
+                                               oQryData.FetchXml = _sFetchXml;
+                                               oQryData.LayoutXml = "";
+                                               oQryData.EntityName = sEntityName;
+                                               oQryData.FetchAttributes = GetFetchAttributes(oQryData.FetchXml);
+                                               return LoadQuery(oQryData)
+                                           }
+
+                                           function LoadQuery(oQryData) {
+                                               if (EntityName != oQryData.EntityName) {
+                                                   EntityName = oQryData.EntityName;
+                                                   ConfigurePriEntity()
+                                               }
+                                               QueryId = oQryData.QueryId;
+                                               QueryObjectType = oQryData.QueryType;
+                                               var oQueryList = element.all.ctrlQueryList;
+                                               if (QueryListVisible && oQueryList.QueryId != QueryId) {
+                                                   oQueryList.EntityName = EntityName;
+                                                   oQueryList.QueryId = QueryId
+                                               }
+                                               LayoutXml = oQryData.LayoutXml;
+                                               if (!QueryListVisible && TitleVisible)
+                                                   element.all.tdTitle.innerText = oQryData.Name;
+                                               FilterControlVisible &&
+                                                   CreateInnerControls();
+                                               ConfigureButtons(oQryData);
+                                               if (IsNull(oQryData.FetchXml) || Trim(oQryData.FetchXml).length == 0)
+                                                   if (IncludeAPIQuery) {
+                                                       element.all.spnInlineMsg.innerText = LOCID_AF_SPECIALQRYMSG;
+                                                       element.all.spnInlineMsg.style.display = "inline";
+                                                       element.all.spnDetailed.style.display = "none"
+                                                   } else
+                                                       return StartNewQuery();
+                                               else {
+                                                   element.all.spnInlineMsg.style.display = "none";
+                                                   element.all.spnDetailed.style.display = "inline";
+                                                   _sFetchAttributes = oQryData.FetchAttributes;
+                                                   SetFetchXml(oQryData.FetchXml)
+                                               }
+                                               with (oQryData)
+                                                   if (IsDefaultAdvancedFindView(QueryId, EntityName, ClientCache)) {
+                                                       _sName = LOCID_AF_NEWQRYTITLE;
+                                                       _sDesc = ""
+                                                   } else {
+                                                       _sName = Name;
+                                                       _sDesc = Description
+                                                   }
+                                               IsDirty = false;
+                                               IsNameOrDescDirty = false;
+                                               RaiseEvent(OnLoadEvent);
+                                               return true
+                                           }
+
+                                           function ConfigureQueryList() {
+                                               var oQryLst = element.all.tdQuery.firstChild;
+                                               with (oQryLst) {
+                                                   ClientCache = this.ClientCache;
+                                                   ParentControl = this;
+                                                   ValidQueryType = this.ValidQueryType;
+                                                   IncludeAPIQuery = this.IncludeAPIQuery;
+                                                   IncludeSystemQuery = this.IncludeSystemQuery;
+                                                   IncludeUserQuery = this.IncludeUserQuery;
+                                                   EntityName = this.EntityName
+                                               }
+                                           }
+
+                                           function HandleQueryChange() {
+                                               var oQueryList = element.all.ctrlQueryList;
+                                               if ((IsDirty || IsNameOrDescDirty) &&
+                                                   !confirm(LOCID_AF_SEARCHMODIFIED_MSG)) {
+                                                   event.returnValue = false;
+                                                   return
+                                               }
+                                               if (oQueryList.QueryList.selectedIndex == 0)
+                                                   event.returnValue = StartNewQuery();
+                                               else {
+                                                   QueryId = oQueryList.QueryId;
+                                                   event.returnValue = Load(QueryId, oQueryList.QueryObjectType)
+                                               }
+                                           }
+
+                                           function SaveQuery(bSaveAs) {
+                                               var sFetchXml = GetFetchXml();
+                                               if (sFetchXml == null)
+                                                   return false;
+                                               var bPseudoSaveAs =
+                                                   IsDefaultAdvancedFindView(QueryId, EntityName, ClientCache) &&
+                                                       !bSaveAs;
+                                               if (bSaveAs || bPseudoSaveAs) {
+                                                   var oQueryData = new ClientCache.QueryData;
+                                                   if (bSaveAs || !IsNameOrDescDirty)
+                                                       if (!GetViewInfo(QueryId, QueryObjectType))
+                                                           return false;
+                                                   oQueryData.Name = _sName;
+                                                   oQueryData.Description = _sDesc;
+                                                   if (IncludeUserQuery) {
+                                                       oQueryData.EntityName = EntityName;
+                                                       oQueryData.FetchXml = sFetchXml;
+                                                       oQueryData.LayoutXml = LayoutXml;
+                                                       oQueryData.QueryType = ValidQueryType;
+                                                       oQueryData.QueryId = QueryId;
+                                                       oQueryData.SourceViewType = QueryObjectType;
+                                                       oQueryData = CreateAndRetrieveUserQuery(oQueryData);
+                                                       if (!IsNull(oQueryData)) {
+                                                           if (oQueryData.QueryType == 4230) {
+                                                               var openerWindow = window.top.opener;
+                                                               if (!IsNull(openerWindow) && !IsNull(openerWindow.Sys)) {
+                                                                   var
+                                                                       pm = openerWindow.Sys.Application
+                                                                           .findComponent("crmPageManager");
+                                                                   if (!IsNull(pm)) {
+                                                                       var oQueryList = element.all.ctrlQueryList,
+                                                                           oReturnedTypeCode;
+                                                                       if (
+                                                                           !IsNull(oQueryList) &&
+                                                                               !IsNull(oQueryList.children) &&
+                                                                               oQueryList.children.length > 0)
+                                                                           oReturnedTypeCode = oQueryList.firstChild
+                                                                               .getAttribute("ReturnedTypeCode");
+                                                                       var eventData = {};
+                                                                       eventData["viewId"] = oQueryData.QueryId;
+                                                                       eventData["viewType"] = oQueryData.QueryType;
+                                                                       eventData["entityName"] = oQueryData.EntityName;
+                                                                       eventData["viewName"] = oQueryData.Name;
+                                                                       eventData["entityTypeCode"] = oReturnedTypeCode;
+                                                                       pm
+                                                                           .raiseEvent(Mscrm.ScriptEvents
+                                                                               .NewViewCreated,
+                                                                               eventData)
+                                                                   }
+                                                               }
+                                                           }
+                                                           IsDirty = false;
+                                                           IsNameOrDescDirty = false;
+                                                           QueryId = oQueryData.QueryId;
+                                                           QueryObjectType = UserQuery;
+                                                           ConfigureButtons(oQueryData);
+                                                           if (QueryListVisible == true) {
+                                                               var oQueryList = element.all.ctrlQueryList;
+                                                               oQueryList.QueryId = null;
+                                                               oQueryList.Refresh();
+                                                               oQueryList.QueryId = QueryId
+                                                           } else if (TitleVisible)
+                                                               element.all.tdTitle.innerText = oQueryData.Name;
+                                                           ClientCache.PutElement("UserQuery", QueryId, oQueryData)
+                                                       }
+                                                       return true
+                                                   } else
+                                                       return false
+                                               } else {
+                                                   if (QueryObjectType == UserQuery)
+                                                       if (
+                                                           UpdateUserQuery(QueryId,
+                                                               _sName,
+                                                               _sDesc,
+                                                               sFetchXml,
+                                                               LayoutXml)) {
+                                                           var
+                                                               oQueryData = ClientCache
+                                                                   .GetElement("UserQuery", QueryId, null);
+                                                           oQueryData.FetchXml = sFetchXml;
+                                                           oQueryData.LayoutXml = LayoutXml;
+                                                           oQueryData.Name = _sName;
+                                                           oQueryData.Description = _sDesc;
+                                                           if (QueryListVisible && IsNameOrDescDirty)
+                                                               element.all.ctrlQueryList.QueryList
+                                                                   .SelectedText = _sName;
+                                                           else if (TitleVisible)
+                                                               element.all.tdTitle.innerText = _sName;
+                                                           IsDirty = false;
+                                                           IsNameOrDescDirty = false;
+                                                           return true
+                                                       }
+                                                   return false
+                                               }
+                                           }
+
+                                           function CreateAndRetrieveUserQuery(oQueryData) {
+                                               if (oQueryData.Name.length > 0) {
+                                                   var oaParameters = [];
+                                                   oaParameters["entityName"] = oQueryData.EntityName;
+                                                   oaParameters["queryType"] = oQueryData.QueryType;
+                                                   oaParameters["name"] = oQueryData.Name;
+                                                   oaParameters["description"] = oQueryData.Description;
+                                                   oaParameters["fetchXml"] = oQueryData.FetchXml;
+                                                   oaParameters["layoutXml"] = oQueryData.LayoutXml;
+                                                   var sData = ClientCache
+                                                       .ExecuteCommand("CreateAndRetrieveUserQuery",
+                                                           "AdvancedFind",
+                                                           oaParameters);
+                                                   if (!IsNull(sData)) {
+                                                       var oNewQryData = ClientCache.GetQuery(sData);
+                                                       oNewQryData.QueryId = GetNodeValue(sData, "userqueryid");
+                                                       if (isOutlookHostedWindow()) {
+                                                           getOutlookHostedWindow().RefreshViewList();
+                                                           try {
+                                                               getOutlookHostedWindow()
+                                                                   .InvalidateCacheForView(oNewQryData.QueryId)
+                                                           } catch (e) {
+                                                           }
+                                                       }
+                                                       oNewQryData.QueryType = UserQuery;
+                                                       return oNewQryData
+                                                   }
+                                               }
+                                               return null
+                                           }
+
+                                           function UpdateUserQuery(sId, sName, sDesc, sFetchXml, sLayoutXml) {
+                                               var oaParameters = [];
+                                               oaParameters["id"] = sId;
+                                               oaParameters["fetchXml"] = sFetchXml;
+                                               oaParameters["layoutXml"] = sLayoutXml;
+                                               oaParameters["name"] = sName;
+                                               oaParameters["description"] = sDesc;
+                                               oaParameters["viewType"] = UserQuery;
+                                               if (ClientCache
+                                                   .ExecuteCommand("UpdateQuery", "AdvancedFind", oaParameters) ==
+                                                   null)
+                                                   return false;
+                                               if (isOutlookHostedWindow()) {
+                                                   getOutlookHostedWindow().RefreshViewList();
+                                                   try {
+                                                       getOutlookHostedWindow().InvalidateCacheForView(sId)
+                                                   } catch (e) {
+                                                   }
+                                               }
+                                               IsDirty = false;
+                                               return true
+                                           }
+
+                                           function GetViewInfo(sQueryId, iQueryObjectType) {
+                                               var oArgs = {};
+                                               oArgs.sQueryId = sQueryId;
+                                               oArgs.iQueryObjectType = iQueryObjectType;
+                                               oArgs.sName = _sName;
+                                               oArgs.sDescription = _sDesc;
+                                               var oViewInfo;
+                                               if (!IsNull(OnGetViewInfo) && typeof OnGetViewInfo == "function") {
+                                                   var fnCallback = OnGetViewInfo;
+                                                   oViewInfo = fnCallback(oArgs)
+                                               } else
+                                                   oViewInfo =
+                                                       openStdDlg(Mscrm.CrmUri
+                                                           .create("/AdvancedFind/QueryProperties.aspx?feature=advfind"),
+                                                           oArgs,
+                                                           500,
+                                                           310);
+                                               if (!IsNull(oViewInfo)) {
+                                                   with (oViewInfo) {
+                                                       _sName = sName;
+                                                       _sDesc = sDescription
+                                                   }
+                                                   return true
+                                               }
+                                               return false
+                                           }
+
+                                           function StartNewQuery() {
+                                               if (Modes & ModesEnum.Detailed)
+                                                   Mode = ModesEnum.Detailed;
+                                               if (QueryListVisible == true) {
+                                                   var oQueryList = element.all.ctrlQueryList;
+                                                   oQueryList.EntityName = EntityName;
+                                                   oQueryList.QueryId = null;
+                                                   QueryId = oQueryList.QueryId;
+                                                   QueryObjectType = oQueryList.QueryObjectType;
+                                                   return Load(QueryId, QueryObjectType)
+                                               } else {
+                                                   var oQryData = ClientCache
+                                                       .GetElement("DefaultAdvFindView", EntityName);
+                                                   if (IsNull(oQryData))
+                                                       return false;
+                                                   QueryId = oQryData.QueryId;
+                                                   QueryObjectType = SavedQuery;
+                                                   return LoadQuery(oQryData)
+                                               }
+                                           }
+
+                                           function New() {
+                                               if (!(IsDirty || IsNameOrDescDirty) ||
+                                                   confirm(LOCID_AF_SEARCHMODIFIED_MSG))
+                                                   return StartNewQuery();
+                                               return false
+                                           }
+
+                                           function Clear(bPrompt, resetControl) {
+                                               if ("undefined" == typeof bPrompt)
+                                                   bPrompt = true;
+                                               if ("undefined" == typeof resetControl)
+                                                   resetControl = true;
+                                               if (!IsNull(_oDetailed) &&
+                                                   _oDetailed.Children.length > 0 &&
+                                                   (!IsDirty || !bPrompt || confirm(LOCID_AF_SEARCHMODIFIED_MSG))) {
+                                                   if (resetControl)
+                                                       CreateInnerControls();
+                                                   else {
+                                                       var oSpanDetailed = element.all.spnDetailed;
+                                                       !IsNull(oSpanDetailed) &&
+                                                           !IsNull(oSpanDetailed.firstChild) &&
+                                                           oSpanDetailed.firstChild.ClearControls()
+                                                   }
+                                                   IsDirty = true
+                                               }
+                                           }
+
+                                           function getDefaultAdvFindViewId() {
+                                               var oQryData = ClientCache.GetElement("DefaultAdvFindView", EntityName);
+                                               if (!IsNull(oQryData))
+                                                   return oQryData.QueryId;
+                                               return ""
+                                           }
+
+                                       </script>
+</head>
+</html>
+</public:component>

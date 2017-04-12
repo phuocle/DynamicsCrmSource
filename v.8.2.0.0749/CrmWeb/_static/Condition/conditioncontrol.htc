@@ -1,0 +1,186 @@
+<public:component lightweight="true" tagName="ConditionControl">
+    <public:attach event="ondocumentready" onevent="Init()"/>
+    <public:property name="ParentControl"/>
+    <public:property name="Container"/>
+    <public:property name="Xml" put="SetXml"/>
+    <public:property name="Children" get="GetChildren"/>
+    <public:method name="DeleteControl"/>
+    <public:method name="AddControl"/>
+    <public:method name="SetMode"/>
+    <html xmlns:Crm>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _aoControls = [],
+                                                   _bInitComplete = false,
+                                                   _oDivConditions = null,
+                                                   _oDivEmptyField = null,
+                                                   _oXmlNode;
+
+                                               function Init() {
+                                                   element
+                                                       .innerHTML =
+                                                       "<div class='ms-crm-AdvFind-Filter' style='display:none'></div><div class='ms-crm-AdvFind-EmptyField'><span class='ms-crm-AdvFind-EmptyField' style='visibility:hidden'></span></div>";
+                                                   _oDivConditions = element.firstChild;
+                                                   _oDivEmptyField = element.children[1];
+                                                   _bInitComplete = true;
+                                                   addEmptyControl();
+                                                   SetXml(_oXmlNode);
+                                                   _oXmlNode = null
+                                               }
+
+                                               function addEmptyControl() {
+                                                   AddNewConditionGroup(AT_END)
+                                               }
+
+                                               function GetFilterCtrl(iIndex) {
+                                                   return _oDivConditions.children[iIndex]
+                                               }
+
+                                               function AddNewConditionGroup(iWhere, oCtrl) {
+                                                   var oNewConditionGroup = window.document
+                                                       .createElement(CONDITIONGRP_CTRL);
+                                                   oNewConditionGroup.Clause = "and";
+                                                   oNewConditionGroup.id = element.id + "FGRP";
+                                                   return AddControl(oNewConditionGroup, iWhere, oCtrl)
+                                               }
+
+                                               function FieldChanged() {
+                                                   with (event.oArgs) {
+                                                       var oGrp = _oDivConditions.lastChild;
+                                                       if (IsNull(oGrp)) {
+                                                           oGrp = AddNewConditionGroup(AT_END);
+                                                           oGrp.GroupClause = "and"
+                                                       }
+                                                       if (oGrp.GroupClause != "and") {
+                                                           var oNewGrp = AddNewConditionGroup(AT_END);
+                                                           oNewGrp.GroupClause = "and";
+                                                           oGrp = _oDivConditions.removeChild(oGrp);
+                                                           oNewGrp.AddControl(oGrp, AT_BEGIN);
+                                                           oGrp = oNewGrp
+                                                       }
+                                                       oField = oGrp.AddNewConditionField(AT_END, null, false);
+                                                       oField.SetFocus()
+                                                   }
+                                                   Container.IsDirty = true;
+                                                   event.returnValue = false
+                                               }
+
+                                               function GetNumControls() {
+                                                   return _bInitComplete
+                                                       ? _oDivConditions.children.length
+                                                       : _aoControls.length
+                                               }
+
+                                               function AddUngroupedField(oControl, oWhichControl) {
+                                                   var oPrevGrp = oWhichControl.previousSibling;
+                                                   if (oPrevGrp && oPrevGrp.GroupClause == "and")
+                                                       return oPrevGrp.AddControl(oControl, AT_END);
+                                                   var oNextGrp = oWhichControl.nextSibling;
+                                                   if (oNextGrp && oNextGrp.GroupClause == "and")
+                                                       return oNextGrp.AddControl(oControl, AT_BEGIN);
+                                                   var oGrp = AddNewConditionGroup(AT_AFTER, oWhichControl);
+                                                   oGrp.GroupClause = "and";
+                                                   return oGrp.AddControl(oControl, AT_END)
+                                               }
+
+                                               function AddControl(oControl, iWhere, oWhichControl, iPos, bUngrouping) {
+                                                   oControl.ParentControl = element;
+                                                   oControl.Container = Container;
+                                                   if (_bInitComplete) {
+                                                       var sTagName = oControl.tagName,
+                                                           oDiv = _oDivConditions;
+                                                       if (sTagName == "ConditionField" && bUngrouping)
+                                                           return AddUngroupedField(oControl, oWhichControl);
+                                                       if (IsNull(iPos)) {
+                                                           if (
+                                                               (iWhere == AT_AFTER || iWhere == AT_BEFORE) &&
+                                                               (
+                                                                   IsNull(oWhichControl) ||
+                                                                       oWhichControl.parentElement !== oDiv))
+                                                               return null;
+                                                           oDiv.style.display = "inline";
+                                                           switch (iWhere) {
+                                                           case AT_BEGIN:
+                                                               if (oDiv.hasChildNodes())
+                                                                   oDiv.insertBefore(oControl, oDiv.children[0]);
+                                                               else
+                                                                   oDiv.appendChild(oControl);
+                                                               break;
+                                                           case AT_AFTER:
+                                                               var bFound = false,
+                                                                   i = oDiv.children.length - 2;
+                                                               while (i >= 0) {
+                                                                   if (oDiv.children[i] === oWhichControl) {
+                                                                       oDiv
+                                                                           .insertBefore(oControl,
+                                                                               oDiv.children[i + 1]);
+                                                                       bFound = true;
+                                                                       break
+                                                                   }
+                                                                   i--
+                                                               }
+                                                               !bFound &&
+                                                                   oDiv.appendChild(oControl);
+                                                               break;
+                                                           case AT_BEFORE:
+                                                               var i = oDiv.children.length - 1;
+                                                               while (i >= 0) {
+                                                                   if (oDiv.children[i] === oWhichControl) {
+                                                                       oDiv.insertBefore(oControl, oDiv.children[i]);
+                                                                       break
+                                                                   }
+                                                                   i--
+                                                               }
+                                                               break;
+                                                           case AT_END:
+                                                           default:
+                                                               oDiv.appendChild(oControl);
+                                                               break
+                                                           }
+                                                       } else {
+                                                           if (iPos >= oDiv.children.length || iPos < 0)
+                                                               return null;
+                                                           oDiv.insertBefore(oControl, oDiv.children[iPos])
+                                                       }
+                                                   } else {
+                                                       if (iWhere != AT_END)
+                                                           return null;
+                                                       _aoControls.push(oControl)
+                                                   }
+                                                   return oControl
+                                               }
+
+                                               function DeleteControl(oControl) {
+                                                   var oDiv = _oDivConditions;
+                                                   oDiv.removeChild(oControl);
+                                                   if (oDiv.children.length == 0)
+                                                       oDiv.style.display = "none";
+                                                   Container.IsDirty = true
+                                               }
+
+                                               function GetChildren() {
+                                                   var aoChildren = [],
+                                                       iLen = 0,
+                                                       i = 0;
+                                                   if (_oDivConditions &&
+                                                       _oDivConditions.children &&
+                                                       _oDivConditions.children.length) {
+                                                       iLen = _oDivConditions.children.length;
+                                                       while (i < iLen) {
+                                                           aoChildren.push(GetFilterCtrl(i));
+                                                           i++
+                                                       }
+                                                   }
+                                                   return aoChildren
+                                               }
+
+                                               function SetXml(oNode) {
+                                                   _oXmlNode = oNode;
+                                                   if (!_bInitComplete || IsNull(oNode))
+                                                       return;
+                                                   GetFilterCtrl(0).Xml = oNode
+                                               }
+
+                                           </script>
+    </html>
+</public:component>

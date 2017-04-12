@@ -1,0 +1,13 @@
+<div class="container-fluid" draggable="true" ondragstart="dragGroup(event)">
+    <script>
+        function dragGroup(ev) {
+            ev.dataTransfer.setData("newElement", 'NewGroup');
+        }
+    </script>
+
+    <div class="row">
+        <div>
+            <mscrm-locale mscrm-resource-key="SitemapDesigner.Group"/>
+        </div>
+    </div>
+</div>

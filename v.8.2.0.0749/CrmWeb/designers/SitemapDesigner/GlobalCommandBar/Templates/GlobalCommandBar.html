@@ -1,0 +1,26 @@
+<div class="mscrm-SitemapDesignerHeader">
+    <div class="mscrm-SitemapDesignerHeaderText">
+        <div tabindex="-1" mscrm-major-component data-ctabindex="4" data-mcgroupname="primary" data-skipmcfocus class="mscrm-SitemapHeaderWrapperDiv">
+            <div class="mscrm-SitemapHeaderTitleContainer" tabindex="-1">{{$root.appTitle}}</div>
+        </div>
+    </div>
+    <div class="mscrm-SitemapDesignerGlobalCommandBar">
+        <div tabindex="-1" mscrm-major-component data-ctabindex="5" data-mcgroupname="primary" class="mscrm-SitemapGlobalCommandBarWrapperDiv">
+            <mscrm-sitemap-global-command-button mscrm-button-text-key="AppDesigner.Save"
+                                                 ng-attr-title="{{globalCommandBarController.GetLocalizedResourceString('SitemapDesigner.Save.Tooltip')}}"
+                                                 mscrm-button-icon-class="mscrm-glyph-SaveIcon"
+                                                 mscrm-button-click-callback="globalCommandBarController.SaveSiteMap()"
+                                                 mscrm-button-is-disabled="{{globalCommandBarController.isSaveButtonDisabled()}}" id="SaveSiteMap" mscrm-action-on-select/>
+            <mscrm-sitemap-global-command-button mscrm-button-text-key="AppDesigner.SaveAndClose"
+                                                 ng-attr-title="{{globalCommandBarController.GetLocalizedResourceString('SitemapDesigner.SaveAndClose.Tooltip')}}"
+                                                 mscrm-button-icon-class="mscrm-glyph-SaveAndCloseIcon"
+                                                 mscrm-button-click-callback="globalCommandBarController.onUpdateAndClose()"
+                                                 mscrm-button-is-disabled="{{globalCommandBarController.isSaveAndCloseButtonDisabled()}}" id="SaveandCloseSiteMap" mscrm-action-on-select/>
+            <mscrm-sitemap-global-command-button mscrm-button-text-key="AppDesigner.Publish"
+                                                 ng-attr-title="{{globalCommandBarController.GetLocalizedResourceString('SitemapDesigner.PublishButton')}}"
+                                                 mscrm-button-icon-class="mscrm-glyph-PublishIcon"
+                                                 mscrm-button-click-callback="globalCommandBarController.onPublishSelection()"
+                                                 mscrm-button-is-disabled="{{globalCommandBarController.isPublishDisabled()}}" id="PublishSiteMap" mscrm-action-on-select/>
+        </div>
+    </div>
+</div>

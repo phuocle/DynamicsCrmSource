@@ -1,0 +1,139 @@
+<public:component lightweight="true">
+    <public:property name="IsDirty" get="isDirty"/>
+    <public:property name="DataXml" get="dataXml"/>
+    <public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+    <public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+    <public:property name="RequiredLevel" get="getRequiredLevel"/>
+    <public:property name="MaxLength" get="getMaxLength"/>
+    <public:property name="DataChangeHandler"/>
+    <public:property name="TrimValue" internalname="_bTrimValue"/>
+    <public:method name="SetFocus" internalname="setFocus"/>
+    <public:method name="FireOnChange" internalname="fireOnChange"/>
+    <public:attach event="ondocumentready" onevent="Init()"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _bTrimValue = element.defaultTrimValue !== "false";
+
+                                               function Init() {
+                                                   if (element && element.id === "TraceConsole")
+                                                       return;
+                                                   if (window.document.media != "print") {
+                                                       if (IsNull(this._onchangeInitialized)) {
+                                                           if (!IsNull(onchange))
+                                                               this._onchangeCached = onchange;
+                                                           this._onchangeInitialized = true
+                                                       }
+                                                       this.onchange = onChange
+                                                   }
+                                               }
+
+                                               function isDirty() {
+                                                   return this.defaultValue != this.value
+                                               }
+
+                                               function dataXml() {
+                                                   var sID = this.id,
+                                                       sValue = this.TrimValue ? Trim(this.value) : this.value;
+                                                   return "<" +
+                                                       sID +
+                                                       ">" +
+                                                       CrmEncodeDecode.CrmXmlEncode(sValue) +
+                                                       "</" +
+                                                       sID +
+                                                       ">"
+                                               }
+
+                                               function onChange() {
+                                                   var bValid = Parse();
+                                                   if (!IsNull(window.event) && IsNull(event.returnValue))
+                                                       event.returnValue = bValid;
+                                                   event.returnValue == true &&
+                                                       this._onchangeCached != null &&
+                                                       this._onchangeCached.call()
+                                               }
+
+                                               function Parse() {
+                                                   if (!getDisabled()) {
+                                                       var maxlengthAttr = element.attributes.getNamedItem("maxlength");
+                                                       if (!IsNull(maxlengthAttr)) {
+                                                           var maxlength = maxlengthAttr.value,
+                                                               iMaxLength = parseInt(maxlength, 10);
+                                                           if (this.TrimValue)
+                                                               value = Trim(value);
+                                                           if (value.length > iMaxLength)
+                                                               if (
+                                                                   confirm(formatString(LOCID_EXCEEDED_MAX_CHARS_MASK,
+                                                                       iMaxLength))) {
+                                                                   value = value.substring(0, iMaxLength);
+                                                                   return true
+                                                               } else {
+                                                                   select();
+                                                                   return false
+                                                               }
+                                                       }
+                                                   }
+                                                   return true
+                                               }
+
+                                               function getDataValue() {
+                                                   var vVal = this.TrimValue ? Trim(this.value) : this.value;
+                                                   return "" == vVal ? null : vVal
+                                               }
+
+                                               function putDataValue(vVal) {
+                                                   var sDisplayValue = vVal || "";
+                                                   if ("string" == typeof sDisplayValue) {
+                                                       value = sDisplayValue;
+                                                       if (Parse()) {
+                                                           var fDataChangeHandler = this.DataChangeHandler;
+                                                           fDataChangeHandler &&
+                                                               fDataChangeHandler()
+                                                       }
+                                                   } else
+                                                       alert(LOCID_DEVERROR_BADTYPE_STRING)
+                                               }
+
+                                               function getDisabled() {
+                                                   return this.contentEditable == "false"
+                                               }
+
+                                               function setDisabled(bValue) {
+                                                   this.className = bValue ? "ms-crm-ReadOnly" : "";
+                                                   this.contentEditable = bValue ? "false" : "true"
+                                               }
+
+                                               function setFocus() {
+                                                   !IsNull(this.form) &&
+                                                       this.form.className == "ms-crm-Form" &&
+                                                       this.form.GetTab(element, true);
+                                                   element.focus();
+                                                   element.select()
+                                               }
+
+                                               function getMaxLength() {
+                                                   try {
+                                                       var maxlength = element.attributes.getNamedItem("maxlength")
+                                                           .value;
+                                                       return parseInt(maxlength, 10)
+                                                   } catch (e) {
+                                                       return 2e3
+                                                   }
+                                               }
+
+                                               function fireOnChange() {
+                                                   this.fireEvent("onchange")
+                                               }
+
+                                               function getRequiredLevel() {
+                                                   try {
+                                                       if (IsNull(this.req))
+                                                           return FIELD_NOT_REQUIRED;
+                                                       else
+                                                           return parseInt(this.req, 10)
+                                                   } catch (e) {
+                                                       return FIELD_NOT_REQUIRED
+                                                   }
+                                               }
+
+                                           </script>
+</public:component>

@@ -1,0 +1,28 @@
+﻿<div class="mscrm-groupNodeContainer dragDropMinHeight"
+     tabindex="-1"
+     ng-click="onGroupSelection(group)" data-actiononfocusmode mscrm-action-on-select
+     role="group"
+     arrow-parent-node>
+    <div class="mscrm-groupLabelContainer" id="{{group.Id}}" tabindex="-1" ng-click="onGroupSelection(group)" data-actiononfocusmode mscrm-action-on-select ondragover="event.dataTransfer.setData('text', event.target.innerText);"
+         ng-attr-title="{{GetResourceString(group.ResourceId, group.Id)}}">
+        <span class="mscrm-groupLabel">{{GetResourceString(group.ResourceId, group.Id)}}{{groupLength}}</span>
+    </div>
+    <div class="mscrm-subareaNodesContainer dragDropMinHeight mscrm-groupExpand" ng-model="group.SubArea"
+         dnd-sortable-list="sortableOptionsForSubArea"
+         dnd-list="sortableOptionsForSubArea"
+         dnd-allowed-types="['subAreaType']"
+         dnd-horizontal-list="false"
+         dnd-drop="onDrop(event, group.SubArea, group, index,'SubArea')">
+        <div ng-repeat="subArea in group.SubArea"
+             class="mscrm-subareaNodeOuterContainer"
+             dnd-type="'subAreaType'"
+             dnd-draggable="subArea"
+             dnd-dragstart="onSubAreaDragStart(event, $parent.$index, $index,group,subArea)"
+             dnd-dragend="dragEndHandler('Sub-Area')"
+             dnd-moved="group.SubArea.splice($index, 1)"
+             dnd-effect-allowed="move"
+             dnd-selected="group.SubArea.selected = subArea">
+            <mscrm-sub-area/>
+        </div>
+    </div>
+</div>

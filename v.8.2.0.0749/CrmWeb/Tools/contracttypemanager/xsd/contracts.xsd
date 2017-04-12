@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="ContractTemplates" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">
+      This will verify Contract Templates
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="ContractTemplates" msdata:IsDataSet="true">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="contracttemplate">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="name" type="contractName" block="substitution" />
+              <xs:element name="abbreviation" type="contractAbbreviation" block="substitution" />
+              <xs:element name="description" type="contractDescription" block="substitution" minOccurs="0" />
+              <xs:element name="contractservicelevelcode" type="contractContractServiceLevelCode" block="substitution"
+                          minOccurs="0" />
+              <xs:element name="billingfrequencycode" type="contractBillingFrequencyCode" block="substitution"
+                          minOccurs="0" />
+              <xs:element name="allotmenttypecode" type="contractAllotmentTypeCode" block="substitution" minOccurs="0" />
+              <xs:element name="usediscountaspercentage" type="contractUseDiscountAsPercentage" block="substitution"
+                          minOccurs="0" />
+              <xs:element name="effectivitycalendar" type="contractEffectivityCalendar" block="substitution"
+                          minOccurs="0" />
+              <xs:element name="versionnumber" type="contractVersionNumber" block="substitution" minOccurs="0" />
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="contractName">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="200" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="contractAbbreviation">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="contractDescription">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0" />
+      <xs:maxLength value="7000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="contractContractServiceLevelCode">
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="contractBillingFrequencyCode">
+    <xs:restriction base="xs:integer" />
+  </xs:simpleType>
+  <xs:simpleType name="contractAllotmentTypeCode">
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="contractUseDiscountAsPercentage">
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="contractEffectivityCalendar">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[-+]{168}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="contractVersionNumber">
+    <xs:restriction base="xs:integer" />
+  </xs:simpleType>
+</xs:schema>

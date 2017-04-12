@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+           attributeFormDefault="unqualified">
+  <xs:element name="CustomReport">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="ReportName" minOccurs="1" maxOccurs="1">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="425" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Description" minOccurs="1" maxOccurs="1" nillable="true">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="256" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Language" minOccurs="1" maxOccurs="1">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="1000" />
+              <xs:maxExclusive value="100000" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Query" type="IgnoredType" minOccurs="1" maxOccurs="1" />
+        <xs:element name="DefaultFilter" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ReportFilter" type="IgnoredType" minOccurs="1" maxOccurs="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Groupings" type="GroupingsType" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Columns" type="ColumnsType" minOccurs="1" maxOccurs="1" />
+        <xs:element name="TableLayout" type="TableLayoutType" minOccurs="1" maxOccurs="1" />
+        <xs:element name="ChartLayout" type="ChartLayoutType" minOccurs="0" maxOccurs="1" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GroupingsType">
+    <xs:sequence>
+      <xs:element name="Grouping" minOccurs="0" maxOccurs="3">
+        <xs:complexType>
+          <xs:attribute name="Field" type="AttributeAliasType" use="required" />
+          <xs:attribute name="Sort" type="SortType" use="required" />
+          <xs:attribute name="Interval" type="IntervalType" use="optional" />
+          <xs:attribute name="SummaryValue" type="GroupingSummaryValueType" use="optional" />
+          <xs:attribute name="Width" type="WidthType" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="SortType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ascending" />
+      <xs:enumeration value="Descending" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IntervalType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Day" />
+      <xs:enumeration value="Week" />
+      <xs:enumeration value="Month" />
+      <xs:enumeration value="Year" />
+      <xs:enumeration value="FiscalPeriod" />
+      <xs:enumeration value="FiscalYear" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="GroupingSummaryValueType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Count" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="WidthType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="25" />
+      <xs:maxInclusive value="300" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ColumnsType">
+    <xs:choice minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="Column">
+        <xs:complexType>
+          <xs:attributeGroup ref="ColumnBaseGroup" />
+          <xs:attribute name="Field" type="AttributeAliasType" use="required" />
+          <xs:attribute name="SummaryValue" type="ColumnSummaryValueType" use="optional" />
+          <xs:attribute name="AddRawValueColumn" type="TrueFalseType" use="optional" />
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:attributeGroup name="ColumnBaseGroup">
+    <xs:attribute name="ID" type="ColumnIdType" use="required" />
+    <xs:attribute name="Width" type="WidthType" use="required" />
+  </xs:attributeGroup>
+  <xs:simpleType name="ColumnSummaryValueType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Avg" />
+      <xs:enumeration value="Max" />
+      <xs:enumeration value="Min" />
+      <xs:enumeration value="PercentTotal" />
+      <xs:enumeration value="Sum" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TableLayoutType">
+    <xs:sequence>
+      <xs:element name="Filter" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:attribute name="Column" type="ColumnIdType" use="required" />
+          <xs:attribute name="Operator" type="FilterOperatorType" use="required" />
+          <xs:attribute name="FilterValue" type="FilterValueType" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="Display" type="TableDisplayType" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="TableDisplayType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Normal" />
+      <xs:enumeration value="Drillthrough" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FilterOperatorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TopN" />
+      <xs:enumeration value="BottomN" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FilterValueType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1" />
+      <xs:maxInclusive value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ChartLayoutType">
+    <xs:all>
+      <xs:element name="ColumnAxis" type="ColumnAxisType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ValueAxes" type="ValueAxesType" minOccurs="1" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="Type" type="ChartTypeType" use="required" />
+    <xs:attribute name="Legend" type="TrueFalseType" use="required" />
+    <xs:attribute name="DataLabels" type="TrueFalseType" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ColumnAxisType">
+    <xs:attribute name="Field" type="ColumnIdType" use="required" />
+    <xs:attribute name="Name" type="AxisNameType" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="AxisNameType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="250" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ValueAxesType">
+    <xs:sequence minOccurs="1" maxOccurs="2">
+      <xs:element name="ValueAxis">
+        <xs:complexType>
+          <xs:attribute name="Field" type="ColumnIdType" use="required" />
+          <xs:attribute name="Name" type="AxisNameType" use="required" />
+          <xs:attribute name="SummaryValue" type="ColumnSummaryValueType" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ChartTypeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Column" />
+      <xs:enumeration value="Bar" />
+      <xs:enumeration value="Line" />
+      <xs:enumeration value="Pie" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TrueFalseType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="true" />
+      <xs:enumeration value="false" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AttributeAliasType">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="ColumnIdType">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:complexType name="IgnoredType">
+    <xs:sequence>
+      <xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

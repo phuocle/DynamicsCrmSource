@@ -1,0 +1,53 @@
+<div class="mscrm-sitemapNode" ng-show="isAdvancedSectionOpen">
+    <div class="mscrm-sitemapSubNodeTitle" ng-click="propertyPaneController.toggleLabelCheckboxList($event); propertyPaneController.LoadOptionSetValuesForSkuAndClient(PropertyDirective.nodeLabel);"
+         aria-expanded="false" mscrm-action-on-select tabindex="-1">
+        <span ng-class="['mscrm-collapsibleIcon',
+			{'mscrm-glyph-NextArrowIcon': !isClientItemsOpened,
+			'mscrm-glyph-DownArrowIcon': isClientItemsOpened}]"></span>
+        <span>{{PropertyDirective.nodeDisplayName}}</span>
+    </div>
+    <div class="mscrm-sitemapNodeContent" ng-init="isClientItemsOpened = false" ng-if="isClientItemsOpened" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+        <div class="mscrm-CheckBoxList">
+            <div class="mscrm-SKUCheckBox" ng-repeat="item in propertyPaneController.clientOptionsList" title="{{PropertyDirective.nodeTooltip}}">
+                <div class="mscrm-CheckBoxAllCol" ng-if="$index == 0">
+                    <div class="mscrm-CheckBoxRowCol-ItemSelector">
+                        <input type="checkbox" id="{{item.Id}}"
+                               ng-checked="item.Value" ng-click="propertyPaneController.SetClient(item.Label)" mscrm-action-on-select tabindex="-1"
+                               aria-label="{{item.Label}}"/>
+                    </div>
+                    <div class="mscrm-CheckBoxRowCol-ItemDetails">
+                        <label for="item">{{item.Label}}</label>
+                    </div>
+                </div>
+                <div class="mscrm-CheckBox" ng-if="$odd && $index != 0">
+                    <div class="mscrm-CheckBoxRowCol">
+                        <div class="mscrm-CheckBoxRowCol-ItemSelector">
+                            <input type="checkbox" id="{{propertyPaneController.clientOptionsList[$index].Id}}"
+                                   ng-checked="propertyPaneController.clientOptionsList[$index].Value"
+                                   ng-click="propertyPaneController.SetClient(propertyPaneController.clientOptionsList[$index].Label)"
+                                   mscrm-action-on-select
+                                   tabindex="-1"
+                                   aria-label="{{propertyPaneController.clientOptionsList[$index].Label}}"/>
+                        </div>
+                        <div class="mscrm-CheckBoxRowCol-ItemDetails">
+                            <label for="item">{{propertyPaneController.clientOptionsList[$index].Label}}</label>
+                        </div>
+                    </div>
+                    <div class="mscrm-CheckBoxRowCol" ng-if="($index + 1) <  propertyPaneController.clientOptionsList.length">
+                        <div class="mscrm-CheckBoxRowCol-ItemSelector">
+                            <input type="checkbox" id="{{propertyPaneController.clientOptionsList[$index].Id}}"
+                                   ng-checked="propertyPaneController.clientOptionsList[$index+1].Value"
+                                   ng-click="propertyPaneController.SetClient(propertyPaneController.clientOptionsList[$index+1].Label)"
+                                   mscrm-action-on-select
+                                   tabindex="-1"
+                                   aria-label="{{propertyPaneController.clientOptionsList[$index+1].Label}}"/>
+                        </div>
+                        <div class="mscrm-CheckBoxRowCol-ItemDetails">
+                            <label for="item">{{propertyPaneController.clientOptionsList[$index+1].Label}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

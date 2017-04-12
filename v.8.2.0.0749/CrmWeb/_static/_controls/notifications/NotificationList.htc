@@ -1,0 +1,239 @@
+<public:component lightweight="true">
+<public:property name="HasErrors" get="getHasErrors"/>
+<public:property name="Visible" put="putVisible"/>
+<public:method name="CreateNotification"/>
+<public:method name="AddNotification"/>
+<public:method name="GetNotifications"/>
+<public:method name="GetSeverityEnum"/>
+<public:method name="SetNotifications"/>
+<public:attach event="oncontentready" onevent="initialize()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           var SEVERITYERROR = 1,
+                                               SEVERITYWARNING = 2,
+                                               SEVERITYINFORMATION = 3,
+                                               _internalNotifications,
+                                               _iNextOrder = 0,
+                                               _iSize = 3,
+                                               _iMaxHeight = null;
+
+                                           function putVisible(bVisible) {
+                                               this.style.display = bVisible ? "block" : "none"
+                                           }
+
+                                           function AddNotification(sId, iSeverity, sSource, sText) {
+                                               var oNotification = CreateNotification(sId, iSeverity, sSource, sText),
+                                                   bNotificationAdded = _internalNotifications
+                                                       .AddNotification(oNotification);
+                                               bNotificationAdded &&
+                                                   updateDisplay();
+                                               return bNotificationAdded
+                                           }
+
+                                           function CreateNotification(sId, iSeverity, sSource, sText) {
+                                               return new Notification(sId, iSeverity, sSource, sText, _iNextOrder++)
+                                           }
+
+                                           function getHasErrors() {
+                                               return _internalNotifications.Count > 0 &&
+                                                   _internalNotifications.GetItem(0).Severity == SEVERITYERROR
+                                           }
+
+                                           function GetNotifications() {
+                                               return _internalNotifications.GetNotificationsArray()
+                                           }
+
+                                           function SetNotifications(oaNotifications, sSource) {
+                                               _internalNotifications.SetNotifications(oaNotifications, sSource);
+                                               updateDisplay()
+                                           }
+
+                                           function initialize() {
+                                               var iSize = parseInt(element.Size, 10);
+                                               if (!isNaN(iSize))
+                                                   _iSize = iSize;
+                                               var iMaxHeight = parseInt(element.MaxHeight, 10);
+                                               if (!isNaN(iMaxHeight))
+                                                   _iMaxHeight = iMaxHeight;
+                                               for (var oaNotifications = [],
+                                                   oNotification,
+                                                   oNotifications = element.children,
+                                                   iCount = oNotifications.length,
+                                                   text,
+                                                   i = 0;
+                                                   i < iCount;
+                                                   i++) {
+                                                   oNotification = oNotifications[i];
+                                                   var oNotificationText = this.element.all(oNotification.id + "_text");
+                                                   text = oNotificationText.innerHTML;
+                                                   oaNotifications
+                                                       .push(new Notification(oNotification.NotificationId,
+                                                           oNotification.Severity,
+                                                           oNotification.Source,
+                                                           text,
+                                                           oNotification.Order))
+                                               }
+                                               _iNextOrder = iCount;
+                                               _internalNotifications = new Notifications(oaNotifications)
+                                           }
+
+                                           function updateDisplay() {
+                                               for (var oNote,
+                                                   sDisplayHTML = "",
+                                                   iCount = _internalNotifications.Count,
+                                                   i = 0;
+                                                   i < iCount;
+                                                   i++) {
+                                                   oNote = _internalNotifications.GetItem(i);
+                                                   sDisplayHTML +=
+                                                       '<DIV role="alert" aria-live="polite" class="Notification" ID="Notification' + i + '" NotificationId=' + oNote.Id + '">';
+                                                   sDisplayHTML +=
+                                                       "<table cellpadding='0' cellspacing='0'><tr><td valign='top'>";
+                                                   var notificationImageInfo = null;
+                                                   switch (oNote.Severity) {
+                                                   case SEVERITYERROR:
+                                                       notificationImageInfo = Mscrm.ImageStrip
+                                                           .getImageInfo(Mscrm.CrmUri
+                                                               .create("/_imgs/error/notif_icn_crit16.png"));
+                                                       break;
+                                                   case SEVERITYWARNING:
+                                                       notificationImageInfo = Mscrm.ImageStrip
+                                                           .getImageInfo(Mscrm.CrmUri
+                                                               .create("/_imgs/error/notif_icn_warn16.png"));
+                                                       break;
+                                                   case SEVERITYINFORMATION:
+                                                       notificationImageInfo = Mscrm.ImageStrip
+                                                           .getImageInfo(Mscrm.CrmUri
+                                                               .create("/_imgs/error/notif_icn_info16.png"));
+                                                       break;
+                                                   default:
+                                                       break
+                                                   }
+                                                   if (notificationImageInfo != null)
+                                                       sDisplayHTML +=
+                                                           '<img alt="" src="' +
+                                                           CrmEncodeDecode
+                                                           .CrmHtmlAttributeEncode(notificationImageInfo.source) +
+                                                           '" class="ms-crm-Lookup-Item ' +
+                                                           CrmEncodeDecode
+                                                           .CrmHtmlAttributeEncode(notificationImageInfo.cssClass) +
+                                                           '">';
+                                                   sDisplayHTML += "</td><td>";
+                                                   sDisplayHTML += "<span id='Notification" + i + "_text'>";
+                                                   sDisplayHTML += CrmEncodeDecode.CrmHtmlEncode(oNote.Text);
+                                                   sDisplayHTML += "</span></td></tr></table></DIV>"
+                                               }
+                                               this.innerHTML = sDisplayHTML;
+                                               this.style
+                                                   .display = _internalNotifications.Count === 0 ? "none" : "block";
+                                               if (_internalNotifications.Count > _iSize) {
+                                                   var oneHeight = element.children[0].offsetHeight,
+                                                       borderHeight =
+                                                           parseInt(element.currentStyle.borderTopWidth, 10) +
+                                                               parseInt(element.currentStyle.borderBottomWidth, 10),
+                                                       paddingHeight =
+                                                           parseInt(element.currentStyle.paddingTop, 10) +
+                                                               parseInt(element.currentStyle.paddingBottom, 10),
+                                                       totalHeight = oneHeight * _iSize + borderHeight + paddingHeight;
+                                                   if (_iMaxHeight != null && _iMaxHeight < totalHeight)
+                                                       totalHeight = _iMaxHeight;
+                                                   this.style.height = totalHeight + "px"
+                                               } else
+                                                   this.style.height = null
+                                           }
+
+                                           function GetSeverityEnum() {
+                                               var oEnum = {};
+                                               oEnum.SEVERITYERROR = SEVERITYERROR;
+                                               oEnum.SEVERITYWARNING = SEVERITYWARNING;
+                                               oEnum.SEVERITYINFORMATION = SEVERITYINFORMATION;
+                                               return oEnum
+                                           }
+
+                                           function Notification(sId, iSeverity, sSource, sText, iOrder) {
+                                               this.Id = sId;
+                                               this.Severity = parseInt(iSeverity, 10);
+                                               this.Source = sSource;
+                                               this.Text = sText;
+                                               this.Order = iOrder
+                                           }
+
+                                           function Notifications(oaNotifications) {
+                                               if (window.document.media != "print" && !isArray(oaNotifications))
+                                                   oaNotifications = [];
+                                               this.Count = oaNotifications.length;
+                                               this.SetNotifications = setNotifications;
+                                               this.AddNotification = addNotification;
+                                               this.GetNotificationsArray = getNotificationsArray;
+                                               this.GetItem = getItem;
+                                               this.Count > 0 &&
+                                                   sort();
+
+                                               function getItem(index) {
+                                                   if (index < 0 || index > oaNotifications.length)
+                                                       return null;
+                                                   return oaNotifications[index]
+                                               }
+
+                                               function getNotificationsArray() {
+                                                   return oaNotifications
+                                               }
+
+                                               function addNotification(oNotification) {
+                                                   for (var i = oaNotifications.length - 1; i >= 0; i--)
+                                                       if (oaNotifications[i].Id == oNotification.Id)
+                                                           return false;
+                                                   oaNotifications.push(oNotification);
+                                                   sort();
+                                                   this.Count = oaNotifications.length;
+                                                   return true
+                                               }
+
+                                               function setNotifications(oaNewNotifications, sSource) {
+                                                   var j,
+                                                       bFoundMatch = false,
+                                                       existingNotification,
+                                                       iCount;
+                                                   if (window.document.media != "print" && !isArray(oaNewNotifications))
+                                                       oaNewNotifications = [];
+                                                   for (var i = oaNotifications.length - 1; i >= 0; i--) {
+                                                       bFoundMatch = false;
+                                                       if (sSource == null || oaNotifications[i].Source == sSource) {
+                                                           existingNotification = oaNotifications[i];
+                                                           for (j = oaNewNotifications.length - 1; j >= 0; j--)
+                                                               if (existingNotification.Id == oaNewNotifications[j].Id
+                                                               ) {
+                                                                   oaNewNotifications.splice(j, 1);
+                                                                   bFoundMatch = true;
+                                                                   break
+                                                               }
+                                                           !bFoundMatch &&
+                                                               oaNotifications.splice(i, 1)
+                                                       }
+                                                   }
+                                                   if (oaNewNotifications.length > 0) {
+                                                       oaNotifications = oaNotifications.concat(oaNewNotifications);
+                                                       sort()
+                                                   }
+                                                   this.Count = oaNotifications.length
+                                               }
+
+                                               function sort() {
+                                                   oaNotifications.sort(severityDateSort)
+                                               }
+
+                                               function severityDateSort(arg1, arg2) {
+                                                   if (arg1.Severity < arg2.Severity)
+                                                       return -1;
+                                                   else if (arg1.Severity > arg2.Severity)
+                                                       return 1;
+                                                   if (arg1.Order < arg2.Order)
+                                                       return -1;
+                                                   else if (arg1.Order > arg2.Order)
+                                                       return 1;
+                                                   return 0
+                                               }
+                                           }
+
+                                       </script>
+</public:component>

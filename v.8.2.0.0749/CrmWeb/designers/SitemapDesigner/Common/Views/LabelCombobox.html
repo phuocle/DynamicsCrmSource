@@ -1,0 +1,53 @@
+<div class="mscrm-propertyConatiner" ng-show="isGeneralSectionOpen">
+    <div class="mscrm-propertiesLabelContainer">
+        <label for="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" title="{{PropertyDirective.nodeDisplayName}}" class="itemLabel">{{PropertyDirective.nodeDisplayName}}</label>
+        <span class="required" ng-if="propertyPaneController.isEntityMandatory()">*</span>
+    </div>
+    <div class="mscrm-propertiesControlContainer" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+        <mscrm-error-validation-message ng-show="propertyPaneController.flyoutService.entityHasInvalidText"
+                                        errormessage="{{propertiesPaneEntityErrorMessage}}"/>
+        <mscrm-error-validation-message ng-if="propertyPaneController.isEntityNotSelected()"
+                                        resourcekey="SitemapDesigner.Error_EntityRequired"/>
+        <mscrm-error-validation-message ng-if="propertyPaneController.isURLOrEntityMandatory()"
+                                        resourcekey="SitemapDesigner.Error_EntityOrURLRequired"/>
+        <div class="mscrm-TypeaheadSearchContainer" ng-class="{propertyIdRed: propertyPaneController.flyoutService.entityHasInvalidText}"
+             ng-init="propertyPaneController.resetValidationState()"
+             ng-disabled="propertyPaneController.IsTypeAheadDisabled(['DefaultDashboard', 'WebResources', 'Url'])">
+            <input ng-init="flyoutSrcId=PropertyDirective.nodeValue.Id + '_' + PropertyDirective.nodeLabel" id="{{flyoutSrcId}}"
+                   type="text" class="textTypeWidth" ng-model="propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.Entity"
+                   ng-disabled="propertyPaneController.IsTypeAheadDisabled(['DefaultDashboard', 'WebResources', 'Url'])"
+                   name="{{PropertyDirective.nodeLabel}}" title="{{PropertyDirective.nodeTooltip}}" tabindex="-1" mscrm-flyout-accessible-close data-isflyout-src="true"
+                   ng-change="!propertyPaneController.IsTypeAheadDisabled(['DefaultDashboard', 'WebResources', 'Url'])
+				   && propertyPaneController.ShowFlyout($event, '', flyoutSrcId)" ng-keydown="!propertyPaneController.IsTypeAheadDisabled(['DefaultDashboard', 'WebResources', 'Url'])
+				   && propertyPaneController.HandleTypeAheadTextBoxKeyDown($event, '', PropertyDirective.nodeLabel, flyoutSrcId)"
+                   ng-keyup="propertyPaneController.onKeyUpHandlerForTypeaheadTextbox(PropertyDirective.nodeLabel)"
+                   autocomplete="off" ng-focus="propertyPaneController.onFocusHandlerForTypeaheadTextbox(PropertyDirective.nodeLabel, flyoutSrcId)"
+                   ng-blur="propertyPaneController.onBlurHandlerForTypeaheadTextbox(PropertyDirective.nodeLabel)"
+                   placeholder="{{propertyPaneController.getID('SitemapDesigner.Properties.SelectEntity')}}"
+                   ng-required="propertyPaneController.isEntityMandatory() || propertyPaneController.isURLOrEntityMandatory()"/>
+            <div ng-class="['mscrm-TypeAheadIcon', propertyPaneController.sitemapTypeAheadModel.isFlyoutOpen ? 'mscrm-glyph-UpArrowIcon' : 'mscrm-glyph-DownArrowIcon']"
+                 ng-click="!propertyPaneController.IsTypeAheadDisabled(['DefaultDashboard', 'WebResources', 'Url'])
+				 && propertyPaneController.HandleDropDownClick($event, '', flyoutSrcId)"
+                 mscrm-action-on-select
+                 data-isflyout-src="true"
+                 ng-disabled="propertyPaneController.IsTypeAheadDisabled(['DefaultDashboard', 'WebResources', 'Url'])"></div>
+        </div>
+        <div class="align-typeahead" ng-show="propertyPaneController.sitemapTypeAheadModel.isFlyoutOpen"
+             mscrm-flyout-accessible-close data-flyoutsrc-id="{{flyoutSrcId}}">
+            <div ng-class="['textTypeWidth', {'highlight-selection': ($index == 0)}]" ng-repeat="entity in propertyPaneController.entityList | orderBy : 'DisplayName' | filter: {'DisplayName' : propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.Entity}"
+                 value="{{entity.LogicalName}}" id="entityItem_{{$index}}"
+                 ng-show="propertyPaneController.ShowTypeAheadFlyoutDropdown(PropertyDirective.nodeLabel)"
+                 ng-click="propertyPaneController.UpdateSubAreaProperties(entity, PropertyDirective.nodeLabel)"
+                 mscrm-action-on-select tabindex="-1"
+                 ng-keydown="propertyPaneController.keydownHanlderForFlyoutItem($event, 'entityItem_' + $index, entity, PropertyDirective.nodeLabel, $index)"
+                 ng-blur="propertyPaneController.disableHighlightStyle('entityItem_' + $index, $index)"
+                 ng-focus="propertyPaneController.applyHighlightStyle('entityItem_' + $index)"
+                 title="{{entity.DisplayName}}">
+                {{entity.DisplayName}}
+            </div>
+            <div ng-class="['textTypeWidth', 'highlight-selection']" ng-init="isDisabled=true" ng-show="propertyPaneController.showNoResultMessage" ng-disabled="isDisabled" tabindex="-1">
+                {{noResultFoundMessage}}
+            </div>
+        </div>
+    </div>
+</div>

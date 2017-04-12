@@ -1,0 +1,34 @@
+<public:component lightweight="true">
+    <public:attach event="oncontentready" onevent="init()"/>
+    <public:attach event="onmousedown" onevent="ResizeStart()"/>
+    <public:attach event="ondragstart" onevent="Resize()"/>
+    <public:attach event="ondrag" onevent="Resize()"/>
+    <public:attach event="ondragend" onevent="ResizeEnd()"/>
+    <public:attach event="ondblclick" onevent="AutoResize()"/>
+    <public:property name="CrmGrid"/>
+    <script></script><script type="text/javascript">
+
+                         var _crmGrid = null;
+
+                         function init() {
+                             _crmGrid = window.document.all[CrmGrid]
+                         }
+
+                         function ResizeStart() {
+                             _crmGrid.handleResizeStartup()
+                         }
+
+                         function ResizeEnd() {
+                             _crmGrid.handleResizeCleanup()
+                         }
+
+                         function Resize() {
+                             _crmGrid.handleResize(this)
+                         }
+
+                         function AutoResize() {
+                             _crmGrid.handleAutoResize(this)
+                         }
+
+                     </script>
+</public:component>

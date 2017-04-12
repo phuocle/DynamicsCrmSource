@@ -1,0 +1,86 @@
+td.middle {
+    text-align: center;
+    vertical-align: middle;
+    padding: 0px, 20px, 0px, 20px;
+    width: 200px;
+}
+
+
+.description {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: normal;
+    font-size: 11px;
+    font-family: Tahoma;
+}
+
+.noMargin { margin: 0px 0px 0px 0px; }
+
+.titleFont {
+    font-size: 13px;
+    font-weight: bold;
+    font-family: Tahoma;
+    padding: 0px 5px 4px 5px;
+}
+
+.descriptionFont {
+    font-size: 11px;
+    font-weight: normal;
+    font-family: Tahoma;
+    padding: 0px 5px 0px 5px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li { padding-top: 5px; }
+
+li.ms-crm-Menu { padding-top: 0px; }
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+label.boldText { font-weight: bold; }
+
+div.consoleForm {
+    padding-left: 15px;
+    padding-right: 13px;
+    overflow: auto;
+}
+
+#MainConsoleTable {
+    width: 99%;
+    height: 99%;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+.consoleButton {
+    width: 100%;
+    overflow: visible;
+}
+
+LI.ms-crm-me-SelectOn {
+    border: solid 1px #c4ddff;
+    background-color: #a7cdf0;
+    margin-left: 1px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+
+LI.ms-crm-me-GlowOn {
+    border: solid 1px #c4ddff;
+    background-color: #c4ddff;
+    margin-left: 1px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+
+A.ms-crm-me-ReadOnly { color: #808080; }

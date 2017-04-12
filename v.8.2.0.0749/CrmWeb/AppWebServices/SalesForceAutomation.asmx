@@ -1,0 +1,1 @@
+<%@ WebService Language="c#" Codebehind="Microsoft.Crm.Sales.Application.WebServices.dll" Class="Microsoft.Crm.Sales.Application.WebServices.SalesForceAutomation" %>

@@ -1,0 +1,50 @@
+<div class="mscrm-SitemapTabContainer" tabindex="-1" mscrm-major-component data-ctabindex="1" data-actiononfocusmode mscrm-action-on-select data-mcgroupname="primary">
+    <div class="mscrm-SitemapTabs">
+        <div id="liTabGeneral" ng-class="['mscrm-SitemapTab', {'mscrm-SitemapActiveTab': tabbedContainerController.IsTabSelected(0)}]" ng-click="tabbedContainerController.SetSelectedTab(0)" mscrm-action-on-select
+             data-toggle="tab"
+             data-destinationalwaysonmodemscrm-locale mscrm-resource-key="SitemapDesigner.ComponentsTab" mscrm-target-attr="title" tabindex="-1">
+            <div class="mscrm-SitemapTabTitle" mscrm-locale mscrm-resource-key="SitemapDesigner.Components" mscrm-target-attr="title">
+                <mscrm-locale mscrm-resource-key="SitemapDesigner.Components"/>
+            </div>
+        </div>
+        <div id="liTabProperties" ng-class="['mscrm-SitemapTab', {'mscrm-SitemapActiveTab': tabbedContainerController.IsTabSelected(1)}]" ng-click="tabbedContainerController.SetSelectedTab(1)" mscrm-action-on-select
+             data-toggle="tab" tabindex="-1"
+             data-actiononfocusmode
+             mscrm-major-component
+             data-ctabindex="0"
+             data-mcgroupname="siteMapDesignerRightPaneTabs"
+             data-mcteleportmode
+             data-teleportid="siteMapDesignerRightPanePropertiesTab"
+             data-destinationalwaysonmode mscrm-locale mscrm-resource-key="SitemapDesigner.PropertiesTab" mscrm-target-attr="title">
+            <div class="mscrm-SitemapTabTitle" mscrm-locale mscrm-resource-key="SitemapDesigner.Properties" mscrm-target-attr="title">
+                <mscrm-locale mscrm-resource-key="SitemapDesigner.Properties"/>
+            </div>
+        </div>
+    </div>
+    <div class="mscrm-SitemapTabPanes">
+        <div class="mscrm-SitemapTabPane" ng-show="tabbedContainerController.IsTabSelected(0)" id="tabGeneral">
+            <div class="mscrm-SitemapComponentsPaneContainer" role="application">
+                <mscrm-sitemap-component-tile class="mscrm-dragDrop"
+                                              ng-repeat="item in ComponentList.components"
+                                              label="{{item.label}}"
+                                              description="{{item.description}}"
+                                              dnd-type="{{item.type}}"
+                                              icon="{{item.icon}}"
+                                              tooltip="{{item.tooltip}}"
+                                              dnd-draggable="item"
+                                              dnd-disable-if="item.disabled()"
+                                              dnd-copied="ComponentList.components.splice($index, 1)"
+                                              dnd-effect-allowed="move"
+                                              dnd-selected="ComponentList.selected = item"
+                                              ng-class="{'selected': ComponentList.selected === item}"
+                                              ng-disabled="item.disabled()"
+                                              dnd-dragstart="tabbedContainerController.newComponentDragStart(event, item.type)"
+                                              dnd-dragend="tabbedContainerController.dragEndHandler(item.type)">
+                </mscrm-sitemap-component-tile>
+            </div>
+        </div>
+        <div class="mscrm-SitemapTabPane" ng-show="tabbedContainerController.IsTabSelected(1)" id="tabProperties">
+            <mscrm-directive-properties-pane/>
+        </div>
+    </div>
+</div>

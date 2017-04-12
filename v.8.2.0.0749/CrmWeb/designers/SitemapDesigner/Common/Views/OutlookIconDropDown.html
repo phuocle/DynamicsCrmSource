@@ -1,0 +1,39 @@
+<div class="mscrm-propertyConatiner" ng-show="isAdvancedSectionOpen">
+    <div class="mscrm-outlookLabelContainer">
+        <label for="{{PropertyDirective.nodeLabel}}_{{PropertyDirective.nodeValue.Id}}" class="itemLabel">{{PropertyDirective.nodeDisplayName}}</label>
+    </div>
+    <div class="mscrm-outlookControlContainer" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+        <mscrm-error-validation-message ng-show="propertyPaneController.flyoutService.outlookIconHasInvalidText" errormessage="{{propertiesPaneEntityErrorMessage}}"/>
+        <div class="mscrm-TypeaheadSearchContainer"
+             ng-class="{propertyIdRed: propertyPaneController.flyoutService.outlookIconHasInvalidText}">
+            <input ng-init="flyoutSrcId=PropertyDirective.nodeLabel + '_' + PropertyDirective.nodeValue.Id" id="{{flyoutSrcId}}"
+                   type="text" class="textTypeWidth" ng-model="propertyPaneController.SelectedOutlookIcon"
+                   title="{{PropertyDirective.nodeTooltip}}" tabindex="-1"
+                   ng-change="propertyPaneController.ShowFlyout($event,'outlookBottom', flyoutSrcId)"
+                   autocomplete="off" mscrm-flyout-accessible-close data-isflyout-src="true"
+                   ng-keydown="propertyPaneController.HandleTypeAheadTextBoxKeyDown($event,'outlookBottom',PropertyDirective.nodeLabel, flyoutSrcId)"
+                   ng-keyup="propertyPaneController.onKeyUpHandlerForTypeaheadTextbox(PropertyDirective.nodeLabel)"
+                   ng-focus="propertyPaneController.onFocusHandlerForTypeaheadTextbox(PropertyDirective.nodeLabel, flyoutSrcId)"
+                   ng-blur="propertyPaneController.onBlurHandlerForTypeaheadTextbox(PropertyDirective.nodeLabel)"/>
+            <div ng-class="['mscrm-TypeAheadIcon', propertyPaneController.sitemapTypeAheadModel.isFlyoutOpen ? 'mscrm-glyph-UpArrowIcon' : 'mscrm-glyph-DownArrowIcon']"
+                 ng-click="propertyPaneController.HandleDropDownClick($event,'outlookBottom', flyoutSrcId)"
+                 mscrm-action-on-select
+                 data-isflyout-src="true">
+            </div>
+        </div>
+        <div class="align-typeahead" ng-show="propertyPaneController.sitemapTypeAheadModel.isFlyoutOpen" mscrm-flyout-accessible-close data-flyoutsrc-id="{{flyoutSrcId}}">
+            <div ng-class="['textTypeWidth', {'highlight-selection': ($index == 0)}]" id="outlookItem_{{$index}}"
+                 ng-repeat="icon in propertyPaneController.iconList |orderBy: 'DisplayName' | filter:{'DisplayName': propertyPaneController.SelectedOutlookIcon} "
+                 ng-keydown="propertyPaneController.keydownHanlderForFlyoutItem($event, 'outlookItem_' + $index, icon, PropertyDirective.nodeLabel, $index)"
+                 ng-blur="propertyPaneController.disableHighlightStyle('outlookItem_' + $index, $index)"
+                 ng-focus="propertyPaneController.applyHighlightStyle('outlookItem_' + $index)"
+                 value="{{icon.Name}}" ng-click="propertyPaneController.UpdateSubAreaProperties(icon, PropertyDirective.nodeLabel)" mscrm-action-on-select tabindex="-1" ng-attr-title="{{icon.DisplayName}}">
+                {{icon.DisplayName}}
+            </div>
+            <div ng-class="['textTypeWidth', 'highlight-selection']" ng-init="isDisabled=true" ng-show="propertyPaneController.showNoResultMessageForOutlook" ng-disabled="isDisabled" tabindex="-1">
+                {{noResultFoundMessage}}
+            </div>
+        </div>
+    </div>
+    <div data-scroll-point="outlookBottom"></div>
+</div>

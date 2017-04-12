@@ -1,0 +1,34 @@
+<div role="dialog" class="mscrm-modalDialogText" ng-controller="mscrmWatsonDialogController as watsonController" tabindex="-1" aria-labelledby="mscrm-watsonDialogTitle mscrm-watsonDialogText">
+    <div class="mscrm-dialogTitle">
+        <div class="mscrm-modalDialog_WatsonClose mscrm-watsonDialogIcon mscrm-glyph-DialogErrorIcon"></div>
+        <div id="mscrm-watsonDialogTitle" class="mscrm-dialogTitleText">
+            <mscrm-locale mscrm-resource-key="Web__common_error_scriptError_aspx_Text0"/>
+        </div>
+    </div>
+    <div class="mscrm-modalDialogTextElement mscrm-watsonDialogTextElement">
+        <div id="mscrm-watsonDialogText">
+            <mscrm-locale mscrm-resource-key="Web__common_error_scriptError_aspx_Text1"/>
+        </div>
+        <div>
+            <mscrm-locale mscrm-resource-key="Web__common_error_scriptError_aspx_Message"/>
+        </div>
+        <div id="mscrm-watsonDialogLinks" class="mscrm-watsonDialogLinks">
+            <a class="mscrm-watsonDialogLink" href="" ng-click="watsonController.openLink(103482)" tabindex="-1" mscrm-action-on-select>
+                <mscrm-locale mscrm-resource-key="Web_Tools_personalsettings_dialogs_personalsettings_PrivacyTab_ViewPrivacy"/>
+            </a>
+            <div id="mscrm-errorData" class="mscrm-errorData">
+                <a class="mscrm-watsonDialogLink" href="" ng-click="watsonController.toggleViewErrorData()" tabindex="-1" mscrm-action-on-select>
+                    <mscrm-locale mscrm-resource-key="Web__common_error_scriptError_aspx_ViewDetails"/>
+                </a>
+                <div class="mscrm-errorDataText" ng-show="watsonController.ShowErrorData">{{watsonController.dialogParameters.crmScriptErrorData.getErrorReportXml()}}</div>
+            </div>
+            <a class="mscrm-watsonDialogLink" href="" ng-click="watsonController.openLink(309645)" tabindex="-1" mscrm-action-on-select>
+                <mscrm-locale mscrm-resource-key="Mobile__common_error_scriptError_aspx_ViewHowToChangeSettings"/>
+            </a>
+        </div>
+    </div>
+    <div class="mscrm-confirmDialogButtonStrip">
+        <button type="button" class="mscrm-confirmDialogButton mscrm-watsonDialogOKButton" ng-click="watsonController.onSend()" mscrm-action-on-select tabindex="-1">{{watsonController.getSendReportText()}}</button>
+        <button type="button" class="mscrm-confirmDialogButton mscrm-watsonDialogCancelButton" ng-click="watsonController.onDontSend()" mscrm-action-on-select tabindex="-1">{{watsonController.getDontSendText()}}</button>
+    </div>
+</div>

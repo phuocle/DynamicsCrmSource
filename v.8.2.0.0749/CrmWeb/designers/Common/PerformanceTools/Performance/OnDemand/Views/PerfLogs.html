@@ -1,0 +1,14 @@
+<div ng-controller="mscrmPersistentLoggerController as persistentLogger">
+    <div>ScenarioLogs line count: <span id="scenarioLogsSize">{{persistentLogger.getSceanarioKpiLogs().length}}</span>
+    </div>
+    <div class="scenariologs" ng-repeat="log in persistentLogger.getSceanarioKpiLogs() track by $index">
+        {{ log }}
+    </div>
+    <br/>
+    <br/>
+    <div>Logs line count: <span id="logsSize">{{persistentLogger.getKpiLogs().length}}</span>
+    </div>
+    <div class="logs" ng-repeat="log in persistentLogger.getKpiLogs() track by $index">
+        {{ log }}
+    </div>
+</div>

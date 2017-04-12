@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Tag Cloud</title>
+
+    <!-- Word cloud stylesheet file -->
+    <link rel="stylesheet" href="/_static/_controls/wordcloud/_Wordcloud.css" type="text/css"/>
+
+    <!--Script Files needed to render word cloud control-->
+    <script src="/_static/_common/scripts/jquery-2.1.1.min.js"></script>
+    <script src="/_common/ClientGlobalContext.js.aspx" type="text/javascript"></script>
+    <script src="/_static/_common/scripts/mscorlib.js"></script>
+    <script src="/nga/scripts/MicrosoftAjax.js"></script>
+    <script src="/nga/scripts/react.js"></script>
+
+    <!-- Word cloud control files -->
+    <script src="/_static/_controls/wordcloud/Wordcloud.js"></script>
+    <script src="/_static/_controls/wordcloud/WordcloudWord.js"></script>
+    <script src="/_static/_controls/wordcloud/WordcloudControl.js"></script>
+
+    <!-- Script file that renders topic entity as word cloud -->
+    <script src="/_static/_controls/wordcloud/TopicWordcloud.js"></script>
+    <script src="/_static/_controls/Pane/VisualizationPane.js"></script>
+    <script src="/_static/_controls/gridfilters/GridFilters.js"></script>
+</head>
+<body onload="Mscrm.Wordcloud.RenderTopicWordCloud()">
+<div class="word-cloud-title"></div>
+<div class="word-cloud"></div>
+</body>
+</html>

@@ -1,0 +1,790 @@
+/*!
+Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+This software is covered by CKEditor Commercial License. Usage without proper license is prohibited.
+*/
+.cke_dialog_ui_html { outline: none }
+
+.cke_dialog_ui_vbox_child div.cke_accessibility_legend {
+    width: auto;
+    height: auto;
+    outline: none
+}
+
+div.cke_accessibility_legend h1 {
+    font-family: SegoeUI, 'Segoe UI';
+    text-transform: uppercase;
+    color: rgba(229, 100, 43, .7);
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: normal;
+    border-bottom: none;
+    margin: 28px 0 9px;
+    cursor: default
+}
+
+div.cke_accessibility_legend h1:first-child {
+    padding-top: 0;
+    margin-top: -2px
+}
+
+div.cke_accessibility_legend dl { margin-left: 0 }
+
+div.cke_accessibility_legend dt {
+    font-family: 'SegoeUI', 'Segoe UI';
+    font-size: 14px;
+    line-height: 20px;
+    color: #666;
+    font-weight: 500;
+    cursor: default
+}
+
+div.cke_accessibility_legend dd { cursor: default }
+
+.cke_dialog_ui_checkbox {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    display: block
+}
+
+input[type="checkbox"].cke_dialog_ui_checkbox_input {
+    margin: 14px 0 0 10px;
+    position: absolute;
+    left: 34%
+}
+
+.cke_dialog_ui_vbox_child_fieldset > fieldset, .cke_dialog_ui_hbox_child_fieldset > fieldset {
+    padding: 15px 0 0 0;
+    border: 0
+}
+
+.cke_dialog_ui_vbox_child_fieldset > fieldset > legend, .cke_dialog_ui_hbox_child_fieldset > fieldset > legend {
+    font-family: SegoeUI, 'Segoe UI';
+    text-transform: uppercase;
+    color: rgba(229, 100, 43, .7);
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: normal;
+    padding: 28px 0 0 0;
+    margin-left: 23px;
+    margin-bottom: -5px;
+    cursor: default
+}
+
+.cke_dialog * { white-space: normal }
+
+.cke_dialog_ui_vbox_child_html > * {
+    margin-left: 23px;
+    padding: 0 4px 10px 0;
+    cursor: default
+}
+
+.cke_dialog_ui_vbox_child_html > .cke_dialog_ui_vbox_child_html_editable, .cke_dialog_ui_vbox_child_html > .cke_dialog_ui_vbox_child_html_preview_container {
+    margin-left: 0;
+    padding: 0;
+    display: block
+}
+
+.cke_dialog_ui_vbox_child_html > div.cke_accessibility_legend { padding: 0 }
+
+td.cke_dialog_ui_vbox_child_html_editable { padding: 10px 4px 10px 0 }
+
+.cke_dialog_ui_labeled_content {
+    height: 40px;
+    line-height: 39px;
+    width: 66%;
+    display: inline-block;
+    position: relative
+}
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_textarea .cke_dialog_ui_labeled_content { height: auto }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_textarea.cke_dialog_ui_control_focused .cke_dialog_ui_labeled_content {
+    padding-bottom: 0;
+    margin-bottom: -4px
+}
+
+.cke_dialog_tab_label {
+    font-family: SegoeUI Semibold, 'Segoe UI Semibold';
+    text-transform: uppercase;
+    color: rgba(229, 100, 43, .7);
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: normal;
+    margin: 28px 0 10px 23px;
+    clear: both;
+    cursor: default
+}
+
+td.cke_dialog_ui_vbox_child_html > div.cke_dialog_ui_html[role=note] {
+    line-height: 12px;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    color: #666;
+    padding: 14px 0 15px;
+    margin-left: 23px
+}
+
+.cke_dialog_page_contents:first-child .cke_dialog_tab_label { margin-top: -3px }
+
+.cke_dialog_page_contents:only-child .cke_dialog_tab_label { display: none }
+
+.cke_dialog {
+    visibility: visible;
+    top: 41px;
+    bottom: 0;
+    right: 0;
+    height: calc(100% - 41px);
+    position: fixed;
+    border: 0;
+    width: 480px;
+    display: block;
+    -webkit-animation-duration: .6s;
+    -webkit-animation-name: commonFadeInFrames2, slideInTTransformFrames;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-duration: .6s;
+    -moz-animation-name: commonFadeInFrames2, slideInTTransformFrames;
+    -moz-animation-fill-mode: both;
+    animation-duration: .6s;
+    animation-name: commonFadeInFrames2, slideInTTransformFrames;
+    animation-fill-mode: both
+}
+
+.cke_dialog_body {
+    height: 100%;
+    z-index: 1
+}
+
+.cke_dialog strong { font-weight: bold }
+
+.cke_dialog_title {
+    line-height: 14px;
+    font-weight: normal;
+    font-size: 14px;
+    position: relative;
+    color: #000;
+    background-color: #fff;
+    padding: 18px 0 18px 23px;
+    font-family: SegoeUI Semibold, 'Segoe UI Semibold'
+}
+
+.cke_dialog_spinner {
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    overflow: hidden;
+    text-indent: -9999em;
+    border-top: 2px solid rgba(102, 102, 102, .2);
+    border-right: 2px solid rgba(102, 102, 102, .2);
+    border-bottom: 2px solid rgba(102, 102, 102, .2);
+    border-left: 2px solid rgba(102, 102, 102, 1);
+    -webkit-animation: dialog_spinner 1s infinite linear;
+    animation: dialog_spinner 1s infinite linear
+}
+
+.cke_browser_ie8 .cke_dialog_spinner, .cke_browser_ie9 .cke_dialog_spinner {
+    background: url(images/spinner.gif) center top no-repeat;
+    width: 16px;
+    height: 16px;
+    border: 0
+}
+
+@-webkit-keyframes dialog_spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes dialog_spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+.cke_dialog_contents {
+    background-color: #fff;
+    height: calc(100% - 50px);
+    width: 100%;
+    display: block
+}
+
+.cke_dialog > tbody, .cke_dialog > tbody > tr, .cke_dialog > tbody > tr > td, .cke_dialog_contents > tbody, .cke_dialog_contents > tbody > tr, .cke_dialog_contents > tbody > tr > td, .cke_dialog_contents div.cke_dialog_ui_vbox > table, .cke_dialog_contents div.cke_dialog_ui_vbox > table > tbody, .cke_dialog_contents div.cke_dialog_ui_vbox > table > tbody > tr, .cke_dialog_contents div.cke_dialog_ui_vbox > table > tbody > tr > td, .cke_dialog_page_contents:only-child, .cke_dialog_page_contents > table, .cke_dialog_page_contents > table > tbody, .cke_dialog_page_contents > table > tbody > tr, .cke_dialog_page_contents > table > tbody > tr > td { display: block }
+
+.cke_dialog > tbody, .cke_dialog > tbody > tr, .cke_dialog > tbody > tr > td, .cke_dialog_contents > tbody, .cke_dialog_contents > tbody > tr, .cke_dialog_contents > tbody > tr > td, .cke_dialog_page_contents > table, .cke_dialog_page_contents > table > tbody { height: 100% }
+
+.cke_dialog_contents > tbody > tr:first-child { height: calc(100% - 40px) }
+
+.cke_dialog_contents > tbody > tr:last-child { height: 40px }
+
+.cke_dialog_contents_body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0 20px 0 0;
+    padding: 0;
+    padding-top: 1px;
+    height: 100%;
+    box-sizing: border-box
+}
+
+.cke_dialog_page_contents.cke_dialog_page_contents_last { padding-bottom: 20px }
+
+.cke_dialog_contents_footer {
+    background-color: #fff;
+    position: fixed;
+    bottom: 40px;
+    height: 20px;
+    width: 100%
+}
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_text, .cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_password, .cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_select, .cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_textarea, .cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_checkbox, td.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_html_editable, .cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_html_preview { margin-left: 24px }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_html_preview { margin-bottom: 8px }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_text:not(.cke_dialog_ui_control_focused) .cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_textarea:not(.cke_dialog_ui_control_focused), .cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_select:not(.cke_dialog_ui_control_focused), .cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_checkbox:not(.cke_dialog_ui_control_focused), td.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_html_editable:not(.cke_dialog_ui_control_focused) { border-bottom: 1px solid #ccc }
+
+.cke_dialog_ui_control_empty:not(.cke_dialog_ui_control_focused).cke_dialog_ui_vbox_child_text .cke_dialog_ui_labeled_content::before, .cke_dialog_ui_control_empty:not(.cke_dialog_ui_control_focused).cke_dialog_ui_vbox_child_textarea .cke_dialog_ui_labeled_content::before, .cke_dialog_ui_control_empty:not(.cke_dialog_ui_control_focused).cke_dialog_ui_vbox_child_select .cke_dialog_ui_labeled_content::before {
+    content: "--";
+    padding: 0 0 0 9px;
+    position: absolute;
+    pointer-events: none
+}
+
+.cke_dialog_ui_control_empty:not(.cke_dialog_ui_control_focused).cke_dialog_ui_vbox_child_text div.cke_dialog_ui_input_text, .cke_dialog_ui_control_empty:not(.cke_dialog_ui_control_focused).cke_dialog_ui_vbox_child_textarea div.cke_dialog_ui_input_textarea { width: 0 }
+
+.cke_dialog_ui_vbox_child_text:not(.cke_dialog_ui_control_focused) input, .cke_dialog_ui_vbox_child_textarea:not(.cke_dialog_ui_control_focused) textarea { cursor: default }
+
+.cke_dialog_ui_control_empty:not(.cke_dialog_ui_control_focused).cke_dialog_ui_vbox_child_text input, .cke_dialog_ui_control_empty:not(.cke_dialog_ui_control_focused).cke_dialog_ui_vbox_child_textarea textarea {
+    padding: 0;
+    border: 0;
+    cursor: default;
+    height: 1px
+}
+
+.cke_dialog_ui_vbox_child_text, .cke_dialog_ui_vbox_child_textarea, .cke_dialog_ui_vbox_child_select, .cke_dialog_ui_vbox_child_checkbox, td.cke_dialog_ui_vbox_child_html_editable {
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid #ccc;
+    margin-top: -1px
+}
+
+.cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_text, .cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_textarea, .cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_select, .cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_checkbox, td.cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_html_editable {
+    background-color: #f8ecdf;
+    border-color: #eecea9;
+    margin-left: 20px;
+    padding-left: 4px;
+    padding-right: 4px
+}
+
+.cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_checkbox { padding-right: 0 }
+
+.cke_dialog_ui_control_focused > div > div.cke_dialog_ui_labeled_content {
+    width: 100%;
+    padding-bottom: 6px
+}
+
+.cke_dialog_footer {
+    height: 34px;
+    text-align: right;
+    position: relative;
+    border: none;
+    background-color: #666
+}
+
+.cke_rtl .cke_dialog_footer { text-align: left }
+
+.cke_hc .cke_dialog_footer {
+    outline: none;
+    border-top: 1px solid #fff
+}
+
+.cke_dialog .cke_resizer { margin-top: 22px }
+
+.cke_dialog .cke_resizer_rtl { margin-left: 5px }
+
+.cke_dialog .cke_resizer_ltr { margin-right: 5px }
+
+.cke_dialog_tabs { display: none }
+
+.cke_single_page .cke_dialog_tabs { display: none }
+
+.cke_single_page .cke_dialog_contents {
+    height: calc(100% - 50px);
+    margin-top: 0;
+    border-top: none
+}
+
+a.cke_dialog_close_button {
+    position: absolute;
+    cursor: pointer;
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    z-index: 5;
+    top: 19px;
+    font-size: 12px;
+    position: absolute;
+    cursor: pointer;
+    text-align: center;
+    z-index: 5
+}
+
+.cke_dialog_close_button span { display: none }
+
+.cke_ltr .cke_dialog_close_button { right: 21px }
+
+.cke_rtl .cke_dialog_close_button { left: 19px }
+
+a.cke_dialog_close_button:hover::after { color: #000 }
+
+a.cke_dialog_close_button::after {
+    content: '';
+    font-family: 'Dyn CRM Symbol';
+    color: #444
+}
+
+div.cke_disabled .cke_dialog_ui_labeled_content div * {
+    background-color: #ddd;
+    cursor: default
+}
+
+.cke_dialog_ui_vbox table, .cke_dialog_ui_hbox table { margin: auto }
+
+.cke_dialog_ui_hbox { width: 100% }
+
+.cke_dialog_ui_hbox_first, .cke_dialog_ui_hbox_child, .cke_dialog_ui_hbox_last { vertical-align: top }
+
+.cke_ltr .cke_dialog_ui_hbox_first, .cke_ltr .cke_dialog_ui_hbox_child { padding-right: 5px }
+
+.cke_rtl .cke_dialog_ui_hbox_first, .cke_rtl .cke_dialog_ui_hbox_child { padding-left: 5px }
+
+textarea.cke_dialog_ui_input_textarea {
+    overflow: auto;
+    resize: none
+}
+
+input.cke_dialog_ui_input_text, input.cke_dialog_ui_input_password, textarea.cke_dialog_ui_input_textarea, select.cke_dialog_ui_input_select {
+    text-overflow: ellipsis;
+    background-color: #fff;
+    outline: none;
+    width: 100%;
+    padding-left: 9px
+}
+
+div.cke_dialog_ui_input_select > select.cke_dialog_ui_input_select {
+    padding-left: 5px;
+    height: 26px
+}
+
+.cke_dialog_ui_vbox_child textarea.cke_dialog_ui_input_textarea {
+    line-height: 24px;
+    padding: 8px 9px 8px 9px
+}
+
+.cke_dialog_ui_vbox_child_textarea:not(.cke_dialog_ui_control_focused) .cke_dialog_ui_input_textarea { margin-bottom: -7px }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused input.cke_dialog_ui_input_text, .cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused input.cke_dialog_ui_input_password, .cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused textarea.cke_dialog_ui_input_textarea, .cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused select.cke_dialog_ui_input_select {
+    outline: none;
+    border: 1px solid #8f8f8f;
+    line-height: 24px;
+    padding-left: 5px;
+    padding-right: 9px;
+    margin-top: 4px;
+    margin-bottom: 0
+}
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_select select.cke_dialog_ui_input_select { padding-right: 0 }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused select.cke_dialog_ui_input_select { padding-bottom: 1px }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused textarea.cke_dialog_ui_input_textarea { padding: 3px 9px 8px 9px }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused div.cke_dialog_ui_input_text { height: 100% }
+
+.cke_dialog_ui_vbox_child input.cke_dialog_ui_input_text, .cke_dialog_ui_vbox_child input.cke_dialog_ui_input_password, .cke_dialog_ui_vbox_child select.cke_dialog_ui_input_select, .cke_dialog_ui_vbox_child textarea.cke_dialog_ui_input_textarea {
+    font-size: 14px;
+    box-sizing: border-box
+}
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused input.cke_dialog_ui_input_text, .cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused input.cke_dialog_ui_input_password, .cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused select.cke_dialog_ui_input_select { height: 32px }
+
+a.cke_dialog_ui_button {
+    color: #444;
+    background-color: #ccc;
+    height: 30px;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    min-width: 88px
+}
+
+span.cke_dialog_ui_button {
+    padding: 0 10px;
+    text-align: center
+}
+
+a.cke_dialog_ui_button:hover {
+    color: #000;
+    background: #ccc
+}
+
+.cke_hc a.cke_dialog_ui_button {
+    border-width: 1px;
+    padding: 1px
+}
+
+.cke_hc a.cke_dialog_ui_button:hover, .cke_hc a.cke_dialog_ui_button:focus, .cke_hc a.cke_dialog_ui_button:active {
+    border-width: 2px;
+    padding: 0
+}
+
+.cke_dialog_footer_buttons a.cke_dialog_ui_button span {
+    color: inherit;
+    font-size: 14px;
+    line-height: 14px;
+    height: 24px;
+    padding: 7px 12px 0 12px;
+    display: block;
+    margin-top: 1px
+}
+
+a.cke_dialog_ui_button.cke_disabled {
+    color: #ccc;
+    background-color: #999
+}
+
+span.cke_dialog_ui_button { cursor: pointer }
+
+.cke_dialog_footer_buttons {
+    display: inline-table;
+    margin: 5px;
+    width: auto;
+    position: relative;
+    vertical-align: middle
+}
+
+div.cke_dialog_ui_input_select { height: 100% }
+
+select.cke_dialog_ui_input_select {
+    height: 24px;
+    line-height: 24px;
+    -webkit-appearance: none;
+    -moz-appearance: none
+}
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused select.cke_dialog_ui_input_textarea { margin-top: 5px }
+
+select.cke_dialog_ui_input_select::-ms-expand { display: none }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused select.cke_dialog_ui_input_select::-ms-expand { display: block }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused select.cke_dialog_ui_input_select {
+    -webkit-appearance: menulist;
+    -moz-appearance: menulist
+}
+
+.cke_dialog_ui_input_file {
+    width: 100%;
+    height: 25px
+}
+
+.cke_dialog .cke_dark_background { background-color: #dedede }
+
+.cke_dialog .cke_light_background { background-color: #ebebeb }
+
+.cke_dialog .cke_centered { text-align: center }
+
+.cke_dialog a.cke_btn_reset {
+    float: right;
+    background: url(images/refresh.png) top left no-repeat;
+    width: 16px;
+    height: 16px;
+    border: 1px none;
+    font-size: 1px
+}
+
+.cke_hidpi .cke_dialog a.cke_btn_reset {
+    background-size: 16px;
+    background-image: url(images/hidpi/refresh.png)
+}
+
+.cke_rtl .cke_dialog a.cke_btn_reset { float: left }
+
+.cke_dialog a.cke_btn_locked, .cke_dialog a.cke_btn_unlocked {
+    float: left;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    border: none 1px;
+    font-size: 1px
+}
+
+.cke_dialog a.cke_btn_locked .cke_icon { display: none }
+
+.cke_rtl .cke_dialog a.cke_btn_locked, .cke_rtl .cke_dialog a.cke_btn_unlocked { float: right }
+
+.cke_dialog a.cke_btn_locked { background-image: url(images/lock.png) }
+
+.cke_dialog a.cke_btn_unlocked { background-image: url(images/lock-open.png) }
+
+.cke_hidpi .cke_dialog a.cke_btn_unlocked, .cke_hidpi .cke_dialog a.cke_btn_locked { background-size: 16px }
+
+.cke_hidpi .cke_dialog a.cke_btn_locked { background-image: url(images/hidpi/lock.png) }
+
+.cke_hidpi .cke_dialog a.cke_btn_unlocked { background-image: url(images/hidpi/lock-open.png) }
+
+.cke_dialog .cke_btn_over {
+    border: outset 1px;
+    cursor: pointer
+}
+
+.cke_dialog .cke_dialog_ui_vbox_child_html_preview div.cke_dialog_ui_vbox_child_html_preview_label {
+    font-weight: normal;
+    color: rgba(229, 100, 43, .7);
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: SegoeUI Semibold, 'Segoe UI Semibold';
+    margin: 28px 0 9px -1px;
+    line-height: 12px;
+    cursor: default
+}
+
+.cke_dialog .ImagePreviewBox {
+    border: 1px solid #8f8f8f;
+    overflow: auto;
+    height: 200px;
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box
+}
+
+.cke_dialog .ImagePreviewBox table { margin: 0 }
+
+.cke_dialog .ImagePreviewBox table td { white-space: normal }
+
+.cke_dialog .ImagePreviewLoader {
+    position: absolute;
+    white-space: normal;
+    overflow: hidden;
+    height: 160px;
+    width: 230px;
+    margin: 2px;
+    padding: 2px;
+    opacity: .9;
+    filter: alpha(opacity=90);
+    background-color: #e4e4e4
+}
+
+.cke_dialog .FlashPreviewBox {
+    white-space: normal;
+    border: 2px ridge #000;
+    overflow: auto;
+    height: 160px;
+    width: 390px;
+    padding: 2px;
+    background-color: #fff
+}
+
+.cke_dialog .cke_pastetext textarea {
+    width: 340px;
+    height: 170px;
+    resize: none
+}
+
+.cke_dialog iframe.cke_pasteframe {
+    display: block;
+    background-color: #fff;
+    border: 1px solid #8f8f8f;
+    width: calc(100% - 2px)
+}
+
+.cke_dialog .cke_hand { cursor: pointer }
+
+.cke_dialog_body .cke_label { display: none }
+
+.cke_dialog_body label {
+    vertical-align: top;
+    width: calc(34% + 1px);
+    margin-left: -1px;
+    padding-top: 13px;
+    padding-bottom: 14px;
+    line-height: 13px;
+    cursor: default;
+    color: #666;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal
+}
+
+.cke_dialog_ui_checkbox > label { width: 100% }
+
+.cke_dialog_ui_control_focused label.cke_dialog_ui_labeled_label { padding-bottom: 5px }
+
+.cke_dialog_ui_vbox_child_text .cke_disabled, .cke_dialog_ui_vbox_child_password .cke_disabled, .cke_dialog_ui_vbox_child_textarea .cke_disabled, .cke_dialog_ui_vbox_child_select .cke_disabled { position: relative }
+
+.cke_dialog_ui_vbox_child_text .cke_disabled::before, .cke_dialog_ui_vbox_child_password .cke_disabled::before, .cke_dialog_ui_vbox_child_textarea .cke_disabled::before, .cke_dialog_ui_vbox_child_select .cke_disabled::before {
+    position: absolute;
+    content: '';
+    font-family: 'Dyn CRM Symbol';
+    font-size: 12px;
+    color: #666;
+    width: 16px;
+    height: 16px;
+    left: -20px;
+    top: 12px
+}
+
+.cke_dialog_ui_vbox_child_text .cke_disabled input.cke_dialog_ui_input_text, .cke_dialog_ui_vbox_child_password .cke_disabled input.cke_dialog_ui_input_password, .cke_dialog_ui_vbox_child_textarea .cke_disabled textarea.cke_dialog_ui_input_textarea, .cke_dialog_ui_vbox_child_select .cke_disabled select.cke_dialog_ui_input_select {
+    background-color: transparent;
+    border-color: transparent
+}
+
+.cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_text .cke_disabled label.cke_dialog_ui_labeled_label, .cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_password .cke_disabled label.cke_dialog_ui_labeled_label, .cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_textarea .cke_disabled label.cke_dialog_ui_labeled_label, .cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_select .cke_disabled label.cke_dialog_ui_labeled_label { padding-bottom: 2px }
+
+.cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_text .cke_disabled div.cke_dialog_ui_labeled_content, .cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_password .cke_disabled div.cke_dialog_ui_labeled_content, .cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_textarea .cke_disabled div.cke_dialog_ui_labeled_content, .cke_dialog_ui_control_focused.cke_dialog_ui_vbox_child_select .cke_disabled div.cke_dialog_ui_labeled_content { padding-bottom: 0 }
+
+.cke_dialog_body label.cke_required:after {
+    content: ' *';
+    color: #f00;
+    font-weight: 800
+}
+
+a.cke_smile {
+    overflow: hidden;
+    display: block;
+    text-align: center;
+    padding: .3em 0
+}
+
+a.cke_smile img { vertical-align: middle }
+
+a.cke_specialchar {
+    cursor: inherit;
+    display: block;
+    height: 1.25em;
+    padding: .2em .3em;
+    text-align: center
+}
+
+a.cke_smile, a.cke_specialchar { border: 1px solid transparent }
+
+a.cke_smile:hover, a.cke_smile:focus, a.cke_smile:active, a.cke_specialchar:hover, a.cke_specialchar:focus, a.cke_specialchar:active {
+    background: #fff;
+    outline: 0
+}
+
+a.cke_smile:hover, a.cke_specialchar:hover { border-color: #888 }
+
+a.cke_smile:focus, a.cke_smile:active, a.cke_specialchar:focus, a.cke_specialchar:active { border-color: #139ff7 }
+
+.cke_dialog_contents a.colorChooser {
+    display: block;
+    margin-top: 6px;
+    margin-left: 10px;
+    width: 80px
+}
+
+.cke_rtl .cke_dialog_contents a.colorChooser { margin-right: 10px }
+
+.cke_dialog_ui_checkbox_input:focus, .cke_dialog_ui_radio_input:focus, .cke_btn_over { outline: 1px dotted #696969 }
+
+.cke_iframe_shim {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: alpha(opacity=0);
+    width: 100%;
+    height: 100%
+}
+
+.cke_dialog_title {
+    padding-top: 17px;
+    padding-bottom: 19px
+}
+
+a.cke_dialog_close_button { top: 18px }
+
+.cke_dialog_footer_buttons a.cke_dialog_ui_button span {
+    padding-top: 6px;
+    padding-bottom: 1px
+}
+
+.cke_dialog_ui_vbox_child_fieldset > fieldset > legend, .cke_dialog_ui_hbox_child_fieldset > fieldset > legend { margin-bottom: -6px }
+
+div.cke_accessibility_legend h1:first-child {
+    margin-top: -3px;
+    position: absolute
+}
+
+div.cke_accessibility_legend h1:first-child + * { margin-top: 18px }
+
+td.cke_dialog_ui_vbox_child_html > div[role=note].cke_dialog_ui_html { padding: 13px 0 16px }
+
+input[type='checkbox'].cke_dialog_ui_checkbox_input { margin-top: 13px }
+
+.cke_dialog_body label {
+    line-height: 12px;
+    padding-bottom: 15px
+}
+
+.cke_dialog_ui_vbox_child input.cke_dialog_ui_input_text, .cke_dialog_ui_vbox_child input.cke_dialog_ui_input_password, .cke_dialog_ui_vbox_child select.cke_dialog_ui_input_select, .cke_dialog_ui_vbox_child textarea.cke_dialog_ui_input_textarea {
+    padding-right: 9px;
+    padding-left: 8px
+}
+
+.cke_dialog_ui_vbox_child input.cke_dialog_ui_input_text, .cke_dialog_ui_vbox_child input.cke_dialog_ui_input_password { height: 32px }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_select select.cke_dialog_ui_input_select {
+    padding-left: 6px;
+    padding-right: 7px
+}
+
+.cke_dialog_ui_vbox_child textarea.cke_dialog_ui_input_textarea {
+    padding-top: 7px;
+    padding-right: 10px;
+    padding-bottom: 9px
+}
+
+.cke_dialog_ui_vbox_child_textarea:not(.cke_dialog_ui_control_focused) .cke_dialog_ui_input_textarea { margin-bottom: 0 }
+
+td.cke_dialog_ui_vbox_child_html_editable { padding-bottom: 8px }
+
+.cke_dialog_ui_vbox_child_text .cke_disabled::before, .cke_dialog_ui_vbox_child_password .cke_disabled::before, .cke_dialog_ui_vbox_child_textarea .cke_disabled::before, .cke_dialog_ui_vbox_child_select .cke_disabled::before { top: 11px }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused input.cke_dialog_ui_input_text, .cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused input.cke_dialog_ui_input_password, .cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused textarea.cke_dialog_ui_input_textarea, .cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused select.cke_dialog_ui_input_select {
+    margin-top: -1px;
+    padding-right: 9px;
+    padding-bottom: 1px;
+    padding-left: 9px
+}
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_select.cke_dialog_ui_control_focused select.cke_dialog_ui_input_select { padding-right: 0 }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_vbox_child_textarea.cke_dialog_ui_control_focused .cke_dialog_ui_labeled_content {
+    padding-bottom: 10px;
+    margin-bottom: 0
+}
+
+.cke_dialog_ui_vbox_child_textarea.cke_dialog_ui_control_focused label.cke_dialog_ui_labeled_label { padding-bottom: 10px }
+
+.cke_dialog_ui_vbox_child.cke_dialog_ui_control_focused textarea.cke_dialog_ui_input_textarea {
+    padding-top: 6px;
+    padding-bottom: 9px
+}

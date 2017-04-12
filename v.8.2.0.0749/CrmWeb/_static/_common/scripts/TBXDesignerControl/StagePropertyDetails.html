@@ -1,0 +1,173 @@
+﻿<link href="../../../_static/_common/scripts/processcontrol/propertyStyle.css" rel="stylesheet" type="text/css">
+<div id="properties">
+    <div class="header ellipsis">
+        <span class="headline1" id="StagePropertyDetails_Header"></span>
+    </div>
+    <div id="contentDivStageProp">
+        <div>
+            <span class="headline2 ellipsis" role="label" id="StagePropertyDetails_StageName"></span>
+            <input class="fieldStage field" id="stageName" type="text" aria-labelledby="StagePropertyDetails_StageName"/>
+        </div>
+    </div>
+</div>
+<div class="buttons align-self">
+    <span>
+        <input id="stageSave" type="button" value="" class="ellipsis" role="button"/>
+        <input id="stageDiscard" type="button" value="" class="ellipsis" role="button"/>
+    </span>
+</div>
+<script>
+    var propertyViewCurrentModel;
+    var propertyViewCurrentModelClone;
+
+    $(function() {
+        debugger;
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        document.getElementById("stageSave").addEventListener('click', sendSaveMessage);
+        document.getElementById("stageDiscard").addEventListener('click', discardCallBack);
+        document.getElementById("stageName").addEventListener('change', valueChanged);
+
+        setToolTips();
+        setTabIndex();
+        updateHtmlElements();
+        setLocalizedHTMLStrings();
+        propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        propertyViewCurrentModelClone = propertyViewCurrentModel.getPropertyPageClone();
+        MscrmControls.ProcessDesigner.Validation.Errors
+            .registerPropertyViewCurrentModelClone(propertyViewCurrentModelClone);
+        stopwatch.stop();
+        localStorage.setItem("ProcessDesignerControl_TBX_PagePropPageLoad", stopwatch.elapsedMilliseconds.toString());
+        renderErrors();
+        GenericWorkflowDesigner.BasePropertyView.updateHtmlElements = updateHtmlElements;
+        MscrmControls.ProcessDesigner.Validation.Errors.refreshErrorMessages = renderErrors;
+    });
+
+    function valueChanged() {
+        propertyViewCurrentModelClone.name = $("#stageName").val();
+        $("#stageName").attr("title", $("#stageName").val());
+        propertyViewCurrentModelClone.validateOnChange();
+        renderErrors();
+    }
+
+    function renderErrors() {
+        // see if any errors exists in clone model
+        if (propertyViewCurrentModelClone.getErrorCount() > 0) {
+            MscrmControls.ProcessDesigner.DOMUtil
+                .renderErrorMessages(propertyViewCurrentModelClone,
+                    $('#properties'),
+                    propertyViewCurrentModelClone.getErrorMessages());
+        }
+        // see if any errors exists in activity model
+        else {
+            var model = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            if (!CommonTypes.Types.Object.isNullOrUndefined(model) &&
+                !CommonTypes.Types.String.isNullOrEmpty(model) &&
+                model.getErrorCount() > 0 &&
+                !propertyViewCurrentModelClone.isValid) {
+                MscrmControls.ProcessDesigner.DOMUtil
+                    .renderErrorMessages(GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel(),
+                        $('#properties'),
+                        GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel().getErrorMessages());
+            } else {
+                MscrmControls.ProcessDesigner.DOMUtil
+                    .renderErrorMessages(propertyViewCurrentModelClone,
+                        $('#properties'),
+                        propertyViewCurrentModelClone.getErrorMessages());
+            }
+        }
+    }
+
+    //Set HTML Text
+    function setLocalizedHTMLStrings() {
+        $("#StagePropertyDetails_Header").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_TBX_PagePropertyDetails_Header'));
+        $("#StagePropertyDetails_StageName").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_TBX_PagePropertyDetails_PageName"));
+        $("#stageSave").val(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Apply'));
+        $("#stageDiscard").val(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Discard'));
+    }
+
+    /* Set the tool tips for the HTML elements*/
+    function setToolTips() {
+        $('#StagePropertyDetails_StageName').attr('title',
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_TBX_PageNameTooltip"));
+        $('#stageDiscard').attr('title',
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_DiscardChangesTooltip"));
+        if ($('#stageSave').attr("disabled") == undefined) {
+            $('#stageSave').attr('title',
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Available"));
+        } else {
+            $('#stageSave').attr('title',
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Unavailable"));
+        }
+    }
+
+    /* Set the tool tips for the HTML elements*/
+    function setTabIndex() {
+        $('#stageName').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+        $('#stageDiscard').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+        $('#stageSave').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+    }
+
+
+    /* Update the Html elements based on the available model properties */
+    function updateHtmlElements() {
+        this.propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+        // Stage Name
+        // $('#stageName').val(null);
+        // Added value for text
+        $('#stageName').val(propertyViewCurrentModel._displayName);
+        $("#stageName").attr("title", $("#stageName").val());
+    }
+
+    // populates previously saved values in all the data fields.
+    function discardCallBack() {
+        this.propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+        // Added value (default value initially 'New Stage')
+        $('#stageName').val(propertyViewCurrentModel._displayName);
+        $("#stageName").attr("title", $("#stageName").val());
+
+    }
+
+    /* Retrieve the updated values from Html elements and return them back to the parent using post message */
+    function sendSaveMessage() {
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+
+        // Indicate to Telemetry that Property Page was saved
+        MscrmControls.ProcessDesigner.isPropertyPageSaved = true;
+
+        var validProperties = propertyViewCurrentModelClone
+            .validateOnAction(MscrmControls.ProcessDesigner.Validation.Level.Apply);
+        if (validProperties) {
+            var editItems = {
+                _displayName: $("#stageName").val()
+
+            }
+            GenericWorkflowDesigner.currentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            GenericWorkflowDesigner.eventManager.trigger(GenericWorkflowDesigner.FrameworkEvents.updateProperty,
+                editItems);
+            $(window.top.document).trigger("doValidation");
+        }
+        renderErrors();
+        stopwatch.stop();
+        localStorage.setItem("ProcessDesignerControl_TBX_PageApplyTime", stopwatch.elapsedMilliseconds.toString());
+    }
+
+    dialogMessageTypes = {
+        Information: 0,
+        Warning: 1,
+        Error: 2
+    }
+
+</script>

@@ -1,0 +1,651 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:event name="deleteslugbody" id="deleteSlugBodyEvent"/>
+<public:event name="dataslugchange" id="dataSlugChangeEvent"/>
+<public:property name="IsDataSlug" get="getIsDataSlug" put="setIsDataSlug"/>
+<public:property name="IsMultiSlug" get="getIsMultiSlug" put="setIsMultiSlug"/>
+<public:property name="IsTextSlugInTextBox" get="getIsTextSlugInTextBox" put="setIsTextSlugInTextBox"/>
+<public:property name="IsReadOnly" get="getIsReadOnly" put="setIsReadOnly"/>
+<public:property name="IsDisabled" get="getIsDisabled" put="setIsDisabled"/>
+<public:property name="AttributeName" get="getAttributeName" put="setAttributeName"/>
+<public:property name="IsSlugDirty" get="getIsSlugDirty"/>
+<public:property name="IsSlugDeleted" get="getIsSlugDeleted"/>
+<public:property name="SlugValue" get="getValue"/>
+<public:property name="FirstSlugValue" get="getFirstSlugValue"/>
+<public:method name="InsertSlugControl"/>
+<public:method name="UpdateOperatorControl"/>
+<public:method name="UpdateInnerHtml"/>
+<public:method name="DeleteDataSlug"/>
+<public:method name="CurrentOperatorIsClear"/>
+<public:method name="CalculateDataSlugTabIndex"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           var _bDataSlug = false,
+                                               _bTextValueInTextBox = true,
+                                               _oDataSlug = null,
+                                               _bInitDone = false,
+                                               _bMultiSlug = false,
+                                               _attributeName = null,
+                                               _isReadOnly = true,
+                                               _isDisabled = false,
+                                               _bDefaultValueSlug = false,
+                                               _firstSlugValue = [],
+                                               _firstSlugText = [],
+                                               _operatorControl = null,
+                                               _outerControl = null,
+                                               _bSlugDeleted = false;
+
+                                           function Init() {
+                                               if (window.document.media != "print" && !IsNull(this.TrimValue))
+                                                   this.TrimValue = false
+                                           }
+
+                                           function UpdateInnerHtml(htmlString) {
+                                               if (_bInitDone)
+                                                   SetInnerHtml(htmlString);
+                                               else {
+                                                   _firstSlugValue.push(null);
+                                                   _firstSlugText.push(htmlString)
+                                               }
+                                           }
+
+                                           function getIsSlugDirty() {
+                                               if (IsEmailBodyElement())
+                                                   return element.IsDirty;
+                                               return !_bDefaultValueSlug
+                                           }
+
+                                           function getIsReadOnly() {
+                                               return _isReadOnly
+                                           }
+
+                                           function setIsReadOnly(val) {
+                                               _isReadOnly = val
+                                           }
+
+                                           function getIsDisabled() {
+                                               return _isDisabled
+                                           }
+
+                                           function setIsDisabled(val) {
+                                               _isDisabled = val
+                                           }
+
+                                           function UpdateOperatorControl(value, text, displayText) {
+                                               _operatorControl.Value = value;
+                                               _operatorControl.innerText = displayText + " ";
+                                               if (text == "=" || text == "clear")
+                                                   _operatorControl.innerText = ""
+                                           }
+
+                                           function
+                                               InsertSlugControl(value, text, defaultValueSlug, isInsertHyperLink) {
+                                                   isInsertHyperLink =
+                                                       typeof isInsertHyperLink != "undefined"
+                                                       ? isInsertHyperLink
+                                                       : false;
+                                                   if (_bInitDone)
+                                                       _oDataSlug
+                                                           .CreateInnerSlug(value,
+                                                               text,
+                                                               _bMultiSlug,
+                                                               _isReadOnly,
+                                                               _isDisabled,
+                                                               isInsertHyperLink);
+                                                   else {
+                                                       _firstSlugValue.push(value);
+                                                       _firstSlugText.push(text)
+                                                   }
+                                                   _bSlugDeleted = false;
+                                                   _bDefaultValueSlug = defaultValueSlug
+                                               }
+
+                                           function getAttributeName() {
+                                               return _attributeName
+                                           }
+
+                                           function setAttributeName(value) {
+                                               _attributeName = value
+                                           }
+
+                                           function getIsMultiSlug() {
+                                               return _bMultiSlug
+                                           }
+
+                                           function setIsMultiSlug(val) {
+                                               _bMultiSlug = val;
+                                               if (_oDataSlug != null)
+                                                   if (_bMultiSlug)
+                                                       _oDataSlug.className = "ms-crm-DataSlugBody";
+                                                   else
+                                                       _oDataSlug.className = "ms-crm-DataSlugBodySingleSlug"
+                                           }
+
+                                           function getIsTextSlugInTextBox() {
+                                               return _bTextValueInTextBox
+                                           }
+
+                                           function setIsTextSlugInTextBox(val) {
+                                               _bTextValueInTextBox = val
+                                           }
+
+                                           function getIsDataSlug() {
+                                               if (IsEmailBodyElement())
+                                                   return Mscrm.FormControlInputBehavior.GetBehavior(element.id)
+                                                       .hasDataSlug();
+                                               return _bDataSlug
+                                           }
+
+                                           function setIsDataSlug(val) {
+                                               if (val)
+                                                   enableDataSlug();
+                                               else
+                                                   DeleteDataSlug()
+                                           }
+
+                                           function getDataSlug() {
+                                               CreateDataSlugIfNotExist();
+                                               return _oDataSlug
+                                           }
+
+                                           function CalculateDataSlugTabIndex() {
+                                               var maxTabIndex = 0,
+                                                   obj;
+                                               if (!IsNull(element.getAttribute("tabindex")) &&
+                                                   element.getAttribute("tabindex") > maxTabIndex)
+                                                   return element.getAttribute("tabindex");
+                                               for (var i = 0; i < element.all.length; i++) {
+                                                   obj = element.all[i];
+                                                   if (!IsNull(obj.getAttribute("tabindex")) &&
+                                                       obj.getAttribute("tabindex") > maxTabIndex)
+                                                       maxTabIndex = obj.getAttribute("tabindex")
+                                               }
+                                               return maxTabIndex
+                                           }
+
+                                           function CreateDataSlugIfNotExist() {
+                                               if (IsNull(_oDataSlug)) {
+                                                   if (IsEmailBodyElement())
+                                                       return;
+                                                   _outerControl = window.document
+                                                       .createElement("<span contentEditable=false>");
+                                                   parentElement.appendChild(_outerControl);
+                                                   _outerControl.style.display = "inline";
+                                                   _outerControl.style.height = element.currentStyle.height;
+                                                   if (element.className == "ms-crm-CheckBox" ||
+                                                       element.className == "ms-crm-RadioButton")
+                                                       _outerControl.style.width = "100%";
+                                                   else
+                                                       _outerControl.style.width = element.currentStyle.width;
+                                                   _operatorControl = window.document
+                                                       .createElement("<span id='operatorSpan' contentEditable=false>");
+                                                   _outerControl.appendChild(_operatorControl);
+                                                   var dataSlug = null;
+                                                   if (this._isDisabled) {
+                                                       _outerControl.className = "ms-crm-ReadOnly";
+                                                       dataSlug = window.document
+                                                           .createElement("<span class='ms-crm-DataSlugBodySingleSlug' ms-crm-ReadOnly'>")
+                                                   } else {
+                                                       var tabIndex = CalculateDataSlugTabIndex();
+                                                       dataSlug = window.document
+                                                           .createElement("<span class='ms-crm-DataSlugBodySingleSlug' tabindex=" + tabIndex + " contentEditable=true>")
+                                                   }
+                                                   _outerControl.appendChild(dataSlug);
+                                                   dataSlug.style.display = "inline";
+                                                   dataSlug.style.height = element.currentStyle.height;
+                                                   dataSlug.style.width = _outerControl.style.width;
+                                                   _oDataSlug = dataSlug;
+                                                   dataSlug.attachEvent("onreadystatechange", onDataSlugReady);
+                                                   _bSlugDeleted = false
+                                               }
+                                           }
+
+                                           function onDataSlugReady() {
+                                               if (event.srcElement.readyState == "complete") {
+                                                   if (!_isDisabled) {
+                                                       _oDataSlug.attachEvent("deletedataslug", DeleteDataSlug);
+                                                       _oDataSlug.attachEvent("dataslugchange", onDataSlugChange);
+                                                       _oDataSlug.attachEvent("dataslugonfocus", onDataSlugFocus)
+                                                   }
+                                                   if (!IsNull(_firstSlugValue) && !IsNull(_firstSlugText)) {
+                                                       _firstSlugText.reverse();
+                                                       _firstSlugValue.reverse();
+                                                       while (_firstSlugValue.length != 0) {
+                                                           var popValue = _firstSlugValue.pop(),
+                                                               popText = _firstSlugText.pop();
+                                                           if (IsNull(popValue))
+                                                               SetInnerHtml(popText);
+                                                           else
+                                                               _oDataSlug
+                                                                   .CreateInnerSlug(popValue,
+                                                                       popText,
+                                                                       _bMultiSlug,
+                                                                       _isReadOnly,
+                                                                       _isDisabled,
+                                                                       false)
+                                                       }
+                                                   }
+                                                   _oDataSlug.RaiseOnChange();
+                                                   _bInitDone = true
+                                               }
+                                           }
+
+                                           function SetInnerHtml(text) {
+                                               var tempElement = window.document.createElement("<span>");
+                                               tempElement.innerText = text;
+                                               _oDataSlug.innerHTML += tempElement.innerHTML
+                                           }
+
+                                           function NotifyChange() {
+                                               dataSlugChangeEvent.fire(createEventObject())
+                                           }
+
+                                           function onDataSlugChange() {
+                                               NotifyChange()
+                                           }
+
+                                           function onDataSlugFocus() {
+                                               try {
+                                                   var focusElement = null;
+                                                   if (IsLookup())
+                                                       focusElement = GetLookupImgElement();
+                                                   if (focusElement == null)
+                                                       focusElement = element;
+                                                   SetDatatypeAttributeListAtFocus(focusElement)
+                                               } catch (e) {
+                                               }
+                                           }
+
+                                           function IsLookup() {
+                                               return Sys.UI.DomElement.containsCssClass(element, "ms-crm-Lookup")
+                                           }
+
+                                           function GetLookupImgElement() {
+                                               var imgElement = element.getElementsByTagName("IMG");
+                                               if (!IsNull(imgElement) && imgElement.length > 0)
+                                                   return imgElement[0];
+                                               return null
+                                           }
+
+                                           function enableDataSlug() {
+                                               if (IsEmailBodyElement()) {
+                                                   _bDataSlug = Mscrm.FormControlInputBehavior.GetBehavior(element.id)
+                                                       .hasDataSlug();
+                                                   return
+                                               }
+                                               if (!_bDataSlug) {
+                                                   CreateDataSlugIfNotExist();
+                                                   element.style.display = "none";
+                                                   ajaxControl = Mscrm.FormControlInputBehavior.GetBehavior(element.id);
+                                                   var dataValue =
+                                                       IsNull(ajaxControl) ? DataValue : ajaxControl.get_dataValue();
+                                                   if (element.isTextEdit == true &&
+                                                       !IsNull(dataValue) &&
+                                                       typeof dataValue == "string" &&
+                                                       _bTextValueInTextBox) {
+                                                       _oDataSlug.innerText = dataValue;
+                                                       _oDataSlug.title = dataValue
+                                                   } else
+                                                       _oDataSlug.innerText = "";
+                                                   try {
+                                                       if (!IsNull(element.DefaultValue) ||
+                                                           !IsNull(ajaxControl) &&
+                                                           ajaxControl.get_defaultValue != undefined &&
+                                                           !IsNull(ajaxControl.get_defaultValue()))
+                                                           dataValue =
+                                                               IsNull(ajaxControl)
+                                                               ? element.DefaultValue
+                                                               : ajaxControl.get_defaultValue();
+                                                       else
+                                                           dataValue = null;
+                                                       if (IsNull(ajaxControl))
+                                                           DataValue = dataValue;
+                                                       else
+                                                           ajaxControl.set_dataValue(dataValue)
+                                                   } catch (e) {
+                                                       if (IsNull(ajaxControl))
+                                                           DataValue = null;
+                                                       else
+                                                           ajaxControl.set_dataValue(null)
+                                                   }
+                                                   _bDataSlug = true
+                                               }
+                                           }
+
+                                           function CurrentOperatorIsClear() {
+                                               if (IsEmailBodyElement())
+                                                   return element.IsClearOperator();
+                                               else if (!IsNull(_operatorControl) &&
+                                                   _operatorControl.Value ==
+                                                   '<slugelement type="operator" value="clear"/>')
+                                                   return true;
+                                               return false
+                                           }
+
+                                           function DeleteDataSlug() {
+                                               if (IsEmailBodyElement()) {
+                                                   _bDataSlug = Mscrm.FormControlInputBehavior.GetBehavior(element.id)
+                                                       .hasDataSlug();
+                                                   deleteSlugBodyEvent.fire(createEventObject());
+                                                   NotifyChange();
+                                                   return
+                                               }
+                                               if (_bDataSlug) {
+                                                   _bDataSlug = false;
+                                                   if (!IsNull(_oDataSlug)) {
+                                                       var dataValue = null;
+                                                       if (!_isReadOnly && _bMultiSlug)
+                                                           dataValue = _oDataSlug.innerText;
+                                                       ajaxControl = Mscrm.FormControlInputBehavior
+                                                           .GetBehavior(element.id);
+                                                       if (IsNull(ajaxControl))
+                                                           DataValue = dataValue;
+                                                       else
+                                                           ajaxControl.set_dataValue(dataValue);
+                                                       _outerControl.style.display = "none";
+                                                       _outerControl.removeChild(_operatorControl);
+                                                       _operatorControl = null;
+                                                       _outerControl.removeChild(_oDataSlug);
+                                                       _oDataSlug = null;
+                                                       parentElement.removeChild(_outerControl);
+                                                       _outerControl = null;
+                                                       element.style.display = "inline";
+                                                       deleteSlugBodyEvent.fire(createEventObject());
+                                                       NotifyChange();
+                                                       _bSlugDeleted = true;
+                                                       _bInitDone = false
+                                                   }
+                                               }
+                                           }
+
+                                           function getFirstSlugValue() {
+                                               if (IsNull(_oDataSlug) || _oDataSlug.children.length == 0)
+                                                   return "";
+                                               return _oDataSlug.children[0].Value
+                                           }
+
+                                           function getValue() {
+                                               if (IsEmailBodyElement())
+                                                   return getValueForEmailBody();
+                                               if (IsNull(_oDataSlug))
+                                                   return "";
+                                               if (_bMultiSlug == false ||
+                                                   _oDataSlug.children.length == 1 &&
+                                                   _oDataSlug.children[0].innerText == _oDataSlug.innerText) {
+                                                   var slugBody =
+                                                           "<slugbody>" +
+                                                               _operatorControl.Value +
+                                                               _oDataSlug.children[0].Value +
+                                                               "</slugbody>",
+                                                       slugValue =
+                                                           "<" +
+                                                               _attributeName +
+                                                               ">" +
+                                                               CrmEncodeDecode.CrmXmlEncode(slugBody) +
+                                                               "</" +
+                                                               _attributeName +
+                                                               ">";
+                                                   return slugValue
+                                               } else {
+                                                   var valueArray = [],
+                                                       valueArrayIndex = 0;
+                                                   if (_isReadOnly)
+                                                       for (valueArrayIndex = 0;
+                                                           valueArrayIndex < _oDataSlug.children.length;
+                                                           valueArrayIndex++)
+                                                           valueArray[valueArrayIndex] = _oDataSlug
+                                                               .children[valueArrayIndex].Value;
+                                                   else {
+                                                       var slugIndex = 0,
+                                                           innerText = getSlugInnerText(_oDataSlug),
+                                                           str =
+                                                               getInnerTextWithSlugs(_oDataSlug.innerHTML,
+                                                                   innerText,
+                                                                   0,
+                                                                   0);
+                                                       while (str != null) {
+                                                           var expressionArray = getExpressions(str);
+                                                           if (expressionArray[0] != null) {
+                                                               valueArray[valueArrayIndex] = expressionArray[0];
+                                                               valueArrayIndex++
+                                                           }
+                                                           if (expressionArray[1] != null) {
+                                                               valueArray[valueArrayIndex] = expressionArray[1];
+                                                               valueArrayIndex++;
+                                                               slugIndex++
+                                                           }
+                                                           str = expressionArray[2]
+                                                       }
+                                                   }
+                                                   var expressionString = getExpressionString(valueArray),
+                                                       slugBody =
+                                                           "<slugbody>" +
+                                                               _operatorControl.Value +
+                                                               expressionString +
+                                                               "</slugbody>",
+                                                       slugValue =
+                                                           "<" +
+                                                               _attributeName +
+                                                               ">" +
+                                                               CrmEncodeDecode.CrmXmlEncode(slugBody) +
+                                                               "</" +
+                                                               _attributeName +
+                                                               ">";
+                                                   return slugValue
+                                               }
+                                               return ""
+                                           }
+
+                                           function getSlugInnerText(dataSlug) {
+                                               var innerText = "";
+                                               if (dataSlug.children.length < 1 || dataSlug.firstChild.tagName != "P")
+                                                   return dataSlug.innerText;
+                                               for (var i = 0; i < dataSlug.children.length; i++) {
+                                                   var child = dataSlug.children[i];
+                                                   if (child.tagName == "P")
+                                                       innerText += child.innerText + "\r\n";
+                                                   else
+                                                       innerText += child.innerText;
+                                                   if (!IsNull(child.nextSibling))
+                                                       if (!IsNull(child.nextSibling.nodeValue) &&
+                                                           child.nextSibling.nodeValue != "")
+                                                           innerText += child.nextSibling.nodeValue
+                                               }
+                                               return innerText
+                                           }
+
+                                           function getValueForEmailBody() {
+                                               var slugIndex = 0,
+                                                   str = element.GetHTML(),
+                                                   valueArray = [],
+                                                   valueArrayIndex = 0;
+                                               while (str != null) {
+                                                   var expressionArray = getExpressions(str);
+                                                   if (expressionArray[0] != null) {
+                                                       valueArray[valueArrayIndex] = expressionArray[0];
+                                                       valueArrayIndex++
+                                                   }
+                                                   if (expressionArray[1] != null) {
+                                                       valueArray[valueArrayIndex] = expressionArray[1];
+                                                       valueArrayIndex++;
+                                                       slugIndex++
+                                                   }
+                                                   str = expressionArray[2]
+                                               }
+                                               var expressionString = getExpressionString(valueArray),
+                                                   slugBody =
+                                                       '<slugbody><slugelement type="operator" value="="/>' +
+                                                           expressionString +
+                                                           "</slugbody>";
+                                               if (IsClearExpression(expressionString))
+                                                   slugBody =
+                                                       '<slugbody><slugelement type="operator" value="clear"/><slugelement type="slug"><slug type="dynamic" value="null"/></slugelement></slugbody>';
+                                               if (IsNull(_attributeName) || _attributeName == "")
+                                                   _attributeName = element.id;
+                                               var slugValue =
+                                                   "<" +
+                                                       _attributeName +
+                                                       ">" +
+                                                       CrmEncodeDecode.CrmXmlEncode(slugBody) +
+                                                       "</" +
+                                                       _attributeName +
+                                                       ">";
+                                               return slugValue
+                                           }
+
+                                           function IsClearExpression(value) {
+                                               return value.indexOf('<slug type="dynamic" value="null"/>') > 0
+                                           }
+
+                                           function getExpressionString(valueArray) {
+                                               for (var returnValue = null,
+                                                   index = 0,
+                                                   index = 0;
+                                                   index < valueArray.length;
+                                                   index++)
+                                                   if (IsNull(returnValue))
+                                                       returnValue = valueArray[index];
+                                                   else
+                                                       returnValue += valueArray[index];
+                                               return returnValue
+                                           }
+
+                                           function
+                                               getInnerTextWithSlugs(innerHTML, innerText, startIndex, textStartIndex) {
+                                                   var spanStartIndex = getSpanStart(innerHTML, startIndex),
+                                                       spanEndIndex = innerHTML.indexOf("</SPAN>", spanStartIndex);
+                                                   if (spanStartIndex < 0 || spanEndIndex < 0)
+                                                       return innerText;
+                                                   var spanText = innerHTML
+                                                           .substr(spanStartIndex,
+                                                               spanEndIndex + "</SPAN>".length - spanStartIndex),
+                                                       slugEnd = innerHTML.indexOf("</slugelement>'>", spanStartIndex),
+                                                       displayStartIndex = slugEnd + "</slugelement>'>".length,
+                                                       displayLength = spanEndIndex - displayStartIndex,
+                                                       displayValue = innerHTML
+                                                           .substr(displayStartIndex, displayLength),
+                                                       textValueStartIndex = innerText
+                                                           .indexOf(CrmEncodeDecode.CrmHtmlDecode(displayValue),
+                                                               textStartIndex),
+                                                       newInnerText =
+                                                           innerText.substr(0, textValueStartIndex) +
+                                                               spanText +
+                                                               innerText
+                                                               .substr(textValueStartIndex + displayValue.length);
+                                                   textStartIndex =
+                                                       newInnerText.indexOf(spanText, textStartIndex) + spanText.length;
+                                                   return getInnerTextWithSlugs(innerHTML,
+                                                       newInnerText,
+                                                       spanEndIndex + "</SPAN>".length,
+                                                       textStartIndex)
+                                               }
+
+                                           function getExpressions(str) {
+                                               var startIndex = 0,
+                                                   spanStartIndex = getSpanStart(str),
+                                                   spanEndIndex = str.indexOf("</SPAN>", spanStartIndex),
+                                                   primitiveExpression = null,
+                                                   preText = null;
+                                               if (spanStartIndex < 0 || spanEndIndex < 0)
+                                                   preText = str;
+                                               else if (spanStartIndex > 0)
+                                                   preText = str.substr(0, spanStartIndex);
+                                               var remainingStr = null;
+                                               if (spanStartIndex >= 0 &&
+                                                   spanEndIndex >= 0 &&
+                                                   spanEndIndex + "</SPAN>".length != str.length)
+                                                   remainingStr = str
+                                                       .substr(spanEndIndex + "</SPAN>".length,
+                                                           str.length - spanEndIndex + "</SPAN>".length);
+                                               var slugExpression = null;
+                                               if (spanStartIndex != -1 && spanEndIndex != -1) {
+                                                   var slugStart = str.indexOf("<slugelement", spanStartIndex),
+                                                       slugEnd = str.indexOf("</slugelement>", spanStartIndex);
+                                                   if (slugStart > 0 && slugEnd > 0) {
+                                                       slugExpression = str
+                                                           .substring(slugStart, slugEnd + "</slugelement>".length);
+                                                       var displayFormat =
+                                                           extractHtmlFormat(str
+                                                               .substring(slugEnd + "</slugelement>'>".length,
+                                                                   spanEndIndex));
+                                                       if (displayFormat[0] != null)
+                                                           preText =
+                                                               preText == null
+                                                               ? displayFormat[0]
+                                                               : preText + displayFormat[0];
+                                                       if (displayFormat[1] != null)
+                                                           remainingStr =
+                                                               remainingStr == null
+                                                               ? displayFormat[1]
+                                                               : displayFormat[1] + remainingStr
+                                                   }
+                                               }
+                                               if (preText != null)
+                                                   primitiveExpression =
+                                                       '<slugelement type="primitive" value="' +
+                                                       CrmEncodeDecode.CrmXmlEncode(preText) +
+                                                       '"/>';
+                                               var returnArray = [];
+                                               returnArray[0] = primitiveExpression;
+                                               returnArray[1] = slugExpression;
+                                               returnArray[2] = remainingStr;
+                                               return returnArray
+                                           }
+
+                                           function getSpanStart(html, start) {
+                                               var startIndex = IsNull(start) ? 0 : start,
+                                                   spanStartIndex = html.indexOf("<SPAN ", startIndex),
+                                                   classIndex = getDataSlugClassIndex(html, spanStartIndex);
+                                               if (spanStartIndex < 0 || classIndex < 0)
+                                                   return -1;
+                                               var spanIndex1 = spanStartIndex;
+                                               while (spanIndex1 < classIndex) {
+                                                   if (spanIndex1 < 0)
+                                                       break;
+                                                   spanStartIndex = spanIndex1;
+                                                   spanIndex1 = html.indexOf("<SPAN ", spanIndex1 + 1)
+                                               }
+                                               var spanEndIndex = html.indexOf("</SPAN>", spanStartIndex);
+                                               if (spanStartIndex < 0 || spanEndIndex < 0)
+                                                   return -1;
+                                               return spanStartIndex
+                                           }
+
+                                           function getDataSlugClassIndex(html, startIndex) {
+                                               var index = html.indexOf(" class=ms-crm-DataSlug", startIndex);
+                                               if (index < 0)
+                                                   index = html.indexOf(" class='ms-crm-DataSlug'", startIndex);
+                                               if (index < 0)
+                                                   index = html.indexOf(' class="ms-crm-DataSlug"', startIndex);
+                                               return index
+                                           }
+
+                                           function extractHtmlFormat(displayText) {
+                                               var returnVal = [],
+                                                   preFix = null,
+                                                   suffix = null;
+                                               if (!IsNull(displayText)) {
+                                                   var startIndex = displayText.indexOf(">{"),
+                                                       endIndex = displayText.indexOf("}</", startIndex);
+                                                   if (startIndex >= 0 && endIndex >= 0) {
+                                                       preFix = displayText.substring(0, startIndex + ">".length);
+                                                       suffix = displayText
+                                                           .substring(endIndex + "}".length, displayText.length)
+                                                   }
+                                               }
+                                               returnVal[0] = preFix;
+                                               returnVal[1] = suffix;
+                                               return returnVal
+                                           }
+
+                                           function getIsSlugDeleted() {
+                                               return _bSlugDeleted
+                                           }
+
+                                           function IsEmailBodyElement() {
+                                               return !IsNull(element.className) &&
+                                                   element.className.indexOf("ms-crm-Email-Body") >= 0
+                                           }
+
+                                       </script>
+</public:component>

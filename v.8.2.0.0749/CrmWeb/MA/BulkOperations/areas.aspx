@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Microsoft.Crm.Marketing.Application.Pages.MA.BulkOperations.AreaPage" %>

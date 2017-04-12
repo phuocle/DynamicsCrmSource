@@ -1,0 +1,500 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:property name="DataXml" get="getDataXml"/>
+<public:property name="DataValue" get="getDataValue" put="setDataValue"/>
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="IsInitialzed" get="isInitialzed"/>
+<public:property name="WillSubmit"/>
+<public:property name="SupportSlug" get="getSlugSupport" put="setSlugSupport"/>
+<public:property name="DataXmlUnEncoded" get="getDataXmlUnEncoded"/>
+<public:property name="DataChangeHandler"/>
+<public:method name="InsertValue"/>
+<public:method name="LoadMessageContent"/>
+<public:method name="SetFocus" internalname="setFocus"/>
+<public:method name="SetUrl"/>
+<public:method name="FireOnChange" internalname="fireOnChange"/>
+<public:method name="UpdateDataField"/>
+<public:method name="GetHTML"/>
+<public:method name="HasDataSlug"/>
+<public:method name="IsClearOperator"/>
+<public:method name="UseTemplate"/>
+<public:method name="UpdateMessageBody"/>
+<public:event id="OnChangeEvent" name="OnChange"/>
+<public:event id="OnFocusEvent" name="onbodyfocus"/>
+<public:event id="OnContentReadyEvent" name="onContentReadyEvent"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           var _oIFrame,
+                                               _oEmailBody,
+                                               _oHtmlBar,
+                                               _bInitialized = false,
+                                               _sValue,
+                                               _sDefaultValue,
+                                               _bDisabled = false,
+                                               _iTabIndex = 0,
+                                               _slugSupport = false,
+                                               _oActive = null,
+                                               _caretX = -1,
+                                               _caretY = -1,
+                                               _defaultHtml,
+                                               _bIsReadOnly = false,
+                                               _bIsClear = false,
+                                               _sPendingText = null;
+
+                                           function Init() {
+                                               WillSubmit = true;
+                                               _oHtmlBar = element.document.all[element.id + "HtmlBar"];
+                                               _oIFrame = element.document.all[element.id + "IFrame"];
+                                               _oEmailBody = _oIFrame.contentWindow;
+                                               _iTabIndex = _oIFrame.tabIndex;
+                                               if (!IsNull(element.SetDisabled) && element.SetDisabled == "true") {
+                                                   _oIFrame.tabIndex = -1;
+                                                   _bDisabled = true
+                                               }
+                                               if (_oIFrame.readyState == "complete" &&
+                                                   _oIFrame.src.indexOf("/_static/blank.htm") > -1)
+                                                   SetUrl();
+                                               else
+                                                   _oIFrame.attachEvent("onreadystatechange", SetUrl)
+                                           }
+
+                                           function SetUrl() {
+                                               if (_oIFrame.readyState == "complete" &&
+                                                   _oIFrame.src.indexOf("/_static/blank.htm") > -1) {
+                                                   _oIFrame.detachEvent("onreadystatechange");
+                                                   _oIFrame.attachEvent("onreadystatechange", OnFrameContentReady);
+                                                   _oIFrame.src = _oIFrame.url
+                                               }
+                                           }
+
+                                           function SetStyle() {
+                                               (IsNull(window.msgBodyIsFor) ||
+                                                       window.msgBodyIsFor != "webResourceEditor") &&
+                                                   _oEmailBody.document
+                                                   .createStyleSheet(Mscrm.CrmUri
+                                                       .create("/_forms/controls/controls.css.aspx").toString())
+                                           }
+
+                                           function OnFrameContentReady() {
+                                               if (_oIFrame.readyState == "complete" &&
+                                                   _oIFrame.src.indexOf("/_static/blank.htm") == -1) {
+                                                   InitializeEmailBody();
+                                                   _oIFrame.detachEvent("onreadystatechange")
+                                               }
+                                           }
+
+                                           function InitializeEmailBody() {
+                                               _sValue = _oEmailBody.document.body.innerHTML;
+                                               if (LOCID_UI_DIR == "RTL")
+                                                   _oEmailBody.document.body.style.direction = "rtl";
+                                               _sDefaultValue = _sValue;
+                                               if (typeof _appFormErrorOnPage != "undefined" &&
+                                                   !IsNull(_appFormErrorOnPage) &&
+                                                   _appFormErrorOnPage ||
+                                                   element.IsDefaultDirty) {
+                                                   var el = element.document.getElementById("savedEmailBodyUserInput");
+                                                   if (el != null) {
+                                                       _oEmailBody.document.body.innerHTML = el.value;
+                                                       _sValue = el.value
+                                                   }
+                                               }
+                                               if (!_bDisabled)
+                                                   _oEmailBody.document.body.contentEditable = "True";
+                                               _oEmailBody.attachEvent("onblur", UpdateMessageBody);
+                                               _defaultHtml = _oEmailBody.document.body.innerHTML;
+                                               if (_slugSupport) {
+                                                   _oEmailBody.attachEvent("onfocus", FireOnFocus);
+                                                   _oEmailBody.document.body
+                                                       .attachEvent("onselectstart", onselectstart);
+                                                   _oEmailBody.document.body
+                                                       .attachEvent("oncontrolselect", oncontrolselect);
+                                                   _oEmailBody.document.body.attachEvent("onclick", onClick);
+                                                   _oEmailBody.document.body.attachEvent("onkeydown", OnKeyDownEvent);
+                                                   _oEmailBody.document.body.attachEvent("onkeyup", OnKeyUpEvent);
+                                                   _sDefaultValue = _defaultHtml
+                                               }
+                                               SetStyle();
+                                               _bInitialized = true;
+                                               !IsNull(_sPendingText) &&
+                                                   LoadMessageContent(_sPendingText);
+                                               FireOnContentReady()
+                                           }
+
+                                           function UpdateMessageBody() {
+                                               if (!_bDisabled && _bInitialized) {
+                                                   CleanupEmailBody();
+                                                   var sNewValue = _oEmailBody.document.body.innerHTML;
+                                                   if (_sValue != sNewValue) {
+                                                       _sValue = sNewValue;
+                                                       fireOnChange()
+                                                   }
+                                               }
+                                           }
+
+                                           function CleanupEmailBody() {
+                                               for (var collection = _oEmailBody.document.getElementsByTagName("SPAN"),
+                                                   i = 0;
+                                                   i < collection.length;
+                                                   i++) {
+                                                   var ele = collection[i];
+                                                   (ele.innerHTML == "" ||
+                                                           ele.innerHTML == _defaultHtml ||
+                                                           ele.innerHTML == "<P>" + _defaultHtml + "&nbsp;</P>") &&
+                                                       ele.parentElement.removeChild(ele)
+                                               }
+                                               if (_oEmailBody.document.body.innerHTML ==
+                                                   "<P>" + _defaultHtml + "&nbsp;</P>")
+                                                   _oEmailBody.document.body.innerHTML = _defaultHtml
+                                           }
+
+                                           function GetClearSpanElement() {
+                                               for (var collection = _oEmailBody.document.getElementsByTagName("SPAN"),
+                                                   i = 0;
+                                                   i < collection.length;
+                                                   i++) {
+                                                   var ele = collection[i];
+                                                   if (ele.className == "ms-crm-DataSlug")
+                                                       if (IsClearExpression(ele.value))
+                                                           return ele
+                                               }
+                                               return null
+                                           }
+
+                                           function setDisabled(bDisabled) {
+                                               if (bDisabled != _bDisabled) {
+                                                   _oEmailBody.document.body
+                                                       .contentEditable = bDisabled ? "False" : "True";
+                                                   _oHtmlBar.runtimeStyle.display = bDisabled ? "none" : "inline";
+                                                   _bDisabled = bDisabled;
+                                                   if (bDisabled == true)
+                                                       _oIFrame.tabIndex = -1;
+                                                   else
+                                                       _oIFrame.tabIndex = _iTabIndex
+                                               }
+                                           }
+
+                                           function UseTemplate(bUseTemplate) {
+                                               _oEmailBody.document.body
+                                                   .contentEditable = bUseTemplate ? "False" : "True";
+                                               for (var i = 0; i < _oHtmlBar.all.length; i++) {
+                                                   _oHtmlBar.all(i).unselectable = bUseTemplate ? "off" : "on";
+                                                   _oHtmlBar.all(i).disabled = bUseTemplate ? true : false;
+                                                   var hrefVal = _oHtmlBar.all(i).getAttribute("href"),
+                                                       addhrefVal = _oHtmlBar.all(i).getAttribute("addHref");
+                                                   if (bUseTemplate) {
+                                                       if (!IsNull(hrefVal) && hrefVal === "javascript:onclick();") {
+                                                           _oHtmlBar.all(i).removeAttribute("href");
+                                                           _oHtmlBar.all(i)
+                                                               .setAttribute("addHref", "javascript:onclick();")
+                                                       }
+                                                   } else if (
+                                                       !IsNull(addhrefVal) && addhrefVal === "javascript:onclick();") {
+                                                       _oHtmlBar.all(i).setAttribute("href", addhrefVal);
+                                                       _oHtmlBar.all(i).removeAttribute("addHref")
+                                                   }
+                                               }
+                                           }
+
+                                           function getDisabled() {
+                                               return _bDisabled
+                                           }
+
+                                           function getDataXmlEncodedOrUnEncoded(bEncode) {
+                                               UpdateMessageBody();
+                                               var sID = element.id,
+                                                   sValue = _sValue == null ? "" : _sValue;
+                                               if (_slugSupport)
+                                                   if (_sValue == null ||
+                                                       _sValue == _defaultHtml ||
+                                                       _sValue == "<P>" + _defaultHtml + "&nbsp;</P>")
+                                                       sValue = "";
+                                               if (LOCID_UI_DIR == "RTL")
+                                                   sValue = "<div style='direction:rtl;'>" + sValue + "</div>";
+                                               if (bEncode)
+                                                   sValue = CrmEncodeDecode.CrmXmlEncode(sValue);
+                                               return "<" + sID + ">" + sValue + "</" + sID + ">"
+                                           }
+
+                                           function getDataXmlUnEncoded() {
+                                               return getDataXmlEncodedOrUnEncoded(false)
+                                           }
+
+                                           function getDataXml() {
+                                               return getDataXmlEncodedOrUnEncoded(true)
+                                           }
+
+                                           function getDataValue() {
+                                               UpdateMessageBody();
+                                               if (_slugSupport)
+                                                   if (_sValue == null ||
+                                                       _sValue == _defaultHtml ||
+                                                       _sValue == "<P>" + _defaultHtml + "&nbsp;</P>")
+                                                       return null;
+                                               return _sValue
+                                           }
+
+                                           function setDataValue(sNewBody) {
+                                               if (!_bDisabled && sNewBody != _sValue) {
+                                                   if (sNewBody == null) {
+                                                       _oEmailBody.document.body.innerHTML = "";
+                                                       _sValue = ""
+                                                   } else if ("string" == typeof sNewBody) {
+                                                       _oEmailBody.document.body.innerHTML = sNewBody;
+                                                       sNewBody = CrmEncodeDecode.CrmHtmlEncode(sNewBody);
+                                                       _sValue = sNewBody
+                                                   } else {
+                                                       alert(LOCID_DEVERROR_BADTYPE_STRING);
+                                                       return
+                                                   }
+                                                   var fDataChangeHandler = this.DataChangeHandler;
+                                                   fDataChangeHandler &&
+                                                       fDataChangeHandler()
+                                               }
+                                           }
+
+                                           function InsertValue(sHtmlToInsert) {
+                                               _oEmailBody.focus();
+                                               var sId = "df" + LocalDateTimeNow().getTime();
+                                               _oEmailBody.document.execCommand("InsertButton", null, sId);
+                                               var oButton = _oEmailBody.document.all(sId);
+                                               if (oButton == null) {
+                                                   _sPendingText = sHtmlToInsert;
+                                                   return null
+                                               }
+                                               var oTextElement = _oEmailBody.document.createElement("SPAN");
+                                               oTextElement.innerHTML = sHtmlToInsert;
+                                               oButton.replaceNode(oTextElement);
+                                               _sValue = _oEmailBody.document.body.innerHTML;
+                                               return ""
+                                           }
+
+                                           function LoadMessageContent(sTextToInsert) {
+                                               if (_bInitialized) {
+                                                   var oTextElement = _oEmailBody.document.createElement("SPAN");
+                                                   oTextElement.innerHTML = sTextToInsert;
+                                                   _oEmailBody.document.body.innerHTML = oTextElement.outerHTML;
+                                                   _sValue = _oEmailBody.document.body.innerHTML
+                                               } else {
+                                                   _sPendingText = sTextToInsert;
+                                                   return
+                                               }
+                                               _sDefaultValue = _sValue
+                                           }
+
+                                           function isDirty() {
+                                               if (_bInitialized) {
+                                                   UpdateMessageBody();
+                                                   return _sDefaultValue != _sValue
+                                               } else
+                                                   return false
+                                           }
+
+                                           function isInitialzed() {
+                                               return _bInitialized
+                                           }
+
+                                           function setFocus() {
+                                               !_bDisabled &&
+                                                   _oEmailBody.focus()
+                                           }
+
+                                           function getSlugSupport() {
+                                               return _slugSupport
+                                           }
+
+                                           function setSlugSupport(value) {
+                                               _slugSupport = value;
+                                               if (_slugSupport && !_bDisabled) {
+                                                   _oEmailBody.attachEvent("onfocus", FireOnFocus);
+                                                   _oEmailBody.document.body
+                                                       .attachEvent("onselectstart", onselectstart);
+                                                   _oEmailBody.document.body
+                                                       .attachEvent("oncontrolselect", oncontrolselect);
+                                                   _oEmailBody.document.body.attachEvent("onclick", onClick);
+                                                   _oEmailBody.document.body.attachEvent("onkeydown", OnKeyDownEvent);
+                                                   _oEmailBody.document.body.attachEvent("onkeyup", OnKeyUpEvent)
+                                               } else {
+                                                   _oEmailBody.detachEvent("onfocus");
+                                                   _oEmailBody.document.body.detachEvent("onselectstart");
+                                                   _oEmailBody.document.body.detachEvent("oncontrolselect");
+                                                   _oEmailBody.document.body.detachEvent("onclick");
+                                                   _oEmailBody.document.body.detachEvent("onkeydown");
+                                                   _oEmailBody.document.body.detachEvent("onkeyup")
+                                               }
+                                           }
+
+                                           function fireOnChange() {
+                                               var oEvent = createEventObject();
+                                               oEvent.value = _sValue;
+                                               OnChangeEvent.fire(oEvent)
+                                           }
+
+                                           function FireOnFocus() {
+                                               var oEvent = createEventObject();
+                                               OnFocusEvent.fire(oEvent)
+                                           }
+
+                                           function FireOnContentReady() {
+                                               var oEvent = createEventObject();
+                                               OnContentReadyEvent.fire(oEvent)
+                                           }
+
+                                           function UpdateDataField(value, text, disabled) {
+                                               if (IsClearExpression(value)) {
+                                                   SetClearExpression(value, text);
+                                                   return
+                                               }
+                                               if (_oActive)
+                                                   if (_oActive.innerText == "") {
+                                                       _oActive.removeNode(true);
+                                                       _oActive = null;
+                                                       InsertDataField(value, text, disabled)
+                                                   } else {
+                                                       _oActive.value = value;
+                                                       _oActive.innerText = text;
+                                                       _oActive.title = text
+                                                   }
+                                               else
+                                                   InsertDataField(value, text, disabled)
+                                           }
+
+                                           function IsClearOperator() {
+                                               return IsClearExpression(GetHTML())
+                                           }
+
+                                           function IsClearExpression(value) {
+                                               return value.indexOf('<slug type="dynamic" value="null"/>') > 0
+                                           }
+
+                                           function SetClearExpression(value, text) {
+                                               _oEmailBody.document.body.innerHTML = _defaultHtml;
+                                               _oEmailBody.document.body.fireEvent("onclick");
+                                               InsertDataField(value, text, true)
+                                           }
+
+                                           function InsertDataField(value, text, readonly) {
+                                               _oEmailBody.focus();
+                                               if (_oEmailBody.document.body.innerHTML == "")
+                                                   _oEmailBody.document.body.innerHTML = _defaultHtml;
+                                               if (_caretX >= 0 && _caretY >= 0) {
+                                                   var rng = _oEmailBody.document.body.createTextRange();
+                                                   rng.moveToPoint(_caretX, _caretY);
+                                                   rng.select()
+                                               }
+                                               var sId = "df" + LocalDateTimeNow().getTime();
+                                               _oEmailBody.document.execCommand("InsertButton", null, sId);
+                                               var oButton = _oEmailBody.document.all(sId);
+                                               if (oButton == null)
+                                                   return;
+                                               var oDataSlug = _oEmailBody.document
+                                                   .createElement("<span class='ms-crm-DataSlug' tabindex=-1 contentEditable=false>");
+                                               oDataSlug.tabIndex = -1;
+                                               oButton.replaceNode(oDataSlug);
+                                               with (oDataSlug) {
+                                                   oDataSlug.value = value;
+                                                   innerText = text;
+                                                   title = text;
+                                                   contentEditable = false;
+                                                   style.display = "inline";
+                                                   onbeforeeditfocus = function() {
+                                                       return false
+                                                   };
+                                                   click()
+                                               }
+                                               _bIsReadOnly = readonly
+                                           }
+
+                                           function onselectstart() {
+                                               _oEmailBody.event.cancelBubble = true;
+                                               return true
+                                           }
+
+                                           function oncontrolselect() {
+                                               var ele = _oEmailBody.event.srcElement;
+                                               if (!IsNull(ele) &&
+                                                   ele.tagName == "SPAN" &&
+                                                   ele.className == "ms-crm-DataSlug")
+                                                   _oActive = _oEmailBody.event.srcElement
+                                           }
+
+                                           function onClick() {
+                                               _caretX = _oEmailBody.event.clientX;
+                                               _caretY = _oEmailBody.event.clientY;
+                                               _oActive = null
+                                           }
+
+                                           function storeTextPosition() {
+                                               var caretPos = _oEmailBody.document.selection.createRange();
+                                               _caretX = caretPos.offsetLeft;
+                                               _caretY = caretPos.offsetTop
+                                           }
+
+                                           function GetHTML() {
+                                               return _oEmailBody.document.body.innerHTML
+                                           }
+
+                                           function HasDataSlug() {
+                                               for (var collection = _oEmailBody.document.getElementsByTagName("SPAN"),
+                                                   i = 0;
+                                                   i < collection.length;
+                                                   i++) {
+                                                   var ele = collection[i];
+                                                   if (ele.className == "ms-crm-DataSlug")
+                                                       return true
+                                               }
+                                               return false
+                                           }
+
+                                           function OnKeyDownEvent() {
+                                               _bIsClear = IsClearOperator();
+                                               if (BubleEvent(_oEmailBody.event)) {
+                                                   var oEvent = createEventObject();
+                                                   oEvent.keyCode = _oEmailBody.event.keyCode;
+                                                   oEvent.shiftKey = _oEmailBody.event.shiftKey;
+                                                   oEvent.ctrlKey = _oEmailBody.event.ctrlKey;
+                                                   oEvent.altKey = _oEmailBody.event.altKey;
+                                                   oEvent.srcElement = element;
+                                                   oEvent.returnValue = _oEmailBody.event.returnValue;
+                                                   oEvent.cancelBubble = false;
+                                                   element.document.fireEvent("onkeydown", oEvent)
+                                               }
+                                               if (!_bIsReadOnly || _oEmailBody.event.keyCode == 46)
+                                                   return;
+                                               _oEmailBody.event.cancelBubble = true;
+                                               _oEmailBody.event.returnValue = false
+                                           }
+
+                                           function BubleEvent(bodyEvent) {
+                                               with (bodyEvent)
+                                                   switch (keyCode) {
+                                                   case KEY_ESC:
+                                                       return true;
+                                                   case KEY_F12:
+                                                       if (shiftKey)
+                                                           return true;
+                                                       break;
+                                                   case KEY_S:
+                                                       if (ctrlKey || altKey)
+                                                           return true;
+                                                       break
+                                                   }
+                                               return false
+                                           }
+
+                                           function OnKeyUpEvent() {
+                                               if (_oEmailBody.event.keyCode == KEY_DELETE)
+                                                   if (_bIsClear && !IsClearOperator()) {
+                                                       _oEmailBody.document.body.innerHTML = _defaultHtml;
+                                                       ResetOperator()
+                                                   }
+                                               storeTextPosition()
+                                           }
+
+                                           function ResetOperator() {
+                                               _bIsReadOnly = false;
+                                               FireOnFocus()
+                                           }
+
+                                       </script>
+</public:component>

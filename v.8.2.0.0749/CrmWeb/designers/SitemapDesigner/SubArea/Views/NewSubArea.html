@@ -1,0 +1,15 @@
+<div class="container-fluid" draggable="true" ondragstart="dragSubArea(event)">
+    <script>
+        function dragSubArea(ev) {
+            ev.dataTransfer.setData("newElement", 'NewSubArea');
+        }
+    </script>
+    <div class="row subarea-internal" ng-click="onSubAreaSelection(subArea, $event)" id="{{subArea.Id}}">
+        <span class="subarea-icon {{subArea.Id}}">
+            <img ng-src="{{subArea.Icon}}" alt="{{GetResourceString(subArea)}}" class="{{subArea.EntityIconClass}}">
+        </span>
+        <span class="subarea-title" title="{{GetResourceString(subArea)}}">
+            <mscrm-locale mscrm-resource-key="SitemapDesigner.SubArea"/>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,1194 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="init()"/>
+<public:attach event="onresize" onevent="onResizeNotification()"/>
+<public:attach event="onclick" onevent="loadMenu(null, false, false, false)"/>
+<public:attach event="onmouseover" onevent="menuRollOn(null)"/>
+<public:attach event="onmouseout" onevent="menuRollOff(null)"/>
+<public:attach event="onfocusin" onevent="menuFocusIn(null)"/>
+<public:attach event="onfocusout" onevent="menuRollOff(null)"/>
+<public:attach event="onmousedown" onevent="menuMouseDown()"/>
+<public:attach event="onmouseup" onevent="menuMouseUp()"/>
+<public:attach event="onkeydown" onevent="menuKeyHandler()"/>
+<public:attach event="onkeyup" onevent="menuCleanup()"/>
+<public:attach event="ondetach" onevent="onDetach()"/>
+<public:property name="NumChildren" get="getNumChildren"/>
+<public:method name="hideItem"/>
+<public:method name="showItem"/>
+<public:method name="DisableItem"/>
+<public:method name="SetAction"/>
+<public:method name="loadATMenu"/>
+<public:method name="executeATClick"/>
+<public:method name="executeATMenu"/>
+<public:method name="notifyATMenuClose"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           var MENU_RESIZE_INTERVAL = 200,
+                                               MENU_RESIZE_DELTA = 100,
+                                               _oMenuLast = null,
+                                               _oMenuLastOpened = null,
+                                               _oSubMenuLast = null,
+                                               _oLastMenuGlow = null,
+                                               _nMenuFullWidth = 0,
+                                               _nOtherMenuFullWidth = 0,
+                                               _nParentMenuLastWidth = 0,
+                                               _nMenuPadding = 0,
+                                               _bMenuIsCompressed = false,
+                                               _lastCheckedWidth = 0,
+                                               _lastResizeTime = 0,
+                                               _isActiveTimeout = false,
+                                               _isResizingMenu = false,
+                                               _isActive = false,
+                                               _oPopup,
+                                               _oSubPopup,
+                                               _oATPopup = null,
+                                               _jewelFirstCap,
+                                               _jewelThirdCap,
+                                               menuLeft,
+                                               menuRight,
+                                               isAT = false;
+
+                                           function init() {
+                                               if (window.document.media != "print") {
+                                                   if (LOCID_UI_DIR === "RTL") {
+                                                       menuLeft = KEY_RIGHT;
+                                                       menuRight = KEY_LEFT;
+                                                       _jewelFirstCap = "right";
+                                                       _jewelThirdCap = "left"
+                                                   } else {
+                                                       menuLeft = KEY_LEFT;
+                                                       menuRight = KEY_RIGHT;
+                                                       _jewelFirstCap = "left";
+                                                       _jewelThirdCap = "right"
+                                                   }
+                                                   var disableResizeCheck = this.disableResizeCheck == "1";
+                                                   _isResizingMenu =
+                                                       !disableResizeCheck &&
+                                                       (this.className == "ms-crm-MenuBar-Items" &&
+                                                           this.parentElement.parentElement.parentElement.className !=
+                                                           "ms-crm-FilterPopupContainer");
+                                                   var oXmlHttp;
+                                                   oXmlHttp = new XMLHttpRequest;
+                                                   oXmlHttp
+                                                       .open("Get",
+                                                           Mscrm.CrmUri.create("/_static/_common/scripts/scroll.htc")
+                                                           .toString(),
+                                                           true);
+                                                   oXmlHttp.send(null);
+                                                   _oPopup = openPopup();
+                                                   _oSubPopup = _oPopup.document.parentWindow.createPopup();
+                                                   if (!IsHelpContext())
+                                                       for (var
+                                                           saPopupStyles =
+                                                           [
+                                                               "/_common/styles/fonts.css.aspx",
+                                                               "/_common/styles/global.css.aspx", "/_nav/menu.css.aspx",
+                                                               "/_common/styles/theme.css.aspx"
+                                                           ],
+                                                           oPopupDocumentCreateStyleSheet = _oPopup.document
+                                                               .createStyleSheet,
+                                                           oSubPopupDocumentCreateStyleSheet = _oSubPopup.document
+                                                               .createStyleSheet,
+                                                           i = 0;
+                                                           i < saPopupStyles.length;
+                                                           i++) {
+                                                           var
+                                                               sPopupStyleUrl = Mscrm.CrmUri.create(saPopupStyles[i])
+                                                                   .toString();
+                                                           oPopupDocumentCreateStyleSheet(sPopupStyleUrl);
+                                                           oSubPopupDocumentCreateStyleSheet(sPopupStyleUrl)
+                                                       }
+                                                   if (_isResizingMenu) {
+                                                       _nOtherMenuFullWidth =
+                                                           getFullWidth(this.className == "ms-crm-MenuBar-Items"
+                                                               ? this.nextSibling
+                                                               : this.previousSibling,
+                                                               false);
+                                                       _nMenuFullWidth = getFullWidth(this, false)
+                                                   } else
+                                                       _nMenuFullWidth = getFullWidth(this, true);
+                                                   _isActive = true;
+                                                   ResizeCheck()
+                                               }
+                                           }
+
+                                           function getInt(stringInt) {
+                                               if (IsNull(stringInt) || stringInt.Length <= 0)
+                                                   return 0;
+                                               var returnInt = parseInt(stringInt, 10);
+                                               if (isNaN(returnInt) || IsNull(returnInt))
+                                                   return 0;
+                                               return returnInt
+                                           }
+
+                                           function showHideRedundantText(showText, maxLength) {
+                                               for (var liMenu,
+                                                   totalLength = _nMenuPadding + 5,
+                                                   i = 0;
+                                                   i < element.firstChild.children.length;
+                                                   i++) {
+                                                   liMenu = element.firstChild.children[i];
+                                                   if (showText)
+                                                       liMenu.style.display = "inline";
+                                                   if (liMenu.firstChild.tagName == "SPAN")
+                                                       if (liMenu.firstChild.firstChild.tagName == "A")
+                                                           if (
+                                                               liMenu.firstChild.firstChild.firstChild
+                                                                   .tagName ==
+                                                                   "IMG" &&
+                                                                   liMenu.firstChild.firstChild.children.length >= 2) {
+                                                               var spanMenu = liMenu.firstChild.firstChild.children[1];
+                                                               if (
+                                                                   spanMenu.tagName != "SPAN" &&
+                                                                       liMenu.firstChild.firstChild.children
+                                                                       .length >=
+                                                                       3)
+                                                                   spanMenu = liMenu.firstChild.firstChild.children[2];
+                                                               if (spanMenu.tagName == "SPAN") {
+                                                                   spanMenu.style
+                                                                       .display = showText ? "inline" : "none";
+                                                                   liMenu.firstChild.firstChild.firstChild
+                                                                       .alt = showText ? "" : spanMenu.innerText;
+                                                                   liMenu.firstChild.firstChild.firstChild
+                                                                       .tabIndex = showText ? -1 : 0
+                                                               }
+                                                           }
+                                                   totalLength += liMenu.offsetWidth;
+                                                   if (!showText)
+                                                       if (totalLength > maxLength && liMenu.style.display != "none")
+                                                           liMenu.style.display = "none";
+                                                       else if (
+                                                           liMenu.style.display == "none" && totalLength < maxLength)
+                                                           liMenu.style.display = "inline"
+                                               }
+                                           }
+
+                                           function onDetach() {
+                                               _isActive = false
+                                           }
+
+                                           function onResizeTimeout() {
+                                               try {
+                                                   if (!_isActive)
+                                                       return;
+                                                   onResizeNotification();
+                                                   _isActiveTimeout = false
+                                               } catch (e) {
+                                                   return
+                                               }
+                                           }
+
+                                           function onResizeNotification() {
+                                               try {
+                                                   if (!_isActive)
+                                                       return;
+                                                   if (IsNull(this) || IsNull(element))
+                                                       return;
+                                                   if (!_isResizingMenu)
+                                                       return
+                                               } catch (e) {
+                                                   return
+                                               }
+                                               var currentTime = (new Date).valueOf();
+                                               if (currentTime - _lastResizeTime > MENU_RESIZE_INTERVAL) {
+                                                   _lastResizeTime = currentTime;
+                                                   _isActiveTimeout = false;
+                                                   ResizeCheck()
+                                               } else {
+                                                   !_isActiveTimeout &&
+                                                       window
+                                                       .setTimeout(onResizeTimeout,
+                                                           MENU_RESIZE_INTERVAL + MENU_RESIZE_DELTA);
+                                                   _isActiveTimeout = true
+                                               }
+                                           }
+
+                                           function ResizeCheck() {
+                                               if (!_isActive)
+                                                   return;
+                                               if (IsNull(this) || IsNull(element))
+                                                   return;
+                                               if (!_isResizingMenu)
+                                                   return;
+                                               var toolbarWidth = element.parentElement.parentElement.offsetWidth;
+                                               if (_lastCheckedWidth == toolbarWidth)
+                                                   return;
+                                               _lastCheckedWidth = toolbarWidth;
+                                               if (_nMenuFullWidth + _nOtherMenuFullWidth + 15 > toolbarWidth) {
+                                                   showHideRedundantText(false, toolbarWidth - _nOtherMenuFullWidth);
+                                                   if (toolbarWidth > _nOtherMenuFullWidth + 50)
+                                                       this.style
+                                                           .width =
+                                                           (toolbarWidth - _nOtherMenuFullWidth).toString() + "px";
+                                                   else
+                                                       this.style.width = "50px";
+                                                   _bMenuIsCompressed = true
+                                               } else if (_bMenuIsCompressed) {
+                                                   showHideRedundantText(true);
+                                                   this.style.width = (_nMenuFullWidth + 10).toString() + "px";
+                                                   _bMenuIsCompressed = false
+                                               }
+                                           }
+
+                                           function getFullWidth(whichMenu, forceResizeOfTitle) {
+                                               var fullWidth = 1,
+                                                   liMenu;
+                                               if (IsNull(whichMenu))
+                                                   return fullWidth;
+                                               fullWidth +=
+                                                   getInt(whichMenu.style.paddingLeft) +
+                                                   getInt(whichMenu.style.paddingRight) +
+                                                   getInt(whichMenu.style.marginLeft) +
+                                                   getInt(whichMenu.style.marginRight);
+                                               if (IsNull(whichMenu.firstChild))
+                                                   return fullWidth;
+                                               if (whichMenu.firstChild.tagName != "UL")
+                                                   return fullWidth;
+                                               if (IsNull(whichMenu.firstChild.firstChild))
+                                                   return fullWidth;
+                                               if (whichMenu.firstChild.firstChild.tagName == "TABLE") {
+                                                   var nobrCollection = whichMenu.getElementsByTagName("NOBR");
+                                                   if (nobrCollection.length > 0) {
+                                                       var toolbarWidth = element.parentElement.parentElement
+                                                           .offsetWidth;
+                                                       fullWidth +=
+                                                           whichMenu.getElementsByTagName("NOBR")[0].offsetWidth + 4;
+                                                       if (forceResizeOfTitle) {
+                                                           if (fullWidth > toolbarWidth)
+                                                               fullWidth = toolbarWidth / 2;
+                                                           whichMenu.style.width = fullWidth.toString() + "px"
+                                                       }
+                                                       if (fullWidth > toolbarWidth)
+                                                           fullWidth = toolbarWidth / 2
+                                                   }
+                                                   return fullWidth
+                                               }
+                                               if (whichMenu.firstChild.firstChild.tagName != "LI" &&
+                                                   whichMenu.firstChild.firstChild.tagName != "DIV")
+                                                   return fullWidth;
+                                               fullWidth +=
+                                                   getInt(whichMenu.firstChild.style.paddingLeft) +
+                                                   getInt(whichMenu.firstChild.style.paddingRight) +
+                                                   getInt(whichMenu.firstChild.style.marginLeft) +
+                                                   getInt(whichMenu.firstChild.style.marginRight);
+                                               _nMenuPadding = fullWidth;
+                                               for (var i = 0; i < whichMenu.firstChild.children.length; i++) {
+                                                   liMenu = whichMenu.firstChild.children[i];
+                                                   if (liMenu.tagName == "DIV" &&
+                                                       !IsNull(liMenu.firstChild) &&
+                                                       liMenu.firstChild.tagName == "LI")
+                                                       liMenu = liMenu.firstChild;
+                                                   fullWidth += liMenu.offsetWidth
+                                               }
+                                               return fullWidth
+                                           }
+
+                                           function hideItem(o) {
+                                               toggleItem(o, false)
+                                           }
+
+                                           function showItem(o) {
+                                               toggleItem(o, true)
+                                           }
+
+                                           function DisableItem(o, bDisable) {
+                                               o.disabled = bDisable;
+                                               if (o.firstChild && o.firstChild.tagName == "IMG")
+                                                   o.firstChild.style
+                                                       .filter =
+                                                       bDisable
+                                                       ? "progid:DXImageTransform.Microsoft.Alpha(opacity=50)"
+                                                       : ""
+                                           }
+
+                                           function SetAction(oBtn, sAction) {
+                                               oBtn.action = sAction
+                                           }
+
+                                           function getNumChildren() {
+                                               for (var iCount = 0,
+                                                   i = 0;
+                                                   i < element.firstChild.children.length;
+                                                   i++)
+                                                   if (element.firstChild.children[i].tagName == "LI")
+                                                       iCount++;
+                                               return iCount
+                                           }
+
+                                           function toggleItem(o, bOn) {
+                                               var bHide = true,
+                                                   oTmp = o.parentElement.parentElement;
+                                               o.style.display = bOn ? "inline" : "none";
+                                               for (var i = 0; i < oTmp.children.length; i++)
+                                                   if (oTmp.children[i].style.display != "none") {
+                                                       bHide = false;
+                                                       break
+                                                   }
+                                               oTmp.parentElement.style.display = bHide ? "none" : "inline"
+                                           }
+
+                                           function menuCleanup() {
+                                               switch (event.keyCode) {
+                                               case KEY_ENTER:
+                                               case KEY_DOWN:
+                                               case KEY_UP:
+                                               case KEY_LEFT:
+                                               case KEY_RIGHT:
+                                                   event.returnValue = false;
+                                                   break
+                                               }
+                                           }
+
+                                           function menuMouseUp() {
+                                               if (!checkReadyState())
+                                                   return;
+                                               if (IsNull(_oMenuLast))
+                                                   return;
+                                               if (_oMenuLast.lastChild.tagName != "DIV")
+                                                   return;
+                                               if (_oMenuLast == getElem())
+                                                   setGlow(_oMenuLast, true);
+                                               else
+                                                   resetGlow(_oMenuLast)
+                                           }
+
+                                           function menuMouseDown() {
+                                               if (!checkReadyState())
+                                                   return;
+                                               var o = getElem();
+                                               if (IsNull(o))
+                                                   return;
+                                               if (!isValidMenuElem(o))
+                                                   return;
+                                               setGlow(o, false);
+                                               o != _oMenuLast &&
+                                                   !IsNull(_oMenuLast) &&
+                                                   resetGlow(_oMenuLast)
+                                           }
+
+                                           function menuFocusIn(o) {
+                                               if (IsNull(o))
+                                                   o = getElem();
+                                               if (!isValidMenuElem(o))
+                                                   return false;
+                                               if (event.altKey) {
+                                                   event.keyCode = o.accessKey.charCodeAt(0);
+                                                   menuKeyHandler()
+                                               } else
+                                                   menuRollOn(o)
+                                           }
+
+                                           function menuRollOn(o) {
+                                               if (!checkReadyState())
+                                                   return false;
+                                               if (IsNull(o))
+                                                   o = getElem();
+                                               if (!isValidMenuElem(o))
+                                                   return false;
+                                               var bAutoOpen = false;
+                                               if (_oPopup.document.parentMenu && _oPopup.document.parentMenu !== o) {
+                                                   bAutoOpen = _oPopup.isOpen;
+                                                   closeWindows()
+                                               }
+                                               closedWindowHandler();
+                                               if (_oPopup.document.parentMenu !== o) {
+                                                   _oMenuLast = o;
+                                                   setGlow(o, true);
+                                                   o.onblur = closedWindowHandler;
+                                                   try {
+                                                       var oAE = o.ownerDocument.activeElement;
+                                                       oAE.tagName != "BODY" &&
+                                                           oAE.tagName != "IFRAME" &&
+                                                           (oAE.className != "ms-crm-Menu" || bAutoOpen) &&
+                                                           (_oPopup && _oPopup.isOpen) &&
+                                                           setFocusOnMenuItem(o.firstChild, true)
+                                                   } catch (e) {
+                                                   }
+                                               }
+                                               o &&
+                                                   bAutoOpen &&
+                                                   !o.action &&
+                                                   o.fireEvent("onclick")
+                                           }
+
+                                           function menuRollOff(oItemToClear) {
+                                               if (!checkReadyState())
+                                                   return;
+                                               var oEventElement = getElem(),
+                                                   oActionElement = IsNull(oItemToClear) ? oEventElement : oItemToClear;
+                                               if (oActionElement == null &&
+                                                   event.srcElement.className == "ms-crm-MenuBar-Items")
+                                                   return;
+                                               if (IsNull(oEventElement) && IsNull(oItemToClear))
+                                                   if (!IsNull(event)) {
+                                                       var o = event.srcElement;
+                                                       while (o != undefined && o.tagName != "LI" && o.tagName != "UL")
+                                                           o = o.parentElement;
+                                                       if (!IsNull(o) && o != undefined)
+                                                           return
+                                                   }
+                                               var bAutoOpen = false;
+                                               if (_oPopup.document.parentMenu &&
+                                                   _oPopup.document.parentMenu !== oActionElement) {
+                                                   bAutoOpen = _oPopup.isOpen;
+                                                   closeWindows()
+                                               }
+                                               closedWindowHandler();
+                                               if (!IsNull(oItemToClear)) {
+                                                   resetGlow(oItemToClear);
+                                                   oItemToClear.blur();
+                                                   return
+                                               }
+                                               if (IsNull(oActionElement) ||
+                                                   _oPopup.document.parentMenu !== oActionElement &&
+                                                   (IsNull(_oLastMenuGlow) || _oLastMenuGlow.id != oActionElement.id)) {
+                                                   if (IsNull(oActionElement))
+                                                       oActionElement = _oLastMenuGlow;
+                                                   if (!IsNull(oActionElement)) {
+                                                       resetGlow(oActionElement);
+                                                       oActionElement.blur()
+                                                   }
+                                               }
+                                           }
+
+                                           function loadATMenu(oPopup, atMenu) {
+                                               _oATPopup = oPopup;
+                                               var oMenu = this.all[atMenu];
+                                               if (IsNull(oMenu)) {
+                                                   closeWindows();
+                                                   return
+                                               }
+                                               with (oPopup.document.body) {
+                                                   var s;
+                                                   s = "<table cellpadding=0 cellspacing=0><tr><td><div>" +
+                                                       oMenu.outerHTML +
+                                                       "</div></td></tr>";
+                                                   s +=
+                                                       '<tr><td><button onclick="closeATWindow();" id="butClose" class="button">';
+                                                   s += CrmEncodeDecode.CrmHtmlEncode(LOCID_CLOSE_BUTTON_LABEL);
+                                                   s += "</button></td></tr></table>";
+                                                   innerHTML = s;
+                                                   oPopup.document._oMenu = firstChild.rows[0].cells[0].firstChild
+                                                       .firstChild;
+                                                   with (oPopup.document._oMenu)
+                                                       style.display = "inline"
+                                               }
+                                               var sMenuTitle = oMenu.parentElement.parentElement.firstChild.innerText;
+                                               oPopup.document.title = CrmEncodeDecode
+                                                   .CrmHtmlEncode(formatString(LOCID_POPUP_MENU_LABEL, sMenuTitle));
+                                               oPopup.document._oMenu.style.tableLayout = "fixed";
+                                               var iW = Math.max(oPopup.document._oMenu.offsetWidth + 8, 400),
+                                                   iH = Math
+                                                       .min(oPopup.document._oMenu.offsetHeight + 20,
+                                                           window.screen.availHeight);
+                                               oPopup.dialogHeight = iH.toString() + "px";
+                                               oPopup.dialogWidth = iW.toString() + "px";
+                                               iW = Math.max(oPopup.document._oMenu.offsetWidth + 8, 200);
+                                               iH = Math
+                                                   .min(oPopup.document._oMenu.offsetHeight + 20,
+                                                       window.screen.availHeight);
+                                               oPopup.dialogHeight = iH.toString() + "px";
+                                               oPopup.dialogWidth = iW.toString() + "px";
+                                               oPopup.dialogTop = "20px";
+                                               oPopup.dialogLeft = "20px";
+                                               oPopup.document.lastMenuItem = null
+                                           }
+
+                                           function executeATMenu(menuID) {
+                                               if (IsNull(menuID) || menuID.length <= 0)
+                                                   return;
+                                               var atObject = {};
+                                               atObject.menuHtc = this;
+                                               atObject.atMenu = menuID;
+                                               closeWindows();
+                                               openStdDlg(Mscrm.CrmUri.create("/_controls/popupmenu/atpopup.aspx"),
+                                                   atObject,
+                                                   60,
+                                                   20,
+                                                   true,
+                                                   false,
+                                                   null)
+                                           }
+
+                                           function loadMenu(o, bSubMenu, bInvokeShortcutAction, bIsKeyboard) {
+                                               if (!checkReadyState())
+                                                   return false;
+                                               if (!o) {
+                                                   o = bSubMenu ? getMenuItemElem() : getElem();
+                                                   isAT = isATEvent()
+                                               }
+                                               if (!isValidMenuElem(o))
+                                                   return false;
+                                               if (_oMenuLastOpened === o) {
+                                                   _oMenuLastOpened = null;
+                                                   return false
+                                               }
+                                               var oMenu;
+                                               if (bSubMenu) {
+                                                   oMenu = o.ownerDocument.all[o.menu];
+                                                   _oSubMenuLast = o
+                                               } else {
+                                                   if (o == null || !o.menu) {
+                                                       bInvokeShortcutAction &&
+                                                           o.tagName == "LI" &&
+                                                           o.fireEvent("onclick");
+                                                       return true
+                                                   }
+                                                   setGlow(o, false);
+                                                   oMenu = o.all[o.menu];
+                                                   _oMenuLast = o;
+                                                   _oMenuLastOpened = o;
+                                                   o.onblur = closedWindowHandler
+                                               }
+                                               if (isAT) {
+                                                   var atObject = {};
+                                                   atObject.menuHtc = this;
+                                                   atObject.atMenu = o.menu;
+                                                   closeWindows();
+                                                   openStdDlg(Mscrm.CrmUri.create("/_controls/popupmenu/atpopup.aspx"),
+                                                       atObject,
+                                                       60,
+                                                       20,
+                                                       true,
+                                                       false,
+                                                       null);
+                                                   return
+                                               }
+                                               var oPopup = bSubMenu ? _oSubPopup : _oPopup;
+                                               with (oPopup.document.body) {
+                                                   innerHTML =
+                                                       "<table cellpadding=0 cellspacing=0><tr><td><div>" +
+                                                       oMenu.outerHTML +
+                                                       "</div></td></tr></table>";
+                                                   oPopup.document._oMenu = firstChild.rows[0].cells[0].firstChild
+                                                       .firstChild;
+                                                   onselectstart = onSelectStartHandler;
+                                                   onkeydown = menuItemKeyHandler;
+                                                   onkeyup = menuItemKeySwallower;
+                                                   with (oPopup.document._oMenu) {
+                                                       style.display = "inline";
+                                                       onclick = menuItemClick;
+                                                       onmouseover = menuItemOver;
+                                                       onmouseout = menuItemOut
+                                                   }
+                                               }
+                                               var oOffset = bSubMenu ? o : oMenu.parentElement;
+                                               oPopup.show(0, 0, 200, 0, o);
+                                               var menuStartPos = oPopup.document.parentWindow.screenTop;
+                                               oPopup.document._oMenu.style.tableLayout = "fixed";
+                                               var iW = Math.min(oPopup.document._oMenu.offsetWidth, 400),
+                                                   iX = bSubMenu
+                                                       ? _nParentMenuLastWidth == 0
+                                                       ? o.offsetWidth
+                                                       : _nParentMenuLastWidth - 2
+                                                       : 0,
+                                                   iY = bSubMenu
+                                                       ? -1
+                                                       : o.firstChild.offsetHeight + o.firstChild.offsetTop,
+                                                   iH = Math
+                                                       .min(oPopup.document._oMenu.offsetHeight,
+                                                           window.screen.availHeight);
+                                               oPopup.show(iX, iY, iW, iH, oOffset);
+                                               iW = Math.max(oPopup.document._oMenu.offsetWidth, 200);
+                                               iH = Math
+                                                   .min(oPopup.document._oMenu.offsetHeight, window.screen.availHeight);
+                                               if (LOCID_UI_DIR == "RTL")
+                                                   iX = bSubMenu
+                                                       ? _nParentMenuLastWidth == 0 ? 0 : -iW
+                                                       : iX - iW + o.clientWidth;
+                                               if (bSubMenu) {
+                                                   if (!IsNull(_oPopup.document.parentMenu) &&
+                                                       !IsNull(this._oParentPopupOffset) &&
+                                                       !IsNull(this._iParentPopupHeight)) {
+                                                       var iOldW =
+                                                               _nParentMenuLastWidth == 0
+                                                                   ? _oPopup.document._oMenu.offsetWidth
+                                                                   : _nParentMenuLastWidth,
+                                                           iOldY =
+                                                               _oPopup.document.parentMenu.firstChild.offsetHeight +
+                                                                   _oPopup.document.parentMenu.firstChild.offsetTop,
+                                                           iOldH = this._iParentPopupHeight,
+                                                           iNewH = iOldH;
+                                                       if (iNewH < iOldH)
+                                                           iNewH = iOldH;
+                                                       var iNewW = iOldW,
+                                                           iNewX =
+                                                               LOCID_UI_DIR == "RTL"
+                                                                   ? -iNewW + o.document.parentMenu.clientWidth
+                                                                   : 0;
+                                                       _oPopup
+                                                           .show(iNewX, iOldY, iNewW, iNewH, this._oParentPopupOffset);
+                                                       _nParentMenuLastWidth = iOldW;
+                                                       _oPopup.document._oMenu.parentElement.style
+                                                           .width = _nParentMenuLastWidth;
+                                                       var currentMenuLeft = oPopup.document.parentWindow.screenLeft,
+                                                           parentMenuLeft;
+                                                       if (LOCID_UI_DIR == "RTL") {
+                                                           parentMenuLeft =
+                                                               _oPopup.document.parentWindow.screenLeft + iNewW;
+                                                           if (currentMenuLeft - iNewW < 0 && parentMenuLeft > 0)
+                                                               iX = iX - (currentMenuLeft - (iNewW + iW))
+                                                       } else {
+                                                           parentMenuLeft = _oPopup.document.parentWindow.screenLeft;
+                                                           if (
+                                                               currentMenuLeft + iNewW > window.screen.width &&
+                                                                   parentMenuLeft < window.screen.width)
+                                                               iX =
+                                                                   iX +
+                                                                   (
+                                                                       iX -
+                                                                       (
+                                                                           currentMenuLeft +
+                                                                               iNewW +
+                                                                               iW -
+                                                                               window.screen.width))
+                                                       }
+                                                   }
+                                               } else {
+                                                   this._oParentPopupOffset = oOffset;
+                                                   this._iParentPopupHeight = iH;
+                                                   _nParentMenuLastWidth = 0
+                                               }
+                                               if (LOCID_UI_DIR === "RTL") {
+                                                   if (oPopup.document.parentWindow.screenLeft - iW < window.screenLeft)
+                                                       iX = window.screenLeft - oPopup.document.parentWindow.screenLeft
+                                               } else if (oPopup.document.parentWindow.screenLeft + iW >
+                                                   window.screenLeft + window.document.body.offsetWidth)
+                                                   iX = iX -
+                                                   (oPopup.document.parentWindow.screenLeft +
+                                                       iW -
+                                                       (window.screenLeft + window.document.body.offsetWidth));
+                                               var extraH =
+                                                   oPopup.document.parentWindow.screenTop + iH - window.screen.height;
+                                               if (extraH > 0)
+                                                   iH = iH - extraH;
+                                               oPopup.show(iX, iY, iW, iH, oOffset);
+                                               oPopup.document.parentMenu = o;
+                                               oPopup.document.lastMenuItem = null;
+                                               window.setTimeout(function() {
+                                                       oPopup.document.body.firstChild.className = "scroll"
+                                                   },
+                                                   1);
+                                               if (bIsKeyboard) {
+                                                   var oTable =
+                                                       _oSubPopup.isOpen
+                                                           ? _oSubPopup.document._oMenu
+                                                           : _oPopup.document._oMenu;
+                                                   selectNextRow(oTable, +1)
+                                               }
+                                               var elActiveElement = oPopup.document.activeElement;
+                                               if (elActiveElement != null)
+                                                   elActiveElement.hideFocus = true
+                                           }
+
+                                           function menuKeyHandler() {
+                                               try {
+                                                   if (_oPopup && _oPopup.isOpen) {
+                                                       var oRows = _oPopup.document._oMenu.children;
+                                                       if (menuFireAcceleratorKey(oRows, event)) {
+                                                           event.returnValue = false;
+                                                           return false
+                                                       }
+                                                   }
+                                               } catch (e) {
+                                               }
+                                               if (event.altKey) {
+                                                   if (event.srcElement.accessKey.toUpperCase() !=
+                                                       String.fromCharCode(event.keyCode).toUpperCase())
+                                                       return false;
+                                                   switch (event.keyCode) {
+                                                   case KEY_TAB:
+                                                   case KEY_F4:
+                                                       return false;
+                                                       break
+                                                   }
+                                                   closeWindows();
+                                                   resetGlow(_oMenuLast);
+                                                   loadMenu(null, false, true, true);
+                                                   event.returnValue = false
+                                               }
+                                               if (_oPopup.isOpen)
+                                                   return false;
+                                               var o = _oLastMenuGlow;
+                                               if (IsNull(o))
+                                                   return true;
+                                               switch (event.keyCode) {
+                                               case KEY_TAB:
+                                                   menuRollOn(o);
+                                                   break;
+                                               case KEY_ENTER:
+                                                   if (!o.menu) {
+                                                       o.click();
+                                                       event.returnValue = false;
+                                                       break
+                                                   }
+                                               case KEY_DOWN:
+                                               case KEY_UP:
+                                                   if (o.menu) {
+                                                       event.returnValue = false;
+                                                       loadMenu(o, false, false, true)
+                                                   }
+                                                   break;
+                                               case KEY_LEFT:
+                                               case KEY_RIGHT:
+                                                   selectNextBarButton(element.firstChild,
+                                                       event.keyCode == menuRight ? 1 : -1);
+                                                   event.returnValue = false;
+                                                   break
+                                               }
+                                           }
+
+                                           function menuItemKeySwallower() {
+                                               var e = getMenuItemEvent();
+                                               switch (e.keyCode) {
+                                               case KEY_ENTER:
+                                               case KEY_DOWN:
+                                               case KEY_UP:
+                                               case KEY_LEFT:
+                                               case KEY_RIGHT:
+                                               case KEY_TAB:
+                                                   e.cancelBubble = true;
+                                                   e.returnValue = false;
+                                                   break
+                                               }
+                                           }
+
+                                           function menuItemKeyHandler() {
+                                               var e = getMenuItemEvent(),
+                                                   oTable =
+                                                       _oSubPopup.isOpen
+                                                           ? _oSubPopup.document._oMenu
+                                                           : _oPopup.document._oMenu,
+                                                   oMenu = _oPopup.document.parentMenu,
+                                                   oLast = oTable.ownerDocument.lastMenuItem;
+                                               if (e.keyCode == KEY_TAB) {
+                                                   if (e.shiftKey)
+                                                       e.keyCode = KEY_UP;
+                                                   else
+                                                       e.keyCode = KEY_DOWN;
+                                                   e.cancelBubble = true
+                                               }
+                                               switch (e.keyCode) {
+                                               case menuLeft:
+                                                   if (_oSubPopup.isOpen)
+                                                       _oSubPopup.hide();
+                                                   else
+                                                       selectNextBarButton(element.firstChild, -1);
+                                                   e.returnValue = false;
+                                                   break;
+                                               case menuRight:
+                                                   if (oLast && oLast.menu)
+                                                       loadMenu(oLast, true, false, true);
+                                                   else
+                                                       selectNextBarButton(element.firstChild, 1);
+                                                   e.returnValue = false;
+                                                   break;
+                                               case KEY_DOWN:
+                                                   selectNextRow(oTable, +1);
+                                                   e.returnValue = false;
+                                                   break;
+                                               case KEY_UP:
+                                                   selectNextRow(oTable, -1);
+                                                   e.returnValue = false;
+                                                   break;
+                                               case KEY_ESC:
+                                                   if (_oSubPopup && _oSubPopup.isOpen)
+                                                       _oSubPopup.hide();
+                                                   else
+                                                       doCloseAll();
+                                                   e.returnValue = false;
+                                                   break;
+                                               case KEY_ENTER:
+                                                   menuItemClick(oLast);
+                                                   e.returnValue = false;
+                                                   break;
+                                               default:
+                                                   try {
+                                                       if (_oPopup && _oPopup.isOpen)
+                                                           var oRows = _oPopup.document._oMenu.children;
+                                                       else
+                                                           break;
+                                                       menuFireAcceleratorKey(oRows, e)
+                                                   } catch (oError) {
+                                                   }
+                                               }
+                                           }
+
+                                           function doCloseAll() {
+                                               closeWindows();
+                                               closedWindowHandler()
+                                           }
+
+                                           function findNextRow(oTable, oLast, iDirection) {
+                                               var oNew = oLast,
+                                                   oStart = oLast,
+                                                   haveRestarted = false;
+                                               do {
+                                                   if (!IsNull(oNew)) {
+                                                       var oNext =
+                                                           iDirection < 0
+                                                               ? findPreviousSibling(oNew)
+                                                               : findNextSibling(oNew);
+                                                       if (oNext != oNew)
+                                                           oNew = oNext;
+                                                       else
+                                                           oNew = null
+                                                   }
+                                                   if (IsNull(oNew)) {
+                                                       if (haveRestarted)
+                                                           return;
+                                                       oNew =
+                                                           iDirection < 0 ? findLastChild(oTable) : oTable.firstChild;
+                                                       haveRestarted = true
+                                                   }
+                                                   if (oNew == oStart)
+                                                       return null;
+                                                   if (IsNull(oNew))
+                                                       return null
+                                               } while (oNew.tagName != "LI" && oNew.tagName != "BUTTON" ||
+                                                   oNew.className.indexOf("Spacer") >= 0 ||
+                                                   oNew.disabled ||
+                                                   oNew.donotnavigate == "true");
+                                               return oNew
+                                           }
+
+                                           function findPreviousSibling(node) {
+                                               return node.previousSibling
+                                           }
+
+                                           function findNextSibling(oNew) {
+                                               return oNew.nextSibling
+                                           }
+
+                                           function findLastChild(oTable) {
+                                               var element = oTable.lastChild;
+                                               return element
+                                           }
+
+                                           function findValidSibling(node, direction) {
+                                               while (node != null && node.style.display == "none")
+                                                   node = direction > 0 ? node.nextSibling : node.previousSibling;
+                                               return node
+                                           }
+
+                                           function selectNextBarButton(oTable, iDirection) {
+                                               var oLast = _oLastMenuGlow;
+                                               if (IsNull(oLast))
+                                                   return;
+                                               var oNew = oLast;
+                                               oNew = findNextRow(oTable, oLast, iDirection);
+                                               if (!IsNull(oNew)) {
+                                                   if (!IsNull(oLast)) {
+                                                       oLast != oNew &&
+                                                           menuRollOff(oLast);
+                                                       !IsNull(_oMenuLastOpened) &&
+                                                           menuRollOff(_oMenuLastOpened)
+                                                   }
+                                                   menuRollOn(oNew);
+                                                   setFocusOnMenuItem(oNew.firstChild, true)
+                                               }
+                                           }
+
+                                           function selectNextRow(oTable, iDirection) {
+                                               var oLast = oTable.ownerDocument.lastMenuItem,
+                                                   oNew = oLast;
+                                               oNew = findNextRow(oTable, oLast, iDirection);
+                                               if (!IsNull(oNew)) {
+                                                   !IsNull(oLast) &&
+                                                       menuItemOut(oLast);
+                                                   menuItemOver(oNew)
+                                               }
+                                           }
+
+                                           function setFocusOnMenuItem(oMenuItem, bFocusOn) {
+                                               if (IsNull(oMenuItem))
+                                                   return;
+                                               if (oMenuItem.tabIndex >= 0)
+                                                   if (bFocusOn) {
+                                                       oMenuItem.hideFocus = false;
+                                                       oMenuItem.focus()
+                                                   } else
+                                                       oMenuItem.hideFocus = true;
+                                               for (var numChildren = oMenuItem.children.length,
+                                                   i = 0;
+                                                   i < numChildren;
+                                                   ++i) {
+                                                   if (IsNull(oMenuItem.children[i]))
+                                                       break;
+                                                   !IsNull(oMenuItem.children[i].firstChild) &&
+                                                       setFocusOnMenuItem(oMenuItem.children[i], bFocusOn)
+                                               }
+                                           }
+
+                                           function menuFireAcceleratorKey(oRows, oEvent) {
+                                               var i = 0,
+                                                   iLen = oRows.length;
+                                               while (i < iLen) {
+                                                   if (oRows[i].key &&
+                                                       oRows[i].key.toUpperCase() ==
+                                                       String.fromCharCode(oEvent.keyCode).toUpperCase()) {
+                                                       oRows[i].click();
+                                                       return true
+                                                   }
+                                                   i++
+                                               }
+                                               return false
+                                           }
+
+                                           function menuItemOver(o) {
+                                               var bAuto = false;
+                                               if (!o) {
+                                                   o = getMenuItemElem();
+                                                   bAuto = true
+                                               }
+                                               if (!isValidMenuElem(o))
+                                                   return false;
+                                               if (o.className.indexOf("Spacer") >= 0 ||
+                                                   o === o.ownerDocument.lastMenuItem)
+                                                   return false;
+                                               _oSubPopup.isOpen &&
+                                                   o.menu != _oSubMenuLast &&
+                                                   _oSubPopup.document.body !== o.ownerDocument.body &&
+                                                   _oSubPopup.hide();
+                                               o.menu &&
+                                                   bAuto &&
+                                                   loadMenu(null, true, false, false);
+                                               o.ownerDocument.lastMenuItem &&
+                                                   resetGlow(o.ownerDocument.lastMenuItem);
+                                               setGlow(o, true);
+                                               o.ownerDocument.lastMenuItem = o
+                                           }
+
+                                           function menuItemOut(o) {
+                                               if (!o)
+                                                   o = getMenuItemElem();
+                                               if (!isValidMenuElem(o))
+                                                   return false;
+                                               if (!o
+                                                   .menu ||
+                                                   _oSubPopup.isOpen && _oSubPopup.document.parentMenu != o) {
+                                                   resetGlow(o);
+                                                   resetGlow(o.ownerDocument.lastMenuItem);
+                                                   o.ownerDocument.lastMenuItem = null
+                                               }
+                                           }
+
+                                           function menuItemClick(o) {
+                                               var bIsKeyboard = true;
+                                               if (IsNull(o)) {
+                                                   o = getMenuItemElem();
+                                                   bIsKeyboard = false
+                                               }
+                                               if (!isValidMenuElem(o))
+                                                   return false;
+                                               if (!o.action) {
+                                                   if (o.menu)
+                                                       loadMenu(o, true, false, bIsKeyboard);
+                                                   else
+                                                       menuItemOut(o);
+                                                   return false
+                                               }
+                                               closeWindows(false);
+                                               try {
+                                                   _oMenuLast &&
+                                                       _oMenuLast.blur()
+                                               } catch (e) {
+                                               }
+                                               window.execScript(o.action);
+                                               closeWindows();
+                                               closedWindowHandler()
+                                           }
+
+                                           function executeATClick(o) {
+                                               if (!isValidMenuElem(o))
+                                                   return false;
+                                               closeWindows(false);
+                                               !IsNull(o.action) &&
+                                                   o.action.length > 0 &&
+                                                   window.execScript(o.action);
+                                               closeWindows();
+                                               closedWindowHandler()
+                                           }
+
+                                           function notifyATMenuClose() {
+                                               _oATPopup = null
+                                           }
+
+                                           function closeWindows(setNull) {
+                                               if (IsNull(setNull))
+                                                   setNull = true;
+                                               with (_oPopup) {
+                                                   if (setNull)
+                                                       document.parentMenu = null;
+                                                   hide()
+                                               }
+                                               with (_oSubPopup) {
+                                                   if (setNull)
+                                                       document.parentMenu = null;
+                                                   hide()
+                                               }
+                                               if (_oATPopup != null) {
+                                                   _oATPopup.close();
+                                                   if (setNull)
+                                                       _oATPopup = null
+                                               }
+                                           }
+
+                                           function closedWindowHandler() {
+                                               if (!_oPopup.isOpen) {
+                                                   _oPopup.document.parentMenu = null;
+                                                   if (_oMenuLast) {
+                                                       resetGlow(_oMenuLast);
+                                                       _oMenuLast.onblur = null
+                                                   }
+                                                   _oMenuLastOpened = null
+                                               }
+                                           }
+
+                                           function resetGlow(o) {
+                                               if (isValidMenuElem(o)) {
+                                                   if (o.tagName == "BUTTON") {
+                                                       o.hideFocus = true;
+                                                       return
+                                                   }
+                                                   if (o.glowonhover == "false")
+                                                       return;
+                                                   var className = o.className;
+                                                   if (className == "ms-crm-Menu")
+                                                       if (o.firstChild.className == "ms-crm-Menu-JewelButton") {
+                                                           var spans = o.firstChild.firstChild.children;
+                                                           spans[0]
+                                                               .className =
+                                                               "ms-crm-Menu-JewelButton-first-span ms-crm-ImageStrip-jewel_normal_" + _jewelFirstCap;
+                                                           spans[1]
+                                                               .className =
+                                                               "ms-crm-Menu-JewelButton-second-span ms-crm-ImageStrip-jewel_normal_middle";
+                                                           spans[2]
+                                                               .className =
+                                                               "ms-crm-Menu-JewelButton-third-span ms-crm-ImageStrip-jewel_normal_" + _jewelThirdCap
+                                                       } else
+                                                           o.firstChild.className = "ms-crm-Menu-Label";
+                                                   else if (className.indexOf("Spacer") < 0)
+                                                       if (className.indexOf("ms-crm-Menu-MultiSelect") >= 0)
+                                                           o.firstChild.className = "ms-crm-Menu-MultiSelect";
+                                                       else if (o.firstChild != null && o.firstChild.tagName == "SPAN")
+                                                           o.firstChild.className = "ms-crm-MenuItem-Label"
+                                               }
+                                           }
+
+                                           function setGlow(o, isGlow) {
+                                               if (isValidMenuElem(o)) {
+                                                   if (o.tagName == "BUTTON") {
+                                                       o.setActive();
+                                                       return
+                                                   }
+                                                   if (o.glowonhover == "false")
+                                                       return;
+                                                   var className = o.className;
+                                                   if (className == "ms-crm-Menu") {
+                                                       _oLastMenuGlow = o;
+                                                       if (o.firstChild.className == "ms-crm-Menu-JewelButton") {
+                                                           var spans = o.firstChild.firstChild.children;
+                                                           if (isGlow) {
+                                                               spans[0]
+                                                                   .className =
+                                                                   "ms-crm-Menu-JewelButton-first-span ms-crm-ImageStrip-jewel_hover_" + _jewelFirstCap;
+                                                               spans[1]
+                                                                   .className =
+                                                                   "ms-crm-Menu-JewelButton-second-span ms-crm-ImageStrip-jewel_hover_middle";
+                                                               spans[2]
+                                                                   .className =
+                                                                   "ms-crm-Menu-JewelButton-third-span ms-crm-ImageStrip-jewel_hover_" + _jewelThirdCap
+                                                           } else {
+                                                               spans[0]
+                                                                   .className =
+                                                                   "ms-crm-Menu-JewelButton-first-span ms-crm-ImageStrip-jewel_select_" + _jewelFirstCap;
+                                                               spans[1]
+                                                                   .className =
+                                                                   "ms-crm-Menu-JewelButton-second-span ms-crm-ImageStrip-jewel_select_middle";
+                                                               spans[2]
+                                                                   .className =
+                                                                   "ms-crm-Menu-JewelButton-third-span ms-crm-ImageStrip-jewel_select_" + _jewelThirdCap
+                                                           }
+                                                       } else
+                                                           o.firstChild
+                                                               .className =
+                                                               isGlow
+                                                               ? "ms-crm-Menu-Label-Hovered"
+                                                               : "ms-crm-Menu-Label-Opened"
+                                                   } else {
+                                                       o.setActive();
+                                                       if (className == "ms-crm-Menu-MultiSelect")
+                                                           o.firstChild.className = "ms-crm-Menu-MultiSelect-Hovered";
+                                                       else if (className != "ms-crm-Menu-Button")
+                                                           if (o.firstChild != null && o.firstChild.tagName == "SPAN")
+                                                               o.firstChild
+                                                                   .className =
+                                                                   isGlow
+                                                                   ? "ms-crm-MenuItem-Label-Hovered"
+                                                                   : "ms-crm-MenuItem-Label-Opened"
+                                                   }
+                                               }
+                                           }
+
+                                           function checkReadyState() {
+                                               return element.document.readyState == "complete"
+                                           }
+
+                                           function getMenuItemElem() {
+                                               var o = getMenuItemEvent().srcElement;
+                                               while (o.tagName != "HTML" && o.tagName != "LI" && o.tagName != "BUTTON")
+                                                   o = o.parentElement;
+                                               return o
+                                           }
+
+                                           function isValidMenuElem(o) {
+                                               if (IsNull(o) || o.disabled || o.donotnavigate == "true")
+                                                   return false;
+                                               if (o.tagName == "BUTTON")
+                                                   return true;
+                                               if (o.tagName != "LI")
+                                                   return false;
+                                               if (o.className.indexOf("Spacer") >= 0)
+                                                   return false;
+                                               return true
+                                           }
+
+                                           function getMenuItemEvent() {
+                                               var o = null;
+                                               if (isAT)
+                                                   o = _oATPopup;
+                                               else {
+                                                   o = _oPopup.document.parentWindow;
+                                                   if (!o.event)
+                                                       o = _oSubPopup.document.parentWindow
+                                               }
+                                               o.event.cancelBubble = true;
+                                               return o.event
+                                           }
+
+                                           function isATEvent() {
+                                               if (IsNull(event))
+                                                   return false;
+                                               var o = event.srcElement;
+                                               if (IsNull(o))
+                                                   return false;
+                                               if (o.className == "atLink")
+                                                   return true;
+                                               return false
+                                           }
+
+                                           function getElem() {
+                                               if (IsNull(event))
+                                                   return null;
+                                               var o = event.srcElement;
+                                               while (o != undefined && o.className != "ms-crm-Menu")
+                                                   o = o.parentElement;
+                                               return o
+                                           }
+
+                                           function onSelectStartHandler() {
+                                               getMenuItemEvent().returnValue = false
+                                           }
+
+                                       </script>
+</public:component>

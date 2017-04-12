@@ -1,0 +1,115 @@
+<public:component lightweight="true">
+    <public:attach event="oncontentready" onevent="Init()"/>
+    <public:property name="NextPrivilege" get="getNextPrivilege"/>
+    <public:property name="PrivilegeDepth" get="getDepth" put="putDepth"/>
+    <public:property name="PrivilegeValue" get="getPrivilegeValue"/>
+    <public:property name="ValidLevels" get="getValidLevels"/>
+    <public:property name="Min" get="getMin" set="setMin"/>
+    <public:property name="Max" get="getMax" set="setMax"/>
+    <public:method name="Reset" internalname="reset"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               function Init() {
+                                                   this.d = parseInt(this.d, 10);
+                                                   this.x = parseInt(this.x, 10);
+                                                   this.m = parseInt(this.m, 10);
+                                                   this.l = parseInt(this.l, 10);
+                                                   this.p = parseInt(this.p, 10);
+                                                   setImageSource(true)
+                                               }
+
+                                               function getMin() {
+                                                   return this.m
+                                               }
+
+                                               function setMin(vVal) {
+                                                   this.m = vVal
+                                               }
+
+                                               function getMax() {
+                                                   return this.x
+                                               }
+
+                                               function setMax(vVal) {
+                                                   this.x = vVal
+                                               }
+
+                                               function getDepth() {
+                                                   return this.d
+                                               }
+
+                                               function getObjectTypeCode() {
+                                                   return this.o
+                                               }
+
+                                               function getPrivilegeType() {
+                                                   return this.p
+                                               }
+
+                                               function getValidLevels() {
+                                                   return this.l
+                                               }
+
+                                               function putDepth(vVal) {
+                                                   this.d = vVal;
+                                                   setImageSource(false)
+                                               }
+
+                                               function getPrivilegeValue() {
+                                                   return this.b + ";" + GetPrivilegeString(getDepth()) + ";"
+                                               }
+
+                                               function GetPrivilegeString(iDepth) {
+                                                   switch (iDepth) {
+                                                   case _iPrivilegeLevelNone:
+                                                       return _sPrivilegeLevelNone;
+                                                   case _iPrivilegeLevelBasic:
+                                                       return _sPrivilegeLevelBasic;
+                                                   case _iPrivilegeLevelLocal:
+                                                       return _sPrivilegeLevelLocal;
+                                                   case _iPrivilegeLevelDeep:
+                                                       return _sPrivilegeLevelDeep;
+                                                   case _iPrivilegeLevelGlobal:
+                                                       return _sPrivilegeLevelGlobal;
+                                                   default:
+                                                       return ""
+                                                   }
+                                               }
+
+                                               function setImageSource(bIsInitializing) {
+                                                   this
+                                                       .src =
+                                                       "/_imgs/ico_18_role_" + GetPrivilegeString(getDepth()) + ".gif";
+                                                   if (!bIsInitializing ||
+                                                       typeof this.alt == "undefined" ||
+                                                       this.alt == "")
+                                                       if (typeof this.n != "undefined")
+                                                           this.alt = GetEncodedMiscPrivilegeAltTag(this.n, getDepth());
+                                                       else
+                                                           this
+                                                               .alt =
+                                                               GetEncodedPrivilegeAltTag(this.otn,
+                                                                   getPrivilegeType(),
+                                                                   getDepth())
+                                               }
+
+                                               function reset() {
+                                                   putDepth(getMin())
+                                               }
+
+                                               function getNextPrivilege() {
+                                                   var nLevel = getDepth(),
+                                                       nMax = getMax(),
+                                                       nPrivileges = getValidLevels();
+                                                   if (nLevel == nMax)
+                                                       return getMin();
+                                                   nLevel <<= 1;
+                                                   if (nLevel == 0)
+                                                       nLevel = 1;
+                                                   while (!(nLevel & nPrivileges) && nLevel < nMax)
+                                                       nLevel <<= 1;
+                                                   return nLevel
+                                               }
+
+                                           </script>
+</public:component>

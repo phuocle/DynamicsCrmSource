@@ -1,0 +1,125 @@
+<public:component lightweight="true">
+    <public:attach event="onkeydown" onevent="handleKey()"/>
+    <public:method name="IsValid"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               function IsValid() {
+                                                   for (var o,
+                                                       iLen = element.all.length,
+                                                       i = 0;
+                                                       i < iLen;
+                                                       i++) {
+                                                       o = element.all[i];
+                                                       switch (o.tagName) {
+                                                       case "INPUT":
+                                                       case "SELECT":
+                                                       case "TEXTAREA":
+                                                       case "TABLE":
+                                                       case "DIV":
+                                                       case "SPAN":
+                                                       case "IMG":
+                                                       case "IFRAME":
+                                                           var control = $find(o.id);
+                                                           if (
+                                                               control != null &&
+                                                                   Mscrm.ICrmUIFormDataControl
+                                                                   .isImplementedBy(control)) {
+                                                               if (!control.get_isValid()) {
+                                                                   control.setFocus();
+                                                                   return false
+                                                               }
+                                                           } else if (typeof o.IsValid != "undefined" && !o.IsValid()) {
+                                                               o.SetFocus();
+                                                               return false
+                                                           }
+                                                           break
+                                                       }
+                                                   }
+                                                   return true
+                                               }
+
+                                               function handleKey() {
+                                                   switch (event.keyCode) {
+                                                   case KEY_ESC:
+                                                       closeWindow();
+                                                       return;
+                                                   case KEY_ENTER:
+                                                       handleEnterKey(event);
+                                                       return
+                                                   }
+                                               }
+
+                                               function handleEnterKey(event) {
+                                                   var oSrc = event.srcElement;
+                                                   if (IsNull(oSrc.onkeyup) &&
+                                                       IsNull(oSrc.onkeydown) &&
+                                                       IsNull(oSrc.onkeypress)) {
+                                                       switch (oSrc.tagName) {
+                                                       case "SPAN":
+                                                           switch (oSrc.className) {
+                                                           case "ms-crm-Tab":
+                                                           case "ms-crm-Menu":
+                                                               event.returnValue = true;
+                                                               return
+                                                           }
+                                                           break;
+                                                       case "BUTTON":
+                                                       case "IMG":
+                                                       case "SELECT":
+                                                       case "TEXTAREA":
+                                                           event.returnValue = true;
+                                                           return;
+                                                       case "DIV":
+                                                           switch (oSrc.className) {
+                                                           case "ms-crm-Lookup":
+                                                               event.returnValue = true;
+                                                               return
+                                                           }
+                                                           break;
+                                                       case "INPUT":
+                                                           switch (oSrc.className) {
+                                                           case "ms-crm-Dialog-Lookup-QuickFind":
+                                                               event.returnValue = true;
+                                                               return
+                                                           }
+                                                           switch (oSrc.type) {
+                                                           case "text":
+                                                               event.returnValue = false;
+                                                               return
+                                                           }
+                                                           break;
+                                                       case "A":
+                                                           switch (oSrc.className) {
+                                                           case "ms-crm-FindButton":
+                                                           case "wizText":
+                                                               event.returnValue = true;
+                                                               return
+                                                           }
+                                                           var selectEnable = oSrc.getAttribute("selectEnable");
+                                                           if (!IsNull(selectEnable) && selectEnable === "true") {
+                                                               event.returnValue = true;
+                                                               return
+                                                           }
+                                                           break;
+                                                       case "TH":
+                                                           switch (oSrc.className) {
+                                                           case "ms-crm-List-Sortable":
+                                                               event.returnValue = true;
+                                                               return
+                                                           }
+                                                           break
+                                                       }
+                                                       if (typeof butBegin != "undefined" && !IsNull(butBegin))
+                                                           butBegin.fireEvent("onclick");
+                                                       else if (
+                                                           typeof butBegin != "undefined" && !IsNull(cmdDialogApply))
+                                                           cmdDialogApply.fireEvent("onclick");
+                                                       else
+                                                           typeof butBegin != "undefined" &&
+                                                               !IsNull(butDialogYes) &&
+                                                               butDialogYes.fireEvent("onclick")
+                                                   }
+                                               }
+
+                                           </script>
+</public:component>

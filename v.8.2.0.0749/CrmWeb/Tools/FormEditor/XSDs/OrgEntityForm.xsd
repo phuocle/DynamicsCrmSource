@@ -1,0 +1,139 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="entity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="form" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="tabs" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="tab">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="labels" minOccurs="1" maxOccurs="1">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="label" minOccurs="1" maxOccurs="5">
+                                  <xs:complexType>
+                                    <xs:attribute name="description" type="xs:string" />
+                                    <xs:attribute name="languagecode" type="LanguageCode" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="sections" minOccurs="1" maxOccurs="1">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="section" minOccurs="1" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="labels" minOccurs="1" maxOccurs="1">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="label" minOccurs="1" maxOccurs="5">
+                                              <xs:complexType>
+                                                <xs:attribute name="description" type="xs:string" />
+                                                <xs:attribute name="languagecode" type="LanguageCode" />
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="rows" minOccurs="1" maxOccurs="1">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="row" minOccurs="1" maxOccurs="unbounded">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="cell" minOccurs="1" maxOccurs="2">
+                                                    <xs:complexType>
+                                                      <xs:sequence>
+                                                        <xs:element name="labels" minOccurs="1" maxOccurs="1">
+                                                          <xs:complexType>
+                                                            <xs:sequence>
+                                                              <xs:element name="label" minOccurs="1" maxOccurs="5">
+                                                                <xs:complexType>
+                                                                  <xs:attribute name="description" type="xs:string" />
+                                                                  <xs:attribute name="languagecode" type="LanguageCode" />
+                                                                </xs:complexType>
+                                                              </xs:element>
+                                                            </xs:sequence>
+                                                          </xs:complexType>
+                                                        </xs:element>
+                                                      </xs:sequence>
+                                                      <xs:attribute name="field" type="xs:string" use="optional" />
+                                                      <xs:attribute name="span" type="xs:boolean" use="optional" />
+                                                    </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="showlabel" type="xs:boolean" use="required" />
+                                    <xs:attribute name="showbar" type="xs:boolean" use="required" />
+                                    <xs:attribute name="rowheight" type="xs:nonNegativeInteger" use="optional" />
+                                    <xs:attribute name="autoexpand" type="xs:boolean" use="optional" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="verticallayout" type="xs:boolean" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+      <xs:attribute name="objecttypecode" type="ObjectTypeCode" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="ObjectTypeCode">
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+      <xs:enumeration value="4" />
+      <xs:enumeration value="5" />
+      <xs:enumeration value="8" />
+      <xs:enumeration value="9" />
+      <xs:enumeration value="10" />
+      <xs:enumeration value="11" />
+      <xs:enumeration value="12" />
+      <xs:enumeration value="13" />
+      <xs:enumeration value="14" />
+      <xs:enumeration value="15" />
+      <xs:enumeration value="16" />
+      <xs:enumeration value="112" />
+      <xs:enumeration value="113" />
+      <xs:enumeration value="117" />
+      <xs:enumeration value="121" />
+      <xs:enumeration value="122" />
+      <xs:enumeration value="123" />
+      <xs:enumeration value="124" />
+      <xs:enumeration value="130" />
+      <xs:enumeration value="131" />
+      <xs:enumeration value="132" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LanguageCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="de" />
+      <xs:enumeration value="en" />
+      <xs:enumeration value="es" />
+      <xs:enumeration value="fr" />
+      <xs:enumeration value="it" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

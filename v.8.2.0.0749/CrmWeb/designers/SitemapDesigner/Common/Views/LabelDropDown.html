@@ -1,0 +1,38 @@
+<div class="mscrm-propertyConatiner" ng-show="isGeneralSectionOpen">
+    <div class="mscrm-propertiesLabelContainer">
+        <label for="{{PropertyDirective.nodeLabel}}_{{PropertyDirective.nodeValue.Id}}" title="{{PropertyDirective.nodeDisplayName}}" class="itemLabel">{{PropertyDirective.nodeDisplayName}}</label>
+    </div>
+    <div class="mscrm-propertiesControlContainer" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+        <mscrm-error-validation-message ng-show="propertyPaneController.flyoutService.iconHasInvalidText" errormessage="{{propertiesPaneEntityErrorMessage}}"/>
+        <div class="mscrm-TypeaheadSearchContainer" ng-class="{propertyIdRed: propertyPaneController.flyoutService.iconHasInvalidText}" ng-disabled="propertyPaneController.IsIconListDisabled()"
+             ng-init="propertyPaneController.resetValidationState()">
+            <input ng-init="flyoutSrcId=PropertyDirective.nodeLabel + '_' + PropertyDirective.nodeValue.Id" id="{{flyoutSrcId}}" type="text" class="textTypeWidth" ng-model="propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.Icon"
+                   ng-readonly="propertyPaneController.IsIconListDisabled()" ng-disabled="propertyPaneController.IsIconListDisabled()"
+                   title="{{PropertyDirective.nodeTooltip}}" ng-change="propertyPaneController.ShowFlyout($event, '', flyoutSrcId)"
+                   tabindex=-1 mscrm-flyout-accessible-close data-isflyout-src="true" ng-keydown="propertyPaneController.HandleTypeAheadTextBoxKeyDown($event, '', PropertyDirective.nodeLabel, flyoutSrcId)"
+                   autocomplete="off" ng-focus="propertyPaneController.onFocusHandlerForTypeaheadTextbox(PropertyDirective.nodeLabel, flyoutSrcId)"
+                   ng-keyup="propertyPaneController.onKeyUpHandlerForTypeaheadTextbox(PropertyDirective.nodeLabel)"
+                   ng-blur="propertyPaneController.onBlurHandlerForTypeaheadTextbox(PropertyDirective.nodeLabel)"
+                   placeholder="{{propertyPaneController.getID('SitemapDesigner.Properties.SelectIcon')}}"/>
+            <div ng-class="['mscrm-TypeAheadIcon', propertyPaneController.sitemapTypeAheadModel.isFlyoutOpen ? 'mscrm-glyph-UpArrowIcon' : 'mscrm-glyph-DownArrowIcon']"
+                 ng-click="(!propertyPaneController.IsIconListDisabled()) && propertyPaneController.HandleDropDownClick($event, '', flyoutSrcId)"
+                 mscrm-action-on-select
+                 data-isflyout-src="true"></div>
+        </div>
+        <div class="align-typeahead" ng-show="propertyPaneController.sitemapTypeAheadModel.isFlyoutOpen" mscrm-flyout-accessible-close data-flyoutsrc-id="{{flyoutSrcId}}">
+            <div ng-class="['textTypeWidth', {'highlight-selection': ($index == 0)}]" ng-repeat="icon in propertyPaneController.iconList | orderBy: 'DisplayName' | filter:{'DisplayName' : propertyPaneController.GetSelectedIcon()}"
+                 value="{{icon.Name}}" id="iconItem_{{$index}}"
+                 ng-click="propertyPaneController.UpdateSubAreaProperties(icon, PropertyDirective.nodeLabel)" mscrm-action-on-select tabindex="-1"
+                 ng-blur="propertyPaneController.disableHighlightStyle('iconItem_' + $index, $index)"
+                 ng-focus="propertyPaneController.applyHighlightStyle('iconItem_' + $index)"
+                 ng-keydown="propertyPaneController.keydownHanlderForFlyoutItem($event, 'iconItem_' + $index, icon, PropertyDirective.nodeLabel, $index)"
+                 title="{{icon.DisplayName}}">
+                {{icon.DisplayName}}
+            </div>
+            <div ng-class="['textTypeWidth', 'highlight-selection']" ng-init="isDisabled=true" ng-show="propertyPaneController.showNoResultMessageForIcon"
+                 ng-disabled="isDisabled" tabindex="-1">
+                {{noResultFoundMessage}}
+            </div>
+        </div>
+    </div>
+</div>

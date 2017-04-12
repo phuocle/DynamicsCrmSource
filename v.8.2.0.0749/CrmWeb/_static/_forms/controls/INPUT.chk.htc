@@ -1,0 +1,80 @@
+<public:component lightweight="true">
+    <public:attach event="oncontentready" onevent="Init()"/>
+    <public:property name="IsDirty" get="isDirty"/>
+    <public:property name="DataXml" get="dataXml"/>
+    <public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+    <public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+    <public:property name="RequiredLevel" get="getRequiredLevel"/>
+    <public:property name="DataChangeHandler"/>
+    <public:method name="SetFocus" internalname="setFocus"/>
+    <public:method name="FireOnChange" internalname="fireOnChange"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _bDefaultValue = null;
+
+                                               function Init() {
+                                                   _bDefaultValue = this.checked
+                                               }
+
+                                               function isDirty() {
+                                                   return _bDefaultValue != getDataValue()
+                                               }
+
+                                               function getDataValue() {
+                                                   return this.checked
+                                               }
+
+                                               function putDataValue(vVal) {
+                                                   if (null == vVal || "boolean" == typeof vVal) {
+                                                       this.checked = vVal;
+                                                       var fDataChangeHandler = this.DataChangeHandler;
+                                                       fDataChangeHandler &&
+                                                           fDataChangeHandler()
+                                                   } else
+                                                       alert(LOCID_DEVERROR_BADDATATYPE_BOOL)
+                                               }
+
+                                               function dataXml() {
+                                                   var vVal = getDataValue(),
+                                                       sID = this.id;
+                                                   return "<" +
+                                                       sID +
+                                                       ">" +
+                                                       (null == vVal ? "" : vVal ? "1" : "0") +
+                                                       "</" +
+                                                       sID +
+                                                       ">"
+                                               }
+
+                                               function getDisabled() {
+                                                   return this.disabled
+                                               }
+
+                                               function setDisabled(bValue) {
+                                                   this.disabled = bValue
+                                               }
+
+                                               function setFocus() {
+                                                   !IsNull(this.form) &&
+                                                       this.form.className == "ms-crm-Form" &&
+                                                       this.form.GetTab(element, true);
+                                                   this.focus()
+                                               }
+
+                                               function fireOnChange() {
+                                                   this.fireEvent("onchange")
+                                               }
+
+                                               function getRequiredLevel() {
+                                                   try {
+                                                       if (IsNull(this.req))
+                                                           return FIELD_NOT_REQUIRED;
+                                                       else
+                                                           return parseInt(this.req, 10)
+                                                   } catch (e) {
+                                                       return FIELD_NOT_REQUIRED
+                                                   }
+                                               }
+
+                                           </script>
+</public:component>

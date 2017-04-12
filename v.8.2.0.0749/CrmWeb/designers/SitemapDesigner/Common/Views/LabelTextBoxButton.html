@@ -1,0 +1,71 @@
+<div class="mscrm-propertyConatiner" ng-show="isGeneralSectionOpen">
+    <div class="mscrm-propertiesLabelContainer">
+        <label for="{{PropertyDirective.nodeLabel}}_{{PropertyDirective.nodeValue.Id}}" title="{{PropertyDirective.nodeDisplayName}}" class="itemLabel">{{PropertyDirective.nodeDisplayName}}</label>
+        <span class="required" ng-if="propertyPaneController.isURLMandatory()">*</span>
+    </div>
+    <div class="mscrm-propertiesControlContainer" ng-if="propertyPaneController.DisplayURLBasedOnSubAreaType('WebResources')" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+        <mscrm-error-validation-message ng-if="propertyPaneController.isWebResourceNotSelected()"
+                                        resourcekey="SitemapDesigner.Error_URLRequired"/>
+        <div class="mscrm-TypeaheadSearchContainer" tabindex="-1">
+            <input id="{{PropertyDirective.nodeLabel}}_{{PropertyDirective.nodeValue.Id}}"
+                   name="{{propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.SelectedType}}"
+                   type="text"
+                   class="textTypeWidth"
+                   ng-model="propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.Url"
+                   title="{{PropertyDirective.nodeTooltip}}"
+                   tabindex="-1"
+                   ng-change="propertyPaneController.ShowFlyout($event)"
+                   mscrm-flyout-accessible-close
+                   data-isflyout-src="true"
+                   ng-keydown="propertyPaneController.HandleTypeAheadTextBoxKeyDown($event)"
+                   ng-required="propertyPaneController.isURLMandatory() && propertyPaneController.DisplayURLBasedOnSubAreaType('WebResources')"/>
+            <div ng-class="['mscrm-TypeAheadIcon', propertyPaneController.sitemapTypeAheadModel.isFlyoutOpen ? 'mscrm-glyph-UpArrowIcon' : 'mscrm-glyph-DownArrowIcon']"
+                 ng-click="propertyPaneController.HandleDropDownClick($event)"
+                 mscrm-action-on-select
+                 data-isflyout-src="true"></div>
+        </div>
+        <div class="align-typeahead" ng-show="propertyPaneController.sitemapTypeAheadModel.isFlyoutOpen" mscrm-flyout-accessible-close data-flyoutsrc-id="{{PropertyDirective.nodeLabel}}_{{PropertyDirective.nodeValue.Id}}">
+            <div class="textTypeWidth" ng-repeat="url in propertyPaneController.urlList | orderBy : 'DisplayName' | filter: propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.Url"
+                 value="{{url.Name}}" ng-click="propertyPaneController.UpdateSubAreaProperties(url, PropertyDirective.nodeLabel)" mscrm-action-on-select tabindex="-1" title="{{url.DisplayName}}">
+                {{url.DisplayName}}
+            </div>
+        </div>
+    </div>
+    <div class="mscrm-propertiesControlContainer" ng-if="propertyPaneController.DisplayURLBasedOnSubAreaType('DefaultDashboard')">
+        <input id="{{PropertyDirective.nodeLabel}}_{{PropertyDirective.nodeValue.Id}}"
+               name="{{propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.SelectedType}}"
+               class="textTypeWidth"
+               type="text"
+               ng-model="propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.Url"
+               title="{{PropertyDirective.nodeTooltip}}"
+               ng-disabled="true"
+               tabindex="-1"/>
+    </div>
+    <div class="mscrm-propertiesControlContainer" ng-if="propertyPaneController.DisplayURLBasedOnSubAreaType('Url')">
+        <mscrm-error-validation-message ng-if="rightPaneForm[propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.SelectedType].$error.required"
+                                        resourcekey="SitemapDesigner.Error_URLRequired"/>
+        <input id="{{PropertyDirective.nodeLabel}}_{{PropertyDirective.nodeValue.Id}}"
+               name="{{propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.SelectedType}}"
+               class="textTypeWidth"
+               ng-required="propertyPaneController.isURLMandatory() && propertyPaneController.DisplayURLBasedOnSubAreaType('Url')"
+               type="text"
+               ng-model="propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.Url"
+               title="{{PropertyDirective.nodeTooltip}}" tabindex="-1"
+               ng-change="propertyPaneController.UpdateSubAreaProperties(propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.Url, PropertyDirective.nodeLabel)"/>
+    </div>
+    <div class="mscrm-propertiesControlContainer" ng-if="propertyPaneController.DisplayURLBasedOnSubAreaType('Entity')">
+        <input id="{{PropertyDirective.nodeLabel}}_{{PropertyDirective.nodeValue.Id}}" class="textTypeWidth"
+               type="text" ng-disabled="true" title="{{PropertyDirective.nodeTooltip}}"/>
+    </div>
+    <div class="mscrm-propertiesControlContainer" ng-if="propertyPaneController.DisplayURLBasedOnSubAreaType('SelectSubArea')">
+        <mscrm-error-validation-message ng-if="propertyPaneController.isURLOrEntityMandatory()"
+                                        resourcekey="SitemapDesigner.Error_EntityOrURLRequired"/>
+        <input id="{{PropertyDirective.nodeLabel}}_{{PropertyDirective.nodeValue.Id}}"
+               class="textTypeWidth"
+               type="text"
+               ng-model="propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.Url"
+               title="{{PropertyDirective.nodeTooltip}}"
+               ng-change="propertyPaneController.UpdateSubAreaProperties(propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.Url, PropertyDirective.nodeLabel)"
+               ng-required="propertyPaneController.isURLOrEntityMandatory()"/>
+    </div>
+</div>

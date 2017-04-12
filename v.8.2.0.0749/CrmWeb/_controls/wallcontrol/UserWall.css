@@ -1,0 +1,111 @@
+html {
+    margin: 0px !important;
+    padding: 0px !important;
+    border: 0px !important;
+
+    scrollbar-3dlight-color: #F0F0F0;
+    scrollbar-arrow-color: #1E395B;
+    scrollbar-base-color: #CDCDCD;
+    scrollbar-darkshadow-color: #F0F0F0;
+    scrollbar-face-color: #CDCDCD;
+    scrollbar-highlight-color: #CDCDCD;
+    scrollbar-shadow-color: #CDCDCD;
+    scrollbar-track-color: #F0F0F0;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: "Segoe UI", Arial, Sans-Serif;
+    font-size: 12px;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: 0px !important;
+    color: #000000;
+    background: #ffffff;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+body:hover { overflow-y: auto; }
+
+body.ie7 { position: relative; }
+
+body.hideUserProfile { min-width: 470px; }
+
+div.wall {
+    position: relative;
+    overflow: visible;
+}
+
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: "Segoe UI", Arial, Sans-Serif;
+    font-size: 12px;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: 0px !important;
+    color: #000000;
+    background: #ffffff;
+    min-width: 724px;
+}
+
+body.hideUserProfile { min-width: 470px; }
+
+.mobile.safari div.wall { position: relative; }
+
+.text a { text-decoration: none; }
+
+a:hover { text-decoration: underline; }
+
+.wallTable {
+    width: 100%;
+    table-layout: fixed;
+    min-width: 724px;
+    max-width: 903px;
+}
+
+.hideUserProfile .wallTable { min-width: 470px; }
+
+.wallCell {
+    vertical-align: top;
+    width: auto;
+    height: 100%;
+    margin: 0;
+    padding: 0 20px 0 0;
+}
+
+.ie7 .wallCell { width: expression(getWallCellWidth()); }
+
+.hideUserProfile.ie7 .wallCell { width: expression(getWallCellWidthNoUserProfile()); }
+
+.ie7 .wallTable {
+    width: auto;
+    table-layout: auto;
+}
+
+.wallCell .wallElementContainer {
+    height: 100%;
+    vertical-align: top;
+}
+
+.userProfileCell {
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 234px;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.hideUserProfile .userProfileCell {
+    width: 0px;
+    min-width: 0px;
+    max-width: 0px;
+}

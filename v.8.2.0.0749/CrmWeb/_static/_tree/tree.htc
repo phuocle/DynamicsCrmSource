@@ -1,0 +1,257 @@
+<public:component lightweight="true">
+<public:attach event="onclick" onevent="mouseDown( window.event.srcElement )"/>
+<public:attach event="ondblclick" onevent="DoubleClick()"/>
+<public:attach event="onmouseover" onevent="GlowOn()"/>
+<public:attach event="onmouseout" onevent="GlowOff()"/>
+<public:attach event="onkeydown" onevent="keyDown()"/>
+<public:method name="Clear"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           var treeKeyLeft = KEY_LEFT,
+                                               treeKeyRight = KEY_RIGHT;
+                                           if (LOCID_UI_DIR == "RTL") {
+                                               treeKeyLeft = KEY_RIGHT;
+                                               treeKeyRight = KEY_LEFT
+                                           }
+                                           var _oLastSelected = null,
+                                               _oLastGlow = null,
+                                               xmlItems = XUI.Xml.CreateDocument(),
+                                               icoExp = new Image,
+                                               icoCol = new Image,
+                                               icoEmpty = new Image;
+                                           icoExp.src = "/_imgs/navDown.png";
+                                           icoExp.alt = LOCID_TREE_PLUS;
+                                           icoCol.src = "/_imgs/navUp.png";
+                                           icoCol.alt = LOCID_TREE_MINUS;
+                                           icoEmpty.src = "/_imgs/navUp.png";
+                                           icoEmpty.alt = "";
+
+                                           function GetListElement(fromElement) {
+                                               if ("SPAN" == fromElement.tagName)
+                                                   fromElement = fromElement.parentElement;
+                                               if ("IMG" == fromElement.tagName)
+                                                   fromElement = fromElement.parentElement.parentElement.parentElement;
+                                               if ("A" == fromElement.tagName ||
+                                                   "LABEL" == fromElement.tagName ||
+                                                   "INPUT" == fromElement.tagName)
+                                                   fromElement = fromElement.parentElement.parentElement;
+                                               if ("LI" == fromElement.tagName)
+                                                   return fromElement;
+                                               return null
+                                           }
+
+                                           function GetTreeParent(treeItem) {
+                                               var treeParent = treeItem.parentElement.parentElement;
+                                               if ("LI" == treeParent.tagName)
+                                                   return treeParent;
+                                               return null
+                                           }
+
+                                           function GetFirstTreeChild(treeItem) {
+                                               var treeChild = treeItem.lastChild.firstChild;
+                                               if ("LI" == treeChild.tagName)
+                                                   return treeChild;
+                                               return null
+                                           }
+
+                                           function GetRecursiveLastChild(treeItem) {
+                                               var treeLast = treeItem.lastChild.lastChild;
+                                               if ("LI" == treeLast.tagName)
+                                                   if (treeLast.isExpanded)
+                                                       return GetRecursiveLastChild(treeLast);
+                                                   else
+                                                       return treeLast;
+                                               return null
+                                           }
+
+                                           function Clear() {
+                                               if (_oLastSelected) {
+                                                   _oLastSelected.firstChild.className = "simpleTree";
+                                                   _oLastSelected.firstChild.getElementsByTagName("INPUT")[0]
+                                                       .checked = false
+                                               }
+                                               _oLastSelected = null
+                                           }
+
+                                           function keyDown() {
+                                               !_oLastSelected &&
+                                                   SelectFirstItem();
+                                               switch (event.keyCode) {
+                                               case KEY_ENTER:
+                                                   if (_oLastSelected)
+                                                       !IsNull(window.applychanges) &&
+                                                           window.applychanges();
+                                                   break;
+                                               case treeKeyLeft:
+                                                   CollapseNode(_oLastSelected);
+                                                   break;
+                                               case treeKeyRight:
+                                                   ExpandNode(_oLastSelected);
+                                                   break;
+                                               case KEY_UP:
+                                                   SelectPreviousItem(_oLastSelected);
+                                                   break;
+                                               case KEY_DOWN:
+                                                   SelectNextItem(_oLastSelected);
+                                                   break;
+                                               case KEY_HOME:
+                                                   SelectFirstItem();
+                                                   break;
+                                               case KEY_END:
+                                                   SelectLastItem();
+                                                   break
+                                               }
+                                           }
+
+                                           function DoubleClick() {
+                                               event.cancelBubble = event.srcElement.tagName == "IMG"
+                                           }
+
+                                           function mouseDown(o, bDoNotExpand) {
+                                               o = GetListElement(o);
+                                               if (o == null)
+                                                   return false;
+                                               event.returnValue = false;
+                                               if (o.isExpanded)
+                                                   CollapseNode(o);
+                                               else
+                                                   ExpandNode(o);
+                                               SelectItem(o)
+                                           }
+
+                                           function TreeItem(id, name) {
+                                               this.Id = id;
+                                               this.Name = name
+                                           }
+
+                                           function GlowOn() {
+                                               var o = GetListElement(event.srcElement);
+                                               if (o != null && o.tagName == "LI" && o != _oLastSelected) {
+                                                   o.firstChild.className = "ms-crm-GlowOn simpleTree";
+                                                   _oLastGlow = o
+                                               }
+                                           }
+
+                                           function GlowOff() {
+                                               if (_oLastGlow && _oLastGlow != _oLastSelected)
+                                                   _oLastGlow.firstChild.className = "simpleTree";
+                                               _oLastGlow = null
+                                           }
+
+                                           function SelectItem(treeItem) {
+                                               treeItem.firstChild.className = "selectedItem simpleTree";
+                                               treeItem.firstChild.getElementsByTagName("INPUT")[0].checked = true;
+                                               if (_oLastSelected && _oLastSelected != treeItem) {
+                                                   _oLastSelected.firstChild.getElementsByTagName("INPUT")[0]
+                                                       .checked = false;
+                                                   _oLastSelected.firstChild.className = "simpleTree"
+                                               }
+                                               _oLastSelected = treeItem;
+                                               item = new
+                                                   TreeItem(_oLastSelected.itemId, _oLastSelected.firstChild.innerText);
+                                               _oLastSelected.scrollIntoView(true)
+                                           }
+
+                                           function SelectFirstItem() {
+                                               var item = this.getElementsByTagName("LI")[0];
+                                               item &&
+                                                   SelectItem(item)
+                                           }
+
+                                           function SelectNextItem(treeItem) {
+                                               var nextItem = null;
+                                               if (treeItem.isExpanded)
+                                                   nextItem = GetFirstTreeChild(treeItem);
+                                               else if (treeItem.nextSibling)
+                                                   nextItem = treeItem.nextSibling;
+                                               else
+                                                   do {
+                                                       var itemParent = GetTreeParent(treeItem);
+                                                       if (itemParent && itemParent.tagName == "LI")
+                                                           if (itemParent.nextSibling)
+                                                               nextItem = itemParent.nextSibling;
+                                                           else
+                                                               treeItem = itemParent
+                                                   } while (
+                                                       nextItem == null &&
+                                                           itemParent != null &&
+                                                           itemParent.tagName == "LI");
+                                               nextItem &&
+                                                   SelectItem(nextItem)
+                                           }
+
+                                           function SelectLastItem() {
+                                               SelectItem(GetRecursiveLastChild(this.firstChild))
+                                           }
+
+                                           function SelectPreviousItem(treeItem) {
+                                               var previousItem = null;
+                                               if (treeItem.previousSibling)
+                                                   if (treeItem.previousSibling.isExpanded)
+                                                       previousItem = GetRecursiveLastChild(treeItem.previousSibling);
+                                                   else
+                                                       previousItem = treeItem.previousSibling;
+                                               else
+                                                   previousItem = GetTreeParent(treeItem);
+                                               previousItem != null &&
+                                                   SelectItem(previousItem)
+                                           }
+
+                                           function CollapseNode(treeItem) {
+                                               if (treeItem.isExpanded) {
+                                                   treeItem.isExpanded = false;
+                                                   treeItem.firstChild.firstChild.firstChild.src = icoExp.src;
+                                                   treeItem.firstChild.firstChild.firstChild.alt = icoExp.alt;
+                                                   treeItem.lastChild.style.display = "none"
+                                               }
+                                           }
+
+                                           function ExpandNode(treeItem) {
+                                               if (!treeItem.IsExpanded)
+                                                   if (treeItem.lastChild.tagName == "UL") {
+                                                       treeItem.firstChild.firstChild.firstChild.src = icoCol.src;
+                                                       treeItem.firstChild.firstChild.firstChild.alt = icoCol.alt;
+                                                       treeItem.lastChild.style.display = "block";
+                                                       treeItem.isExpanded = true
+                                                   } else if (treeItem.hasBeenRetrieved != true) {
+                                                       var isNewChild = false,
+                                                           command = new
+                                                               RemoteCommand("SubjectManager", "RetrieveTreeNodeHTML");
+                                                       command
+                                                           .SetParameter("parentId",
+                                                               IsNull(treeItem.itemId) || treeItem.itemId == ""
+                                                               ? "{00000000-0000-0000-0000-000000000000}"
+                                                               : treeItem.itemId);
+                                                       command.SetParameter("twoLetterLanguageName", XML_LANGUAGE_NAME);
+                                                       var result = command.Execute();
+                                                       if (result.Success) {
+                                                           treeItem.hasBeenRetrieved = true;
+                                                           xmlItems.loadXML(result.ReturnValue);
+                                                           if (IsNull(treeItem.itemId) || treeItem.itemId == "")
+                                                               isNewChild = false;
+                                                           else if (xmlItems.xml) {
+                                                               treeItem.isExpanded = true;
+                                                               isNewChild = true;
+                                                               treeItem.firstChild.firstChild.firstChild.src = icoCol
+                                                                   .src;
+                                                               treeItem.firstChild.firstChild.firstChild.alt = icoCol
+                                                                   .alt
+                                                           } else {
+                                                               treeItem.firstChild.firstChild.disabled = true;
+                                                               treeItem.firstChild.firstChild.firstChild.src = icoEmpty
+                                                                   .src;
+                                                               treeItem.firstChild.firstChild.firstChild.alt = icoEmpty
+                                                                   .alt
+                                                           }
+                                                           treeItem.insertAdjacentHTML("beforeEnd", xmlItems.xml);
+                                                           if (isNewChild)
+                                                               if (LOCID_UI_DIR == "RTL")
+                                                                   treeItem.lastChild.style.marginRight = "15px";
+                                                               else
+                                                                   treeItem.lastChild.style.marginLeft = "15px"
+                                                       }
+                                                   }
+                                           }
+
+                                       </script>
+</public:component>

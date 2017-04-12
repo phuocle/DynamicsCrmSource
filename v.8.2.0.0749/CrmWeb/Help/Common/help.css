@@ -1,0 +1,80 @@
+BODY {
+    background-color: #ffffff;
+    font-size: 11px;
+    cursor: default;
+    margin: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+TABLE.toc { table-layout: fixed; }
+
+TABLE.tocPageOn {
+    background-color: #FFE6A0;
+    border: solid 1px #FFB74C;
+}
+
+TABLE.tocPageOff { border: solid 1px #e3efff; }
+
+A,
+A.helpLink {
+    color: #3366CC;
+    font-weight: normal;
+}
+
+A:hover,
+A.helpLink:hover {
+    color: #0000FF;
+    text-decoration: underline;
+}
+
+A.helpLink:visited { color: #800080; }
+
+TD {
+    font-size: 11px;
+    vertical-align: top;
+}
+
+TH {
+    font-size: 12px;
+    color: #000099;
+    font-weight: bold;
+    background-color: #dddddd;
+}
+
+div.small {
+    font-size: 13px;
+    padding-top: 10px;
+}
+
+div.important { font-weight: bold; }
+
+OL {
+    margin-top: 10px;
+    margin-bottom: 0px;
+
+    margin-left: 29px;
+    margin-right: 29px;
+}
+
+div.section {
+    font-weight: bold;
+    border-bottom: solid 1px #cccccc;
+    color: #00377A;
+    font-size: 13px;
+}
+
+P {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div.hottext {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+table.err, span.err {
+    font-size: 11px;
+    color: #000099;
+}

@@ -1,0 +1,70 @@
+<public:component lightweight="true">
+    <public:method name="ListItemKeyPressed"/>
+    <public:method name="ListItemClicked"/>
+    <public:event id="OnListItemClickedEvent" name="OnListItemClicked"/>
+    <public:attach event="ondocumentready" onevent="initialize()"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               function initialize() {
+                                                   this.attachEvent("OnListItemClicked", PopulateFormControl)
+                                               }
+
+                                               function ListItemKeyPressed() {
+                                                   switch (event.keyCode) {
+                                                   case KEY_ENTER:
+                                                   case KEY_SPACE:
+                                                       PreparePopuateFormControl(event.srcElement.firstChild);
+                                                       event.cancelBubble = true;
+                                                       event.returnValue = false;
+                                                       return false
+                                                   }
+                                                   return true
+                                               }
+
+                                               function ListItemClicked() {
+                                                   var oListItem = event.srcElement;
+                                                   if (oListItem.tagName == "IMG")
+                                                       oListItem = oListItem.parentElement;
+                                                   if (oListItem.tagName == "NOBR")
+                                                       oListItem = oListItem.parentElement;
+                                                   PreparePopuateFormControl(oListItem)
+                                               }
+
+                                               function PreparePopuateFormControl(oListItem) {
+                                                   var oEvent = createEventObject();
+                                                   oEvent.Context = element.ContextId;
+                                                   oEvent.DisplayName = oListItem.title;
+                                                   oEvent.Value = oListItem.Value;
+                                                   oEvent.ObjectType = oListItem.otype;
+                                                   if (!IsNull(oListItem.data) && oListItem.data.length > 0) {
+                                                       for (var keyValues = {},
+                                                           asPairs = oListItem.data.split("&"),
+                                                           i = 0;
+                                                           i < asPairs.length;
+                                                           i++) {
+                                                           var asNameValue = asPairs[i].split("=");
+                                                           if (asNameValue.length == 2) {
+                                                               var
+                                                                   sName = CrmEncodeDecode
+                                                                       .CrmNameValueDecode(asNameValue[0]),
+                                                                   sValue = CrmEncodeDecode
+                                                                       .CrmNameValueDecode(asNameValue[1]);
+                                                               keyValues[sName] = new LookupItemData(sName, sValue)
+                                                           }
+                                                       }
+                                                       oEvent.keyValues = keyValues
+                                                   }
+                                                   OnListItemClickedEvent.fire(oEvent)
+                                               }
+
+                                               function PopulateFormControl() {
+                                                   RelatedInformationPane.PopulateFormControl()
+                                               }
+
+                                               function LookupItemData(name, value) {
+                                                   this.name = name;
+                                                   this.value = value
+                                               }
+
+                                           </script>
+</public:component>

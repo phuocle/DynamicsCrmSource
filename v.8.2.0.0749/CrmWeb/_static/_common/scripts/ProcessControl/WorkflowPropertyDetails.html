@@ -1,0 +1,534 @@
+﻿<link href="../../../_static/_common/scripts/processcontrol/propertyStyle.css" rel="stylesheet" type="text/css">
+<div id="properties">
+    <div class="header header-top">
+        <span class="headline1" id="WorkflowPropertyDetails_Header"></span>
+    </div>
+    <div id="contentDivStageProp">
+        <div>
+            <span class="headline2" role="label" for="displayName" id="WorkflowPropertyDetails_DisplayName"></span>
+            <input class="fieldStage field non-editable" type="text" id="displayName" aria-labelledby="WorkflowPropertyDetails_DisplayName" aria-readonly="true" readonly>
+        </div>
+        <div>
+            <span class="headline2" role="label" for="WorkflowPropertyDetails_EntityName" id="WorkflowPropertyDetails_EntityNameLabel"></span>
+            <input class="fieldStage field non-editable" type="text" id="WorkflowPropertyDetails_EntityName" aria-labelledby="WorkflowPropertyDetails_EntityNameLabel" aria-readonly="true" readonly>
+        </div>
+        <div>
+            <span class="headline2" role="label" for="TriggerDropDown" id="WorkflowPropertyDetails_Trigger"></span>
+            <select class="field" id="TriggerDropDown" aria-labelledby="WorkflowPropertyDetails_Trigger" role="combobox"></select>
+        </div>
+        <div>
+            <div class="workflow-label-header">
+                <span class="headline2 workflow-left-label" role="label" id="WorkflowPropertyDetails_ListOfWorkflows"></span>
+                <div id="WorkflowBtnNew" class="workflow-right-label" tabindex="0">
+                    <span class="CCFSymbolFont add-symbol lib-font-size prop-addsymbol"></span>
+                    <span class="prop-addtext" id="branchpropertydetails_add"></span>
+                </div>
+            </div>
+            <div id="workflowListContainer">
+                <div id='lookupControl' class='lookupControl'/>
+                <span id='WorkflowBtnSearch'
+                      style="font-family: 'Segoe UI Symbol'; content: '\E11a'; font-size: 14px; width: 40px; height: 40px;"></span>
+            </div>
+        </div>
+        <div id="workflowSelectionNote" class="workflowSelectionNote">
+            <span id='workflowSelectionNoteSpan' class="workflowSelectionNoteSpan"></span>
+        </div>
+    </div>
+</div>
+<div class="buttons align-self">
+    <input id="workflowSave" type="button" value="Apply" class="ellipsis" role="button"/>
+    <input id="workflowDiscard" type="button" value="Discard" class="ellipsis" role="button"/>
+</div>
+
+<script>
+
+    //Global Variables
+    var workflowId;
+    var lookupControl;
+    var lastSelectedLookUpItem = null;
+    var propertyViewCurrentModelClone;
+
+    function isPropertyViewModified() {
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        // Trigger Drop Down
+        var viewPipeLineStage = GenericWorkflowDesigner.CrmEncodeDecode
+            .CrmHtmlEncode($("#TriggerDropDown :selected").val());
+        if (lookupControl != null) {
+            var viewWorkflowItem = lookupControl.getSelectedItem();
+            if (viewWorkflowItem != null) {
+                var viewWorkflowItemId = viewWorkflowItem.getId();
+                var modelWorkflowId = propertyViewCurrentModel._processId;
+                if (viewWorkflowItemId != modelWorkflowId)
+                    return true;
+            }
+        }
+        var triggerDropdown = $('#TriggerDropDown');
+        var triggerEvent = propertyViewCurrentModel._triggerEvents[0];
+        var modelPipeLineStage = "";
+        if (triggerEvent != null) {
+            var pipeLineStageName = triggerEvent.eventName;
+            switch (pipeLineStageName) {
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.StageEnter:
+                modelPipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.StageEntry;
+                break;
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.StageExit:
+                modelPipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.StageExit;
+                break;
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.ProcessApplied:
+                modelPipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessApplied;
+                break;
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.ProcessStatusChange:
+                if (triggerEvent.filterId == MscrmControls.ProcessDesigner.BPFProcessStatus.Active)
+                    modelPipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessReactivated;
+                else if (triggerEvent.filterId == MscrmControls.ProcessDesigner.BPFProcessStatus.Aborted)
+                    modelPipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessAbandon;
+                else if (triggerEvent.filterId == MscrmControls.ProcessDesigner.BPFProcessStatus.Finished)
+                    modelPipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessFinished;
+                break;
+            }
+        }
+        if (modelPipeLineStage != "") {
+            if (modelPipeLineStage != viewPipeLineStage) {
+                return true;
+            }
+        } else {
+            if (viewPipeLineStage != MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessApplied &&
+                viewPipeLineStage != MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.StageEntry)
+                return true;
+        }
+    }
+
+    $(function() {
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+        document.getElementById("displayName").addEventListener('change', valueChanged);
+        document.getElementById("TriggerDropDown").addEventListener('change', valueChanged);
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        var parentStageModel = propertyViewCurrentModel._parentStage;
+        if (parentStageModel != null) {
+            var entity = parentStageModel._entityName;
+            var workflowSelectionNote = MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_WorkflowWithRespectToStageNote");
+        } else {
+            var entity = MscrmControls.ProcessDesigner.primaryEntity;
+            var workflowSelectionNote = MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_WorkflowWithRespectToGlobalWorkflowNote");
+        }
+        $("#workflowSelectionNoteSpan").text(workflowSelectionNote);
+        var entityDisplayName = Xrm.Internal.getEntityDisplayName(entity);
+        $("#WorkflowPropertyDetails_EntityName").val(entityDisplayName);
+        $("#WorkflowPropertyDetails_EntityName").attr("title", entityDisplayName);
+        $("#WorkflowBtnNew").attr("title",
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Create_New_Workflow"));
+        //Attaching events on control
+
+        $("#WorkflowTxtLookup").on('click', launchLookupDialog);
+        $("#WorkflowBtnSearch").on('click', launchLookupDialog);
+        $("#WorkflowBtnNew").on('click', launchNewDialog);
+        $("#WorkflowBtnNew").keydown(function(event) {
+            if (event.which == 13) {
+                $("#" + event.target.id).trigger("click");
+            }
+            event.stopImmediatePropagation();
+        });
+
+        var workflowName = propertyViewCurrentModel._uniqueName;
+        workflowId = propertyViewCurrentModel._processId;
+        $('#displayName').val(workflowName);
+        $('#displayName').attr("title", workflowName);
+
+
+        document.getElementById("workflowSave").addEventListener('click', sendSaveMessage);
+        document.getElementById("workflowDiscard").addEventListener('click', discardCallBack);
+        GenericWorkflowDesigner.BasePropertyView.isPropertyViewModified = isPropertyViewModified;
+        GenericWorkflowDesigner.BasePropertyView.yesCallBack = function(event) {
+            $("#workflowSave").click();
+        };
+        setTooltips();
+        setLocalizedHTMLStrings();
+        updateHtmlElements();
+
+        propertyViewCurrentModelClone = propertyViewCurrentModel.getPropertyPageClone();
+        MscrmControls.ProcessDesigner.Validation.Errors
+            .registerPropertyViewCurrentModelClone(propertyViewCurrentModelClone);
+        stopwatch.stop();
+        localStorage.setItem("ProcessDesignerControl_BPF_WorkflowPropPageLoad",
+            stopwatch.elapsedMilliseconds.toString());
+        renderErrors();
+        MscrmControls.ProcessDesigner.Validation.Errors.refreshErrorMessages = renderErrors;
+    });
+
+    function valueChanged() {
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        propertyViewCurrentModelClone._uniqueName = GenericWorkflowDesigner.CrmEncodeDecode
+            .CrmHtmlEncode($('#displayName').val());
+        var triggerName = GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode($("#TriggerDropDown :selected").val());
+        propertyViewCurrentModelClone._triggerEvents[0] = propertyViewCurrentModel.getTriggerEvent(triggerName);
+        if ($('#displayName').val() == "") {
+            $('#displayName').attr("title",
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyTexttooltip"));
+        } else {
+            $('#displayName').attr("title", $('#displayName').val());
+        }
+        $("#TriggerDropDown").attr("title", $("#TriggerDropDown :selected").text());
+        propertyViewCurrentModelClone.validateOnChange();
+        renderErrors();
+    }
+
+    function renderErrors() {
+
+        // see if any errors exists in clone model
+        if (propertyViewCurrentModelClone.getErrorCount() > 0) {
+            MscrmControls.ProcessDesigner.DOMUtil
+                .renderErrorMessages(propertyViewCurrentModelClone,
+                    $('#properties'),
+                    propertyViewCurrentModelClone.getErrorMessages());
+        }
+        // see if any errors exists in activity model
+        else {
+            var model = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            if (!CommonTypes.Types.Object.isNullOrUndefined(model) &&
+                !CommonTypes.Types.String.isNullOrEmpty(model) &&
+                model.getErrorCount() > 0 &&
+                !propertyViewCurrentModelClone.isValid) {
+                MscrmControls.ProcessDesigner.DOMUtil
+                    .renderErrorMessages(GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel(),
+                        $('#properties'),
+                        GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel().getErrorMessages());
+            } else {
+                MscrmControls.ProcessDesigner.DOMUtil
+                    .renderErrorMessages(propertyViewCurrentModelClone,
+                        $('#properties'),
+                        propertyViewCurrentModelClone.getErrorMessages());
+            }
+        }
+    }
+
+    function launchLookupDialog(event) {
+        GenericWorkflowDesigner.currentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        var parentStageModel = propertyViewCurrentModel._parentStage;
+        if (parentStageModel != null)
+            var entity = parentStageModel._entityName;
+        else
+            var entity = MscrmControls.ProcessDesigner.primaryEntity;
+        //LookupObjectsWithCallback(lookupDialogCloseCallback, null, "single", "4703", 0, null, null, 1, 1, false, "", "", "", "45102185-B1B4-422b-A3BF-F1BA9C6E130A", null, null, null, null, null, null, null, null, null);
+        ProcessControl.Configuration.BPFClientProxy.launchWorkflowLookupDialog(lookupDialogCloseCallback);
+    };
+
+    function launchNewDialog(event) {
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        var parentStageModel = propertyViewCurrentModel._parentStage;
+        if (parentStageModel != null)
+            var entity = parentStageModel._entityName;
+        else
+            var entity = MscrmControls.ProcessDesigner.primaryEntity;
+        //LookupObjectsWithCallback(lookupDialogCloseCallback, null, "single", "4703", 0, null, null, 1, 1, false, "", "", "", "45102185-B1B4-422b-A3BF-F1BA9C6E130A", null, null, null, null, null, null, null, null, null);
+        ProcessControl.Configuration.BPFClientProxy.launchWorkflowNewDialog();
+        //setting the values
+        $('#InlineDialog_Iframe').load(function() {
+            $('#InlineDialog_Iframe').contents().find("#PrimaryEntity").val(entity);
+            $('#InlineDialog_Iframe').contents().find("#WorkflowCategory").val(0);
+
+        });
+    };
+
+    /** Callback method which fetches the selected item from the lookup dialog */
+    function lookupDialogCloseCallback(dialogParams, callbackParams) {
+        var lookupControlItems = dialogParams["items"];
+
+        if (lookupControlItems.length > 0) {
+            workflowId = lookupControlItems[0].id;
+            var selectedWorkflowName = lookupControlItems[0].name;
+            $("#WorkflowTxtLookup").val(selectedWorkflowName);
+            $('#displayName').val(selectedWorkflowName);
+            $('#displayName').attr("title", $('#displayName').val());
+
+        }
+    }
+
+    /* Update the Html elements based on the available model properties */
+    function updateHtmlElements() {
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+
+        /* Lookup Control */
+        var lookupControlContainer = $('#lookupControl');
+        var lookupControlModel = new GenericWorkflowDesigner.LookupControlModel();
+        lookupControlModel.setResults(propertyViewCurrentModel.getLookupItems());
+        lookupControlModel.setSelectedItem(null);
+        if (!CommonTypes.Types.Object.isNullOrUndefined(propertyViewCurrentModel.uniqueName) &&
+            !CommonTypes.Types.Object.isNullOrUndefined(propertyViewCurrentModel.processId)) {
+            var id = propertyViewCurrentModel.processId;
+            var name = propertyViewCurrentModel.uniqueName;
+            var url = window["Xrm"].Page.context.getClientUrl() + "/sfa/workflow/edit.aspx?id=" + id;
+            var lookupItem = new GenericWorkflowDesigner.LookupItem(id, name, url, "workflowSymbol");
+            lookupControlModel.setSelectedItem(lookupItem);
+            lastSelectedLookUpItem = lookupItem;
+        }
+        lookupControl = new GenericWorkflowDesigner
+            .LookupControl(lookupControlContainer, lookupControlModel, propertyViewCurrentModel.getLookupContext());
+        lookupControl.render();
+        $("#lookupInput").attr("aria-labelledby", "WorkflowPropertyDetails_ListOfWorkflows");
+
+        /***********/
+
+
+        // Trigger Drop Down
+        var triggerDropdown = $('#TriggerDropDown');
+        var triggerEvent = propertyViewCurrentModel._triggerEvents[0];
+        if (triggerEvent != null) {
+            var pipeLineStageName = triggerEvent.eventName;
+            var pipeLineStage;
+            switch (pipeLineStageName) {
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.StageEnter:
+                pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.StageEntry;
+                break;
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.StageExit:
+                pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.StageExit;
+                break;
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.ProcessApplied:
+                pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessApplied;
+                break;
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.ProcessStatusChange:
+                if (triggerEvent.filterId == MscrmControls.ProcessDesigner.BPFProcessStatus.Active)
+                    pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessReactivated;
+                else if (triggerEvent.filterId == MscrmControls.ProcessDesigner.BPFProcessStatus.Aborted)
+                    pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessAbandon;
+                else if (triggerEvent.filterId == MscrmControls.ProcessDesigner.BPFProcessStatus.Finished)
+                    pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessFinished;
+                break;
+            }
+            triggerDropdown.val(pipeLineStage);
+        } else {
+            triggerDropdown.val("");
+        }
+        if ($('#TriggerDropDown :selected').text() == "") {
+            triggerDropdown.attr("title",
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyDropDowntooltip"));
+        } else {
+            triggerDropdown.attr("title", triggerDropdown.val());
+        }
+    }
+
+    function setTooltips() {
+        $("#WorkflowPropertyDetails_DisplayName").attr("title",
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_WorkFlowNameTooltip'));
+        $("#WorkflowPropertyDetails_EntityNameLabel").attr("title",
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_WorkflowEntityTooltip'));
+        $("#WorkflowPropertyDetails_Trigger").attr("title",
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_WorkflowTriggerTooltip'));
+        $("#WorkflowPropertyDetails_ListOfWorkflows").attr("title",
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_WorkflowLookupTooltip'));
+    }
+
+    //Set HTML Text
+    function setLocalizedHTMLStrings() {
+        $("#WorkflowPropertyDetails_Header").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_LibraryTileName_workflow'));
+        $("#WorkflowPropertyDetails_EntityNameLabel").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_MDDPropertyEntity'));
+        $("#WorkflowPropertyDetails_DisplayName").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Header'));
+        $("#WorkflowPropertyDetails_Trigger").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_WorkFlow_Trigger'));
+        $("#WorkflowPropertyDetails_ListOfWorkflows").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_WorkFlow_ListOfWorkflows'));
+        $("#workflowSave").val(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Apply'));
+        $("#workflowDiscard").val(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Discard'));
+        if ($('#workflowSave').attr("disabled") == undefined) {
+            $('#workflowSave').attr('title',
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Available"));
+        } else {
+            $('#workflowSave').attr('title',
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Unavailable"));
+        }
+        $("#workflowDiscard").attr('title',
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_DiscardChangesTooltip"))
+        $("#WorkflowPropertyDetails_Header").val(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_LibraryTileName_workflow'));
+        $("#branchpropertydetails_add").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_New"));
+        $("#branchpropertydetails_add").attr('class', "prop-addtext");
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        var parentStageModel = propertyViewCurrentModel._parentStage;
+        var triggerDropdown = $('#TriggerDropDown');
+        if (parentStageModel != null) {
+            triggerDropdown.append('<option value=' +
+                MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.StageEntry +
+                '>' +
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString('ProcessDesignerControl_BPF_WorkFlow_Entry') +
+                '</option>');
+            triggerDropdown.append('<option value=' +
+                MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.StageExit +
+                '>' +
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString('ProcessDesignerControl_BPF_WorkFlow_Exit') +
+                '</option>');
+        } else {
+            triggerDropdown.append('<option value=' +
+                MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessApplied +
+                '>' +
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString('ProcessDesignerControl_BPF_WorkFlow_ProcessApplied') +
+                '</option>');
+            triggerDropdown.append('<option value= ' +
+                MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessReactivated +
+                '>' +
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString('ProcessDesignerControl_BPF_ProcessReactivated') +
+                '</option>');
+            triggerDropdown.append('<option value= ' +
+                MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessAbandon +
+                '>' +
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString('ProcessDesignerControl_BPF_Process_Abandon') +
+                '</option>');
+            triggerDropdown.append('<option value= ' +
+                MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessFinished +
+                '>' +
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString('ProcessDesignerControl_BPF_Process_Finished') +
+                '</option>');
+        }
+    }
+
+    // populates previously saved values in all the data fields.
+    function discardCallBack() {
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        var pipeLineStage;
+        var triggerEvent = propertyViewCurrentModel._triggerEvents[0];
+        if (triggerEvent != null) {
+            var pipeLineStageName = propertyViewCurrentModel._triggerEvents[0].eventName;
+            switch (pipeLineStageName) {
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.StageEnter:
+                pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.StageEntry;
+                break;
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.StageExit:
+                pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.StageExit;
+                break;
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.ProcessApplied:
+                pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessApplied;
+                break;
+            case MscrmControls.ProcessDesigner.BPFWorkflowTriggerTypes.ProcessStatusChange:
+                if (triggerEvent.filterId == MscrmControls.ProcessDesigner.BPFProcessStatus.Active)
+                    pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessReactivated;
+                else if (triggerEvent.filterId == MscrmControls.ProcessDesigner.BPFProcessStatus.Aborted)
+                    pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessAbandon;
+                else if (triggerEvent.filterId == MscrmControls.ProcessDesigner.BPFProcessStatus.Finished)
+                    pipeLineStage = MscrmControls.ProcessDesigner.BPFWorkflowTriggerValues.ProcessFinished;
+                break;
+            }
+        }
+        $('#TriggerDropDown').val(pipeLineStage);
+        var workflowName = propertyViewCurrentModel._uniqueName;
+        if (lastSelectedLookUpItem != null) {
+            lookupControl.setSelectedItem(lastSelectedLookUpItem);
+        } else {
+            lookupControl.setSelectedItem();
+        }
+        // Display Name
+        $('#displayName').val(workflowName);
+        if ($('#displayName').val() == "") {
+            $('#displayName').attr("title",
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyTexttooltip"));
+        } else {
+            $('#displayName').attr("title", $('#displayName').val());
+        }
+    }
+
+    /* Retrieve the updated values from Html elements and return them back to the parent using post message */
+    function sendSaveMessage() {
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+
+        // Indicate to Telemetry that Property Page was saved
+        MscrmControls.ProcessDesigner.isPropertyPageSaved = true;
+
+        var validProperties;
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        var pipeLineStage = GenericWorkflowDesigner.CrmEncodeDecode
+            .CrmHtmlEncode($("#TriggerDropDown :selected").val());
+        var workFlowTriggerEvents = [];
+        workFlowTriggerEvents[0] = propertyViewCurrentModel.getTriggerEvent(pipeLineStage);
+        var selectedLookupItem = lookupControl.getSelectedItem();
+        lastSelectedLookUpItem = lookupControl.getSelectedItem();
+        var workflowName = GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode($('#displayName').val());
+        if (selectedLookupItem !== null) {
+            workflowId = selectedLookupItem.getId();
+            workflowName = selectedLookupItem.getName();
+        }
+        if (propertyViewCurrentModel.processId != null && propertyViewCurrentModel.processId != workflowId) {
+            var oldProcessId = propertyViewCurrentModel.processId;
+            var dialogOptions = new Xrm.DialogOptions;
+            dialogOptions.width = 400;
+            dialogOptions.height = 400;
+            var confirmationString = new Xrm.ConfirmDialogStrings();
+            confirmationString.title = MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString('ProcessDesignerControl_BPF_WorkFlow_Swap_Dialog_Title');
+            confirmationString.text = MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString('ProcessDesignerControl_BPF_Confirm_Swap_Dialog');
+            confirmationString.text = CommonTypes.Types.String
+                .Format(confirmationString.text, workflowName, propertyViewCurrentModel.uniqueName)
+            Xrm.Dialog.openConfirmDialog(confirmationString,
+                dialogOptions,
+                function() {
+                    var editItems = {
+                        processId: workflowId,
+                        uniqueName: workflowName,
+                        triggerEvents: workFlowTriggerEvents
+                    }
+
+                    $("#displayName").val(workflowName);
+                    propertyViewCurrentModelClone._uniqueName = GenericWorkflowDesigner.CrmEncodeDecode
+                        .CrmHtmlEncode($('#displayName').val());
+                    GenericWorkflowDesigner.currentModel = GenericWorkflowDesigner.PropertyView
+                        .getPropertyViewCurrentModel();
+                    validProperties = propertyViewCurrentModelClone
+                        .validateOnAction(MscrmControls.ProcessDesigner.Validation.Level.Apply);
+                    if (validProperties) {
+                        GenericWorkflowDesigner.eventManager
+                            .trigger(GenericWorkflowDesigner.FrameworkEvents.updateProperty, editItems);
+                    }
+                },
+                null);
+        } else {
+            var editItems = {
+                processId: workflowId,
+                uniqueName: workflowName,
+                triggerEvents: workFlowTriggerEvents
+            }
+
+            $("#displayName").val(workflowName);
+            propertyViewCurrentModelClone._uniqueName = GenericWorkflowDesigner.CrmEncodeDecode
+                .CrmHtmlEncode($('#displayName').val());
+            GenericWorkflowDesigner.currentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            validProperties = propertyViewCurrentModelClone
+                .validateOnAction(MscrmControls.ProcessDesigner.Validation.Level.Apply);
+            if (validProperties) {
+                GenericWorkflowDesigner.eventManager
+                    .trigger(GenericWorkflowDesigner.FrameworkEvents.updateProperty, editItems);
+            }
+        }
+        //Refresh the errors based on user entered values
+        renderErrors();
+        stopwatch.stop();
+        localStorage.setItem("ProcessDesignerControl_BPF_WorkflowApplyTime", stopwatch.elapsedMilliseconds.toString());
+    }
+
+
+</script>

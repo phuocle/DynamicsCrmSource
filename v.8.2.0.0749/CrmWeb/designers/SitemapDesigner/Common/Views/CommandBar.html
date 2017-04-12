@@ -1,0 +1,27 @@
+<div class="mscrm-SitemapCommandBar" tabindex="-1" mscrm-major-component data-ctabindex="6" data-mcgroupname="primary" data-islastmc="1">
+    <div class="mscrm-SitemapCommandList">
+        <div class="mscrm-fly">
+            <button id="SitemapDesigner.Commandbar.Add" aria-haspopup="true" type="button" ng-class="['mscrm-SitemapCommandButton', {'mscrm-CommandButton-Active': commandBarController.siteMapAddFlyoutMenuModel.isFlyoutOpen}]" ng-click="commandBarController.HandleAddFlyoutMenu($event)"
+                    mscrm-action-on-select mscrm-locale mscrm-resource-key="SitemapDesigner.AddButtonTooltip" mscrm-target-attr="title" data-isflyout-src="true" tabindex="-1" ng-disabled="commandBarController.isValidSiteMap()">
+                <div id="addFlyoutIcon" class="mscrm-SitemapCommandBarButtonIcon mscrm-glyph-AddIcon"></div>
+                <div id="addFlyoutLabel" class="mscrm-SitemapCommandBarButtonText">
+                    <mscrm-locale mscrm-resource-key="SitemapDesigner.Add"/>
+                </div>
+            </button>
+            <!-- Add flyout button directive-->
+            <mscrm-sitemap-add-flyout/>
+        </div>
+        <button id="cloneButton" class="mscrm-SitemapCommandButton" ng-click="commandBarController.CloneSelection()" ng-disabled="commandBarController.toggleCommandButtons()" mscrm-action-on-select mscrm-locale mscrm-resource-key="SitemapDesigner.CloneButtonTooltip" mscrm-target-attr="title" tabindex="-1">
+            <div class="mscrm-SitemapCommandBarButtonIcon mscrm-glyph-CloneIcon"></div>
+            <div class="mscrm-SitemapCommandBarButtonText">
+                <mscrm-locale mscrm-resource-key="SitemapDesigner.Clone"/>
+            </div>
+        </button>
+        <button id="deleteButton" class="mscrm-SitemapCommandButton" ng-click="commandBarController.deleteSelection()" ng-disabled="commandBarController.toggleCommandButtons()" mscrm-action-on-select class="command-bar-item" mscrm-locale mscrm-resource-key="SitemapDesigner.DeleteButtonTooltip" mscrm-target-attr="title" tabindex="-1">
+            <div class="mscrm-SitemapCommandBarButtonIcon mscrm-glyph-RemoveIcon"></div>
+            <div class="mscrm-SitemapCommandBarButtonText">
+                <mscrm-locale mscrm-resource-key="SitemapDesigner.Delete"/>
+            </div>
+        </button>
+    </div>
+</div>

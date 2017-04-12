@@ -1,0 +1,12 @@
+<public:component lightweight="true">
+    <public:attach event="onmouseover" onevent="onMouseEnter()"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               function onMouseEnter() {
+                                                   if (this.element.title.length == 0)
+                                                       this.element.title = Mscrm.Utilities
+                                                           .getNonHiddenInnerText(this.element)
+                                               }
+
+                                           </script>
+</public:component>

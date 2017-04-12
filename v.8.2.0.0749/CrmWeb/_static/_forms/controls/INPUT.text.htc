@@ -1,0 +1,133 @@
+<public:component lightweight="true">
+    <public:attach event="ondocumentready" onevent="Init()"/>
+    <public:attach event="onchange" onevent="Verify()"/>
+    <public:attach event="ondetach" onevent="cleanUp()"/>
+    <public:property name="IsDirty" get="isDirty"/>
+    <public:property name="DataXml" get="dataXml"/>
+    <public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+    <public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+    <public:property name="RequiredLevel" get="getRequiredLevel"/>
+    <public:property name="MaxLength" get="getMaxLength"/>
+    <public:property name="DataChangeHandler"/>
+    <public:property name="TrimValue" internalname="_bTrimValue"/>
+    <public:method name="SetFocus" internalname="setFocus"/>
+    <public:method name="FireOnChange" internalname="fireOnChange"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _bInvalidValueEntered = false,
+                                                   _bTrimValue = element.defaultTrimValue !== "false";
+
+                                               function Init() {
+                                                   element.attachEvent("onblur", onBlur)
+                                               }
+
+                                               function onBlur() {
+                                                   _bInvalidValueEntered &&
+                                                       FireOnChange()
+                                               }
+
+                                               function cleanUp() {
+                                                   try {
+                                                       typeof element !== "undefined" &&
+                                                           element.detachEvent("onblur", onBlur)
+                                                   } catch (e) {
+                                                   }
+                                               }
+
+                                               function isDirty() {
+                                                   return this.defaultValue != this.value
+                                               }
+
+                                               function dataXml() {
+                                                   var sID = this.id,
+                                                       sValue = this.TrimValue ? Trim(this.value) : this.value;
+                                                   return "<" +
+                                                       sID +
+                                                       ">" +
+                                                       CrmEncodeDecode.CrmXmlEncode(sValue) +
+                                                       "</" +
+                                                       sID +
+                                                       ">"
+                                               }
+
+                                               function Verify() {
+                                                   _bInvalidValueEntered = false;
+                                                   var tempValue = this.TrimValue ? Trim(value) : this.value;
+                                                   if (isDirty())
+                                                       if (tempValue.length > MaxLength) {
+                                                           alert(LOCID_DEVERROR_TOO_LONG.replace("{0}", MaxLength));
+                                                           setFocus();
+                                                           if (!IsNull(window.event))
+                                                               event.returnValue = false;
+                                                           _bInvalidValueEntered = true;
+                                                           return false
+                                                       } else
+                                                           this.value = tempValue;
+                                                   if (!IsNull(window.event) && IsNull(event.returnValue))
+                                                       event.returnValue = true;
+                                                   return true
+                                               }
+
+                                               function getDataValue() {
+                                                   var sVal = this.TrimValue ? Trim(this.value) : this.value;
+                                                   return "" == sVal ? null : sVal
+                                               }
+
+                                               function putDataValue(sVal) {
+                                                   var sDisplayValue = sVal || "";
+                                                   if ("string" == typeof sDisplayValue) {
+                                                       this.value = sDisplayValue;
+                                                       if (Verify()) {
+                                                           var fDataChangeHandler = this.DataChangeHandler;
+                                                           fDataChangeHandler &&
+                                                               fDataChangeHandler()
+                                                       }
+                                                   } else
+                                                       alert(LOCID_DEVERROR_BADTYPE_STRING)
+                                               }
+
+                                               function getDisabled() {
+                                                   return this.contentEditable == "false"
+                                               }
+
+                                               function setDisabled(bValue) {
+                                                   this
+                                                       .className =
+                                                       bValue ? "ms-crm-Text ms-crm-ReadOnly" : "ms-crm-Text";
+                                                   this.contentEditable = bValue ? "false" : "true";
+                                                   this.disabled = bValue
+                                               }
+
+                                               function setFocus() {
+                                                   !IsNull(this.form) &&
+                                                       this.form.className == "ms-crm-Form" &&
+                                                       this.form.GetTab(element, true);
+                                                   element.focus();
+                                                   element.select()
+                                               }
+
+                                               function getMaxLength() {
+                                                   try {
+                                                       return parseInt(this.maxLength, 10)
+                                                   } catch (e) {
+                                                       return 2e3
+                                                   }
+                                               }
+
+                                               function fireOnChange() {
+                                                   this.fireEvent("onchange")
+                                               }
+
+                                               function getRequiredLevel() {
+                                                   try {
+                                                       if (IsNull(this.getAttribute("req")))
+                                                           return FIELD_NOT_REQUIRED;
+                                                       else
+                                                           return parseInt(this.getAttribute("req"), 10)
+                                                   } catch (e) {
+                                                       return FIELD_NOT_REQUIRED
+                                                   }
+                                               }
+
+                                           </script>
+</public:component>

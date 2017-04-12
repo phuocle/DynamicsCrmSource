@@ -1,0 +1,222 @@
+<public:component lightweight="true">
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:property name="RequiredLevel" get="getRequiredLevel"/>
+<public:method name="SetFocus" internalname="setFocus"/>
+<public:method name="FireOnChange" internalname="fireOnChange"/>
+<public:property name="Min" get="getMin"/>
+<public:property name="Max" get="getMax"/>
+<public:property name="Precision" get="getPrecision" put="setPrecision"/>
+<public:property name="MaxLength" get="getMaxLength"/>
+<public:property name="SelectedText" get="getSelectedText" put="setSelectOptionText"/>
+<public:property name="SelectedOption" get="getSelectedOption"/>
+<public:property name="Options" get="getOptions" put="setOptions"/>
+<public:method name="AddOption" internalname="addOption"/>
+<public:method name="DeleteOption" internalname="deleteOption"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           var _behavior = null;
+
+                                           function GetElementBehavior() {
+                                               if (IsNull(_behavior))
+                                                   _behavior = Mscrm.FormControlInputBehavior
+                                                       .GetElementBehavior(element);
+                                               return _behavior
+                                           }
+
+                                           function isDirty() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("get_isDirty" in GetElementBehavior())
+                                                   return GetElementBehavior().get_isDirty();
+                                               throw new Error("'IsDirty' is undefined")
+                                           }
+
+                                           function getDataValue() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("get_dataValue" in GetElementBehavior())
+                                                   return GetElementBehavior().get_dataValue();
+                                               throw new Error("'DataValue' is undefined")
+                                           }
+
+                                           function putDataValue(vVal) {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("set_dataValue" in GetElementBehavior()) {
+                                                   GetElementBehavior().set_dataValue(vVal);
+                                                   return
+                                               }
+                                               throw new Error("'DataValue' is undefined")
+                                           }
+
+                                           function getDisabled() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("get_disabled" in GetElementBehavior())
+                                                   return GetElementBehavior().get_disabled();
+                                               throw new Error("'Disabled' is undefined")
+                                           }
+
+                                           function setDisabled(bValue) {
+                                               if (bValue == -1)
+                                                   return;
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("set_disabled" in GetElementBehavior()) {
+                                                   GetElementBehavior().set_disabled(bValue);
+                                                   return
+                                               }
+                                               throw new Error("'Disabled' is undefined")
+                                           }
+
+                                           function setFocus() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("setFocus" in GetElementBehavior()) {
+                                                   GetElementBehavior().setFocus();
+                                                   return
+                                               }
+                                               throw new Error("'SetFocus' is undefined")
+                                           }
+
+                                           function getRequiredLevel() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("requiredLevel" in GetElementBehavior())
+                                                   return GetElementBehavior().requiredLevel();
+                                               throw new Error("'RequiredLevel' is undefined")
+                                           }
+
+                                           function fireOnChange() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("fireOnChange" in GetElementBehavior())
+                                                   return GetElementBehavior().fireOnChange();
+                                               throw new Error("'FireOnChange' is undefined")
+                                           }
+
+                                           function getMin() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("get_min" in GetElementBehavior())
+                                                   try {
+                                                       return parseFloat(this.min)
+                                                   } catch (e) {
+                                                       return -1e11
+                                                   }
+                                               throw new Error("'Min' is undefined")
+                                           }
+
+                                           function getMax() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("get_max" in GetElementBehavior())
+                                                   try {
+                                                       return parseFloat(this.max)
+                                                   } catch (e) {
+                                                       return 1e11
+                                                   }
+                                               throw new Error("'Max' is undefined")
+                                           }
+
+                                           function getPrecision() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("get_precision" in GetElementBehavior())
+                                                   return GetElementBehavior().get_precision();
+                                               throw new Error("'Precision' is undefined")
+                                           }
+
+                                           function setPrecision(iVal) {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("set_precision" in GetElementBehavior()) {
+                                                   GetElementBehavior().set_precision(iVal);
+                                                   return
+                                               }
+                                               throw new Error("'Precision' is undefined")
+                                           }
+
+                                           function getMaxLength() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("get_maxLength" in GetElementBehavior())
+                                                   try {
+                                                       if (IsNull(this.maxLength) && IsNull(this.maxlength))
+                                                           return 2e3;
+                                                       var iLength = this.maxLength | this.maxlength;
+                                                       return parseInt(iLength, 10)
+                                                   } catch (e) {
+                                                       return 2e3
+                                                   }
+                                               throw new Error("'MaxLength' is undefined")
+                                           }
+
+                                           function getSelectedText() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("get_selectedText" in GetElementBehavior())
+                                                   return GetElementBehavior().get_selectedText();
+                                               throw new Error("'SelectedText' is undefined")
+                                           }
+
+                                           function setSelectOptionText(sValue) {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("set_selectedText" in GetElementBehavior()) {
+                                                   GetElementBehavior().set_selectedText(sValue);
+                                                   return
+                                               }
+                                               throw new Error("'SelectedText' is undefined")
+                                           }
+
+                                           function getSelectedOption() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("get_selectedOption" in GetElementBehavior())
+                                                   return GetElementBehavior().get_selectedOption();
+                                               throw new Error("'SelectedOption' is undefined")
+                                           }
+
+                                           function getOptions() {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("get_options" in GetElementBehavior())
+                                                   return GetElementBehavior().get_options();
+                                               throw new Error("'Options' is undefined")
+                                           }
+
+                                           function setOptions(aoOptions) {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("set_options" in GetElementBehavior()) {
+                                                   GetElementBehavior().set_options(aoOptions);
+                                                   return
+                                               }
+                                               throw new Error("'Options' is undefined")
+                                           }
+
+                                           function addOption(sName, sValue, sGroupId, iPosition) {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("AddOption" in GetElementBehavior()) {
+                                                   GetElementBehavior().AddOption(sName, sValue, sGroupId, iPosition);
+                                                   return
+                                               }
+                                               throw new Error("'AddOption' is undefined")
+                                           }
+
+                                           function deleteOption(sValue) {
+                                               if (IsNull(GetElementBehavior()))
+                                                   return;
+                                               if ("RemoveOption" in GetElementBehavior()) {
+                                                   GetElementBehavior().RemoveOption(sValue);
+                                                   return
+                                               }
+                                               throw new Error("'DeleteOption' is undefined")
+                                           }
+
+                                       </script>
+</public:component>

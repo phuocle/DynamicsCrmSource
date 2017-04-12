@@ -1,0 +1,17 @@
+<div class="mscrm-AppHeader" tabindex="-1">
+    <div id="AppDesigner.AppGlobalCommandBar.AppInfoTitle" class="mscrm-AppHeaderText" ng-click="globalCmdBarController.TitleClick()" ng-attr-title="{{globalCmdBarController.AppContext.appInfo.title}}">
+        <div mscrm-action-on-select mscrm-major-component data-ctabindex="5" tabindex="-1" data-mcgroupname="primary" data-skipmcfocus="1" class="mscrm-AppHeaderWrapperDiv">
+            <div ng-class="['mscrm-AppHeaderTitleContainer',{'mscrm-AppHeaderTitleDraftIndicator': globalCmdBarController.IsAppDesignerInDirtyState}]" tabindex="-1">
+                {{globalCmdBarController.AppContext.appInfo.title}}
+            </div>
+        </div>
+    </div>
+    <div class="mscrm-AppGlobalCommandBar">
+        <div mscrm-major-component data-ctabindex="6" tabindex="-1" data-mcgroupname="primary" class="mscrm-AppGlobalCommandBarWrapperDiv">
+            <mscrm-global-command-button mscrm-button-tooltip-key="AppDesigner.Save.Tooltip" mscrm-button-disabled=globalCmdBarController.ShouldSaveBeDisabled mscrm-button-text-key="AppDesigner.Save" mscrm-button-icon-class="mscrm-glyph-SaveIcon" mscrm-button-click-callback="globalCmdBarController.Save()"/>
+            <mscrm-global-command-button mscrm-button-tooltip-key="AppDesigner.SaveClose.Tooltip" mscrm-button-disabled=!globalCmdBarController.IsAppPropertiesValid mscrm-button-text-key="AppDesigner.SaveAndClose" mscrm-button-icon-class="mscrm-glyph-SaveAndCloseIcon" mscrm-button-click-callback="globalCmdBarController.SaveAndClose()"/>
+            <mscrm-global-command-button mscrm-button-tooltip-key="AppDesigner.Validate.Tooltip" mscrm-button-disabled=globalCmdBarController.IsAppDesignerInDirtyState mscrm-button-text-key="AppDesigner.Validate" mscrm-button-icon-class="mscrm-glyph-ValidateIcon" mscrm-button-click-callback="globalCmdBarController.Validate()"/>
+            <mscrm-global-command-button mscrm-button-tooltip-key="AppDesigner.Publish.Tooltip" mscrm-button-disabled=globalCmdBarController.ShouldPublishBeDisabled mscrm-button-text-key="AppDesigner.Publish" mscrm-button-icon-class="mscrm-glyph-PublishIcon" mscrm-button-click-callback="globalCmdBarController.Publish()"/>
+        </div>
+    </div>
+</div>

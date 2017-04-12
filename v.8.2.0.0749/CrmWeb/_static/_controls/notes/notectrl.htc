@@ -1,0 +1,183 @@
+<public:component lightweight="true">
+    <public:property name="IsDirty" get="isDirty"/>
+    <public:property name="DataXml" get="dataXml"/>
+    <public:property name="DataValue" get="getDataValue"/>
+    <public:method name="SetFocus" internalname="setFocus"/>
+    <public:method name="Refresh" internalname="refresh"/>
+    <public:method name="IsParentTabVisible" internalname="isParentTabVisible"/>
+    <public:attach event="ondocumentready" onevent="Init()"/>
+    <public:attach event="ondeactivate" onevent="UnSelectControl()"/>
+    <public:attach event="onreadystatechange" onevent="RestoreNotesData()"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _bNotesInited = false;
+
+                                               function getNotesTable(bIgnoreReadyState) {
+                                                   try {
+                                                       if (!IsNull(contentWindow) &&
+                                                       (
+                                                           contentWindow.document.readyState == "complete" ||
+                                                               bIgnoreReadyState == true))
+                                                           return contentWindow.document.all.tags("TABLE")[0];
+                                                       return null
+                                                   } catch (e) {
+                                                       return null
+                                                   }
+                                               }
+
+                                               function Init() {
+                                                   var sLoading = "";
+                                                   if (typeof GLOBAL_FONT_STYLE == "undefined" ||
+                                                       typeof GLOBAL_FONT_SIZE == "undefined" ||
+                                                       IsNull(GLOBAL_FONT_STYLE) ||
+                                                       IsNull(GLOBAL_FONT_SIZE))
+                                                       sLoading +=
+                                                           "<table style='width:100%;height:100%;text-align:center;'><tr><td><img id='imgLoading' src='/_imgs/AdvFind/progress.gif' alt=\"";
+                                                   else
+                                                       sLoading +=
+                                                           "<table style='width:100%;height:100%;text-align:center;font-family: " + GLOBAL_FONT_STYLE + "; font-size: " + GLOBAL_FONT_SIZE + ";'><tr><td><img id='imgLoading' src='/_imgs/AdvFind/progress.gif' alt=\"";
+                                                   sLoading += CrmEncodeDecode
+                                                       .CrmHtmlAttributeEncode(LOCID_LOADING_NOTES_DATA);
+                                                   sLoading +=
+                                                       '" /><BR>' +
+                                                       CrmEncodeDecode.CrmHtmlEncode(LOCID_LOADING_NOTES_DATA) +
+                                                       "</td></tr></table>";
+                                                   if (!IsNull(this.contentWindow) &&
+                                                       !IsNull(this.contentWindow.document.body))
+                                                       this.contentWindow.document.body.innerHTML = sLoading;
+                                                   var form = $find("crmForm");
+                                                   if (form) {
+                                                       var tab = form.GetTab(this.element),
+                                                           tabClass = tab.className;
+                                                       if (tabClass == "ms-crm-InlineTab")
+                                                           Mscrm.FormUITab
+                                                               .addTabStateChangeHandler(tab,
+                                                                   Function
+                                                                   .createDelegate(this.element,
+                                                                       tabChangedEventHandler));
+                                                       else if (tabClass == "ms-crm-Tab") {
+                                                           window.setTimeout(refresh, 10);
+                                                           tab.firstChild.style.display = "inline";
+                                                           _bNotesInited = true
+                                                       }
+                                                       form.get_isNew() &&
+                                                           Sys.Application.add_load(registerWithParentEntity)
+                                                   } else {
+                                                       window.setTimeout(refresh, 10);
+                                                       _bNotesInited = true
+                                                   }
+                                                   typeof this.notesxml != "undefined" &&
+                                                       this.notesxml.length > 0 &&
+                                                       refresh()
+                                               }
+
+                                               function registerWithParentEntity() {
+                                                   var oPrimaryEntity = $find(Mscrm.ClientApiConstants.primaryEntityId);
+                                                   oPrimaryEntity &&
+                                                       oPrimaryEntity
+                                                       .registerOtherData(new Mscrm.HtcProxyFormData(element))
+                                               }
+
+                                               function isDirty() {
+                                                   var notesTable = getNotesTable();
+                                                   return IsNull(notesTable) ? false : notesTable.IsDirty
+                                               }
+
+                                               function dataXml() {
+                                                   var notesTable = getNotesTable();
+                                                   return IsNull(notesTable) ? "" : notesTable.DataXml
+                                               }
+
+                                               function getDataValue() {
+                                                   return "true"
+                                               }
+
+                                               function setFocus() {
+                                                   var notesTable = getNotesTable();
+                                                   !IsNull(notesTable) &&
+                                                       notesTable.SelectNewButton(true)
+                                               }
+
+                                               function refresh(bParentRefresh) {
+                                                   if (needSetFinalUrl())
+                                                       this.src = this.Url;
+                                                   else {
+                                                       var notesTable = getNotesTable(bParentRefresh);
+                                                       !IsNull(notesTable) &&
+                                                           notesTable.Refresh()
+                                                   }
+                                               }
+
+                                               function isParentTabVisible() {
+                                                   var oTabDiv = getTabDiv();
+                                                   if (!IsNull(oTabDiv) && oTabDiv.className !== "ms-crm-InlineTab")
+                                                       return oTabDiv.style.display != "none" &&
+                                                           oTabDiv.style.display != "";
+                                                   else
+                                                       return true
+                                               }
+
+                                               function UnSelectControl() {
+                                                   var notesTable = getNotesTable();
+                                                   !IsNull(notesTable) &&
+                                                       typeof notesTable.UnSelectControl == "function" &&
+                                                       notesTable.UnSelectControl()
+                                               }
+
+                                               function notesOnCurrentTab(oCurrentTab) {
+                                                   var oTabDiv = getTabDiv();
+                                                   if (!IsNull(oTabDiv) && !IsNull(oCurrentTab))
+                                                       return oTabDiv.className == "ms-crm-Tab" &&
+                                                           oTabDiv.id + "Tab" == oCurrentTab.id;
+                                                   return true
+                                               }
+
+                                               function RestoreNotesData() {
+                                                   if (!needSetFinalUrl() && this.readyState == "complete")
+                                                       if (typeof this.notesxml != "undefined" &&
+                                                           this.notesxml.length > 0) {
+                                                           var notesTable = getNotesTable();
+                                                           if (!IsNull(notesTable)) {
+                                                               notesTable.notesxml = this.notesxml;
+                                                               notesTable.RestoreNotes()
+                                                           }
+                                                       }
+                                               }
+
+                                               function getTabDiv() {
+                                                   return this.parentElement.parentElement.parentElement.parentElement
+                                                       .parentElement.parentElement.parentElement.parentElement
+                                                       .parentElement
+                                               }
+
+                                               function notesAttachTabEvent() {
+                                                   var oTabCtl = window.document.getElementById("crmTabBar");
+                                                   if (!IsNull(oTabCtl) && oTabCtl.className == "ms-crm-TabBar") {
+                                                       oTabCtl.attachEvent("onafterchange", tabEventHandler);
+                                                       if (notesOnCurrentTab(oTabCtl.CurrentTab))
+                                                           return false;
+                                                       return true
+                                                   } else
+                                                       return false
+                                               }
+
+                                               function tabEventHandler(oEvent) {
+                                                   var o = oEvent.srcElement;
+                                                   if (notesOnCurrentTab(o.CurrentTab) && !_bNotesInited) {
+                                                       refresh();
+                                                       _bNotesInited = true
+                                                   }
+                                               }
+
+                                               function tabChangedEventHandler(src, oEvent) {
+                                                   if (oEvent.get_displayState() === Xrm.TabDisplayState.expanded &&
+                                                       needSetFinalUrl())
+                                                       this.src = this.Url
+                                               }
+
+                                               function needSetFinalUrl() {
+                                                   return this.src.length == 0 || this.src == "/_static/blank.htm"
+                                               }
+
+                                           </script>
+</public:component>

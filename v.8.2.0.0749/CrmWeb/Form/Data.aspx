@@ -1,0 +1,1 @@
+<%@ Page Language="c#" Inherits="Microsoft.Crm.Application.Pages.Form.FormDataPage" ContentType="application/json"%>

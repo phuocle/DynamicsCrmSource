@@ -1,0 +1,80 @@
+<div class="mscrm-TabContainer"
+     tabindex="-1"
+     mscrm-major-component
+     data-ctabindex="1"
+     mscrm-locale mscrm-resource-key="AppDesigner.RightPane" mscrm-target-attr="aria-label"
+     data-mcgroupname="primary">
+    <div class="mscrm-Tabs" mscrm-arrow-key-navigation data-arrow-direction="horizontal" role="tablist">
+        <div tabindex="-1"
+             mscrm-locale mscrm-resource-key="AppDesigner.RightPaneComponents" mscrm-target-attr="aria-label"
+             role="tab"
+             id="AppDesigner.TabPane.TabTitle.Components"
+             ng-style="{'width':'calc(100%/' + tabbedContainerController.TabCount + ')'}"
+             ng-class="['mscrm-Tab', {'mscrm-ActiveTab': tabbedContainerController.IsTabSelected(0)}]"
+             ng-click="tabbedContainerController.SetSelectedTab(0)"
+             mscrm-action-on-select
+             data-actiononfocusmode
+             mscrm-major-component
+             data-ctabindex="0"
+             data-mcgroupname="appDesignerRightPaneTabs"
+             data-mcteleportmode
+             data-teleportid="appDesignerRightPaneComponentsTab"
+             data-destinationalwaysonmode>
+            <div class="mscrm-TabTitle" mscrm-locale mscrm-resource-key="AppDesigner.Components.Tooltip" mscrm-target-attr="title">
+                <mscrm-locale mscrm-resource-key="AppDesigner.Components"/>
+            </div>
+        </div>
+        <div tabindex="-1"
+             mscrm-locale mscrm-resource-key="AppDesigner.RightPaneProperties" mscrm-target-attr="aria-label"
+             role="tab"
+             id="AppDesigner.TabPane.TabTitle.Properties"
+             ng-style="{'width':'calc(100%/' + tabbedContainerController.TabCount + ')'}"
+             ng-class="['mscrm-Tab', {'mscrm-ActiveTab': tabbedContainerController.IsTabSelected(1)}]"
+             ng-click="tabbedContainerController.SetSelectedTab(1)"
+             mscrm-action-on-select
+             data-actiononfocusmode
+             mscrm-major-component
+             data-ctabindex="1"
+             data-mcgroupname="appDesignerRightPaneTabs"
+             data-mcteleportmode
+             data-teleportid="appDesignerRightPanePropertiesTab"
+             data-destinationalwaysonmode>
+            <div class="mscrm-TabTitle" mscrm-locale mscrm-resource-key="AppDesigner.Properties.Tooltip" mscrm-target-attr="title">
+                <mscrm-locale mscrm-resource-key="AppDesigner.Properties"/>
+            </div>
+        </div>
+        <div tabindex="-1"
+             mscrm-locale mscrm-resource-key="AppDesigner.RightPaneRequired" mscrm-target-attr="aria-label"
+             role="tab"
+             id="AppDesigner.TabPane.TabTitle.Dependencies"
+             ng-if="!tabbedContainerController.IsDependencyPaneHidden"
+             ng-style="{'width':'calc(100%/' + tabbedContainerController.TabCount + ')'}"
+             ng-class="['mscrm-Tab', {'mscrm-ActiveTab': tabbedContainerController.IsTabSelected(2)}, 'mscrm-Dependency-Tab']"
+             ng-click="tabbedContainerController.SetSelectedTab(2)"
+             mscrm-action-on-select
+             data-actiononfocusmode
+             mscrm-major-component
+             data-ctabindex="2"
+             data-mcgroupname="appDesignerRightPaneTabs"
+             data-islastmc="1"
+             data-mcteleportmode
+             data-teleportid="appDesignerRightPaneDependenciesTab"
+             data-destinationalwaysonmode>
+            <div class="mscrm-TabTitle" mscrm-locale mscrm-resource-key="AppDesigner.Required.Tooltip" mscrm-target-attr="title">
+                <mscrm-locale mscrm-resource-key="AppDesigner.Required"/>
+            </div>
+        </div>
+    </div>
+    <div class="mscrm-TabPanes">
+        <div class="mscrm-TabPane" ng-show="tabbedContainerController.IsTabSelected(0)" data-mcteleport-destination="appDesignerRightPaneComponentsTab" mscrm-init-teleport-dest>
+            <mscrm-component-pane/>
+        </div>
+        <div class="mscrm-TabPane" ng-show="tabbedContainerController.IsTabSelected(1)" data-mcteleport-destination="appDesignerRightPanePropertiesTab" mscrm-init-teleport-dest>
+            <mscrm-app-info-form/>
+            <mscrm-properties-buttons></mscrm-properties-buttons>
+        </div>
+        <div class="mscrm-TabPane" ng-show="tabbedContainerController.IsTabSelected(2)" data-mcteleport-destination="appDesignerRightPaneDependenciesTab" mscrm-init-teleport-dest>
+            <mscrm-dependency-pane/>
+        </div>
+    </div>
+</div>

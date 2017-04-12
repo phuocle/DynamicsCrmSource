@@ -1,0 +1,196 @@
+<public:component lightweight="true" tagName="FiscalPeriodAndYear">
+    <public:attach event="ondetach" onevent="cleanUp()"/>
+    <public:attach event="oncontentready" onevent="Init()"/>
+    <public:event name="onchange" id="onChangeEvent"/>
+    <public:property name="ShowPeriod" get="getShowPeriod" put="putShowPeriod"/>
+    <public:property name="ShowYear" get="getShowYear" put="putShowYear"/>
+    <public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+    <public:property name="SelectedText" get="getSelectedText"/>
+    <public:property name="Period" get="getPeriod"/>
+    <public:property name="Year" get="getYear"/>
+    <public:method name="SetFocus"/>
+    <html xmlns:Crm>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _selectedText = "",
+                                                   _showPeriod = false,
+                                                   _showYear = false,
+                                                   _oPeriod = null,
+                                                   _bInitFocus = false,
+                                                   _oYear = null;
+
+                                               function Init() {
+                                                   _bInitialized = true;
+                                                   var isPeriodEnabled = element
+                                                       .getAttribute("IsOperatorFiscalPeriodEnabled");
+                                                   isPeriodEnabled != null &&
+                                                       isPeriodEnabled == "True" &&
+                                                       putShowPeriod(true);
+                                                   var isYearEnabled = element
+                                                       .getAttribute("IsOperatorFiscalYearEnabled");
+                                                   isYearEnabled != null &&
+                                                       isYearEnabled == "True" &&
+                                                       putShowYear(true)
+                                               }
+
+                                               function cleanUp() {
+                                                   if (_oPeriod) {
+                                                       _oPeriod.detachEvent("onchange", onPeriodOrYearChange);
+                                                       _oPeriod = null
+                                                   }
+                                                   if (_oYear) {
+                                                       _oYear.detachEvent("onchange", onPeriodOrYearChange);
+                                                       _oYear = null
+                                                   }
+                                               }
+
+                                               function getShowPeriod() {
+                                                   return _showPeriod
+                                               }
+
+                                               function putShowPeriod(bValue) {
+                                                   _showPeriod = bValue;
+                                                   if (_showPeriod) {
+                                                       element.setAttribute("IsOperatorFiscalPeriodEnabled", "True");
+                                                       _oPeriod = getChildControl(0);
+                                                       showOrHide(_oPeriod, _showPeriod)
+                                                   } else {
+                                                       element.setAttribute("IsOperatorFiscalPeriodEnabled", "False");
+                                                       showOrHide(_oPeriod, _showPeriod);
+                                                       _oPeriod = null
+                                                   }
+                                               }
+
+                                               function getShowYear() {
+                                                   return _showYear
+                                               }
+
+                                               function putShowYear(bValue) {
+                                                   _showYear = bValue;
+                                                   if (_showYear) {
+                                                       element.setAttribute("IsOperatorFiscalYearEnabled", "True");
+                                                       _oYear = getChildControl(1);
+                                                       showOrHide(_oYear, _showYear)
+                                                   } else {
+                                                       element.setAttribute("IsOperatorFiscalYearEnabled", "False");
+                                                       showOrHide(_oYear, _showYear);
+                                                       _oYear = null
+                                                   }
+                                               }
+
+                                               function getDataValue() {
+                                                   if (_oPeriod && !_oYear)
+                                                       return $find(_oPeriod.id).get_dataValue();
+                                                   else if (!_oPeriod && _oYear)
+                                                       return $find(_oYear.id).get_dataValue();
+                                                   else if (_oPeriod && _oYear) {
+                                                       var yearValue = $find(_oYear.id).get_dataValue(),
+                                                           periodValue = $find(_oPeriod.id).get_dataValue();
+                                                       if (yearValue != null && periodValue != null) {
+                                                           var value = yearValue.toString() + "-";
+                                                           if (periodValue <= 9)
+                                                               value += "0";
+                                                           value += periodValue.toString();
+                                                           return value
+                                                       }
+                                                   }
+                                                   return null
+                                               }
+
+                                               function putDataValue(oValue) {
+                                                   if (oValue)
+                                                       if (_oPeriod && !_oYear)
+                                                           $find(_oPeriod.id).set_dataValue(oValue);
+                                                       else if (!_oPeriod && _oYear)
+                                                           $find(_oYear.id).set_dataValue(oValue);
+                                                       else if (_oPeriod && _oYear) {
+                                                           Mscrm.CrmDebug
+                                                               .assert(oValue.length == 7,
+                                                                   "Fiscal period and year values should always be in YYYY-PP format.");
+                                                           $find(_oYear.id)
+                                                               .set_dataValue(parseInt(oValue.substr(0, 4)));
+                                                           $find(_oPeriod.id)
+                                                               .set_dataValue(parseInt(oValue.substr(5, 2)))
+                                                       } else
+                                                           Mscrm.CrmDebug
+                                                               .fail("Fiscal period and year control not configured to show period or year.");
+                                                   updateSelectedText()
+                                               }
+
+                                               function getSelectedText() {
+                                                   return _selectedText
+                                               }
+
+                                               function getPeriod() {
+                                                   return $find(_oPeriod.id).get_dataValue()
+                                               }
+
+                                               function getYear() {
+                                                   return $find(_oYear.id).get_dataValue()
+                                               }
+
+                                               function onPeriodOrYearChange() {
+                                                   updateSelectedText();
+                                                   var oEvent = createEventObject();
+                                                   oEvent.value = this._value;
+                                                   onChangeEvent.fire(oEvent)
+                                               }
+
+                                               function updateSelectedText() {
+                                                   if (_oPeriod && !_oYear)
+                                                       _selectedText = $find(_oPeriod.id).get_selectedText();
+                                                   else if (!_oPeriod && _oYear)
+                                                       _selectedText = $find(_oYear.id).get_selectedText();
+                                                   else if (_oPeriod && _oYear)
+                                                       _selectedText =
+                                                           $find(_oPeriod.id).get_selectedText() +
+                                                           " " +
+                                                           $find(_oYear.id).get_selectedText();
+                                                   else
+                                                       _selectedText = null
+                                               }
+
+                                               function showOrHide(oControl, bShow) {
+                                                   if (oControl) {
+                                                       Mscrm.CrmDebug
+                                                           .assert(oControl.tagName == "SELECT",
+                                                               "Expected fiscal year or period control to be a select control.");
+                                                       Mscrm.CrmDebug
+                                                           .assert(oControl.parentElement.tagName == "TD",
+                                                               "Expected fiscal year or period control to be contained in a TD.");
+                                                       oControl.parentElement.style.display = bShow ? "" : "none";
+                                                       if (bShow)
+                                                           oControl.attachEvent("onchange", onPeriodOrYearChange);
+                                                       else
+                                                           oControl.detachEvent("onchange", onPeriodOrYearChange)
+                                                   }
+                                               }
+
+                                               function getChildControl(index) {
+                                                   var rows = element.getElementsByTagName("tbody"),
+                                                       oControl = rows[0].firstChild.children[index].firstChild;
+                                                   Mscrm.CrmDebug
+                                                       .assert(oControl.tagName == "SELECT",
+                                                           "Expected fiscal year or period control to be a select control.");
+                                                   return oControl
+                                               }
+
+                                               function SetFocus() {
+                                                   if (_oPeriod && !_oYear)
+                                                       _oPeriod.focus();
+                                                   else if (!_oPeriod && _oYear)
+                                                       _oYear.focus();
+                                                   else
+                                                       _oPeriod &&
+                                                           _oYear &&
+                                                           _oPeriod.focus();
+                                                   if (!_bInitFocus) {
+                                                       onPeriodOrYearChange();
+                                                       _bInitFocus = true
+                                                   }
+                                               }
+
+                                           </script>
+    </head>
+    </html>
+</public:component>

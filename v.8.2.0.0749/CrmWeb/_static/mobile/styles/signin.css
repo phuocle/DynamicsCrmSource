@@ -1,0 +1,32 @@
+td.signInInfo {
+    border-top: solid 1px #0F2E61;
+    border-bottom: solid 1px #8FB6DC;
+    color: #B0D3FF;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+tr.signInInfo {
+    background-color: #15428B;
+    height: 20px;
+}
+
+td.signInRow1 {
+    border-top: solid 8px #E3EFFF;
+    border-bottom: solid 6px #E3EFFF;
+}
+
+td.signInRow2 { border-bottom: solid 8px #E3EFFF; }
+
+input.signIn {
+    width: 150px;
+    height: 18px;
+}
+
+div.signIn {
+    width: 100%;
+    margin: 0px 0px 0px 4px;
+    padding: 0px;
+}

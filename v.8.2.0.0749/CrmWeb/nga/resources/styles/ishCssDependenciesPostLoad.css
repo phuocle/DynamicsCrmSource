@@ -1,0 +1,1886 @@
+/**
+jQuery UI 1.10.4
+Microsoft grants you the right to use these JavaScript files for the sole purpose of either: (i) interacting through your browser with the Microsoft website, subject to the website's terms of use; or (ii) using the files as included with a Microsoft product subject to that product's license terms. Microsoft reserves all other rights to the files not expressly granted by Microsoft, whether by implication, estoppel or otherwise. The notices and licenses below are for informational purposes only.
+Copyright 2014 The jQuery Foundation
+Provided for Informational Purposes Only
+MIT License
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ""Software""), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+.ui-datepicker {
+    width: 17em;
+    padding: .2em .2em 0;
+    display: none
+}
+
+.ui-datepicker .ui-datepicker-header {
+    position: relative;
+    padding: .2em 0
+}
+
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    position: absolute;
+    top: 2px;
+    width: 1.8em;
+    height: 1.8em
+}
+
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px }
+
+.ui-datepicker .ui-datepicker-prev { left: 2px }
+
+.ui-datepicker .ui-datepicker-next { right: 2px }
+
+.ui-datepicker .ui-datepicker-prev-hover { left: 1px }
+
+.ui-datepicker .ui-datepicker-next-hover { right: 1px }
+
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+    top: 50%;
+    margin-top: -8px
+}
+
+.ui-datepicker .ui-datepicker-title {
+    margin: 0 2.3em;
+    line-height: 1.8em;
+    text-align: center
+}
+
+.ui-datepicker .ui-datepicker-title select {
+    font-size: 1em;
+    margin: 1px 0
+}
+
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year { width: 49% }
+
+.ui-datepicker table {
+    width: 100%;
+    font-size: .9em;
+    border-collapse: collapse;
+    margin: 0 0 .4em
+}
+
+.ui-datepicker th {
+    padding: .7em .3em;
+    text-align: center;
+    font-weight: 700;
+    border: 0
+}
+
+.ui-datepicker td {
+    border: 0;
+    padding: 1px
+}
+
+.ui-datepicker td span, .ui-datepicker td a {
+    display: block;
+    padding: .2em;
+    text-align: right;
+    text-decoration: none
+}
+
+.ui-datepicker .ui-datepicker-buttonpane {
+    background-image: none;
+    margin: .7em 0 0;
+    padding: 0 .2em;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button {
+    float: right;
+    margin: .5em .2em .4em;
+    cursor: pointer;
+    padding: .2em .6em .3em;
+    width: auto;
+    overflow: visible
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float: left }
+
+.ui-datepicker.ui-datepicker-multi { width: auto }
+
+.ui-datepicker-multi .ui-datepicker-group { float: left }
+
+.ui-datepicker-multi .ui-datepicker-group table {
+    width: 95%;
+    margin: 0 auto .4em
+}
+
+.ui-datepicker-multi-2 .ui-datepicker-group { width: 50% }
+
+.ui-datepicker-multi-3 .ui-datepicker-group { width: 33.3% }
+
+.ui-datepicker-multi-4 .ui-datepicker-group { width: 25% }
+
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header, .ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header { border-left-width: 0 }
+
+.ui-datepicker-multi .ui-datepicker-buttonpane { clear: left }
+
+.ui-datepicker-row-break {
+    clear: both;
+    width: 100%;
+    font-size: 0
+}
+
+.ui-datepicker-rtl { direction: rtl }
+
+.ui-datepicker-rtl .ui-datepicker-prev {
+    right: 2px;
+    left: auto
+}
+
+.ui-datepicker-rtl .ui-datepicker-next {
+    left: 2px;
+    right: auto
+}
+
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
+    right: 1px;
+    left: auto
+}
+
+.ui-datepicker-rtl .ui-datepicker-next:hover {
+    left: 1px;
+    right: auto
+}
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane { clear: right }
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane button { float: left }
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current, .ui-datepicker-rtl .ui-datepicker-group { float: right }
+
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header, .ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+    border-right-width: 0;
+    border-left-width: 1px
+}
+
+/**
+jQuery UI 1.10.4
+Microsoft grants you the right to use these JavaScript files for the sole purpose of either: (i) interacting through your browser with the Microsoft website, subject to the website's terms of use; or (ii) using the files as included with a Microsoft product subject to that product's license terms. Microsoft reserves all other rights to the files not expressly granted by Microsoft, whether by implication, estoppel or otherwise. The notices and licenses below are for informational purposes only.
+Copyright 2014 The jQuery Foundation
+Provided for Informational Purposes Only
+MIT License
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ""Software""), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+.ui-slider {
+    position: relative;
+    text-align: left
+}
+
+.ui-slider .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    width: 1.2em;
+    height: 1.2em;
+    cursor: default
+}
+
+.ui-slider .ui-slider-range {
+    position: absolute;
+    z-index: 1;
+    font-size: .7em;
+    display: block;
+    border: 0;
+    background-position: 0 0
+}
+
+.ui-slider.ui-state-disabled .ui-slider-handle, .ui-slider.ui-state-disabled .ui-slider-range { filter: inherit }
+
+.ui-slider-horizontal { height: .8em }
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -.3em;
+    margin-left: -.6em
+}
+
+.ui-slider-horizontal .ui-slider-range {
+    top: 0;
+    height: 100%
+}
+
+.ui-slider-horizontal .ui-slider-range-min { left: 0 }
+
+.ui-slider-horizontal .ui-slider-range-max { right: 0 }
+
+.ui-slider-vertical {
+    width: .8em;
+    height: 100px
+}
+
+.ui-slider-vertical .ui-slider-handle {
+    left: -.3em;
+    margin-left: 0;
+    margin-bottom: -.6em
+}
+
+.ui-slider-vertical .ui-slider-range {
+    left: 0;
+    width: 100%
+}
+
+.ui-slider-vertical .ui-slider-range-min { bottom: 0 }
+
+.ui-slider-vertical .ui-slider-range-max { top: 0 }
+
+/**
+jQuery UI 1.10.4
+Microsoft grants you the right to use these JavaScript files for the sole purpose of either: (i) interacting through your browser with the Microsoft website, subject to the website's terms of use; or (ii) using the files as included with a Microsoft product subject to that product's license terms. Microsoft reserves all other rights to the files not expressly granted by Microsoft, whether by implication, estoppel or otherwise. The notices and licenses below are for informational purposes only.
+Copyright 2014 The jQuery Foundation
+Provided for Informational Purposes Only
+MIT License
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ""Software""), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+.ui-widget {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 1.1em
+}
+
+.ui-widget .ui-widget { font-size: 1em }
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 1em
+}
+
+.ui-widget-content {
+    border: 1px solid #aaa;
+    color: #222
+}
+
+.ui-widget-content a { color: #222 }
+
+.ui-widget-header {
+    border: 1px solid #aaa;
+    color: #222;
+    font-weight: 700
+}
+
+.ui-widget-header a { color: #222 }
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #d3d3d3;
+    font-weight: 400;
+    color: #555
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+    color: #555;
+    text-decoration: none
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    border: 1px solid #999;
+    font-weight: 400;
+    color: #212121
+}
+
+.ui-state-hover a, .ui-state-hover a:hover, .ui-state-hover a:link, .ui-state-hover a:visited, .ui-state-focus a, .ui-state-focus a:hover, .ui-state-focus a:link, .ui-state-focus a:visited {
+    color: #212121;
+    text-decoration: none
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    border: 1px solid #aaa;
+    font-weight: 400;
+    color: #212121
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+    color: #212121;
+    text-decoration: none
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid #fcefa1;
+    background: #fbf9ee url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;
+    color: #363636
+}
+
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a, .ui-widget-header .ui-state-highlight a { color: #363636 }
+
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {
+    border: 1px solid #cd0a0a;
+    background: #fef1ec url(images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x;
+    color: #cd0a0a
+}
+
+.ui-state-error a, .ui-widget-content .ui-state-error a, .ui-widget-header .ui-state-error a { color: #cd0a0a }
+
+.ui-state-error-text, .ui-widget-content .ui-state-error-text, .ui-widget-header .ui-state-error-text { color: #cd0a0a }
+
+.ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary { font-weight: 700 }
+
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary, .ui-widget-header .ui-priority-secondary {
+    opacity: .7;
+    filter: Alpha(Opacity=70);
+    font-weight: 400
+}
+
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+    opacity: .35;
+    filter: Alpha(Opacity=35);
+    background-image: none
+}
+
+.ui-state-disabled .ui-icon { filter: Alpha(Opacity=35) }
+
+.ui-icon {
+    width: 16px;
+    height: 16px
+}
+
+.ui-icon, .ui-widget-content .ui-icon { }
+
+.ui-widget-header .ui-icon { }
+
+.ui-state-default .ui-icon { background-image: url(images/ui-icons_888888_256x240.png) }
+
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon { background-image: url(images/ui-icons_454545_256x240.png) }
+
+.ui-state-active .ui-icon { background-image: url(images/ui-icons_454545_256x240.png) }
+
+.ui-state-highlight .ui-icon { background-image: url(images/ui-icons_2e83ff_256x240.png) }
+
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon { background-image: url(images/ui-icons_cd0a0a_256x240.png) }
+
+.ui-icon-blank { background-position: 16px 16px }
+
+.ui-icon-carat-1-n { background-position: 0 0 }
+
+.ui-icon-carat-1-ne { background-position: -16px 0 }
+
+.ui-icon-carat-1-e { background-position: -32px 0 }
+
+.ui-icon-carat-1-se { background-position: -48px 0 }
+
+.ui-icon-carat-1-s { background-position: -64px 0 }
+
+.ui-icon-carat-1-sw { background-position: -80px 0 }
+
+.ui-icon-carat-1-w { background-position: -96px 0 }
+
+.ui-icon-carat-1-nw { background-position: -112px 0 }
+
+.ui-icon-carat-2-n-s { background-position: -128px 0 }
+
+.ui-icon-carat-2-e-w { background-position: -144px 0 }
+
+.ui-icon-triangle-1-n { background-position: 0 -16px }
+
+.ui-icon-triangle-1-ne { background-position: -16px -16px }
+
+.ui-icon-triangle-1-e { background-position: -32px -16px }
+
+.ui-icon-triangle-1-se { background-position: -48px -16px }
+
+.ui-icon-triangle-1-s { background-position: -64px -16px }
+
+.ui-icon-triangle-1-sw { background-position: -80px -16px }
+
+.ui-icon-triangle-1-w { background-position: -96px -16px }
+
+.ui-icon-triangle-1-nw { background-position: -112px -16px }
+
+.ui-icon-triangle-2-n-s { background-position: -128px -16px }
+
+.ui-icon-triangle-2-e-w { background-position: -144px -16px }
+
+.ui-icon-arrow-1-n { background-position: 0 -32px }
+
+.ui-icon-arrow-1-ne { background-position: -16px -32px }
+
+.ui-icon-arrow-1-e { background-position: -32px -32px }
+
+.ui-icon-arrow-1-se { background-position: -48px -32px }
+
+.ui-icon-arrow-1-s { background-position: -64px -32px }
+
+.ui-icon-arrow-1-sw { background-position: -80px -32px }
+
+.ui-icon-arrow-1-w { background-position: -96px -32px }
+
+.ui-icon-arrow-1-nw { background-position: -112px -32px }
+
+.ui-icon-arrow-2-n-s { background-position: -128px -32px }
+
+.ui-icon-arrow-2-ne-sw { background-position: -144px -32px }
+
+.ui-icon-arrow-2-e-w { background-position: -160px -32px }
+
+.ui-icon-arrow-2-se-nw { background-position: -176px -32px }
+
+.ui-icon-arrowstop-1-n { background-position: -192px -32px }
+
+.ui-icon-arrowstop-1-e { background-position: -208px -32px }
+
+.ui-icon-arrowstop-1-s { background-position: -224px -32px }
+
+.ui-icon-arrowstop-1-w { background-position: -240px -32px }
+
+.ui-icon-arrowthick-1-n { background-position: 0 -48px }
+
+.ui-icon-arrowthick-1-ne { background-position: -16px -48px }
+
+.ui-icon-arrowthick-1-e { background-position: -32px -48px }
+
+.ui-icon-arrowthick-1-se { background-position: -48px -48px }
+
+.ui-icon-arrowthick-1-s { background-position: -64px -48px }
+
+.ui-icon-arrowthick-1-sw { background-position: -80px -48px }
+
+.ui-icon-arrowthick-1-w { background-position: -96px -48px }
+
+.ui-icon-arrowthick-1-nw { background-position: -112px -48px }
+
+.ui-icon-arrowthick-2-n-s { background-position: -128px -48px }
+
+.ui-icon-arrowthick-2-ne-sw { background-position: -144px -48px }
+
+.ui-icon-arrowthick-2-e-w { background-position: -160px -48px }
+
+.ui-icon-arrowthick-2-se-nw { background-position: -176px -48px }
+
+.ui-icon-arrowthickstop-1-n { background-position: -192px -48px }
+
+.ui-icon-arrowthickstop-1-e { background-position: -208px -48px }
+
+.ui-icon-arrowthickstop-1-s { background-position: -224px -48px }
+
+.ui-icon-arrowthickstop-1-w { background-position: -240px -48px }
+
+.ui-icon-arrowreturnthick-1-w { background-position: 0 -64px }
+
+.ui-icon-arrowreturnthick-1-n { background-position: -16px -64px }
+
+.ui-icon-arrowreturnthick-1-e { background-position: -32px -64px }
+
+.ui-icon-arrowreturnthick-1-s { background-position: -48px -64px }
+
+.ui-icon-arrowreturn-1-w { background-position: -64px -64px }
+
+.ui-icon-arrowreturn-1-n { background-position: -80px -64px }
+
+.ui-icon-arrowreturn-1-e { background-position: -96px -64px }
+
+.ui-icon-arrowreturn-1-s { background-position: -112px -64px }
+
+.ui-icon-arrowrefresh-1-w { background-position: -128px -64px }
+
+.ui-icon-arrowrefresh-1-n { background-position: -144px -64px }
+
+.ui-icon-arrowrefresh-1-e { background-position: -160px -64px }
+
+.ui-icon-arrowrefresh-1-s { background-position: -176px -64px }
+
+.ui-icon-arrow-4 { background-position: 0 -80px }
+
+.ui-icon-arrow-4-diag { background-position: -16px -80px }
+
+.ui-icon-extlink { background-position: -32px -80px }
+
+.ui-icon-newwin { background-position: -48px -80px }
+
+.ui-icon-refresh { background-position: -64px -80px }
+
+.ui-icon-shuffle { background-position: -80px -80px }
+
+.ui-icon-transfer-e-w { background-position: -96px -80px }
+
+.ui-icon-transferthick-e-w { background-position: -112px -80px }
+
+.ui-icon-folder-collapsed { background-position: 0 -96px }
+
+.ui-icon-folder-open { background-position: -16px -96px }
+
+.ui-icon-document { background-position: -32px -96px }
+
+.ui-icon-document-b { background-position: -48px -96px }
+
+.ui-icon-note { background-position: -64px -96px }
+
+.ui-icon-mail-closed { background-position: -80px -96px }
+
+.ui-icon-mail-open { background-position: -96px -96px }
+
+.ui-icon-suitcase { background-position: -112px -96px }
+
+.ui-icon-comment { background-position: -128px -96px }
+
+.ui-icon-person { background-position: -144px -96px }
+
+.ui-icon-print { background-position: -160px -96px }
+
+.ui-icon-trash { background-position: -176px -96px }
+
+.ui-icon-locked { background-position: -192px -96px }
+
+.ui-icon-unlocked { background-position: -208px -96px }
+
+.ui-icon-bookmark { background-position: -224px -96px }
+
+.ui-icon-tag { background-position: -240px -96px }
+
+.ui-icon-home { background-position: 0 -112px }
+
+.ui-icon-flag { background-position: -16px -112px }
+
+.ui-icon-calendar { background-position: -32px -112px }
+
+.ui-icon-cart { background-position: -48px -112px }
+
+.ui-icon-pencil { background-position: -64px -112px }
+
+.ui-icon-clock { background-position: -80px -112px }
+
+.ui-icon-disk { background-position: -96px -112px }
+
+.ui-icon-calculator { background-position: -112px -112px }
+
+.ui-icon-zoomin { background-position: -128px -112px }
+
+.ui-icon-zoomout { background-position: -144px -112px }
+
+.ui-icon-search { background-position: -160px -112px }
+
+.ui-icon-wrench { background-position: -176px -112px }
+
+.ui-icon-gear { background-position: -192px -112px }
+
+.ui-icon-heart { background-position: -208px -112px }
+
+.ui-icon-star { background-position: -224px -112px }
+
+.ui-icon-link { background-position: -240px -112px }
+
+.ui-icon-cancel { background-position: 0 -128px }
+
+.ui-icon-plus { background-position: -16px -128px }
+
+.ui-icon-plusthick { background-position: -32px -128px }
+
+.ui-icon-minus { background-position: -48px -128px }
+
+.ui-icon-minusthick { background-position: -64px -128px }
+
+.ui-icon-close { background-position: -80px -128px }
+
+.ui-icon-closethick { background-position: -96px -128px }
+
+.ui-icon-key { background-position: -112px -128px }
+
+.ui-icon-lightbulb { background-position: -128px -128px }
+
+.ui-icon-scissors { background-position: -144px -128px }
+
+.ui-icon-clipboard { background-position: -160px -128px }
+
+.ui-icon-copy { background-position: -176px -128px }
+
+.ui-icon-contact { background-position: -192px -128px }
+
+.ui-icon-image { background-position: -208px -128px }
+
+.ui-icon-video { background-position: -224px -128px }
+
+.ui-icon-script { background-position: -240px -128px }
+
+.ui-icon-alert { background-position: 0 -144px }
+
+.ui-icon-info { background-position: -16px -144px }
+
+.ui-icon-notice { background-position: -32px -144px }
+
+.ui-icon-help { background-position: -48px -144px }
+
+.ui-icon-check { background-position: -64px -144px }
+
+.ui-icon-bullet { background-position: -80px -144px }
+
+.ui-icon-radio-on { background-position: -96px -144px }
+
+.ui-icon-radio-off { background-position: -112px -144px }
+
+.ui-icon-pin-w { background-position: -128px -144px }
+
+.ui-icon-pin-s { background-position: -144px -144px }
+
+.ui-icon-play { background-position: 0 -160px }
+
+.ui-icon-pause { background-position: -16px -160px }
+
+.ui-icon-seek-next { background-position: -32px -160px }
+
+.ui-icon-seek-prev { background-position: -48px -160px }
+
+.ui-icon-seek-end { background-position: -64px -160px }
+
+.ui-icon-seek-start { background-position: -80px -160px }
+
+.ui-icon-seek-first { background-position: -80px -160px }
+
+.ui-icon-stop { background-position: -96px -160px }
+
+.ui-icon-eject { background-position: -112px -160px }
+
+.ui-icon-volume-off { background-position: -128px -160px }
+
+.ui-icon-volume-on { background-position: -144px -160px }
+
+.ui-icon-power { background-position: 0 -176px }
+
+.ui-icon-signal-diag { background-position: -16px -176px }
+
+.ui-icon-signal { background-position: -32px -176px }
+
+.ui-icon-battery-0 { background-position: -48px -176px }
+
+.ui-icon-battery-1 { background-position: -64px -176px }
+
+.ui-icon-battery-2 { background-position: -80px -176px }
+
+.ui-icon-battery-3 { background-position: -96px -176px }
+
+.ui-icon-circle-plus { background-position: 0 -192px }
+
+.ui-icon-circle-minus { background-position: -16px -192px }
+
+.ui-icon-circle-close { background-position: -32px -192px }
+
+.ui-icon-circle-triangle-e { background-position: -48px -192px }
+
+.ui-icon-circle-triangle-s { background-position: -64px -192px }
+
+.ui-icon-circle-triangle-w { background-position: -80px -192px }
+
+.ui-icon-circle-triangle-n { background-position: -96px -192px }
+
+.ui-icon-circle-arrow-e { background-position: -112px -192px }
+
+.ui-icon-circle-arrow-s { background-position: -128px -192px }
+
+.ui-icon-circle-arrow-w { background-position: -144px -192px }
+
+.ui-icon-circle-arrow-n { background-position: -160px -192px }
+
+.ui-icon-circle-zoomin { background-position: -176px -192px }
+
+.ui-icon-circle-zoomout { background-position: -192px -192px }
+
+.ui-icon-circle-check { background-position: -208px -192px }
+
+.ui-icon-circlesmall-plus { background-position: 0 -208px }
+
+.ui-icon-circlesmall-minus { background-position: -16px -208px }
+
+.ui-icon-circlesmall-close { background-position: -32px -208px }
+
+.ui-icon-squaresmall-plus { background-position: -48px -208px }
+
+.ui-icon-squaresmall-minus { background-position: -64px -208px }
+
+.ui-icon-squaresmall-close { background-position: -80px -208px }
+
+.ui-icon-grip-dotted-vertical { background-position: 0 -224px }
+
+.ui-icon-grip-dotted-horizontal { background-position: -16px -224px }
+
+.ui-icon-grip-solid-vertical { background-position: -32px -224px }
+
+.ui-icon-grip-solid-horizontal { background-position: -48px -224px }
+
+.ui-icon-gripsmall-diagonal-se { background-position: -64px -224px }
+
+.ui-icon-grip-diagonal-se { background-position: -80px -224px }
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { border-top-left-radius: 4px }
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { border-top-right-radius: 4px }
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { border-bottom-left-radius: 4px }
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { border-bottom-right-radius: 4px }
+
+.ui-widget-overlay {
+    opacity: .3;
+    filter: Alpha(Opacity=30)
+}
+
+.ui-widget-shadow {
+    margin: -8px 0 0 -8px;
+    padding: 8px;
+    opacity: .3;
+    filter: Alpha(Opacity=30);
+    border-radius: 8px
+}
+
+.modalBackground { background-color: #000000; }
+
+/*-------------------------------------
+Grid-specific Associate Form styles
+-------------------------------------*/
+
+.dialogConductor .associateForm .input-container,
+.dialogConductor .associateForm .lookup { margin-right: 0px; }
+
+/*--------------------------
+InteractionCentric Crm dialog Tablet
+---------------------------*/
+
+.editModeSectionControlIcon {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    margin-top: 6px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+/* makes sure that line-height will be as min as posible for the provided
+font size, and will not cut off text vertically */
+
+.text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.tablet .CrmDialog-popup {
+    background-color: #ffffff;
+    width: 480px;
+}
+
+.tablet .CrmDialog-popup .group_content {
+    padding: 0 20px;
+    width: 100%;
+}
+
+.tablet .CrmDialog-popup .group_content :nth-child(even) .section_vertical {
+    overflow-x: auto;
+    position: static;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.tablet .CrmDialog-popup .group_content :nth-child(even) .section_vertical :first-child .textbox { border: 1px solid #8F8F8F !important; }
+
+.tablet .CrmDialog-popup .group_content :nth-child(even) .section_vertical :first-child .SearchTextBox { border: 1px solid #808080 !important; }
+
+.tablet .CrmDialog-popup .group_content :nth-child(even) .section_vertical .searchCriteriaContainer select:focus { border: solid black 1px !important; }
+
+.tablet .CrmDialog-popup .group_content :nth-child(even) .section_vertical .textboxContainer { overflow-y: hidden; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    align-items: center;
+    -ms-flex-align: center;
+    /*
+* MoCA has locked their styles using !important.
+* Adding !important here to override MoCA styles.
+*/
+    padding: 10px 24px !important;
+    width: 100%;
+    margin: 0;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control:active {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control span {
+    color: #808080;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control span.symbolFont.FlsLocked-symbol {
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    align-items: center;
+    -ms-flex-align: center;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control span.ui-datepicker-trigger { margin-left: -22px !important; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .control_label {
+    -webkit-box-flex: 0 1 50%;
+    -moz-box-flex: 0 1 50%;
+    -webkit-flex: 0 1 50%;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
+    -ms-flex: 0 1 auto;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .control_value {
+    color: #000000;
+    -webkit-box-flex: 0 1 50%;
+    -moz-box-flex: 0 1 50%;
+    -webkit-flex: 0 1 50%;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
+    padding-right: 10px;
+    -ms-flex: 0 1 auto;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .control_value:hover .InlineLookupInputSearchImage { display: inline-block; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .control_value:hover .InlineLookupInputSearchImage .PencilIcon-symbol { color: #666666; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .control_value:hover .InlineLookupInputSearchImage:hover .PencilIcon-symbol { color: #000000; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .control_value .textboxContainer { overflow-y: hidden; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .control_value .InlineLookupInputSearchImage {
+    display: none;
+    width: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: none;
+    height: 100%;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .control_value .InlineLookupInputSearchImage .PencilIcon-symbol { color: #666666; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .control_value button.button.dynamicsButton.fieldButton { width: 100%; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .control_value button.button.dynamicsButton.fieldButton span {
+    color: #000000;
+    text-align: left;
+    word-wrap: break-word;
+    display: block;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control.noLabel .control_value {
+    -webkit-box-flex: 0 1 auto;
+    -moz-box-flex: 0 1 auto;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control.editRow {
+    color: #808080;
+    background-color: #ffffff;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control.editRow:not(.locked) {
+    background-color: #f8ecdf;
+    /* MoCA has !important on border, so using it here to override */
+    border-top: 1px solid #eecea9 !important;
+    border-bottom: 1px solid #eecea9 !important;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    align-items: flex-start;
+    -ms-flex-align: start;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control.editRow .control_value {
+    color: #000000;
+    width: 100%;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control.editRow .control_value .comboBox { border: 1px solid #000000 !important; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control .dialog_header_label {
+    color: #000000;
+    font-size: 16px !important;
+    font-weight: normal !important;
+    font-family: "Segoe UI Semibold", Tahoma, sans-serif !important;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control label {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #000000 !important;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control label.lookForRecordLabel { padding: 13px 12px !important; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control.hasError .errorIndicator {
+    left: 0;
+    top: 10px;
+    margin: 0;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control.hasError .errorIndicator .errorMessage { color: #FFFFFF; }
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .dialogFooter {
+    width: 480px;
+    height: 34px;
+    background-color: #666666;
+    padding-right: 0 !important;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .dialogFooter .section_control {
+    padding: 0 !important;
+    display: -ms-grid;
+    -ms-grid-columns: min-content;
+    border-width: 0 !important;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .dialogFooter .section_control .control_value {
+    -webkit-box-flex: 0 1 100%;
+    -moz-box-flex: 0 1 100%;
+    -webkit-flex: 0 1 100%;
+    -ms-flex: 0 1 100%;
+    flex: 0 1 100%;
+}
+
+.tablet .CrmDialog-popup .group_content .detailFieldsSectionView:not(:first-child):not(:last-child) .section .section_control {
+    border-width: 0 0 2px 0 !important;
+    border-color: #F2E6E6 !important;
+    border-style: dotted !important;
+}
+
+.tablet .CrmDialog-popup .SimpleButton {
+    background-color: #cccccc;
+    height: 24px;
+    color: #000000;
+    font-size: 14px;
+    border: none;
+    line-height: 1;
+}
+
+.tablet .CrmDialog-popup .SimpleButton:focus { outline: 1px solid #1f9ef8; }
+
+.tablet .CrmDialog-popup .SimpleButtonLabel {
+    min-width: 75px;
+    max-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 100%;
+    padding-top: 4px;
+}
+
+@-moz-document url-prefix() {
+    .tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control:focus {
+        outline: 1px solid #1f9ef8;
+        outline-offset: -1px;
+    }
+}
+
+#shell.macSafari.tablet .CrmDialog-popup .group_content .detailFieldsSectionView .section .section_control.editRow { height: 75px; }
+
+/*******
+Place holder - For interactioncentric we are supporting desktop form factor. So not overriding anything for Phone CSS.
+*********/
+
+/*-------------------------------------
+NavBarSearch Overriden styles
+--------------------------------------*/
+
+.textbox.allowTextSelection.searchText.placeholderText::-ms-clear { display: none; }
+
+.RootView-searchPage,
+.RootView-relevanceSearchPage {
+    height: 100%;
+    width: 100%;
+    padding-left: 50px;
+    padding-top: 10px;
+}
+
+.searchBoxHeader { height: 145px; }
+
+.tipsSectionContainer {
+    width: 100%;
+    padding-right: 0px;
+    background-color: #FFFFFF;
+}
+
+/*!
+This file is based on or incorporates material from the projects listed below (Third Party IP). The original copyright notice and the license under which Microsoft received such Third Party IP, are set forth below. Such licenses and notices are provided for informational purposes only. Microsoft licenses the Third Party IP to you under the licensing terms for the Microsoft product. Microsoft reserves all other rights not expressly granted under this agreement, whether by implication, estoppel or otherwise.
+* jqGrid  4.4.4 - jQuery Grid
+* Copyright (c) 2008, Tony Tomov, tony@trirand.com
+* Dual licensed under the MIT and GPL licenses
+* http://www.opensource.org/licenses/mit-license.php
+* http://www.gnu.org/licenses/gpl-2.0.html
+* Date:2013-01-30
+*/
+
+.ui-jqgrid {
+    position: relative;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.ui-jqgrid .ui-jqgrid-view {
+    position: relative;
+    left: 0;
+    top: 0;
+    padding: 0;
+    font-size: 11px;
+    float: left;
+}
+
+/* caption*/
+
+.ui-jqgrid .ui-jqgrid-titlebar {
+    height: 19px;
+    padding: .3em .2em .2em .3em;
+    position: relative;
+    font-size: 12px;
+    border-left: 0 none;
+    border-right: 0 none;
+    border-top: 0 none;
+}
+
+.ui-jqgrid .ui-jqgrid-caption { text-align: left; }
+
+.ui-jqgrid .ui-jqgrid-title { margin: .1em 0 .2em; }
+
+.ui-jqgrid .ui-jqgrid-titlebar-close {
+    position: absolute;
+    top: 50%;
+    width: 19px;
+    margin: -10px 0 0 0;
+    padding: 1px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.ui-jqgrid .ui-jqgrid-titlebar-close span {
+    display: block;
+    margin: 1px;
+}
+
+.ui-jqgrid .ui-jqgrid-titlebar-close:hover { padding: 0; }
+
+/* header*/
+
+.ui-jqgrid .ui-jqgrid-hdiv {
+    position: relative;
+    margin: 0 0 10px 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.ui-jqgrid .ui-jqgrid-hbox {
+    float: left;
+    width: 100%;
+}
+
+.ui-jqgrid .ui-jqgrid-htable {
+    table-layout: fixed;
+    margin: 0;
+    border-collapse: separate;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th {
+    height: 30px;
+    padding: 0 2px 0 2px;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th div {
+    overflow: hidden;
+    position: relative;
+    height: auto;
+    margin: .1em 0em;
+}
+
+.ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+    border-top: 0 none;
+    border-bottom: 0 none;
+}
+
+.ui-th-column-header, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column-header {
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    border-top: 0 none;
+    height: 26px;
+}
+
+.ui-th-ltr, .ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr { border-left: 0 none; }
+
+.ui-th-rtl, .ui-jqgrid .ui-jqgrid-htable th.ui-th-rtl { border-right: 0 none; }
+
+.ui-first-th-ltr { border-right: 1px solid; }
+
+.ui-first-th-rtl { border-left: 1px solid; }
+
+.ui-jqgrid .ui-th-div-ie {
+    white-space: nowrap;
+    zoom: 1;
+    height: 17px;
+}
+
+.ui-jqgrid .ui-jqgrid-resize {
+    height: 20px !important;
+    position: relative;
+    cursor: e-resize;
+    display: inline;
+    overflow: hidden;
+}
+
+.ui-jqgrid .ui-grid-ico-sort {
+    overflow: hidden;
+    position: absolute;
+    display: inline;
+    cursor: pointer !important;
+}
+
+.ui-jqgrid .ui-icon-asc {
+    margin-top: -3px;
+    height: 12px;
+}
+
+.ui-jqgrid .ui-icon-desc {
+    margin-top: 3px;
+    height: 12px;
+}
+
+.ui-jqgrid .ui-i-asc {
+    margin-top: 0;
+    height: 16px;
+}
+
+.ui-jqgrid .ui-i-desc {
+    margin-top: 0;
+    margin-left: 13px;
+    height: 16px;
+}
+
+.ui-jqgrid .ui-jqgrid-sortable { cursor: pointer; }
+
+.ui-jqgrid tr.ui-search-toolbar th { }
+
+.ui-jqgrid .ui-search-table td.ui-search-clear { width: 25px; }
+
+.ui-jqgrid tr.ui-search-toolbar td > input { padding-right: 0px; }
+
+.ui-jqgrid tr.ui-search-toolbar select { }
+
+/* body */
+
+.mars-minigrid-wrapper .ui-jqgrid .ui-jqgrid-bdiv {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    text-align: left;
+    height: 200px !important;
+}
+
+.ui-jqgrid .ui-jqgrid-bdiv {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    text-align: left;
+}
+
+.ui-jqgrid .ui-jqgrid-btable {
+    table-layout: fixed;
+    margin: 0;
+    outline-style: none;
+    border-collapse: separate;
+}
+
+.ui-jqgrid tr:nth-child(odd) td { background-color: #fff; }
+
+.ui-jqgrid tr:nth-child(even) td { background-color: #f3f3f3; }
+
+.ui-jqgrid tr.jqgroup { outline-style: none; }
+
+.ui-jqgrid tr.jqgrow td {
+    font-weight: normal;
+    overflow: hidden;
+    white-space: pre;
+    height: 38px;
+    padding: 1px 2px 1px 10px;
+}
+
+.ui-jqgrid tr.jqgfirstrow td {
+    padding: 0 2px 0 2px;
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+
+.ui-jqgrid tr.jqgroup td {
+    font-weight: normal;
+    overflow: hidden;
+    white-space: pre;
+    height: 30px;
+    padding: 0 2px 0 2px;
+}
+
+.ui-jqgrid tr.jqfoot td {
+    font-weight: bold;
+    overflow: hidden;
+    white-space: pre;
+    height: 22px;
+    padding: 0 2px 0 2px;
+    border-bottom-width: 1px;
+    border-bottom-color: inherit;
+    border-bottom-style: solid;
+}
+
+.ui-jqgrid tr.ui-row-ltr td {
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+.ui-jqgrid tr.ui-row-rtl td {
+    text-align: right;
+    border-left-width: 1px;
+    border-left-color: inherit;
+    border-left-style: solid;
+}
+
+.ui-jqgrid td.jqgrid-rownum {
+    padding: 0 2px 0 2px;
+    margin: 0;
+    border: 0 none;
+}
+
+.ui-jqgrid .ui-jqgrid-resize-mark {
+    width: 2px;
+    left: 0;
+    background-color: #777;
+    cursor: e-resize;
+    cursor: col-resize;
+    position: absolute;
+    top: 0;
+    height: 100px;
+    overflow: hidden;
+    display: none;
+    border: 0 none;
+    z-index: 99999;
+}
+
+/* footer */
+
+.ui-jqgrid .ui-jqgrid-sdiv {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-left: 0 none !important;
+    border-top: 0 none !important;
+    border-right: 0 none !important;
+}
+
+.ui-jqgrid .ui-jqgrid-ftable {
+    table-layout: fixed;
+    margin-bottom: 0;
+    border-collapse: separate;
+}
+
+.ui-jqgrid tr.footrow td {
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 20px;
+    padding: 0 2px 0 2px;
+    border-top-width: 1px;
+    border-top-color: inherit;
+    border-top-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: inherit;
+    border-bottom-style: solid;
+}
+
+.ui-jqgrid tr.footrow-ltr td {
+    text-align: left;
+    border-right-width: 1px;
+    border-right-color: inherit;
+    border-right-style: solid;
+}
+
+.ui-jqgrid tr.footrow-rtl td {
+    text-align: right;
+    border-left-width: 1px;
+    border-left-color: inherit;
+    border-left-style: solid;
+}
+
+/* Pager*/
+
+.ui-jqgrid .ui-jqgrid-pager {
+    border-left: 0 none !important;
+    border-right: 0 none !important;
+    border-bottom: 0 none !important;
+    border-top: 0 none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    height: auto;
+    min-height: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 11px;
+    margin-top: 10px;
+    background-color: #fff !important;
+}
+
+.ui-jqgrid .ui-jqgrid-toppager .ui-pager-control, .ui-jqgrid .ui-jqgrid-pager .ui-pager-control {
+    position: relative;
+    border-left: 0;
+    border-bottom: 0;
+    border-top: 0;
+    height: 28px;
+    margin-top: 10px;
+}
+
+.ui-jqgrid .ui-pg-table {
+    position: relative;
+    padding: 1px 0;
+    width: auto;
+    margin: 0;
+}
+
+.ui-jqgrid .ui-pg-table input[type="text"] { width: 30%; }
+
+.ui-jqgrid .ui-pg-table td {
+    font-weight: normal;
+    vertical-align: middle;
+    padding: 0px 1px;
+    color: #000;
+    font-size: 11px;
+}
+
+.ui-jqgrid .ui-pg-button { height: auto }
+
+.ui-jqgrid .ui-pg-button span {
+    display: block;
+    margin: 2px;
+    float: left;
+}
+
+.ui-jqgrid .ui-pg-button:hover { padding: 0; }
+
+.ui-jqgrid .ui-state-disabled:hover { padding: 1px; }
+
+.ui-jqgrid .ui-pg-input, .ui-jqgrid .ui-jqgrid-toppager .ui-pg-input {
+    height: 14px;
+    width: auto;
+    font-size: .9em;
+    margin: 0;
+    line-height: inherit;
+    border: none;
+    padding: 3px 2px
+}
+
+.ui-jqgrid .ui-pg-selbox, .ui-jqgrid .ui-jqgrid-toppager .ui-pg-selbox {
+    font-size: .9em;
+    line-height: inherit;
+    display: block;
+    height: 19px;
+    margin: 0;
+    padding: 3px 0px;
+    border: none;
+}
+
+.ui-jqgrid .ui-separator {
+    height: 18px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    margin: 1px;
+    float: right;
+}
+
+.ui-jqgrid .ui-paging-info {
+    font-weight: normal;
+    height: auto;
+    margin-top: 3px;
+    margin-right: 4px;
+    display: inline;
+    color: #000;
+}
+
+.ui-jqgrid .ui-jqgrid-pager .ui-pg-div {
+    padding: 1px 0;
+    float: left;
+    position: relative;
+    line-height: 20px;
+}
+
+.ui-jqgrid .ui-jqgrid-pager .ui-pg-button { cursor: pointer; }
+
+.ui-jqgrid .ui-jqgrid-pager .ui-pg-div span.ui-icon {
+    float: left;
+    margin: 2px;
+    width: 18px;
+}
+
+.ui-jqgrid td input, .ui-jqgrid td select, .ui-jqgrid td textarea { margin: 0; }
+
+.ui-jqgrid td textarea {
+    width: auto;
+    height: auto;
+}
+
+.ui-jqgrid .ui-jqgrid-toppager {
+    border-left: 0 none !important;
+    border-right: 0 none !important;
+    border-top: 0 none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    height: 25px !important;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ui-jqgrid .ui-jqgrid-toppager .ui-pg-div {
+    padding: 1px 0;
+    float: left;
+    position: relative;
+    line-height: 20px;
+}
+
+.ui-jqgrid .ui-jqgrid-toppager .ui-pg-button { cursor: pointer; }
+
+.ui-jqgrid .ui-jqgrid-toppager .ui-pg-div span.ui-icon {
+    float: left;
+    margin: 2px;
+    width: 18px;
+}
+
+/*subgrid*/
+
+.ui-jqgrid .ui-jqgrid-btable .ui-sgcollapsed span { display: block; }
+
+.ui-jqgrid .ui-subgrid {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.ui-jqgrid .ui-subgrid table { table-layout: fixed; }
+
+.ui-jqgrid .ui-subgrid tr.ui-subtblcell td {
+    height: 18px;
+    border-right-width: 1px;
+    border-right-color: inherit;
+    border-right-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: inherit;
+    border-bottom-style: solid;
+}
+
+.ui-jqgrid .ui-subgrid td.subgrid-data { border-top: 0 none !important; }
+
+.ui-jqgrid .ui-subgrid td.subgrid-cell { border-width: 0 0 1px 0; }
+
+.ui-jqgrid .ui-th-subgrid { height: 20px; }
+
+/* loading */
+
+.ui-jqgrid .loading {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    width: auto;
+    z-index: 101;
+    padding: 6px;
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+    border-width: 2px !important;
+    font-size: 11px;
+}
+
+.ui-jqgrid .jqgrid-overlay {
+    display: none;
+    z-index: 100;
+}
+
+/* IE * html .jqgrid-overlay {width: expression(this.parentNode.offsetWidth+'px');height: expression(this.parentNode.offsetHeight+'px');} */
+
+* .jqgrid-overlay iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* IE width: expression(this.parentNode.offsetWidth+'px');height: expression(this.parentNode.offsetHeight+'px');}*/
+
+/* end loading div */
+
+/* toolbar */
+
+.ui-jqgrid .ui-userdata {
+    border-left: 0 none;
+    border-right: 0 none;
+    height: 21px;
+    overflow: hidden;
+}
+
+/*Modal Window */
+
+.ui-jqgrid .ui-jqdialog { font-size: 11px; }
+
+.ui-jqdialog {
+    display: none;
+    width: 300px;
+    position: absolute;
+    padding: .2em;
+    font-size: 11px;
+    overflow: visible;
+}
+
+.ui-jqdialog .ui-jqdialog-titlebar {
+    padding: .3em .2em;
+    position: relative;
+    height: 20px;
+}
+
+.ui-jqdialog .ui-jqdialog-title { margin: .3em 0 .2em; }
+
+.ui-jqdialog .ui-jqdialog-titlebar-close {
+    position: absolute;
+    top: 50%;
+    width: 19px;
+    margin: -10px 0 0 0;
+    padding: 1px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.ui-jqdialog .ui-jqdialog-titlebar-close span {
+    display: block;
+    margin: 1px;
+}
+
+.ui-jqdialog .ui-jqdialog-titlebar-close:hover, .ui-jqdialog .ui-jqdialog-titlebar-close:focus { padding: 0; }
+
+.ui-jqdialog-content, .ui-jqdialog .ui-jqdialog-content {
+    border: 0;
+    padding: .3em .2em;
+    background: none;
+    height: auto;
+}
+
+.ui-jqdialog .ui-jqconfirm {
+    padding: .4em 1em;
+    border-width: 3px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    overflow: visible;
+    display: none;
+    height: 80px;
+    width: 220px;
+    text-align: center;
+}
+
+.ui-jqdialog > .ui-resizable-se {
+    bottom: -3px;
+    right: -3px
+}
+
+.ui-jqgrid > .ui-resizable-se {
+    bottom: -3px;
+    right: -3px
+}
+
+/* end Modal window*/
+
+/* Form edit */
+
+.ui-jqdialog-content .FormGrid { margin: 0; }
+
+.ui-jqdialog-content .EditTable {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.ui-jqdialog-content .DelTable {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.EditTable td input, .EditTable td select, .EditTable td textarea { margin: 0; }
+
+.EditTable td textarea {
+    width: auto;
+    height: auto;
+}
+
+.ui-jqdialog-content td.EditButton {
+    text-align: right;
+    border-top: 0 none;
+    border-left: 0 none;
+    border-right: 0 none;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.ui-jqdialog-content td.navButton {
+    text-align: center;
+    border-left: 0 none;
+    border-top: 0 none;
+    border-right: 0 none;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.ui-jqdialog-content input.FormElement {
+    padding: .5em .3em;
+    margin-bottom: 3px
+}
+
+.ui-jqdialog-content select.FormElement {
+    padding: .3em;
+    margin-bottom: 3px;
+}
+
+.ui-jqdialog-content .data-line {
+    padding-top: .1em;
+    border: 0 none;
+}
+
+.ui-jqdialog-content .CaptionTD {
+    vertical-align: middle;
+    border: 0 none;
+    padding: 2px;
+    white-space: nowrap;
+}
+
+.ui-jqdialog-content .DataTD {
+    padding: 2px;
+    border: 0 none;
+    vertical-align: top;
+}
+
+.ui-jqdialog-content .form-view-data { white-space: pre }
+
+.fm-button {
+    height: 18px;
+    display: inline-block;
+    margin: 2px 4px 0 0;
+    padding: .6em .5em .2em .5em;
+    text-decoration: none !important;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    zoom: 1;
+}
+
+.fm-button-icon-left { padding-left: 1.9em; }
+
+.fm-button-icon-right { padding-right: 1.9em; }
+
+.fm-button-icon-left .ui-icon {
+    right: auto;
+    left: .2em;
+    margin-left: 0;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+}
+
+.fm-button-icon-right .ui-icon {
+    left: auto;
+    right: .2em;
+    margin-left: 0;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+}
+
+#nData, #pData {
+    float: left;
+    margin: 3px;
+    padding: 0;
+    width: 15px;
+}
+
+/* End Eorm edit */
+
+/*.ui-jqgrid .edit-cell {}*/
+
+.ui-jqgrid .selected-row, div.ui-jqgrid .selected-row td {
+    font-style: normal;
+    border-left: 0 none;
+}
+
+/* inline edit actions button*/
+
+.ui-inline-del.ui-state-hover span, .ui-inline-edit.ui-state-hover span,
+.ui-inline-save.ui-state-hover span, .ui-inline-cancel.ui-state-hover span {
+    margin: -1px;
+    color: #000;
+}
+
+/* Tree Grid */
+
+.ui-jqgrid .tree-wrap {
+    float: left;
+    position: relative;
+    height: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ui-jqgrid .tree-minus {
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    overflow: hidden;
+}
+
+.ui-jqgrid .tree-plus {
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    overflow: hidden;
+}
+
+.ui-jqgrid .tree-leaf {
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    overflow: hidden;
+}
+
+.ui-jqgrid .treeclick { cursor: pointer; }
+
+/* moda dialog */
+
+* iframe.jqm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/*	 width: expression(this.parentNode.offsetWidth+'px');height: expression(this.parentNode.offsetHeight+'px');}*/
+
+.ui-jqgrid-dnd tr td {
+    border-right-width: 1px;
+    border-right-color: inherit;
+    border-right-style: solid;
+    height: 20px
+}
+
+/* RTL Support */
+
+.ui-jqgrid .ui-jqgrid-caption-rtl { text-align: right; }
+
+.ui-jqgrid .ui-jqgrid-hbox-rtl {
+    float: right;
+    padding-left: 20px;
+}
+
+.ui-jqgrid .ui-jqgrid-resize-ltr {
+    float: right;
+    margin: -2px -2px -2px 0;
+}
+
+.ui-jqgrid .ui-jqgrid-resize-rtl {
+    float: left;
+    margin: -2px 0 -1px -3px;
+}
+
+.ui-jqgrid .ui-sort-rtl { left: 0; }
+
+.ui-jqgrid .tree-wrap-ltr { float: left; }
+
+.ui-jqgrid .tree-wrap-rtl { float: right; }
+
+.ui-jqgrid .ui-ellipsis {
+    -moz-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+/* Toolbar Search Menu */
+
+.ui-search-menu {
+    position: absolute;
+    padding: 2px 5px;
+}
+
+.ui-search-menu.ui-menu .ui-menu-item {
+    list-style-image: none;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.ui-search-menu.ui-menu .ui-menu-item a { display: block; }
+
+.ui-search-menu.ui-menu .ui-menu-item a.g-menu-item:hover {
+    margin: -1px;
+    font-weight: normal;
+}
+
+.ui-jqgrid .ui-search-table {
+    padding: 0;
+    border: 0 none;
+    height: 20px;
+    width: 100%;
+}
+
+.ui-jqgrid .ui-search-table .ui-search-oper { width: 20px; }
+
+a.g-menu-item, a.soptclass, a.clearsearchclass { cursor: pointer; }
+
+.ui-jqgrid .ui-jqgrid-view input,
+.ui-jqgrid .ui-jqgrid-view select,
+.ui-jqgrid .ui-jqgrid-view textarea,
+.ui-jqgrid .ui-jqgrid-view button { font-size: 11px }
+
+.ui-jqgrid .ui-scroll-popup { width: 95px; }
+
+.ui-search-table select,
+.ui-search-table input { padding: 4px 3px; }

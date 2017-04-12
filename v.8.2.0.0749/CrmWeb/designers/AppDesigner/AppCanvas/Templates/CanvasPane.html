@@ -1,0 +1,109 @@
+<div ng-class="['mscrm-CanvasPaneOverflowContainer', {'mscrm-CanvasPaneNotification': appArtifacts.ShouldShowNotification}]" mscrm-major-component data-ctabindex="0" tabindex="0" data-mcgroupname="primary" aria-hidden="false">
+    <div class="mscrm-CardsPanel"
+         id="canvasPaneContainer"
+         tabindex="-1"
+         mscrm-locale mscrm-resource-key="AppDesigner.EntireCanvas"
+         mscrm-target-attr="aria-label"
+         role="group"
+         ng-click="appArtifacts.DisplayAddComponentsPane()"
+         mscrm-action-on-select
+         data-actiononfocusmode>
+        <div ng-class="['mscrm-ComponentHolder', {'mscrm-HighlightComponentHolder': appArtifacts.ShouldHighlightSwimlane('Sitemap', null)}]"
+             tabindex="-1"
+             mscrm-locale mscrm-resource-key="AppDesigner.SwimlaneSitemap"
+             mscrm-target-attr="aria-label"
+             role="group"
+             data-scroll-point="sitemap"
+             mscrm-major-component
+             data-ctabindex="0"
+             data-mcgroupname="appDesignerCanvasSwimlanes">
+            <div id="AppDesigner.CanvasPane.SwimLaneTitle.Sitemap" class="mscrm-SwimLaneTitle">
+                <mscrm-locale mscrm-resource-key="AppDesigner.SiteMap"/>
+            </div>
+            <div class="mscrm-CardHolder">
+                <mscrm-sitemap-card></mscrm-sitemap-card>
+            </div>
+        </div>
+        <div ng-class="['mscrm-ComponentHolder', 'mscrm-DashboardBPC_Container', {'mscrm-HighlightComponentHolder': appArtifacts.ShouldHighlightSwimlane('Dashboard_BPC', null)}]"
+             tabindex="-1"
+             mscrm-locale mscrm-resource-key="AppDesigner.SwimlaneDashboardBPC"
+             mscrm-target-attr="aria-label"
+             role="group"
+             data-scroll-point="dashboard_bpc"
+             mscrm-major-component
+             data-ctabindex="1"
+             data-mcgroupname="appDesignerCanvasSwimlanes"
+             mscrm-arrow-key-navigation
+             data-arrow-direction="horizontal">
+            <div class="mscrm-NonEntityArtifactHolder" ng-repeat="artifact in appArtifacts.NonEntityArtifactList">
+                <span ng-if="$index==0" ng-click="appArtifacts.ToggleNonEntityArtifactHolderVisibility()"
+                      ng-class="['mscrm-Canvas-CollapsibleIcon', {'mscrm-glyph-collapsedIcon': !appArtifacts.AreNonEntityArtifactHoldersVisible, 'mscrm-glyph-expandedIcon': appArtifacts.AreNonEntityArtifactHoldersVisible}]"
+                      class="mscrm-Canvas-CollapsibleIcon-NonEntity">
+                </span>
+                <!-- <mscrm-customtext-node> Defining custom text node to avoid browser applying default roles on text nodes defined using div/span(Fix for Bug: 345003) -->
+                <mscrm-customtext-node id="AppDesigner.CanvasPane.SwimLaneTitle.{{artifact.displayName}}"
+                                       role="text" class="mscrm-SwimLaneTitle" tabindex="-1"
+                                       ng-click="$index==0 && appArtifacts.ToggleNonEntityArtifactHolderVisibility()"
+                                       mscrm-action-on-select
+                                       aria-labelledby="AppDesigner.CanvasPane.SwimLaneTitle.{{artifact.displayName}}">
+                    {{appArtifacts.NonEntitySwimlaneTitle(artifact)}}
+                </mscrm-customtext-node>
+                <div class="mscrm-CardHolder" ng-if="appArtifacts.AreNonEntityArtifactHoldersVisible">
+                    <mscrm-canvas-card></mscrm-canvas-card>
+                </div>
+            </div>
+        </div>
+        <div ng-class="['mscrm-EntityCardContainer', {'mscrm-HighlightComponentHolder': appArtifacts.ShouldHighlightSwimlane('Entity', null)}]"
+             mscrm-locale mscrm-resource-key="AppDesigner.SwimlaneEntity"
+             mscrm-target-attr="aria-label"
+             role="application"
+             data-scroll-point="entity"
+             mscrm-major-component
+             data-ctabindex="2"
+             data-mcgroupname="appDesignerCanvasSwimlanes"
+             data-islastmc="1"
+             mscrm-arrow-key-navigation
+             data-arrow-direction="wave-vertical">
+            <div class="mscrm-ComponentHolder mscrm-CollapsibleComponent">
+                <span ng-show="contextModel.entityArea.entitySwimLanes.length"
+                      ng-click="appArtifacts.ToggleEntitySwimLanesVisibility()"
+                      ng-class="['mscrm-Canvas-CollapsibleIcon', {'mscrm-glyph-collapsedIcon': !appArtifacts.AreEntitySwimLanesVisible, 'mscrm-glyph-expandedIcon': appArtifacts.AreEntitySwimLanesVisible}]">
+                </span>
+                <span class="mscrm-Canvas-CollapsibleText"
+                      ng-click="appArtifacts.ToggleEntitySwimLanesVisibility()"
+                      tabindex="-1"
+                      mscrm-action-on-select>
+                    {{appArtifacts.EntitySwimlaneTitle(contextModel.entityArea)}}
+                </span>
+            </div>
+            <div ng-if="appArtifacts.AreEntitySwimLanesVisible">
+                <div id="AppDesigner.CanvasPane.Entity.{{entitySwimLane.entitymetadata.id}}.EntityCardContainer"
+                     tabindex="-1"
+                     ng-repeat="entitySwimLane in contextModel.entityArea.entitySwimLanes"
+                     ng-class="['mscrm-ComponentHolder', {'mscrm-HighlightComponentHolder': appArtifacts.ShouldHighlightSwimlane(null, entitySwimLane)}]"
+                     ng-attr-data-scroll-point="{{entitySwimLane.entitymetadata.logicalName}}"
+                     mscrm-arrow-key-navigation
+                     data-arrow-direction="horizontal"
+                     arrow-parent-node>
+                    <div class="mscrm-Canvas-CollapsibleText mscrm-SwimLaneTitleWrapper">
+                        <div ng-class="[{ 'mscrm-WarningContainer': ( appArtifacts.GetDependencyCount(null, entitySwimLane)> 0), 'mscrm-WarningContainerHidden': (appArtifacts.GetDependencyCount(null, entitySwimLane) == 0) }]">
+                            <div class="mscrm-dependency-Warning">
+                                <span id="AppDesigner.CanvasPane.Entity.WarningContainer.{{entitySwimLane.entitymetadata.id}}.WarningIcon" class="mscrm-WarningIcon mscrm-glyph-WarningIcon"></span>
+                                <span id="AppDesigner.CanvasPane.Entity.WarningContainer.{{entitySwimLane.entitymetadata.id}}.dependencyCount" class="mscrm-WarningText" name="title-Warning">{{appArtifacts.GetDependencyCount(null, entitySwimLane)}} Dependencies</span>
+                            </div>
+                        </div>
+                        <div tabindex="-1" id="AppDesigner.CanvasPane.Entity.{{entitySwimLane.entitymetadata.id}}"
+                             class="mscrm-SwimLaneTitle"
+                             ng-attr-title="{{entitySwimLane.entitymetadata.displayName}}"
+                             ng-click="appArtifacts.SelectEntity(entitySwimLane, $event); IsAllSelect= !IsAllSelect" mscrm-action-on-select ng-class="{'activeCard': IsAllSelect}">
+                            <div id="AppDesigner.CanvasPane.Entity.{{entitySwimLane.entitymetadata.id}}.Text" class="mscrm-Swimlane-EntityName">{{entitySwimLane.entitymetadata.displayName}}</div>
+                        </div>
+                    </div>
+                    <div class="mscrm-CardHolder">
+                        <mscrm-canvas-card ng-repeat="artifact in entitySwimLane.entityArtifacts"></mscrm-canvas-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

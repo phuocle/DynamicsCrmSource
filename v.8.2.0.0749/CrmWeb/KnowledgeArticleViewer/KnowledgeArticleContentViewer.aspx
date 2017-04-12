@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Microsoft.Crm.Service.Application.Pages.KnowledgeArticleViewer.KnowledgeArticleContentViewer" %>

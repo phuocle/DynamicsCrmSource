@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="KBArticleTemplates" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">
+      This will verify a KB Article Templates
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="kbarticletemplates" msdata:IsDataSet="true">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="kbarticletemplate">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="structurexml" type="kbtemplateStructureXml" block="substitution" />
+              <xs:element name="formatxml" type="kbtemplateFormatXml" block="substitution" />
+              <xs:element name="description" type="kbtemplateDescription" block="substitution" minOccurs="0" />
+              <xs:element name="title" type="kbtemplateTitle" block="substitution" minOccurs="0" />
+              <xs:element name="isactive" type="kbtemplateIsAcitve" block="substitution" minOccurs="0" />
+              <xs:element name="versionnumber" type="kbtemplateVersionNumber" block="substitution" minOccurs="0" />
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="kbtemplateStructureXml">
+    <!-- we only minimally check this since the content is encoded and is validated in a separate xsd after decoding.-->
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="7000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="kbtemplateFormatXml">
+    <!-- we only minimally check this since the content is encoded and is validated in a separate xsd after decoding.-->
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="7000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="kbtemplateDescription">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0" />
+      <xs:maxLength value="7000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="kbtemplateTitle">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0" />
+      <xs:maxLength value="500" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="kbtemplateIsAcitve">
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="kbtemplateVersionNumber">
+    <xs:restriction base="xs:integer" />
+  </xs:simpleType>
+</xs:schema>

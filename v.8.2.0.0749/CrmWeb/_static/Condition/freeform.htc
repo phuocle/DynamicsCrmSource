@@ -1,0 +1,143 @@
+<public:component lightweight="true" tagName=Freeform>
+    <public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+    <public:event name="onchange" id="OnChangeHandler"/>
+    <public:property name="ParentControl"/>
+    <public:property name="ColumnData"/>
+    <public:property name="Container"/>
+    <public:property name="DataValue" get="GetDataValue" put="SetDataValue"/>
+    <public:property name="Width"/>
+    <public:property name="Index"/>
+    <public:method name="Render"/>
+    <public:method name="GetXml"/>
+    <public:method name="ParseXml"/>
+    <html xmlns:Crm>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _oAutoShow = null,
+                                                   _sDataValue = null,
+                                                   _bInitialized = false;
+                                               Sys.Application.add_load(SysInit);
+
+                                               function SysInit() {
+                                                   Init()
+                                               }
+
+                                               function InitOnDocReady() {
+                                                   Sys.Application.get_isInitialized() &&
+                                                       !_bInitialized &&
+                                                       Init()
+                                               }
+
+                                               function Init() {
+                                                   element
+                                                       .innerHTML = "<Crm:AutoShow id='" + element.id + "FREEFORM'/>";
+                                                   _oAutoShow = element.firstChild;
+                                                   _oAutoShow.Container = element.Container;
+                                                   with (_oAutoShow) {
+                                                       InnerControlHtml = "<span/>";
+                                                       DefaultText = LOCID_AF_SELECTFIELDENTITY;
+                                                       onchange = FieldChanged;
+                                                       Value = _sDataValue;
+                                                       oninitcomplete = OnAutoShowInitComplete
+                                                   }
+                                                   _oAutoShow.Width = Width
+                                               }
+
+                                               function OnAutoShowInitComplete() {
+                                                   _bInitialized = true;
+                                                   SetDataValue(_sDataValue)
+                                               }
+
+                                               function Render() {
+                                                   if (IsNull(_oAutoShow))
+                                                       return;
+                                                   _oAutoShow.DefaultText = LOCID_AF_ENTERVALUE;
+                                                   with (_oAutoShow) {
+                                                       if (Container.ReadOnlyMode == "1")
+                                                           disabled = true;
+                                                       var sInnerHtml,
+                                                           fnCallback = Container.GetUserDefinedList;
+                                                       if (!IsNull(fnCallback) && "function" == typeof fnCallback)
+                                                           sInnerHtml = fnCallback(ColumnData.id, element);
+                                                       if (!IsNull(sInnerHtml))
+                                                           InnerControlHtml = sInnerHtml;
+                                                       if (Container.id == "dupRuleAppCondition" &&
+                                                           ColumnData.id == "colIgnoreBlankValues") {
+                                                           ShowAlways = true;
+                                                           ShowControl(true);
+                                                           ToolTip = LOCID_DEDUP_IGNOREBLANK_TOOLTIP;
+                                                           if (_isIgnoreBlankValuePresentInMetadata == false)
+                                                               disabled = true
+                                                       }
+                                                   }
+                                               }
+
+                                               function GetDataValue() {
+                                                   return _sDataValue
+                                               }
+
+                                               function SetDataValue(sValue) {
+                                                   _sDataValue = sValue;
+                                                   if (_bInitialized) {
+                                                       Render();
+                                                       _oAutoShow.Value = sValue
+                                                   }
+                                               }
+
+                                               function ParseXml() {
+                                                   if ((IsNull(_sDataValue) || _sDataValue.toString() == "") &&
+                                                       !(ColumnData.id == "colIgnoreBlankValues"))
+                                                       if (LOCID_DEDUP_NUMCHARS_MISSING) {
+                                                           var iOperatorListIndex = window._isSingleEntityRule ? 1 : 2,
+                                                               operator = element.ParentControl
+                                                                   .GetControl(iOperatorListIndex);
+                                                           if (operator.DataValue && !operator.IsUnary()) {
+                                                               var
+                                                                   attAutoShow = element.ParentControl.GetControl(0)
+                                                                       .firstChild;
+                                                               if (attAutoShow) {
+                                                                   alert(formatString(LOCID_DEDUP_NUMCHARS_MISSING,
+                                                                       attAutoShow.Text));
+                                                                   return false
+                                                               }
+                                                           }
+                                                       }
+                                                   return true
+                                               }
+
+                                               function GetXml() {
+                                                   if (IsNull(_sDataValue) || _sDataValue.toString() == "")
+                                                       return null;
+                                                   else {
+                                                       var sXml,
+                                                           fnCallback = Container.GetUserDefinedXml;
+                                                       if (!IsNull(fnCallback) && "function" == typeof fnCallback)
+                                                           sXml = fnCallback(ColumnData.id, element);
+                                                       if (IsNull(sXml))
+                                                           sXml = GetDataValue();
+                                                       return '<column id="' +
+                                                           ColumnData.id +
+                                                           '" value="' +
+                                                           CrmEncodeDecode.CrmXmlEncode(sXml) +
+                                                           '"/>'
+                                                   }
+                                               }
+
+                                               function FieldChanged() {
+                                                   var sOldValue = _sDataValue;
+                                                   _sDataValue = event.srcElement.Value;
+                                                   RaiseFieldChangedEvent(false);
+                                                   var fnCallback = Container.NotifyConditionsChanged;
+                                                   !IsNull(fnCallback) &&
+                                                       "function" == typeof fnCallback &&
+                                                       fnCallback()
+                                               }
+
+                                               function RaiseFieldChangedEvent(bRaisedByCode) {
+                                                   ParentControl.FieldChanged();
+                                                   ParentControl.HideAffectedControls(Index)
+                                               }
+
+                                           </script>
+    </html>
+</public:component>

@@ -1,0 +1,10 @@
+.ms-crm-List-DataArea,
+div.crmContentPanel,
+#readFormToolBar,
+.processStepsContainer,
+DIV.ms-crm-Form-AreaContainer,
+.processControlContainer div.collapsibleArea div.scrollPane,
+.ui-flyout-dialog.processNavigateMenu div.navigateMenuSection,
+.notesContainerScrollDiv,
+div.ms-crm-DialogStrict-Main-HeaderLess,
+.ms-crm-FormBodyContainer { -webkit-overflow-scrolling: touch; }

@@ -1,0 +1,173 @@
+<public:component lightweight="true">
+    <public:attach event="ondocumentready" onevent="Init()"/>
+    <public:attach event="ondblclick" onevent="Launch()"/>
+    <public:attach event="onchange" onevent="Parse()"/>
+    <public:attach event="ondetach" onevent="cleanUp()"/>
+    <public:attach event="onfocus" onevent="Focus()"/>
+    <public:property name="IsDirty" get="isDirty"/>
+    <public:property name="DataXml" get="dataXml"/>
+    <public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+    <public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+    <public:property name="RequiredLevel" get="getRequiredLevel"/>
+    <public:property name="MaxLength" get="getMaxLength"/>
+    <public:property name="DataChangeHandler"/>
+    <public:method name="SetFocus" internalname="setFocus"/>
+    <public:method name="FireOnChange" internalname="fireOnChange"/>
+    <public:method name="IsValid" internalname="Parse"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _bAllowValidationMessage = true,
+                                                   _validEmailRegexp = /^[^@\s\"<>)(\[\]:;,]+@[^@\s\"<>)(\[\]:;,]+$/,
+                                                   _bInvalidValueEntered = false;
+
+                                               function Init() {
+                                                   element.attachEvent("onblur", onBlur);
+                                                   attachWindowOnBeforeUnload(beforeUnload)
+                                               }
+
+                                               function onBlur() {
+                                                   _bInvalidValueEntered &&
+                                                       Parse()
+                                               }
+
+                                               function beforeUnload(oEvent) {
+                                                   _bAllowValidationMessage = false
+                                               }
+
+                                               function Focus() {
+                                                   _bAllowValidationMessage = true
+                                               }
+
+                                               function cleanUp() {
+                                                   try {
+                                                       typeof element !== "undefined" &&
+                                                           element.detachEvent("onblur", onBlur)
+                                                   } catch (e) {
+                                                   }
+                                               }
+
+                                               function isDirty() {
+                                                   return this.defaultValue != this.value
+                                               }
+
+                                               function dataXml() {
+                                                   var sID = this.id;
+                                                   return "<" +
+                                                       sID +
+                                                       ">" +
+                                                       CrmEncodeDecode.CrmXmlEncode(Trim(this.value)) +
+                                                       "</" +
+                                                       sID +
+                                                       ">"
+                                               }
+
+                                               function Parse() {
+                                                   var bShowValidationMessage =
+                                                       !window.event ||
+                                                           IsNull(window.event.returnValue) ||
+                                                           window.event.returnValue;
+                                                   _bInvalidValueEntered = false;
+                                                   value = Trim(value);
+                                                   if (isDirty()) {
+                                                       if (this.className == "ms-crm-LiveId-Email-Address")
+                                                           _validEmailRegexp =
+                                                               /^[0-9a-zA-Z._-]+@[0-9a-zA-Z._-]+\.[a-zA-Z]{2,5}$/;
+                                                       if (value != "" &&
+                                                           IsNull(value.match(_validEmailRegexp)) &&
+                                                           (
+                                                               this.className == "ms-crm-LiveId-Email-Address" ||
+                                                                   !Mscrm.EmailAddressAttribute
+                                                                   .isValidEmailWithQuotedString(value))) {
+                                                           bShowValidationMessage &&
+                                                               _bAllowValidationMessage &&
+                                                               alert(LOCID_ENTER_VALID_EMAIL);
+                                                           setFocus();
+                                                           if (!IsNull(window.event))
+                                                               event.returnValue = false;
+                                                           _bInvalidValueEntered = true;
+                                                           return false
+                                                       }
+                                                   }
+                                                   if (!IsNull(window.event) && IsNull(event.returnValue))
+                                                       event.returnValue = true;
+                                                   return true
+                                               }
+
+                                               function getDataValue() {
+                                                   var sVal = Trim(this.value);
+                                                   return "" == sVal ? null : sVal
+                                               }
+
+                                               function putDataValue(sVal) {
+                                                   var sDisplayValue = sVal || "";
+                                                   if ("string" == typeof sDisplayValue) {
+                                                       value = sDisplayValue;
+                                                       if (Parse()) {
+                                                           var fDataChangeHandler = this.DataChangeHandler;
+                                                           fDataChangeHandler &&
+                                                               fDataChangeHandler()
+                                                       }
+                                                   } else
+                                                       alert(LOCID_DEVERROR_BADDATA_STRING)
+                                               }
+
+                                               function getDisabled() {
+                                                   return this.contentEditable == "false"
+                                               }
+
+                                               function setDisabled(bValue) {
+                                                   this
+                                                       .className =
+                                                       bValue
+                                                       ? "ms-crm-Email-Address ms-crm-ReadOnly"
+                                                       : "ms-crm-Email-Address";
+                                                   this.contentEditable = bValue ? "false" : "true";
+                                                   this.disabled = bValue
+                                               }
+
+                                               function setFocus() {
+                                                   !IsNull(this.form) &&
+                                                       this.form.className == "ms-crm-Form" &&
+                                                       this.form.GetTab(element, true);
+                                                   element.focus();
+                                                   element.select()
+                                               }
+
+                                               function getMaxLength() {
+                                                   try {
+                                                       return parseInt(this.maxLength, 10)
+                                                   } catch (e) {
+                                                       return 2e3
+                                                   }
+                                               }
+
+                                               function fireOnChange() {
+                                                   this.fireEvent("onchange")
+                                               }
+
+                                               function Launch() {
+                                                   value = Trim(value);
+                                                   if (value.length > 0)
+                                                       Parse() &&
+                                                           safeEmailWindowOpen(Mscrm.CrmUri.create("mailto:" + value),
+                                                               "",
+                                                               "height=" +
+                                                               screen.availHeight * .75 +
+                                                               ",width=" +
+                                                               screen.availWidth * .75 +
+                                                               ",scrollbars=1,resizable=1,status=1,toolbar=1,menubar=1,location=1")
+                                               }
+
+                                               function getRequiredLevel() {
+                                                   try {
+                                                       if (IsNull(this.req))
+                                                           return FIELD_NOT_REQUIRED;
+                                                       else
+                                                           return parseInt(this.req, 10)
+                                                   } catch (e) {
+                                                       return FIELD_NOT_REQUIRED
+                                                   }
+                                               }
+
+                                           </script>
+</public:component>

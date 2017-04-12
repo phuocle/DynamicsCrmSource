@@ -1,0 +1,214 @@
+<public:component lightweight="true">
+    <public:attach event="onclick" onevent="CellOnClick()"/>
+    <public:attach event="onmouseover" onevent="CellOnOver()"/>
+    <public:attach event="onmouseout" onevent="CellOnOut()"/>
+    <public:method name="EditSelectedEntity"/>
+    <public:method name="EditEntity"/>
+    <public:method name="SelectEntity"/>
+    <public:property name="EditMode" put="setEditMode" get="getEditMode"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _oSelectedSpan,
+                                                   _bEditMode = true;
+
+                                               function
+                                                   GetParentOfType(startElement,
+                                                       tagType,
+                                                       maxLevelsToSearch,
+                                                       classType) {
+                                                       var foundElement = startElement;
+                                                       while (
+                                                           foundElement.tagName != tagType ||
+                                                               !IsNull(classType) &&
+                                                               classType.length > 0 &&
+                                                               foundElement.className.indexOf(classType) == -1) {
+                                                           --maxLevelsToSearch;
+                                                           foundElement = foundElement.parentElement;
+                                                           if (foundElement.tagName == "BODY")
+                                                               return null;
+                                                           if (maxLevelsToSearch <= 0)
+                                                               return null
+                                                       }
+                                                       return foundElement
+                                                   }
+
+                                               function EditSelectedEntity(keys, values) {
+                                                   if (_bEditMode && !IsNull(_oSelectedSpan)) {
+                                                       var queryString = "?id=" + _oSelectedSpan.itemId;
+                                                       queryString = appendQueryString(queryString, keys, values);
+                                                       openCrmEntity(_oSelectedSpan, queryString)
+                                                   }
+                                               }
+
+                                               function getSpanFromChild(src) {
+                                                   var newSrc = GetParentOfType(src, "SPAN", 5, null);
+                                                   return IsNull(newSrc) ? src : newSrc
+                                               }
+
+                                               function EditEntity(keys, values) {
+                                                   if (_bEditMode) {
+                                                       var oSpan = getSpanFromChild(event.srcElement);
+                                                       if (oSpan.className == "ms-crm-Cal-Month-Day-Appointment") {
+                                                           var queryString = "?id=" + oSpan.itemId;
+                                                           queryString = appendQueryString(queryString, keys, values);
+                                                           openCrmEntity(oSpan, queryString)
+                                                       }
+                                                   }
+                                               }
+
+                                               function SelectEntity() {
+                                                   var oSpan = getSpanFromChild(event.srcElement);
+                                                   if (_bEditMode &&
+                                                       oSpan.className == "ms-crm-Cal-Month-Day-Appointment" &&
+                                                       frmGrid.itemSelect.value == "true") {
+                                                       event.returnValue = false;
+                                                       hiliteItem(oSpan, event.ctrlKey);
+                                                       _oSelectedSpan = oSpan
+                                                   }
+                                               }
+
+                                               function CellOnClick() {
+                                                   var oTd = getDayCellTd(event.srcElement);
+                                                   if (_bEditMode && !IsNull(oTd)) {
+                                                       event.returnValue = false;
+                                                       hiliteDay(oTd, event.ctrlKey)
+                                                   }
+                                               }
+
+                                               function CellOnOver() {
+                                                   var oTd = getDayCellTd(event.srcElement);
+                                                   if (!IsNull(oTd)) {
+                                                       event.returnValue = false;
+                                                       hoverDay(oTd, "hover")
+                                                   }
+                                               }
+
+                                               function CellOnOut() {
+                                                   var oTd = getDayCellTd(event.srcElement);
+                                                   if (!IsNull(oTd)) {
+                                                       event.returnValue = false;
+                                                       hoverDay(oTd, "leave")
+                                                   }
+                                               }
+
+                                               function getDayCellTd(oSrcElement) {
+                                                   var newSrc =
+                                                       GetParentOfType(oSrcElement, "TD", 8, "ms-crm-Cal-Month-Day");
+                                                   if (IsNull(newSrc))
+                                                       return null;
+                                                   if (frmGrid.cellSelect.value == "true")
+                                                       return newSrc;
+                                                   return null
+                                               }
+
+                                               function hiliteDay(oTd, ctrlKey) {
+                                                   var oTbl = GetParentOfType(oTd, "TABLE", 8, null);
+                                                   if (IsNull(oTbl))
+                                                       return;
+                                                   for (var iNumCells = oTbl.cells.length,
+                                                       i = 0,
+                                                       datesSelected = [],
+                                                       j = 0;
+                                                       j < iNumCells;
+                                                       j++) {
+                                                       var c = oTbl.cells[j];
+                                                       if (!IsNull(c.d)) {
+                                                           if (c.d == oTd.d)
+                                                               if (c.className.indexOf("cmCellSelected") == -1)
+                                                                   c.className = c.className + " cmCellSelected";
+                                                               else
+                                                                   c
+                                                                       .className =
+                                                                       replaceString(" cmCellSelected",
+                                                                           "",
+                                                                           c.className);
+                                                           else if (!ctrlKey)
+                                                               c
+                                                                   .className =
+                                                                   replaceString(" cmCellSelected", "", c.className);
+                                                           if (c.className.indexOf("cmCellSelected") != -1) {
+                                                               datesSelected[i] = c.d;
+                                                               i++
+                                                           }
+                                                       }
+                                                   }
+                                                   frmGrid.selectedDates.value = datesSelected.join(",")
+                                               }
+
+                                               function hoverDay(oTd, action) {
+                                                   var oTbl = GetParentOfType(oTd, "TABLE", 8, null);
+                                                   if (IsNull(oTbl))
+                                                       return;
+                                                   if (oTd.className
+                                                       .indexOf("ms-crm-Cal-Month-Day-Today-Hovered") ==
+                                                       -1 &&
+                                                       action == "hover")
+                                                       oTd
+                                                           .className =
+                                                           oTd.className + " ms-crm-Cal-Month-Day-Today-Hovered";
+                                                   else if (action == "leave")
+                                                       oTd
+                                                           .className =
+                                                           replaceString(" ms-crm-Cal-Month-Day-Today-Hovered",
+                                                               "",
+                                                               oTd.className)
+                                               }
+
+                                               function replaceString(oldS, newS, fullS) {
+                                                   for (var i = 0; i < fullS.length; i++)
+                                                       if (fullS.substring(i, i + oldS.length) == oldS)
+                                                           fullS =
+                                                               fullS.substring(0, i) +
+                                                               newS +
+                                                               fullS.substring(i + oldS.length, fullS.length);
+                                                   return fullS
+                                               }
+
+                                               function hiliteItem(oSpan, ctrlKey) {
+                                                   var oTbl = oSpan.parentElement.parentElement.parentElement
+                                                       .parentElement.parentElement.parentElement.parentElement
+                                                       .parentElement.parentElement;
+                                                   if (oTbl.tagName != "TABLE")
+                                                       return;
+                                                   for (var iNumCells = oTbl.cells.length,
+                                                       j = 0;
+                                                       j < iNumCells;
+                                                       j++) {
+                                                       var c = oTbl.cells[j];
+                                                       if (!IsNull(c.d)) {
+                                                           var
+                                                               oDayCellTr = c.firstChild.firstChild.firstChild
+                                                                   .nextSibling;
+                                                           if (oDayCellTr.firstChild.firstChild)
+                                                               for (var oCellDataDiv = oDayCellTr.firstChild.firstChild,
+                                                                   i = 0;
+                                                                   i < oCellDataDiv.children.length;
+                                                                   i++) {
+                                                                   var oCellSpan = oCellDataDiv.children[i];
+                                                                   if (oSpan.itemId == oCellSpan.itemId) {
+                                                                       if (
+                                                                           oCellSpan.firstChild.className !=
+                                                                               "ms-crm-Cal-Month-Day-Appointment-Selected")
+                                                                           oCellSpan.firstChild
+                                                                               .className =
+                                                                               "ms-crm-Cal-Month-Day-Appointment-Selected"
+                                                                   } else
+                                                                       oCellSpan.firstChild.className = ""
+                                                               }
+                                                       }
+                                                   }
+                                                   frmGrid.selectedItem.value = oSpan.itemId;
+                                                   frmGrid.selectedItemType.value = oSpan.itemType
+                                               }
+
+                                               function setEditMode(bEditMode) {
+                                                   if (!bEditMode && _bEditMode)
+                                                       _bEditMode = false
+                                               }
+
+                                               function getEditMode() {
+                                                   return _bEditMode
+                                               }
+
+                                           </script>
+</public:component>

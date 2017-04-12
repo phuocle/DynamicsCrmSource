@@ -1,0 +1,1 @@
+<%@ WebService Language="c#" Codebehind="Microsoft.Crm.Application.Components.WebServices.AdvancedFind.dll" Class="Microsoft.Crm.Application.WebServices.AdvancedFind" %>

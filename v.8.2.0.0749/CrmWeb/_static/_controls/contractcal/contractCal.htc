@@ -1,0 +1,100 @@
+<public:component lightweight="true">
+    <public:attach event="onclick" onevent="processClick()"/>
+    <public:method name="toggleSupportLevel"/>
+    <public:method name="validateMask"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               function calToMask() {
+                                                   for (var sMask = "",
+                                                       j,
+                                                       oRow,
+                                                       i = 2;
+                                                       i < 9;
+                                                       i++) {
+                                                       oRow = EC.rows[i];
+                                                       for (j = 1; j < 25; j++)
+                                                           sMask +=
+                                                               oRow.cells[j].firstChild.currentStyle.visibility ==
+                                                               "hidden"
+                                                               ? "-"
+                                                               : "+"
+                                                   }
+                                                   crmForm.effectivitycalendar.value = sMask;
+                                                   crmForm.crmForm24x7Support.checked = sMask.indexOf("-") == -1
+                                               }
+
+                                               function validateMask() {
+                                                   if (crmForm.effectivitycalendar.value.indexOf("+") == -1) {
+                                                       alert(LOCID_NO_SELECTION);
+                                                       return false
+                                                   }
+                                                   return true
+                                               }
+
+                                               function processClick() {
+                                                   var o = event.srcElement,
+                                                       s = "hidden",
+                                                       i,
+                                                       j;
+                                                   if (this.readonly)
+                                                       return false;
+                                                   switch (o.tagName) {
+                                                   case "INPUT":
+                                                   case "LABEL":
+                                                       return false
+                                                   }
+                                                   if (o.innerText && o.tagName == "TD") {
+                                                       if (o.cellIndex == 0 &&
+                                                           o.parentElement.rowIndex >= 2 &&
+                                                           o.parentElement.rowIndex <= 8) {
+                                                           for (i = 1; i < 25; i++)
+                                                               if (
+                                                                   EC.rows[o.parentElement.rowIndex].cells[i].firstChild
+                                                                       .currentStyle.visibility ==
+                                                                       "hidden")
+                                                                   s = "visible";
+                                                           for (i = 1; i < 25; i++)
+                                                               EC.rows[o.parentElement.rowIndex].cells[i].firstChild
+                                                                   .style.visibility = s
+                                                       } else if (
+                                                           o.parentElement.rowIndex == 1 &&
+                                                               o.cellIndex >= 1 &&
+                                                               o.cellIndex < 25) {
+                                                           for (j = 2; j < 9; j++)
+                                                               if (
+                                                                   EC.rows[j].cells[o.cellIndex].firstChild.currentStyle
+                                                                       .visibility ==
+                                                                       "hidden")
+                                                                   s = "visible";
+                                                           for (j = 2; j < 9; j++)
+                                                               EC.rows[j].cells[o.cellIndex].firstChild.style
+                                                                   .visibility = s
+                                                       }
+                                                   } else {
+                                                       if (o.tagName == "TD" &&
+                                                           (o.className == "c" || o.className == "c margin"))
+                                                           o = o.firstChild;
+                                                       if (o.tagName != "IMG")
+                                                           return false;
+                                                       o.style
+                                                           .visibility =
+                                                           o.currentStyle.visibility == "hidden" ? "visible" : "hidden"
+                                                   }
+                                                   calToMask()
+                                               }
+
+                                               function toggleSupportLevel() {
+                                                   for (var s = event.srcElement.checked ? "visible" : "hidden",
+                                                       i = 2;
+                                                       i < 9;
+                                                       i++)
+                                                       for (var oRow = EC.rows[i],
+                                                           j = 1;
+                                                           j < 25;
+                                                           j++)
+                                                           oRow.cells[j].firstChild.style.visibility = s;
+                                                   calToMask()
+                                               }
+
+                                           </script>
+</public:component>

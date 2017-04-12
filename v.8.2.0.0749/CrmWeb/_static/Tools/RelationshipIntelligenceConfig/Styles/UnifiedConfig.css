@@ -1,0 +1,1022 @@
+html {
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 44px;
+}
+
+.font-style {
+    font-family: 'Segoe UI', Tahoma, Arial;
+    color: #000000;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.font-weight { font-weight: normal; }
+
+.imageicon {
+    padding-left: 0.45em;
+    width: 3%;
+    background-color: #B7D9F5;
+}
+
+.padding-bottom6 { padding-bottom: 6px; }
+
+.ms-crm-CheckBox {
+    width: 16px;
+    height: 16px;
+}
+
+.ms-crm-RefreshDialog-Button {
+    height: 30px;
+    width: 60px;
+    background-color: #FFFFFF;
+    font-size: large;
+    border: 1px solid #cccccc;
+}
+
+.class-for-email {
+    height: 332px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.class-for-email DIV.container { overflow-x: hidden; }
+
+.class-for-email .sub-heading {
+    margin-left: -15px;
+    border-top: solid;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.class-for-email .Subdivision {
+    margin-left: -15px;
+    border-top: solid;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin-left: 0px;
+}
+
+.class-for-email .main-heading {
+    margin-left: 15px;
+    padding: 24px 30px 0px 30px;
+    width: 98%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.class-for-email .div-empty-space {
+    padding-bottom: 10px;
+    padding-top: 32px;
+}
+
+.class-for-email .margin-lft-15 {
+    margin-left: -15px;
+    margin-right: 15px;
+}
+
+.class-for-email #radio-style {
+    top: -400px;
+    position: absolute;
+}
+
+.class-for-email .ul-image {
+    margin: 6px 0px;
+    list-style-image: url('/_imgs/RelationshipIntelligenceConfig/Information.png');
+    font-weight: normal;
+}
+
+.class-for-email #subpart {
+    font-size: 12px;
+    color: #666666;
+}
+
+.class-for-email .div-button-save {
+    height: 40px;
+    background-color: #F4F4F4;
+    color: #444444;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.class-for-email #lblUploadText { color: #2D8CDB; }
+
+.class-for-email .ms-crm-CheckBox {
+    margin-left: 0px;
+    width: 16px;
+    height: 16px;
+}
+
+.font-bold { font-weight: bold; }
+
+.class-for-email #lblDefaultLogoDescription { display: block; }
+
+.class-for-email .div-spacing6 { height: 6px; }
+
+.class-for-action {
+    height: 100%;
+    min-height: 400px;
+}
+
+.class-for-action div { display: block; }
+
+.class-for-action DIV.container { overflow-x: hidden; }
+
+.class-for-action .list {
+    list-style-type: none;
+    list-style-image: none;
+    margin-top: 0px;
+    list-style-type: none;
+    height: auto;
+    padding: 0px;
+    width: 100%;
+}
+
+.class-for-action #example1 { margin: -10px -40px; }
+
+.class-for-action #maindivision {
+    margin-left: 15px;
+    padding: 24px 30px 0px 30px;
+    width: 98%;
+    height: 90%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-right: 0px;
+}
+
+.ul-image { margin: 6px 0px; }
+
+.info-image { margin-top: -5px; }
+
+.class-for-action #privacystatementdivision {
+    margin-left: -15px;
+    border-top: solid;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.class-for-action #tenantlinkinfodivision { height: 11%; }
+
+.class-for-action .cards-division {
+    width: 100%;
+    height: 72%;
+    padding-top: 10px;
+    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.class-for-action .div-spacing6 { height: 6px; }
+
+.class-for-action .div-spacing32 { height: 32px; }
+
+.class-for-action .div-spacing22 { height: 22px; }
+
+.class-for-action #mainrow { padding-bottom: 8px; }
+
+.class-for-action #imageicon {
+    padding-left: 0.45em;
+    width: 3%;
+    background-color: #B7D9F5;
+}
+
+.class-for-action #emailcards {
+    line-height: 28px;
+    display: flex;
+}
+
+.class-for-action #Disabled, #Disabled2 { width: 100px; }
+
+.class-for-action .list-style {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 99%;
+    overflow: hidden;
+    padding-bottom: 24px;
+    padding-top: 5px;
+}
+
+.class-for-action .content-style {
+    font-size: 15px;
+    text-decoration: none;
+    color: #2383D3;
+    font-weight: 500;
+    box-shadow: none;
+    text-shadow: none;
+    opacity: 1;
+}
+
+.class-for-action .close, .class-for-action .close:focus, .class-for-action .close:hover { opacity: 1; }
+
+.class-for-action #save-div {
+    height: 40px;
+    background-color: #F4F4F4;
+    color: #444444;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.class-for-action #save-style {
+    padding-left: 4px;
+    font-weight: normal;
+}
+
+.class-for-action .checkbox {
+    height: 10px;
+    width: 10px;
+}
+
+.class-for-action #padding-checkbox { padding-left: 30px; }
+
+.class-for-action #textbox-style {
+    width: 70px;
+    height: 22px;
+}
+
+.class-for-action #textbox-style1 {
+    width: 25px;
+    height: 22px;
+}
+
+.class-for-action .li-style-width {
+    width: 100%;
+    padding: 0px;
+}
+
+.class-for-action .div-width10 { width: 0%; }
+
+.class-for-action .div-width17 { width: 250px; }
+
+.class-for-action .div-width31 { width: auto; }
+
+.class-for-action #actionCardTree {
+    margin-top: -10px;
+    margin-bottom: -10px;
+    margin-left: -25px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.class-for-activity #save-div {
+    height: 40px;
+    background-color: #F4F4F4;
+    color: #444444;
+    padding-left: 30px;
+    padding-top: 12px;
+}
+
+.class-for-activity ul { margin: 10px -20px; }
+
+.class-for-activity DIV.container { overflow-x: hidden; }
+
+.class-for-activity #Subdiv { padding-left: 2em; }
+
+.class-for-activity #EnableStyle, #relationshipspan {
+    color: #666666;
+    font-weight: normal;
+}
+
+.class-for-activity #radio-style {
+    top: -400px;
+    position: absolute;
+}
+
+.class-for-activity #radio-label {
+    font-size: 15px;
+    color: gray;
+}
+
+.class-for-activity #subElement {
+    margin: 6px -30px;
+    list-style-type: none;
+    list-style-image: url('/_imgs/RelationshipIntelligenceConfig/information.png');
+    margin-left: 5px;
+}
+
+.class-for-activity #range-style { color: black; }
+
+.class-for-activity #EmailRange {
+    vertical-align: sub;
+    width: 360px;
+}
+
+.class-for-activity #relationshipspan { width: 200px; }
+
+.class-for-activity #ranges {
+    color: black;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+}
+
+.class-for-activity .activitymaindivision {
+    padding: 24px 30px 24px 30px;
+    overflow-x: hidden;
+}
+
+.class-for-activity #healthscore {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5px;
+    line-height: 28px;
+    padding-bottom: 0px;
+}
+
+.class-for-activity #innerspan {
+    padding-right: 20px;
+    width: 70px;
+}
+
+.class-for-activity #outerspan {
+    padding-left: 20px;
+    width: 100px;
+}
+
+.class-for-activity .Range1 { margin-top: 0px; }
+
+.class-for-activity #TimelineStyle {
+    padding-left: 1em;
+    font-size: small;
+    color: gray;
+    font-weight: normal;
+    line-height: 30px;
+}
+
+.class-for-activity #padding-style2 {
+    padding-top: 32px;
+    padding-bottom: 10px;
+}
+
+.class-for-activity #padding-style3 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.class-for-activity #timeline { padding-bottom: 6px; }
+
+.class-for-activity #padding-style4 {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.class-for-activity #ranges { padding-left: 20px; }
+
+.class-for-activity #TrendStyle {
+    width: 220px;
+    padding-left: 0px;
+}
+
+.class-for-activity #Relationship {
+    line-height: 2;
+    height: 250px;
+    width: 220px;
+    padding-top: 10px;
+    padding-right: 0px;
+    border: 1px solid #cccccc;
+}
+
+.class-for-activity #buttons {
+    width: 80px;
+    padding-top: 110px;
+    padding-bottom: 100px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.class-for-activity #zero-padding { padding-left: 0px; }
+
+.class-for-activity #showcheckbox {
+    padding: 0px;
+    padding-top: 10px;
+}
+
+.class-for-activity #frequency { padding-bottom: 10px; }
+
+.class-for-relation .header {
+    width: 97%;
+    width: calc(100% - 110px) !important;
+    padding-top: 0px;
+}
+
+.class-for-relation #headerDesc {
+    color: #666666;
+    line-height: 1.2;
+}
+
+.class-for-relation #butBegin {
+    margin-right: 20px;
+    width: 80px;
+}
+
+.class-for-relation #cmdDialogCancel {
+    margin-left: 8px;
+    margin-right: 70px;
+    width: 80px;
+}
+
+.class-for-relation iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-y: visible;
+}
+
+.class-for-relation #image-style {
+    height: 16px;
+    width: 16px;
+}
+
+.class-for-relation .ms-crm-RefreshDialog-Button {
+    height: 24px;
+    font-family: "Segoe UI", Tahoma, Arial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    background-image: none;
+    margin-top: 10px;
+    min-width: 80px;
+    white-space: nowrap;
+    width: auto;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(198, 198, 198);
+    color: rgb(68, 68, 68);
+    background-color: rgb(255, 255, 255);
+}
+
+.class-for-relation .ms-crm-RefreshDialog-Header-Title, .class-for-relation TD.ms-crm-RefreshDialog-Error-Title {
+    margin-left: 20px;
+    margin-right: 30px;
+    color: #000000;
+    font-weight: 200;
+    font-size: 27px;
+    line-height: 1.2;
+}
+
+.class-for-relation .ms-crm-RefreshDialog-Header-Desc {
+    padding-top: 2px;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+
+.class-for-relation .ms-crm-RefreshDialog-Button, .class-for-relation .ms-crm-RefreshDialog-Header-Desc, .class-for-relation .ms-crm-RefreshDialog-Main, .class-for-relation .ms-crm-RefreshDialog-Main-HeaderLess { font-size: 12px; }
+
+.class-for-relation {
+    height: 92%;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 100;
+    background: white;
+    width: 100%;
+    position: fixed;
+}
+
+.class-for-relation .tabs input[type=radio] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+.class-for-relation .tabs {
+    width: 97%;
+    float: none;
+    list-style: none;
+    position: relative;
+    padding: 0;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin: 32px auto;
+    height: 83%;
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.class-for-relation .tabs li { float: left; }
+
+.class-for-relation .tabs label {
+    background-repeat: repeat-x;
+    background-image: url(/_imgs/theme/Outlook15White/TabFlat.gif?ver=414983787);
+    display: block;
+    height: 25px;
+    padding: 6.5px 20px;
+    border-radius: 0px 0px 0 0;
+    border: solid;
+    border-bottom: hidden;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #F4F4F4;
+    cursor: pointer;
+    position: relative;
+    top: 10px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -transition: all 0.2s ease-in-out;
+}
+
+.class-for-relation .tabs label:hover {
+    background: #F4F4F4;
+    color: #000000;
+}
+
+.class-for-relation [id^=tab]:checked + label {
+    background: #FFFFFF;
+    color: #000000;
+}
+
+.class-for-relation [id^=tab]:checked ~ [id^=tab-content] { display: block; }
+
+.class-for-relation .tab-content {
+    z-index: 2;
+    display: none;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    line-height: 140%;
+    padding-top: 10px;
+    border: solid;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    padding: 0px;
+    color: #000000;
+    position: absolute;
+    top: 36px;
+    left: 0;
+    box-sizing: border-box;
+    -webkit-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    overflow: hidden;
+}
+
+.col-md-4 { width: 42.4% !important; }
+
+.col-md-2 { width: 15% !important; }
+
+.cardtype-textbox {
+    width: 44px;
+    height: 22px;
+}
+
+.btnEmailSave {
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.btnEmailSave:hover {
+    background-color: #D7EBF9;
+    border-color: #D7EBF9;
+}
+
+.divhover:hover {
+    background-color: #D7EBF9;
+    border-color: #D7EBF9;
+}
+
+.divhover {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.class-for-relation .divwidthauto { width: auto; }
+
+.allCards {
+    min-height: 28px;
+    min-width: 80px;
+    display: flex !important;
+}
+
+.chkboxalignment {
+    position: relative;
+    bottom: 2px;
+}
+
+.paddingtop { padding-top: 3px; }
+
+.spnACEnableUse {
+    position: relative;
+    top: 4px;
+}
+
+.class-for-relation .divACEnableUse {
+    width: auto;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.class-for-relation .checkbox-style1 {
+    width: 0%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+#disclaimerTextDiv { height: 99%; }
+
+.class-for-relation .font-size24 { font-size: 24px; }
+
+.disclaimerText {
+    margin-right: 22px;
+    margin-left: 22px;
+    border: solid;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    padding-left: 72px;
+    padding-right: 72px;
+    height: 90%;
+    padding-top: 36px;
+    margin-top: 10px;
+}
+
+.button-disclaimer {
+    background-color: #0072c6;
+    border-color: transparent;
+    border-style: double;
+    color: white;
+    padding: 7px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0px 0px;
+    cursor: pointer;
+}
+
+.padding-lft6 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.padding5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.valign-middle {
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.valign-top { vertical-align: top; }
+
+.pageloaddiv {
+    position: absolute;
+    left: 570px;
+    top: 360px;
+    width: 93%;
+    height: 61%;
+    z-index: 2000;
+    background-color: transparent;
+}
+
+.displaynone { display: none; }
+
+.errorpreviewtext {
+    position: relative;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-family: 'Segoe UI', Tahoma, Arial;
+    color: #dd0000;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: normal;
+}
+
+.textNoTabTodisplaypadding {
+    padding-left: 21px;
+    padding-right: 31px;
+}
+
+.textNoTabTodisplay {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.padding-style5 {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#divRACardsPrviewNotAvailable { height: auto; }
+
+#tab-RAC-Container, #tab-RAA-Container, #tab-EE-Container, #EE-Container-ProvisioningDiv, #RAA-Container-ProvisioningDiv, #relationshipAnalayticsIframeContainerDiv { height: 100%; }
+
+.a-style {
+    color: #0072C6;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.anchor-style {
+    color: #0072C6;
+    font-weight: bold;
+}
+
+.rightmargin25px { margin-right: 25px; }
+
+.class-for-action #Subdivision {
+    height: 11%;
+    margin-left: -15px;
+    margin-right: -15px;
+    border-top: solid;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    width: 60%;
+    overflow: hidden;
+}
+
+#headerTitle { padding-top: 3px; }
+
+a:active { outline: none; }
+
+
+.button-provisionui {
+    background-color: #0072c6;
+    border-color: transparent;
+    border-style: double;
+    color: white;
+    padding: 5px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0px 0px;
+    cursor: pointer;
+}
+
+.padding-top-bottom {
+    padding-top: 5%;
+    padding-bottom: 2%;
+}
+
+.box {
+    height: 28px;
+    width: 95%;
+    vertical-align: middle;
+}
+
+.div-spacing10 { height: 10px; }
+
+.div-spacing6 { height: 6px; }
+
+.div-spacing32 { height: 32px; }
+
+.colwidth { width: 16% !important; }
+
+.provisioningcontentdivision {
+    padding-left: 60px;
+    padding-right: 60px;
+    border-top: solid;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#tenantlinkinfodivision {
+    border-top: solid;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    width: 57%;
+    overflow: hidden;
+}
+
+.provisioningmaindivision {
+    height: 100%;
+    border: solid;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    width: 100%;
+    overflow: auto;
+}
+
+.body-style {
+    margin-left: 20px;
+    height: 100%;
+}
+
+.loading-content-style {
+    text-align: center;
+    color: grey;
+    font-size: 16px;
+    padding-left: 0px !important;
+}
+
+.align-multiline {
+    position: fixed;
+    left: 48%;
+    transform: translate(-50%, 0);
+    width: 140px;
+}
+
+.aligntop { vertical-align: top; }
+
+.errortext-color { color: #dd0000; }
+
+.errortext-align {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.errordivwidth { width: 25%; }
+
+.displayinline { display: inline; }
+
+a { cursor: pointer; }
+
+.showpopup {
+    position: absolute;
+    height: auto;
+    width: 60%;
+    background: #FFFFFF;
+    left: 30%;
+    right: 30%;
+    top: 10%;
+    z-index: 100;
+    margin-left: 15px;
+    margin-right: 15px;
+    border: 2px solid;
+    font-size: 15px;
+    -moz-box-shadow: 0 0 5px #ff0000;
+    -webkit-box-shadow: 0 0 5px #ff0000;
+    box-shadow: 0 0 5px #ff0000;
+    overflow-y: auto;
+}
+
+.updatetenant_error {
+    font-weight: normal;
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.class-for-relation .displayflex { display: flex; }
+
+.provisioningHeader {
+    color: #000000;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.provisioningHeaderDesc {
+    color: #666666;
+    line-height: 1.2;
+}
+
+.provisioningDivWidth { width: 23% !important; }
+
+.updateLinkStyle {
+    padding-right: 30px;
+    padding-left: 20px;
+    font-weight: normal;
+    color: #0072C6;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.updatelinkdiv {
+    display: flex;
+    width: 100%;
+    position: relative;
+    top: 6px;
+}
+
+
+
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+img { vertical-align: middle; }
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.groupCardPosition {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+}
+
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 { float: left; }
+
+.col-xs-12 { width: 100%; }
+
+.col-xs-11 { width: 91.66666667%; }
+
+.col-xs-10 { width: 83.33333333%; }
+
+.col-xs-9 { width: 75%; }
+
+.col-xs-8 { width: 66.66666667%; }
+
+.col-xs-7 { width: 58.33333333%; }
+
+.col-xs-6 { width: 50%; }
+
+.col-xs-5 { width: 41.66666667%; }
+
+.col-xs-4 { width: 33.33333333%; }
+
+.col-xs-3 { width: 25%; }
+
+.col-xs-2 { width: 16.66666667%; }
+
+.col-xs-1 { width: 8.33333333%; }
+
+@media (min-width: 992px) {
+    .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 { float: left; }
+
+    .col-md-12 { width: 100%; }
+
+    .col-md-11 { width: 91.66666667%; }
+
+    .col-md-10 { width: 83.33333333%; }
+
+    .col-md-9 { width: 75%; }
+
+    .col-md-8 { width: 66.66666667%; }
+
+    .col-md-7 { width: 58.33333333%; }
+
+    .col-md-6 { width: 50%; }
+
+    .col-md-5 { width: 41.66666667%; }
+
+    .col-md-4 { width: 33.33333333%; }
+
+    .col-md-3 { width: 25%; }
+
+    .col-md-2 { width: 16.66666667%; }
+
+    .col-md-1 { width: 8.33333333%; }
+}
+
+input[type=checkbox], input[type=radio] {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: normal;
+}
+
+a:focus { outline: 2px auto -webkit-focus-ring-color; }
+
+.btn-group-vertical > .btn-group:after, .btn-group-vertical > .btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+    display: table;
+    content: " ";
+}
+
+.btn-group-vertical > .btn-group:after, .btn-toolbar:after, .clearfix:after, .container-fluid:after, .container:after, .dl-horizontal dd:after, .form-horizontal .form-group:after, .modal-footer:after, .modal-header:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .panel-body:after, .row:after { clear: both; }
+
+.button-disable { background-color: #c6c6c6; }

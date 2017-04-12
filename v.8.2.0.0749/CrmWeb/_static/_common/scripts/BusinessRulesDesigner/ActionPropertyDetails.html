@@ -1,0 +1,377 @@
+﻿<link rel="stylesheet" type="text/css" href="/_static/_common/scripts/BusinessRulesDesigner/ActionPropertyDetails.css"/>
+<script type="text/javascript" src="/_static/_common/scripts/BusinessRulesDesigner/ActionPropertyDetails.js"></script>
+
+<script type="text/template" id='prop-view'>
+    <div id="properties" class="action-prop-container">
+        <div class="header ellipsis">
+            <span class="headline1" id="ActionPropertiesHeader"></span>
+        </div>
+        <div id="contentDivProp">
+            <div id="displayNameDiv">
+                <span class="headline2 ellipsis" for="txtDisplayName" id="DisplayNameHeader"></span>
+                <input class="fieldText field" id="txtDisplayName" type="text" aria-labelledby="DisplayNameHeader" value="<%- displayName %>" title="<%- displayName %>" />
+            </div>
+            <div id="actionTypeDiv">
+                <span class="headline2 ellipsis" for="txtEntityName" id="EntityHeader"></span>
+                <input class="fieldText field nonEditable" id="txtEntityName" type="text" aria-labelledby="EntityHeader" value="<%- entityDisplayName %>" title=" <%- entityDisplayName %> " aria-readonly="true" readonly="readonly" />
+            </div>
+            
+            <div class="actionprop-exp-container">
+                <span class="headline2 ellipsis" id="ActionPropertiesSubHeader"></span>
+            </div>
+        </div>
+    </div>
+    <div class="buttons align-self">
+        <span class="actionprop-section-label">
+            <input id="actionprop-save" type="button" value="" class="ellipsis" role="button"/>
+            <input id="actionprop-discard" type="button" value="" class="ellipsis" role="button"/>
+        </span>
+    </div>
+</script>
+<script type="text/template" id='exp-view'>
+    <%if (isTaskFlow) {%>
+    <div>
+        <span class="headline2 ellipsis" role="label" for="attributeSource" id="lblFieldSource"></span>
+        <div>
+            <select id="attributeSource" class="field" aria-labelledby="lblFieldSource" role="combobox">
+                <% _.each( sourceList, function( value ) { %>
+                <% sourceSelected = (value.RelationshipName != undefined && value.RelationshipName != null) ? (value.RelationshipName == selectedSource) ? 'selected' : '' : (value == selectedSource) ? 'selected' : ''; %>
+                <% optionValue = (value.RelationshipName != undefined && value.RelationshipName != null) ? value.RelationshipName : value; %>
+                <option value="<%- optionValue %>"<%- sourceSelected %>> <%- (value.RelationshipName != undefined && value.RelationshipName != null) ? value.RelationshipAttribute.Label.Description + ' (' + value.RelationshipEntity.DisplayName + ')' :  Xrm.Internal.getEntityDisplayName(value) %> </option>
+                <% }); %>
+            </select>
+        </div>
+        <% if(errorMessages.attributeName) { %>
+        <span>
+            <label style="color:red"><%- errorMessages.attributeName %></label>
+        </span>
+        <% } %>
+    </div>
+    <% } %>
+    <div>
+        <span class="headline2 ellipsis" role="label" for="attribute" id="lblField"></span>
+        <div>
+            <select id="attribute" class="field" aria-labelledby="lblField" role="combobox">
+                <% if(isNew_) { selectedAttribute = ''; %>
+                <option value="" aria-label="Empty Option"></option>
+                <% } %>
+                <% _.each( attributeList, function( value ) { %>
+                <% selected = (value.logicalName == selectedAttribute) ? 'selected' : ''; %>
+                <option value="<%- value.logicalName %>"<%- selected %>> <%- value.displayName %> </option>
+                <% }); %>
+            </select>
+        </div>
+    </div>
+    <% if(!(typeof types === "undefined")) { %>
+    <div>
+        <span class="headline2  ellipsis actionprop-lablegroup-left" role="label" for="type" id="lblType"></span>
+        <select id="type" class="field" aria-labelledby="lblType" role="combobox">
+            <% _.each( types, function( val ) { %>
+            <% selected = (val.val == selectedType) ? 'selected' : ''; %>
+            <option value="<%- val.val %>"<%- selected %>> <%- val.name %> </option>
+            <% }); %>
+        </select>
+    </div>
+    <div id="typeValueField">
+        <% if(selectedType == selectedTypeField || selectedType == selectedTypeValue || selectedType == selectedTypeFormula) {%>
+        <% if(selectedType == selectedTypeField) {%>
+        <% if (isTaskFlow) {%>
+        <div>
+            <span class="headline2 ellipsis" role="label" for="valueSource" id="lblValueSource"></span>
+            <select id="valueSource" class="field" aria-labelledby="lblValueSource" role="combobox">
+                <% _.each( sourceList, function( val ) { %>
+                <% sourceSelected = (val.RelationshipName != undefined && val.RelationshipName != null) ? (val.RelationshipName == value.attributeSelectedSource) ? 'selected' : '' : (val == value.attributeSelectedSource) ? 'selected' : ''; %>
+                <% optionValue = (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipName : val; %>
+                <option value="<%- optionValue %>"<%- sourceSelected %>> <%- (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipAttribute.Label.Description + ' (' + val.RelationshipEntity.DisplayName + ')' : Xrm.Internal.getEntityDisplayName(val) %> </option>
+                <% }); %>
+            </select>
+        </div>
+        <% } %>
+        <div>
+            <div>
+                <span id="actionValueLabel" class="headline2 ellipsis" for="value"><%- actionValueLabelText %></span>
+            </div>
+            <select id="value" class="field" aria-labelledby="actionValueLabel" role="combobox">
+                <% _.each( value.attributeList, function( val ) { %>
+                <% selected = (val.logicalName == value.selectedAttribute) ? 'selected' : ''; %>
+                <option value="<%- val.logicalName %>"<%- selected %>> <%- val.displayName %> </option>
+                <% }); %>
+            </select>
+        </div>
+        <% } else if(selectedType == selectedTypeFormula) {%>
+        <div id="expression1" class="actionprop-section actionprop-expression actionprop-sub-section">
+            <% if (isTaskFlow) {%>
+            <div>
+                <span class="headline2 ellipsis" role="label" for="formula-attribute-source" id="lblformula-attribute-source"></span>
+                <select id="formula-attribute-source" class="field" aria-labelledby="lblformula-attribute-source" role="combobox">
+                    <% _.each( sourceList, function( val ) { %>
+                    <% sourceSelected = (val.RelationshipName != undefined && val.RelationshipName != null) ? (val.RelationshipName == value.leftSelectedSource) ? 'selected' : '' : (val == value.leftSelectedSource) ? 'selected' : ''; %>
+                    <% optionValue = (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipName : val; %>
+                    <option value="<%- optionValue %>"<%- sourceSelected %>> <%- (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipAttribute.Label.Description + ' (' + val.RelationshipEntity.DisplayName + ')' : Xrm.Internal.getEntityDisplayName(val) %> </option>
+                    <% }); %>
+                </select>
+            </div>
+            <% } %>
+            <div>
+                <span class="headline2 ellipsis" role="label" for="formula-attribute" id="lblField1"></span>
+            </div>
+            <div>
+                <select id="formula-attribute" class="field" aria-labelledby="" role="combobox">
+                    <% _.each( value.attributeList, function( val ) { %>
+                    <% selected = (val.logicalName == value.selectedAttribute) ? 'selected' : ''; %>
+                    <option value="<%- val.logicalName %>"<%- selected %>> <%- val.displayName %> </option>
+                    <% }); %>
+                </select>
+            </div>			
+            <div>
+                <span class="headline2 ellipsis" role="label" for="formula-operator" id="lblOperator"></span>
+            </div>
+            <div>
+                <select id="formula-operator" class="field" aria-labelledby="lblOperator" role="combobox">
+                    <% _.each( value.operators, function( operator ) { %>
+                    <% selected = (operator.value == value.selectedOperator) ? 'selected' : ''; %>
+                    <option value="<%- operator.value %>"<%- selected %>> <%- operator.name %> </option>
+                    <% }); %>
+                </select>
+            </div>
+            <div>
+                <span class="headline2 ellipsis" role="label" for="formula-type" id="lblType1"></span>
+            </div>
+            <div>
+                <select id="formula-type" class="field" aria-labelledby="lblType1" role="combobox">
+                    <% _.each( value.formulaValueTypes, function( type ) { %>
+                    <% selected = (type.value == value.selectedFormulaValueType) ? 'selected' : ''; %>
+                    <option value="<%- type.value %>"<%- selected %>> <%- type.name %> </option>
+                    <% }); %>
+                </select>
+            </div>            
+            <div>
+                <% if(value.selectedFormulaValueType == selectedTypeField) {%>
+                <% if (isTaskFlow) {%>
+                <span id="formulaValueLabelSource" class="headline2 ellipsis" role="label" for="formula-value-field-source"></span>
+                <select id="formula-value-field-source" class="field" aria-labelledby="formulaValueLabelSource" role="combobox">
+                    <% _.each( sourceList, function( val ) { %>
+                    <% sourceSelected = (val.RelationshipName != undefined && val.RelationshipName != null) ? (val.RelationshipName == value.rightSelectedSource) ? 'selected' : '' : (val == value.rightSelectedSource) ? 'selected' : ''; %>
+                    <% optionValue = (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipName : val; %>
+                    <option value="<%- optionValue %>"<%- sourceSelected %>> <%- (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipAttribute.Label.Description + ' (' + val.RelationshipEntity.DisplayName + ')' : Xrm.Internal.getEntityDisplayName(val) %> </option>
+                    <% }); %>
+                </select>
+                <% } %>
+                <span id="formulaValueLabel" class="headline2 ellipsis" role="label" for="formula-value"><%- value.formulaValueLabelText %></span>
+                <select id="formula-value-field" class="field" aria-labelledby="formulaValueLabel" role="combobox">
+                    <% _.each( value.rightAttributeList, function( val ) { %>
+                    <% selected = (val.logicalName == value.selectedValue) ? 'selected' : ''; %>
+                    <option value="<%- val.logicalName %>"<%- selected %>> <%- val.displayName %> </option>
+                    <% }); %>
+                </select>
+                <% } else if(value.selectedFormulaValueType == selectedTypeValue) {%>
+                <% if( value.formulaValueLabelText == "Days") { %>
+                <span id="formulaValueLabel" class="headline2 ellipsis" role="label" for="formula-value" title="<%- value.dayValueTooltip %>"><%- value.formulaValueLabelText %></span>
+                <% } else { %>
+                <span id="formulaValueLabel" class="headline2 ellipsis" role="label" for="formula-value"><%- value.formulaValueLabelText %></span>
+                <% } %>
+
+                <input id="formula-value" class="field" type="text" aria-labelledby="formulaValueLabel" value="<%- value.selectedValue%>">
+                <% } %>
+            </div>
+        </div>
+        <% } else if(selectedType != 'Clear') { %>
+        <div>
+            <span id="actionValueLabel" class="headline2 ellipsis" for="value"><%- actionValueLabelText %></span>
+        </div>
+        <div id="valueContainer" />
+        <% } %>
+    </div>
+    <% } %>
+    <% } %>
+</script>
+<script type="text/template" id='action-view'>
+    <div>
+        <% if (isTaskFlow) {%>
+        <span class="headline2 ellipsis" role="label" for="attributeSource" id="lblattributeSource"></span>
+        <div class="exp-column">
+            <select id="attributeSource" class="field" aria-labelledby="lblattributeSource" role="combobox">
+                <% _.each( sourceList, function( value ) { %>
+                <% sourceSelected = (value.RelationshipName != undefined && value.RelationshipName != null) ? (value.RelationshipName == selectedSource) ? 'selected' : '' : (value == selectedSource) ? 'selected' : ''; %>
+                <% optionValue = (value.RelationshipName != undefined && value.RelationshipName != null) ? value.RelationshipName : value; %>
+                <option value="<%- optionValue %>"<%- sourceSelected %>> <%- (value.RelationshipName != undefined && value.RelationshipName != null) ? value.RelationshipAttribute.Label.Description + ' (' + value.RelationshipEntity.DisplayName + ')' : Xrm.Internal.getEntityDisplayName(value) %> </option>
+                <% }); %>
+            </select>
+            <% if(errorMessages.attributeName) { %>
+            <span>
+                <label style="color:red"><%- errorMessages.attributeName %></label>
+            </span>
+            <% } %>
+        </div>
+        <% } %>
+        <span class="headline2 ellipsis" role="label" for="attribute" id="lblField2"></span>
+        <div class="exp-column">
+            <select id="attribute" class="field" aria-labelledby="lblField2" role="combobox">
+                <% if(isNew_) { selectedAttribute = ''; %>
+                <option value="" aria-label="Empty Option"></option>
+                <% } %>
+                <% _.each( attributeList, function( value ) { %>
+                <% selected = (value.logicalName == selectedAttribute) ? 'selected' : ''; %>
+                <option value="<%- value.logicalName %>"<%- selected %>> <%- value.displayName %> </option>
+                <% }); %>
+            </select>
+        </div>
+
+        <div>
+            <% if(selectedType == SetMessage) {%>
+            <span class="exp-column">
+                <span class="headline2 ellipsis" role="label" for="type" id="lblMessage"></span>
+            </span>
+
+            <div class="exp-column ">
+                <textarea class="actionprop-textarea" id="messageValue"><%- value.description %></textarea>
+            </div>
+            <% } %>
+            <% if(selectedType == setVisibility) {%>
+			<span class="exp-column">
+				<span class="headline2 ellipsis" role="label" for="type" id="lblStatus2"></span>
+			</span>
+			<div class="exp-column ">
+				<select id="value" class="field" aria-labelledby="lblStatus2" role="combobox">
+					<% _.each( value.setVisibilities, function( val ) { %>
+					<% selected = (val.value == value.selectedValue) ? 'selected' : ''; %>
+					<option value="<%- val.value %>"<%- selected %>> <%- val.name %> </option>
+					<% }); %>
+				</select>
+			</div>
+            <% } %>
+            <% if(selectedType == setFieldRequiredLevel) {%>
+            <span class="exp-column">
+                <span class="headline2 ellipsis" role="label" for="type" id="lblStatus1"></span>
+            </span>
+            <div class="exp-column ">
+                <select id="value" class="field" aria-labelledby="lblStatus1" role="combobox">
+                    <% _.each( value.setBusinessRequired, function( val ) { %>
+                    <% selected = (val.value == value.selectedValue) ? 'selected' : ''; %>
+                    <option value="<%- val.value %>"<%- selected %>> <%- val.name %> </option>
+                    <% }); %>
+                </select>
+            </div>
+            <% } %>
+            <% if(selectedType == setDisplayMode) {%>		
+            <span class="exp-column">
+                <span class="headline2 ellipsis" role="label" for="type" id="lblStatus"></span>
+            </span>
+            <div class="exp-column ">
+                <select id="value" class="field" aria-labelledby="lblStatus" role="combobox">
+                    <% _.each( value.setDisplayModes, function( val ) { %>
+                    <% selected = (val.value == value.selectedValue) ? 'selected' : ''; %>
+                    <option value="<%- val.value %>"<%- selected %>> <%- val.name %> </option>
+                    <% }); %>
+                </select>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</script>
+<script type="text/template" id='customJS-view'>
+    <div id="properties" class="action-prop-container">
+        <div class="header">
+            <span class="headline1" id="ActionPropertiesHeader"></span>
+        </div>
+        <div id="contentDivProp">
+            <div id="actionTypeDiv">
+                <div id="displayNameDiv">
+                    <span class="headline2" id="DisplayNameHeader" role="label"></span>
+                    <input class="fieldText field" id="txtDisplayName" type="text" aria-labelledby="DisplayNameHeader" value="<%- displayName %>" title="<%- displayName %>" />
+                </div>
+                <span class="headline2" id="JavascriptHeader"></span>
+                <div>
+                    <textarea id="customJSSourceValue" class="customJSprop-textarea"><%- value %></textarea>
+                    <% if(errorMessages.customJavascript) { %>
+                    <span>
+                        <label style="color:red"><%- errorMessages.customJavascript %></label>
+                    </span>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="buttons align-self">
+        <span class="actionprop-section-label">
+            <input id="actionprop-save" type="button" value="" class="ellipsis" />
+            <input id="actionprop-discard" type="button" value="" class="ellipsis" />
+        </span>
+    </div>
+</script>
+<div id="properties-panel"></div>
+<script>
+    //# sourceURL=ActionPropertyDetails.html.js
+    $(document).ready(function() {
+        try {
+            var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+            stopwatch.start();
+            var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            if (!propertyViewCurrentModel) {
+                throw ("Internal : ActionPropertiesControl: Current Action Model is not set!");
+            }
+
+            if (propertyViewCurrentModel.entity == null) {
+                var entityBase = new Microsoft.Crm.Workflow.Expressions.EntityBase();
+                entityBase.entityName = MscrmControls.ProcessDesigner.ControlManager.primaryEntityName;
+                propertyViewCurrentModel.entity = entityBase;
+            }
+            var propertyViewCurrentModelClone = propertyViewCurrentModel.getPropertyPageClone();
+            new MscrmControls.ActionPropertyPage.PropertiesView({ model: propertyViewCurrentModelClone });
+            GenericWorkflowDesigner.BasePropertyView.updateHtmlElements = updateHtmlElements;
+            stopwatch.stop();
+            localStorage.setItem("PBL_" + propertyViewCurrentModel.attributes.ActivityTypeID + "PropPageLoad",
+                stopwatch.elapsedMilliseconds.toString());
+            setTooltips();
+        } catch (ex) {
+            console.log(ex.stack);
+        }
+    });
+
+    function setDropdownComponentTitle(id) {
+        if ($('#' + id).attr("role") == "combobox") {
+            if ($('#' + id + ' :selected').text() == "") {
+                $('#' + id + '').attr('title',
+                    MscrmControls.ProcessDesigner.MetadataProvider
+                    .getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyDropDowntooltip"));
+            } else {
+                $('#' + id + '').attr('title', $('#' + id + ' :selected').text());
+            }
+        } else {
+            if ($('#' + id).text().length > 0) {
+                $('#' + id).attr("title", $('#' + id).text());
+            } else {
+                $('#' + id).attr("title",
+                    MscrmControls.ProcessDesigner.MetadataProvider
+                    .getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyTexttooltip"));
+            }
+        }
+    }
+
+    function setTooltips() {
+        setDropdownComponentTitle("attribute");
+        setDropdownComponentTitle("value");
+        setDropdownComponentTitle("type");
+        if ($('#messageValue').val() == "") {
+            $('#messageValue').attr("title",
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyTexttooltip"));
+            $('#messageValue').attr("aria-label", $("#lblMessage").text());
+        } else {
+            $('#messageValue').attr("title", this.$('#messageValue').val());
+            $('#messageValue').attr("aria-label", $("#lblMessage").text() + " " + $('#messageValue').val());
+        }
+        if ($('#value').val() == "")
+            $('#value').attr("title",
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyTexttooltip"));
+        else
+            $('#value').attr("title", this.$('#value').val());
+    }
+
+    function updateHtmlElements() {
+        propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        $('#txtDisplayName').val(propertyViewCurrentModel.displayName);
+        $('#txtDisplayName').trigger('change');
+    }
+</script>

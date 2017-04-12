@@ -1,0 +1,241 @@
+<public:component lightweight="true">
+<public:attach event="onmousedown" onevent="mouseDown();"/>
+<public:attach event="onmouseover" onevent="mouseOver();"/>
+<public:attach event="onmouseout" onevent="mouseOut();"/>
+<public:attach event="onkeydown" onevent="menuKeyHandler();"/>
+<public:attach event="onresize" onevent="resize();"/>
+<public:attach event="oncontentready" onevent="init();"/>
+<public:property name="SelectedLevel" put="setSelectedLevel" get="getSelectedLevel"/>
+<public:property name="Count" put="setCount" get="getCount"/>
+<public:event id="eventOnSelectChange" name="onselectchange"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           var _iSelectedLevel = -1,
+                                               _iCount = 0,
+                                               _oImgOn = new Image(11, 16),
+                                               _oImgOff = new Image(11, 16),
+                                               _oImgPlusOn = new Image(11, 16),
+                                               _oImgPlusOff = new Image(11, 16),
+                                               _oImgMinusOn = new Image(11, 16),
+                                               _oImgMinusOff = new Image(11, 16),
+                                               iZoomLabelTrans,
+                                               iDotsTrans,
+                                               iZoomBaseSize,
+                                               iBuffer = 7,
+                                               zoomKeyLeft = KEY_LEFT,
+                                               zoomKeyRight = KEY_RIGHT;
+                                           if (LOCID_UI_DIR == "RTL") {
+                                               zoomKeyLeft = KEY_RIGHT;
+                                               zoomKeyRight = KEY_LEFT
+                                           }
+
+                                           function init() {
+                                               setImageInfoAndClass("/_imgs/zoom/dotselected.gif", _oImgOn);
+                                               setImageInfoAndClass("/_imgs/zoom/dotunselected.gif", _oImgOff);
+                                               setImageInfoAndClass("/_imgs/zoom/zoomplusover.gif", _oImgPlusOn);
+                                               setImageInfoAndClass("/_imgs/zoom/zoomplus.gif", _oImgPlusOff);
+                                               setImageInfoAndClass("/_imgs/zoom/zoomminusover.gif", _oImgMinusOn);
+                                               setImageInfoAndClass("/_imgs/zoom/zoomminus.gif", _oImgMinusOff);
+                                               iZoomBaseSize = element.all.zoomtable.scrollWidth;
+                                               iZoomLabelTrans = iZoomBaseSize + iBuffer;
+                                               iDotsTrans = iZoomLabelTrans - element.all.zoomheader.scrollWidth;
+                                               on(_iSelectedLevel)
+                                           }
+
+                                           function setImageInfoAndClass(imgName, ctrlName) {
+                                               var searchImageInfo = Mscrm.ImageStrip
+                                                   .getImageInfo(Mscrm.CrmUri.create(imgName));
+                                               ctrlName.src = searchImageInfo.source;
+                                               ctrlName.className = Mscrm.ImageStrip
+                                                   .replaceExistingImageStripClass(ctrlName.className,
+                                                       searchImageInfo.cssClass)
+                                           }
+
+                                           function resize() {
+                                               var iCurrentWidth = element.scrollWidth;
+                                               if (iCurrentWidth > iZoomLabelTrans) {
+                                                   element.all.zoomheader.style.display = "inline";
+                                                   showDots(true)
+                                               } else if (iCurrentWidth > iDotsTrans) {
+                                                   element.all.zoomheader.style.display = "none";
+                                                   showDots(true)
+                                               } else {
+                                                   element.all.zoomheader.style.display = "none";
+                                                   showDots(false)
+                                               }
+                                           }
+
+                                           function showDots(bShow) {
+                                               for (var i = 0; i < _iCount; i++) {
+                                                   var dotname = "dot" + i;
+                                                   element.all[dotname].style.display = bShow ? "inline" : "none"
+                                               }
+                                           }
+
+                                           function setCount(oCount) {
+                                               _iCount = Number(oCount)
+                                           }
+
+                                           function getCount() {
+                                               return _iCount
+                                           }
+
+                                           function setSelectedLevel(oLevel) {
+                                               var iLevel = Number(oLevel);
+                                               if (iLevel != _iSelectedLevel) {
+                                                   off(_iSelectedLevel);
+                                                   on(iLevel);
+                                                   _iSelectedLevel = iLevel
+                                               }
+                                           }
+
+                                           function changeLevel(iLevel) {
+                                               setSelectedLevel(iLevel);
+                                               raiseEvent(eventOnSelectChange)
+                                           }
+
+                                           function getSelectedLevel() {
+                                               return _iSelectedLevel
+                                           }
+
+                                           function on(iLevel) {
+                                               setImage(iLevel, _oImgOn)
+                                           }
+
+                                           function off(iLevel) {
+                                               setImage(iLevel, _oImgOff)
+                                           }
+
+                                           function onMinus() {
+                                               element.all["zoomminus"].src = _oImgMinusOn.src;
+                                               element.all["zoomminus"].className = _oImgMinusOn.className
+                                           }
+
+                                           function offMinus(iLevel) {
+                                               element.all["zoomminus"].src = _oImgMinusOff.src;
+                                               element.all["zoomminus"].className = _oImgMinusOff.className
+                                           }
+
+                                           function onPlus() {
+                                               element.all["zoomplus"].src = _oImgPlusOn.src;
+                                               element.all["zoomplus"].className = _oImgPlusOn.className
+                                           }
+
+                                           function offPlus(iLevel) {
+                                               element.all["zoomplus"].src = _oImgPlusOff.src;
+                                               element.all["zoomplus"].className = _oImgPlusOff.className
+                                           }
+
+                                           function zoomIn() {
+                                               _iSelectedLevel < _iCount - 1 &&
+                                                   changeLevel(_iSelectedLevel + 1)
+                                           }
+
+                                           function zoomOut() {
+                                               _iSelectedLevel > 0 &&
+                                                   changeLevel(_iSelectedLevel - 1)
+                                           }
+
+                                           function setImage(iLevel, sImage) {
+                                               if (iLevel >= 0 && iLevel < _iCount) {
+                                                   var sLevelId = "dot" + iLevel,
+                                                       oLevel = element.all[sLevelId];
+                                                   if (oLevel != undefined) {
+                                                       oLevel.src = sImage.src;
+                                                       oLevel.className = sImage.className
+                                                   }
+                                               }
+                                           }
+
+                                           function raiseEvent(oEventToRaise) {
+                                               var oEvent = this.createEventObject();
+                                               oEvent.iLevel = _iSelectedLevel;
+                                               oEventToRaise.fire(oEvent);
+                                               return oEvent
+                                           }
+
+                                           function mouseDown() {
+                                               var sImgId = getControlId(event.srcElement);
+                                               if (sImgId != "")
+                                                   switch (sImgId) {
+                                                   case "zoomplus":
+                                                       zoomIn();
+                                                       break;
+                                                   case "zoomminus":
+                                                       zoomOut();
+                                                       break;
+                                                   default:
+                                                       var sLevel = sImgId.substr(3),
+                                                           iLevel = Number(sLevel, 10);
+                                                       iLevel != NaN &&
+                                                           changeLevel(iLevel);
+                                                       break
+                                                   }
+                                           }
+
+                                           function mouseOver() {
+                                               var sImgId = getControlId(event.srcElement);
+                                               if (sImgId != "")
+                                                   switch (sImgId) {
+                                                   case "zoomplus":
+                                                       onPlus();
+                                                       break;
+                                                   case "zoomminus":
+                                                       onMinus();
+                                                       break;
+                                                   default:
+                                                       var sLevel = sImgId.substr(3),
+                                                           iLevel = Number(sLevel, 10);
+                                                       iLevel != NaN &&
+                                                           iLevel != _iSelectedLevel &&
+                                                           on(iLevel);
+                                                       break
+                                                   }
+                                           }
+
+                                           function mouseOut() {
+                                               var sImgId = getControlId(event.srcElement);
+                                               if (sImgId != "")
+                                                   switch (sImgId) {
+                                                   case "zoomplus":
+                                                       offPlus();
+                                                       break;
+                                                   case "zoomminus":
+                                                       offMinus();
+                                                       break;
+                                                   default:
+                                                       var sLevel = sImgId.substr(3),
+                                                           iLevel = Number(sLevel, 10);
+                                                       iLevel != NaN &&
+                                                           iLevel != _iSelectedLevel &&
+                                                           off(iLevel);
+                                                       break
+                                                   }
+                                           }
+
+                                           function getControlId(o) {
+                                               var className = o.className;
+                                               if (className != undefined &&
+                                               (className.indexOf("zoomtick") != -1 ||
+                                                   className.indexOf("zoomplus") != -1 ||
+                                                   className.indexOf("zoomminus") != -1 ||
+                                                   className.indexOf("ms-crm-ImageStrip") != -1))
+                                                   return o.id;
+                                               return ""
+                                           }
+
+                                           function menuKeyHandler() {
+                                               switch (event.keyCode) {
+                                               case zoomKeyRight:
+                                                   zoomIn();
+                                                   event.returnValue = false;
+                                                   break;
+                                               case zoomKeyLeft:
+                                                   zoomOut();
+                                                   event.returnValue = false;
+                                                   break
+                                               }
+                                           }
+
+                                       </script>
+</public:component>

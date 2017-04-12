@@ -1,0 +1,19 @@
+<div id="AppDesigner.AddComponent.componentType"
+     class="mscrm-ComponentTileContainer"
+     aria-labelledby="AppDesigner.AddComponent.{{componenttype}}.Text AppDesigner.AddComponent.{{componenttype}}.Description"
+     ng-click="!isenabled({type:componenttype}) || clickhandler({type:componenttype})"
+     role="button"
+     tabindex="-1">
+    <div id="AppDesigner.AddComponent.{{componenttype}}.Icon" ng-class="['mscrm-ComponentIcon', icon]" mscrm-locale mscrm-resource-key="{{tooltip}}" mscrm-target-attr="title">
+    </div>
+    <div class="mscrm-ComponentTileName" mscrm-locale mscrm-resource-key="{{tooltip}}" mscrm-target-attr="title">
+        <div id="AppDesigner.AddComponent.{{componenttype}}.Text" class="mscrm-ComponentTile-Title">
+            <mscrm-locale mscrm-resource-key="{{label}}"></mscrm-locale>
+        </div>
+        <div id="AppDesigner.AddComponent.{{componenttype}}.Description" class="mscrm-ComponentTile-Subtitle">
+            <mscrm-locale mscrm-resource-key="{{description}}"></mscrm-locale>
+        </div>
+    </div>
+    <div id="AppDesigner.AddComponent.{{componenttype}}.Go" class="mscrm-ComponentNextButtonIcon mscrm-glyph-NextArrowIcon"
+         mscrm-action-on-select mscrm-locale mscrm-resource-key="{{tooltip}}" mscrm-target-attr="title" ng-class="[{ 'mscrm-ComponentNextButtonIcon-Disabled': !isenabled({type:componenttype}) }]"></div>
+</div>

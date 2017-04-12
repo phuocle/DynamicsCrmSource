@@ -1,0 +1,1 @@
+<%@ Application language="C#" Inherits="Microsoft.Crm.Web.HelpApplication" CodeBehind="Microsoft.Crm.Application.Pages.dll" %>

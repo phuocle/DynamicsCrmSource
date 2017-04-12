@@ -1,0 +1,7 @@
+<%@ ServiceHost 
+	Language="C#" 
+	Debug="false" 
+	Service="Microsoft.Crm.Sdk.V5.DiscoveryService, Microsoft.Crm.DiscoveryService, Version=8.0.0.0"
+	CodeBehind="Microsoft.Crm.DiscoveryService.dll" 
+	Factory=Microsoft.Crm.Sdk.V5.DiscoveryServiceHostFactory
+%>

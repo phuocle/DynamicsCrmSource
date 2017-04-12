@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Microsoft.Crm.Common.Application.Pages.Grids.Commands.BulkEmailFromId" CodeBehind="Microsoft.Crm.Application.Pages.dll" %>

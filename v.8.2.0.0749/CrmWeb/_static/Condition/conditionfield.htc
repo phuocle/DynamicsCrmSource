@@ -1,0 +1,539 @@
+<public:component lightweight="true" tagName=ConditionField>
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:attach event="onclick" onevent="handleClick()"/>
+<public:event name="onfieldchange" id="OnFieldChangeHandler"/>
+<public:property name="Selected" get="GetSelected" put="SetSelected"/>
+<public:property name="Xml" put="SetXml"/>
+<public:property name="Container"/>
+<public:property name="ParentControl"/>
+<public:property name="Defined"/>
+<public:property name="FirstFieldDefined"/>
+<public:property name="Children" get="GetChildren"/>
+<public:method name="GetNumControls"/>
+<public:method name="GetControl"/>
+<public:method name="SetFocus"/>
+<public:method name="GetStartElement"/>
+<public:method name="GetEndElement"/>
+<public:method name="GetXml"/>
+<public:method name="ParseXml"/>
+<public:method name="FieldChanged"/>
+<public:method name="HideChild"/>
+<public:method name="HideAffectedControls"/>
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           var _oMnuSpn = null,
+                                               _oControls = [],
+                                               _bSelected = false,
+                                               _oPopupMenu = null,
+                                               _oXmlNode,
+                                               _bInitialized = false,
+                                               _bPrimaryEntityUsedForAttribute = false,
+                                               _bPrimaryEntityUsedForValue = false;
+
+                                           function Init() {
+                                               Defined = false;
+                                               FirstFieldDefined = false;
+                                               var sId = ParentControl.id,
+                                                   oButtonImg = Mscrm.ImageStrip
+                                                       .getImageInfo(Mscrm.CrmUri.create("/_imgs/AdvFind/button.gif"));
+                                               element
+                                                   .innerHTML =
+                                                   "<div class='cndConditionFieldNew'><span tabindex=0 style='visibility:hidden' class='cndConditionMnuBtn'><img alt='' style='visibility:hidden' src='" + oButtonImg.source + "' class = '" + oButtonImg.cssClass + "'/><a contentEditable='false' tabindex='-1' onclick='return false;' href='#' target='_self' title=\"" + CrmEncodeDecode.CrmHtmlAttributeEncode(LOCID_AF_OPT_ATCONDITION) + "\" class='atLink'></a></span><span class='ms-crm-AdvFind-FieldList' id='" + sId + "field0' style='visibility:hidden'></span><span class='ms-crm-AdvFind-FieldList' id='" + sId + "field1' style='visibility:hidden'></span><span class='ms-crm-AdvFind-FieldList' id='" + sId + "field2' style='visibility:hidden'></span><span class='cndFldValue' id='" + sId + "field3' style='visibility:hidden'></span><span class='ms-crm-AdvFind-FieldList' id='" + sId + "field4' style='visibility:hidden'></span><span class='ms-crm-AdvFind-FieldList' id='" + sId + "field5' style='visibility:hidden'></span></div>";
+                                               _bInitialized = true;
+                                               with (element.firstChild) {
+                                                   _oMnuSpn = firstChild;
+                                                   _oMnuSpn.id = sId + "FLDMNU";
+                                                   _oMnuSpn.onkeyup = onMnuKeyUp;
+                                                   _oMnuSpn.lastChild.id = "at" + id
+                                               }
+                                               if (Container.ReadOnlyMode != "1")
+                                                   with (_oMnuSpn) {
+                                                       onclick = ShowPopupMenu;
+                                                       onmouseenter = OnMouseEnter;
+                                                       onmouseleave = OnMouseLeave
+                                                   }
+                                               var a = Container.GetColumnArray();
+                                               if (!IsNull(a)) {
+                                                   var iLen = a.length,
+                                                       i = 0,
+                                                       oLastEntityList = null,
+                                                       oLastAttributeList = null,
+                                                       oLastOperatorList = null;
+                                                   while (i < iLen && !IsNull(a[i])) {
+                                                       var col = Container.GetColumnData(a[i]);
+                                                       if (col.type != "Predefined" &&
+                                                           col.type != "Entity" &&
+                                                           col.type != "Attribute" &&
+                                                           col.type != "Operator" &&
+                                                           col.type != "Value" &&
+                                                           col.type != "Freeform" &&
+                                                           col.type != "Hidden") {
+                                                           i++;
+                                                           continue
+                                                       }
+                                                       var oNew;
+                                                       if (col.type == "Hidden") {
+                                                           oNew = window.document.createElement(HIDDEN_CTRL);
+                                                           oNew.id = element.id + "HF"
+                                                       }
+                                                       if (col.type == "Freeform") {
+                                                           oNew = window.document.createElement(FREEFORM_CTRL);
+                                                           oNew.id = element.id + "FF"
+                                                       }
+                                                       if (col.type == "Predefined") {
+                                                           oNew = window.document.createElement(PREDEFINED_LIST);
+                                                           oNew.id = element.id + "PDF"
+                                                       }
+                                                       if (col.type == "Entity") {
+                                                           oNew = window.document.createElement(ENTITY_LIST);
+                                                           oNew.id = element.id + "EF";
+                                                           oLastEntityList = oNew
+                                                       }
+                                                       if (col.type == "Attribute") {
+                                                           oNew = window.document.createElement(ATTRIBUTE_LIST);
+                                                           oNew.id = element.id + "AF";
+                                                           if (!IsNull(oLastEntityList)) {
+                                                               oNew.Entity = null;
+                                                               oLastEntityList.DependentAttribute = oNew
+                                                           } else {
+                                                               if (!IsNull(oLastAttributeList))
+                                                                   oLastAttributeList.DependentAttribute = oNew;
+                                                               oNew.Entity = GetEntityAttribute(col.type)
+                                                           }
+                                                           oLastAttributeList = oNew
+                                                       }
+                                                       if (col.type == "Operator") {
+                                                           oNew = window.document.createElement(OPERATOR_LIST);
+                                                           oNew.id = element.id + "OPF";
+                                                           oNew.Attribute = null;
+                                                           oLastAttributeList.DependentOperator = oNew
+                                                       }
+                                                       if (col.type == "Value") {
+                                                           oNew = window.document.createElement(VALUE_CTRL);
+                                                           oNew.id = element.id + "VF";
+                                                           oNew.Attribute = null;
+                                                           oNew.Operator = null;
+                                                           if (!IsNull(oLastEntityList)) {
+                                                               oNew.Entity = null;
+                                                               oLastEntityList.DependentValue = oNew
+                                                           } else
+                                                               oNew.Entity = GetEntityAttribute(col.type);
+                                                           oLastAttributeList.DependentValue = oNew;
+                                                           oLastOperatorList.DependentValue = oNew
+                                                       }
+                                                       !IsNull(oLastOperatorList) &&
+                                                           oLastOperatorList.AddDependent(i);
+                                                       if (col.type == "Operator")
+                                                           oLastOperatorList = oNew;
+                                                       oNew.Index = i;
+                                                       oNew.ParentControl = element;
+                                                       oNew.Container = Container;
+                                                       oNew.ColumnData = col;
+                                                       if (Container.ColumnWidthInPixels)
+                                                           oNew.Width = Container.ColumnWidthInPixels;
+                                                       else
+                                                           oNew.Width = GetColumnWidth();
+                                                       AppendControl(oNew);
+                                                       i++
+                                                   }
+                                               }
+                                               SetXml(_oXmlNode);
+                                               ShowChildControls();
+                                               _bFocus &&
+                                                   SetFocus()
+                                           }
+
+                                           function GetEntityAttribute(sColType) {
+                                               var sPrimaryEntity = Container.PrimaryEntityCode,
+                                                   sSecondaryEntity = Container.SecondaryEntityCode;
+                                               if (sColType == "Attribute")
+                                                   if (!_bPrimaryEntityUsedForAttribute && !IsNull(sPrimaryEntity)) {
+                                                       _bPrimaryEntityUsedForAttribute = true;
+                                                       return sPrimaryEntity
+                                                   } else if (
+                                                       _bPrimaryEntityUsedForAttribute && !IsNull(sSecondaryEntity))
+                                                       return sSecondaryEntity;
+                                                   else
+                                                       return null;
+                                               else if (sColType == "Value")
+                                                   if (!_bPrimaryEntityUsedForValue && !IsNull(sPrimaryEntity)) {
+                                                       _bPrimaryEntityUsedForValue = true;
+                                                       return sPrimaryEntity
+                                                   } else if (_bPrimaryEntityUsedForValue && !IsNull(sSecondaryEntity))
+                                                       return sSecondaryEntity;
+                                                   else
+                                                       return null;
+                                               else
+                                                   return null
+                                           }
+
+                                           function GetColumnWidth() {
+                                               return "100%"
+                                           }
+
+                                           function AppendControl(oControl) {
+                                               var sFieldName = ParentControl.id + "field" + GetNumControls(),
+                                                   e = element.all.item(sFieldName);
+                                               e.appendChild(oControl);
+                                               _oControls.push(oControl)
+                                           }
+
+                                           function onMnuKeyUp() {
+                                               (event.keyCode == KEY_SPACE || event.keyCode == KEY_ENTER) &&
+                                                   ShowPopupMenu()
+                                           }
+
+                                           function OnMouseEnter() {
+                                               if (Defined)
+                                                   _oMnuSpn.className = "ms-crm-AdvFind-SelectedFieldMenu"
+                                           }
+
+                                           function OnMouseLeave() {
+                                               if (Defined)
+                                                   _oMnuSpn.className = "ms-crm-AdvFind-FieldMenu"
+                                           }
+
+                                           function GetMenuImg() {
+                                               return element.firstChild.firstChild.firstChild
+                                           }
+
+                                           function GetOuterDiv() {
+                                               return element.firstChild
+                                           }
+
+                                           var _bFocus = false;
+
+                                           function SetFocus() {
+                                               _bFocus = true;
+                                               if (_bInitialized)
+                                                   _bFocus = false
+                                           }
+
+                                           function GetSelected() {
+                                               return _bSelected
+                                           }
+
+                                           function SetSelected(bSelect) {
+                                               _bSelected = bSelect;
+                                               if (_bInitialized)
+                                                   GetOuterDiv().style.backgroundColor = bSelect ? "#a7cdf0" : "#F9F9F9"
+                                           }
+
+                                           function ToggleSelected() {
+                                               !IsNull(_oPopupMenu) &&
+                                                   _oPopupMenu.Hide();
+                                               Selected = !_bSelected
+                                           }
+
+                                           function handleClick() {
+                                               if (event.ctrlKey) {
+                                                   ToggleSelected();
+                                                   event.cancelBubble = true
+                                               }
+                                           }
+
+                                           function ShowPopupMenu() {
+                                               var bIsATLink = false;
+                                               if (!IsNull(event) && !IsNull(event.srcElement))
+                                                   if (event.srcElement.className == "atLink")
+                                                       bIsATLink = true;
+                                               HideVisibleControl(element.Container);
+                                               _oPopupMenu = new PopupMenu;
+                                               with (_oPopupMenu) {
+                                                   AddMenuItem(LOCID_AF_MNUITMDELETE, DeleteClause);
+                                                   Show(0,
+                                                       event.srcElement.offsetHeight,
+                                                       null,
+                                                       null,
+                                                       event.srcElement,
+                                                       bIsATLink)
+                                               }
+                                           }
+
+                                           function OnPopupMouseLeave() {
+                                               !IsNull(_oPopupMenu) &&
+                                                   _oPopupMenu.Hide()
+                                           }
+
+                                           function DeleteClause() {
+                                               if (confirm(LOCID_AF_DELETEFIELD)) {
+                                                   ParentControl.DeleteControl(element);
+                                                   var fnCallback = Container.NotifyConditionsChanged;
+                                                   !IsNull(fnCallback) &&
+                                                       "function" == typeof fnCallback &&
+                                                       fnCallback()
+                                               }
+                                           }
+
+                                           function GetStartElement() {
+                                               return "<condition>"
+                                           }
+
+                                           function GetEndElement() {
+                                               return "</condition>"
+                                           }
+
+                                           function ParseXml() {
+                                               if (!FirstFieldDefined)
+                                                   return true;
+                                               var iLen = GetNumControls(),
+                                                   i = 0;
+                                               while (i < iLen) {
+                                                   var currentControl = GetControl(i);
+                                                   if (currentControl.tagName == "OperatorList" &&
+                                                       currentControl.IsUnary())
+                                                       return true;
+                                                   if (!currentControl.ParseXml())
+                                                       return false;
+                                                   i++
+                                               }
+                                               return true
+                                           }
+
+                                           function GetXml() {
+                                               if (!Defined)
+                                                   return null;
+                                               var iLen = GetNumControls(),
+                                                   i = 0,
+                                                   sInnerXml = "";
+                                               while (i < iLen) {
+                                                   var oControl = GetControl(i),
+                                                       sXml = oControl.GetXml();
+                                                   if (!IsNull(sXml))
+                                                       sInnerXml += sXml;
+                                                   if (oControl.tagName == "OperatorList" && oControl.IsUnary()) {
+                                                       i++;
+                                                       while (i < iLen) {
+                                                           var oControl2 = GetControl(i);
+                                                           if (oControl2.tagName == "Hidden")
+                                                               sInnerXml += oControl2.GetXml();
+                                                           else if (Container.id == "dupRuleAppCondition")
+                                                               if (
+                                                                   window._isSingleEntityRule && i == 3 ||
+                                                                       !window._isSingleEntityRule && i == 4)
+                                                                   sInnerXml += oControl2.GetXml();
+                                                           i++
+                                                       }
+                                                       break
+                                                   }
+                                                   i++
+                                               }
+                                               if (sInnerXml == "")
+                                                   return null;
+                                               else
+                                                   return GetStartElement() + sInnerXml + GetEndElement()
+                                           }
+
+                                           function SetXml(oConditionNode) {
+                                               _oXmlNode = oConditionNode;
+                                               if (_bInitialized) {
+                                                   ShowXml(oConditionNode);
+                                                   _oXmlNode = null
+                                               }
+                                               return
+                                           }
+
+                                           function ShowXml(oNode) {
+                                               if (IsNull(oNode))
+                                                   return;
+                                               var a = Container.GetColumnArray();
+                                               if (!IsNull(a)) {
+                                                   var iLen = a.length,
+                                                       i = 0;
+                                                   while (i < iLen && !IsNull(a[i])) {
+                                                       var col = Container.GetColumnData(a[i]);
+                                                       if (col.type != "Predefined" &&
+                                                           col.type != "Entity" &&
+                                                           col.type != "Attribute" &&
+                                                           col.type != "Operator" &&
+                                                           col.type != "Value" &&
+                                                           col.type != "Freeform" &&
+                                                           col.type != "Hidden") {
+                                                           i++;
+                                                           continue
+                                                       }
+                                                       var oColumnNode = oNode
+                                                           .selectSingleNode("./column[@id='" + col.id + "']");
+                                                       if (oColumnNode == null) {
+                                                           i++;
+                                                           continue
+                                                       }
+                                                       if (!IsNull(oColumnNode.getAttribute("dataslugs"))) {
+                                                           GetControl(i).DataValue = null;
+                                                           GetControl(i)
+                                                               .SetDataSlugs(oColumnNode.getAttribute("value"),
+                                                                   oColumnNode.getAttribute("dataslugs"),
+                                                                   oColumnNode.getAttribute("dataslugtext"))
+                                                       } else
+                                                           GetControl(i).DataValue = oColumnNode.getAttribute("value");
+                                                       i++
+                                                   }
+                                               }
+                                               FieldChanged()
+                                           }
+
+                                           function DeleteClauseKey() {
+                                               (event.keyCode == KEY_SPACE || event.keyCode == KEY_ENTER) &&
+                                                   DeleteClause()
+                                           }
+
+                                           function FieldChanged() {
+                                               _oMnuSpn.style.visibility = "visible";
+                                               _oMnuSpn.className = "ms-crm-AdvFind-FieldMenu";
+                                               GetMenuImg().style.visibility = "visible";
+                                               ShowChildControls();
+                                               var iLen = GetNumControls(),
+                                                   i = 0;
+                                               while (i < iLen) {
+                                                   var oControl = GetControl(i);
+                                                   if (oControl.tagName == "Hidden") {
+                                                       i++;
+                                                       continue
+                                                   }
+                                                   if (IsNull(oControl.DataValue) &&
+                                                       Container.id == "dupRuleAppCondition")
+                                                       if (window._isSingleEntityRule && i == 3 ||
+                                                           !window._isSingleEntityRule && i == 4)
+                                                           break;
+                                                   if (IsNull(oControl.DataValue))
+                                                       return;
+                                                   if (!FirstFieldDefined) {
+                                                       FirstFieldDefined = true;
+                                                       RaiseFieldChangedEvent()
+                                                   }
+                                                   if (oControl.tagName == "OperatorList" && oControl.IsUnary())
+                                                       break;
+                                                   i++
+                                               }
+                                               Defined = true;
+                                               RaiseFieldChangedEvent()
+                                           }
+
+                                           function RaiseFieldChangedEvent() {
+                                               ParentControl.FieldChanged()
+                                           }
+
+                                           function GetChildren() {
+                                               var aoChildren = [],
+                                                   iLen = GetNumControls(),
+                                                   i = 0;
+                                               while (i < iLen) {
+                                                   aoChildren.push(GetControl(i));
+                                                   i++
+                                               }
+                                               return aoChildren
+                                           }
+
+                                           function GetNumControls() {
+                                               return _oControls.length
+                                           }
+
+                                           function GetControl(iIndex) {
+                                               return _oControls[iIndex]
+                                           }
+
+                                           function ShowChildControls() {
+                                               if (!IsNull(event))
+                                                   var srcControl = event.srcElement;
+                                               if (!IsNull(srcControl) && srcControl.id == "VALUE")
+                                                   return;
+                                               var bAlreadyHidden = false,
+                                                   iLen = GetNumControls(),
+                                                   i = 0;
+                                               while (i < iLen) {
+                                                   if (bAlreadyHidden && Container.id == "dupRuleAppCondition")
+                                                       if (window._isSingleEntityRule && i != 3 ||
+                                                           !window._isSingleEntityRule && i != 4) {
+                                                           i++;
+                                                           continue
+                                                       }
+                                                   var oControl = GetControl(i);
+                                                   if (oControl.tagName == "Hidden") {
+                                                       i++;
+                                                       continue
+                                                   }
+                                                   ShowChild(i);
+                                                   i++;
+                                                   if (IsNull(oControl.DataValue)) {
+                                                       if (oControl.tagName == "Freeform" ||
+                                                           oControl.tagName == "EntityList") {
+                                                           oControl.Render();
+                                                           oControl.DataValue = null
+                                                       }
+                                                       break
+                                                   }
+                                                   if (oControl.tagName == "OperatorList" && oControl.IsUnary()) {
+                                                       oControl.HideDependents();
+                                                       bAlreadyHidden = true
+                                                   }
+                                               }
+                                               while (i < iLen && !bAlreadyHidden) {
+                                                   HideChild(i);
+                                                   i++
+                                               }
+                                               if (Container.id == "dupRuleAppCondition") {
+                                                   var oControl = GetControl(0);
+                                                   if (!IsNull(oControl.DataValue))
+                                                       if (window._isSingleEntityRule)
+                                                           ShowChild(3);
+                                                       else
+                                                           ShowChild(4)
+                                               }
+                                           }
+
+                                           function ShowChild(i) {
+                                               var sFieldName = ParentControl.id + "field" + i;
+                                               element.all.item(sFieldName).style.visibility = "visible"
+                                           }
+
+                                           function HideChild(i) {
+                                               if (Container.id == "dupRuleAppCondition")
+                                                   if (window._isSingleEntityRule && i == 3 ||
+                                                       !window._isSingleEntityRule && i == 4)
+                                                       return;
+                                               var sFieldName = ParentControl.id + "field" + i;
+                                               element.all.item(sFieldName).style.visibility = "hidden";
+                                               var oControl = GetControl(i);
+                                               if (oControl.tagName != "Hidden")
+                                                   oControl.DataValue = null
+                                           }
+
+                                           function HideAffectedControls(i) {
+                                               var iLen = GetNumControls();
+                                               i++;
+                                               while (i < iLen) {
+                                                   var oControl = GetControl(i);
+                                                   if (oControl.tagName != "Hidden")
+                                                       break;
+                                                   i++
+                                               }
+                                               if (i < iLen)
+                                                   if (Container.id == "dupRuleAppCondition") {
+                                                       if (!(
+                                                           window._isSingleEntityRule && i == 3 ||
+                                                               !window._isSingleEntityRule && i == 4))
+                                                           GetControl(i).DataValue = null
+                                                   } else
+                                                       GetControl(i).DataValue = null;
+                                               if (Container.id == "dupRuleAppCondition" &&
+                                                   i > 1 &&
+                                                   !(GetControl(i - 1).tagName == "OperatorList" &&
+                                                       GetControl(i - 1).IsUnary()))
+                                                   i++;
+                                               else if (i == 1 || !(Container.id == "dupRuleAppCondition"))
+                                                   i++;
+                                               if (Container.id == "dupRuleAppCondition")
+                                                   (window._isSingleEntityRule && i == 7 ||
+                                                           !window._isSingleEntityRule && i == 8) &&
+                                                       HideChild(i - 3);
+                                               while (i < iLen) {
+                                                   HideChild(i);
+                                                   i++
+                                               }
+                                           }
+
+                                       </script>
+</head>
+</html>
+</public:component>

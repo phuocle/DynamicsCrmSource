@@ -1,0 +1,121 @@
+<public:component lightweight="true">
+    <public:attach event="ondocumentready" onevent="Init()"/>
+    <public:property name="IsMoney" get="getIsMoney"/>
+    <public:property name="IsBaseCurrency" get="getIsBaseCurrency"/>
+    <public:property name="CurrencySymbol" get="getCurrencySymbol" put="setCurrencySymbol"/>
+    <public:property name="CurrencyPrecision" put="setCurrencyPrecision"/>
+    <public:property name="IgnoreCurrencySymbol" get="getIgnoreCurrencySymbol" put="setIgnoreCurrencySymbol"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _oCurTxtBox = null,
+                                                   _oErrorImage = null,
+                                                   _bIgnoreCurrencySymbol = false;
+
+                                               function setIgnoreCurrencySymbol(ignore) {
+                                                   _bIgnoreCurrencySymbol = ignore
+                                               }
+
+                                               function getIgnoreCurrencySymbol() {
+                                                   return _bIgnoreCurrencySymbol
+                                               }
+
+                                               function Init() {
+                                                   element.onValidate = IsValid;
+                                                   element.onDisabled = DisableControl;
+                                                   try {
+                                                       _oCurTxtBox = element.parentElement.parentElement.cells[0]
+                                                           .children[0];
+                                                       _oErrorImage = element.parentElement.parentElement.cells[0]
+                                                           .children[1]
+                                                   } catch (e) {
+                                                   }
+                                               }
+
+                                               function isCurrAsDynamicExpression() {
+                                                   for (var oForm = null,
+                                                       formControls = this.element.document.body
+                                                           .getElementsByTagName("FORM"),
+                                                       index = 0;
+                                                       index < formControls.length;
+                                                       index++)
+                                                       if (formControls[index].className == "ms-crm-Form") {
+                                                           oForm = formControls[index];
+                                                           break
+                                                       }
+                                                   if (!IsNull(oForm))
+                                                       for (var lookupImgs = oForm.getElementsByTagName("IMG"),
+                                                           iLen = lookupImgs.length,
+                                                           i = 0;
+                                                           i < iLen;
+                                                           i++) {
+                                                           var oCtrl = lookupImgs[i];
+                                                           if (oCtrl.className == "ms-crm-Lookup-TransactionCurrency") {
+                                                               var oOuterControl = oCtrl;
+                                                               while (
+                                                                   !IsNull(oOuterControl) &&
+                                                                       oOuterControl.tagName != "TABLE" &&
+                                                                       oOuterControl.className != "ms-crm-Lookup")
+                                                                   oOuterControl = oOuterControl.parentElement;
+                                                               if (!IsNull(oOuterControl) && oOuterControl.IsDataSlug)
+                                                                   return true
+                                                           }
+                                                       }
+                                                   return false
+                                               }
+
+                                               function IsValid() {
+                                                   var oReturnValue = {},
+                                                       sCurSym = getCurrencySymbol();
+                                                   oReturnValue.IsValid = !IsNull(sCurSym) && sCurSym.length > 0;
+                                                   if (getIgnoreCurrencySymbol())
+                                                       oReturnValue.IsValid = true;
+                                                   if (!oReturnValue.IsValid)
+                                                       oReturnValue.IsValid = isCurrAsDynamicExpression();
+                                                   oReturnValue.ErrorMessage = LOCID_CURRENCY_NOT_SPECIFIED;
+                                                   return oReturnValue
+                                               }
+
+                                               function getIsMoney() {
+                                                   return true
+                                               }
+
+                                               function getIsBaseCurrency() {
+                                                   return element.isBaseCur == "1"
+                                               }
+
+                                               function getCurrencySymbol() {
+                                                   if (!IsNull(_oCurTxtBox))
+                                                       return _oCurTxtBox.value;
+                                                   else
+                                                       return ""
+                                               }
+
+                                               function setCurrencySymbol(val) {
+                                                   if (!IsNull(_oCurTxtBox)) {
+                                                       _oCurTxtBox.value = val;
+                                                       if (!IsNull(_oErrorImage)) {
+                                                           _oCurTxtBox.runtimeStyle.display = "inline";
+                                                           _oErrorImage.runtimeStyle.display = "none"
+                                                       }
+                                                   }
+                                               }
+
+                                               function setCurrencyPrecision(val) {
+                                                   if (element.preSrc == PRECISIONSOURCE_CURRENCY)
+                                                       element.Precision = val
+                                               }
+
+                                               function DisableControl(bValue) {
+                                                   if (!IsNull(_oCurTxtBox)) {
+                                                       _oCurTxtBox
+                                                           .className =
+                                                           bValue
+                                                           ? "ms-crm-Money-CurrencySymbol ms-crm-ReadOnly"
+                                                           : "ms-crm-Money-CurrencySymbol";
+                                                       _oCurTxtBox.disabled = bValue;
+                                                       _oCurTxtBox.readonly = !bValue
+                                                   }
+                                               }
+
+                                           </script>
+</public:component>

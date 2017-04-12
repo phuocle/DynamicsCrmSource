@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Microsoft.Crm.Application.Pages.Common.ReadFormData" CodeBehind="Microsoft.Crm.Application.Pages.dll" %>

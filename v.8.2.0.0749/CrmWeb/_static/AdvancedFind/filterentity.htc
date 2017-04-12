@@ -1,0 +1,606 @@
+<public:component lightweight="true" tagName=FilterEntity>
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:event name="onentitychange" id="OnEntityChangeHandler"/>
+<public:property name="ParentControl"/>
+<public:property name="EntityName"/>
+<public:property name="Container"/>
+<public:property name="FetchXml" put="SetFetchXml"/>
+<public:property name="FilterControl" get="GetFilterControl"/>
+<public:property name="Value" get="GetValue" put="SetValue"/>
+<public:property name="Children" get="GetChildren"/>
+<public:property name="Visible" put="SetVisible" get="GetVisible"/>
+<public:property name="Intersect" put="SetIntersect" get="GetIntersect"/>
+<public:property name="LinkType"/>
+<public:property name="ColumnsXml"/>
+<public:property name="Alias"/>
+<public:property name="RelationshipType" get="GetRelationshipType"/>
+<public:method name="SetMode"/>
+<public:method name="GetFetchStartElement"/>
+<public:method name="GetFetchEndElement"/>
+<public:method name="DeleteRelEntity"/>
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           var _oMnuSpn = null,
+                                               _oFltrCtrlDiv = null,
+                                               _sValue = null,
+                                               _oFetchXmlNode,
+                                               _bErrorInFetch = false,
+                                               _bVisible = true,
+                                               _bIntersect = false,
+                                               _bRelationshipType = "",
+                                               _bInitialized = false;
+                                           Sys.Application.add_load(SysInit);
+
+                                           function SysInit() {
+                                               Init()
+                                           }
+
+                                           function InitOnDocReady() {
+                                               Sys.Application.get_isInitialized() &&
+                                                   !_bInitialized &&
+                                                   Init()
+                                           }
+
+                                           function Init() {
+                                               var oErr;
+                                               if (!IsNull(_oFetchXmlNode)) {
+                                                   var oErr =
+                                                       BuildLoadableLinkEntity(_oFetchXmlNode,
+                                                           EntityName,
+                                                           Container.ClientCache);
+                                                   if (oErr != null)
+                                                       _bErrorInFetch = oErr.ErrorType == "ERROR"
+                                               }
+                                               if (_bErrorInFetch) {
+                                                   element
+                                                       .innerHTML =
+                                                       "<div class='ms-crm-AdvFind-FilterEntityError'><img tabindex=0 src='/_imgs/ico/16_L_remove.gif' class='ms-crm-AdvFind-ButtonImage' align='middle' alt=\"" + CrmEncodeDecode.CrmHtmlAttributeEncode(LOCID_AF_DELERRCLAUSE) + "\"><img tabindex=0 src='/_imgs/error/notif_icn_warn16.png' align='middle' alt=\"" + CrmEncodeDecode.CrmHtmlAttributeEncode(oErr.Message) + '">' + CrmEncodeDecode.CrmHtmlEncode(LOCID_AF_ERRINLINKENTITY) + "</div>";
+                                                   with (element.firstChild) {
+                                                       children[0].onkeyup = DeleteRelEntityKey;
+                                                       children[0].onclick = DeleteRelEntity;
+                                                       children[1].onkeyup = ShowErrInfo;
+                                                       children[1].onclick = ShowErrInfo
+                                                   }
+                                                   FinishLoading(_oFetchXmlNode);
+                                                   _bInitialized = true
+                                               } else {
+                                                   var oButtonImg = Mscrm.ImageStrip
+                                                       .getImageInfo(Mscrm.CrmUri
+                                                           .create("/_imgs/grid/Dropdown_Arrow.png"));
+                                                   element
+                                                       .innerHTML =
+                                                       "<div class='ms-crm-AdvFind-FilterEntity'><span tabindex=0 class='ms-crm-AdvFind-FilterEntityMenu'><img alt='' src='" + oButtonImg.source + "' class = 'ms-crm-View-icon " + oButtonImg.cssClass + "'><a contentEditable='false' tabindex='-1' onclick='return false;' href='#' target='_self' title=\"" + CrmEncodeDecode.CrmHtmlAttributeEncode(LOCID_AF_OPT_ATENTITY) + "\" class='atLink'></a></span><span class='ms-crm-AdvFind-EntitySelector'><Crm:EntityList/></span></div><div class='ms-crm-AdvFind-FilterEntityControl'></div>";
+                                                   _bInitialized = true;
+                                                   _oMnuSpn = element.firstChild.firstChild;
+                                                   _oFltrCtrlDiv = element.children[1];
+                                                   with (_oMnuSpn) {
+                                                       onclick = ShowRelEntityPopupMenu;
+                                                       onmouseenter = OnMouseEnter;
+                                                       onmouseleave = OnMouseLeave;
+                                                       onkeyup = onMnuKeyUp;
+                                                       id = ParentControl.id + "MNU";
+                                                       lastChild.id = "at" + id;
+                                                       style
+                                                           .display =
+                                                           Container.Mode == Container.ModesEnum.Simple
+                                                           ? "none"
+                                                           : "inline"
+                                                   }
+                                                   var oEntLst = GetEntityList();
+                                                   with (oEntLst) {
+                                                       id = element.ParentControl.id + "ENT";
+                                                       attachEvent("onchange", EntityChanged);
+                                                       EntityName = element.EntityName;
+                                                       ParentControl = element;
+                                                       Container = element.Container
+                                                   }
+                                                   SetFetchXml(_oFetchXmlNode);
+                                                   SetValue(_sValue)
+                                               }
+                                               _oFetchXmlNode = null;
+                                               SetMode(Container.Mode, true)
+                                           }
+
+                                           function FinishLoading(oFilterNode) {
+                                               if (IsNull(oFilterNode))
+                                                   return;
+                                               var attr = oFilterNode.ownerDocument.createAttribute("done");
+                                               oFilterNode.attributes.setNamedItem(attr);
+                                               var bIntersect = oFilterNode.getAttribute("intersect") == "true";
+                                               if (bIntersect) {
+                                                   var oChildNode = oFilterNode.firstChild;
+                                                   attr = oChildNode.ownerDocument.createAttribute("done");
+                                                   oChildNode.attributes.setNamedItem(attr)
+                                               }
+                                           }
+
+                                           function onMnuKeyUp() {
+                                               (event.keyCode == KEY_SPACE || event.keyCode == KEY_ENTER) &&
+                                                   ShowRelEntityPopupMenu()
+                                           }
+
+                                           function OnMouseEnter() {
+                                               _oMnuSpn.className = "ms-crm-AdvFind-FilterEntitySelectedMenu"
+                                           }
+
+                                           function OnMouseLeave() {
+                                               _oMnuSpn.className = "ms-crm-AdvFind-FilterEntityMenu"
+                                           }
+
+                                           function GetFilterControl() {
+                                               return _bErrorInFetch ? null : element.children[1].firstChild
+                                           }
+
+                                           function GetEntityList() {
+                                               return _bErrorInFetch ? null : element.firstChild.children[1].firstChild
+                                           }
+
+                                           function GetValue() {
+                                               return _sValue
+                                           }
+
+                                           function SetValue(sVal) {
+                                               _sValue = sVal;
+                                               if (_bInitialized) {
+                                                   GetEntityList().DataValue = sVal;
+                                                   var oFilterCtrl = GetFilterControl();
+                                                   IsNull(oFilterCtrl) &&
+                                                       CreateFilterCtrl(true)
+                                               }
+                                           }
+
+                                           function SetMode(iMode, bFromInit) {
+                                               if (_bErrorInFetch)
+                                                   return;
+                                               _oMnuSpn.style
+                                                   .display = iMode == Container.ModesEnum.Simple ? "none" : "inline";
+                                               var bVisibleInSimple = false,
+                                                   oFilterCtrl = GetFilterControl();
+                                               if (!IsNull(oFilterCtrl))
+                                                   bVisibleInSimple = oFilterCtrl.style.display != "none";
+                                               (IsNull(bFromInit) || !bFromInit) &&
+                                                   GetEntityList().SetMode(iMode);
+                                               Visible &&
+                                                   ShowIfDetailedOrNotHidden(element, bVisibleInSimple, iMode)
+                                           }
+
+                                           var _oPopupMenu = null;
+
+                                           function ShowRelEntityPopupMenu() {
+                                               var bIsATLink = false;
+                                               if (!IsNull(event) && !IsNull(event.srcElement))
+                                                   if (event.srcElement.className == "atLink")
+                                                       bIsATLink = true;
+                                               _oPopupMenu = new PopupMenu;
+                                               with (_oPopupMenu) {
+                                                   AddMenuItem(_oFltrCtrlDiv.style.display == "none"
+                                                       ? LOCID_AF_EXPANDENTITY
+                                                       : LOCID_AF_COLLAPSEENTITY,
+                                                       ToggleShow);
+                                                   AddMenuItem(LOCID_AF_MNUITMDELETE, DeleteRelEntity);
+                                                   Show(0,
+                                                       event.srcElement.offsetHeight,
+                                                       null,
+                                                       null,
+                                                       event.srcElement,
+                                                       bIsATLink)
+                                               }
+                                           }
+
+                                           function DeleteRelEntity(boPrompt) {
+                                               if ("undefined" == typeof boPrompt)
+                                                   boPrompt = true;
+                                               if (!boPrompt || confirm(LOCID_AF_DELETEENTITY)) {
+                                                   if (!IsNull(ColumnsXml)) {
+                                                       CreateFilterCtrl(true);
+                                                       Visible = false;
+                                                       LinkType = "outer"
+                                                   } else
+                                                       ParentControl.DeleteControl(element);
+                                                   Container.IsDirty = true
+                                               }
+                                           }
+
+                                           function GetChildren() {
+                                               var o = GetFilterControl();
+                                               return o == null ? null : new Array(o)
+                                           }
+
+                                           function GetFetchStartElement() {
+                                               if (Container.FetchMode == Container.FetchModesEnum.Summary)
+                                                   return '<link-entity uiname="' +
+                                                       CrmEncodeDecode
+                                                       .CrmXmlEncode(GetEntityList().GetEntityList().SelectedText) +
+                                                       '">';
+                                               if (_bErrorInFetch) {
+                                                   alert(LOCID_AF_ERRINSOMECLAUSES);
+                                                   return null
+                                               }
+                                               var a = _sValue.split(";");
+                                               Intersect = false;
+                                               if (a.length > 3)
+                                                   Intersect = a[3] == "true";
+                                               Alias = IsNull(Alias)
+                                                   ? GetNextAliasForLinkEntity(Container.LayoutXml,
+                                                       Container.aliasesInInitialFetch)
+                                                   : Alias;
+                                               var sFilterXml;
+                                               if (!Intersect) {
+                                                   sFilterXml =
+                                                       '<link-entity name="' + CrmEncodeDecode.CrmXmlEncode(a[0]) + '"';
+                                                   if (!IsNull(a[1]) && a[1].length > 0)
+                                                       sFilterXml +=
+                                                           ' from="' + CrmEncodeDecode.CrmXmlEncode(a[1]) + '"';
+                                                   if (!IsNull(a[2]) && a[2].length > 0)
+                                                       sFilterXml += ' to="' + CrmEncodeDecode.CrmXmlEncode(a[2]) + '"';
+                                                   if (!Visible)
+                                                       sFilterXml += ' visible="false"';
+                                                   if (!IsNull(LinkType))
+                                                       sFilterXml +=
+                                                           ' link-type="' +
+                                                           CrmEncodeDecode
+                                                           .CrmXmlEncode(LinkType) +
+                                                           '"';
+                                                   sFilterXml +=
+                                                       ' alias="' + CrmEncodeDecode.CrmXmlEncode(Alias) + '">';
+                                                   _bRelationshipType = "many-to-one";
+                                                   if (!isNullOrEmptyString(a[1]) && !isNullOrEmptyString(a[2])) {
+                                                       var oLinkEntityInfo = Container.ClientCache
+                                                           .GetRelatedEntity(a[0], a[1], a[2], EntityName);
+                                                       if (!IsNull(oLinkEntityInfo)) {
+                                                           var type = oLinkEntityInfo.getAttribute("relationshiptype");
+                                                           if (!isNullOrEmptyString(type))
+                                                               _bRelationshipType = type
+                                                       }
+                                                   }
+                                               } else {
+                                                   var sIntersectEntity = a[4],
+                                                       fromEntityAttribute = a[5],
+                                                       toEntityAttribute = a[6],
+                                                       intersectPrimaryAttribute = a[7],
+                                                       intersectRelatedAttribute = a[8];
+                                                   sFilterXml =
+                                                       '<link-entity name="' +
+                                                       CrmEncodeDecode.CrmXmlEncode(sIntersectEntity) +
+                                                       '"';
+                                                   sFilterXml +=
+                                                       ' from="' +
+                                                       CrmEncodeDecode.CrmXmlEncode(intersectPrimaryAttribute) +
+                                                       '"';
+                                                   sFilterXml +=
+                                                       ' to="' +
+                                                       CrmEncodeDecode
+                                                       .CrmXmlEncode(fromEntityAttribute) +
+                                                       '"';
+                                                   sFilterXml += ' visible="false"';
+                                                   sFilterXml += ' intersect="true"';
+                                                   sFilterXml += ">";
+                                                   sFilterXml +=
+                                                       '<link-entity name="' + CrmEncodeDecode.CrmXmlEncode(a[0]) + '"';
+                                                   sFilterXml +=
+                                                       ' from="' +
+                                                       CrmEncodeDecode
+                                                       .CrmXmlEncode(toEntityAttribute) +
+                                                       '"';
+                                                   sFilterXml +=
+                                                       ' to="' +
+                                                       CrmEncodeDecode.CrmXmlEncode(intersectRelatedAttribute) +
+                                                       '"';
+                                                   if (!Visible)
+                                                       sFilterXml += ' visible="false"';
+                                                   sFilterXml +=
+                                                       ' alias="' + CrmEncodeDecode.CrmXmlEncode(Alias) + '">';
+                                                   _bRelationshipType = "many-to-many"
+                                               }
+                                               if (!IsNull(ColumnsXml))
+                                                   sFilterXml += ColumnsXml;
+                                               else
+                                                   Alias = null;
+                                               return sFilterXml
+                                           }
+
+                                           function GetFetchEndElement() {
+                                               var sEndElement = "</link-entity>";
+                                               if (Intersect)
+                                                   sEndElement += "</link-entity>";
+                                               return sEndElement
+                                           }
+
+                                           function SetFetchXml(oFilterNode) {
+                                               _oFetchXmlNode = oFilterNode;
+                                               if (!_bInitialized || IsNull(oFilterNode))
+                                                   return;
+                                               var oParentNode = oFilterNode,
+                                                   bIntersect = oFilterNode.getAttribute("intersect") == "true";
+                                               if (bIntersect)
+                                                   oFilterNode = oFilterNode.firstChild;
+                                               with (oFilterNode)
+                                                   if (bIntersect) {
+                                                       var sIntersectEntity = oParentNode.getAttribute("name"),
+                                                           sFrom = oParentNode.getAttribute("to");
+                                                       sFrom = sFrom != null ? sFrom + ";" : ";";
+                                                       var sTo = getAttribute("from");
+                                                       sTo = sTo != null ? sTo + ";" : ";";
+                                                       var intersectFrom = oParentNode.getAttribute("from");
+                                                       intersectFrom =
+                                                           intersectFrom != null ? intersectFrom + ";" : ";";
+                                                       var intersectTo = getAttribute("to");
+                                                       intersectTo = intersectTo != null ? intersectTo + ";" : ";";
+                                                       var sVal = getAttribute("name") + ";;;true;";
+                                                       sVal += sIntersectEntity + ";";
+                                                       SetValue(sVal + sFrom + sTo + intersectFrom + intersectTo);
+                                                       var oAttrNodes = oFilterNode.selectNodes("./attribute");
+                                                       ColumnsXml = oAttrNodes.length > 0 ? "" : null;
+                                                       for (var i = 0; i < oAttrNodes.length; i++)
+                                                           ColumnsXml += oAttrNodes[i].xml;
+                                                       Alias = getAttribute("alias");
+                                                       LinkType = getAttribute("link-type")
+                                                   } else {
+                                                       var sVal = getAttribute("name") + ";",
+                                                           sFrom = getAttribute("from");
+                                                       sFrom = sFrom != null ? sFrom + ";" : ";";
+                                                       var sTo = getAttribute("to");
+                                                       sTo = sTo != null ? sTo : "";
+                                                       SetValue(sVal + sFrom + sTo);
+                                                       var oAttrNodes = oFilterNode.selectNodes("./attribute");
+                                                       ColumnsXml = oAttrNodes.length > 0 ? "" : null;
+                                                       for (var i = 0; i < oAttrNodes.length; i++)
+                                                           ColumnsXml += oAttrNodes[i].xml;
+                                                       Alias = getAttribute("alias");
+                                                       LinkType = getAttribute("link-type")
+                                                   }
+                                               var oFilterCtrl = CreateFilterCtrl(true),
+                                                   oFilterNodes = oFilterNode.selectNodes("filter|link-entity");
+                                               if (Container.Mode == Container.ModesEnum.Simple) {
+                                                   var bNotHidden =
+                                                       oFilterNodes != null &&
+                                                           oFilterNodes.context.selectSingleNode(XPATH_SHOWNINSIMPLE) !=
+                                                           null;
+                                                   ShowIfDetailedOrNotHidden(oFilterCtrl, bNotHidden, Container.Mode);
+                                                   ShowIfDetailedOrNotHidden(element, bNotHidden, Container.Mode)
+                                               }
+                                               oFilterCtrl.FetchXml = oFilterNode;
+                                               var sVisible = oFilterNode.getAttribute("visible");
+                                               Visible = sVisible == null ? true : sVisible == "true";
+                                               FinishLoading(oParentNode)
+                                           }
+
+                                           function SetVisible(bVisible) {
+                                               this.style.display = bVisible ? "inline" : "none";
+                                               _bVisible = bVisible
+                                           }
+
+                                           function GetVisible() {
+                                               return _bVisible
+                                           }
+
+                                           function GetIntersect() {
+                                               return _bIntersect
+                                           }
+
+                                           function SetIntersect(bVal) {
+                                               _bIntersect = bVal
+                                           }
+
+                                           function GetRelationshipType() {
+                                               return _bRelationshipType
+                                           }
+
+                                           function ToggleShow(bShow) {
+                                               if (!_bInitialized)
+                                                   return false;
+                                               !IsNull(_oPopupMenu) &&
+                                                   _oPopupMenu.Hide();
+                                               _oFltrCtrlDiv.style
+                                                   .display =
+                                                   _oFltrCtrlDiv.style.display == "none" || bShow == true
+                                                   ? "inline"
+                                                   : "none"
+                                           }
+
+                                           function CreateFilterCtrl(bShow) {
+                                               deleteFilterCtrl();
+                                               if (IsNull(_sValue))
+                                                   return null;
+                                               oFilterCtrl = window.document.createElement(FILTER_CTRL);
+                                               oFilterCtrl.id = ParentControl.id + "E";
+                                               with (oFilterCtrl) {
+                                                   EntityName = _sValue.split(";")[0];
+                                                   Container = element.Container;
+                                                   ParentControl = element
+                                               }
+                                               _oFltrCtrlDiv.appendChild(oFilterCtrl);
+                                               ToggleShow(bShow);
+                                               return oFilterCtrl
+                                           }
+
+                                           function deleteFilterCtrl() {
+                                               var oFilterCtrl = GetFilterControl();
+                                               if (!IsNull(oFilterCtrl))
+                                                   _oFltrCtrlDiv.innerHTML = ""
+                                           }
+
+                                           function EntityChanged() {
+                                               var sOldRel = _sValue,
+                                                   sNewRel = event.srcElement.DataValue,
+                                                   sOldEntity = sOldRel.split(";")[0],
+                                                   sNewEntity = sNewRel.split(";")[0],
+                                                   oOldFilterEnt = ParentControl
+                                                       .FindChildControl("FilterEntity", sOldRel),
+                                                   oNewFilterEnt = ParentControl
+                                                       .FindChildControl("FilterEntity", sNewRel),
+                                                   sOldColumns = ColumnsXml,
+                                                   sOldAlias = Alias,
+                                                   sNewColumns = null,
+                                                   sNewAlias = null;
+                                               if (!IsNull(oNewFilterEnt)) {
+                                                   sNewColumns = oNewFilterEnt.ColumnsXml;
+                                                   sNewAlias = oNewFilterEnt.Alias
+                                               }
+                                               if (oNewFilterEnt && oNewFilterEnt.Visible) {
+                                                   event.srcElement.DataValue = _sValue;
+                                                   alert(LOCID_AF_RELENTITYEXISTSINQUERY);
+                                                   return
+                                               }
+                                               if (sOldEntity != sNewEntity) {
+                                                   if (!confirm(LOCID_AF_CHANGEENTITY)) {
+                                                       event.srcElement.DataValue = _sValue;
+                                                       return
+                                                   }
+                                                   deleteFilterCtrl();
+                                                   SetValue(sNewRel);
+                                                   if (!IsNull(sOldColumns)) {
+                                                       oOldFilterEnt.Visible = false;
+                                                       oOldFilterEnt.LinkType = "outer"
+                                                   }
+                                                   if (!IsNull(oNewFilterEnt))
+                                                       if (!IsNull(sOldColumns)) {
+                                                           oNewFilterEnt.Visible = true;
+                                                           oNewFilterEnt.LinkType = null
+                                                       } else {
+                                                           oOldFilterEnt.Value = sNewRel;
+                                                           oOldFilterEnt.ColumnsXml = sNewColumns;
+                                                           oOldFilterEnt.Alias = sNewAlias;
+                                                           ParentControl.DeleteControl(oNewFilterEnt)
+                                                       }
+                                                   else if (!IsNull(sOldColumns)) {
+                                                       oNewFilterEnt = ParentControl.AddNewFilterEntity(AT_END);
+                                                       oNewFilterEnt.Value = sNewRel
+                                                   } else
+                                                       oOldFilterEnt.Value = sNewRel
+                                               } else if (!IsNull(oNewFilterEnt))
+                                                   if (!IsNull(sOldColumns)) {
+                                                       oOldFilterEnt.ColumnsXml = sNewColumns;
+                                                       oNewFilterEnt.ColumnsXml = sOldColumns;
+                                                       oOldFilterEnt.Alias = sNewAlias;
+                                                       oNewFilterEnt.Alias = sOldAlias;
+                                                       oOldFilterEnt.LinkType = null
+                                                   } else {
+                                                       oOldFilterEnt.Value = sNewRel;
+                                                       oOldFilterEnt.ColumnsXml = sNewColumns;
+                                                       oOldFilterEnt.Alias = sNewAlias;
+                                                       ParentControl.DeleteControl(oNewFilterEnt)
+                                                   }
+                                               else if (!IsNull(sOldColumns)) {
+                                                   oNewFilterEnt = ParentControl.AddNewFilterEntity(AT_END);
+                                                   oNewFilterEnt.Value = sOldRel;
+                                                   oNewFilterEnt.ColumnsXml = sOldColumns;
+                                                   oNewFilterEnt.Alias = sOldAlias;
+                                                   oNewFilterEnt.Visible = false;
+                                                   oNewFilterEnt.LinkType = "outer";
+                                                   oOldFilterEnt.Value = sNewRel;
+                                                   oOldFilterEnt.LinkType = oOldFilterEnt.Alias = oOldFilterEnt
+                                                       .ColumnsXml = null
+                                               } else
+                                                   oOldFilterEnt.Value = sNewRel;
+                                               Container.IsDirty = true
+                                           }
+
+                                           function DeleteRelEntityKey() {
+                                               (event.keyCode == KEY_SPACE || event.keyCode == KEY_ENTER) &&
+                                                   DeleteRelEntity()
+                                           }
+
+                                           function ShowErrInfo() {
+                                               (event.type == "click" ||
+                                                       event.keyCode == KEY_SPACE ||
+                                                       event.keyCode == KEY_ENTER) &&
+                                                   alert(event.srcElement.title)
+                                           }
+
+                                           function BuildLoadableLinkEntity(oLinkEntity, sEntity, oClientCache) {
+                                               var sLinkEntity = oLinkEntity.getAttribute("name").toLowerCase(),
+                                                   sFrom = "",
+                                                   oFrom = oLinkEntity.getAttribute("from");
+                                               if (!IsNull(oFrom))
+                                                   sFrom = oFrom.toLowerCase();
+                                               var sTo = "",
+                                                   oTo = oLinkEntity.getAttribute("to");
+                                               if (!IsNull(oTo))
+                                                   sTo = oTo.toLowerCase();
+                                               var bIntersect = oLinkEntity.getAttribute("intersect") == "true",
+                                                   oLinkEntityInfo;
+                                               if (!bIntersect && sFrom.length == 0 && sTo.length == 0) {
+                                                   var sRelatedXml =
+                                                           '<related entity="' +
+                                                               CrmEncodeDecode.CrmXmlEncode(sEntity) +
+                                                               '">' +
+                                                               oClientCache.GetElement("Entity", sEntity) +
+                                                               "</related>",
+                                                       oRelatedEntities = XUI.Xml.LoadXml(sRelatedXml),
+                                                       oNodes = oRelatedEntities
+                                                           .selectNodes('/related/option[@entity="' +
+                                                               sLinkEntity +
+                                                               '"]'),
+                                                       bFoundIntersectRel = false,
+                                                       bMoreThanOneIntersectRel = false,
+                                                       i;
+                                                   if (oNodes != null)
+                                                       for (i = 0; i < oNodes.length; i++) {
+                                                           var asParams = oNodes[i].getAttribute("value").split(";");
+                                                           if (asParams.length > 3 && asParams[3] == "true")
+                                                               if (bFoundIntersectRel) {
+                                                                   bMoreThanOneIntersectRel = true;
+                                                                   break
+                                                               } else {
+                                                                   bFoundIntersectRel = true;
+                                                                   oLinkEntityInfo = oNodes[i]
+                                                               }
+                                                       }
+                                                   if (bFoundIntersectRel && !bMoreThanOneIntersectRel) {
+                                                       asParams = oLinkEntityInfo.getAttribute("value").split(";");
+                                                       if (asParams.length > 8) {
+                                                           var sIntersectEntity = asParams[4],
+                                                               fromEntityAttribute = asParams[5],
+                                                               toEntityAttribute = asParams[6],
+                                                               intersectPrimaryAttribute = asParams[7],
+                                                               intersectRelatedAttribute = asParams[8],
+                                                               sAlias = oLinkEntity.getAttribute("alias"),
+                                                               oNewLinkEntityNode = oLinkEntity.ownerDocument
+                                                                   .createElement("link-entity");
+                                                           oNewLinkEntityNode.setAttribute("name", sLinkEntity);
+                                                           if (!IsNull(sAlias)) {
+                                                               oNewLinkEntityNode.setAttribute("alias", sAlias);
+                                                               oLinkEntity.removeAttribute("alias")
+                                                           }
+                                                           oNewLinkEntityNode.setAttribute("from", toEntityAttribute);
+                                                           oNewLinkEntityNode
+                                                               .setAttribute("to", intersectRelatedAttribute);
+                                                           oLinkEntity.setAttribute("name", sIntersectEntity);
+                                                           oLinkEntity.setAttribute("from", intersectPrimaryAttribute);
+                                                           oLinkEntity.setAttribute("to", fromEntityAttribute);
+                                                           oLinkEntity.setAttribute("visible", "false");
+                                                           oLinkEntity.setAttribute("intersect", "true");
+                                                           if (oLinkEntity.childNodes != null)
+                                                               for (i = 0; i < oLinkEntity.childNodes.length; i++)
+                                                                   oNewLinkEntityNode
+                                                                       .appendChild(oLinkEntity.removeChild(oLinkEntity
+                                                                           .childNodes[i]));
+                                                           oLinkEntity.appendChild(oNewLinkEntityNode);
+                                                           bIntersect = oLinkEntity.getAttribute("intersect") == "true"
+                                                       }
+                                                   }
+                                               }
+                                               if (!bIntersect)
+                                                   oLinkEntityInfo = oClientCache
+                                                       .GetRelatedEntity(sLinkEntity, sFrom, sTo, sEntity);
+                                               else {
+                                                   var oSubLinkEntity = oLinkEntity.firstChild;
+                                                   sLinkEntity = oSubLinkEntity.getAttribute("name").toLowerCase();
+                                                   sFrom = oLinkEntity.getAttribute("to");
+                                                   sTo = oSubLinkEntity.getAttribute("from");
+                                                   oLinkEntityInfo = oClientCache
+                                                       .GetRelatedEntity(sLinkEntity, sFrom, sTo, sEntity)
+                                               }
+                                               if (IsNull(oLinkEntityInfo))
+                                                   return {
+                                                       ErrorType: "ERROR",
+                                                       Message: formatString(LOCID_AF_RELDOESNOTEXIST, sLinkEntity)
+                                                   };
+                                               return null
+                                           }
+
+                                       </script>
+</html>
+</public:component>

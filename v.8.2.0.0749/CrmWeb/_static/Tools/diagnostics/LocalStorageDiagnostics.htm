@@ -1,0 +1,188 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<!--
+//-----------------------------------------------------------------------------
+// CRM SE 23222: Ribbons are not displayed immediately when opening a form : IE8 and higher
+// chbetris 11/2/11
+//-----------------------------------------------------------------------------
+-->
+<head>
+    <style>
+        H1.style {
+            font-family: Tahoma;
+            font-size: 30px;
+            font-weight: bold;
+            color: #15428B;
+        }
+
+        Div.style {
+            font-family: Tahoma;
+            font-size: 12px;
+            color: #15428B;
+        }
+
+        Span.style {
+            font-family: Tahoma;
+            font-size: 12px;
+            color: #000000;
+        }
+
+        Body.style { background-color: #e9edf1; }
+        
+    </style>
+    <title>Local Storage Diagnostics</title>
+
+    <script type="text/javascript">
+        //----------------------------------------------------------------------
+        function ClearLocalStorage() {
+            var itemsToDelete = new Array();
+            var j = 0;
+            for (var i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
+                if (key.indexOf('etc-') == 0) { // ribbon items
+                    itemsToDelete[j++] = key;
+                } else if (key.indexOf('zzz-') == 0) { // added dummy items
+                    if (window.isDebug) {
+                        itemsToDelete[j++] = key;
+                    }
+                }
+                //else { // existing items, not related to perceived ribbon. don't delete
+            }
+            // delete
+            for (var k = 0; k < itemsToDelete.length; k++) {
+                localStorage.removeItem(itemsToDelete[k]);
+            }
+            ShowLocalStorage();
+        }
+
+        //----------------------------------------------------------------------
+        function FillLocalStorage() {
+            var nOfBytes = document.getElementById('numberOfBytes').value;
+            var content = '';
+            for (var i = 0; i < nOfBytes; i++) {
+                content += '0'
+            };
+            var rand = Math.random();
+            try {
+                localStorage.setItem("zzz-" + rand, content);
+            } catch (e) {
+                alert("localStorage.setItem failed with : " + e.message);
+            }
+        }
+
+        //----------------------------------------------------------------------
+        function ShowLocalStorage() {
+            var countRibbonItems = 0;
+            var countAddedItems = 0;
+            var countExistingItems = 0;
+            var totalSize = 0;
+            var ribbonTotalSize = 0;
+            var div1 = document.getElementById('statusCounts');
+            var div2 = document.getElementById('statusKeys');
+            var content = 'Storage keys';
+            var items = new Array();
+            var j = 0;
+
+            for (var i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
+                var value = localStorage.getItem(key);
+                totalSize += value.length;
+
+                if (key.indexOf('etc-') == 0) { // ribbon items
+                    countRibbonItems++;
+                    ribbonTotalSize += value.length;
+                    items[j++] = key;
+                    if (window.isDebug) {
+                        items[j - 1] += "        (Size = " +
+                            value.length +
+                            "),      Content='" +
+                            value.substring(0, 20) +
+                            "...'";
+                    }
+                } else if (key.indexOf('zzz-') == 0) { // added dummy items
+                    countAddedItems++;
+                    if (window.isDebug) {
+                        items[j++] = key +
+                            "        (Size = " +
+                            value.length +
+                            "),      Content='" +
+                            value.substring(0, 20) +
+                            "...'";
+                    }
+                } else { // existing items, not related to perceived ribbon. Only display in debug mode
+                    countExistingItems++;
+                    if (window.isDebug) {
+                        items[j++] = key +
+                            "        (Size = " +
+                            value.length +
+                            "),      Content='" +
+                            value.substring(0, 20) +
+                            "...'";
+                    }
+                }
+            }
+            items = items.sort();
+            for (var j = 0; j < items.length; j++) {
+                content += "\r\n ==> " + items[j];
+            }
+            div1.innerText = "Count ribbons = " +
+                countRibbonItems +
+                "      Ribbon used size = " +
+                ribbonTotalSize +
+                "        Count others = " +
+                (countAddedItems + countExistingItems) +
+                "       Local storage used size = " +
+                totalSize +
+                "        Remaining space = " +
+                localStorage.remainingSpace;
+            div2.innerText = content;
+        }
+
+        //----------------------------------------------------------------------
+        // Retrieve a given parameter from the query string
+        // Return empty if not found
+        // This code is called inline, so we cannot use CrmUri utility function do to it, for global.aspx is not loaded yet.
+        function queryStringParameter(parameterName) {
+            parametersString = window.location.search.substring(1); // search contains the ? and what follows
+            parameters = parametersString.split("&");
+            for (var ind = 0; ind < parameters.length; ind++) {
+                parameterPairs = parameters[ind].split("=");
+                if (parameterPairs[0] == parameterName) {
+                    return parameterPairs[1];
+                }
+            }
+            return ""; // not found
+        }
+
+        //----------------------------------------------------------------------
+        // check if there is a query parameter called ?debug=1, if yes, show the button that allows to fill in the storage 
+        // with additional keys, also show the content of the keys and the additional keys
+        //
+        function OnLoad() {
+            window.isDebug = (queryStringParameter("debug") == "1");
+            if (window.isDebug) {
+                document.getElementById("debugOnly").style.visibility = "visible";
+            }
+            ShowLocalStorage();
+        }
+
+        //----------------------------------------------------------------------
+    </script>
+
+</head>
+<body class="style" onload="OnLoad();">
+<h1 class="style">Local Storage Diagnostics</h1>
+<input type="button" value="Show Storage" style="width: 150" id="showStorageId" onclick="ShowLocalStorage();"></input>
+<input type="button" value="Clear Storage" style="width: 150" id="clearStorageId" onclick="ClearLocalStorage();"/>
+<span class="style">&nbsp;&nbsp;Caution! This will delete all cached ribbons</span>
+<div id="debugOnly" style="visibility: hidden">
+    <input type="button" value="Add to Storage" style="width: 150" id="addToStorageId" onclick="FillLocalStorage();"></input>
+    <input type="text" id="numberOfBytes"/><span class="style">&nbsp;&nbsp;Bytes</span>
+</div>
+<br/>
+<div class="style" id='statusCounts'></div>
+<br/>
+<div class="style" id='statusKeys'></div>
+<br/>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<div class="mscrm-ComponentCategoryList"
+     mscrm-tree-control-accessibility>
+    <div class="mscrm-ComponentCategoryListContainer" ng-repeat="key in componentListController.GetTypesList(componentListController.contextModel.selections.selectedArtifact).getKeys() as searchKey">
+        <div ng-click="componentListController.ToggleCategoryState($event, componentListController.contextModel.selections.selectedArtifact, key)"
+             mscrm-action-on-select
+             class="mscrm-CategoryTitle"
+             data-treeparentnode
+             role="treeitem"
+             tabindex="-1"
+             aria-expanded="true">
+            <div ng-class="['mscrm-CategoryCollapsibleIcon', {'mscrm-glyph-collapsedIcon': componentListController.IsCategoryCollapsed(componentListController.contextModel.selections.selectedArtifact, key),
+			 'mscrm-glyph-expandedIcon': !componentListController.IsCategoryCollapsed(componentListController.contextModel.selections.selectedArtifact, key)}]"></div>
+            <div class="mscrm-CategoryTitleText" ng-attr-title="{{componentListController.GetTypeMap(componentListController.contextModel.selections.selectedArtifact).getValue(key)}}">
+                {{componentListController.GetTypeMap(componentListController.contextModel.selections.selectedArtifact).getValue(key)}}
+            </div>
+        </div>
+        <div data-pseudotreeparentnode class="mscrm-CategoryListItemContainer" ng-if="!componentListController.IsCategoryCollapsed(componentListController.contextModel.selections.selectedArtifact, key)">
+            <div role="treeitem" tabindex="-1" class="mscrm-CategoryListItem" ng-class="{ selected: item.isAddedToApp }" ng-repeat="item in componentListController.GetTypesList(componentListController.contextModel.selections.selectedArtifact).getValue(key) | orderBy : 'displayName'">
+                <div class="mscrm-CategoryListItem-selector">
+                    <input class="mscrm-CategoryListItem-checkBox" tabindex="-1" id="AppDesigner.ComponentPane.ComponentListItem.Category.{{item.id}}.Checkbox" type="checkbox" name="artifact" value="{{item.id}}" ng-click="componentListController.HandleComponentListSelection(item)" mscrm-action-on-select ng-model="item.isAddedToApp"/>
+                </div>
+                <label for="AppDesigner.ComponentPane.ComponentListItem.Category.{{item.id}}.Checkbox" class="mscrm-ComponentListItem-details">
+                    <div id="AppDesigner.ComponentPane.ComponentListItem.Category.{{item.id}}.Title" class="mscrm-ComponentListItem-Title" ng-attr-title="{{item.displayName}}">{{item.displayName}}</div>
+                    <div id="AppDesigner.ComponentPane.ComponentListItem.Category.{{item.id}}.SubTitle" class="mscrm-ComponentListItem-SubTitle" ng-attr-title="{{item.description}}">{{item.description}}</div>
+                </label>
+
+            </div>
+        </div>
+    </div>
+    <div class="mscrm-ComponentError">
+        <div class="mscrm-ComponentErrorSeperator"></div>
+        <div ng-if="!searchKey.length" class="mscrm-ComponentErrorTitle" tabindex="-1" aria-live="assertive" mscrm-locale mscrm-resource-key="Grid_NoRecordsInView_ForUnknownEntity" mscrm-target-attr="aria-label">
+            <mscrm-locale mscrm-resource-key="Grid_NoRecordsInView_ForUnknownEntity"/>
+        </div>
+    </div>
+</div>

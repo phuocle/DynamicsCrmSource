@@ -1,0 +1,67 @@
+<public:component lightweight="true">
+    <public:attach event="onclick" onevent="DownloadAttachment()"/>
+    <public:attach event="onkeyup" onevent="Handleonkeyup()"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               function Handleonkeyup() {
+                                                   event.keyCode == KEY_ENTER &&
+                                                       DownloadAttachment();
+                                                   event.cancelBubble = true;
+                                                   event.returnValue = false
+                                               }
+
+                                               function DownloadAttachment() {
+                                                   var parentHeadNode,
+                                                       bFoundDownLoadOptionsWithNoOpen = false,
+                                                       parentHeadNodes = top.document.getElementsByTagName("Head");
+                                                   if (parentHeadNodes != null && parentHeadNodes.length != 0) {
+                                                       parentHeadNode = parentHeadNodes[0];
+                                                       if (parentHeadNode != null) {
+                                                           var
+                                                               metaElements = parentHeadNode
+                                                                   .getElementsByTagName("meta");
+                                                           if (metaElements != null)
+                                                               for (var i = 0; i < metaElements.length; i++)
+                                                                   if (
+                                                                       metaElements[i].name != "undefined" &&
+                                                                           metaElements[i].name == "DownloadOptions") {
+                                                                       if (
+                                                                           metaElements[i].content != "undefined" &&
+                                                                               metaElements[i].content == "nopen")
+                                                                           bFoundDownLoadOptionsWithNoOpen = true;
+                                                                       (
+                                                                               this.HideOpenButton == "undefined" ||
+                                                                                   this.HideOpenButton == "0" ||
+                                                                                   metaElements[i].content !=
+                                                                                   "undefined" &&
+                                                                                   metaElements[i]
+                                                                                   .content !=
+                                                                                   "nopen") &&
+                                                                           parentHeadNode.removeChild(metaElements[i])
+                                                                   }
+                                                       }
+                                                   }
+                                                   if (this.HideOpenButton != "undefined" &&
+                                                       this.HideOpenButton == "1" &&
+                                                       !bFoundDownLoadOptionsWithNoOpen) {
+                                                       var downloadOptionsMetaElement = top.document
+                                                           .createElement("meta");
+                                                       downloadOptionsMetaElement
+                                                           .setAttribute("name", "DownloadOptions");
+                                                       downloadOptionsMetaElement.setAttribute("content", "noopen");
+                                                       parentHeadNode.appendChild(downloadOptionsMetaElement)
+                                                   }
+                                                   var downloadUrl =
+                                                       this.url +
+                                                           "?AttachmentType=" +
+                                                           this.attachmentType +
+                                                           "&AttachmentId=" +
+                                                           this.attachmentId +
+                                                           "&IsNotesTabAttachment=" +
+                                                           this.IsNotesTabAttachment +
+                                                           this.WRPCTokenUrl;
+                                                   window.location = downloadUrl
+                                               }
+
+                                           </script>
+</public:component>

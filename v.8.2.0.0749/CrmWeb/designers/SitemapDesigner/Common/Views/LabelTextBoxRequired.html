@@ -1,0 +1,27 @@
+<div class="mscrm-requiredPropertyContainer" ng-show="isGeneralSectionOpen">
+    <div class="mscrm-propertyConatiner">
+        <div class="mscrm-propertiesLabelContainer">
+            <label for="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" class="itemLabel" title="{{PropertyDirective.nodeDisplayName}}">{{PropertyDirective.nodeDisplayName}}</label>
+            <span class="required">*</span>
+        </div>
+        <div class="mscrm-propertiesControlContainer">
+            <mscrm-error-validation-message ng-if="rightPaneForm[PropertyDirective.nodeLabel].$error.required"
+                                            resourcekey="SitemapDesigner.IdCharsInvalidError"/>
+            <mscrm-error-validation-message ng-if="isDuplicateIdExist"
+                                            errormessage="{{propertiesPaneMessage}}"/>
+            <input id="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}"
+                   ng-required="PropertyDirective.nodeLabel === 'Id'" ng-change="propertyPaneController.CheckDuplicateIds(PropertyDirective)"
+                   ng-blur="propertyPaneController.RevertIdIfDuplicateOrEmpty(PropertyDirective)"
+                   name="{{PropertyDirective.nodeLabel}}"
+                   class="textTypeWidth"
+                   type="text"
+                   required
+                   ng-model="PropertyDirective.nodeValue[PropertyDirective.nodeLabel]"
+                   value="{{PropertyDirective.nodeValue[PropertyDirective.nodeLabel]}}"
+                   title="{{PropertyDirective.nodeTooltip}}"
+                   tabindex="-1"
+                   mscrm-trap-focus-on-error
+                   mscrm-restrict-invalid-chars-for-id/>
+        </div>
+    </div>
+</div>

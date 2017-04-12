@@ -1,0 +1,6089 @@
+.panoramaItem[title="Pinned Tiles"] .component { overflow: visible; }
+
+.panoramaItem.pinnedTilesPane { background-color: transparent; }
+
+.panoramaItem.pinnedTilesPane > .panoramaItem-content { overflow-y: visible; }
+
+.panoramaItem.pinnedTilesPane > .panoramaItem-content > .component { overflow: visible; }
+
+.crmTiles > .button {
+    background-color: transparent;
+    border: none;
+    min-width: 33px;
+    min-height: 33px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    -webkit-transform: translate(0px, 0px);
+}
+
+.crmTiles > .button:active {
+    background-color: transparent;
+    border: none;
+}
+
+.crmTiles > .button .button-commandRing {
+    line-height: 33px;
+    font-size: 12pt;
+    width: 33px;
+    height: 33px;
+    color: #666666;
+    border-color: #666666;
+    background-size: 33px 33px;
+}
+
+.crmTiles {
+    height: 100%;
+    width: 340px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: transparent;
+}
+
+.RootView-workspace .crmTiles .listItem { overflow: inherit; }
+
+.crmTiles.selectedState .listItem:not(.listItemSelected) .crmtile { opacity: 0.7; }
+
+.crmTiles .listItem {
+    padding: 0px !important;
+    margin: 0px 6px 6px 0px !important;
+    float: left;
+    display: inline-table;
+    -ms-touch-action: pan-y;
+    width: 150px;
+}
+
+.crmtile {
+    position: relative;
+    padding: 0;
+    height: 150px;
+    border: 0;
+    color: #fff;
+    text-align: left;
+    font: normal normal normal 12px/1.35em 'SegoeUI', 'Segoe UI';
+    display: block;
+    -webkit-transition: opacity 0.75s ease 0;
+
+    -moz-transition: opacity 0.75s ease 0;
+    -o-transition: opacity 0.75s ease 0;
+    -ms-transition: opacity 0.75s ease 0;
+    transition: opacity 0.75s ease 0;
+
+    cursor: pointer;
+    background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.25) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.25) 100%);
+    background-color: #555555;
+}
+
+.crmtile.tileLoading { opacity: 0.1; }
+
+.crmtile.tileLoading .placeHolderImage { display: none; }
+
+.crmtile.tilewide { width: 310px; }
+
+.crmtile.tilesquare { width: 150px; }
+
+.crmtile.tilelookup { width: 150px; }
+
+.crmtile.tilesquare .tileImage1 { display: none !important; }
+
+.crmtile.tilesquare .placeHolderImage {
+    display: block !important;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 23px;
+    line-height: 30px;
+    color: #ffffff;
+    background-color: transparent;
+    text-align: left;
+    width: auto;
+    padding: 3px 3px 0px 3px;
+}
+
+.crmtile.tilewide .placeHolderImage {
+    position: absolute;
+    bottom: 63px;
+    left: 20px;
+    font-size: 53px;
+    line-height: 53px;
+    color: #ffffff;
+    background-color: transparent;
+    padding: 13px 12px 7px 5px;
+}
+
+.crmtile.tilewide.crmview .placeHolderImage { display: block !important; }
+
+.crmtile .tileLeftCornerText {
+    position: absolute;
+    bottom: 6px;
+    left: 20px;
+    width: 185px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.crmtile.contact .tileLeftCornerText { max-width: 82px; }
+
+.crmtile.tilesquare .tileLeftCornerText { display: none; }
+
+.crmtile.tilelookup .tileLeftCornerText { display: none; }
+
+.crmtile .tileRightCornerText {
+    position: absolute;
+    bottom: 6px;
+    right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: right;
+    max-width: 124px;
+}
+
+.crmtile.tilesquare .tileRightCornerText { display: none; }
+
+.crmtile.tilelookup .tileRightCornerText { display: none; }
+
+.crmtile .tileButtonContainer { display: none; }
+
+.crmtile .tileImage1 {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.crmtile.tilewide.crmview .tileImage1 { display: none !important; }
+
+.crmtile .tileTextContainer {
+    position: absolute;
+    top: 15px;
+    left: 110px;
+}
+
+.crmtile.tilesquare .tileTextContainer { left: 20px; }
+
+.crmtile.tilelookup .tileTextContainer { left: 20px; }
+
+.crmtile .tileText {
+    float: left;
+    clear: both;
+    width: 180px;
+    margin-top: -2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.crmtile.tilesquare .tileText { display: none; }
+
+.crmtile.tilelookup .tileText { display: none; }
+
+.crmtile .tileText1 { font: normal normal normal 18px/1.4em 'SegoeUI', 'Segoe UI'; }
+
+.crmtile.tilewide .tileText { margin-bottom: 7px; }
+
+.crmtile.tilesquare .tileText1 {
+    display: inline;
+    width: 110px;
+    white-space: normal;
+    height: 80px;
+    font: normal normal normal 12px/1.35em 'SegoeUI', 'Segoe UI' !important;
+}
+
+.crmtile.tilewide.crmview .tileText1,
+.crmtile.tilewide.noncola .tileText1,
+.crmtile.tilewide.WORKSPACE .tileText1 {
+    display: inline;
+    height: 80px;
+    white-space: normal;
+}
+
+.crmtile.tilelookup .tileText1 {
+    display: inline;
+    width: 110px;
+    white-space: normal;
+    height: 80px;
+    font: normal normal normal 12px/1.35em 'SegoeUI', 'Segoe UI' !important;
+    margin-right: 20px;
+}
+
+.crmtile.tilelookup .tileText2 {
+    width: 85px;
+    white-space: normal;
+    height: 44px;
+    margin-top: 28px;
+    font: normal normal normal 12px/1.35em 'SegoeUI', 'Segoe UI' !important;
+    display: table-cell;
+    vertical-align: bottom;
+    word-break: break-word;
+}
+
+.crmtile .tileText5,
+.crmtile .tileText6 { display: none; }
+
+.crmtile .tileButton2 { display: none; }
+
+.crmtile .tileButton {
+    width: 50px;
+    min-width: 50px;
+
+    height: 75px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.crmtile .tileButton.disabled { opacity: 0.4; }
+
+.crmtile .tileButton:not(:last-child) { border-bottom: 1px solid #ffffff; }
+
+.crmtile .tileButton:active { background-color: #135867; }
+
+.crmtile.activity { background-color: #c0172b; }
+
+.crmtile.WORKSPACE { background-color: #00869c; }
+
+.crmtile.customEntity,
+.customentity .placeHolderImage { background-color: #00856a; }
+
+.crmtile.activitypointer { background-color: #c0172b; }
+
+.crmtile.incident { background-color: #7a278f; }
+
+.crmtile.systemuser { background-color: #578837; }
+
+.crmtile.account,
+.account .placeHolderImage { background-color: #ce7200; }
+
+.crmtile.account.tilewide .tileImage1 { display: block; }
+
+.contact .placeHolderImage { background-color: #0072c6; }
+
+.crmtile.contact,
+.crmtile.systemuser { background-color: #0072c6; }
+
+.crmtile.contact.tilewide:not(.crmview) .tileText,
+.crmtile.systemuser.tilewide:not(.crmview) .tileText { width: 140px; }
+
+.crmtile.contact.tilewide:not(.crmview) .tileButtonContainer,
+.crmtile.systemuser.tilewide:not(.crmview) .tileButtonContainer {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    width: 50px;
+    display: block;
+    border-left: 1px solid #ffffff;
+}
+
+.crmtile.contact.tilewide:not(.crmview) .placeHolderImage,
+.crmtile.systemuser.tilewide:not(.crmview) .placeHolderImage {
+    top: 34px;
+    left: 31px;
+    font-size: 30px;
+    padding: 0;
+}
+
+.crmtile.contact.tilewide .tileImage1,
+.crmtile.systemuser.tilewide .tileImage1 { display: block; }
+
+.crmtile.contact.tilewide div.tileImage1,
+.crmtile.systemuser.tilewide div.tileImage1 { background-color: #0A62A4; }
+
+.crmtile.contact.tilewide .tileRightCornerText,
+.crmtile.systemuser.tilewide .tileRightCornerText { right: 65px; }
+
+.crmtile.opportunity,
+.opportunity .placeHolderImage { background-color: #3e7239; }
+
+.crmtile.opportunity.tilewide:not(.crmview) .tileTextContainer { left: 20px; }
+
+.crmtile.opportunity.tilewide .tileText5 {
+    display: inline;
+    position: absolute;
+    right: 20px;
+    bottom: 57px;
+    text-align: right;
+    font: normal normal normal 82.67px/1em 'SegoeUI-Light', 'Segoe UI light';
+}
+
+.crmtile.opportunity.tilewide .tileText6 {
+    display: inline;
+    position: absolute;
+    right: 24px;
+    top: 86px;
+    text-align: right;
+}
+
+.crmtile.opportunity.tilewide .tileImage1,
+.crmtile.opportunity.tilewide .placeHolderImage { display: none; }
+
+.crmtile.lead,
+.lead .placeHolderImage { background-color: #3052a6; }
+
+.listRoot.crmTiles.panoramaItem-control {
+    overflow-y: initial;
+    position: static;
+}
+
+.panoramaItem-control .crmTiles {
+    background-color: transparent;
+    padding-top: initial;
+}
+
+
+.appBarTab-commandRing:before,
+.appBarSection > .button .button-commandRing:before,
+.appBarSection > .flyoutContainer > .button .button-commandRing:before,
+.quickCreateForm_actionDiv > .button .button-commandRing:before {
+    display: inline-block;
+    font-size: 18px;
+    height: 40px;
+    letter-spacing: 0px;
+    line-height: 40px;
+    margin: -2px;
+    vertical-align: middle;
+    width: 40px;
+}
+
+.removeBorders {
+    border: none;
+    border-radius: 0px;
+}
+
+.symbolFont { font-family: 'Dyn CRM Symbol'; }
+
+
+
+
+
+.Edit-symbol:before { content: '\E104'; }
+
+.Save-symbol:before { content: '\E105'; }
+
+.Delete-symbol:before { content: '\E107'; }
+
+.Remove-symbol:before { content: '\E107'; }
+
+.Add-symbol:before,
+.New-symbol:before { content: '\E109'; }
+
+.Cancel-symbol:before { content: '\E10A'; }
+
+.HandClick-symbol:before { content: '\EC33'; }
+
+.Accept-symbol:before { content: '\E10B'; }
+
+.More-symbol:before { content: '\E10C'; }
+
+.Forward-symbol:before { content: '\E111'; }
+
+.Favorite-symbol:before { content: '\E113'; }
+
+.Placeholder-symbol:before { content: '\E18A'; }
+
+.Options-symbol:before { content: '\E182'; }
+
+.Manage-symbol:before { content: '\E178'; }
+
+.Settings-symbol:before { content: '\E115'; }
+
+.Find-symbol:before { content: '\E11A'; }
+
+.Help-symbol:before { content: '\E11B'; }
+
+.ViewNotifications-symbol:before { content: '\E129'; }
+
+.StageAdvance-symbol:before { content: '\EA64'; }
+
+.CheckMark-symbol:before { content: '\E10B'; }
+
+.Locked-symbol:before { content: '\EA6B'; }
+
+.Lock-symbol:before { content: '\EA6B'; }
+
+.MoreOptions-symbol:before { content: '\E133'; }
+
+.ContactInfo-symbol:before { content: '\E136'; }
+
+.Pin-symbol:before { content: '\E141'; }
+
+.Unpin-symbol:before { content: '\E196'; }
+
+.Refresh-symbol:before { content: '\E149'; }
+
+.Details-symbol:before { content: '\E14C'; }
+
+.Import-symbol:before { content: '\E150'; }
+
+.Tools-symbol:before { content: '\E15E'; }
+
+.Attach-symbol:before { content: '\E16C'; }
+
+.Filter-symbol:before { content: '\E16E'; }
+
+.Copy-symbol:before { content: '\E16F'; }
+
+.HighPriority-symbol:before { content: '\E171'; }
+
+.ReduceTile-symbol:before { content: '\E13F'; }
+
+.ExpandTile-symbol:before { content: '\E140'; }
+
+.Clear-symbol:before { content: '\E0D9'; }
+
+.Post-symbol:before { content: '\E134'; }
+
+.OneNote-symbol:before { content: '\EC34'; }
+
+.Home-symbol:before { content: '\E10F'; }
+
+.SetAsHome-symbol:before { content: '\EC2E'; }
+
+.BackButton-symbol:before { content: '\E0BA'; }
+
+.BackButtonWithoutBorder-symbol:before { content: '\E112'; }
+
+.SetActiveButton-symbol:before { content: '\E129'; }
+
+.SearchButton-symbol:before { content: '\E094'; }
+
+.ForwardButton-symbol:before { content: '\E095'; }
+
+.Mail-symbol:before { content: '\E119'; }
+
+.CheckedMail-symbol:before { content: '\EC32'; }
+
+.Phone-symbol:before { content: '\E13A'; }
+
+.Chat-symbol:before { content: '\E15F'; }
+
+.OpenPane-symbol:before { content: '\E126'; }
+
+.ClosePane-symbol:before { content: '\E127'; }
+
+.AddFriend-symbol:before { content: '\E1E2'; }
+
+.Arrow-symbol:before { content: '\E09F'; }
+
+.DropdownArrow-symbol:before { content: '\E0A1'; }
+
+.FlsLocked-symbol:before { content: '\EA6B'; }
+
+.EmailLink-symbol:before { content: '\EA4A'; }
+
+.Share-symbol:before { content: '\EA0C'; }
+
+.Assign-symbol:before { content: '\EA14'; }
+
+.Connect-symbol:before { content: '\EA51'; }
+
+.Opportunity-symbol:before { content: '\EA3B'; }
+
+.Close-symbol:before { content: '\E10A'; }
+
+.Activate-symbol:before { content: '\EA0B'; }
+
+.DeActivate-symbol:before { content: '\EA0A'; }
+
+.DeleteBulk-symbol:before { content: '\EA26'; }
+
+.CustomActivity-symbol:before { content: '\EB16'; }
+
+.Convert-symbol:before { content: '\EA36'; }
+
+.MarkAsWon-symbol:before { content: '\EA18'; }
+
+.MarkAsLost-symbol:before { content: '\EA19'; }
+
+.SetRegarding-symbol:before { content: '\EA1A'; }
+
+.SaveAsComplete-symbol:before { content: '\E10B'; }
+
+.SwitchProcess-symbol:before { content: '\EA16'; }
+
+.Recalculate-symbol:before { content: '\E1D0'; }
+
+.SendDirectEmail-symbol:before { content: '\EA12'; }
+
+.OpenMailbox-symbol:before { content: '\EC27'; }
+
+.ReOpenOpportunity-symbol:before { content: '\EA21'; }
+
+.ReactivateLead-symbol:before { content: '\EA31'; }
+
+.Disqualify-symbol:before { content: '\EC28'; }
+
+.Qualify-symbol:before { content: '\EC29'; }
+
+.SelectView-symbol:before { content: '\EA6A'; }
+
+.SelectChart-symbol:before { content: '\EA6E'; }
+
+.OpenInBrowser-symbol:before { content: '\E12B'; }
+
+.NewAppointment-symbol:before { content: '\EA7E'; }
+
+.NewRecurringAppointment-symbol:before { content: '\EA03'; }
+
+.NewPhoneCall-symbol:before { content: '\E13A'; }
+
+.NewTask-symbol:before { content: '\EB07'; }
+
+.NewEmail-symbol:before { content: '\E119'; }
+
+.AddExisting-symbol:before { content: '\EA46'; }
+
+.SaveAndEdit-symbol:before { content: '\EA61'; }
+
+.Default-symbol:before { content: '\EA89'; }
+
+.ScrollRight-symbol:before { content: '\00BB'; }
+
+.ScrollLeft-symbol:before { content: '\00AB'; }
+
+.RunRoutingRule-symbol:before { content: '\EA04'; }
+
+.ResolveCase-symbol:before { content: '\EA0B'; }
+
+.CancelCase-symbol:before { content: '\EA26'; }
+
+.ReactivateCase-symbol:before { content: '\EA1A'; }
+
+.AddToQueue-symbol:before { content: '\EC2C'; }
+
+.CreateChildCase-symbol:before { content: '\EC2B'; }
+
+.QueueItemRoute-symbol:before { content: '\EA04'; }
+
+.QueueItemRelease-symbol:before { content: '\EA2C'; }
+
+.QueueItemRemove-symbol:before { content: '\EA15'; }
+
+.QueueItemPick-symbol:before { content: '\EC2A'; }
+
+.Drilldown-symbol:before { content: '\EC31'; }
+
+.PopOverButton-symbol:before { content: '\EA75'; }
+
+.ExitButton-symbol:before { content: '\E10A'; }
+
+
+
+.panoramaItem .fieldsSectionView:first-child .section_control:not(.editRow) { border: none; }
+
+.panoramaItem .fieldsSectionView .section_control.editRow:not(.hidden) + .section_control:not(.editRow) { border-top: none; }
+
+.panoramaItem.fieldsPanoramaItem .scrollingElement.group_content { overflow-y: auto; }
+
+.fieldsSectionView .section { overflow: visible; }
+
+.fieldsSectionView .section .section_control {
+    overflow: visible;
+
+    position: relative;
+    cursor: pointer;
+    /* Fixes iPad not firing certain events on certain elements: https:
+display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+-webkit-box-orient: horizontal;
+/** For Gauntlet compat */
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.fieldsSectionView .section .section_control .control_label {
+    position: relative;
+    -webkit-box-flex: 0 1 50%;
+    -moz-box-flex: 0 1 50%;
+    -webkit-flex: 0 1 50%;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
+}
+
+.fieldsSectionView .section .section_control .control_label .fieldLabelInlineIcons {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.fieldsSectionView .section .section_control .control_label .fieldLabelInlineIcons .truncatedIcon,
+.fieldsSectionView .section .section_control .control_label .fieldLabelInlineIcons .requiredIcon,
+.fieldsSectionView .section .section_control .control_label .fieldLabelInlineIcons .securedIcon { display: inline-block; }
+
+.fieldsSectionView .section .section_control .control_label.truncated {
+    height: 110px;
+
+    overflow: hidden;
+}
+
+.fieldsSectionView .section .section_control .control_label.truncated label { word-wrap: break-word; }
+
+.fieldsSectionView .section .section_control .control_label.truncated .fieldLabelInlineIcons {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding: 0 4px 3px 0;
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #ffffff 20%);
+
+    background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #ffffff 20%);
+}
+
+.fieldsSectionView .section .section_control .control_label.truncated .fieldLabelInlineIcons .truncatedIcon:after {
+    padding: 0 4px 0 16px;
+    content: "\2026";
+}
+
+.fieldsSectionView .section .section_control.requiredField .control_label .fieldLabelInlineIcons .requiredIcon:after {
+    padding-left: 4px;
+    content: "*";
+    color: Red;
+    font-weight: 800;
+}
+
+.fieldsSectionView .section .section_control.recommendedField .control_label .fieldLabelInlineIcons .requiredIcon:after {
+    padding-left: 4px;
+    content: "+";
+    color: Blue;
+    font-weight: 800;
+}
+
+.fieldsSectionView .section .section_control.securedField .control_label .fieldLabelInlineIcons .securedIcon:after {
+    font-family: 'Dyn CRM Symbol';
+    content: ' \E192';
+}
+
+.fieldsSectionView .section .section_control.editRow {
+    -webkit-box-orient: vertical;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.fieldsSectionView .section .section_control.editRow.RollupContainer {
+    -webkit-box-orient: horizontal;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.fieldsSectionView .section .section_control.editRow .control_label {
+    -webkit-box-flex: inherit;
+    -moz-box-flex: inherit;
+    -webkit-flex: inherit;
+    -ms-flex: inherit;
+    flex: inherit;
+}
+
+.fieldsSectionView .section .section_control.editRow .errorIndicator { margin-right: 0px; }
+
+.fieldsSectionView .section .section_control.editRow .control_label.truncated .fieldLabelInlineIcons {
+    background: -webkit-linear-gradient(left, rgba(248, 236, 223, 0) 0%, #f8ecdf 20%);
+
+    background: -ms-linear-gradient(left, rgba(248, 236, 223, 0) 0%, #f8ecdf 20%);
+}
+
+.fieldsSectionView .section .section_control.disabledRow { padding-bottom: 6px; }
+
+.fieldsSectionView .section .section_control.disabledRow .control_label ~ .control_value { margin-top: -2px; }
+
+.fieldsSectionView .section .section_control.disabledRow .control_value {
+    white-space: normal;
+    margin-top: 5px;
+    line-height: 19px;
+}
+
+.fieldsSectionView .section .section_control.disabledRow .control_value .fieldButton { height: 19px; }
+
+.fieldsSectionView .section .section_control.disabledRow .control_value .fieldButton .label { padding: 0; }
+
+.fieldsSectionView .section .section_control.disabledRow .control_value .partyListRead:not(.empty) {
+    margin-top: -6px;
+    margin-bottom: -6px;
+}
+
+.fieldsSectionView .section .section_control.disabledRow .control_value .partyListRead:not(.empty) .fieldButton { height: 32px; }
+
+.fieldsSectionView .section .section_control.disabledRow .control_value .partyListRead:not(.empty) .partyListRead-overflowIndicator { margin-bottom: 0px; }
+
+.form_body_locked .panoramaItem .fieldsSectionView .section_control .control_label.truncated .fieldLabelInlineIcons {
+    background: -webkit-linear-gradient(left, rgba(240, 240, 240, 0) 0%, #f0f0f0 20%);
+
+    background: -ms-linear-gradient(left, rgba(240, 240, 240, 0) 0%, #f0f0f0 20%);
+}
+
+.form_body_locked .panoramaItem .fieldsSectionView .section_control.editRow .control_label.truncated .fieldLabelInlineIcons {
+    background: -webkit-linear-gradient(left, rgba(248, 236, 223, 0) 0%, #f8ecdf 20%);
+
+    background: -ms-linear-gradient(left, rgba(248, 236, 223, 0) 0%, #f8ecdf 20%);
+}
+
+.detailFieldsSectionView .section { width: 326px; }
+
+.detailFieldsSectionView .section .section_control .control_label { width: 150px; }
+
+.detailFieldsSectionView .section .section_control .control_value { width: 160px; }
+
+.detailFieldsSectionView .section .section_control.noLabel .control_value { width: 310px; }
+
+.detailFieldsSectionView .section .section_control.editRow .control_value { width: 310px; }
+
+.detailFieldsSectionView .section .section_control.editRow.inlineEditRow .control_value { width: 160px; }
+
+@media screen and (min-width: 920px) {
+    .fieldsSectionView.createSectionView .section { width: 676px; }
+
+    .fieldsSectionView.createSectionView .section .section_control .control_label { width: 225px; }
+
+    .fieldsSectionView.createSectionView .section .section_control .control_value { width: 435px; }
+
+    .fieldsSectionView.createSectionView .section .section_control.noLabel .control_value { width: 660px; }
+
+    .fieldsSectionView.createSectionView .section .section_control.editRow .control_value { width: 660px; }
+
+    .fieldsSectionView.createSectionView .section .section_control.editRow.inlineEditRow .control_value { width: 435px; }
+}
+
+@media screen and (min-width: 500px) and (max-width: 920px - 1) {
+    .fieldsSectionView.createSectionView .section { width: 376px; }
+
+    .fieldsSectionView.createSectionView .section .section_control .control_label { width: 174px; }
+
+    .fieldsSectionView.createSectionView .section .section_control .control_value { width: 186px; }
+
+    .fieldsSectionView.createSectionView .section .section_control.noLabel .control_value { width: 360px; }
+
+    .fieldsSectionView.createSectionView .section .section_control.editRow .control_value { width: 360px; }
+
+    .fieldsSectionView.createSectionView .section .section_control.editRow.inlineEditRow .control_value { width: 186px; }
+}
+
+.fieldsSectionView .Section_value_common,
+.fieldsSectionView .Section_label_common {
+    white-space: nowrap;
+    overflow: hidden;
+
+    line-height: 32px;
+}
+
+.fieldsSectionView .Section_value_common > span,
+.fieldsSectionView .Section_label_common label {
+    word-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.fieldsSectionView .Section_label_common > span,
+.fieldsSectionView .Section_label_common > span > label {
+    display: inline-block;
+    width: 100%;
+}
+
+.fieldsSectionView.createSectionView .section + .section_control { border-top: none; }
+
+.fieldsCreateFormItem .group_title:before {
+    color: #000000;
+    font-family: 'Dyn CRM Symbol';
+    font-size: 12px;
+    padding-right: 5px;
+
+    content: '\E111';
+}
+
+.fieldsSectionView .section_header_label + .section_control { border-top: none; }
+
+.fieldsSectionView .section_control:first-of-type.editRow { margin-top: -1px; }
+
+.fieldsSectionView .section_control.editRow + .section_control { border-top: none; }
+
+.fieldsSectionView .noLabel .Section_value_alignment.editControlContainer { padding-top: 11px; }
+
+.fieldsSectionView .panoramaItem-title { margin-left: 8px; }
+
+.fieldsSectionView .textbox.field,
+.fieldsSectionView .field { margin: 0px; }
+
+.fieldsSectionView .editRow.inlineEditRow { padding-bottom: 0px; }
+
+.fieldsSectionView .editRow.inlineEditRow .editControlContainer { line-height: 0; }
+
+.fieldsSectionView .comboBoxContainer {
+    overflow: visible;
+    height: 32px;
+    -webkit-box-flex: 1 1 0;
+    -moz-box-flex: 1 1 0;
+    -webkit-flex: 1 1 0;
+    -ms-flex: 1 1 0;
+    flex: 1 1 0;
+}
+
+.fieldsSectionView .noLabel .comboBoxContainer { padding-bottom: 2px; }
+
+.listItem_section .comboBox,
+.fieldsSectionView .comboBox {
+    position: relative;
+    z-index: 1000;
+    height: auto;
+    width: 100%;
+    border: 1px solid #8f8f8f;
+    margin: 0px;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.listItem_section .comboBoxSingleLine,
+.fieldsSectionView .comboBoxSingleLine { height: 32px; }
+
+.fieldsSectionView .comboBoxSingleLine,
+.searchDropDown .comboBoxSingleLine {
+    padding-left: 4px;
+    padding-top: 4px;
+    white-space: nowrap;
+}
+
+.fieldButton .label {
+    color: #000000;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    display: table-cell;
+    word-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.fieldButton .enabled { text-decoration: underline; }
+
+.lookup-bar .listView .fieldButton,
+.fieldsSectionView .fieldButton {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    background: none;
+    border: none;
+    vertical-align: top;
+}
+
+.fieldsSectionView .fieldButton { min-width: 40px; }
+
+.lookup-bar .listView .fieldButton .label {
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+}
+
+.listView .listItem_section {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    overflow: visible;
+}
+
+.listView .listItem_section .section_control { overflow: visible; }
+
+
+
+.crmEditComponent .crmEditComponent_errorIndicator {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    margin: 0 5px 0 0;
+    padding: 0;
+    width: 21px;
+    height: 21px;
+    background-color: #c0172b;
+    -moz-border-radius: 10px;
+
+    -webkit-border-radius: 10px;
+
+    border-radius: 10px;
+
+    border: none;
+    outline: none;
+}
+
+.crmEditComponent .crmEditComponent_errorIndicator:before {
+    display: block;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 3px 6px;
+    content: 'X';
+}
+
+.crmEditComponent .crmEditComponent_errorIndicator .crmEditComponent_errorMessage {
+    white-space: nowrap;
+    position: absolute;
+    left: -5px;
+    bottom: 100%;
+    margin-bottom: 5px;
+    padding: 5px 15px 5px 10px;
+    color: #ffffff;
+    background-color: #666666;
+}
+
+.crmEditComponent .crmEditComponent_errorIndicator .crmEditComponent_errorMessage:after {
+    position: absolute;
+    top: 100%;
+    left: 10px;
+    border: solid 5px transparent;
+    border-top-color: #666666;
+    line-height: 0;
+    content: '';
+}
+
+
+
+.picklistLookup .comboBox {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    margin-bottom: 7px;
+    width: 100%;
+}
+
+.picklistLookup .comboBox,
+.picklistLookup .textbox { height: 30px; }
+
+
+
+.partyListLookup { width: 100%; }
+
+.partyListItem .dynamicsButton {
+    min-width: 0px;
+    margin: 0px;
+    color: #333333;
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+}
+
+.partyListItem .dynamicsButton.canNavigate { text-decoration: underline; }
+
+.dynamicsButton.partyListItem_delete {
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.dynamicsButton.partyListItem_label { font-size: 14px; }
+
+.fieldButton.dynamicsButton[disabled],
+.hoverable .fieldButton.dynamicsButton[disabled]:hover,
+.fieldButton.dynamicsButton[disabled]:focus { border: none; }
+
+.partyListItem_delete:active { color: red; }
+
+.partyListRead .button {
+    display: block;
+    background: none;
+}
+
+.partyListRead .button:not(:first-child) { margin-top: -2px; }
+
+.partyListRead .partyListRead-overflowIndicator {
+    margin-top: -7px;
+    margin-bottom: 2px;
+    display: block;
+    line-height: 32px;
+}
+
+.partyListRead.partyListRead_SingleLineMode.partyListRead_Overflow .button .label:after {
+    content: "...";
+    padding-left: 5px;
+}
+
+
+
+.comboBox {
+    padding: 0px;
+    margin: 1px 0px;
+    vertical-align: text-bottom;
+    height: 30px;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    border: 1px #cccccc solid;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.comboBox[disabled] {
+    background-color: #cccccc;
+    color: #999999;
+}
+
+
+
+.lookup .textboxOverlay:before {
+    font-family: 'Dyn CRM Symbol' !important;
+    content: '\E094' !important;
+    position: absolute !important;
+    top: 6px !important;
+    right: 6px !important;
+}
+
+.lookup .textboxContainer { position: relative !important; }
+
+.lookup-bar {
+    position: absolute;
+
+    bottom: 0px;
+
+    width: 100%;
+    height: 90px;
+    background: #004c66;
+    color: #ffffff;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-transition: bottom 1s ease 0.7s;
+
+    -moz-transition: bottom 1s ease 0.7s;
+    -o-transition: bottom 1s ease 0.7s;
+    -ms-transition: bottom 1s ease 0.7s;
+    transition: bottom 1s ease 0.7s;
+}
+
+.lookup-bar .listItem {
+    cursor: default;
+    display: inline-block;
+    white-space: nowrap;
+    margin: 0px 0px 0px 30px;
+}
+
+.lookup-bar .listItem:nth-child(1) { margin-left: 40px; }
+
+.lookup-bar .listItem span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+}
+
+.lookup-bar .listItem span:nth-child(1) { font-size: 18px; }
+
+.lookup-bar .scrollRegion .listView .listItem { border: none; }
+
+.lookup-bar .listRoot {
+    display: inline-block;
+    height: 100%;
+    width: -moz-calc(100% - 75px);
+    width: -webkit-calc(100% - 75px);
+    width: calc(100% - 75px);
+}
+
+.lookup-bar .scrollingElement {
+    height: -moz-calc(100% - 9px);
+    height: -webkit-calc(100% - 9px);
+    height: calc(100% - 9px);
+    padding-top: 9px;
+
+    white-space: nowrap;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.lookup-bar .listRoot + .button {
+    height: 100%;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    text-transform: uppercase;
+    background-color: #00869c;
+    color: #ffffff;
+    border: none;
+    float: right;
+    font: inherit;
+}
+
+.hoverable .lookup-bar .listRoot + .button:hover {
+    background-color: #b8cdd4;
+    color: #004c59;
+}
+
+.lookup-bar .listRoot + .button:active {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.lookup-bar .listRoot + .button[disabled],
+.hoverable .lookup-bar .listRoot + .button[disabled]:hover,
+.lookup-bar .listRoot + .button[disabled]:focus { visibility: hidden; }
+
+.lookup-bar .listRoot + .button .button-label { margin: 0px 40px; }
+
+.lookup-bar .listComponentView_loadingIcon { display: none; }
+
+.lookup-bar .listView { display: block; }
+
+.lookup-bar .lookupListComponentView_moreRecordsText {
+    margin-left: 13px;
+    margin-right: 40px;
+    display: inline-block;
+}
+
+.lookup-bar .listComponentView_noRecords {
+    margin-top: 20px;
+    margin-left: 40px;
+    color: #ffffff;
+}
+
+
+
+.titleField {
+    font: normal normal normal 40px/74px 'SegoeUI-Light', 'Segoe UI light';
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+
+
+.label {
+    color: #999999;
+    display: block;
+    margin-bottom: 0px;
+}
+
+.field {
+    color: #000000;
+    background-color: #ffffff;
+    margin-bottom: 12px;
+    padding: 2px;
+    outline: none;
+}
+
+.field:focus { outline: none; }
+
+.input-container {
+
+
+
+
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.input-container .textbox {
+    color: inherit;
+    font-size: inherit;
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-bottom: 8px;
+    min-height: 30px;
+    margin-top: 1px;
+}
+
+
+.input-container[readonly] > .textbox[readonly] {
+    border-style: none;
+    padding: 0;
+}
+
+.input-container textarea {
+    vertical-align: top;
+    padding-right: 17px;
+}
+
+.input-container input.field {
+    height: 30px;
+    padding-left: 7px;
+}
+
+.textbox[disabled] {
+    background-color: #cccccc;
+    color: #999999;
+}
+
+.textboxContainer { position: relative; }
+
+.textboxContainer .textboxOverlay {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    padding: 6px 5px;
+    color: #666666;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.textboxContainer .textboxOverlay.isPrefix {
+    left: 0;
+    right: auto;
+}
+
+.textboxContainer .textboxOverlay.isSuffix {
+    left: auto;
+    right: 0;
+}
+
+.textboxContainer .textbox {
+    z-index: 1;
+    position: relative;
+}
+
+.textboxContainer .textbox.hasPrefix { padding-left: 18px; }
+
+.textboxContainer .textbox.hasPrefix.hasLongPrefix { padding-left: 36px; }
+
+.textboxContainer .textbox.hasSuffix { padding-right: 18px; }
+
+.textboxContainer .textbox.hasSuffix.hasLongSuffix { padding-right: 36px; }
+
+div[data-panename="EmailBodyPane"] .component {
+    border-left-color: #578837;
+    border-left-width: 5px;
+    border-left-style: solid;
+    padding-left: 15px;
+    overflow-x: auto;
+}
+
+div[data-panename="EmailBodyPane"] .panoramaItem-content { overflow-y: auto; }
+
+.iframeBlocker {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.iframeWrapper { height: 100%; }
+
+.popoverIframeContainer {
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-bottom: 110px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.popoverIframe {
+    width: 100%;
+    height: 100%;
+}
+
+.emailControlIframe {
+    width: 100%;
+    display: block;
+    height: 100%;
+}
+
+.emailBody-popOver {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+}
+
+.emailMoreButton {
+    background: -webkit-linear-gradient(left, rgba(240, 240, 240, 0) 0%, #f0f0f0 20%);
+
+    background: -ms-linear-gradient(left, rgba(240, 240, 240, 0) 0%, #f0f0f0 20%);
+
+    z-index: 1;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 12.5%;
+    height: 20%;
+    border: 0px;
+    margin: 0px;
+    padding: 0px 0px 0px 2.5%;
+}
+
+
+
+.validationFailed { border: 1px solid red; }
+
+
+
+
+
+
+.imeMode_auto .textbox {
+    -ms-ime-mode: auto;
+    ime-mode: auto;
+}
+
+.imeMode_active .textbox {
+    -ms-ime-mode: active;
+    ime-mode: active;
+}
+
+.imeMode_inactive .textbox {
+    -ms-ime-mode: inactive;
+    ime-mode: inactive;
+}
+
+.imeMode_disabled .textbox {
+    -ms-ime-mode: disabled;
+    ime-mode: disabled;
+}
+
+
+
+.RollupContainer .control_value.Section_value_common.Section_value_alignment.editControlContainer {
+    max-width: 150px;
+    padding-left: 10px;
+    line-height: 32px;
+}
+
+.RollupContainer .control_value.Section_value_common.Section_value_alignment.editControlContainer .rollup { border: 0px; }
+
+.group.fieldsCreateFormItem .group_content .RollupContainer .control_value.Section_value_common.Section_value_alignment.editControlContainer { padding-left: 0px; }
+
+.group.fieldsCreateFormItem .group_content .RollupContainer .control_value.Section_value_common.Section_value_alignment.editControlContainer .rollup { padding-top: 1px; }
+
+.rollup { min-height: 64px; }
+
+.rollup.expanded { min-height: 130px; }
+
+.rollup .rollupLastUpdatedLabel {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 16px;
+    color: #999999;
+    font-size: 14px;
+}
+
+.rollup .rollupRecalculateLabel {
+    display: block;
+    position: absolute;
+    left: 8px;
+    top: 63px;
+    color: #666666;
+    font-size: 14px;
+}
+
+.rollup .rollup_OK_Button {
+    display: block;
+    position: absolute;
+    top: 84px;
+    right: 8px;
+    background-color: #0377BC;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    min-width: 45px;
+    height: 30px;
+    border: 0px;
+}
+
+.rollup .rollupValue:before {
+    font-family: 'Dyn CRM Symbol';
+    color: #000000;
+    font-weight: normal;
+    font-size: 12px;
+    padding-right: 7px;
+}
+
+
+
+
+
+
+.proxyProcessControl.panoramaItem.fieldsPanoramaItem:not(:first-child) {
+    vertical-align: top;
+    -webkit-transition: width 0.25s ease 0;
+
+    -moz-transition: width 0.25s ease 0;
+    -o-transition: width 0.25s ease 0;
+    -ms-transition: width 0.25s ease 0;
+    transition: width 0.25s ease 0;
+}
+
+body:not(.phone) .proxyProcessControl.panoramaItem.fieldsPanoramaItem:not(:first-child) { margin-left: 30px; }
+
+.proxyProcessControl.panoramaItem div.panoramaItem-title {
+    color: #dc9305;
+    text-transform: capitalize;
+}
+
+.proxyProcessControl.panoramaItem div.panoramaItem-title .errorIndicator { left: 11px; }
+
+.proxyProcessControl.panoramaItem div.panoramaItem-title .processPanoramaTitleSuffix {
+    color: #8c8c8c;
+    display: inline-block;
+}
+
+.proxyProcessControl.panoramaItem div.panoramaItem-title .processPanoramaTitleSuffix:before { content: '\0000a0'; }
+
+.proxyProcessControl.panoramaItem .panoramaItem-content .component .group.crmGroup {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition-property: opacity, height;
+    -moz-transition-property: opacity, height;
+    transition-property: opacity, height;
+    -webkit-transition-duration: 1s, 0s;
+    -moz-transition-duration: 1s, 0s;
+    transition-duration: 1s, 0s;
+    -webkit-transition-delay: 0, 1s;
+    -moz-transition-delay: 0, 1s;
+    transition-delay: 0, 1s;
+}
+
+.proxyProcessControl.panoramaItem .panoramaItem-content .component .group.crmGroup.hideGroup {
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.proxyProcessControl.panoramaItem .processMessageBox { margin-left: 41px; }
+
+
+
+}
+.proxyProcessControl .processControlFlyOutContainer { height: 250px; }
+
+.proxyProcessControl .section_control:not(.requiredField) .control_label .processRequiredStep:after {
+    font-weight: 800;
+    content: " *";
+    color: #c0172b;
+}
+
+.proxyProcessControl div.stageActionContainer {
+    margin-top: 25px;
+    margin-left: 41px;
+    position: absolute;
+}
+
+.proxyProcessControl .stageActionIcon.dynamicsButton,
+.proxyProcessControl .stageActionIcon .flyoutButton-Button {
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    background: white;
+    position: relative;
+    min-width: 45px;
+    border-color: #4f4f4f;
+    border-width: 2px;
+    border-style: solid;
+    margin: 0px;
+}
+
+.proxyProcessControl .stageActionIcon > .button-container,
+.proxyProcessControl .stageActionIcon > .flyoutButton-Button > .button-container {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    background: #5ba4b5;
+    position: relative;
+    top: -2px;
+    left: -2px;
+}
+
+.proxyProcessControl .stageActionIcon {
+    display: inline-block;
+    margin-bottom: 0px;
+}
+
+.proxyProcessControl .stageActionIcon .button-commandRing {
+    color: #ffffff;
+    font-size: 11pt;
+    position: relative;
+    top: 8px;
+    left: 1px;
+    opacity: 1;
+}
+
+.hoverable .proxyProcessControl .stageActionIcon.dynamicsButton:hover > .button-container,
+.hoverable .proxyProcessControl .stageActionIcon:hover > .flyoutButton-Button > .button-container { background: #2a7a8c; }
+
+.hoverable .proxyProcessControl .stageActionIcon.dynamicsButton:hover,
+.hoverable .proxyProcessControl .stageActionIcon:hover .flyoutButton-Button { border-color: #000000; }
+
+.proxyProcessControl .stageActionIcon.dynamicsButton:active > .button-container,
+.proxyProcessControl .stageActionIcon:active > .flyoutButton-Button > .button-container { background: #135867; }
+
+.proxyProcessControl div.stageActionText {
+    margin-top: 5px;
+    font: normal normal normal 11px/20px 'SegoeUI', 'Segoe UI';
+    text-align: center;
+    width: 45px;
+    line-height: 15px;
+}
+
+.proxyProcessControl .stageActionDisabled .dynamicsButton.stageActionIcon { border-color: #a7a7a7; }
+
+.proxyProcessControl .stageActionDisabled .stageActionIcon .button-container { background: #c6dfe5; }
+
+.proxyProcessControl div.stageActionDisabled div.stageActionText { color: #b2b2b2; }
+
+.proxyProcessControl .checkMark {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    margin-top: 6px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 8px;
+    font-family: 'Dyn CRM Symbol';
+    font-size: 14px;
+}
+
+.proxyProcessControl .hasError > .checkMark,
+.proxyProcessControl .locked > .checkMark { display: none; }
+
+.proxyProcessControl .checkMark .Forward-symbol { color: #dc9305; }
+
+.proxyProcessControl .editRow > .checkMark { margin-right: 1px; }
+
+div.group.proxyProcessHeader {
+    float: right;
+    position: relative;
+    right: 30px;
+    top: -50px;
+    height: 46px;
+    -webkit-transition: top 0.5s ease 0;
+
+    -moz-transition: top 0.5s ease 0;
+    -o-transition: top 0.5s ease 0;
+    -ms-transition: top 0.5s ease 0;
+    transition: top 0.5s ease 0;
+}
+
+div.group.proxyProcessHeader.initialized { top: 12px; }
+
+.proxyProcessHeader .processWrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.proxyProcessHeader .processWrapper .hidden { display: none; }
+
+.proxyProcessHeader div.stagesViewport {
+    float: left;
+    overflow: hidden;
+    height: 46px;
+}
+
+.processWrapper .processName {
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    position: absolute;
+    top: 25px;
+    right: 0px;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+div.processStageContainer.hideStage { display: none; }
+
+.processHeaderContainer {
+    float: left;
+    padding-left: 0px;
+    height: 20px;
+    background-image: none;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    color: #ffffff;
+    font: normal normal normal 13px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.processHeaderContainer .processStageContainer {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    margin: 0 5px 0 0;
+    position: relative;
+    background-color: #7e7e7e;
+    width: 120px;
+    outline: none;
+    vertical-align: top;
+}
+
+.processHeaderContainer .processStageContainer:last-child { margin-right: 0; }
+
+.processHeaderContainer .processStageContainer:before {
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: -1px;
+    border-style: solid;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #ffffff;
+    z-index: 0;
+}
+
+.processHeaderContainer .processStageContainer:first-child:before { border-color: transparent; }
+
+.processHeaderContainer .processStageContainer .stageNameContent:after {
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    right: -9px;
+    top: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #7e7e7e;
+    z-index: 10;
+}
+
+.hoverable .processHeaderContainer .processStageContainer:hover,
+.processHeaderContainer .processStageContainer.selectedStage:last-child .stageNameContent:after,
+.processHeaderContainer .processStageContainer:last-child .stageNameContent:after { border-color: transparent; }
+
+.hoverable .processHeaderContainer .processStageContainer:hover .stageContent,
+.processHeaderContainer .processStageContainer.selectedStage .stageContent {
+    background: #dc9305;
+    z-index: 100;
+}
+
+.hoverable .processHeaderContainer .processStageContainer:hover .stageNameContent:after,
+.processHeaderContainer .processStageContainer.selectedStage .stageNameContent:after { border-left-color: #dc9305; }
+
+.processHeaderContainer .processStageContainer:active .stageContent,
+.hoverable .processHeaderContainer .processStageContainer.selectedStage:hover .stageContent,
+.processHeaderContainer .processStageContainer.selectedStage:active .stageContent { background: #f9a706; }
+
+.processHeaderContainer .processStageContainer:active .stageNameContent:after,
+.hoverable .processHeaderContainer .processStageContainer.selectedStage:hover .stageNameContent:after,
+.processHeaderContainer .processStageContainer.selectedStage:active .stageNameContent:after { border-left-color: #f9a706; }
+
+.processHeaderContainer .processStageContainer:active .stageTracker,
+.hoverable .processHeaderContainer .processStageContainer.selectedStage:hover .stageTracker,
+.processHeaderContainer .processStageContainer.selectedStage:active .stageTracker { background: #70b0bf; }
+
+.processHeaderContainer .processStageContainer:first-child .stageContent { padding-left: 7px; }
+
+.processHeaderContainer .stageContent {
+    overflow: hidden;
+    word-wrap: normal;
+    padding-left: 17px;
+    text-transform: capitalize;
+}
+
+.processHeaderContainer .stageContent .stageNameContent {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 20px;
+    white-space: nowrap;
+}
+
+.processHeaderContainer img.stageIcon {
+    float: left;
+    margin-right: 4px;
+    padding-bottom: 2px;
+    vertical-align: middle;
+    height: 16px;
+}
+
+.processHeaderContainer div.stageTracker { display: none; }
+
+.processHeaderContainer .activeStage div.stageTracker {
+    position: relative;
+    top: -12px;
+    right: 1px;
+    float: right;
+    display: block;
+    font-size: 11px;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    background: #5ba4b5;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.activeStage .dataIcon {
+    position: relative;
+    left: 4px;
+    top: 1px;
+}
+
+.processWrapper .overflowTracker {
+    float: left;
+    position: relative;
+    top: -1px;
+    width: 18px;
+    height: 100%;
+}
+
+.processWrapper .leftStageTracker,
+.processWrapper .rightStageTracker {
+    color: black;
+    font-size: 14px;
+}
+
+.overflowTracker .dataIcon {
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
+.processStageContainer .stageIconHolder {
+    width: 17px;
+    height: 17px;
+    float: left;
+    display: none;
+}
+
+.processStageContainer .CheckMark-symbol {
+    margin-top: 1px;
+    margin-left: -2px;
+    display: none;
+}
+
+.processStageContainer .Locked-symbol {
+    margin-top: 0;
+    margin-left: -2px;
+    display: none;
+}
+
+.processStageContainer.completedStage .stageIconHolder,
+.processStageContainer.disabled .stageIconHolder { display: block; }
+
+.processStageContainer.completedStage .CheckMark-symbol,
+.processStageContainer.disabled .Locked-symbol { display: block; }
+
+.form_body_locked .processHeaderContainer .processStageContainer:before { border-color: transparent transparent transparent #f0f0f0; }
+
+.form_body_locked .processHeaderContainer .processStageContainer:first-child:before { border-color: transparent; }
+
+.form_body_locked .processHeaderContainer .activeStage div.stageTracker { border-color: #f0f0f0; }
+
+.stageActionContainer .flyoutContainer .flyoutButton-flyOut .loadingBarContainer { width: 260px; }
+
+.processPaneContainer .flyoutContainer .flyoutButton-flyOut .loadingBarContainer,
+.stageActionContainer .flyoutContainer .flyoutButton-flyOut .loadingBarContainer { height: 80px; }
+
+.processPaneContainer .flyoutContainer .flyoutButton-flyOut .loadingBarContainer .loading-flyout-Container,
+.stageActionContainer .flyoutContainer .flyoutButton-flyOut .loadingBarContainer .loading-flyout-Container { margin-top: 25px; }
+
+.processPaneContainer .flyoutContainer .flyoutButton-flyOut .loadingBarContainer .loadingTextContainer,
+.stageActionContainer .flyoutContainer .flyoutButton-flyOut .loadingBarContainer .loadingTextContainer {
+    margin-top: 40px;
+    margin-left: 28%;
+    text-align: center;
+    position: absolute;
+}
+
+
+
+.panoramaItem .chartContainer {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+}
+
+.chartContainer .indeterminateProgressBar {
+    background: url("../../../../resources/images/chart_place_holder.png") no-repeat center 60%;
+    position: absolute;
+    height: 100%;
+    -webkit-overflow-scrolling: auto;
+    z-index: 5;
+}
+
+.chartContainer .chartErrorMessageContainer {
+    background: url("../../../../resources/images/chart_place_holder.png") no-repeat center 60%;
+    height: 100%;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+.panoramaItem .chartContainer .chartErrorMessageType {
+    padding-top: 12px;
+    color: #000000;
+    font: normal normal normal 18px/25px 'SegoeUI', 'Segoe UI';
+    overflow-y: hidden;
+}
+
+.chartContainer .chartErrorMessageDescription {
+    padding-top: 10px;
+    color: #000000;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    white-space: normal;
+    max-width: 280px;
+}
+
+.chartContainer .chartGraphicsContainer {
+    height: 100%;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+
+
+.panoramaItem.drillDownPane .component { overflow: visible; }
+
+.panoramaItem.drillDownPane .panoramaItem-content { overflow: visible; }
+
+.panoramaContainer-content .drillDownContainer { height: 100%; }
+
+.panoramaItem.drillDownPane .drillDownContainer {
+    white-space: nowrap;
+    vertical-align: top;
+    height: 100%;
+}
+
+.panoramaItem.drillDownPane .chartContainer {
+    border: 1px solid #8C8C8C;
+    margin-right: 26px;
+    vertical-align: top;
+    display: inline-block;
+    -webkit-overflow-scrolling: none;
+}
+
+.panoramaItem.drillDownPane .gridRoot {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.quickCreateForm-popupContent .panoramaItem-content { padding-bottom: 10px; }
+
+.drillDownPane .component .panoramaItem-control { height: 100%; }
+
+.drillDownPane .component .panoramaItem-control .drillDownContainer { height: 100%; }
+
+.drillDownPane .component .panoramaItem-control .drillDownContainer .gridContainer { height: 100%; }
+
+.drillDownPane .component .panoramaItem-control .drillDownContainer .gridContainer > div { height: 100%; }
+
+.drillDownPane .component .panoramaItem-control .drillDownContainer .gridContainer .scrollingElement { height: -webkit-calc(100% - 24px); }
+
+.drillDownPane .component .panoramaItem-control .drillDownContainer .gridContainer .scrollingElement { height: calc(100% - 24px); }
+
+
+
+@media screen and (min-width: 920px) {
+    .searchBoxHeader {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .searchBoxHeader .leftcolumn .filterLabel { margin-left: 20px; }
+
+    .searchBoxHeader .leftcolumn .searchboxrow .searchText { width: 770px; }
+
+    .searchBoxHeader .leftcolumn .searchDropDown { width: auto; }
+
+    .searchBoxHeader .leftcolumn .searchDropDown select { width: 150px !important; }
+}
+
+@media screen and (max-width: 919px) and (min-width: 500px) {
+    .searchBoxHeader .leftcolumn .filterLabel { margin-left: 15px; }
+
+    .searchBoxHeader .leftcolumn .searchboxrow .searchText { width: 159px; }
+
+    .searchBoxHeader .leftcolumn .searchDropDown select { width: 90px !important; }
+}
+
+.RootView-searchPage {
+    height: 100%;
+    width: 100%;
+}
+
+.searchBoxHeader {
+    height: 136px;
+    display: block;
+    padding-top: 20px;
+    padding-left: 8px;
+}
+
+.searchBoxHeader .leftcolumn {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+.searchBoxHeader .leftcolumn .startwithrow { display: block; }
+
+.searchBoxHeader .leftcolumn .startwithrow .searchwithLabel {
+    padding-top: 30px;
+    display: inline-block;
+    font: normal normal normal 24px/32px 'SegoeUI', 'Segoe UI';
+    color: black;
+}
+
+.searchBoxHeader .leftcolumn .searchboxrow { display: block; }
+
+.searchBoxHeader .leftcolumn .searchboxrow .searchText {
+    display: inline-block;
+    border: 2px solid #00869c;
+    height: 100%;
+    box-sizing: border-box;
+    vertical-align: bottom;
+    text-indent: 7px;
+    font: normal normal normal 13px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.searchBoxHeader .leftcolumn .searchboxrow .searchImage { display: inline-block; }
+
+.searchBoxHeader .leftcolumn .searchboxrow .searchboxiconcontainer {
+    white-space: nowrap;
+    height: 30px;
+}
+
+.searchBoxHeader .leftcolumn .filterLabel {
+    display: inline;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: black;
+    margin-top: 0px;
+    margin-right: 1px;
+    line-height: 29px;
+    vertical-align: middle;
+}
+
+.searchBoxHeader .leftcolumn .searchDropDown {
+    margin-left: 5px;
+    margin-right: 1px;
+    display: inline;
+    color: black;
+    height: 100%;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.searchBoxHeader .leftcolumn .searchDropDown .comboBoxSingleLine { height: 30px; }
+
+.searchBoxHeader .leftcolumn .searchDropDown > select {
+    margin: 0px;
+    vertical-align: bottom;
+}
+
+.searchButton {
+    color: #ffffff;
+    background-color: #00869c;
+    display: inline-block;
+    border: 0px solid transparent;
+    padding: 0px 5px 1px 5px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 30px;
+    vertical-align: middle;
+}
+
+.searchButton .SearchButton-symbol {
+    vertical-align: middle;
+    height: 100%;
+    line-height: 30px;
+}
+
+.hoverable .searchButton:hover { background-color: #004c59; }
+
+.searchButton:active { background-color: #000000; }
+
+.RootView-workspace .searchIconContainer { position: absolute; }
+
+.searchIconContainer {
+    top: 0px;
+    float: right;
+    right: 15px;
+    display: inline-block;
+    border: 0px solid transparent;
+}
+
+.searchIconContainer .searchHeaderButton {
+    background-color: transparent;
+    display: inline;
+    border: 0px solid transparent;
+    padding: 0px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font: normal normal normal 40px/36px 'SegoeUI', 'Segoe UI';
+    color: black;
+}
+
+.hoverable .searchIconContainer .searchHeaderButton:hover,
+.searchIconContainer .searchHeaderButton:active { color: #a5a5a5; }
+
+span.searchIconContainer { position: relative; }
+
+.searchboxrow .indeterminateProgressBar {
+    padding-top: 15px;
+    padding-bottom: 0;
+    width: 565px;
+}
+
+.searchboxrow .indeterminateProgressBar .hideProgressBar {
+    display: inherit;
+    visibility: hidden;
+}
+
+.searchSummaryContainer {
+    height: 100%;
+    padding: 2px;
+    background-color: white;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+.summaryNoResult {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    width: 284px;
+    word-wrap: break-word;
+    color: black;
+    display: block;
+    padding: 13px;
+    margin-top: 5px;
+    min-height: 35px;
+}
+
+.searchErrorMessage {
+    padding: 13px;
+    display: block;
+    color: black;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    width: 284px;
+    word-wrap: break-word;
+}
+
+.draftsStatusPane .panoramaItem-content .component {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.draftsStatusPane .panoramaItem-content .panoramaItem-control {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: black;
+    height: 100%;
+    width: 100%;
+    padding: 13px;
+    display: inline-block;
+}
+
+.modalBackground {
+    background-color: black;
+    opacity: 0.80;
+    width: inherit;
+    height: 100%;
+}
+
+.PopupContainer {
+    position: relative;
+    z-index: 101;
+}
+
+
+
+.aboutDialog-Brand {
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: block;
+}
+
+ul.aboutDialog-list,
+ul.aboutDialog-list li {
+    list-style: none;
+    list-style-type: none;
+    padding: 0px;
+}
+
+li.aboutDialog-list-break { margin-bottom: 15px; }
+
+.aboutDialog-label:after { content: ": "; }
+
+.aboutDialog-list .aboutDialog_Link {
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    background: none;
+    border: none;
+    color: #ffffff !important;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+
+
+
+.associateForm {
+    width: 100%;
+    height: 50px !important;
+    bottom: 90px;
+}
+
+.associateForm > div { padding-top: 10px; }
+
+.associateForm .input-container,
+.associateForm .lookup {
+    width: 293px;
+
+    display: inline-block;
+}
+
+.associateForm .comboBox {
+    vertical-align: middle;
+    padding: 4px;
+}
+
+.associateForm .textbox { vertical-align: middle; }
+
+
+
+body > .associateForm {
+    height: auto !important;
+    background-color: #578837;
+}
+
+body > .associateForm > div {
+    margin-left: 40px;
+    padding-top: 12px;
+}
+
+body > .associateForm .input-container,
+body > .associateForm .lookup { margin-right: 10px; }
+
+body > .associateForm .input-container .textbox,
+body > .associateForm .lookup .textbox,
+body > .associateForm .input-container .comboBox,
+body > .associateForm .lookup .comboBox { margin-bottom: 9px; }
+
+
+
+body .CrmDialogForm { color: #ffffff; }
+
+.ShowProgress {
+    position: fixed !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0;
+    margin: 0;
+    top: 0px !important;
+    left: 0px !important;
+    z-index: 16000;
+}
+
+.ShowProgress .rootViewControlLoadingRing {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -30px;
+    margin-top: -30px;
+}
+
+.ShowProgress .ShowProgressMessage {
+    top: 70%;
+    position: fixed;
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+}
+
+.CrmDialog-popup {
+    background-color: #203864;
+    float: right;
+    width: 40%;
+    top: -40px;
+}
+
+.CrmDialogForm .actionDivWrapper { float: right; }
+
+.CrmDialogForm .quickCreateForm_ruler { display: none; }
+
+.CrmDialogForm .quickCreateForm_actionDiv > .button .button-commandRing {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.CrmDialogForm .Section_label_common { color: #ffffff; }
+
+.CrmDialogForm .editRow .Section_label_common { color: #bababa; }
+
+.CrmDialogForm .editRow .Section_value_common { color: #203864; }
+
+.CrmDialogForm .fieldButton .label { color: #ffffff; }
+
+.CrmDialogForm .detailFieldsSectionView .section_control {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.CrmDialogForm .detailFieldsSectionView .dialogFooter {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: flex-end;
+    -moz-justify-content: flex-end;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0px;
+    margin: 0px;
+    right: 0px;
+    background-color: #162746;
+    width: 100%;
+}
+
+.CrmDialogForm .detailFieldsSectionView .dialogFooter .section_control {
+    -webkit-box-orient: vertical;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    width: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.CrmDialogForm .fieldsSectionView .section_control.editRow {
+    background-color: #ffffff;
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.CrmDialogForm .detailFieldsSectionView .dialogFooter .section_control.noLabel .control_value {
+    width: auto;
+    padding: 5px;
+}
+
+.CrmDialogForm .Section_value_common { color: #ffffff; }
+
+.CrmDialogForm .quickCreateForm_buttonLabel { color: #ffffff; }
+
+.CrmDialogForm .SimpleButton {
+    background-color: #429bbd;
+    border: 2px solid #d7d7d7;
+    height: 34px;
+    color: #ffffff;
+}
+
+.CrmDialogForm .SimpleButton:disabled { opacity: 0.4; }
+
+.CrmDialogForm .SimpleButtonLabel {
+    min-width: 75px;
+    max-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+
+.quickCreateFullForm { display: inline; }
+
+.quickCreateForm-popup {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quickCreateForm-popupContent {
+    box-sizing: border-box;
+    padding-top: 2px;
+
+    height: -moz-calc(100% - 122px);
+    height: -webkit-calc(100% - 122px);
+    height: calc(100% - 122px);
+}
+
+.quickCreateForm-popupContent.quickCreateForm-androidCompat { height: 80%; }
+
+.quickCreateForm-rootView { position: relative; }
+
+.quickCreateForm-rootView .crmEditComponent {
+    position: relative;
+    z-index: 1;
+}
+
+.quickCreateForm-popupContent .crmEditComponent_controlDiv {
+    margin-bottom: 10px;
+    width: 820px;
+    float: left;
+}
+
+.quickCreateForm-popupContent .label { color: #000000; }
+
+.quickCreateForm-popupContent .loadingdiv {
+    left: -moz-calc(50% - 16px + 35px);
+    left: -webkit-calc(50% - 16px + 35px);
+    left: calc(50% - 16px + 35px);
+    top: -moz-calc(50% - 16px + 35px);
+    top: -webkit-calc(50% - 16px + 35px);
+    top: calc(50% - 16px + 35px);
+}
+
+.quickCreateForm-popupContent .comboBox { width: 100%; }
+
+.quickCreateForm-popupContent .input-container .textbox { width: 100%; }
+
+.quickCreateForm-popupContent textarea.textbox {
+    resize: none;
+    height: 135px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.quickCreateForm-popupContent .lookup input {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.quickCreateForm_header .progressBarContainer {
+    width: 804px;
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    right: 8px;
+    font: normal normal normal 11px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.quickCreateForm_header .progressBarContainer .indeterminateProgressBar { padding-bottom: 0; }
+
+.quickCreateForm_header .progressBarContainer .savingTextContainer { text-transform: capitalize; }
+
+.quickCreateForm_headerLabel {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dynamicsButton.quickCreateForm_Button {
+    margin: 17px 0px 0px 0px;
+    padding: 0px;
+    min-width: 0px;
+    background-color: transparent;
+    border: none;
+}
+
+.chromeGauntletVersion .quickCreateForm_Button { opacity: .9999999; }
+
+.quickCreateForm_buttonLabel {
+    text-align: center;
+    margin-right: 7px;
+    margin-left: 7px;
+    font: normal normal normal 11px/20px 'SegoeUI', 'Segoe UI';
+    line-height: 100% !important;
+}
+
+.dynamicsButton.quickCreateForm_Button:active,
+.dynamicsButton.quickCreateForm_Button .selected {
+    border: none;
+    background-color: #e6e6e6;
+}
+
+.dynamicsButton.quickCreateForm_Button[disabled],
+.hoverable .dynamicsButton.quickCreateForm_Button[disabled]:hover,
+.dynamicsButton.quickCreateForm_Button[disabled]:focus {
+    border: none;
+    opacity: 0.3;
+}
+
+.quickCreateForm_actionDivContainer {
+    float: right;
+    width: 96px;
+    height: 100%;
+}
+
+.quickCreateForm_actionDiv { text-align: center; }
+
+.quickCreateForm-body { overflow: auto; }
+
+.hoverable .quickCreateForm_actionDiv > .button:hover .button-commandRing { background-color: #ababab; }
+
+body .quickCreateForm_actionDiv > .button:active .button-commandRing {
+    border-color: #ffffff;
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.hoverable .quickCreateForm_actionDiv > .button[disabled]:hover .button-commandRing,
+.quickCreateForm_actionDiv > .button[disabled]:active .button-commandRing,
+.hoverable .quickCreateForm_actionDiv > .button[disabled] .button-commandRing:hover,
+.quickCreateForm_actionDiv > .button[disabled] .button-commandRing:active {
+    border-color: #000000;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.quickCreateForm_ruler {
+    height: 1px;
+    border: none;
+    color: #ffffff;
+    background-color: #ffffff;
+}
+
+@media screen and (min-width: 500px) and (max-width: 920px - 1) {
+    .quickCreateForm-popup { width: 500px !important; }
+
+    .quickCreateForm-popup .quickCreateFullForm .quickCreateForm_actionDivContainer { width: 92px; }
+
+    .quickCreateForm-popup .quickCreateFullForm .quickCreateForm-popupContent {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .quickCreateForm-popup .quickCreateFullForm .quickCreateForm-popupContent .quickCreateForm_header .quickCreateForm_headerLabel { margin-left: 34px; }
+
+    .quickCreateForm-popup .quickCreateFullForm .quickCreateForm-popupContent .quickcreateForm-body { padding-left: 15px; }
+
+    .messageBar.isAssociatedWithCreateForm { width: 500px !important; }
+
+    .messageBar.isAssociatedWithCreateForm .messageBar-scrollRegion { width: 400px !important; }
+}
+
+body {
+    -ms-content-zooming: none;
+    -ms-touch-action: none;
+    overflow: hidden;
+    -webkit-perspective: 500;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+
+.primaryConductor {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.navBar {
+    background-color: transparent;
+    height: 41px;
+    color: #666666;
+}
+
+.mainContainer {
+    position: absolute;
+    top: 0px;
+    left: 110px;
+    right: 0;
+    bottom: 0px;
+}
+
+.customizationContainer { height: 0px; }
+
+
+
+.home_page_label {
+    font-size: 12px;
+    font-family: 'SegoeUI-Semibold', 'Segoe UI SemiBold' !important;
+    color: #7c7c7c;
+    padding-top: 0px;
+    line-height: 41px;
+    padding-left: 7px;
+}
+
+.workspace_body,
+.workspace_body {
+    background-image: -ms-linear-gradient(top, #ffffff 0%, #c4c4c4 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#c4c4c4));
+}
+
+.dynamicsDashboard .titleField { color: #ffffff; }
+
+.dynamicsDashboard .formCaption { color: #999999; }
+
+.hoverable .dynamicsDashboard .pivot-item:hover { color: #cccccc; }
+
+body:not(.phone) { }
+
+body:not(.phone) .RootView-form .panoramaItem:not(.pinnedTilesPane) { margin-right: 15px; }
+
+body:not(.phone) .RootView-form .panoramaItem:not(.fieldsPanoramaItem):not(.pinnedTilesPane) { margin-left: 33px; }
+
+.recordNavContainer {
+    position: absolute;
+    top: 12px;
+    background: #cdcdcd;
+    height: 313px;
+    width: inherit;
+}
+
+.listNavigation {
+    position: relative;
+    height: 337px;
+    width: 10px;
+}
+
+.listNavigationIndicatorHitTarget {
+    z-index: 1;
+    left: -12px !important;
+    padding: 12px;
+    width: 10px;
+}
+
+.listNavigationIndicator {
+    height: 6px;
+    background-color: #686868;
+    position: relative;
+}
+
+.listNavigationRecordCount {
+    text-align: center;
+    font: normal normal normal 11px/20px 'SegoeUI', 'Segoe UI';
+    margin-top: 0px !important;
+}
+
+.indicatorRecordTitle {
+    color: #000;
+    text-align: center;
+    height: 22px;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    margin: 0px 0px 0px 45px;
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+    border: 1px solid black;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+
+
+@media all and (min-width: 321px) {
+    #OverlayDivContainer { display: none; }
+}
+
+.snapFormHeader {
+    font: normal normal normal 40px/74px 'SegoeUI', 'Segoe UI';
+    color: #000000;
+    display: block;
+    position: relative;
+    white-space: normal;
+    text-align: left;
+    padding-top: 0px;
+    height: 155px;
+    top: 97px;
+    left: 15px;
+    font-size: 30px;
+    line-height: 1;
+}
+
+.snapMessage > span {
+    font: normal normal normal 13px/20px 'SegoeUI', 'Segoe UI';
+    color: white;
+    display: block;
+    margin: 15px 15px 0px 15px;
+}
+
+.group.fieldsCreateFormItem {
+    margin-top: 0px;
+    margin-bottom: 29px;
+}
+
+.fieldsCreateFormItem .group_title {
+    color: #000000;
+    text-transform: none;
+    font-family: 'SegoeUI', 'Segoe UI';
+    font-size: 16px;
+}
+
+@media only screen and (max-width: 320px) {
+    .hideOnSnap .mainContainer { display: none; }
+
+    .hideOnSnap .navBar { display: none; }
+
+    .hideOnSnap .navContainer { display: none; }
+
+    .hideOnSnap .primaryConductor { display: none; }
+}
+
+
+
+.navigationBar { font-size: 0; }
+
+.navigationBar > button,
+.listComponentView-commandBar > button {
+    min-width: 54px;
+    padding: 6px;
+    border: none;
+    white-space: nowrap;
+}
+
+.navContainer {
+    position: absolute;
+    top: 41px;
+    left: 0px;
+    width: 110px;
+}
+
+.backButton,
+.navContainer > span,
+.listNavigation,
+.listNavigationRecordCount {
+    border: 0px solid transparent;
+    padding: 0px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: transparent;
+}
+
+.navContainer > span { margin-top: 5px; }
+
+.navContainer > button.backButton {
+    margin-top: 22px;
+    margin-left: 30px;
+    font-size: 36.5px;
+    color: #000000;
+    max-height: 65px;
+    margin-bottom: 50px;
+    font-family: 'SegoeUI', 'Segoe UI' !important;
+}
+
+.navContainer > button.backButton > .backButtonBackground {
+    position: relative;
+    display: block;
+    top: -42px;
+    left: 5px;
+    background: transparent;
+    height: 39px;
+    width: 39px;
+    border-radius: 50%;
+}
+
+.navContainer > button.backButton > .BackButton-symbol {
+    position: relative;
+    z-index: 1;
+}
+
+.navContainer > button.backButton:active { color: #ffffff; }
+
+.navContainer > button.backButton[disabled="disabled"] { color: #999999 !important; }
+
+.hoverable .navContainer > button.backButton:not([disabled]):hover > .backButtonBackground { background: #8d8b8b; }
+
+.navContainer > button.backButton:not([disabled]):active > .backButtonBackground {
+    top: -42px;
+    left: 6px;
+    height: 36px;
+    width: 36px;
+    background: #000000 !important;
+}
+
+
+
+.homeButton,
+.siteMapButton {
+    width: 54px;
+    height: 41px;
+    background-color: #ebebeb;
+    font: normal normal normal 18px/25px 'SegoeUI', 'Segoe UI';
+    color: #5e5e5e;
+    margin-right: 1px;
+}
+
+.siteMapButton { margin-left: 1px; }
+
+.hoverable .siteMapButton:hover,
+.hoverable .homeButton:hover { color: #868686; }
+
+.siteMap button,
+.siteMap label {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    color: white;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    text-align: left;
+    display: block;
+    text-transform: none;
+    margin-top: 6px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0;
+    line-height: 53px;
+}
+
+.hoverable .siteMap button:hover { background-color: #9a5500; }
+
+.siteMap .symbolFont {
+    font: normal normal normal 23px/56px 'SegoeUI', 'Segoe UI';
+    font-family: 'Dyn CRM Symbol';
+    display: block;
+    float: left;
+    width: 55px;
+    height: 55px;
+    text-align: center;
+    line-height: 56px;
+    margin-right: 10px;
+    background-color: #555555;
+}
+
+.siteMap .button-label { line-height: 53px; }
+
+.siteMap .entity-symbol { font-family: 'Dyn CRM Symbol'; }
+
+.siteMap .group { float: none; }
+
+.button.siteMapOpen {
+    background-color: black;
+    width: 55px;
+    margin-left: 0px;
+    outline: 0;
+}
+
+.siteMap .button-labelContainer {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.siteMapPopup {
+    background-color: #000000;
+    min-width: 250px;
+    outline: 0;
+    padding-bottom: 2px;
+    padding-right: 2px;
+    overflow-y: auto;
+    position: absolute;
+    left: 0;
+    top: 41px;
+    bottom: 0;
+}
+
+.systemuser_siteMapButton .symbolFont { background-color: #578837 !important; }
+
+.dashboards_siteMapButton .symbolFont { background-color: #00869c !important; }
+
+.activitypointer_siteMapButton .symbolFont { background-color: #c0172b !important; }
+
+.drafts_siteMapButton .symbolFont { background-color: #c65400 !important; }
+
+.opportunity_siteMapButton .symbolFont { background-color: #3e7239 !important; }
+
+.contact_siteMapButton .symbolFont { background-color: #0072c6 !important; }
+
+.lead_siteMapButton .symbolFont { background-color: #3052a6 !important; }
+
+.account_siteMapButton .symbolFont { background-color: #ce7200 !important; }
+
+.incident_siteMapButton .symbolFont { background-color: #7a278f !important; }
+
+.customEntity_siteMapButton .symbolFont { background-color: #00856a !important; }
+
+
+
+.loadingdiv {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.loadingdiv {
+    left: -webkit-calc(50% - 16px);
+    top: -webkit-calc(50% - 16px);
+}
+
+.loadingdiv {
+    left: -moz-calc(50% - 16px);
+    top: -moz-calc(50% - 16px);
+}
+
+.loadingdiv {
+    left: calc(1% - 16px);
+    top: calc(50% - 16px);
+}
+
+
+
+#popupClickEater {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1500;
+    left: 0;
+    top: 0;
+}
+
+.popupContent { z-index: 1501; }
+
+.popupContent.popupHidden { display: none; }
+
+
+
+.dynamicsButton {
+    display: inline-block;
+    min-width: 75px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    background-color: #d7d7d7;
+    border: 2px solid #d7d7d7;
+
+    color: #ffffff;
+    padding: 5px;
+}
+
+.dynamicsButton .labelMargin { margin-left: 4px; }
+
+.dynamicsButton .image,
+.dynamicsButton .label { vertical-align: middle; }
+
+.dynamicsButton[disabled],
+.hoverable .dynamicsButton[disabled]:hover,
+.dynamicsButton[disabled]:focus,
+.tile[disabled] {
+    background-color: transparent;
+    color: #999999;
+    border: 2px solid #999999;
+}
+
+
+
+.flyoutTopMenuButton {
+    display: inline-block;
+    min-width: 26px;
+    background-color: transparent;
+    border: 2px solid transparent;
+
+    padding: 5px;
+}
+
+.flyoutTopMenuButton:active,
+.flyoutTopMenuButton .selected {
+
+    border: 2px solid transparent;
+    background-color: transparent;
+}
+
+.flyoutContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.flyoutButton-flyOut {
+    background-color: #333333;
+    color: #ffffff;
+
+    display: inline-block;
+    position: absolute;
+    z-index: 1501;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translateZ(0px);
+}
+
+body:not(.win81) .flyoutButton-flyOut { outline: 1px solid white; }
+
+.flyout-menuItem,
+.flyout-menuItem > .dynamicsButton {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    color: white;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    text-align: left;
+    display: block;
+}
+
+.flyout-menuItem > .dynamicsButton {
+    margin: 0px;
+    padding: 0px;
+}
+
+.button.dynamicsButton.flyout-menuItem {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.appBar .flyoutContainer.flyout-menuItem,
+.appBar .button.dynamicsButton.flyout-menuItem {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 2px;
+
+    padding-top: 1px;
+    margin-bottom: 23px;
+
+    margin-top: 24px;
+    box-sizing: initial;
+    width: 240px;
+}
+
+.appBar .flyoutContainer.flyout-menuItem .button-container .button-labelContainer,
+.appBar .button.dynamicsButton.flyout-menuItem .button-container .button-labelContainer {
+    height: 34px;
+    padding-top: 7px;
+}
+
+.hoverable .flyoutContainer.flyout-menuItem:hover,
+.flyoutContainer.flyout-menuItem:focus,
+.hoverable .button.dynamicsButton.flyout-menuItem:hover,
+.button.dynamicsButton.flyout-menuItem:focus,
+.hoverable .flyout-menuItem .group_content .button:hover {
+    background-color: #9a5500;
+    border: none;
+}
+
+.flyoutContainer.flyout-menuItem.flyoutMenuOpen,
+.flyoutContainer.flyout-menuItem:active,
+.button.dynamicsButton.flyout-menuItem:active,
+.flyout-menuItem .group_content .button:active {
+    background-color: #ce7200;
+    border: none;
+}
+
+.flyout-menuItem .group_content .button {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    margin-bottom: 0px;
+    margin-top: 24px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    text-align: left;
+}
+
+.flyout-menuItem span {
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    width: 220px;
+    white-space: nowrap;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+}
+
+.flyout-menuItem .button-container .button-commandRing { display: none; }
+
+.button-flyoutArrow { display: none !important; }
+
+.flyout-menuItem .flyoutButton-Button .button-flyoutArrow { display: inline !important; }
+
+.appBar .flyout-menuItem .flyoutButton-Button .button-flyoutArrow {
+    float: right;
+    padding-right: 7px;
+    padding-top: 3px;
+}
+
+.group.flyout-menuItem .group_content {
+    width: 280px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.flyout-menuItem .group_title {
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    color: #d89a57;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 25px;
+    display: inline-block;
+}
+
+.flyout-menuItem[disabled] {
+    color: #999999;
+    border: none;
+}
+
+
+
+.imageView {
+    display: inline-block;
+    color: #000000;
+}
+
+.csimg { overflow: hidden; }
+
+.scrollRegion {
+    height: 100%;
+    /* Workaround for Android browser: Tapping on a text box in the details section caused the user to leave edit mode *only* when the
+details section was scrollable and scrollTop = 0.  Adding this property fixed the issue */
+    -webkit-transform: translate(0px, 0px);
+    -webkit-overflow-scrolling: touch;
+}
+
+.componentContainer { float: left; }
+
+.component {
+    float: left;
+    overflow: hidden;
+    width: 100%;
+}
+
+.section {
+    position: relative;
+    overflow: hidden;
+}
+
+.section_header_label {
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+}
+
+.section_control { overflow: hidden; }
+
+.section_control.hidden { display: none; }
+
+.hoverable .section_control :hover { cursor: pointer; }
+
+.hoverable .section_control.locked :hover { cursor: default; }
+
+.section_control img { margin-top: 3px; }
+
+.section_multilineText {
+    line-height: 19px;
+    max-height: 57px;
+    overflow: hidden;
+}
+
+.section_label {
+    text-align: left;
+    overflow: hidden;
+}
+
+.Section_label_common.section_primaryFieldLabel { font-family: 'SegoeUI-Bold', 'Segoe UI Bold'; }
+
+.multiline_label {
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    max-height: 75px;
+    overflow: hidden;
+    white-space: normal;
+    width: 100%;
+}
+
+.group { float: left; }
+
+.group.headerFieldsPane { height: auto; }
+
+.group_content > * { display: block; }
+
+.group_title {
+    color: #24a0da;
+    text-transform: uppercase;
+}
+
+
+
+.hoverable .button:hover { cursor: pointer; }
+
+.hoverable a:hover { cursor: pointer; }
+
+.hoverable .contact .placeHolderImage :hover { cursor: pointer; }
+
+
+
+.notesItem {
+    padding: 7px;
+
+    border: 2px solid transparent;
+}
+
+.annotation .listItem { padding: 0px; }
+
+.notes_Icon_Container {
+    float: left;
+    width: 30px;
+    margin-top: -4px;
+}
+
+.notes_Icon_Container.WithoutTitle { margin-top: -6px; }
+
+.notes_Icon {
+    font: normal normal normal 20px/27px 'SegoeUI', 'Segoe UI';
+    color: #5C5C5C;
+    background-color: transparent;
+    border: none;
+    min-width: 30px;
+    text-align: left;
+    margin: 0px;
+    width: 30px;
+    padding-left: 0px;
+}
+
+.notes_Icon:active {
+    border: none;
+    background-color: white;
+}
+
+.notes_details {
+    margin-left: 30px;
+    margin-right: 15px;
+}
+
+.notes_postText {
+    display: inline-block;
+    width: 100%;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: #000000;
+    word-wrap: break-word;
+}
+
+.notes_postText.noteExpanded { white-space: pre-wrap; }
+
+.notes_postText.noteExpanded:after {
+    content: '\25B2';
+    font-family: 'Dyn CRM Symbol';
+    font-size: 10px;
+    padding-left: 7px;
+}
+
+.notes_postText.noteCollapsed:after {
+    content: '\25BC';
+    font-family: 'Dyn CRM Symbol';
+    font-size: 10px;
+    padding-left: 7px;
+}
+
+.notes_subject {
+    font: normal normal normal 18px/25px 'SegoeUI', 'Segoe UI';
+    color: #000000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    padding-left: 10px;
+}
+
+.notes_modifiedOn {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: grey;
+    display: block;
+}
+
+.notes_lastModifiedBy {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: grey;
+    display: block;
+}
+
+
+
+.onenote_Icon_Container {
+    float: left;
+    width: 59px;
+    margin-top: 5px;
+    margin-right: 15px;
+}
+
+.onenote_Icon {
+    font: normal normal normal 20px/27px 'SegoeUI', 'Segoe UI';
+    color: #ffffff;
+    background-color: #803A7A;
+    border: none;
+    min-width: 57px;
+    text-align: center;
+    margin: 0px;
+    width: 57px;
+    padding-left: 0px;
+    line-height: 57px;
+}
+
+.onenote_Icon:active {
+    border: none;
+    background-color: white;
+}
+
+.onenoteSection {
+    margin-left: 30px;
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+.onenote_fullname {
+    color: #000000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    font: normal normal normal 18px/25px 'SegoeUI', 'Segoe UI';
+}
+
+.onenote_modifiedby {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: #666666;
+    display: block;
+}
+
+.onenote_modifiedon {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: #666666;
+    display: block;
+}
+
+
+
+.notes_attachments {
+    margin-top: 9px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+}
+
+.notes_attachments .hide { display: none; }
+
+.AttachmentItem_Icon {
+    font: normal normal normal 11px/20px 'SegoeUI', 'Segoe UI';
+    color: white;
+    background-color: #5C5C5C;
+    border: none;
+    min-width: 32px;
+    margin: 0px;
+    height: 32px;
+    width: 32px;
+    padding: 0px;
+    vertical-align: top;
+}
+
+.AttachmentItem_Icon:active,
+.AttachmentItem_Icon .selected {
+    border: none;
+    background-color: #5C5C5C;
+}
+
+.AttachmentItem_Icon:after {
+    content: '\E16C';
+    font-family: 'Dyn CRM Symbol';
+    font-size: 10px;
+}
+
+.AttachmentItem_Filename {
+    position: relative;
+    width: 215px;
+    height: 32px;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    padding-left: 10px;
+    background-color: #ebebeb;
+    color: #000000;
+    font: normal normal normal 11px/20px 'SegoeUI', 'Segoe UI';
+    text-align: left;
+    vertical-align: top;
+    line-height: 14px;
+    word-wrap: break-word;
+}
+
+.AttachmentItem_Filename:active,
+.AttachmentItem_Filename .selected {
+    border: none;
+    background-color: #ebebeb;
+}
+
+.AttachmentItem_Delete {
+    width: 32px;
+    height: 32px;
+    min-width: 15px;
+    margin: 0px;
+    margin-left: 15px;
+    text-align: left;
+    border: 0px;
+    vertical-align: middle;
+    padding: 0px;
+    font: normal normal normal 11px/20px 'SegoeUI', 'Segoe UI';
+    color: black;
+    background-color: transparent;
+}
+
+.AttachmentItem_Delete:active,
+.AttachmentItem_Delete .selected {
+    border: none;
+    background-color: white;
+}
+
+.AttachmentItem_Delete:after {
+    content: '\E0D9';
+    font-family: 'Dyn CRM Symbol';
+    font-size: 14px;
+}
+
+.Attachments_AddAttachment { margin-top: 16px; }
+
+.AddAttachment_Icon:active,
+.AddAttachment_Icon .selected {
+    border: none;
+    background-color: white;
+}
+
+.AddAttachment_Icon:before {
+    content: '\E16C';
+    font-family: 'Dyn CRM Symbol';
+    font-size: 10px;
+}
+
+.AddAttachment_Text {
+    height: 21px;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    background-color: transparent;
+    color: black;
+    font: normal normal normal 11px/20px 'SegoeUI', 'Segoe UI';
+    text-align: left;
+    vertical-align: top;
+}
+
+.AddAttachment_Text:active,
+.AddAttachment_Text .selected {
+    border: none;
+    background-color: white;
+}
+
+
+
+.activityListItem {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.activityItemIconContainer {
+    position: relative;
+    background-color: #ff6666;
+    height: 80px;
+    width: 80px;
+    overflow: hidden;
+}
+
+.activityItemIcon {
+    position: absolute;
+    color: #ffffff;
+    font-size: 48px;
+    top: -14px;
+    right: -16px;
+    -webkit-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+    opacity: 0.25;
+    filter: alpha(opacity=25);
+}
+
+.activityItem-dueDate {
+    font-size: 32px;
+    color: #ffffff;
+    top: 4px;
+    left: 7px;
+    line-height: 100%;
+    position: absolute;
+    white-space: nowrap;
+}
+
+.activityItem-dueMonth {
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    color: #ffffff;
+    top: 38px;
+    left: 9px;
+    position: absolute;
+}
+
+.activityItem-today {
+    font: normal normal normal 24px/20px 'SegoeUI-Light', 'Segoe UI light';
+    color: #ffffff;
+    top: 33px;
+    left: 7px;
+    position: absolute;
+    white-space: nowrap;
+}
+
+.activityItem-dueTime {
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    color: #ffffff;
+    background-color: #5e5e5e;
+    width: 80px;
+    height: 19px;
+    display: block;
+    bottom: 0px;
+    padding-left: 9px;
+    position: absolute;
+}
+
+.activityItem-text {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-left: 10px;
+    width: 100%;
+    position: relative;
+    top: -5px;
+}
+
+.activityItem-subject {
+    color: #000000;
+    display: inline-block;
+    line-height: 19px;
+    max-height: 58px;
+    width: 100%;
+    overflow: hidden;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.activityItem-subText {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.activityItem_pastDueIcon { background-color: #c0172b; }
+
+.activityItem_completedText {
+    text-decoration: line-through;
+    color: #C3631F;
+}
+
+.activityItem-checkbox[disabled] div { border-color: #DFDFDF; }
+
+.activityItem-checkbox div {
+    display: inline-block;
+    vertical-align: middle;
+    width: 14px;
+    height: 13px;
+    border: 2px solid #497084;
+}
+
+.RootView-draftsPage .activityItem-checkbox { display: none; }
+
+.swipeInButton {
+    background-color: #8a8a8a;
+    width: 81px;
+    height: 15px;
+    display: block;
+    line-height: .66em;
+    border: none;
+    bottom: -20px;
+    position: relative;
+}
+
+
+
+.appBar {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.appBar-content {
+    position: absolute;
+    bottom: 0;
+    height: 110px;
+
+    width: 100%;
+    color: #ffffff;
+    background-color: #000000;
+    -webkit-transform: translateY(110px);
+    transform: translateY(110px);
+}
+
+.appBar-content .button:not(.flyoutButton-Button) .button-container { width: 100%; }
+
+.appBar-content .button:not(.flyoutButton-Button) .button-container .button-labelContainer {
+    position: relative;
+    width: 100%;
+    height: 36px;
+    overflow: hidden;
+}
+
+.appBar-content .button:not(.flyoutButton-Button) .button-container .button-labelContainer:before {
+    content: "";
+    float: left;
+    width: 10px;
+    height: 100%;
+}
+
+.appBar-content .button:not(.flyoutButton-Button) .button-container .button-labelContainer:after {
+    -webkit-box-sizing: content-box;
+
+    box-sizing: content-box;
+
+    float: right;
+    position: relative;
+    top: -12px;
+    left: 100%;
+    width: 2em;
+    margin-left: -2em;
+    padding-right: 10px;
+    text-align: center;
+    content: "\2026";
+}
+
+.appBar-content .button:not(.flyoutButton-Button) .button-container .button-labelContainer > .button-label {
+    float: right;
+    width: 100%;
+    margin-left: -10px;
+    word-wrap: break-word;
+}
+
+.appBar-globalSection {
+    float: right;
+    width: auto;
+}
+
+.appBar-contextSection {
+    float: left;
+    width: auto;
+}
+
+
+
+.appBarSection {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.appBarSection:last-child > .appBarSection-separator { display: none; }
+
+
+
+.appBarSection > .flyoutContainer,
+.appBarSection > .dynamicsButton { float: left; }
+
+.appBarSection > .button,
+.appBarSection > .flyoutContainer > .button {
+    display: inline-block;
+    width: 100px;
+    margin: 0px;
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    padding-top: 17px;
+    vertical-align: top;
+    background-color: transparent;
+    border: none;
+    line-height: 100% !important;
+}
+
+.appBarSection > .button .button-container,
+.appBarSection > .flyoutContainer > .button .button-container { width: 100%; }
+
+.appBarSection > .button .button-container .button-labelContainer,
+.appBarSection > .flyoutContainer > .button .button-container .button-labelContainer {
+    position: relative;
+    width: 100%;
+    height: 36px;
+    overflow: hidden;
+}
+
+.appBarSection > .button .button-container .button-labelContainer:before,
+.appBarSection > .flyoutContainer > .button .button-container .button-labelContainer:before {
+    content: "";
+    float: left;
+    width: 10px;
+    height: 100%;
+}
+
+.appBarSection > .button .button-container .button-labelContainer:after,
+.appBarSection > .flyoutContainer > .button .button-container .button-labelContainer:after {
+    -webkit-box-sizing: content-box;
+
+    box-sizing: content-box;
+
+    float: right;
+    position: relative;
+    top: -12px;
+    left: 100%;
+    width: 2em;
+    margin-left: -2em;
+    padding-right: 10px;
+    text-align: center;
+    content: "\2026";
+}
+
+.appBarSection > .button .button-container .button-labelContainer > .button-label,
+.appBarSection > .flyoutContainer > .button .button-container .button-labelContainer > .button-label {
+    float: right;
+    width: 100%;
+    margin-left: -10px;
+    word-wrap: break-word;
+}
+
+.hoverable .appBar .button:hover,
+.appBar .button:focus,
+.appBar .tile:focus { background-color: transparent; }
+
+.hoverable .appBarSection .button:hover .button-commandRing {
+    background-color: #8d8b8b;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+.appBarSection .button:active .button-commandRing {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #000000;
+}
+
+.appBarSection .button .button-commandRing[disabled] { opacity: .3; }
+
+.appBar .dynamicsButton[disabled],
+.appBar .flyoutContainer[disabled] { display: none; }
+
+.appBar .flyoutButton-flyOut {
+    width: 280px;
+    background-color: #000000;
+}
+
+.appBarSection .flyoutContainer.flyoutMenuOpen > .button .button-commandRing,
+.listHeader.popup-parent > .listComponentView-interactBar > .button .button-commandRing {
+    color: #de7707;
+    border-color: #de7707;
+}
+
+.hoverable .button.flyoutButton-Button:hover > .button-container > .button-commandRing { background: #cdcccc; }
+
+
+
+.appBarSection > .button .button-commandRing,
+.appBarSection > .flyoutContainer > .button .button-commandRing,
+.quickCreateForm_actionDiv > .button .button-commandRing,
+.listComponentView-interactBar > .button .button-commandRing,
+.listComponentView-interactBar .flyoutContainer > .button .button-commandRing {
+    height: 40px;
+    width: 40px;
+    border-color: #ffffff;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+}
+
+.hoverable .appBarTab-header:not(.appBar-flyOut-selected):hover > .appBarTab-commandRing { background-color: #24a0da; }
+
+.appBarTab-content .flyoutButton-flyOut { background-color: #666666; }
+
+.appBarTab-content > .group {
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+
+.appBarTab-content > .group > .group_title {
+    display: inline-block;
+    height: 20px;
+}
+
+.appBarTab-content > .group > .group_content > * {
+    margin: 0;
+    min-width: 0;
+}
+
+.appBarTab-content .button,
+.appBarTab-content .tile {
+    border: 0;
+    min-width: 0;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    vertical-align: top;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.appBarTab-content .tile_count { display: none; }
+
+.appBarTab-content button > span:not(.tile_count) {
+    color: #ffffff;
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    text-align: left;
+    vertical-align: middle;
+    white-space: normal;
+    padding-left: 3px;
+    padding-right: 3px;
+    max-width: 100%;
+
+    position: static;
+
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hoverable .appBarTab-content .button:hover .tile:hover { background-color: #24a0da !important; }
+
+.appBarTab-content > .group:first-child > .group_title { display: none; }
+
+.appBarTab-content > .group:first-child > .group_content > * {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    margin-right: 4px;
+    margin-bottom: 5px;
+}
+
+.appBarTab-content > .group:first-child .button {
+    min-width: 80px;
+    height: 80px;
+    text-align: center;
+    background-color: transparent;
+    padding: 5px;
+}
+
+.appBarTab-content > .group:first-child .button > .button-container { height: 100%; }
+
+.appBarTab-content > .group:first-child > .group_content > *:last-child { margin-right: 0; }
+
+.button-labelContainer {
+    position: relative;
+    max-height: 80px;
+    max-width: 270px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.appBar-content .button-labelFadeOut { background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 70%, #000000 100%); }
+
+.appBar-content .button-labelFadeOut { background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 70%, #000000 100%); }
+
+.flyoutButton-flyOut .button-labelFadeOut { display: none; }
+
+
+
+
+.listHeader {
+    color: #000000;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.form_body .listHeader { padding-bottom: 14px; }
+
+.form_body .listViewName { margin-left: 9px; }
+
+.form_body .listComponentView_noRecords { margin-left: 9px; }
+
+.form_body .listViewName:active { margin-left: 12px; }
+
+.listComponentView_loadingIcon {
+    position: relative;
+    height: 26px;
+    width: 26px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    z-index: 10;
+}
+
+.gridPane .listComponentView_loadingIcon { padding-bottom: 13px; }
+
+.listComponentView-interactBar {
+    height: 34px;
+    margin-top: 2px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.listComponentView-interactBar > .dynamicsButton[disabled],
+.listComponentView-interactBar > .flyoutContainer[disabled] { display: none; }
+
+.listComponentView-interactBar .flyoutContainer {
+    float: none;
+    position: inherit;
+}
+
+.listComponentView-interactBar .flyoutButton-flyOut {
+    width: 260px;
+    top: 38px;
+
+    right: 4px;
+    max-height: 335px;
+}
+
+.listComponentView-interactBar .flyout-menuItem {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.listComponentView-interactBar .flyout-menuItem[disabled] { display: none; }
+
+.RootView-workspace .listComponentView-interactBar .button,
+.RootView-workspace .listComponentView-interactBar .flyoutContainer { float: right; }
+
+.listComponentView-interactBar .button-container > span { width: 220px; }
+
+.listComponentView-interactBar > .button,
+.listComponentView-interactBar .flyoutTopMenuButton {
+    background-color: transparent;
+    border: none;
+    min-width: 34px;
+    padding: 0;
+    padding-left: 5px;
+    margin: 0;
+}
+
+.listComponentView-interactBar > .button .button-commandRing,
+.listComponentView-interactBar .flyoutContainer > .button .button-commandRing {
+    line-height: 30px;
+
+    font-size: 12px;
+    width: 34px;
+    height: 34px;
+    color: #666666;
+    border-color: #666666;
+    background-size: 34px 34px;
+    margin-bottom: 0;
+}
+
+.hoverable .listComponentView-interactBar > .button .button-commandRing:hover,
+.hoverable .listComponentView-interactBar .flyoutContainer > .button .button-commandRing:hover {
+    color: #757575;
+    border-color: #757575;
+    background-color: #cdcccc;
+}
+
+.listComponentView-interactBar .flyoutContainer.flyoutMenuOpen > .button .button-commandRing {
+    color: #de7707;
+    border-color: #de7707;
+}
+
+body .listComponentView-interactBar > .button:active .button-commandRing,
+body .listComponentView-interactBar .flyoutContainer > .button:active .button-commandRing {
+    color: #ffffff;
+    border-color: #ffffff;
+    background-color: #8f8f8f;
+}
+
+.hoverable .listComponentView-interactBar > .button:hover > .button-container > .button-commandRing { background: #cdcccc; }
+
+.listComponentView_errorTitle,
+.listComponentView_errorMessage {
+    margin-left: 0px;
+    margin-right: 0px;
+    display: block;
+    color: #000000;
+}
+
+.listComponentView_errorTitle { font: normal normal normal 24px/32px 'SegoeUI', 'Segoe UI'; }
+
+.listComponentView_errorMessage {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    line-height: 18px;
+}
+
+.panoramaItem.oneNoteListPanoramaItem .panoramaItem-content {
+    padding-left: calc(5% - 7px);
+    padding-right: calc(5% - 7px);
+}
+
+.panoramaItem.oneNoteListPanoramaItem .panoramaItem-content {
+    padding-left: -webkit-calc(5% - 7px);
+    padding-right: -webkit-calc(5% - 7px);
+}
+
+.oneNoteListPanoramaItem .listComponentView_errorTitle { display: none !important; }
+
+.oneNoteListPanoramaItem .listComponentView_errorMessage { margin-left: 9px; }
+
+.workspace_body .listComponentView_errorTitle,
+.workspace_body .listComponentView_errorMessage {
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+.listComponentView_noRecords {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: #000000;
+    padding: 0px;
+    display: block;
+}
+
+.listComponentView_offlineList,
+.listComponentView_draftsMessageList {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: #000000;
+    display: block;
+    clear: both;
+    position: relative;
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-bottom: 13px;
+}
+
+.listViewName {
+    float: none;
+    font: normal normal normal 18px/42px 'SegoeUI';
+    padding-right: 15px;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.listViewName:focus { outline: none; }
+
+body:not(.phone) .listViewName:active {
+    font: normal normal normal 17px/40px 'SegoeUI';
+    margin-left: 2px;
+}
+
+.gridHeader {
+    font: normal normal normal 24px/32px 'SegoeUI', 'Segoe UI';
+    display: block;
+    position: relative;
+    padding-bottom: 12px;
+    padding-top: 10px;
+    margin-top: -2px;
+}
+
+.gridRoot .listHeader,
+.gridRoot .scrollRegion { padding-left: 1px; }
+
+.gridRoot .listView { padding-top: 2px; }
+
+.gridRoot .indeterminateProgressBar {
+    padding-top: 2px;
+    padding-bottom: 0;
+}
+
+.gridRoot .indeterminateProgressBar.hideProgressBar { display: none; }
+
+.SimpleListView { -webkit-transform: translate(0px, 0px); }
+
+.SimpleListView > div { -webkit-transform: translate3d(0, 0, 0); }
+
+.listView { -webkit-backface-visibility: hidden; }
+
+.listItem {
+    -webkit-transition: outline 100ms ease;
+    transition: outline 100ms ease;
+    position: relative;
+    cursor: pointer;
+
+    border: 2px solid transparent;
+}
+
+.RootView-workspace .listItem,
+.RootView-searchPage .listItem,
+.RootView-draftsPage .listItem {
+    padding: 10px;
+    margin: 3px 3px 8px 3px;
+}
+
+.RootView-chartDrilldownForm .listItem { margin-bottom: 24px; }
+
+.RootView-form .listItem {
+    margin-bottom: 9px;
+    padding: 7px;
+}
+
+.listItem .listItem_type5 .listItem_title {
+    font: normal normal normal 20px/27px 'SegoeUI', 'Segoe UI';
+    font-family: 'SegoeUI', 'Segoe UI';
+    color: #000000;
+}
+
+.listItem .listItem_type5 .listItem_subtitle {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    font-family: 'SegoeUI', 'Segoe UI';
+}
+
+.listItem:first-child:last-child { background-color: transparent; }
+
+.listItemSelected { border: 2px solid #f7661f; }
+
+.listView .listItem_primary_field {
+    font: normal normal normal 18px/25px 'SegoeUI', 'Segoe UI';
+    color: Black;
+    margin-top: -5px;
+    max-height: 49px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.listItem,
+.section_control {
+    -webkit-transition: -webkit-transform 0.167s cubic-bezier(0.1, 0.9, 0.2, 1);
+    transition: -webkit-transform 0.167s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.listItem,
+.section_control { transition: transform 0.167s cubic-bezier(0.1, 0.9, 0.2, 1); }
+
+.listItem:active,
+.section_control:active {
+    -webkit-transform: scale(0.975, 0.975);
+    transform: scale(0.975, 0.975);
+}
+
+.listItem_section .control_value:not(.listItem_primary_field) > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    text-align: left;
+}
+
+.listItem_section.image_enabled > div:first-child {
+    margin-right: 10px;
+    height: 67px;
+}
+
+.listItem_section.image_enabled > div:not(:first-child) > div.control_value:not(.listItem_primary_field) { max-height: 21px; }
+
+.section_vertical {
+    -webkit-box-orient: vertical;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.sectionTextWrapper {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-orient: vertical;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.placeHolderImage {
+    text-align: center;
+    line-height: 57px;
+    font-size: 23px;
+    width: 57px;
+    background-color: #636363;
+    color: #ffffff;
+}
+
+div.listItem_connection_role {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: #C3631F;
+    margin-top: 11px;
+    height: 32px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+div.listItem_connection_role > span { max-width: 196px; }
+
+.section_control:not(.locked) div.listItem_connection_role:not(.editControlContainer):after {
+    content: " \e0a1";
+    font-family: "Dyn CRM Symbol";
+    padding-left: 5px;
+}
+
+.listItem:not(.listAsTable-Row) .input-container:nth-child(3) input { font: 14px; }
+
+.item_Checked {
+    width: 0 !important;
+    min-width: 0 !important;
+    height: 0;
+    border-top: solid 25px #e86b29;
+    border-left: solid 25px transparent;
+    float: right;
+    display: block;
+}
+
+.item_Checked:before {
+    content: "\E10B";
+    color: #ffffff;
+    top: -27px;
+    left: -14px;
+    position: relative;
+    font-size: 12px;
+    font-family: 'Dyn CRM Symbol';
+}
+
+.listView .listItem .item_Checked {
+    right: 0px;
+    top: 0px;
+    position: absolute;
+}
+
+.panoramaItem_selected .item_Checked {
+    right: 0px;
+    top: 0px;
+    position: absolute;
+}
+
+.listRoot.panoramaItem-control {
+    background-color: transparent;
+    height: 100%;
+    position: relative;
+}
+
+.listRoot.panoramaItem-control .scrollingElement { height: -webkit-calc(100% - 44px); }
+
+.listRoot.panoramaItem-control .scrollingElement {
+    background-color: #ffffff;
+    position: relative;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: calc(100% - 44px);
+    width: 100%;
+}
+
+.panoramaItem-control .listView {
+    background-color: #ffffff;
+    padding-top: 1px;
+}
+
+.lastRetrievedText {
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    position: absolute;
+    bottom: 18px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.fieldsPaneLastRetrievedText { margin-top: 56px; }
+
+
+
+.TabularView {
+    background-color: transparent;
+    border: 0;
+    table-layout: fixed;
+    border-collapse: separate;
+}
+
+.listAsTable-HeaderRow {
+
+    font: normal normal normal 13px/20px 'SegoeUI-Semibold', 'Segoe UI SemiBold';
+    color: #ffffff;
+    height: 23px;
+    border: 0px;
+    background-color: #999999;
+    vertical-align: bottom;
+    text-align: left;
+    padding: 0;
+    margin-bottom: 0;
+    border-spacing: 0;
+    -webkit-transform: none !important;
+}
+
+.listAsTable-HeaderRow th {
+    border-spacing: 0;
+    min-width: 50px;
+    border: 1px solid #f4f4f4;
+    font: normal normal normal 13px/20px 'SegoeUI-Semibold', 'Segoe UI SemiBold';
+}
+
+.listAsTable-HeaderRow span {
+
+    display: inline-block;
+    color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 36px;
+
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.listAsTable-HeaderRow th.headerRow-sortAscending span,
+.listAsTable-HeaderRow th.headerRow-sortDescending span { max-width: -webkit-calc(100% - 14px); }
+
+.listAsTable-HeaderRow th.headerRow-sortAscending span,
+.listAsTable-HeaderRow th.headerRow-sortDescending span { max-width: calc(100% - 14px); }
+
+.TabularView td { vertical-align: middle; }
+
+.TabularView > tbody:last-child > tr {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    height: 53px;
+    padding: 0;
+}
+
+.TabularView > tbody > tr:first-child { margin-top: 0px; }
+
+.listAsTable-HeaderRow > th {
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.headerRow-sortArrow {
+    height: 10px;
+    width: 7px;
+    margin-left: 7px;
+    display: inline-block;
+}
+
+.headerRow-sortDescending,
+.headerRow-sortAscending {
+    background-color: #717171;
+    overflow: inherit;
+}
+
+.headerRow-sortDescending .headerRow-sortArrow { background-image: url(/nga/resources/images/sort_arrow_down.png); }
+
+.headerRow-sortAscending .headerRow-sortArrow { background-image: url(/nga/resources/images/sort_arrow_up.png); }
+
+.handleRow img {
+    float: right;
+    width: 31px;
+    left: 15.5px;
+    top: 25px;
+    -ms-touch-action: none;
+}
+
+
+
+.TabularView tbody tr td,
+.widthReserver td,
+.listAsTable-HeaderRow th {
+    padding-left: 10px;
+    min-width: 50px;
+}
+
+.listAsTable-HeaderRow th { padding-right: 10px; }
+
+.TabularView tbody tr td,
+.widthReserver td { padding-right: 11px; }
+
+.widthReserver td div { min-width: 50px; }
+
+.TabularView tbody tr:not(hover) td:first-child,
+.widthReserver td:first-child,
+.listAsTable-HeaderRow th:first-child { min-width: 50px; }
+
+.listItem.listAsTable-Row { outline: none; }
+
+.listItem.listAsTable-Row td:first-child {
+    border-left: 2px solid transparent;
+    padding-right: 9px;
+}
+
+.listItem.listAsTable-Row td:last-child {
+    border-right: 2px solid transparent;
+    padding-right: 9px;
+    position: relative;
+}
+
+.listItem.listAsTable-Row[aria-selected="true"] { background: #ffffff; }
+
+.listItem.listAsTable-Row[aria-selected="true"] td {
+    border-top: 2px solid #f7661f;
+    border-bottom: 2px solid #f7661f;
+}
+
+.listItem.listAsTable-Row[aria-selected="true"] td:first-child { border-left: 2px solid #f7661f; }
+
+.listItem.listAsTable-Row[aria-selected="true"] td:last-child {
+    padding-right: 0px;
+    border-right: 2px solid #f7661f;
+}
+
+.TabularView .item_Checked {
+    right: 0;
+    position: absolute;
+    top: 0px;
+}
+
+.listRoot.panoramaItem-control.gridRoot { overflow: hidden; }
+
+.gridComponentContainer.panoramaItem-control { height: 100%; }
+
+.gridPane .listRoot.panoramaItem-control .scrollingElement {
+    padding-right: 6px;
+    width: auto;
+}
+
+.listRoot:not(.containerDisabled) .TabularView tr[aria-selected="true"] { }
+
+.listRoot:not(.containerDisabled) .TabularView tbody .field:focus:not([readonly]) { background-color: #ffffff; }
+
+.TabularView.hasHyperLinkNavigation > tbody > tr > td:first-child,
+.TabularView.hasHyperLinkNavigation > tbody > tr > td:first-child input {
+    cursor: pointer;
+    color: #24a0da;
+}
+
+.table_header {
+    border-spacing: 0;
+
+    margin-right: 17px;
+}
+
+.listHeader.hideExtraPadding {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.widthReserver td {
+    height: 0;
+    border-top: 0;
+    border-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+
+.listAsTable-Row { background-color: transparent; }
+
+.hoverable .listAsTable-Row:hover { cursor: pointer; }
+
+.listAsTable-Row td > *:not(.item_Checked) {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    background-color: transparent;
+    display: inline-block;
+    min-width: 50px;
+    width: inherit;
+    color: #666666;
+    text-align: left;
+    overflow-x: hidden;
+}
+
+.listAsTable-Row td span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.listAsTable-Row button {
+    border: none;
+    margin: 0px;
+}
+
+.listAsTable-Row .listItem_primary_field {
+    text-decoration: underline;
+    color: #000000;
+}
+
+.TabularView tr:nth-child(odd) { background-color: #f1f1f1; }
+
+.TabularView tr:nth-child(even) { background-color: #fbfbfb; }
+
+
+
+.listItem.breadcrumb {
+    border: none !important;
+    background-color: transparent;
+    white-space: nowrap;
+    text-align: center;
+    background-repeat: no-repeat;
+    padding: 0px !important;
+    margin-left: 9px;
+    line-height: 3;
+    width: 300px;
+}
+
+.listItem.breadcrumb:first-child {
+    height: 40px;
+    color: #014E89;
+    margin-bottom: 0px;
+    background-image: url(/nga/resources/images/breadcrumb_firstitem_multipleitems.svg);
+}
+
+.listItem.breadcrumb:last-child {
+    height: 49px;
+    color: #626263;
+    margin-bottom: 14px;
+    background-image: url(/nga/resources/images/breadcrumb_lastitem_multipleitems.svg);
+}
+
+.listItem.breadcrumb:not(:last-child):not(:first-child) {
+    height: 42px;
+    color: #014E89;
+    margin-bottom: 0px;
+    background-image: url(/nga/resources/images/breadcrumb_seconditem_multipleitems.svg);
+}
+
+.listItem.breadcrumb:first-child:last-child {
+    height: 47px;
+    color: #626263;
+    margin-bottom: 14px;
+    background-image: url(/nga/resources/images/breadcrumb_onlyoneitem.svg);
+}
+
+.form_body_locked .listRoot .listItem.breadcrumb:first-child { background-image: url(/nga/resources/images/readonly_breadcrumb_firstitem_multipleitems.svg); }
+
+.form_body_locked .listRoot .listItem.breadcrumb:last-child { background-image: url(/nga/resources/images/readonly_breadcrumb_lastitem.svg); }
+
+.form_body_locked .listRoot .listItem.breadcrumb:not(:last-child):not(:first-child) { background-image: url(/nga/resources/images/readonly_breadcrumb_seconditem_multipleitems.svg); }
+
+.form_body_locked .listRoot .listItem.breadcrumb:first-child:last-child { background-image: url(/nga/resources/images/readonly_breadcrumb_singleitem.svg); }
+
+.hoverable .listItem.breadcrumb:first-child:last-child:hover { background-image: url(/nga/resources/images/breadcrumb_hover_singleitem.svg); }
+
+.hoverable .listItem.breadcrumb:last-child:hover { background-image: url(/nga/resources/images/breadcrumb_hover_lastitem.svg); }
+
+
+
+.messageDiv {
+    margin: 13px;
+    width: 268px;
+    height: 58px;
+}
+
+.messageView {
+    margin-left: 13px;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: #000;
+    width: 229px;
+    float: right;
+}
+
+.messageSymbol {
+    background-image: url(/nga/resources/images/information_symbol.png);
+    width: 15px;
+    height: 15px;
+    float: left;
+    margin-top: 13px;
+}
+
+
+
+.RootView-form .listItem.hierarchyItem {
+    margin-bottom: 0px;
+    padding-right: 0PX;
+    padding-bottom: 4px;
+    padding-top: 2px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.drilldownParent {
+    float: left;
+    width: 247px;
+}
+
+.drilldown {
+    border: none;
+    margin-top: 0px;
+    float: right;
+    top: 20px;
+    height: 23px;
+    width: 17px;
+    margin-right: 18px;
+}
+
+.drilldownParent .section .section_control { max-width: 180px; }
+
+
+
+.scroller { overflow: hidden; }
+
+.scrollerItem {
+
+    height: 85px;
+    width: 85px;
+    border: 1px #bdbdbd solid;
+    margin: 0px 0px 1px 0px;
+    background-color: #d7d5d8;
+    text-align: left;
+    line-height: 28px;
+    overflow: hidden;
+}
+
+.scrollerItem.currentItem {
+    background-color: #4b4d4a;
+    border: 1px #4b4d4a solid;
+}
+
+.scrollerComponent { float: left; }
+
+.scrollerComponent + .scrollerComponent { margin-left: 7px; }
+
+.scrollerPopup {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    background-color: #ffffff;
+    z-index: 99998;
+    height: 100%;
+}
+
+.scrollerPopup.popOver { background-color: transparent; }
+
+.scroller + .scroller { margin-top: 10px; }
+
+.scroller .scroller_button {
+    margin: 9px 0px 0px;
+    padding: 0;
+    font-size: 14px;
+    background: none;
+    color: black;
+    border: none;
+    text-decoration: underline;
+}
+
+.scrollerItem .largeLabel,
+.scrollerItem .smallLabel {
+    padding-left: 2px;
+    display: block;
+}
+
+.scrollerItem .largeLabel {
+    font-size: 36px;
+    font-family: 'SegoeUI-Semibold', 'Segoe UI SemiBold';
+    padding-top: 32px;
+    color: #4b4b4b;
+}
+
+.scrollerItem.currentItem .largeLabel { color: #ffffff; }
+
+.scrollerItem .smallLabel {
+    font-size: 12px;
+    font-family: 'SegoeUI-Bold', 'Segoe UI Bold';
+    color: #737373;
+}
+
+.scrollerItem.currentItem .smallLabel { color: #b4b6b3; }
+
+.scrollerItem.yearWithEra .smallLabel { margin-top: -50px; }
+
+.scroller-popOver {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 99997;
+    text-align: center;
+    background-color: white;
+}
+
+.scroller-popOver .label {
+    font: normal normal normal 15px/1em 'SegoeUI-Semibold', 'Segoe UI SemiBold';
+    position: fixed;
+    top: 0px;
+    color: #000000;
+    background-color: #FFFFFF;
+    width: 79.2%;
+    text-transform: uppercase;
+    text-align: left;
+    z-index: 99999;
+    padding-top: 5.21%;
+    padding-bottom: 2.085%;
+    margin-left: 10.4%;
+    margin-right: 10.4%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scroller-popOver .scroller {
+    -webkit-transition: opacity .5s;
+
+    transition: opacity .5s;
+}
+
+.scroller-popOver .scroller + .scroller { margin-top: 0px; }
+
+.scroller-popOver .scroller.inactive { opacity: .2; }
+
+.scroller-popOver .scrollerContainer {
+    top: 50%;
+    position: absolute;
+    text-align: left;
+    margin-top: -55px;
+    margin-left: 10.4%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.scroller-popOver .scrollerItem.focusedItem { visibility: hidden; }
+
+.scroller-popOver .scrollerComponent + .scrollerComponent { margin-left: 0px; }
+
+.scroller-popOver .scrollerItem {
+    position: relative;
+    background-color: #F0F0E1;
+    line-height: normal;
+    border-color: #000000;
+    border-style: solid;
+}
+
+.scroller-popOver .scrollerLabels {
+    position: absolute;
+    bottom: 8.475%;
+    left: 8.475%;
+}
+
+.scroller-popOver .largeLabel {
+    padding-left: 0px;
+    font: normal normal normal 42px/1em 'SegoeUI', 'Segoe UI';
+    color: black;
+}
+
+.scroller-popOver .smallLabel {
+    padding-left: 0px;
+    font: normal normal normal 15px/1em 'SegoeUI', 'Segoe UI';
+    color: black;
+}
+
+.scroller-popOver .currentItem.scrollerItem { background-color: #222222; }
+
+.scroller-popOver .currentItem .largeLabel,
+.scroller-popOver .currentItem .smallLabel { color: white; }
+
+.scroller-buttonContainer.appBarSection,
+.emailBody-buttonContainer.appBarSection { width: auto; }
+
+.scroller-buttonContainer .dynamicsButton,
+.emailBody-buttonContainer .dynamicsButton { width: 75px; }
+
+.scroller-buttonContainer .dynamicsButton .button-container,
+.emailBody-buttonContainer .dynamicsButton .button-container { width: 75px; }
+
+.RootView-form .panoramaContainer-content {
+    -webkit-transition: opacity 0.3s ease 0;
+
+    -moz-transition: opacity 0.3s ease 0;
+    -o-transition: opacity 0.3s ease 0;
+    -ms-transition: opacity 0.3s ease 0;
+    transition: opacity 0.3s ease 0;
+}
+
+.RootView-form .panoramaContainer-content.fadeout { opacity: 0.05; }
+
+.RootView-gridForm .panoramaContainer,
+.RootView-chartDrilldownForm .panoramaContainer { padding-top: 0px !important; }
+
+.RootView-gridForm .panoramaContainer { margin-top: 17px; }
+
+.RootView-chartDrilldownForm .panoramaContainer { margin-top: 32px; }
+
+.RootView-searchPage .form_header {
+    height: 146px;
+    margin-left: -8px;
+}
+
+.RootView-searchPage .panoramaContainer .panoramaItem:not(:last-child) { margin-right: 15px; }
+
+.RootView-searchPage .panoramaContainer .panoramaItem { margin-top: -10px; }
+
+.panoramaContainer {
+    margin-left: -38px;
+    overflow-x: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -ms-scroll-rails: railed;
+    height: 100%;
+
+    position: relative;
+
+
+    transition: 500ms ease-in-out;
+}
+
+.panoramaContainer-paneScrollIndicator {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    position: fixed;
+    bottom: 1.5%;
+    height: 30px;
+    width: 100%;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+}
+
+.panoramaContainer-paneScrollIndicator-dot {
+    background-color: #c4c4c4;
+    width: 20px;
+    height: 5px;
+    margin: 2.5px;
+}
+
+.panoramaContainer-paneScrollIndicator-dot-selected { background-color: #16224d; }
+
+.webkitInertiaScroll { -webkit-overflow-scrolling: touch; }
+
+.panoramaContainer-content {
+    bottom: 0px;
+    height: 100%;
+    white-space: nowrap;
+    -webkit-transition: 500ms ease-in-out;
+}
+
+.panoramaItem {
+    height: 100%;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    -webkit-transition: outline 100ms ease;
+    transition: outline 100ms ease;
+    position: relative;
+    white-space: normal;
+    vertical-align: top;
+    margin-left: 15px;
+    margin-right: -12px;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    -webkit-box-orient: vertical;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.panoramaItem .panoramaItem-content {
+    height: 100%;
+    overflow-y: hidden;
+    -webkit-box-flex: 0 1 auto;
+    -moz-box-flex: 0 1 auto;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+}
+
+.panoramaItem .panoramaItem-content.panoramaItem-content_scrollable {
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -ms-scroll-rails: railed;
+    position: relative;
+}
+
+.panoramaItem .childProgressBar {
+    position: absolute;
+    top: 47px;
+}
+
+.panoramaItem .panoramaItem-title .errorIndicator {
+    top: 6px;
+    left: 34px;
+}
+
+body .panoramaItem-title.panoramaItem-titleShortPressEnabled:active {
+    -webkit-transform: scale(0.95, 0.95);
+    transform: scale(0.95, 0.95);
+}
+
+.RootView-workspace .panoramaItem:not(.pinnedTilesPane) .panoramaItem-content .component:not(.panoramaItem-control .iframeParent),
+.RootView-searchPage .panoramaItem:not(.pinnedTilesPane) .panoramaItem-content .component:not(.panoramaItem-control .iframeParent),
+.RootView-draftsPage .panoramaItem:not(.pinnedTilesPane) .panoramaItem-content .component:not(.panoramaItem-control .iframeParent) {
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    border-bottom: 13px solid #ffffff;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 9%, #ffffff 10%);
+
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 9%, #ffffff 10%);
+}
+
+.RootView-workspace .panoramaItem:not(.pinnedTilesPane) .panoramaItem-content .component,
+.RootView-searchPage .panoramaItem:not(.pinnedTilesPane) .panoramaItem-content .component,
+.RootView-draftsPage .panoramaItem:not(.pinnedTilesPane) .panoramaItem-content .component { background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 9%, #ffffff 10%); }
+
+.rootViewControl_content.conductorContent.RootView-chartDrilldownForm .panoramaItem-title {
+    font: normal normal normal 18px/42px 'SegoeUI';
+    font-family: 'SegoeUI-Semibold', 'Segoe UI SemiBold';
+    padding-bottom: 7px;
+    height: 42px;
+}
+
+.rootViewControl_content.conductorContent.RootView-chartDrilldownForm .panoramaItem-title,
+.RootView-workspace .panoramaItem-title {
+    max-width: 90%;
+    color: #000000;
+    float: none;
+    font: normal normal normal 18px/42px 'SegoeUI';
+    padding-right: 15px;
+    -ms-text-overflow: ellipsis;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    -webkit-box-flex: 0 0 auto;
+    -moz-box-flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.panoramaItem-content > .component { height: 100%; }
+
+.panoramaItem:last-child { margin-right: 50px; }
+
+.RootView-searchPage .panoramaItem:first-child { padding-left: 24px; }
+
+.panoramaItem_selected { outline: 2px solid #f7661f; }
+
+.panoramaItem.listPanoramaItem .panoramaItem-content {
+    padding-left: calc(5% - 7px);
+    padding-right: calc(5% - 7px);
+}
+
+.panoramaItem.listPanoramaItem .panoramaItem-content {
+    padding-left: -webkit-calc(5% - 7px);
+    padding-right: -webkit-calc(5% - 7px);
+}
+
+.panoramaItem-title-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+    float: none;
+    font: normal normal normal 18px/42px 'SegoeUI';
+    padding-right: 15px;
+    -ms-text-overflow: ellipsis;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.panoramaItem-title-text:focus { outline: none; }
+
+.panoramaItem .highcharts-container {
+    margin-top: -4px;
+    padding-bottom: 44px;
+}
+
+.panoramaItem .fieldsSectionView .section_control:not(.editRow) .Section_value_common.truncated {
+    position: relative;
+    overflow: hidden;
+}
+
+.panoramaItem .fieldsSectionView .section_control:not(.editRow) .Section_value_common.truncated:after {
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding-left: 14px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    line-height: 20px;
+    text-align: right;
+    content: "\2026";
+}
+
+.panoramaItem .fieldsSectionView .section_control:not(.editRow) .Section_value_common.truncated span:first-child {
+    display: inline-block;
+    width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.panoramaItem-title.panoramaItem-titleShortPressEnabled { color: #000000; }
+
+.panoramaItem-title-text.panoramaItem-titleShortPressEnabled { margin-bottom: 4px; }
+
+.panoramaItem-control { height: 100%; }
+
+.mashupLoadOnDemand .panoramaItem.iframePanoramaItem { -webkit-overflow-scrolling: auto; }
+
+.iframeParent {
+    height: 100%;
+    position: static;
+    background-color: #ffffff;
+}
+
+.iframeParentPoppedOut {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 98;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    top: 183px;
+}
+
+.RootView-workspace .iframeParentPoppedOut { top: 172px; }
+
+.iframeContainer {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.iframeContainerPoppedOut {
+    overflow-x: auto;
+    z-index: 100;
+    -webkit-overflow-scrolling: touch;
+    top: 0px;
+    background-color: #ffffff;
+}
+
+.onDemandMashupLoad {
+    position: absolute;
+    top: 3px;
+    right: 40px;
+}
+
+.iframeParent iframe { width: 100%; }
+
+.popOverBackgroundDiv {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 97;
+}
+
+.popOverSideBar {
+    position: absolute;
+    background: #bcbcbc;
+    width: 40px;
+    right: 0px;
+    top: 40px;
+    height: 100%;
+}
+
+.PopOverButton {
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border-color: transparent;
+    border-width: 0px;
+}
+
+.PopOverButton-symbol:before {
+    font-family: 'Dyn CRM Symbol';
+    font-size: 20px;
+}
+
+.ExitButton-symbol {
+    top: 13px;
+    right: 13px;
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: #FFFFFF;
+    opacity: 1;
+    position: absolute;
+    z-index: 101;
+    cursor: pointer;
+}
+
+.ExitButton-symbol:before {
+    font-family: 'Dyn CRM Symbol';
+    font-size: 22px;
+}
+
+
+
+.mashupDiagnosticsDivPopupContent {
+    color: #ffffff;
+    background-color: #002050;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    width: 485px;
+    height: 100%;
+    bottom: 25px;
+}
+
+.mashupDiagnosticsDivContentContainer {
+    margin-left: 30px;
+    float: left;
+}
+
+.mashupDiagnosticsDivHeader {
+    margin-left: 30px;
+    margin-top: 30px;
+    border-bottom-color: white;
+    display: block;
+    margin-bottom: 20px;
+    font: normal normal normal 24px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.mashupDiagnosticsLabelHeader {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.mashupDiagnosticsButton {
+    left: 5px;
+    background-color: dodgerblue;
+    border: 1px solid #C6C6C6;
+    width: auto;
+    min-width: 80px;
+    white-space: nowrap;
+    margin-right: 15px;
+    margin-top: 15px;
+    color: white;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.mashupDiagnosticsLabel {
+    font-weight: normal;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.mashupDiagnosticsContent {
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 9px;
+}
+
+.mashupDiagnosticsContentFooter {
+    position: absolute;
+    bottom: 90px;
+    right: 15px;
+}
+
+.mashupDiagnosticsDivFooter {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 60px;
+    text-align: right;
+    border-top-color: #ffffff;
+    background-color: #001638;
+}
+
+
+
+.diagnosticsDivHeader {
+    margin-left: 30px;
+    margin-top: 30px;
+    border-bottom-color: white;
+    display: block;
+    margin-bottom: 20px;
+    font: normal normal normal 24px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.diagnosticsDivFooter {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 60px;
+    text-align: right;
+    border-top-color: #ffffff;
+    background-color: #001638;
+}
+
+
+
+.diagnosticsReportForm-popup {
+    top: 5px;
+    left: 20%;
+}
+
+.diagnosticsReportHeaderDiv {
+    font-size: 24px;
+    background-color: #002050;
+    left: 20%;
+    top: 20px;
+    overflow: auto;
+    color: white;
+    padding-top: 10px;
+}
+
+.diagnosticsReportHeader {
+    margin-left: 13px;
+    font-size: 24px;
+    line-height: 35px;
+}
+
+.diagnosticsReportTable {
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+.diagnosticsReportTableTr { background-color: gray; }
+
+.diagnosticsReportTableTh {
+    color: white;
+    height: 23px;
+    line-height: 23px;
+    background-color: gray;
+    border: 1px solid white;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.diagnosticsReportTableTd {
+    border: 1px solid white;
+    height: 50px;
+    text-align: left;
+    color: black;
+    padding-left: 10px;
+}
+
+.diagnosticsReportTable tr:nth-child(2n + 1) { background-color: #f1f1f1; }
+
+.diagnosticsReportTable tr:nth-child(2n) { background-color: #fbfbfb; }
+
+.diagnosticsReportFooter {
+    height: 60px;
+    background-color: #001638;
+}
+
+.diagnosticsReportButton {
+    margin-left: 15px;
+    background-color: #00869c;
+    font-size: 13px;
+    color: white;
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.diagnosticsReportButton:active {
+    background-color: white;
+    color: black;
+}
+
+.diagnosticsReportButton:hover {
+    background-color: #004c59;
+    color: white;
+}
+
+.diagnosticsReportButtonRight:active {
+    background-color: white;
+    color: black;
+}
+
+.diagnosticsReportButtonRight:hover {
+    background-color: #004c59;
+    color: white;
+}
+
+table.diagnosticsReportTable tbody,
+table.diagnosticsReportTable thead { display: block; }
+
+table.diagnosticsReportTable tbody {
+    height: 335px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+
+.Lock-symbol {
+    display: none !important;
+    position: fixed;
+    left: -16px;
+    bottom: -18px;
+    font-size: 139px;
+    color: #cdcdcd;
+}
+
+.Lock-symbol:before { font-family: 'Dyn CRM Symbol'; }
+
+.form_body_locked { background-color: #f0f0f0; }
+
+.form_body_locked .listRoot.panoramaItem-control .scrollingElement,
+.form_body_locked .listRoot.panoramaItem-control .listView { background-color: transparent !important; }
+
+.form_body_locked .Lock-symbol {
+    display: inline !important;
+    animation: lockfadein 10s;
+    -moz-animation: lockfadein 10s;
+
+    -webkit-animation: lockfadein 10s;
+
+    -o-animation: lockfadein 10s;
+}
+
+.form_body_locked .panoramaItem .fieldsSectionView .section_control .Section_value_common.truncated:after {
+    background: -webkit-linear-gradient(left, rgba(240, 240, 240, 0) 0%, #f0f0f0 50%);
+
+    background: -ms-linear-gradient(left, rgba(240, 240, 240, 0) 0%, #f0f0f0 50%);
+}
+
+@keyframes lockfadein {
+    from { opacity: 0; }
+
+    to { opacity: 1; }
+}
+
+@-moz-keyframes lockfadein {
+    from { opacity: 0; }
+
+    to { opacity: 1; }
+}
+
+@-webkit-keyframes lockfadein {
+    from { opacity: 0; }
+
+    to { opacity: 1; }
+}
+
+@-o-keyframes lockfadein {
+    from { opacity: 0; }
+
+    to { opacity: 1; }
+}
+
+.FlsLocked-symbol {
+    font-family: 'Dyn CRM Symbol';
+    color: #000000;
+}
+
+
+
+.inlineCreateForm-rootView .label {
+    font: normal normal normal 11px/20px 'SegoeUI', 'Segoe UI';
+    color: #000000;
+}
+
+.inlineCreateForm-rootView .lookup .label { margin-top: 3px; }
+
+.inlineCreateForm-rootView select { width: 100%; }
+
+.inlineCreateForm-rootView select { border-color: #8f8f8f; }
+
+.inlineCreateForm_Button {
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: #000000;
+    margin-top: 25px;
+    margin-bottom: 16px;
+    height: 30px;
+    min-width: 0px;
+    padding: 0px 12px;
+    border: none;
+    float: left;
+    margin-left: 10px;
+    margin-right: auto;
+    white-space: nowrap;
+}
+
+.hoverable .inlineCreateForm_Button:hover {
+    background: #929292;
+    color: #ffffff;
+    border: none;
+}
+
+.inlineCreateForm_Button:active {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+}
+
+.inlineCreateForm_Button:disabled { opacity: .4; }
+
+.inlineCreateForm_OK_Button { margin-left: 0px; }
+
+
+
+.form_header {
+    /*** General styles for grid and form title icon ***/
+    /*** Sets left padding of the grid and form title texts ***/
+}
+
+.form_header .form_header_icon {
+    font-size: 18px;
+    line-height: 41px;
+    float: left;
+    margin-left: 30px;
+}
+
+.form_header .form_header_entity,
+.form_header .workspace_header_label {
+    display: inline-block;
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    text-transform: uppercase;
+    line-height: 41px;
+    padding-left: 7px;
+}
+
+.form_header .form_header_entity {
+    margin-bottom: 7px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.form_header .workspace_header_label {
+    padding-top: 0;
+    color: #7c7c7c;
+}
+
+.RootView-gridForm .form_header span.workspace_header_label { display: inline; }
+
+.RootView-form .form_header { height: 135px; }
+
+.RootView-workspace .form_header { height: 124px; }
+
+.RootView-grid .form_header { height: 41px; }
+
+.RootView-chartDrilldownForm .form_header { height: 40px; }
+
+.form_header {
+    left: 0px;
+    top: 0px;
+    padding-bottom: 4px;
+    float: none;
+    margin-left: -3px;
+}
+
+.form_header > * { display: block; }
+
+.form_header .formHeaderContent > * { display: block; }
+
+.form_header_entity {
+    position: relative;
+    font: normal normal normal 12px/20px 'SegoeUI', 'Segoe UI';
+    line-height: 100%;
+    color: #7c7c7c;
+    float: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 2px;
+}
+
+.form_header_primaryfield {
+    font: normal normal normal 40px/74px 'SegoeUI-Light', 'Segoe UI light';
+    color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    clear: both;
+    padding-top: 14px;
+    padding-right: 25px;
+    min-height: 61px;
+    line-height: 53px;
+    margin-bottom: 10px;
+}
+
+.form_header_primaryfield .input-container { width: inherit; }
+
+.dialog_header_label { font: normal normal normal 20px/27px 'SegoeUI', 'Segoe UI'; }
+
+.related_to { text-decoration: underline; }
+
+.Section_value_common {
+    color: #000000;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+}
+
+.Section_label_common { color: #666666; }
+
+.Section_control_background .input-container .textbox { background-color: #f4f4f4; }
+
+
+
+.alertWarning.errorIndicator { background-color: #f09a22; }
+
+.alertWarning.errorIndicator:before { content: '\E171'; }
+
+.errorIndicator {
+    cursor: pointer;
+    width: 21px;
+    min-width: 21px;
+    height: 21px;
+    -moz-border-radius: 10px;
+
+    -webkit-border-radius: 10px;
+
+    border-radius: 10px;
+
+    border: none;
+    outline: none;
+    background-color: #c0172b;
+    padding: 0;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    line-height: normal;
+}
+
+.errorIndicator:before {
+    font-family: 'Dyn CRM Symbol';
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 12px;
+    content: '\E10A';
+}
+
+.errorIndicator .errorMessage {
+    position: absolute;
+    color: #ffffff;
+    text-align: left;
+    white-space: normal;
+    padding: 5px 15px 5px 10px;
+    z-index: 1501;
+}
+
+.errorIndicator .errorMessagePip {
+    position: relative;
+    border: solid 5px transparent;
+    line-height: 0;
+    content: '';
+    left: 5px;
+    z-index: 1501;
+}
+
+
+
+
+.tile.lead_summary_tile,
+.tile.lead_summary_tile:active,
+.tile.lead_summary_tile:focus {
+    border: none;
+    background-color: #FCD5B5;
+}
+
+.tile.lead_summary_tile {
+    margin-right: 0;
+    padding: 16px 0;
+    color: #999999;
+}
+
+.tile.lead_summary_tile .tile_info_value { color: #000000; }
+
+.lead_details_fields .control_value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.section_control.competitor_address_city {
+    display: inline-block;
+    margin-right: 8px;
+    position: relative;
+    float: left;
+    overflow: visible;
+    width: auto;
+}
+
+.section_control.competitor_address_city:after {
+    content: ',';
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+
+.section_control.competitor_address_state {
+    clear: none;
+    display: inline-block;
+    width: auto;
+}
+
+.section_control.competitor_revenue .control_label {
+    position: relative;
+    margin-right: 8px;
+}
+
+.section_control.competitor_revenue .control_label:after {
+    content: ':';
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+
+
+
+.PerfButtonRight {
+    margin: 5px;
+    float: right;
+    cursor: pointer;
+}
+
+.PerfButton { margin: 5px; }
+
+.PerfDiv {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #AABBCC;
+    z-index: 1000;
+}
+
+.PerformanceReport {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+}
+
+.PerfDivHeader {
+    text-align: center;
+    font-weight: bold;
+}
+
+.PerfDivHeader .rotate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.perfTabs_container { border-bottom: 0px solid #ccc; }
+
+div.RotatedPefReport {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.perfTabs {
+    list-style: none;
+    padding: 5px 0 4px 0;
+    margin: 0 0 0 0px;
+}
+
+.perfTabBase {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.perfTabBaseTextArea {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    border: 1px solid #000;
+}
+
+.PerfTabContent {
+    padding: 5px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-orient: vertical;
+    /** For Gauntlet compat */
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.perfTabs li { display: inline; }
+
+.perfTabs li span {
+    border: 1px solid #ccc;
+    padding: 4px 6px;
+    text-decoration: none;
+    background-color: #eeeeee;
+    border-bottom: none;
+    outline: none;
+    color: black;
+    cursor: pointer;
+}
+
+.hoverable .perfTabs li span:hover {
+    background-color: #dddddd;
+    padding: 4px 6px;
+}
+
+.perfTabs li.active span {
+    background-color: #fff;
+    padding: 4px 6px 5px 6px;
+    border-bottom: none;
+}
+
+.hoverable #perfTabs li.active span:hover {
+    background-color: #eeeeee;
+    padding: 4px 6px 5px 6px;
+    border-bottom: none;
+}
+
+.perfTabs_content_container {
+    border: 0px solid #ccc;
+    border-top: none;
+    padding: 0px;
+}
+
+.perfTabContent { display: none; }
+
+.perfTextArea {
+    width: 100%;
+    padding-left: 5px;
+    border: 1px solid;
+    margin-top: 5px;
+}
+
+.perfTimelineWrapper {
+    background-color: White;
+    width: 100%;
+    height: 60%;
+    overflow: auto;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+canvas.perfTimelineCanvas {
+    background-color: White;
+    position: relative;
+    top: 0px;
+    cursor: pointer;
+    width: 100%;
+}
+
+table.perfMemoryMonitorTable { height: 30px; }
+
+table.perfMemoryMonitorTable td,
+table.perfMemoryMonitorTable th { padding: 10px; }
+
+#perfBadge {
+    position: absolute;
+    display: block;
+    top: 40px;
+    right: 100px;
+    height: 50px;
+    width: 50px;
+    background-color: #666;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    z-index: 99;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-bottom: 5px solid #666;
+}
+
+#perfBadge.pageLoading { border-bottom-color: yellow; }
+
+.offlineIndicator {
+    border: none;
+    background-color: maroon;
+    margin: 0;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    padding: 0;
+    height: 25px;
+    top: -25px;
+    right: -25px;
+}
+
+.offlineIndicator,
+.offlineContainer > .indeterminateProgressBar {
+    position: absolute;
+    min-width: 110px;
+}
+
+.offlineIndicator .button-label { margin: 0px 15px; }
+
+.dummySpan {
+    font: normal normal normal 13px/20px 'SegoeUI', 'Segoe UI';
+    width: auto;
+    height: auto;
+    white-space: nowrap;
+    visibility: hidden;
+}
+
+.offlineContainer {
+    position: absolute;
+    top: 177px;
+    z-index: 3000;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+}
+
+.offlineContainerHidden {
+    -webkit-transform: translateX(-300px);
+    transform: translateX(-300px);
+}
+
+.offlineContainer > .indeterminateProgressBar {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    left: 343px;
+}
+
+.offlineDialog {
+    background-color: #000000;
+    display: inline-block;
+    width: 300px;
+    min-height: 110px;
+    opacity: 0.9;
+    float: left;
+}
+
+.offlineDialog > span {
+    font: normal normal normal 13px/20px 'SegoeUI', 'Segoe UI';
+    color: white;
+    display: block;
+    margin: 15px 15px 0px 15px;
+}
+
+.offlineDialog > button {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    font: normal normal normal 13px/20px 'SegoeUI', 'Segoe UI';
+    margin-top: 10px;
+    margin-left: 7px;
+    margin-bottom: 25px;
+}
+
+
+
+.messageBar-messageRegion {
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    width: 100%;
+}
+
+.messageBar-messageRegion .messageBar-messageBlock {
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    width: 100%;
+}
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message {
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message:before {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    display: block;
+    color: #ffffff;
+    font: normal normal normal 14px/20px 'SegoeUI-Semibold', 'Segoe UI SemiBold';
+    text-align: center;
+    content: '';
+}
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message:after {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: block;
+    line-height: 0;
+    content: '';
+}
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message.infoIcon { padding-left: 26px; }
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message.infoIcon:before {
+    width: 19px;
+    height: 19px;
+    content: 'i';
+}
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message.infoIcon:after {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background-color: #0072c6;
+}
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message.warningIcon {
+    padding-top: 6px;
+    padding-left: 32px;
+}
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message.warningIcon:before {
+    width: 25px;
+    height: 26px;
+    padding-top: 5px;
+    content: '!';
+}
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message.warningIcon:after {
+    top: -13px;
+    border: 13px solid transparent;
+    border-bottom-width: 26px;
+    border-bottom-color: #ce7200;
+}
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message.errorIcon { padding-left: 27px; }
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message.errorIcon:before {
+    font-family: 'Dyn CRM Symbol';
+    width: 19px;
+    height: 20px;
+    font-size: 10.5px;
+    content: '\E10A';
+}
+
+.messageBar-messageRegion .messageBar-messageBlock .messageBar-message.errorIcon:after {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #c0172b;
+}
+
+.messageBar {
+    -webkit-transition: margin-bottom 0.5s ease 0;
+
+    -moz-transition: margin-bottom 0.5s ease 0;
+    -o-transition: margin-bottom 0.5s ease 0;
+    -ms-transition: margin-bottom 0.5s ease 0;
+    transition: margin-bottom 0.5s ease 0;
+
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    margin-bottom: 0px;
+    left: 110px;
+    right: 188px;
+}
+
+.messageBar .messageBar-scrollRegion {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 46px;
+}
+
+.messageBar .messageBar-scrollRegion .messageBar-countButton {
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    padding-top: 12px;
+    padding-bottom: 2px;
+    overflow: hidden;
+    text-align: center;
+    font: normal normal normal 12px/1.35em 'SegoeUI', 'Segoe UI';
+    color: #ffffff;
+}
+
+.messageBar .messageBar-scrollRegion .messageBar-countButton span {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+}
+
+.messageBar .messageBar-scrollRegion .messageBar-countButton:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    border: 20px solid transparent;
+    border-bottom-width: 30px;
+    border-bottom-color: #ce7200;
+    line-height: 0;
+    content: '';
+}
+
+.messageBar .messageBar-scrollRegion .messageBar-readAllButton {
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+    margin: 0;
+    padding: 9px 0 0 8px;
+    background-color: transparent;
+    color: #000000;
+    text-decoration: underline;
+}
+
+.messageBar .messageBar-scrollRegion .messageBar-messageRegion { padding: 10px 8px 0 0; }
+
+.messageBar .messageBar-scrollRegion .messageBar-messageRegion .messageBar-messageBlock {
+    display: none;
+    position: relative;
+    font: normal normal normal 14px/20px 'SegoeUI', 'Segoe UI';
+    color: #000000;
+}
+
+.messageBar .messageBar-scrollRegion .messageBar-messageRegion .messageBar-messageBlock:first-child { display: block; }
+
+.messageBar .messageBar-scrollRegion .messageBar-messageRegion .messageBar-messageBlock .messageBar-message,
+.messageBar .messageBar-scrollRegion .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.infoIcon,
+.messageBar .messageBar-scrollRegion .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.warningIcon,
+.messageBar .messageBar-scrollRegion .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.errorIcon {
+    padding-top: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.messageBar .messageBar-scrollRegion .messageBar-messageRegion .messageBar-messageBlock .actionMessageBar {
+    padding-right: 21px;
+    width: auto;
+}
+
+.messageBar .messageBar-scrollRegion .actionlist,
+.messageBar .messageBar-scrollRegion .actionitem { display: inline-block; }
+
+.messageBar .messageBar-scrollRegion .arrowImage-symbol:before {
+    content: '\E111';
+    position: relative;
+    top: 3px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.messageBar .messageBar-scrollRegion .actionlabel {
+    display: inline-block;
+    padding-left: 7px;
+    padding-right: 21px;
+    max-width: 150px;
+    overflow: hidden;
+    text-decoration: underline;
+}
+
+.messageBar.isHidden { margin-bottom: -100px; }
+
+.messageBar.isFirstNotificationTruncated .messageBar-readAllButton { display: inline-block; }
+
+.messageBar.hasMultipleNotifications .messageBar-countButton { display: inline-block; }
+
+.messageBar.hasMultipleNotifications .messageBar-readAllButton { display: inline-block; }
+
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message,
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.infoIcon,
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.warningIcon,
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.errorIcon { padding-left: 44px; }
+
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message:before,
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.infoIcon:before,
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.warningIcon:before,
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.errorIcon:before,
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message:after,
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.infoIcon:after,
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.warningIcon:after,
+.messageBar.hasMultipleNotifications .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.errorIcon:after { display: none; }
+
+.messageBar.isAssociatedWithCreateForm {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.messageBar.isAssociatedWithCreateForm .messageBar-scrollRegion {
+    width: 820px;
+    position: relative;
+}
+
+.messageBar.isAssociatedWithCreateForm .messageBar-scrollRegion .messageBar-messageRegion { padding-left: 33px; }
+
+.messageBar.isAssociatedWithCreateForm .messageBar-scrollRegion .messageBar-countButton { left: 33px; }
+
+.messageDialog-popupContent .actionlist { display: none; }
+
+.messageDialog-Message .messageBar-messageRegion { padding-right: 24px !important; }
+
+.messageDialog-Message .messageBar-messageRegion .messageBar-messageBlock { padding-bottom: 12px; }
+
+.messageDialog-Message .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.infoIcon,
+.messageDialog-Message .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.warningIcon,
+.messageDialog-Message .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.errorIcon { padding-left: 32px; }
+
+.messageDialog-Message .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.infoIcon:before,
+.messageDialog-Message .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.errorIcon:before,
+.messageDialog-Message .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.infoIcon:after,
+.messageDialog-Message .messageBar-messageRegion .messageBar-messageBlock .messageBar-message.errorIcon:after { margin-left: 3px; }

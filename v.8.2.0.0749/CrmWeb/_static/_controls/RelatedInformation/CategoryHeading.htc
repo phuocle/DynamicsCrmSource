@@ -1,0 +1,26 @@
+<public:component lightweight="true">
+    <public:attach event="oncontentready" onevent="initialize()"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               function initialize() {
+                                                   element.all["SectionImage" + element.CategoryId]
+                                                       .attachEvent("onclick", ShowHide)
+                                               }
+
+                                               function ShowHide() {
+                                                   var sCategoryId = event.srcElement.CategoryId,
+                                                       informationArea = element.all["Section" + sCategoryId],
+                                                       showHideImage = element.all["SectionImage" + sCategoryId];
+                                                   if (informationArea.style.display == "none") {
+                                                       informationArea.style.display = "block";
+                                                       showHideImage.src = "/_imgs/up.gif";
+                                                       showHideImage.alt = LOCID_TREE_MINUS
+                                                   } else {
+                                                       informationArea.style.display = "none";
+                                                       showHideImage.src = "/_imgs/down.gif";
+                                                       showHideImage.alt = LOCID_TREE_PLUS
+                                                   }
+                                               }
+
+                                           </script>
+</public:component>

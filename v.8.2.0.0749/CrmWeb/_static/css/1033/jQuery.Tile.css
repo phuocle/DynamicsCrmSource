@@ -1,0 +1,30 @@
+/* The file is AUTO generated on Sat, 10 Dec 2016 13:29:39 UTC */
+/* Do NOT manually modify this file! */
+
+.tile {
+    display: block;
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.body {
+    margin: 0;
+    padding: 0;
+    float: right;
+    width: 60%;
+    height: 100%;
+}
+
+.media {
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 40%;
+    height: 100%;
+}
+
+.media img {
+    float: left;
+    /* images have intrinsic widths so width is left out */
+}

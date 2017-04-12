@@ -1,0 +1,78 @@
+<div class="mscrm-sitemapNode" ng-show="isAdvancedSectionOpen">
+    <div class="mscrm-sitemapSubNodeTitle" ng-click="propertyPaneController.toggleAdditionalDescriptions($event)" mscrm-action-on-select tabindex="-1" aria-expanded="false">
+        <span ng-class="['mscrm-collapsibleIcon',
+						{'mscrm-glyph-NextArrowIcon': !isAdditionalDescriptionsOpen,
+						'mscrm-glyph-DownArrowIcon': isAdditionalDescriptionsOpen}]"></span>
+        <span>
+            <mscrm-locale mscrm-resource-key="SitemapDesigner.Descriptions.Key"/>
+        </span>
+    </div>
+    <div class="mscrm-sitemapNodeContent" ng-if="isAdditionalDescriptionsOpen">
+        <div class="mscrm-sitemapNodeContentHeader">
+            <mscrm-error-validation-message ng-if="showError" ng-model="showError" errormessage="{{showError}}"/>
+            <div class="mscrm-sitemapNodeContentHeaderRow">
+                <div class="mscrm-sitemapNodeContentLanguageRowDropdown">
+                    <div class="mscrm-sitemapNodeContentHeaderContentText">
+                        <label for="descLangSelectId">
+                            <mscrm-locale mscrm-resource-key="SitemapDesigner.LCID.Key"/>
+                        </label>
+                    </div>
+                </div>
+                <div class="mscrm-sitemapNodeContentLanguageRowDropdown">
+                    <div class="mscrm-sitemapNodeContentHeaderContentControl">
+                        <select id="descLangSelectId" name="langSelect" class="mscrm-sitemapNodeLanguageSelect mscrm-headerCommand" ng-options="item.DisplayName for item in propertyPaneController.descLanguageList | orderBy: 'Language' track by item.LocaleId" tabindex="-1"
+                                ng-model="$parent.selectedDescLanguage" mscrm-locale mscrm-resource-key="SitemapDesigner.{{selectedNodeName_Properties}}.Locale.Tooltip" mscrm-target-attr="title"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="mscrm-sitemapNodeContentHeaderRow">
+                <div class="mscrm-sitemapNodeContentLanguageRowDropdown">
+                    <div class="mscrm-sitemapNodeContentHeaderContentText">
+                        <label for="descriptionTextId">
+                            <mscrm-locale mscrm-resource-key="SitemapDesigner.Description.Key"/>
+                        </label>
+                    </div>
+                </div>
+                <div class="mscrm-sitemapNodeContentRowPriviledgeAddDropdownButton">
+                    <div class="mscrm-sitemapNodeContentTextBox">
+                        <div class="mscrm-sitemapNodeContentHeaderContentControl">
+                            <input id="descriptionTextId" name="descriptionText" class="mscrm-sitemapNodeDescriptionTextBox mscrm-headerCommand" type="text" ng-model="$parent.descriptionText" tabindex="-1" mscrm-locale mscrm-resource-key="SitemapDesigner.{{selectedNodeName_Properties}}.Description.Tooltip" mscrm-target-attr="title" ng-keydown="propertyPaneController.HandleTextBoxKeyDown($event)"/>
+                        </div>
+                    </div>
+                    <div class="mscrm-sitemapNodeContentRowButton">
+                        <button class="mscrm-sitemapNodeContentAddButton mscrm-headerCommandAddButton"
+                                ng-click="propertyPaneController.AddDescriptionToNode()"
+                                tabindex="-1"
+                                mscrm-action-on-select
+                                mscrm-locale mscrm-resource-key="SitemapDesigner.AdddescriptionButton"
+                                mscrm-target-attr="title">
+                            <div id="addFlyoutIcon" class="mscrm-SitemapCommandBarButtonIcon mscrm-glyph-AddIcon"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mscrm-sitemapNodeContentBody" ng-show="!showNoRecordsForDescriptions" data-isdeleted="{{propertyPaneController.isSiteMapNodeContentDelete}}">
+            <div class="mscrm-sitemapNodeContentBodyRow" ng-repeat="desc in propertyPaneController.descriptionList track by desc.LCID">
+                <div class="mscrm-sitemapNodeContentRowText" tabindex="-1" title="{{desc.LCID}}">
+                    <div class="mscrm-contentDescription" ng-attr-title="{{desc.LCID}}">{{desc.LCID}}</div>
+                </div>
+                <input type="text" class="mscrm-sitemapNodeContentRowText" title="{{desc.Description}}"
+                       ng-click=" propertyPaneController.EditableDescriptionInputs(true,$index);"
+                       mscrm-action-on-select data-actiononfocusmode
+                       ng-class="{'mscrm-ContentTextBox-Inactive': !propertyPaneController.isDescriptionInEditMode[$index]}"
+                       ng-model="desc.Description" ng-blur="propertyPaneController.EditableDescriptionInputs(false,$index);" tabindex="-1"/>
+                <div class="mscrm-sitemapNodeContentRowButton">
+                    <button class="mscrm-sitemapNodeContentDeleteButton" ng-click="propertyPaneController.RemoveElement(desc.LCID, 'Description')" mscrm-action-on-select mscrm-locale mscrm-resource-key="SitemapDesigner.DeletedescriptionButton" mscrm-target-attr="title" tabindex="-1">
+                        <div class="mscrm-CommandBarButtonIcon mscrm-glyph-RemoveIcon"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mscrm-sitemapNodeContentBody" ng-show="showNoRecordsForDescriptions">
+            <div class="mscrm-sitemapNodeContentBodyRow" tabindex="-1" mscrm-locale mscrm-resource-key="SitemapDesigner.Show_No_Records" mscrm-target-attr="title">
+                <mscrm-locale mscrm-resource-key="SitemapDesigner.Show_No_Records"/>
+            </div>
+        </div>
+    </div>
+</div>

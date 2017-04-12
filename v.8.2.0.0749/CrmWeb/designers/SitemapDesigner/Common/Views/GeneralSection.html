@@ -1,0 +1,14 @@
+<div class="mscrm-sitemapNode">
+    <div class="mscrm-SitemapComponentTileLabel" ng-bind="selectedNodeLabel" mscrm-action-on-select tabindex="-1"></div>
+    <div class="mscrm-sitemapNodeTitle" ng-click="propertyPaneController.ToggleGeneralSection($event)" mscrm-action-on-select tabindex="-1" aria-expanded="true">
+        <span ng-class="['mscrm-collapsibleIcon',
+					{'mscrm-glyph-NextArrowIcon': !isGeneralSectionOpen,
+					'mscrm-glyph-DownArrowIcon': isGeneralSectionOpen}]"></span>
+        <span>
+            <mscrm-locale mscrm-resource-key="SitemapDesigner.General"/>
+        </span>
+    </div>
+    <div ng-repeat="PropertyDirective in GeneralPropertyDirectives">
+        <div render="PropertyDirective"></div>
+    </div>
+</div>

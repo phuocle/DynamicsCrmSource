@@ -1,0 +1,819 @@
+<public:component lightweight="true">
+<public:method name="DeleteNote"/>
+<public:method name="InsertNote"/>
+<public:method name="OpenNote"/>
+<public:method name="StartEditNote"/>
+<public:method name="EndEditNote"/>
+<public:method name="PrintNote"/>
+<public:method name="Refresh"/>
+<public:method name="CancelTextareaBubble"/>
+<public:method name="CancelEventBubble"/>
+<public:method name="EscapeTextareaBubble"/>
+<public:method name="DivEventBubble"/>
+<public:method name="CloseContextMenu"/>
+<public:method name="SelectNote"/>
+<public:method name="UnSelectControl"/>
+<public:method name="SelectNewButton"/>
+<public:method name="OpenKeyContextMenu"/>
+<public:method name="ShowMoreNotes"/>
+<public:method name="RestoreNotes"/>
+<public:attach event="ondblclick" onevent="OpenNote()"/>
+<public:attach event="onclick" onevent="ClickSelectNote()"/>
+<public:attach event="onkeyup" onevent="HandleKeyUp()"/>
+<public:attach event="oncontextmenu" onevent="OpenContextMenu()"/>
+<public:property name="CurrentNote" get="GetCurrentNote"/>
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataXml" get="dataXml"/>
+<public:property name="PageNumber" get="getPageNumber" put="setPageNumber"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+                                           function HashTable() {
+                                               function Key(key) {
+                                                   for (var obj = null,
+                                                       i = 0;
+                                                       i < this.length;
+                                                       i++)
+                                                       if (this[i].Key == key) {
+                                                           obj = this[i];
+                                                           break
+                                                       }
+                                                   return obj
+                                               }
+
+                                               function Add(oKey, oValue) {
+                                                   if (IsNull(this.Key(oKey))) {
+                                                       var obj = {};
+                                                       obj.Key = oKey;
+                                                       if (oValue != null)
+                                                           obj.Value = oValue;
+                                                       var ArraySize = this.length;
+                                                       this[ArraySize] = obj;
+                                                       return this[ArraySize]
+                                                   } else
+                                                       return null
+                                               }
+
+                                               function Remove(key) {
+                                                   for (var obj = null,
+                                                       i = 0;
+                                                       i < this.length;
+                                                       i++)
+                                                       if (this[i].Key == key)
+                                                           break;
+                                                   if (i >= this.length)
+                                                       return null;
+                                                   for (var removedObj = this[i]; i < this.length - 1; i++)
+                                                       this[i] = this[i + 1];
+                                                   this.length--;
+                                                   return removedObj
+                                               }
+
+                                               function Length() {
+                                                   return this.length
+                                               }
+
+                                               var obj = Array();
+                                               obj.Key = Key;
+                                               obj.Length = Length;
+                                               obj.Add = Add;
+                                               obj.Remove = Remove;
+                                               return obj
+                                           }
+
+                                           var _nextHashKey = 1,
+                                               _currentNote = null,
+                                               _editingNoteValue = "",
+                                               _bNoteDirty = false,
+                                               _store = new HashTable,
+                                               _parentCrmFormSubmit = window.parent.crmFormSubmit,
+                                               _parentCrmForm = window.parent.crmForm,
+                                               _isParentOnServer = this.oId != "",
+                                               _isAscending = this.ascending == "true",
+                                               _bReadOnlyMode = false,
+                                               _pageNumber = 1,
+                                               _oPop;
+
+                                           function NewKey() {
+                                               return "annotation:" + _nextHashKey++
+                                           }
+
+                                           function isNewButtonSelected() {
+                                               return !IsNull(window.newNoteButton) &&
+                                                   window.newNoteButton.className == "newNoteButtonSelected"
+                                           }
+
+                                           function isMoreNotesButtonSelected() {
+                                               return !IsNull(window.moreNotesButton) &&
+                                                   window.moreNotesButton.className == "moreNotesButtonSelected"
+                                           }
+
+                                           function LookupTr(o) {
+                                               while (!IsNull(o) && o.tagName != "TR")
+                                                   o = o.parentElement;
+                                               return o
+                                           }
+
+                                           function LookupHeaderTr(o) {
+                                               var oTr = LookupTr(o);
+                                               if (!IsNull(oTr)) {
+                                                   var oTable = oTr.parentElement;
+                                                   if (IsNull(oTable))
+                                                       return null;
+                                                   var index = oTr.rowIndex;
+                                                   while (index >= 0) {
+                                                       if (!IsNull(oTable.rows[index].oId))
+                                                           return oTable.rows[index];
+                                                       index--
+                                                   }
+                                               }
+                                               return null
+                                           }
+
+                                           function getTextAreaFromHeader(headerTr) {
+                                               if (!IsNull(headerTr)) {
+                                                   var oTable = headerTr.parentElement,
+                                                       oTrBody;
+                                                   if (headerTr.isDocument != null)
+                                                       oTrBody = oTable.rows[headerTr.rowIndex + 3];
+                                                   else
+                                                       oTrBody = oTable.rows[headerTr.rowIndex + 2];
+                                                   return oTrBody.cells[0].firstChild
+                                               }
+                                               return null
+                                           }
+
+                                           function getSpacerFromHeader(headerTr) {
+                                               if (!IsNull(headerTr))
+                                                   return getTextAreaFromHeader(headerTr).parentElement;
+                                               return null
+                                           }
+
+                                           function SetNoteState(headerTr, on) {
+                                               if (!IsNull(headerTr)) {
+                                                   var oTable = headerTr.parentElement,
+                                                       classNameString = on ? "noteHeaderSelected" : "noteHeader";
+                                                   headerTr.className = classNameString;
+                                                   var createdTr = oTable.rows[headerTr.rowIndex + 1];
+                                                   createdTr.className = classNameString;
+                                                   var attachmentTr = null,
+                                                       oTrBody = null;
+                                                   if (headerTr.isDocument != null) {
+                                                       attachmentTr = oTable.rows[createdTr.rowIndex + 1];
+                                                       attachmentTr.className = classNameString;
+                                                       oTrBody = oTable.rows[attachmentTr.rowIndex + 1]
+                                                   } else
+                                                       oTrBody = oTable.rows[createdTr.rowIndex + 1];
+                                                   var oTextArea = oTrBody.cells[0].firstChild;
+                                                   oTrBody.className = oTextArea.className = "ms-crm-Note-Text"
+                                               }
+                                           }
+
+                                           function RestoreNotes() {
+                                               if (this.readyState == "complete")
+                                                   if (this.notesxml.length > 0)
+                                                       for (var oNotesXmlDoc = XUI.Xml.LoadXml(this.notesxml),
+                                                           noteList = oNotesXmlDoc
+                                                               .selectNodes("/annotations/annotation/notetext"),
+                                                           i = 0;
+                                                           i < noteList.length;
+                                                           i++) {
+                                                           var newNode = InsertNoteWithData(noteList[i].text);
+                                                           EndEditNote(newNode)
+                                                       }
+                                           }
+
+                                           function IsForReadForm() {
+                                               return typeof ReadForm != "undefined" && ReadForm
+                                           }
+
+                                           function UpdateNote(id, value) {
+                                               var xml = "",
+                                                   result = "";
+                                               if (IsNull(id))
+                                                   return;
+                                               else if (isNoteOnClient(id)) {
+                                                   var currentDate = LocalDateTimeNow(),
+                                                       currentTitle =
+                                                           formatString(this.newNoteTitle,
+                                                               Mscrm.DateTimeUtility.formatDate(currentDate),
+                                                               timeToString(currentDate, 0)),
+                                                       xml =
+                                                           "<annotation><isdocument>0</isdocument><notetext>" +
+                                                               CrmEncodeDecode.CrmXmlEncode(value) +
+                                                               "</notetext><objectid>" +
+                                                               _parentCrmFormSubmit.crmFormSubmitId.value +
+                                                               "</objectid><objecttypecode>" +
+                                                               this.parentEntityType +
+                                                               "</objecttypecode><subject>" +
+                                                               CrmEncodeDecode.CrmXmlEncode(currentTitle) +
+                                                               "</subject><ownerid type='8'>" +
+                                                               this.userId +
+                                                               "</ownerid></annotation>",
+                                                       command = new RemoteCommand("Annotation", "SaveWithAttachment");
+                                                   command.SetParameter("id", "");
+                                                   command.SetParameter("update", false);
+                                                   command.SetParameter("type", Annotation);
+                                                   command.SetParameter("dataXml", xml);
+                                                   var result = command.Execute();
+                                                   if (!result.Success)
+                                                       return ERROR_CONTINUE;
+                                                   var oXmlResult = XUI.Xml.LoadXml(result.ReturnValue);
+                                                   window.parent.handleXMLErr(oXmlResult);
+                                                   result.id = oXmlResult.selectSingleNode("/annotation/annotationid")
+                                                       .text;
+                                                   result.modifiedon = oXmlResult
+                                                       .selectSingleNode("/annotation/modifiedonheader").text;
+                                                   result.createdon = oXmlResult
+                                                       .selectSingleNode("/annotation/createdonheader").text;
+                                                   result
+                                                       .subject =
+                                                       formatString(this.labelTitleandText,
+                                                           this.labelTitle,
+                                                           oXmlResult.selectSingleNode("/annotation/subject").text)
+                                               } else {
+                                                   xml = "<annotation><notetext>" +
+                                                       CrmEncodeDecode.CrmXmlEncode(value) +
+                                                       "</notetext></annotation>";
+                                                   var command = new
+                                                       RemoteCommand("Annotation", "UpdateAndRetrieveTimeStamp");
+                                                   command.SetParameter("annotationId", id);
+                                                   command.SetXmlParameter("annotationXml", xml);
+                                                   result = command.Execute()
+                                               }
+                                               isOutlookHostedWindow() &&
+                                                   getOutlookHostedWindow().RefreshGrid();
+                                               return result.Success != ERROR_NONE ? ERROR_CONTINUE : result
+                                           }
+
+                                           function CloseContextMenu() {
+                                               if (!IsNull(_oPop)) {
+                                                   _oPop.Hide();
+                                                   _oPop = null
+                                               }
+                                           }
+
+                                           function OpenContextMenu() {
+                                               LookupHeaderTr(event.srcElement) != _currentNote &&
+                                                   SelectNote(LookupHeaderTr(event.srcElement));
+                                               if (event.shiftKey) {
+                                                   event.returnValue = false;
+                                                   return false
+                                               } else
+                                                   _currentNote != null &&
+                                                       OpenKeyContextMenu()
+                                           }
+
+                                           function OpenKeyContextMenu() {
+                                               event.returnValue = false;
+                                               _oPop = new PopupMenu;
+                                               for (var iWidth = 200,
+                                                   oMenuItems = $get("divMenu").getElementsByTagName("div"),
+                                                   isNoteSelected = _currentNote != null,
+                                                   i = 0;
+                                                   i < oMenuItems.length;
+                                                   i++) {
+                                                   var oMenuItem = oMenuItems[i],
+                                                       disableItem = !(isNoteSelected && _isParentOnServer),
+                                                       sImage;
+                                                   switch (oMenuItem.id) {
+                                                   case "divMenu_Open":
+                                                       sImage = "/_imgs/ico_16_5.png";
+                                                       break;
+                                                   case "divMenu_Delete":
+                                                       sImage = "/_imgs/ico/16_L_remove.gif";
+                                                       disableItem = !(isNoteSelected && IsNull(_currentNote.noDelete));
+                                                       break;
+                                                   case "divMenu_Print":
+                                                       sImage = "/_imgs/ico/16_print.gif";
+                                                       break;
+                                                   case "divMenu_Refresh":
+                                                       sImage = "/_imgs/ico/16_L_refresh.gif";
+                                                       disableItem = !_isParentOnServer;
+                                                       break;
+                                                   case "divMenu_Debug":
+                                                       sImage = "/_imgs/ico_16_form.gif";
+                                                       _oPop.AddSeperator();
+                                                       break
+                                                   }
+                                                   var sCallBack = disableItem ? "" : oMenuItem.onclick;
+                                                   _oPop
+                                                       .AddMenuItem(oMenuItem.innerText, sCallBack, disableItem, sImage)
+                                               }
+                                               var iPopX = event.screenX - window.screenLeft + 10,
+                                                   iPopY = 0;
+                                               if (LOCID_UI_DIR == "RTL") {
+                                                   iPopX = event.screenX - window.screenLeft - 10;
+                                                   iPopX = iPopX - _currentNote.offsetWidth
+                                               }
+                                               if (!event.shiftKey)
+                                                   _oPop.Show(iPopX, iPopY, iWidth, null, _currentNote);
+                                               else
+                                                   _oPop.Show(0, 0, iWidth, null, _currentNote)
+                                           }
+
+                                           function isDirty() {
+                                               return _store.Length() > 0
+                                           }
+
+                                           function getNoteXml(iIndex) {
+                                               return "<annotation><notetext>" +
+                                                   CrmEncodeDecode.CrmXmlEncode(_store[iIndex].Value) +
+                                                   "</notetext></annotation>"
+                                           }
+
+                                           function dataXml() {
+                                               _currentNote &&
+                                                   EndEditNote(getTextAreaFromHeader(_currentNote));
+                                               var noteCount = _store.Length();
+                                               if (noteCount === 0)
+                                                   return null;
+                                               var oNotesXml = new Sys.StringBuilder("<annotations>");
+                                               if (_isAscending)
+                                                   for (var i = 0; i < noteCount; i++)
+                                                       oNotesXml.append(getNoteXml(i));
+                                               else
+                                                   for (var i = noteCount - 1; i >= 0; i--)
+                                                       oNotesXml.append(getNoteXml(i));
+                                               oNotesXml.append("</annotations>");
+                                               return oNotesXml.toString()
+                                           }
+
+                                           function GetCurrentNote() {
+                                               return _currentNote
+                                           }
+
+                                           function SelectNewButton(on) {
+                                               if (!IsNull(window.newNoteButton))
+                                                   if (on) {
+                                                       if (_currentNote) {
+                                                           SetNoteState(_currentNote, false);
+                                                           _currentNote = null
+                                                       } else
+                                                           isMoreNotesButtonSelected &&
+                                                               SelectMoreNotesButton(false);
+                                                       newNoteButton.className = "newNoteButtonSelected"
+                                                   } else
+                                                       newNoteButton.className = "newNoteButton"
+                                           }
+
+                                           function SelectMoreNotesButton(on) {
+                                               if (!IsNull(window.moreNotesButton))
+                                                   if (on) {
+                                                       if (_currentNote) {
+                                                           SetNoteState(_currentNote, false);
+                                                           _currentNote = null
+                                                       } else
+                                                           isNewButtonSelected &&
+                                                               SelectNewButton(false);
+                                                       moreNotesButton.className = "moreNotesButtonSelected"
+                                                   } else
+                                                       moreNotesButton.className = "moreNotesButton"
+                                           }
+
+                                           function SelectNextNote() {
+                                               var table,
+                                                   i,
+                                                   noteRows = 3;
+                                               if (IsNull(_currentNote)) {
+                                                   table = window.newNoteButton.parentElement.parentElement;
+                                                   i = 0
+                                               } else {
+                                                   table = _currentNote.parentElement;
+                                                   i = _currentNote.rowIndex;
+                                                   if (!IsNull(_currentNote.isDocument))
+                                                       noteRows = 4
+                                               }
+                                               if (isNewButtonSelected) {
+                                                   SelectNewButton(false);
+                                                   if (window.moreNotesButton.style.display != "none") {
+                                                       SelectMoreNotesButton(true);
+                                                       return
+                                                   }
+                                               }
+                                               isMoreNotesButtonSelected &&
+                                                   SelectMoreNotesButton(false);
+                                               SelectNote(table.rows[i + noteRows]);
+                                               IsNull(_currentNote) &&
+                                                   SelectNote(table.rows[i])
+                                           }
+
+                                           function SelectPrevNote() {
+                                               var table,
+                                                   i,
+                                                   noteRows = 3;
+                                               if (IsNull(_currentNote)) {
+                                                   table = window.newNoteButton.parentElement;
+                                                   i = 0
+                                               } else {
+                                                   table = _currentNote.parentElement;
+                                                   i = _currentNote.rowIndex
+                                               }
+                                               if (i > noteRows)
+                                                   SelectNote(table.rows[i - noteRows]);
+                                               else {
+                                                   SelectNewButton(true);
+                                                   window.newNoteButton.scrollIntoView()
+                                               }
+                                           }
+
+                                           function UnSelectControl() {
+                                               if (isNewButtonSelected())
+                                                   SelectNewButton(false);
+                                               else
+                                                   _currentNote &&
+                                                       SetNoteState(_currentNote, false)
+                                           }
+
+                                           function ClickSelectNote() {
+                                               _bReadOnlyMode = false;
+                                               SelectNote()
+                                           }
+
+                                           function SelectNote(o) {
+                                               if (IsForReadForm())
+                                                   return;
+                                               if (!o && !IsNull(event))
+                                                   o = event.srcElement;
+                                               var headerTr = LookupHeaderTr(o);
+                                               if (!IsNull(headerTr)) {
+                                                   if (isNewButtonSelected())
+                                                       SelectNewButton(false);
+                                                   else
+                                                       _currentNote &&
+                                                           SetNoteState(_currentNote, false);
+                                                   SetNoteState(headerTr, true)
+                                               }
+                                               _currentNote = headerTr
+                                           }
+
+                                           function OpenNote(o) {
+                                               if (IsForReadForm())
+                                                   return;
+                                               if (!o)
+                                                   o = event.srcElement;
+                                               if (_isParentOnServer) {
+                                                   if (o.tagName != "TEXTAREA") {
+                                                       var headerTr = LookupHeaderTr(o);
+                                                       if (!(IsNull(headerTr) || IsNull(headerTr.oId))) {
+                                                           var
+                                                               sUrlParams =
+                                                                   "pId=" + CrmEncodeDecode.CrmUrlEncode(this.oId);
+                                                           sUrlParams =
+                                                               sUrlParams +
+                                                               "&pType=" +
+                                                               CrmEncodeDecode.CrmUrlEncode(this.parentEntityType);
+                                                           window.parent.openObj(Annotation, headerTr.oId, sUrlParams)
+                                                       }
+                                                   }
+                                               } else
+                                                   alert(LOCID_CANNOT_OPEN_ITEM)
+                                           }
+
+                                           function DeleteNote(o) {
+                                               if (!IsNull(o.noDelete))
+                                                   return;
+                                               if (_isParentOnServer && !isNoteOnClient(o.oId)) {
+                                                   var oUrl = Mscrm.CrmUri.create("/_grid/cmds/dlg_delete.aspx");
+                                                   oUrl.get_query()["iObjType"] = Annotation;
+                                                   oUrl.get_query()["iTotal"] = "1";
+                                                   oUrl.get_query()["sIds"] = o.oId;
+                                                   window.parent.openStdDlg(oUrl, new Array(o.oId), 450, 205) &&
+                                                       Refresh()
+                                               } else if (_store.Remove(o.oId) != null) {
+                                                   var table = o.parentElement,
+                                                       i = o.rowIndex;
+                                                   table.deleteRow(i);
+                                                   table.deleteRow(i);
+                                                   table.deleteRow(i);
+                                                   _currentNote = null;
+                                                   SelectNote(table.rows[i]);
+                                                   IsNull(_currentNote) &&
+                                                       SelectNewButton(true)
+                                               }
+                                           }
+
+                                           function InsertNote() {
+                                               var newNote = InsertNoteWithData();
+                                               newNote.focus();
+                                               newNote.click()
+                                           }
+
+                                           function InsertNoteWithData(text) {
+                                               _bNoteDirty = true;
+                                               _bReadOnlyMode = false;
+                                               var key = NewKey(),
+                                                   insertPos = _isAscending ? this.rows.length - 2 : 2,
+                                                   tr = this.insertRow(insertPos++);
+                                               tr.oId = key;
+                                               tr.className = "noteHeader";
+                                               tr.onfocus = new Function(this.id + ".SelectNote(this);");
+                                               tr.tabIndex = 0;
+                                               var td = tr.insertCell();
+                                               td.width = 16;
+                                               td = tr.insertCell();
+                                               td.colSpan = 2;
+                                               td.className = "noteSubjectField";
+                                               tr = this.insertRow(insertPos++);
+                                               td = tr.insertCell();
+                                               td.className = "noteCreatedField notes_htc_td_create";
+                                               td.colSpan = 2;
+                                               td = tr.insertCell();
+                                               td.className = "noteEditedtedField notes_htc_td_edit";
+                                               tr = this.insertRow(insertPos++);
+                                               td = tr.insertCell();
+                                               td.colSpan = 3;
+                                               td.style.height = "100%";
+                                               td.style.width = "100%";
+                                               var oTextAreaBuilder = new Sys
+                                                   .StringBuilder('<textarea class="ms-crm-Note-Text" tabIndex="0" unselectable="true" contenteditable="true" maxlength="');
+                                               oTextAreaBuilder
+                                                   .append(CrmEncodeDecode.CrmHtmlAttributeEncode(MAX_NOTE_LENGTH));
+                                               oTextAreaBuilder.append('" title="');
+                                               oTextAreaBuilder
+                                                   .append(CrmEncodeDecode
+                                                       .CrmHtmlAttributeEncode(LOCID_NOTEAREA_TITLE));
+                                               oTextAreaBuilder.append('" onfocus="');
+                                               oTextAreaBuilder
+                                                   .append(CrmEncodeDecode
+                                                       .CrmHtmlAttributeEncode(buildNoteTextAreaEventHandler("SelectNote(this)")));
+                                               oTextAreaBuilder.append('" oncontextmenu="');
+                                               oTextAreaBuilder
+                                                   .append(CrmEncodeDecode
+                                                       .CrmHtmlAttributeEncode(buildNoteTextAreaEventHandler("CancelTextareaBubble(this)")));
+                                               oTextAreaBuilder.append('" onkeyup="');
+                                               oTextAreaBuilder
+                                                   .append(CrmEncodeDecode
+                                                       .CrmHtmlAttributeEncode(buildNoteTextAreaEventHandler("CancelTextareaBubble(this,true)")));
+                                               oTextAreaBuilder.append('" onkeydown="');
+                                               oTextAreaBuilder
+                                                   .append(CrmEncodeDecode
+                                                       .CrmHtmlAttributeEncode(buildNoteTextAreaEventHandler("EscapeTextareaBubble(this)")));
+                                               oTextAreaBuilder.append('" onblur="');
+                                               oTextAreaBuilder
+                                                   .append(CrmEncodeDecode
+                                                       .CrmHtmlAttributeEncode(buildNoteTextAreaEventHandler("EndEditNote(this)")));
+                                               if (this.noteWritePermission === "true") {
+                                                   oTextAreaBuilder.append('" onclick="');
+                                                   oTextAreaBuilder
+                                                       .append(CrmEncodeDecode
+                                                           .CrmHtmlAttributeEncode(buildNoteTextAreaEventHandler("StartEditNote(this)")))
+                                               }
+                                               oTextAreaBuilder.append('">');
+                                               oTextAreaBuilder.append(CrmEncodeDecode.CrmHtmlAttributeEncode(text));
+                                               oTextAreaBuilder.append("</textarea>");
+                                               td.innerHTML = oTextAreaBuilder.toString();
+                                               var newNote = td.firstChild;
+                                               tr = this.insertRow(insertPos);
+                                               td = tr.insertCell();
+                                               td.colSpan = 3;
+                                               td.innerHTML = "<hr>";
+                                               _store.Add(key, "");
+                                               return newNote
+                                           }
+
+                                           function buildNoteTextAreaEventHandler(sFunctionCall) {
+                                               return String
+                                                   .format("if (!IsNull(window[{0}]))window[{0}].{1};",
+                                                       CrmEncodeDecode.CrmJavaScriptEncode(this.id),
+                                                       sFunctionCall)
+                                           }
+
+                                           function getPageNumber() {
+                                               return _pageNumber
+                                           }
+
+                                           function setPageNumber(pageNumber) {
+                                               _pageNumber = pageNumber
+                                           }
+
+                                           function ShowMoreNotes() {
+                                               var oTargetTbody = this.element.childNodes[1],
+                                                   oRow = oTargetTbody.insertRow(),
+                                                   oCell = oRow.insertCell(),
+                                                   sLoading =
+                                                       "<img id='imgLoadingMoreNotes' src='/_imgs/AdvFind/progress.gif' alt='";
+                                               sLoading += CrmEncodeDecode
+                                                   .CrmHtmlAttributeEncode(LOCID_LOADING_MORE_NOTES);
+                                               sLoading += "' />";
+                                               oCell.innerHTML = sLoading;
+                                               oCell.colSpan = "3";
+                                               oCell.style.textAlign = "center";
+                                               oRow.scrollIntoView();
+                                               var command = new RemoteCommand("Annotation", "RetrieveNotes"),
+                                                   newPageNumber = parseInt(_pageNumber, 10) + 1;
+                                               command.SetParameter("noteDataControlId", this.id);
+                                               command.SetParameter("parentEntity", this.parentEntityType);
+                                               command.SetParameter("parentEntityId", this.oId);
+                                               command.SetParameter("pageNumber", newPageNumber);
+                                               command
+                                                   .SetParameter("wrpcTokenAsQueryString", this.wrpcTokenAsQueryString);
+                                               command.Execute(onRetrieveComplete)
+                                           }
+
+                                           function onRetrieveComplete(result) {
+                                               if (!result.Success)
+                                                   return ERROR_CONTINUE;
+                                               var oTargetTbody = this.element.childNodes[1],
+                                                   tempDiv = window.document.createElement("div");
+                                               tempDiv.innerHTML = result.ReturnValue;
+                                               var newTbody = tempDiv.firstChild.firstChild.childNodes[1],
+                                                   moreRecords = tempDiv.firstChild.firstChild.moreRecords;
+                                               moreRecords != "1" &&
+                                                   showMoreNotesButton(false);
+                                               var newRowsNumber = newTbody.rows.length;
+                                               if (newRowsNumber > 0) {
+                                                   oTargetTbody.deleteRow();
+                                                   var elementToScroll;
+                                                   elementToScroll = newTbody.rows[0].cloneNode(true);
+                                                   oTargetTbody.appendChild(elementToScroll);
+                                                   setPageNumber(parseInt(_pageNumber, 10) + 1);
+                                                   for (var trNum = 1; trNum < newRowsNumber; trNum++)
+                                                       oTargetTbody.appendChild(newTbody.rows[trNum].cloneNode(true));
+                                                   registerAttachmentHandlers();
+                                                   elementToScroll.scrollIntoView()
+                                               }
+                                           }
+
+                                           function showMoreNotesButton(show) {
+                                               var button = window.moreNotesButton;
+                                               if (!IsNull(button))
+                                                   button.style.display = show ? "inline" : "none"
+                                           }
+
+                                           function Refresh(editNode) {
+                                               var sLoading = "";
+                                               if (typeof GLOBAL_FONT_STYLE == "undefined" ||
+                                                   typeof GLOBAL_FONT_SIZE == "undefined" ||
+                                                   IsNull(GLOBAL_FONT_STYLE) ||
+                                                   IsNull(GLOBAL_FONT_SIZE))
+                                                   sLoading +=
+                                                       "<table style='width:100%;height:100%;text-align:center;'><tr><td><img id='imgLoading' src='/_imgs/AdvFind/progress.gif' alt=\"";
+                                               else
+                                                   sLoading +=
+                                                       "<table style='width:100%;height:100%;text-align:center;font-family: " + GLOBAL_FONT_STYLE + "; font-size: " + GLOBAL_FONT_SIZE + ";'><tr><td><img id='imgLoading' src='/_imgs/AdvFind/progress.gif' alt=\"";
+                                               sLoading += CrmEncodeDecode
+                                                   .CrmHtmlAttributeEncode(LOCID_LOADING_NOTES_DATA);
+                                               sLoading += '" /><BR>' +
+                                                   CrmEncodeDecode.CrmHtmlEncode(LOCID_LOADING_NOTES_DATA) +
+                                                   "</td></tr></table>";
+                                               window.document.body.innerHTML = sLoading;
+                                               var oUrl = Mscrm.CrmUri.create(location.href);
+                                               oUrl.get_query()["EditNode"] = editNode ? "true" : "";
+                                               location.replace(oUrl.toString())
+                                           }
+
+                                           function isNoteOnClient(sId) {
+                                               return sId.indexOf("annotation:") != -1
+                                           }
+
+                                           function StartEditNote(textarea) {
+                                               textarea.className = "";
+                                               textarea.contentEditable = true;
+                                               _editingNoteValue = textarea.innerText
+                                           }
+
+                                           function EndEditNote(textarea) {
+                                               var headerTr = LookupHeaderTr(textarea);
+                                               if (IsNull(headerTr))
+                                                   return;
+                                               var oTable = headerTr.parentElement;
+                                               if (IsNull(oTable))
+                                                   return;
+                                               var createdTr = oTable.rows[headerTr.rowIndex + 1];
+                                               if (_bNoteDirty) {
+                                                   if (!IsNull(textarea.maxlength)) {
+                                                       var iMaxLength = parseInt(textarea.maxlength, 10);
+                                                       if (textarea.value.length > iMaxLength)
+                                                           if (
+                                                               confirm(formatString(LOCID_MAXLENGTH_EXCEEDED,
+                                                                   iMaxLength)))
+                                                               textarea.value = textarea.value.substring(0, iMaxLength);
+                                                           else {
+                                                               textarea.select();
+                                                               return
+                                                           }
+                                                   }
+                                                   if (_isParentOnServer) {
+                                                       var oResult = UpdateNote(headerTr.oId, textarea.innerText);
+                                                       if (oResult == ERROR_CONTINUE) {
+                                                           event.srcElement.focus();
+                                                           CancelEventBubble();
+                                                           return
+                                                       } else if (isNoteOnClient(headerTr.oId)) {
+                                                           _store.Remove(headerTr.oId);
+                                                           var iconUrl = '<img alt="" src="/_imgs/ico_16_5.png">';
+                                                           headerTr.cells[0].innerHTML = iconUrl;
+                                                           headerTr.cells[1].innerHTML = oResult.subject;
+                                                           createdTr.cells[0].innerText = oResult.createdon;
+                                                           createdTr.cells[1].innerText = oResult.modifiedon;
+                                                           headerTr.oId = oResult.id
+                                                       } else
+                                                           createdTr.cells[1].innerText = oResult.ReturnValue
+                                                   } else
+                                                       _store.Key(headerTr.oId).Value = textarea.innerText;
+                                                   _bNoteDirty = false
+                                               }
+                                               if (this.noteWritePermission == "false") {
+                                                   textarea.contentEditable = false;
+                                                   textarea.tabIndex = -1
+                                               }
+                                           }
+
+                                           function PrintNote(o) {
+                                               if (!o)
+                                                   o = event.srcElement;
+                                               if (_isParentOnServer) {
+                                                   if (o.tagName != "TEXTAREA") {
+                                                       var headerTr = LookupHeaderTr(o);
+                                                       if (!(IsNull(headerTr) || IsNull(headerTr.oId))) {
+                                                           var oUrl = Mscrm.CrmUri.create("/_forms/print/print.aspx");
+                                                           oUrl.get_query()["objectType"] = Annotation;
+                                                           oUrl.get_query()["id"] = headerTr.oId;
+                                                           window.parent
+                                                               .openStdWin(oUrl,
+                                                                   "print" + window.parent.buildWinName(headerTr.oId))
+                                                       }
+                                                   }
+                                               } else
+                                                   alert(LOCID_NOTES_CANNOT_PRINT_ITEM)
+                                           }
+
+                                           function CancelTextareaBubble(textarea, forceCancel) {
+                                               if (textarea.isContentEditable || forceCancel == true) {
+                                                   if (textarea.defaultValue != textarea.value)
+                                                       _bNoteDirty = true;
+                                                   CancelEventBubble()
+                                               }
+                                           }
+
+                                           function EscapeTextareaBubble(textarea) {
+                                               if (event.keyCode == KEY_ESC && textarea.isContentEditable) {
+                                                   _bReadOnlyMode = true;
+                                                   SelectNote(_currentNote);
+                                                   CancelEventBubble()
+                                               }
+                                           }
+
+                                           function DivEventBubble() {
+                                               if (event.keyCode == KEY_UP && !event.shiftKey ||
+                                                   event.keyCode == KEY_DOWN && !event.shiftKey)
+                                                   _bReadOnlyMode &&
+                                                       CancelEventBubble()
+                                           }
+
+                                           function CancelEventBubble() {
+                                               event.cancelBubble = true;
+                                               event.returnValue = false
+                                           }
+
+                                           function HandleKeyUp() {
+                                               if (!IsNull(_oPop))
+                                                   if (_oPop.IsOpen())
+                                                       return false;
+                                                   else
+                                                       CloseContextMenu();
+                                               if (event.keyCode == KEY_TAB && event.shiftKey) {
+                                                   !_bReadOnlyMode &&
+                                                       SelectPrevNote();
+                                                   CancelEventBubble();
+                                                   return false
+                                               } else if (event.altKey || event.keyCode != KEY_F10 && event.shiftKey) {
+                                                   CancelEventBubble();
+                                                   return false
+                                               }
+                                               switch (event.keyCode) {
+                                               case KEY_F2:
+                                               case KEY_SPACE:
+                                                   _bReadOnlyMode = false;
+                                                   SelectNote(LookupHeaderTr(event.srcElement));
+                                                   break;
+                                               case KEY_ENTER:
+                                                   if (isNewButtonSelected())
+                                                       newNoteButton.click();
+                                                   else
+                                                       _isParentOnServer &&
+                                                           OpenNote(_currentNote);
+                                                   break;
+                                               case KEY_DELETE:
+                                                   !isNewButtonSelected() &&
+                                                       DeleteNote(_currentNote);
+                                                   break;
+                                               case KEY_F10:
+                                                   !isNewButtonSelected() &&
+                                                       event.shiftKey &&
+                                                       OpenKeyContextMenu();
+                                                   break;
+                                               case KEY_UP:
+                                                   SelectPrevNote();
+                                                   break;
+                                               case KEY_DOWN:
+                                               case KEY_TAB:
+                                                   _bReadOnlyMode &&
+                                                       SelectNextNote();
+                                                   break
+                                               }
+                                               CancelEventBubble()
+                                           }
+
+                                       </script>
+</public:component>

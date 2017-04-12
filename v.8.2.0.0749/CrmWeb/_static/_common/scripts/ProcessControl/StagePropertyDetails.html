@@ -1,0 +1,494 @@
+﻿<link href="../../../_static/_common/scripts/processcontrol/propertyStyle.css" rel="stylesheet" type="text/css">
+<div id="properties">
+    <div class="header ellipsis">
+        <span class="headline1" id="StagePropertyDetails_Header"></span>
+    </div>
+    <div id="contentDivStageProp">
+        <div>
+            <span class="headline2 ellipsis" role="label" for="stageName" id="StagePropertyDetails_StageName"></span>
+            <input class="fieldStage field" id="stageName" type="text" aria-labelledby="StagePropertyDetails_StageName"/>
+        </div>
+        <div>
+            <span class="headline2 ellipsis" role="label" for="stageCategoryDropDown" id="StagePropertyDetails_Category"></span>
+            <select class="field" id="stageCategoryDropDown" aria-labelledby="StagePropertyDetails_Category" role="combobox">
+            </select>
+        </div>
+        <div>
+            <span class="headline2 ellipsis" role="label" for="entityName" id="StagePropertyDetails_Entity"></span>
+            <select class="field" id="entityName" aria-labelledby="StagePropertyDetails_Entity" role="combobox"></select>
+        </div>
+        <div>
+            <span id="relationshipLabel" role="label" for="relationshipDropdown" class="headline2 ellipsis"></span>
+            <select id="relationshipDropdown" class="field" aria-labelledby="relationshipLabel" role="combobox"></select>
+        </div>
+    </div>
+</div>
+<div class="buttons align-self">
+    <span>
+        <input id="stageSave" type="button" value="" class="ellipsis" role="button"/>
+        <input id="stageDiscard" type="button" value="" class="ellipsis" role="button"/>
+    </span>
+</div>
+<script>
+    var propertyViewCurrentModel;
+    var propertyViewCurrentModelClone;
+
+    /* Global variables */
+    var parentStage = null;
+    var parentStageEntityName = "";
+    var currentStageEntityName = "";
+
+    function isPropertyViewModified() {
+        var editItems = getEditItems();
+        var currentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        var modified = false;
+        modified = modified || (currentModel._entityName != $("#entityName").val());
+        modified = modified || (currentModel.displayName != $('#stageName').val());
+        modified = modified || (currentModel._category != $('#stageCategoryDropDown :selected').val());
+        if ($('#relationshipDropdown :selected').val()) {
+            modified = modified || (currentModel._relationshipName != $('#relationshipDropdown :selected').val());
+        }
+        return modified;
+    }
+
+    $(function() {
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        document.getElementById("stageSave").addEventListener('click', sendSaveMessage);
+        document.getElementById("stageDiscard").addEventListener('click', discardCallBack);
+        document.getElementById("stageName").addEventListener('change', valueChanged);
+        document.getElementById("stageCategoryDropDown").addEventListener('change', valueChanged);
+        document.getElementById("entityName").addEventListener('change', entityChanged);
+        document.getElementById("relationshipDropdown").addEventListener('change', valueChanged);
+        //document.getElementById("editTab").addEventListener('click', sendPropertyMessage);
+        setToolTips();
+        setTabIndex();
+        setLocalizedHTMLStrings();
+        updateHtmlElements();
+        propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        propertyViewCurrentModelClone = propertyViewCurrentModel.getPropertyPageClone();
+        MscrmControls.ProcessDesigner.Validation.Errors
+            .registerPropertyViewCurrentModelClone(propertyViewCurrentModelClone);
+        // dropdown will be enabled in loadEntityMetadata function call back where it will has list of entities. (for stages other than root stage)
+        $('#entityName').attr('disabled', true);
+        if (propertyViewCurrentModel.getParentStage() != null) {
+            MscrmControls.ProcessDesigner.MetadataProvider
+                .getEntityMetadata(loadEntityMetadata, getEntityMetadataFailureCallback);
+        }
+        getRelationshipMetadata();
+        GenericWorkflowDesigner.BasePropertyView.isPropertyViewModified = isPropertyViewModified;
+        GenericWorkflowDesigner.BasePropertyView.yesCallBack = function(event) {
+            $("#stageSave").click();
+        };
+        stopwatch.stop();
+        localStorage.setItem("ProcessDesignerControl_BPF_StagePropPageLoad", stopwatch.elapsedMilliseconds.toString());
+        renderErrors();
+        GenericWorkflowDesigner.BasePropertyView.updateHtmlElements = updateHtmlElements;
+        MscrmControls.ProcessDesigner.Validation.Errors.refreshErrorMessages = renderErrors;
+    });
+
+    function setDropdownComponentTitle(id) {
+        if ($('#' + id + ' :selected').text() == "") {
+            $('#' + id + '').attr('title',
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyDropDowntooltip"));
+        } else {
+            $('#' + id + '').attr('title', $('#' + id + ' :selected').text());
+        }
+    }
+
+    function valueChanged() {
+        $('#stageName').attr("title", $('#stageName').val());
+        setDropdownComponentTitle("stageCategoryDropDown");
+        setDropdownComponentTitle("relationshipDropdown");
+        propertyViewCurrentModelClone._entityName = $("#entityName").val();
+        propertyViewCurrentModelClone.displayName = $('#stageName').val();
+        propertyViewCurrentModelClone._category = $('#stageCategoryDropDown :selected').val();
+        propertyViewCurrentModelClone._relationshipName = $('#relationshipDropdown :selected').val();
+        propertyViewCurrentModelClone.validateOnChange();
+        renderErrors();
+    }
+
+    function renderErrors() {
+
+        // see if any errors exists in clone model
+        if (propertyViewCurrentModelClone.getErrorCount() > 0) {
+            MscrmControls.ProcessDesigner.DOMUtil
+                .renderErrorMessages(propertyViewCurrentModelClone,
+                    $('#properties'),
+                    propertyViewCurrentModelClone.getErrorMessages());
+        }
+        // see if any errors exists in activity model
+        else {
+            var model = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            if (!CommonTypes.Types.Object.isNullOrUndefined(model) &&
+                !CommonTypes.Types.String.isNullOrEmpty(model) &&
+                model.getErrorCount() > 0 &&
+                !propertyViewCurrentModelClone.isValid) {
+                MscrmControls.ProcessDesigner.DOMUtil
+                    .renderErrorMessages(GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel(),
+                        $('#properties'),
+                        GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel().getErrorMessages());
+            } else {
+                MscrmControls.ProcessDesigner.DOMUtil
+                    .renderErrorMessages(propertyViewCurrentModelClone,
+                        $('#properties'),
+                        propertyViewCurrentModelClone.getErrorMessages());
+            }
+        }
+    }
+
+    //Set HTML Text
+    function setLocalizedHTMLStrings() {
+        $("#StagePropertyDetails_Header").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_StagePropertyDetails_Header'));
+        $("#StagePropertyDetails_StageName").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_StagePropertyDetails_StageName"));
+        $("#StagePropertyDetails_Category").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_StagePropertyDetails_Category"));
+        $("#StagePropertyDetails_Entity").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_StagePropertyDetails_Entity"));
+        $("#relationshipLabel").text(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_StagePropertyDetails_Relationship"));
+        $("#stageSave").val(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Apply'));
+        $("#stageDiscard").val(MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Discard'));
+
+        var stageCategoryDropDown = $("#stageCategoryDropDown");
+        var stageCategories = MscrmControls.ProcessDesigner.ProcessDesignerControl.dataBag.resources
+            .getStageCategoryMetadata();
+        stageCategories.forEach(function(category) {
+            if (category.Value == "-1") {
+                stageCategoryDropDown.append('<option value="" aria-label="' +
+                    MscrmControls.ProcessDesigner.MetadataProvider
+                    .getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyDropDowntooltip") +
+                    '">' +
+                    category.Label +
+                    '</option>');
+                $("#stageCategoryDropDown").attr("title",
+                    MscrmControls.ProcessDesigner.MetadataProvider
+                    .getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyDropDowntooltip"));
+            } else {
+                stageCategoryDropDown.append('<option value="' +
+                    GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(category.Value) +
+                    '">' +
+                    GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(category.Label) +
+                    '</option>');
+            }
+        });
+    }
+
+
+    /* Retrieve relationship metadata between parent stage entity and current stage entity */
+    function getRelationshipMetadata() {
+
+        var previousEntitiesList = new Array();
+        var previousStage = parentStage;
+        // Same lavel entities can form closed loop with current entity 
+        while (previousStage != null) {
+            previousEntitiesList.push(previousStage._entityName);
+            previousStage = previousStage.getParentStage();
+        }
+
+        if (parentStage != null &&
+            parentStageEntityName != currentStageEntityName &&
+            previousEntitiesList.indexOf(currentStageEntityName) == -1) {
+            /* Retrieve metadata only if parent stage exists */
+            MscrmControls.ProcessDesigner.MetadataProvider
+                .getRelationshipMetadata(parentStageEntityName,
+                    currentStageEntityName,
+                    loadRelationshipMetadata,
+                    getRelationshipMetadataFailureCallback);
+        } else {
+            var relationshipDropdown = $('#relationshipDropdown');
+            relationshipDropdown.empty();
+
+            /* Append the none option to the relationship dropdown */
+            relationshipDropdown.append('<option attributeName="" value="">' +
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_StagePropertyDetails_None") +
+                '</option>');
+        }
+
+    }
+
+    /* Change event handler for entityName */
+    function entityChanged() {
+        var newEntityName = $(this).val();
+
+        /* Check if stage entity name has been changed by user */
+        if (newEntityName !== currentStageEntityName) {
+
+            /* Update the current stage entity name to the new entity name */
+            currentStageEntityName = newEntityName;
+
+            /* Clear the existing relationship dropdown */
+            $("#relationshipDropdown").val("");
+
+            /* Get fresh relationship metadata based on the new Stage Entity */
+            getRelationshipMetadata();
+        }
+        valueChanged();
+    }
+
+    /* Set the tool tips for the HTML elements*/
+    function setToolTips() {
+        propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        $('#stageName').attr("title", propertyViewCurrentModel._displayName);
+        $("#StagePropertyDetails_StageName").attr("title",
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_StageNameTooltip"));
+        $("#StagePropertyDetails_Category").attr("title",
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_CategoryTooltip"));
+        $("#StagePropertyDetails_Entity").attr("title",
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_EntityTooltip"));
+        $('#relationshipDropdown').attr('title',
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_RelationshipTooltip"));
+        $('#stageDiscard').attr('title',
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_DiscardChangesTooltip"));
+        if ($('#stageSave').attr("disabled") == undefined) {
+            $('#stageSave').attr('title',
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Available"));
+        } else {
+            $('#stageSave').attr('title',
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Unavailable"));
+        }
+    }
+
+    /* Set the tool tips for the HTML elements*/
+    function setTabIndex() {
+        $('#stageName').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+        $('#stageCategoryDropDown').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+        $('#entityName').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+        $('#relationshipDropdown').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+        $('#stageDiscard').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+        $('#stageSave').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+    }
+
+
+    /* Update the Html elements based on the available model properties */
+    function updateHtmlElements() {
+        propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+        var entityDropdown = $('#entityName');
+        var entityDisplayName = CommonTypes.Types.String.isNullOrEmpty(propertyViewCurrentModel._entityName)
+            ? propertyViewCurrentModel._entityName
+            : Xrm.Internal.getEntityDisplayName(propertyViewCurrentModel._entityName);
+        entityDropdown.append('<option value="' +
+            GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(propertyViewCurrentModel._entityName) +
+            '">' +
+            GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(entityDisplayName) +
+            '</option>');
+        entityDropdown.val(propertyViewCurrentModel._entityName);
+        $('#entityName').attr("title", entityDisplayName);
+        // Stage Name
+        // $('#stageName').val(null);
+        // Added value for text
+        $('#stageName').val(propertyViewCurrentModel.displayName);
+        // max length of Stage Name allowed is 100 as per legacy behaviour.
+        $('#stageName').attr("maxlength", 100);
+
+        // Stage Category Drop Down
+        var stageCategoryDropDown = -1;
+        $('#stageCategoryDropDown').val(propertyViewCurrentModel._category);
+
+        if (CommonTypes.Types.Object.isNullOrUndefined(propertyViewCurrentModel._category)) {
+            $('#stageCategoryDropDown').val(stageCategoryDropDown);
+            propertyViewCurrentModel.category = "-1";
+        }
+        // Description
+        // description = propertyViewCurrentModel._description;
+        //$('#description').val(description);
+
+        // Step Count
+        //var stepCount = propertyViewCurrentModel.count;
+        //$('#stepCount').val(stepCount);
+
+        var relationshipDropdown = $('#relationshipDropdown');
+        parentStage = propertyViewCurrentModel.getParentStage();
+        if (parentStage != null) {
+
+            relationshipDropdown.empty();
+            /* Append the none option to the relationship dropdown */
+            relationshipDropdown.append('<option attributeName="" value="">' +
+                MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_StagePropertyDetails_None") +
+                '</option>');
+
+            /* Update the values for parent stage entity names */
+            parentStageEntityName = parentStage._entityName;
+
+            /* Update the values for current stage entity names */
+            if (propertyViewCurrentModel.getActivityTypeID() == "condition") {
+                currentStageEntityName = propertyViewCurrentModel.parentStageEntityName;
+            } else {
+                currentStageEntityName = propertyViewCurrentModel._entityName;;
+            }
+
+        } else {
+            /* Hide the relationship dropdown and it's label if the parent stage is null */
+            relationshipDropdown.hide();
+            $("#relationshipLabel").hide();
+        }
+    }
+
+    // populates previously saved values in all the data fields.
+    function discardCallBack() {
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+        propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+        $('#entityName').val(propertyViewCurrentModel._entityName);
+        $('#entityName').attr("title", propertyViewCurrentModel._entityName);
+
+
+        // Added value (default value initially 'New Stage')
+        $('#stageName').val(propertyViewCurrentModel.displayName);
+        $('#stageName').attr("title", propertyViewCurrentModel.displayName);
+
+        $('#stageCategoryDropDown').val(propertyViewCurrentModel._category);
+        setDropdownComponentTitle("stageCategoryDropDown");
+
+        /* Populate relationship dropdown if parent stage exists */
+        parentStage = propertyViewCurrentModel.getParentStage();
+        if (parentStage != null) {
+            $('#relationshipDropdown').val(propertyViewCurrentModel._relationshipName);
+            setDropdownComponentTitle("relationshipDropdown");
+        }
+        stopwatch.stop();
+        localStorage.setItem("ProcessDesignerControl_BPF_StageDiscardTime", stopwatch.elapsedMilliseconds.toString());
+    }
+
+    //Loads the retrieved enity metadata in dropdown
+    function loadEntityMetadata(list) {
+        var entityDropdown = $('#entityName');
+        $('#entityName').attr('disabled', false);
+        var entityName = entityDropdown.val();
+        entityDropdown.empty();
+        //bind entity metadata
+        for (var i = 0; i < list.length; i++) {
+            var entityData = list[i];
+            // TODO: Show Display Name once it is available from RetrieveProcessEntityAction
+            entityDropdown.append('<option value="' +
+                GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(entityData.logicalName) +
+                '">' +
+                GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(entityData.displayName) +
+                '</option>');
+        }
+        entityDropdown.val(entityName);
+    }
+
+    // Loads the retrieved relationship metadata in dropdown
+    function loadRelationshipMetadata(list) {
+        var relationshipDropdown = $('#relationshipDropdown');
+        var relationshipName = propertyViewCurrentModel._relationshipName;
+        var relationShipAttributeName = propertyViewCurrentModel._relationShipAttributeName;
+        relationshipDropdown.empty();
+
+        /* Append the none option to the relationship dropdown */
+        relationshipDropdown.append('<option attributeName="" value="">' +
+            MscrmControls.ProcessDesigner.MetadataProvider
+            .getLocalizedString("ProcessDesignerControl_BPF_StagePropertyDetails_None") +
+            '</option>');
+
+        /* Bind relationship metadata */
+        for (var i = 0; i < list.length; i++) {
+            var relationshipData = list[i];
+            relationshipDropdown.append('<option attributeName="' +
+                GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(relationshipData.attributeName) +
+                '"value="' +
+                GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(relationshipData.logicalName) +
+                '">' +
+                GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(relationshipData.displayName) +
+                '</option>');
+        }
+        $.each(relationshipDropdown[0].options,
+            function() {
+                if (this.value == relationshipName) {
+                    relationshipDropdown.val(relationshipName);
+                    relationshipDropdown.attr("title", relationshipName);
+                }
+            });
+    }
+
+    function getEntityMetadataFailureCallback() {
+        // TODO : 29/04/2016 : v-mandh : Implement Error Handling
+    }
+
+    function getRelationshipMetadataFailureCallback() {
+        // TODO : 12/05/2016 : v-brbhat : Implement Error Handling
+    }
+
+    function getEditItems() {
+        var _displayName = $("#stageName").val();
+        if (MscrmControls.ProcessDesigner.Util.isEmptyString(_displayName)) {
+            _displayName = MscrmControls.ProcessDesigner.MetadataProvider
+                .getLocalizedString("ProcessDesignerControl_BPF_BPFStageActivity_StageName");
+            $("#stageName").val(_displayName)
+        }
+        var editItems = {
+            entityName: $("#entityName").val(),
+            displayName: _displayName,
+            category: $("#stageCategoryDropDown :selected").val(),
+            relationshipName: $("#relationshipDropdown :selected").val(),
+            relationShipAttributeName: $("#relationshipDropdown :selected").attr("attributeName")
+        }
+        if (CommonTypes.Types.Object.isNullOrUndefined(editItems.relationShipAttributeName)) {
+            editItems.relationshipName = null;
+        }
+        if (CommonTypes.Types.Object.isNullOrUndefined(editItems.relationshipName)) {
+            editItems.relationshipName = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel()
+                .relationshipName;
+        }
+        return editItems;
+    }
+
+    /* Retrieve the updated values from Html elements and return them back to the parent using post message */
+    function sendSaveMessage() {
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+
+        // Indicate to Telemetry that Property Page was saved
+        MscrmControls.ProcessDesigner.isPropertyPageSaved = true;
+
+        var editItems = getEditItems();
+        var validProperties = propertyViewCurrentModelClone
+            .validateOnAction(MscrmControls.ProcessDesigner.Validation.Level.Apply);
+        if (validProperties) {
+            GenericWorkflowDesigner.currentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            GenericWorkflowDesigner.eventManager.trigger(GenericWorkflowDesigner.FrameworkEvents.updateProperty,
+                editItems);
+        }
+        //Refresh the errors based on user entered values
+        renderErrors();
+        stopwatch.stop();
+        localStorage.setItem("ProcessDesignerControl_BPF_StageApplyTime", stopwatch.elapsedMilliseconds.toString());
+    }
+
+    /*function sendPropertyMessage(e) {
+        var editItems = {
+            _entityName: $("#entityName").val(),
+            displayName: $("#stageName").val(),
+            _category: $("#stageCategoryDropDown").val()
+            //_description: $("#description").val(),
+            //count: $("#stepCount").val()
+            //_relationships: new Array($("#relationship").val())
+        }
+        GenericWorkflowDesigner.eventManager.trigger(GenericWorkflowDesigner.FrameworkEvents.propertyMessageReceived, editItems);
+    }*/
+
+    dialogMessageTypes = {
+        Information: 0,
+        Warning: 1,
+        Error: 2
+    }
+
+</script>

@@ -1,0 +1,37 @@
+<div ng-if="notificationCtrl.ShouldShowNotification" ng-class="['mscrm-NotificationBar', {
+				'mscrm-NotificationErrorColor': !notificationCtrl.ShouldRenderWarningTemplate,
+				'mscrm-NotificationWarningColor': notificationCtrl.ShouldRenderWarningTemplate}]">
+    <div class="mscrm-NotificationHeader">
+        <span ng-class="['mscrm-NotificationIcon', {
+				'mscrm-glyph-WarningIcon mscrm-NotificationWarningOutline': notificationCtrl.ShouldRenderWarningTemplate,
+				'mscrm-glyph-ErrorIcon mscrm-NotificationErrorOutline': !notificationCtrl.ShouldRenderWarningTemplate}]"></span>
+        <div aria-live="assertive" class="mscrm-NotificationBarInfo" ng-attr-title="{{notificationCtrl.NotificationHeaderText}}" ng-bind="notificationCtrl.NotificationHeaderText"></div>
+        <div class="mscrm-NotificationBarActionText" ng-bind="notificationCtrl.ExpandCollapseString"></div>
+        <div class="mscrm-NotificationActionIcons" role="group">
+            <div ng-class="['mscrm-ToggleNotification', {
+				'mscrm-glyph-DownArrowIcon': !notificationCtrl.IsFlyoutExpanded,
+				'mscrm-glyph-UpArrowIcon': notificationCtrl.IsFlyoutExpanded}]" ng-click="notificationCtrl.ToggleNotificationFlyout()" tabindex="-1" mscrm-action-on-select
+                 ng-attr-title="{{notificationCtrl.ExpandCollapseString}}">
+            </div>
+            <div class="mscrm-CloseNotification mscrm-glyph-CrossIcon" ng-click="notificationCtrl.HideNotification()" tabindex="-1" mscrm-action-on-select
+                 mscrm-locale mscrm-resource-key="Designer.NotificationBarClose.ToolTip" mscrm-target-attr="title">
+            </div>
+        </div>
+    </div>
+    <div ng-class="['mscrm-NotificationFlyout', {
+				'mscrm-NotificationErrorColor': !notificationCtrl.ShouldRenderWarningTemplate,
+				'mscrm-NotificationWarningColor': notificationCtrl.ShouldRenderWarningTemplate}]" ng-if="notificationCtrl.IsFlyoutExpanded">
+        <div class="mscrm-NotificationFlyoutBorder" ng-if="notificationCtrl.ErrorList.length > 0">
+            <div class="mscrm-NotificationErrorMessage">
+                <mscrm-locale mscrm-resource-key="AppDesigner.ErrorMessage">
+            </div>
+            <div class="mscrm-NotificationErrorText" ng-repeat="errorText in notificationCtrl.ErrorList track by $index" tabindex="-1" ng-bind="errorText"></div>
+        </div>
+        <div class="mscrm-NotificationFlyoutBorder" ng-if="notificationCtrl.WarningList.length > 0">
+            <div class="mscrm-NotificationWarningMessage">
+                <mscrm-locale mscrm-resource-key="AppDesigner.WarningMessage">
+            </div>
+            <div class="mscrm-NotificationErrorText" ng-repeat="warningText in notificationCtrl.WarningList" tabindex="-1" ng-bind="warningText"></div>
+        </div>
+    </div>
+</div>

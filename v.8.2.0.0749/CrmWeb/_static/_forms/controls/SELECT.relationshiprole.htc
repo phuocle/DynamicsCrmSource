@@ -1,0 +1,94 @@
+<public:component lightweight="true">
+    <public:attach event="oncontentready" onevent="init()"/>
+    <public:attach event="ondocumentready" onevent="initDocReady()"/>
+    <public:property name="PrimaryOTC" put="setPrimaryOTC" get="getPrimaryOTC"/>
+    <public:property name="AssociatedOTC" put="setAssociatedOTC" get="getAssociatedOTC"/>
+    <public:property name="IsDirty" get="isDirty"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               var _commandGetPicklist,
+                                                   _primaryOTC,
+                                                   _associatedOTC,
+                                                   _defaultRole;
+
+                                               function initDocReady() {
+                                                   _commandGetPicklist = new
+                                                       RemoteCommand("RelationshipRolePicklist", "GetOptions")
+                                               }
+
+                                               function init() {
+                                                   _primaryOTC = typeof pOTC == "undefined" ? None : parseInt(pOTC, 10);
+                                                   _associatedOTC =
+                                                       typeof aOTC == "undefined" ? None : parseInt(aOTC, 10);
+                                                   _defaultRole =
+                                                       typeof defaultRole == "undefined" ? this.value : defaultRole
+                                               }
+
+                                               function isDirty() {
+                                                   return _defaultRole != this.value
+                                               }
+
+                                               function setPrimaryOTC(sVal) {
+                                                   if (IsNull(sVal))
+                                                       _primaryOTC = None;
+                                                   else if (sVal != PrimaryOTC)
+                                                       _primaryOTC = sVal;
+                                                   else
+                                                       return;
+                                                   updateControl()
+                                               }
+
+                                               function getPrimaryOTC() {
+                                                   return _primaryOTC
+                                               }
+
+                                               function setAssociatedOTC(sVal) {
+                                                   if (IsNull(sVal))
+                                                       _associatedOTC = None;
+                                                   else if (sVal != AssociatedOTC)
+                                                       _associatedOTC = sVal;
+                                                   else
+                                                       return;
+                                                   updateControl()
+                                               }
+
+                                               function getAssociatedOTC() {
+                                                   return _associatedOTC
+                                               }
+
+                                               function updateControl() {
+                                                   if (PrimaryOTC != None && AssociatedOTC != None) {
+                                                       _commandGetPicklist.SetParameter("primaryType", PrimaryOTC);
+                                                       _commandGetPicklist
+                                                           .SetParameter("associatedType", AssociatedOTC);
+                                                       var oResult = _commandGetPicklist.Execute();
+                                                       populateOptions(oResult)
+                                                   } else {
+                                                       this.DataValue = null;
+                                                       this.Disabled = true
+                                                   }
+                                               }
+
+                                               function populateOptions(oResult) {
+                                                   if (oResult.Success && oResult.ReturnValue) {
+                                                       var sCurrentValue = this.value,
+                                                           oaDomOptions = element.options;
+                                                       while (oaDomOptions.length > 0)
+                                                           oaDomOptions.remove(0);
+                                                       var oDocument = window.document,
+                                                           oNewOptions = Sys.Serialization.JavaScriptSerializer
+                                                               .deserialize(oResult.ReturnValue);
+                                                       for (var sKey in oNewOptions) {
+                                                           var oDomOption = oDocument.createElement("OPTION");
+                                                           oDomOption.value = sKey;
+                                                           oDomOption.text = oNewOptions[sKey];
+                                                           if (sKey === sCurrentValue)
+                                                               oDomOption.selected = true;
+                                                           oaDomOptions.add(oDomOption)
+                                                       }
+                                                       element.Disabled = false
+                                                   }
+                                               }
+
+                                           </script>
+</public:component>

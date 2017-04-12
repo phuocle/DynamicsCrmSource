@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<SiteMap>
+  <Area>
+    <General ValueDirective="mscrm-Directive-General-Section">
+      <!-- It is part of general section and it should not be used in any other section-->
+      <Title ValueDirective="mscrm-Directive-Base-Language-Title">
+      </Title>
+      <Icon ValueDirective="mscrm-Directive-Label-Drop-Down">
+      </Icon>
+      <Id ValueDirective="mscrm-Directive-Label-Text-Box-Required">
+      </Id>
+      <ShowGroups ValueDirective="mscrm-Directive-Label-Checkbox-Group">
+      </ShowGroups>
+    </General>
+    <!-- General section ends-->
+    <Advanced ValueDirective="mscrm-Directive-Advanced-Section">
+      <Titles ValueDirective="mscrm-Site-Map-Node-Titles">
+      </Titles>
+      <Descriptions ValueDirective="mscrm-Site-Map-Node-Descriptions">
+      </Descriptions>
+      <Url ValueDirective="mscrm-Directive-Label-Text-Box">
+      </Url>
+    </Advanced>
+  </Area>
+  <Group>
+    <General ValueDirective="mscrm-Directive-General-Section">
+      <!-- It is part of general section and it should not be used in any other section-->
+      <Title ValueDirective="mscrm-Directive-Base-Language-Title">
+      </Title>
+      <Id ValueDirective="mscrm-Directive-Label-Text-Box-Required">
+      </Id>
+    </General>
+    <!-- General section ends-->
+    <Advanced ValueDirective="mscrm-Directive-Advanced-Section">
+      <Titles ValueDirective="mscrm-Site-Map-Node-Titles">
+      </Titles>
+      <Descriptions ValueDirective="mscrm-Site-Map-Node-Descriptions">
+      </Descriptions>
+      <Url ValueDirective="mscrm-Directive-Label-Text-Box">
+      </Url>
+      <IsProfile ValueDirective="mscrm-Directive-Label-Checkbox">
+      </IsProfile>
+    </Advanced>
+  </Group>
+  <SubArea>
+    <General ValueDirective="mscrm-Directive-General-Section">
+      <!-- It is part of general section and it should not be used in any other section-->
+      <Type ValueDirective="mscrm-Option-Set">
+      </Type>
+      <Entity ValueDirective="mscrm-Label-Combobox">
+      </Entity>
+      <Url ValueDirective="mscrm-Directive-Label-Text-Box-Button">
+      </Url>
+      <DefaultDashboard ValueDirective="mscrm-Directive-Label-Drop-Down-List">
+      </DefaultDashboard>
+      <Title ValueDirective="mscrm-Directive-Base-Language-Title">
+      </Title>
+      <Icon ValueDirective="mscrm-Directive-Label-Drop-Down">
+      </Icon>
+      <Id ValueDirective="mscrm-Directive-Label-Text-Box-Required">
+      </Id>
+      <PassParams ValueDirective="mscrm-Pass-Params-Checkbox">
+      </PassParams>
+      <!-- General section ends-->
+    </General>
+    <Advanced ValueDirective="mscrm-Directive-Advanced-Section">
+      <Privilege ValueDirective="mscrm-Sub-Area-Privileges">
+      </Privilege>
+      <Titles ValueDirective="mscrm-Site-Map-Node-Titles">
+      </Titles>
+      <Descriptions ValueDirective="mscrm-Site-Map-Node-Descriptions">
+      </Descriptions>
+      <Sku ValueDirective="mscrm-Sku-Check-Box-List">
+      </Sku>
+      <Client ValueDirective="mscrm-Directive-Label-Check-Box-List">
+      </Client>
+      <OutlookShortcutIcon ValueDirective="mscrm-Outlook-Icon-Drop-Down">
+      </OutlookShortcutIcon>
+      <AvailableOffline ValueDirective="mscrm-Directive-Label-Checkbox">
+      </AvailableOffline>
+    </Advanced>
+  </SubArea>
+</SiteMap>

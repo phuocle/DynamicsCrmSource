@@ -1,0 +1,27 @@
+<kbarticle>
+  <sections>
+    <section type="docprop" name="title" />
+    <section type="docprop" name="number" />
+  </sections>
+  <stylesheet>
+    <article>
+      <style name="background-color" value="#ffffff" />
+      <style name="font-family" value="verdana" />
+      <style name="font-size" value="10pt" />
+    </article>
+    <title>
+      <style name="font-family" value="verdana" />
+      <style name="font-size" value="16pt" />
+    </title>
+    <number>
+      <style name="color" value="#666666" />
+      <style name="font-size" value="9pt" />
+    </number>
+    <heading>
+      <style name="font-size" value="10pt" />
+      <style name="font-weight" value="bold" />
+      <style name="color" value="#000066" />
+      <style name="border-bottom" value="1px solid #999999" />
+    </heading>
+  </stylesheet>
+</kbarticle>

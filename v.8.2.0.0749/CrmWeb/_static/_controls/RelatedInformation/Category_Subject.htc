@@ -1,0 +1,27 @@
+<public:component lightweight="true">
+    <public:method name="SubjectClicked"/>
+    <public:event id="OnListItemClickedEvent" name="OnListItemClicked"/>
+    <public:attach event="ondocumentready" onevent="initialize()"/>
+    <script language="JavaScript"></script><script type="text/javascript">
+
+                                               function initialize() {
+                                                   this.attachEvent("OnListItemClicked", PopulateFormControl)
+                                               }
+
+                                               function SubjectClicked(sender, oSubject) {
+                                                   if (!IsNull(oSubject)) {
+                                                       var oEvent = createEventObject();
+                                                       oEvent.Context = element.ContextId;
+                                                       oEvent.DisplayName = oSubject.get_name();
+                                                       oEvent.Value = oSubject.get_id();
+                                                       oEvent.ObjectType = Subject;
+                                                       OnListItemClickedEvent.fire(oEvent)
+                                                   }
+                                               }
+
+                                               function PopulateFormControl() {
+                                                   RelatedInformationPane.PopulateFormControl()
+                                               }
+
+                                           </script>
+</public:component>

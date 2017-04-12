@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<GenericDesigner>
+  <Library>
+    <!--This group will contain only Library Tiles and reference to its properties.
+			For propertyPageType="html" PropertyPageId is mandatory attribute and for MDD type it will be optional. Even if user has added propertyPageType="html"
+			we will be adding MDDProperties as it will be very easy to switch from html to MDD and vice-versa.-->
+    <LibraryGroup name="ProcessDesignerControl_PBL_LibraryGroupTiles">
+      <LibraryTile propertyPageType="html" PropertyPageId="1" name="ProcessDesignerControl_PBL_Library_Condition"
+                   imageRenderType="FontIcon" activitytypeid="condition" icon="conditionTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText" tileClass="conditionTile"
+                   tooltip="ProcessDesignerControl_PBL_Drag_new_condition"
+                   addCommandTooltip="ProcessDesignerControl_BPF_AddCommandConditionTooltip">
+        <MDDProperties title="ProcessDesignerControl_PBL_Property_ConditionTitle">
+          <Property />
+        </MDDProperties>
+      </LibraryTile>
+      <!--<LibraryTile propertyPageType="html" PropertyPageId="2" name="AcceptCondition" imageRenderType="FontIcon" activitytypeid="acceptCondition" icon="acceptConditionTileSymbol" altText="ProcessDesignerControl_BPF_LibraryTileAltText" tileClass="acceptConditionTile" tooltip="Accepted?">
+				<MDDProperties title="AcceptCondition Properties">
+					<Property/>
+				</MDDProperties>
+			</LibraryTile>-->
+    </LibraryGroup>
+    <LibraryGroup name="ProcessDesignerControl_PBL_LibraryGroupActions">
+      <LibraryTile propertyPageType="html" PropertyPageId="3" name="ProcessDesignerControl_PBL_ShowRecommendations"
+                   imageRenderType="FontIcon" activitytypeid="setSuggestion" icon="suggestionTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText" tileClass="setSuggestionTile"
+                   tooltip="ProcessDesignerControl_PBL_RecommendationActionTooltip"
+                   addCommandTooltip="ProcessDesignerControl_PBL_AddCommandRecommendationActionTooltip">
+        <MDDProperties title="ProcessDesignerControl_PBL_ShowRecommendationsProperties">
+          <Property />
+        </MDDProperties>
+      </LibraryTile>
+      <LibraryTile propertyPageType="html" PropertyPageId="2" name="ProcessDesignerControl_PBL_Lock_Unlock_Component"
+                   imageRenderType="FontIcon" activitytypeid="setDisplayMode" icon="lockUnlockTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText" tileClass="setDisplayModeTile"
+                   tooltip="ProcessDesignerControl_PBL_LockOrUnlockTheField"
+                   addCommandTooltip="ProcessDesignerControl_PBL_AddCommandLockOrUnlockActionTooltip">
+        <MDDProperties title="ProcessDesignerControl_PBL_Lock_Unlock_Properties">
+          <Property />
+        </MDDProperties>
+      </LibraryTile>
+      <LibraryTile propertyPageType="html" PropertyPageId="2" name="ProcessDesignerControl_PBL_ShowError"
+                   imageRenderType="FontIcon" activitytypeid="setMessage" icon="showErrorMessageTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText" tileClass="setMessageTile"
+                   tooltip="ProcessDesignerControl_PBL_PlainTextGenerator_ActionShowMessageToolTip"
+                   addCommandTooltip="ProcessDesignerControl_PBL_AddCommandShowMessageActionToolTip">
+        <MDDProperties title="ProcessDesignerControl_PBL_ShowErrorProperties">
+          <Property />
+        </MDDProperties>
+      </LibraryTile>
+      <LibraryTile propertyPageType="html" PropertyPageId="2" name="ProcessDesignerControl_PBL_SetFieldValue"
+                   imageRenderType="FontIcon" activitytypeid="setAttributeValue" icon="setFieldTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText" tileClass="setAttributeValueTile"
+                   tooltip="ProcessDesignerControl_PBL_SetTheFieldValue"
+                   addCommandTooltip="ProcessDesignerControl_PBL_AddCommandSetFieldValueActionTooltip">
+        <MDDProperties title="ProcessDesignerControl_PBL_SetFieldValueProperties">
+          <Property />
+        </MDDProperties>
+      </LibraryTile>
+      <LibraryTile propertyPageType="html" PropertyPageId="2" name="ProcessDesignerControl_PBL_SetDefaultValue"
+                   imageRenderType="FontIcon" activitytypeid="setDefaultValue" icon="setDefaultTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText" tileClass="setDefaultValueTile"
+                   tooltip="ProcessDesignerControl_PBL_SetTheDefaultValue"
+                   addCommandTooltip="ProcessDesignerControl_PBL_AddCommandSetDefaultValueActionTooltip">
+        <MDDProperties title="ProcessDesignerControl_PBL_SetDefaultValueProperties">
+          <Property />
+        </MDDProperties>
+      </LibraryTile>
+      <LibraryTile propertyPageType="html" PropertyPageId="2" name="ProcessDesignerControl_PBL_SetBusinessRequired"
+                   imageRenderType="FontIcon" activitytypeid="setFieldRequiredLevel"
+                   icon="setFiledRequiredLevelTileSymbol" altText="ProcessDesignerControl_BPF_LibraryTileAltText"
+                   tileClass="setFieldRequiredLevelTile"
+                   tooltip="ProcessDesignerControl_PBL_SetTheBusinessRequiredStatus"
+                   addCommandTooltip="ProcessDesignerControl_PBL_AddCommandSetBusinessRequiredActionTooltip">
+        <MDDProperties title="ProcessDesignerControl_PBL_SetBusinessRequiredProperties">
+          <Property />
+        </MDDProperties>
+      </LibraryTile>
+      <LibraryTile propertyPageType="html" PropertyPageId="2" name="ProcessDesignerControl_PBL_SetVisibility"
+                   imageRenderType="FontIcon" activitytypeid="setVisibility" icon="setVisiblityTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText" tileClass="setVisibilityTile"
+                   tooltip="ProcessDesignerControl_PBL_SetTheVisibility"
+                   addCommandTooltip="ProcessDesignerControl_PBL_AddCommandSetVisibilityActionTooltip">
+        <MDDProperties title="ProcessDesignerControl_PBL_SetVisibilityProperties">
+          <Property />
+        </MDDProperties>
+      </LibraryTile>
+      <LibraryTile propertyPageType="html" PropertyPageId="2" name="ProcessDesignerControl_PBL_CustomJavascript"
+                   imageRenderType="FontIcon" activitytypeid="customJavascript" icon="customJavascriptTileSymbol"
+                   altText="ProcessDesignerControl_BPF_LibraryTileAltText" tileClass="customJavascriptTile"
+                   tooltip="ProcessDesignerControl_PBL_RunCustomJavascript"
+                   addCommandTooltip="ProcessDesignerControl_PBL_RunCustomJavascript">
+        <MDDProperties title="ProcessDesignerControl_PBL_CustomJavascriptProperties">
+          <Property />
+        </MDDProperties>
+      </LibraryTile>
+    </LibraryGroup>
+    <!--This group will contain all html page URLs.-->
+    <PropertyPageGroup>
+      <PropertyPage propertyPageId="1" URL="/_static/_common/scripts/BusinessRulesDesigner/BranchPropertyDetails.html">
+      </PropertyPage>
+      <PropertyPage propertyPageId="2" URL="/_static/_common/scripts/BusinessRulesDesigner/ActionPropertyDetails.html">
+      </PropertyPage>
+      <PropertyPage propertyPageId="3"
+                    URL="/_static/_common/scripts/BusinessRulesDesigner/SuggestionPropertyDetails.html">
+      </PropertyPage>
+    </PropertyPageGroup>
+    <!--This group will contain all MDD properties.-->
+    <MDDPropertyGroup>
+      <Property />
+    </MDDPropertyGroup>
+  </Library>
+  <ZoomIcons>
+    <ZoomIconItem itemId="zoomOut" title="ProcessDesignerControl_BPF_ToolBarItemZoomOut" fontIconSymbol="zoomOutSymbol"></ZoomIconItem>
+    <ZoomIconItem itemId="zoomIn" title="ProcessDesignerControl_BPF_ToolBarItemZoomIn" fontIconSymbol="zoomInSymbol"></ZoomIconItem>
+    <ZoomIconItem itemId="fitToScreen" title="ProcessDesignerControl_BPF_ToolBarItemFitToScreen"
+                  fontIconSymbol="fitToScreenSymbol">
+    </ZoomIconItem>
+  </ZoomIcons>
+  <Toolbar>
+    <ToolBarItem itemId="Add" title="ProcessDesignerControl_BPF_ToolBarItemAdd"
+                 tooltip="ProcessDesignerControl_BPF_AddProcessFlow" fontIconSymbol="addToolbarSymbol"
+                 section="section1">
+    </ToolBarItem>
+    <ToolBarItem itemId="cut" title="HtmlBar_Title_Cut" tooltip="ProcessDesignerControl_BPF_ToolBarItemCutToolTip"
+                 fontIconSymbol="cutToolbarSymbol" section="section2">
+    </ToolBarItem>
+    <ToolBarItem itemId="copy" title="ProcessDesignerControl_BPF_ToolBarItemCopy"
+                 tooltip="ProcessDesignerControl_BPF_ToolBarItemCopyToolTip" fontIconSymbol="copyToolbarSymbol"
+                 section="section2">
+    </ToolBarItem>
+    <ToolBarItem itemId="paste" title="ProcessDesignerControl_BPF_ToolBarItemPaste"
+                 tooltip="ProcessDesignerControl_BPF_ToolBarItemPasteToolTip" fontIconSymbol="pasteToolbarSymbol"
+                 section="section2">
+    </ToolBarItem>
+    <ToolBarItem itemId="delete" title="ProcessDesignerControl_BPF_ToolBarItemDelete"
+                 tooltip="ProcessDesignerControl_BPF_DeleteSelectedComponent" fontIconSymbol="deleteToolbarSymbol"
+                 section="section2">
+    </ToolBarItem>
+    <ToolBarItem itemId="snapshot" title="ProcessDesignerControl_BPF_ToolBarItemSnapshot"
+                 tooltip="ProcessDesignerControl_BPF_ToolBarItemSnapshotToolTip" fontIconSymbol="snapshotToolbarSymbol"
+                 section="section2">
+    </ToolBarItem>
+  </Toolbar>
+</GenericDesigner>

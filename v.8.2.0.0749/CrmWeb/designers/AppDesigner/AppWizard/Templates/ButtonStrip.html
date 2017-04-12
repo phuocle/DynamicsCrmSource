@@ -1,0 +1,18 @@
+<div class="mscrm-WizardStatusBar" mscrm-major-component data-ctabindex="1" tabindex="-1" data-mcgroupname="primary" data-islastmc="1">
+    <mscrm-breadcrumb></mscrm-breadcrumb>
+    <div class="mscrm-buttonStrip">
+        <button id="AppDesigner.Done" tabindex="-1" class="mscrm-buttonstrip-button mscrm-buttonstrip-SelectedButton"
+                ng-click="wizardController.HandleCreateAppEvent()"
+                mscrm-action-on-select
+                ng-disabled="!wizardController.ShouldEnableUpdateInWizard"
+                mscrm-locale mscrm-resource-key="AppDesigner.Done.ToolTip" mscrm-target-attr="title">
+            <mscrm-locale mscrm-resource-key="AppDesigner.Done"/>
+        </button>
+        <button id="AppDesigner.Cancel" tabindex="-1" class="mscrm-buttonstrip-button"
+                ng-click="wizardController.CancelWizard()"
+                mscrm-action-on-select
+                mscrm-locale mscrm-resource-key="AppDesigner.Cancel.ToolTip" mscrm-target-attr="title">
+            <mscrm-locale mscrm-resource-key="AppDesigner.Cancel" id="discardButton"/>
+        </button>
+    </div>
+</div>

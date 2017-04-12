@@ -1,0 +1,20 @@
+<div class="mscrm-commandbarflyoutmenucontainer">
+    <button id="AppDesigner.Commandbar.Add" tabindex="-1" type="button" ng-class="['mscrm-CommandButton', 'mscrm-commandbaraddnewbutton', {'mscrm-CommandButton-Active': flyoutmodels.IsFlyoutOpen}]" mscrm-locale mscrm-resource-key="{{flyoutmodels.tooltipTitle}}" mscrm-target-attr="title" ng-click="toggleaddflyout({$event})" mscrm-action-on-select data-isflyout-src="true">
+        <div id="AppDesigner.Commandbar.Add.Icon" class="mscrm-CommandBarButtonIcon mscrm-glyph-AddIcon mscrm-commandbaraddnewbutton"></div>
+        <div id="AppDesigner.Commandbar.Add.Text" class="mscrm-CommandBarButtonText mscrm-commandbaraddnewbutton">{{flyoutmodels.buttonText}}</div>
+    </button>
+    <div class="mscrm-commandbarflyoutmenu" role="menu" ng-if="flyoutmodels.IsFlyoutOpen" mscrm-flyout-accessible-close data-flyoutsrc-id="AppDesigner.Commandbar.Add">
+        <div role="application" tabindex="-1" class="mscrm-commandbarflyoutmenuitems" ng-repeat="nodes in flyoutmodels.flyoutMenuModels" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+            <div ng-if="nodes.nodeCategory" class="mscrm-commandbarflyoutmenucategory" mscrm-locale mscrm-resource-key="{{nodes.tooltipTitle}}" mscrm-target-attr="title" ng-click="handlecategoryclick({$event})">
+                <div id="AppDesigner.Commandbar.Flyoutmenu.NodeCategory.{{$index}}" class="mscrm-commandbarflyoutmenucategorynames">{{nodes.nodeCategory}}</div>
+            </div>
+            <div>
+                <button tabindex="-1" id="AppDesigner.Commandbar.Flyoutmenu.Node.{{node.id}}" mscrm-locale mscrm-resource-key="{{node.tooltipTitle}}" mscrm-target-attr="title" type="button" ng-repeat="node in nodes.nodes" class="mscrm-commandBarMenuItemButton" ng-disabled="!isitemenabled({flyoutnode:node})" ng-click="handlenodeclick({flyoutnode:node})" mscrm-action-on-select>
+                    <div id="AppDesigner.Commandbar.Flyoutmenu.Node.{{node.id}}.Text" class="mscrm-commandbarflyoutmenunames">
+                        <div class="mscrm-CommandbarFlyoutMenuNamesTruncatable">{{node.text}}</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<iframe style="display: none;" id="outFrame"></iframe>
+<script>
+    window.onload = function() {
+        var frame = document.getElementById('outFrame');
+        frame.onload = function() {
+            window.location.replace(decodeURIComponent(window.location.hash.substring(1)));
+        }
+        frame.src = decodeURIComponent(window.location.search.substring(1));
+    };
+</script>
+</body>
+</html>

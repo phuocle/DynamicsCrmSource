@@ -1,0 +1,88 @@
+/* The file is AUTO generated on Sat, 10 Dec 2016 13:29:39 UTC */
+/* Do NOT manually modify this file! */
+
+/* manipulate the border-*-width for all elements in the tree */
+/* when direction=rtl, IE9 seems to flip the borders and mess things up with ::after and ::before elements */
+.ie9 .treeWidget ::before,
+.ie9 .treeWidget ::after { direction: ltr; }
+
+.treeWidget {
+    /* Using ::before and ::after to draw the connectors */
+
+    /*Remove left connector from first child and right connector from last child*/
+
+    /*Adding back the vertical connector to the last nodes, for rtl the last child is now the first child*/
+
+    /*Downward connectors from parents*/
+}
+
+.treeWidget * {
+    margin: 0;
+    padding: 0;
+}
+
+.treeWidget *::before,
+.treeWidget *::after {
+    border-width: 0;
+    border-style: solid;
+    border-color: #777070;
+}
+
+.treeWidget ul {
+    padding-top: 23px;
+    position: relative;
+}
+
+.treeWidget .node {
+    display: inline-block;
+    vertical-align: bottom;
+    margin: 0 10px 0 10px;
+}
+
+.treeWidget li {
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 12px 0 0 0;
+}
+
+.treeWidget[rtl=true] li { float: right; }
+
+.treeWidget[rtl=false] li { float: left; }
+
+.treeWidget li::before,
+.treeWidget li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top-width: 1px;
+    width: 50%;
+    height: 12px;
+}
+
+.treeWidget[rtl=false] li::after,
+.treeWidget[rtl=true] li::before {
+    right: auto;
+    left: 50%;
+    border-left-width: 1px;
+}
+
+.treeWidget li:first-child::before,
+.treeWidget li:last-child::after { border-width: 0; }
+
+.treeWidget[rtl=false] li:last-child::after,
+.treeWidget[rtl=true] li:first-child::before { border-left-width: 1px; }
+
+.treeWidget ul ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left-width: 1px;
+    width: 0;
+    height: 23px;
+}
+
+.treeWidget li.root::before,
+.treeWidget li.root::after { display: none; }
