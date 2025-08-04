@@ -1,0 +1,969 @@
+/* The file is AUTO generated on Mon, 17 Apr 2017 21:29:00 UTC */
+/* Do NOT manually modify this file! */
+
+.mscrm-automationcore {
+  height: 100%;
+  overflow: hidden;
+  font-size: 12px;
+  
+
+  font-family: Microsoft JhengHei, PMingLiU-ExtB, Arial, Sans-Serif;
+  
+
+  /* Process property */
+
+  /* CreateStep property */
+
+  /* Wait Property */
+
+  /* Workflow Properties */
+
+  /* Business Process Flow Properties */
+
+  /* StageStep Property Panel */
+
+}
+.mscrm-automationcore .mscrm-processeditor {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.mscrm-automationcore .mscrm-processeditor-HeaderViewContainer {
+  border-bottom: 1px solid lightgray;
+  box-sizing: border-box;
+}
+.mscrm-automationcore .mscrm-processeditor-HeaderViewContainer,
+.mscrm-automationcore .mscrm-processeditor-BodyViewContainer {
+  padding-left: 30px;
+}
+.mscrm-automationcore .mscrm-processeditor-BodyViewContainer {
+  position: absolute;
+  top: 106px;
+  left: 30px;
+  right: 0px;
+  bottom: 27px;
+}
+.mscrm-automationcore .mscrm-processeditor-FooterViewContainer {
+  position: absolute;
+  bottom: 0px;
+  height: 27px;
+  width: 100%;
+}
+.mscrm-automationcore .workspaceWrapper {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 800px;
+}
+.mscrm-automationcore #toolpane {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 800px;
+  height: 100%;
+}
+.mscrm-automationcore .slot:focus {
+  outline: none;
+}
+.mscrm-automationcore .processCategory {
+  font-size: 14px;
+  
+
+  color: #111111;
+  padding-top: 20px;
+}
+.mscrm-automationcore .processTitle {
+  margin: 10px 0px 8px 0px;
+  font-size: 36px;
+  
+
+  font-weight: lighter;
+  color: #262626;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mscrm-automationcore .processFooter {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border-top: 1px solid #d6d6d6;
+  margin-left: 30px;
+  padding-left: 14px;
+  height: 26px;
+  background-color: #f8f8f8;
+}
+.mscrm-automationcore .processFooter .processFooterState {
+  color: #666666;
+  font-weight: bold;
+  line-height: 26px;
+}
+.mscrm-automationcore .commandButton {
+  background-color: #ffffff;
+  display: inline-block;
+  white-space: nowrap;
+  cursor: default;
+  height: 28px;
+  border: none;
+}
+.mscrm-automationcore .commandButton:hover,
+.mscrm-automationcore .commandButton:focus {
+  background-color: #d7ebf9;
+}
+.mscrm-automationcore a.commandButton,
+.mscrm-automationcore a.commandButton:hover,
+.mscrm-automationcore a.commandButton:focus {
+  text-decoration: none;
+}
+.mscrm-automationcore workspaceButton {
+  float: right;
+  position: relative;
+}
+.mscrm-automationcore div.schedulerTile span.tileImageWrapper,
+.mscrm-automationcore div.responseTile span.tileImageWrapper,
+.mscrm-automationcore .schedulerTile .lib-img-content,
+.mscrm-automationcore .responseTile .lib-img-content {
+  background-color: #ce7200;
+}
+.mscrm-automationcore div.selected div.schedulerTile,
+.mscrm-automationcore div.selected div.responseTile,
+.mscrm-automationcore div.selected div.assignTile,
+.mscrm-automationcore div.selected div.createTile,
+.mscrm-automationcore div.selected div.setStateTile,
+.mscrm-automationcore div.selected div.updateTile,
+.mscrm-automationcore div.selected div.workflowStageTile,
+.mscrm-automationcore div.selected div.visibilityTile,
+.mscrm-automationcore div.selected div.sendEmailTile,
+.mscrm-automationcore div.selected div.childTile,
+.mscrm-automationcore div.selected div.stopWorkflowTile,
+.mscrm-automationcore div.selected div.customActivityTile,
+.mscrm-automationcore div.selected div.stageTile,
+.mscrm-automationcore div.selected div.pageTile,
+.mscrm-automationcore div.selected div.childDialogTile,
+.mscrm-automationcore div.selected div.queryTile,
+.mscrm-automationcore div.selected div.assignValueTile {
+  -webkit-box-shadow: inset 0 0 0 2px #ce7200;
+  -moz-box-shadow: inset 0 0 0 2px #ce7200;
+  box-shadow: inset 0 0 0 2px #ce7200;
+}
+.mscrm-automationcore div.selected div.wf_rootTile,
+.mscrm-automationcore div.selected div.bpf_rootTile {
+  -webkit-box-shadow: inset 0 0 0 2px #0000ff;
+  -moz-box-shadow: inset 0 0 0 2px #0000ff;
+  box-shadow: inset 0 0 0 2px #0000ff;
+}
+.mscrm-automationcore div.selected div.conditionTile,
+.mscrm-automationcore div.selected div.waitTile,
+.mscrm-automationcore div.selected div.waitBranchTile,
+.mscrm-automationcore div.selected div.waitTimeoutTile {
+  -webkit-box-shadow: inset 0 0 0 2px #008000;
+  -moz-box-shadow: inset 0 0 0 2px #008000;
+  box-shadow: inset 0 0 0 2px #008000;
+}
+.mscrm-automationcore div.schedulerTile:hover,
+.mscrm-automationcore div.responseTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.schedulerTile,
+.mscrm-automationcore .hoverOverDroppable div.responseTile,
+.mscrm-automationcore div.assignTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.assignTile,
+.mscrm-automationcore div.createTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.createTile,
+.mscrm-automationcore div.setStateTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.setStateTile,
+.mscrm-automationcore div.updateTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.updateTile,
+.mscrm-automationcore div.workflowStageTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.workflowStageTile,
+.mscrm-automationcore div.visibilityTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.visibilityTile,
+.mscrm-automationcore div.sendEmailTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.sendEmailTile,
+.mscrm-automationcore div.childTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.childTile,
+.mscrm-automationcore div.stopWorkflowTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.stopWorkflowTile,
+.mscrm-automationcore div.customActivityTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.customActivityTile,
+.mscrm-automationcore div.stageTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.stageTile,
+.mscrm-automationcore div.pageTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.pageTile,
+.mscrm-automationcore div.childDialogTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.childDialogTile,
+.mscrm-automationcore div.queryTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.queryTile,
+.mscrm-automationcore div.assignValueTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.assignValueTile {
+  -webkit-box-shadow: inset 0 0 0 2px #e9bf8c;
+  -moz-box-shadow: inset 0 0 0 2px #e9bf8c;
+  box-shadow: inset 0 0 0 2px #e9bf8c;
+}
+.mscrm-automationcore div.wf_rootTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.wf_rootTile,
+.mscrm-automationcore div.bpf_rootTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.bpf_rootTile {
+  -webkit-box-shadow: inset 0 0 0 2px #b3b3ff;
+  -moz-box-shadow: inset 0 0 0 2px #b3b3ff;
+  box-shadow: inset 0 0 0 2px #b3b3ff;
+}
+.mscrm-automationcore div.conditionTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.conditionTile,
+.mscrm-automationcore div.waitTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.waitTile,
+.mscrm-automationcore div.waitBranchTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.waitBranchTile,
+.mscrm-automationcore div.waitTimeoutTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.waitTimeoutTile {
+  -webkit-box-shadow: inset 0 0 0 2px #33ff33;
+  -moz-box-shadow: inset 0 0 0 2px #33ff33;
+  box-shadow: inset 0 0 0 2px #33ff33;
+}
+.mscrm-automationcore .ie8 div.selected div.schedulerTile,
+.mscrm-automationcore .ie8 div.selected div.responseTile,
+.mscrm-automationcore .ie8 div.selected div.assignTile,
+.mscrm-automationcore .ie8 div.selected div.createTile,
+.mscrm-automationcore .ie8 div.selected div.setStateTile,
+.mscrm-automationcore .ie8 div.selected div.updateTile,
+.mscrm-automationcore .ie8 div.selected div.workflowStageTile,
+.mscrm-automationcore .ie8 div.selected div.visibilityTile,
+.mscrm-automationcore .ie8 div.selected div.sendEmailTile,
+.mscrm-automationcore .ie8 div.selected div.childTile,
+.mscrm-automationcore .ie8 div.selected div.stopWorkflowTile,
+.mscrm-automationcore .ie8 div.selected div.stageTile,
+.mscrm-automationcore .ie8 div.selected div.customActivityTile,
+.mscrm-automationcore .ie8 div.selected div.pageTile,
+.mscrm-automationcore .ie8 div.selected div.childDialogTile {
+  border: 2px solid #ce7200;
+  padding: 0;
+}
+.mscrm-automationcore .ie8 div.selected div.wf_rootTile,
+.mscrm-automationcore .ie8 div.selected div.bpf_rootTile {
+  border: 2px solid #0000ff;
+  padding: 0;
+}
+.mscrm-automationcore .ie8 div.selected div.conditionTile,
+.mscrm-automationcore .ie8 div.selected div.waitTile,
+.mscrm-automationcore .ie8 div.selected div.waitBranchTile,
+.mscrm-automationcore .ie8 div.selected div.waitTimeoutTile {
+  border: 2px solid #008000;
+  padding: 0;
+}
+.mscrm-automationcore .ie8 div.schedulerTile:hover,
+.mscrm-automationcore .ie8 div.responseTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.schedulerTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.responseTile,
+.mscrm-automationcore .ie8 div.assignTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.assignTile,
+.mscrm-automationcore .ie8 div.createTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.createTile,
+.mscrm-automationcore .ie8 div.setStateTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.setStateTile,
+.mscrm-automationcore .ie8 div.updateTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.updateTile,
+.mscrm-automationcore .ie8 div.workflowStageTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.workflowStageTile,
+.mscrm-automationcore .ie8 div.visibilityTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.visibilityTile,
+.mscrm-automationcore .ie8 div.sendEmailTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.sendEmailTile,
+.mscrm-automationcore .ie8 div.childTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.childTile,
+.mscrm-automationcore .ie8 div.stopWorkflowTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.stopWorkflowTile,
+.mscrm-automationcore .ie8 div.stageTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.stageTile,
+.mscrm-automationcore .ie8 div.customActivityTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.customActivityTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.pageTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.childDialogTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.queryTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.assignValueTile {
+  border: 2px solid #e9bf8c;
+  padding: 0;
+}
+.mscrm-automationcore .ie8 div.wf_rootTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.wf_rootTile,
+.mscrm-automationcore .ie8 div.bpf_rootTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.bpf_rootTile {
+  border: 2px solid #b3b3ff;
+  padding: 0;
+}
+.mscrm-automationcore .ie8 div.conditionTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.conditionTile,
+.mscrm-automationcore .ie8 div.waitTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.waitTile,
+.mscrm-automationcore .ie8 div.waitBranchTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.waitBranchTile,
+.mscrm-automationcore .ie8 div.waitTimeoutTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.waitTimeoutTile {
+  border: 2px solid #33ff33;
+  padding: 0;
+}
+.mscrm-automationcore .zoomOut div.responseTile:hover,
+.mscrm-automationcore .zoomOut div.schedulerTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.responseTile,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.schedulerTile,
+.mscrm-automationcore .zoomOut div.assignTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.assignTile,
+.mscrm-automationcore .zoomOut div.createTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.createTile,
+.mscrm-automationcore .zoomOut div.setStateTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.setStateTile,
+.mscrm-automationcore .zoomOut div.updateTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.updateTile,
+.mscrm-automationcore .zoomOut div.workflowStageTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.workflowStageTile,
+.mscrm-automationcore .zoomOut div.visibilityTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.visibilityTile,
+.mscrm-automationcore .zoomOut div.sendEmailTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.sendEmailTile,
+.mscrm-automationcore .zoomOut div.childTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.childTile,
+.mscrm-automationcore .zoomOut div.stopWorkflowTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.stopWorkflowTile,
+.mscrm-automationcore .zoomOut div.stageTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.stageTile,
+.mscrm-automationcore .zoomOut div.customActivityTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.customActivityTile,
+.mscrm-automationcore .zoomOut div.pageTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.pageTile,
+.mscrm-automationcore .zoomOut div.childDialogTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.childDialogTile,
+.mscrm-automationcore .zoomOut div.queryTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.queryTile,
+.mscrm-automationcore .zoomOut div.assignValueTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.assignValueTile {
+  outline: 2px solid #e9bf8c;
+}
+.mscrm-automationcore .zoomOut div.wf_rootTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.wf_rootTile,
+.mscrm-automationcore .zoomOut div.bpf_rootTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.bpf_rootTile {
+  outline: 2px solid #b3b3ff;
+}
+.mscrm-automationcore .zoomOut div.conditionTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.conditionTile,
+.mscrm-automationcore .zoomOut div.waitTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.waitTile,
+.mscrm-automationcore .zoomOut div.waitBranchTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.waitBranchTile,
+.mscrm-automationcore .zoomOut div.waitTimeoutTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.waitTimeoutTile {
+  outline: 2px solid #33ff33;
+}
+.mscrm-automationcore .zoomOut div.selected div.responseTile,
+.mscrm-automationcore .zoomOut div.selected div.schedulerTile,
+.mscrm-automationcore .zoomOut div.selected div.assignTile,
+.mscrm-automationcore .zoomOut div.selected div.createTile,
+.mscrm-automationcore .zoomOut div.selected div.setStateTile,
+.mscrm-automationcore .zoomOut div.selected div.updateTile,
+.mscrm-automationcore .zoomOut div.selected div.workflowStageTile,
+.mscrm-automationcore .zoomOut div.selected div.visibilityTile,
+.mscrm-automationcore .zoomOut div.selected div.sendEmailTile,
+.mscrm-automationcore .zoomOut div.selected div.childTile,
+.mscrm-automationcore .zoomOut div.selected div.stopWorkflowTile,
+.mscrm-automationcore .zoomOut div.selected div.stageTile,
+.mscrm-automationcore .zoomOut div.selected div.customActivityTile,
+.mscrm-automationcore .zoomOut div.selected div.pageTile,
+.mscrm-automationcore .zoomOut div.selected div.childDialogTile,
+.mscrm-automationcore .zoomOut div.selected div.queryTile,
+.mscrm-automationcore .zoomOut div.selected div.assignValueTile {
+  outline: 2px solid #ce7200;
+}
+.mscrm-automationcore .zoomOut div.selected div.wf_rootTile,
+.mscrm-automationcore .zoomOut div.selected div.bpf_rootTile {
+  outline: 2px solid #b3b3ff;
+}
+.mscrm-automationcore .zoomOut div.selected div.conditionTile,
+.mscrm-automationcore .zoomOut div.selected div.waitTile,
+.mscrm-automationcore .zoomOut div.selected div.waitBranchTile,
+.mscrm-automationcore .zoomOut div.selected div.waitTimeoutTile {
+  outline: 2px solid #33ff33;
+}
+.mscrm-automationcore div.emailTile span.tileImageWrapper,
+.mscrm-automationcore div.landingPageTile span.tileImageWrapper,
+.mscrm-automationcore div.taskTile .tileImageWrapper,
+.mscrm-automationcore div.leadScoringTile .tileImageWrapper,
+.mscrm-automationcore div.socialMediaTile .tileImageWrapper,
+.mscrm-automationcore div.listTile .tileImageWrapper,
+.mscrm-automationcore div.printedMailTile .tileImageWrapper,
+.mscrm-automationcore div.eventTile .tileImageWrapper {
+  background-color: #0072c6;
+}
+.mscrm-automationcore div.selected div.emailTile,
+.mscrm-automationcore div.selected div.landingPageTile,
+.mscrm-automationcore div.selected div.taskTile,
+.mscrm-automationcore div.selected div.leadScoringTile,
+.mscrm-automationcore div.selected div.socialMediaTile,
+.mscrm-automationcore div.selected div.listTile,
+.mscrm-automationcore div.selected div.printedMailTile,
+.mscrm-automationcore div.eventTile:hover,
+.mscrm-automationcore div.selected div.eventTile {
+  -webkit-box-shadow: inset 0 0 0 2px #0072c6;
+  -moz-box-shadow: inset 0 0 0 2px #0072c6;
+  box-shadow: inset 0 0 0 2px #0072c6;
+}
+.mscrm-automationcore div.emailTile:hover,
+.mscrm-automationcore div.landingPageTile:hover,
+.mscrm-automationcore div.taskTile:hover,
+.mscrm-automationcore div.leadScoringTile:hover,
+.mscrm-automationcore div.socialMediaTile:hover,
+.mscrm-automationcore div.listTile:hover,
+.mscrm-automationcore div.printedMailTile:hover,
+.mscrm-automationcore div.eventTile:hover,
+.mscrm-automationcore .hoverOverDroppable div.emailTile,
+.mscrm-automationcore .hoverOverDroppable div.landingPageTile,
+.mscrm-automationcore .hoverOverDroppable div.taskTile,
+.mscrm-automationcore .hoverOverDroppable div.leadScoringTile,
+.mscrm-automationcore .hoverOverDroppable div.socialMediaTile,
+.mscrm-automationcore .hoverOverDroppable div.listTile,
+.mscrm-automationcore .hoverOverDroppable div.printedMailTile,
+.mscrm-automationcore .hoverOverDroppable div.eventTile {
+  -webkit-box-shadow: inset 0 0 0 2px #8cbfe5;
+  -moz-box-shadow: inset 0 0 0 2px #8cbfe5;
+  box-shadow: inset 0 0 0 2px #8cbfe5;
+}
+.mscrm-automationcore .ie8 div.selected div.emailTile,
+.mscrm-automationcore .ie8 div.selected div.landingPageTile,
+.mscrm-automationcore .ie8 div.selected div.taskTile,
+.mscrm-automationcore .ie8 div.selected div.leadScoringTile,
+.mscrm-automationcore .ie8 div.selected div.socialMediaTile,
+.mscrm-automationcore .ie8 div.selected div.listTile,
+.mscrm-automationcore .ie8 div.selected div.printedMailTile,
+.mscrm-automationcore .ie8 div.selected div.eventTile {
+  border: 2px solid #0072c6;
+  padding: 0;
+}
+.mscrm-automationcore .ie8 div.emailTile:hover,
+.mscrm-automationcore .ie8 div.printedMailTile:hover,
+.mscrm-automationcore .ie8 div.landingPageTile:hover,
+.mscrm-automationcore .ie8 div.taskTile:hover,
+.mscrm-automationcore .ie8 div.leadScoringTile:hover,
+.mscrm-automationcore .ie8 div.socialMediaTile:hover,
+.mscrm-automationcore .ie8 div.listTile:hover,
+.mscrm-automationcore .ie8 div.eventTile:hover,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.emailTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.printedMailTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.landingPageTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.taskTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.leadScoringTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.listTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.socialMediaTile,
+.mscrm-automationcore .ie8 .hoverOverDroppable div.eventTile {
+  border: 2px solid #8cbfe5;
+  padding: 0;
+}
+.mscrm-automationcore .emailTile .lib-img-content,
+.mscrm-automationcore .landingPageTile .lib-img-content,
+.mscrm-automationcore .taskTile .lib-img-content,
+.mscrm-automationcore .leadScoringTile .lib-img-content,
+.mscrm-automationcore .socialMediaTile .lib-img-content,
+.mscrm-automationcore .listTile .lib-img-content,
+.mscrm-automationcore .printedMailTile .lib-img-content,
+.mscrm-automationcore .eventTile .lib-img-content {
+  background-color: #0072c6;
+}
+.mscrm-automationcore .zoomOut div.emailTile:hover,
+.mscrm-automationcore .zoomOut div.landingPageTile:hover,
+.mscrm-automationcore .zoomOut div.taskTile:hover,
+.mscrm-automationcore .zoomOut div.leadScoringTile:hover,
+.mscrm-automationcore .zoomOut div.socialMediaTile:hover,
+.mscrm-automationcore .zoomOut div.printedMailTile:hover,
+.mscrm-automationcore .zoomOut div.listTile:hover,
+.mscrm-automationcore .zoomOut div.eventTile:hover,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.emailTile,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.landingPageTile,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.taskTile,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.leadScoringTile,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.socialMediaTile,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.listTile,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.printedMailTile,
+.mscrm-automationcore .zoomOut .hoverOverDroppable div.eventTile {
+  outline: 2px solid #8cbfe5;
+}
+.mscrm-automationcore .zoomOut div.selected div.emailTile,
+.mscrm-automationcore .zoomOut div.selected div.landingPageTile,
+.mscrm-automationcore .zoomOut div.selected div.taskTile,
+.mscrm-automationcore .zoomOut div.selected div.leadScoringTile,
+.mscrm-automationcore .zoomOut div.selected div.socialMediaTile,
+.mscrm-automationcore .zoomOut div.selected div.listTile,
+.mscrm-automationcore .zoomOut div.selected div.printedMailTile,
+.mscrm-automationcore .zoomOut div.selected div.eventTile {
+  outline: 2px solid #0072c6;
+}
+.mscrm-automationcore .ui-tabs,
+.mscrm-automationcore .ui-tabs-panel {
+  padding: 0px;
+}
+.mscrm-automationcore .process_prop_title {
+  font-size: 24px;
+  
+
+  margin: 0px 0px 20px 0px;
+}
+.mscrm-automationcore .process_prop_title {
+  font-size: 24px;
+  
+
+  margin: 0px 0px 20px 0px;
+}
+.mscrm-automationcore .wf_prop_field_group {
+  margin: 0px 0px 10px 0px;
+}
+.mscrm-automationcore .wf_prop_field {
+  display: inline-block;
+  width: 100px;
+  padding: 4px 0px;
+  margin-right: 6px;
+  color: grey;
+  vertical-align: top;
+}
+.mscrm-automationcore .wf_prop_value {
+  display: inline-block;
+  border: 1px solid grey;
+  width: 250px;
+  padding: 4px 6px;
+}
+.mscrm-automationcore .wf_prop_header_line {
+  font-weight: bold;
+  color: grey;
+  margin: 30px 0px 10px 0px;
+}
+.mscrm-automationcore .description_box {
+  border: 1px solid grey;
+  margin-right: 30px;
+  background-color: #eeeeee;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  overflow-x: auto;
+  max-height: 100px;
+  min-height: 50px;
+  padding: 2px 5px;
+}
+.mscrm-automationcore .condition_text {
+  font-weight: bold;
+  color: grey;
+  margin: 30px 0px 10px 0px;
+  color: green;
+  margin-top: 0px;
+}
+.mscrm-automationcore .wait_associated_text {
+  font-weight: bold;
+  font-style: italic;
+  color: grey;
+  margin: 30px 0px 10px 0px;
+}
+.mscrm-automationcore .wf_prop_subheader_line {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: gray;
+  margin: 30px 0px 10px 0px;
+}
+.mscrm-automationcore .process_prop {
+  background-color: #f6f6f6;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.mscrm-automationcore #property {
+  background-color: #f6f6f6;
+  width: 100%;
+  height: 100%;
+  border-left: 1px solid lightgray;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.mscrm-automationcore .propertyfooter {
+  width: 100%;
+}
+.mscrm-automationcore .propertyfooterbutton {
+  padding-left: 15px;
+  padding-right: 15px;
+  display: inline-block;
+}
+.mscrm-automationcore .propertyfootercontainer {
+  position: absolute;
+  bottom: 42px;
+  height: 30px;
+  width: 100%;
+}
+.mscrm-automationcore .propertycontentcontainer {
+  position: absolute;
+  bottom: 82px;
+  top: 0px;
+  width: 100%;
+}
+.mscrm-automationcore .process_child_top {
+  padding-top: 20px;
+}
+.mscrm-automationcore .process_child {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.mscrm-automationcore .wf_scrollable_filled_group_wait,
+.mscrm-automationcore .wf_scrollable_filled_group_waitbranch,
+.mscrm-automationcore .dialog_scrollable_filled_group_page {
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+  right: 0px;
+  overflow-y: auto;
+  top: 40px;
+}
+.mscrm-automationcore .wf_scrollable_filled_group_customactivity {
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+  right: 0px;
+  overflow-y: auto;
+  top: 70px;
+}
+.mscrm-automationcore .wf_scrollable_filled_group_normal {
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+  right: 0px;
+  overflow-y: auto;
+  top: 110px;
+}
+.mscrm-automationcore .wf_scrollable_filled_group_root,
+.mscrm-automationcore .wf_scrollable_filled_group_email_with_template {
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+  right: 0px;
+  overflow-y: auto;
+  top: 150px;
+}
+.mscrm-automationcore .wf_scrollable_filled_group_condition,
+.mscrm-automationcore .wf_scrollable_filled_group_stage {
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+  right: 0px;
+  overflow-y: auto;
+  top: 170px;
+}
+.mscrm-automationcore .wf_scrollable_filled_group_actionroot {
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+  right: 0px;
+  overflow-y: auto;
+  top: 170px;
+}
+.mscrm-automationcore .lookup_link {
+  text-decoration: underline;
+}
+.mscrm-automationcore a.link {
+  text-decoration: underline;
+}
+.mscrm-automationcore .panel_placeholder {
+  padding-left: 20px;
+  padding-top: 20px;
+  font-size: 14px;
+  
+
+  font-style: italic;
+  color: gray;
+  text-align: center;
+}
+.mscrm-automationcore .tileTitle {
+  float: left;
+  margin: 8px;
+  height: 44px;
+  width: 134px;
+  color: #000000;
+  display: table;
+  table-layout: fixed;
+  font-weight: normal;
+}
+.mscrm-automationcore .tileTableCell {
+  display: table-cell;
+  vertical-align: middle;
+}
+.mscrm-automationcore .tileInner {
+  display: block;
+  line-height: 22px;
+  max-width: 134px;
+  max-height: 44px;
+  text-align: center;
+}
+.mscrm-automationcore .tileInner.ellipsis {
+  white-space: normal;
+}
+.mscrm-automationcore .wf_rootTile .tileImageWrapper,
+.mscrm-automationcore .bpf_rootTile .tileImageWrapper {
+  background-color: #0000ff !important;
+}
+.mscrm-automationcore .conditionTile .tileImageWrapper,
+.mscrm-automationcore .waitTile .tileImageWrapper,
+.mscrm-automationcore .waitBranchTile .tileImageWrapper,
+.mscrm-automationcore .waitTimeoutTile .tileImageWrapper {
+  background-color: #008000 !important;
+}
+.mscrm-automationcore .createTile .tileImageWrapper,
+.mscrm-automationcore .updateTile .tileImageWrapper,
+.mscrm-automationcore .assignTile .tileImageWrapper,
+.mscrm-automationcore .setStateTile .tileImageWrapper,
+.mscrm-automationcore .customActivityTile .tileImageWrapper,
+.mscrm-automationcore .stopWorkflowTile .tileImageWrapper,
+.mscrm-automationcore .sendEmailTile .tileImageWrapper,
+.mscrm-automationcore .stageTile .tileImageWrapper,
+.mscrm-automationcore .childTile .tileImageWrapper,
+.mscrm-automationcore .pageTile .tileImageWrapper,
+.mscrm-automationcore .childDialogTile .tileImageWrapper,
+.mscrm-automationcore .queryTile .tileImageWrapper,
+.mscrm-automationcore .assignValueTile .tileImageWrapper {
+  background-color: #ce7200 !important;
+}
+.mscrm-automationcore .zoomItem {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 1000;
+}
+.mscrm-automationcore .canvas {
+  height: 100%;
+}
+.mscrm-automationcore .zoomItem {
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  background-size: cover;
+  backgorund-repeat: no-repeat;
+}
+.mscrm-automationcore .zoomItem:hover {
+  background-color: transparent;
+}
+.mscrm-automationcore .zoomItem.zoomOutImage {
+  background-image: url("../../../_imgs/ProcessDesigner/ZoomOut_16.png"), url("/_imgs/ProcessDesigner/ZoomOut_16.png");
+}
+.mscrm-automationcore .zoomItem.zoomOutImage:hover {
+  background-image: url("../../../_imgs/ProcessDesigner/ZoomOut_Hover16.png"), url("/_imgs/ProcessDesigner/ZoomOut_Hover16.png");
+}
+.mscrm-automationcore .zoomItem.zoomInImage {
+  background-image: url("../../../_imgs/ProcessDesigner/ZoomIn_16.png"), url("/_imgs/ProcessDesigner/ZoomIn_16.png");
+}
+.mscrm-automationcore .zoomItem.zoomInImage:hover {
+  background-image: url("../../../_imgs/ProcessDesigner/ZoomIn_Hover16.png"), url("/_imgs/ProcessDesigner/ZoomIn_Hover16.png");
+}
+.mscrm-automationcore wf_table {
+  margin: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 30px;
+}
+.mscrm-automationcore .wf_row {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+}
+.mscrm-automationcore .wf_row.wf_header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+.mscrm-automationcore .wf_row.wf_header * {
+  text-align: center;
+}
+.mscrm-automationcore .wf_row.wf_header > :not(.wf_col_right) {
+  border-right: 1px solid lightgray;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.mscrm-automationcore .required_text {
+  color: red;
+}
+.mscrm-automationcore .wf_col_1 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 8.0%;
+}
+.mscrm-automationcore .wf_col_2 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 16.0%;
+}
+.mscrm-automationcore .wf_col_3 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 24%;
+}
+.mscrm-automationcore .wf_col_4 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 32.5%;
+}
+.mscrm-automationcore .wf_col_5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 40.5%;
+}
+.mscrm-automationcore .wf_col_6 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 49.5%;
+}
+.mscrm-automationcore .wf_col_7 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 57.0%;
+}
+.mscrm-automationcore .wf_col_8 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 66.0%;
+}
+.mscrm-automationcore .wf_col_9 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 74.0%;
+}
+.mscrm-automationcore .wf_col_10 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 82.5%;
+}
+.mscrm-automationcore .wf_col_11 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 91%;
+}
+.mscrm-automationcore .wf_col_12 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 99%;
+}
+.mscrm-automationcore .wf_col_half {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 49.5%;
+}
+.mscrm-automationcore .wf_col_third {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 32.5%;
+}
+.mscrm-automationcore .wf_col_inner {
+  padding-left: 5px;
+}
+.mscrm-automationcore .collapse_button {
+  width: 12px;
+  height: 12px;
+  background-image: url("../../../_imgs/BusinessRuleEditor/section_down.png"), url("/_imgs/BusinessRuleEditor/section_down.png");
+  background-size: cover;
+  display: inline-block;
+}
+.mscrm-automationcore .collapsed > .collapse_button {
+  background-image: url("../../../_imgs/BusinessRuleEditor/section_right.png"), url("/_imgs/BusinessRuleEditor/section_right.png");
+}
+.mscrm-automationcore .role_assignment_table.collapsed {
+  display: none;
+}
+.mscrm-automationcore .collapsable.collapsed {
+  display: none;
+}
+.mscrm-automationcore .collapsible_table {
+  margin-right: 20px;
+}
+.mscrm-automationcore .collapsible_table.collapsed {
+  margin-right: 20px;
+  display: none;
+}
+.mscrm-automationcore .collapse_label {
+  display: inline-block;
+  font-weight: bold;
+  color: inherit;
+}
+.mscrm-automationcore .highContrast .slot {
+  border: dashed 1px;
+}
+.mscrm-automationcore .highContrast div.slot:hover,
+.mscrm-automationcore .highContrast .hoverOverDroppable,
+.mscrm-automationcore .highContrast .slot.selected {
+  border: solid 1px;
+}
+.mscrm-automationcore .highContrast .line.horizontal {
+  border-top-style: dashed;
+  border-top-width: 1px;
+  border-bottom-style: dashed;
+  border-bottom-width: 1px;
+  height: 0px !important;
+}
+.mscrm-automationcore .highContrast .line.vertical {
+  border-right-style: dashed;
+  border-right-width: 1px;
+  border-left-style: dashed;
+  border-left-width: 1px;
+  width: 0px !important;
+}
+.mscrm-automationcore .uncategorized {
+  color: grey;
+  font-style: italic;
+}
+.mscrm-automationcore .process_required_checkbox {
+  height: 12px;
+  width: 12px;
+}
+.mscrm-automationcore .tileStatus {
+  position: absolute;
+  left: -8px;
+  bottom: -8px;
+}
+.mscrm-automationcore .tileStatusImg {
+  width: 16px;
+  height: 16px;
+}
+.mscrm-automationcore .tileExecution {
+  -webkit-box-shadow: inset 0 0 0 2px #9acd32;
+  -moz-box-shadow: inset 0 0 0 2px #9acd32;
+  box-shadow: inset 0 0 0 2px #9acd32;
+}
+.mscrm-automationcore .hidden {
+  display: none;
+}
+.mscrm-automationcore .andorcon {
+  display: block;
+}
+.mscrm-automationcore .expression .editexpressionandtoolbarcontainer .editexpressioncontainer .lefopcon,
+.mscrm-automationcore .expression .editexpressionandtoolbarcontainer .editexpressioncontainer .rigopcon,
+.mscrm-automationcore .expression .editexpressionandtoolbarcontainer .editexpressioncontainer .optycon,
+.mscrm-automationcore .expression .editexpressionandtoolbarcontainer .editexpressioncontainer .conopcon {
+  width: 100%;
+  padding-top: 10px;
+  display: block;
+}
+.mscrm-automationcore .expression .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer {
+  display: block;
+}
+.mscrm-automationcore .addconditionplaceholder {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 14px;
+  
+
+  font-style: italic;
+  color: #1f8400;
+}

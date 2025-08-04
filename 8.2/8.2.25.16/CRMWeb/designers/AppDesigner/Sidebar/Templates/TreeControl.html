@@ -1,0 +1,57 @@
+<div id="AppDesigner.TreeControl" class="mscrm-TreeControl">
+	<div class="mscrm-DependencyPaneUl">
+		<div ng-repeat="data in validationService.getArrayByTreeId(tree) track by $index" ng-include="'dependency_tree_item'"></div>
+	</div>
+	<script type="text/ng-template" id="dependency_tree_item">
+		<div ng-if="data.componentName" tabindex="-1" class="mscrm-ComponentNameContainer">
+			<div class="mscrm-ComponentName" ng-attr-title="{{data.componentName}}">{{data.componentName}}</div>
+			<div class="mscrm-ComponentTypeContainer" ng-attr-title="{{treeControlController.GetLocalizedComponentType(data.componentType)}}"><div class="mscrm-ComponentType">{{treeControlController.GetLocalizedComponentType(data.componentType)}}</div></div>
+		</div>
+		<div class="mscrm-DependencyPaneUl">
+			<div ng-repeat="requiredComponents in data.requiredComponentsByEntity" ng-include="'req_component_item'"></div>
+		</div>
+		<div class="mscrm-DependencyPaneUl">
+			<div ng-repeat="data in data.children" ng-include="'dependency_tree_item'"></div>
+		</div>
+	</script>
+	<script type="text/ng-template" id="req_component_item">
+		<div class="mscrm-RequiredComponentsContainer">
+			<div class="mscrm-RequiredComponents">
+				<div role="treeitem" tabindex="-1" class="mscrm-RequiredComponentName">
+					<div>
+						<input role="treeitem" tabindex="-1" id="AppDesigner.TreeControl.RequiredComponents.{{tree}}.{{data.componentId}}.{{requiredComponents.parentEntityId}}.CheckBox" type="checkbox" class="mscrm-CheckboxStyle" ng-model="requiredComponents.isEntitySelected" ng-disabled="requiredComponents.isEntityAddedToAppContext" ng-change="treeControlController.DisableAllIfNeeded(requiredComponents.reqComponents, requiredComponents.isEntitySelected)" />
+					</div>
+					<label for="AppDesigner.TreeControl.RequiredComponents.{{tree}}.{{data.componentId}}.{{requiredComponents.parentEntityId}}.CheckBox" id="AppDesigner.TreeControl.{{tree}}.{{data.componentId}}.{{requiredComponents.parentEntityId}}.Text">
+						{{requiredComponents.parentEntityDisplayName}}
+					</label>
+				</div>
+				<div aria-labelledby="AppDesigner.TreeControl.{{tree}}.{{data.componentId}}.{{requiredComponents.parentEntityId}}.Text AppDesigner.TreeControl.DependentComponents" tabindex="-1" data-treeparentnode role="treeitem" class="mscrm-DependentComponents" ng-show="requiredComponents.reqComponents.length" aria-expanded="false" ng-click="treeControlController.ToggleShowDependentComponent($event, requiredComponents)" mscrm-action-on-select>
+					<div id="AppDesigner.TreeControl.DependentComponents">
+						<mscrm-locale mscrm-resource-key="AppDesigner.RequiredComponents">
+					</div>
+					<div id="AppDesigner.TreeControl.DependentComponents.Icon" ng-class="['mscrm-DependentComponentsTileArrow', {'mscrm-glyph-DownArrowIcon': !treeControlController.ShouldShowDependentComponent(requiredComponents), 'mscrm-glyph-UpArrowIcon': treeControlController.ShouldShowDependentComponent(requiredComponents)}]"></div>
+				</div>
+			</div>
+			<div data-pseudotreeparentnode ng-if="treeControlController.ShouldShowDependentComponent(requiredComponents)">
+				<div class="mscrm-SelectAll">
+					<input role="treeitem" tabindex="-1" id="AppDesigner.TreeControl.DependentComponents.{{tree}}.{{data.componentId}}.{{requiredComponents.parentEntityId}}.CheckBox" type="checkbox" class="mscrm-CheckboxStyle" ng-disabled="!requiredComponents.isEntitySelected || treeControlController.ShouldDisableSelectAll(requiredComponents.reqComponents)" ng-click="treeControlController.ToggleAll(requiredComponents.reqComponents, isAllSelected)" ng-checked="requiredComponents.isEntitySelected && treeControlController.IsSelectAllEnabled(requiredComponents.reqComponents)" mscrm-action-on-select ng-model="isAllSelected" />
+					<label for="AppDesigner.TreeControl.DependentComponents.{{tree}}.{{data.componentId}}.{{requiredComponents.parentEntityId}}.CheckBox">
+						<mscrm-locale mscrm-resource-key="AppDesigner.SelectAll">
+					</label>
+				</div>
+				<div ng-repeat="reqItem in requiredComponents.reqComponents" class="mscrm-DependentItems">
+					<label for="AppDesigner.TreeControl.{{tree}}.{{data.componentId}}.{{requiredComponents.parentEntityId}}.{{reqItem.componentId}}.CheckBox" class="mscrm-DependentComponentNameType">
+						<div role="treeitem" tabindex="-1" class="mscrm-CheckBoxComponentNameContainer" aria-label="{{reqItem.componentName}}">
+							<div>
+								<input tabindex="-1" id="AppDesigner.TreeControl.{{tree}}.{{data.componentId}}.{{requiredComponents.parentEntityId}}.{{reqItem.componentId}}.CheckBox" type="checkbox" class="mscrm-CheckboxStyle" ng-model="reqItem.isSelected" ng-disabled="reqItem.isAddedToAppContext || !requiredComponents.isEntitySelected" ng-click="treeControlController.UpdateDependencyCount(reqItem.isSelected)" />
+							</div>
+							<div class="mscrm-ComponentNameText" ng-attr-title="{{reqItem.componentName}}">{{reqItem.componentName}}</div>
+						</div>
+						<div id="AppDesigner.TreeControl.RequiredComponentTypeName.{{tree}}.{{data.componentId}}.{{requiredComponents.parentEntityId}}.{{reqItem.componentId}}.TypeName" class="mscrm-RequiredComponentTypeName">{{reqItem.componentTypeName}}</div>
+					</label>
+					<div id="AppDesigner.TreeControl.RequiredComponentTypeName.{{tree}}.{{data.componentId}}.{{requiredComponents.parentEntityId}}.{{reqItem.componentId}}.SchemaId" class="msrcm-SchemaName">{{reqItem.componentschemaId}}</div>
+				</div>
+			</div>
+		</div>
+	</script>
+</div>

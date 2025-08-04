@@ -1,0 +1,1 @@
+This is a dummy file, only kept to avoind wix errors in deployment

@@ -1,0 +1,107 @@
+<div class="mscrm-sitemapContainer"
+	 dropzone=""
+	 tabindex="0"
+	 mscrm-major-component data-ctabindex="0" data-mcgroupname="primary"
+	 aria-hidden="false"
+	 mscrm-action-on-select
+	 data-actiononfocusmode
+	 mscrm-initial-focus-on-load
+	 mscrm-locale mscrm-resource-key="SitemapDesigner.EntireCanvas"
+	 mscrm-target-attr="aria-label"
+	 ng-click="sitemapCanvasClick()">
+	<div class="mscrm-navbarContainer">
+		<div class="mscrm-navbarTitle">
+			{{sitemapController.BrandName}}
+		</div>
+	</div>
+
+	<!-- ToDo: Retaining this as of now, as this needs to refactored into multiple directives,
+		Since functionality of pagination is tightly bound to current DOM structure-->
+
+	<div elementwidth class="required"></div>
+	<div class="mscrm-sitemapNodesContainer mscrm-dragDrop" role="application">
+		<div class="mscrm-sitemapAreaNodesContainer" ng-class="{'mscrm-dragSectionHighlightile': shouldShowAreaBorder()}">
+			<div class="mscrm-sitemapAreaNodesScroller mainTab-nav-scrl">
+				<div id="actionGroupControl_leftNavContainer" class="area-left-arrow nav-scrl-left-lnk displayNone" ng-click='groupNavContainer("left","area","#actionGroupControl")' mscrm-action-on-select ondragover='$(this).click(); return false;'>
+					<a id="leftNavLink" mscrm-locale mscrm-resource-key="SitemapDesigner.Homepage_Navigation_LeftNavLink_Tooltip" mscrm-target-attr="title">
+						<span class="leftNavLinkImg">
+							<img src="/_imgs/NavBar/NavGalleryArrowLeft.png" mscrm-locale mscrm-resource-key="SitemapDesigner.Homepage_Navigation_LeftNavLink_Tooltip" mscrm-target-attr="alt">
+						</span>
+					</a>
+				</div>
+				<div id="actionGroupControl_scrollableContainer" class="nav-scrl-cont">
+					<div id="actionGroupControl_viewport" class="nav-scrl-view">
+						<div id="SiteMapAreaElements" class="mscrm-sitemapAreaNodesContainerInternal" dnd-horizontal-list="true" mscrm-arrow-key-navigation data-arrow-direction="horizontal" ng-model="areas" dnd-list dnd-drop="onDrop(event,areas, area, index, 'Area')"
+							 dnd-type="'areaType'"
+							 dnd-allowed-types="['areaType','groupType','subAreaType']" dnd-dragover="dragOverArea(event, index, external, type)">
+							<mscrm-area ng-click="handleAreaSelection(area,true)" mscrm-action-on-select
+										ng-class="{selected : area === idSelectedVote}"
+										ng-focus="onAreaFocus(area)"
+										ng-repeat="area in areas"
+										ng-keydown='handleNodeSlide($event, $index,"area","#actionGroupControl")'
+										dnd-type="'areaType'"
+										dnd-dragstart="onAreaDragStart(event, $index)"
+										dnd-draggable="area"
+										tabindex="-1"
+										id="{{area.Id}}"
+										dnd-moved="areas.splice($index, 1)"
+										dnd-effect-allowed="move"
+										dnd-selected="areas.selected = area"
+										ng-init="expandAreaOnLoad($index, area)">
+							</mscrm-area>
+						</div>
+					</div>
+				</div>
+				<div id="actionGroupControl_rightNavContainer" class="area-right-arrow nav-scrl-right-lnk displayNone" ng-click='groupNavContainer("right","area","#actionGroupControl")' mscrm-action-on-select ondragover='$(this).click(); return false;'>
+					<a id="rightNavLink" mscrm-locale mscrm-resource-key="SitemapDesigner.Homepage_Navigation_RightNavLink_Tooltip" mscrm-target-attr="title">
+						<span class="rightNavLinkImg">
+							<img src="/_imgs/NavBar/NavGalleryArrowRight.png" mscrm-locale mscrm-resource-key="SitemapDesigner.Homepage_Navigation_RightNavLink_Tooltip" mscrm-target-attr="alt">
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="mscrm-sitemapGroupNodesContainer" ng-class="{'mscrm-dragSectionHighlightile': shouldShowGroupBorder()}" tabindex="-1" data-actiononfocusmode mscrm-action-on-select>
+			<div class="mscrm-sitemapGroupNodesScroller nav-scrl">
+				<div id="detailActionGroupControl_leftNavContainer" class="nav-scrl-left-lnk displayNone nav-groupNodeAreaScroller-min-height" ng-click='groupNavContainer("left","group","#detailActionGroupControl")' mscrm-action-on-select ondragover='$(this).click(); return false;'>
+					<a id="leftNavLink" mscrm-locale mscrm-resource-key="SitemapDesigner.Homepage_Navigation_LeftNavLink_Tooltip" mscrm-target-attr="title">
+						<span class="leftNavLinkImg">
+							<img src="/_imgs/NavBar/NavGalleryArrowLeft.png" mscrm-locale mscrm-resource-key="SitemapDesigner.Homepage_Navigation_LeftNavLink_Tooltip" mscrm-target-attr="alt">
+						</span>
+					</a>
+				</div>
+				<div id="detailActionGroupControl_scrollableContainer" class="nav-scrl-cont dragDropMinHeight">
+					<div id="detailActionGroupControl_viewport" class="nav-scrl-view dragDropMinHeight">
+						<div id="GroupElements" class="mscrm-sitemapGroupNodesContainerInternal dragDropMinHeight" dnd-horizontal-list="true" mscrm-arrow-key-navigation data-arrow-direction="wave-horizontal" dnd-list dnd-drop="onDrop(event, selectedArea.Group, selectedArea.Group, index, 'Group')" dnd-sortable-list="sortableOptionsForGroup" ng-model="selectedArea.Group" ng-show="showSubAreaPane"
+							 dnd-type="'groupType'"
+							 dnd-allowed-types="['groupType']">
+							<div class="mscrm-groupItemContainer"
+								 mscrm-subarea-overflow-directive="group"
+								 ng-repeat="group in selectedArea.Group"
+								 ng-class="{'mscrm-dragSectionHighlightile': highlightBorder || shouldShowSubAreaContainerBorder($index)}"
+								 ng-keydown='handleNodeSlide($event, $index,"group","#detailActionGroupControl")'
+								 dnd-draggable="group"
+								 dnd-moved="selectedArea.Group.splice($index, 1)"
+								 dnd-type="'groupType'"
+								 dnd-dragstart="onGroupDragStart(event, $index,selectedArea,group)"
+								 dnd-dragend="dragEndHandler('Group')"
+								 dnd-effect-allowed="move"
+								 dnd-selected="selectedArea.Group.selected = group"
+								 ng-style="GetSubAreaMinWidth()"
+								 mscrm-arrow-key-navigation data-arrow-direction="vertical">
+								<mscrm-group />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="detailActionGroupControl_rightNavContainer" class="nav-scrl-right-lnk displayNone nav-groupNodeAreaScroller-min-height" ng-click='groupNavContainer("right","group","#detailActionGroupControl")' mscrm-action-on-select ondragover='$(this).click(); return false;'>
+					<a id="rightNavLink" mscrm-locale mscrm-resource-key="SitemapDesigner.Homepage_Navigation_RightNavLink_Tooltip" mscrm-target-attr="title">
+						<span class="rightNavLinkImg">
+							<img src="/_imgs/NavBar/NavGalleryArrowRight.png" mscrm-locale mscrm-resource-key="SitemapDesigner.Homepage_Navigation_RightNavLink_Tooltip" mscrm-target-attr="alt">
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

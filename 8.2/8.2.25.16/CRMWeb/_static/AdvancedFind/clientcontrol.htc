@@ -1,0 +1,258 @@
+<public:component lightweight="true" tagName=ClientControl>
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:event name="onchange" id="OnChangeEvent"/>
+<public:property name="Value" put="SetValue" get="GetValue"/>
+<public:property name="Text" get="GetText" />
+<public:property name="ParentControl"/>
+<public:property name="Container"/>
+<public:method name="RenderControl"/>
+<public:method name="SetFocus"/>
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oAutoShow = null,
+    _oValue = null,
+    _bInitComplete = false;
+Sys.Application.add_load(SysInit);
+function SysInit()
+{
+    Init()
+}
+function InitOnDocReady()
+{
+    Sys.Application.get_isInitialized() && !_bInitComplete && 
+        Init()
+}
+function Init()
+{
+    element.innerHTML = "<Crm:AutoShow id='" + ParentControl.id + "VAL'/>";
+    _bInitComplete = true;
+    _oAutoShow = element.firstChild;
+    _oAutoShow.Container = element.Container;
+    _oAutoShow.DefaultText = LOCID_AF_ENTERVALUE;
+    _oAutoShow.attachEvent("onchange",onChangeHandler);
+    SetValue(_oValue)
+}
+function GetText()
+{
+    return _oAutoShow.Text
+}
+function GetValue()
+{
+    _oValue = _oAutoShow.Value;
+    return _oValue
+}
+function SetValue(oValue)
+{
+    _oValue = oValue;
+    if(_bInitComplete)
+        _oAutoShow.Value = _oValue
+}
+function SetFocus()
+{
+    _oAutoShow.SetFocus()
+}
+function onChangeHandler()
+{
+    var oEvent = this.createEventObject();
+    OnChangeEvent.fire(oEvent)
+}
+function RenderControl(oFieldProperties,sOperator)
+{
+    _oAutoShow.DefaultText = LOCID_AF_ENTERVALUE;
+    _oAutoShow.ToolTip = null;
+    if(Container.DisableValueControlInSimpleMode == true)
+    {
+        _oAutoShow.Disabled = true;
+        _oAutoShow.SetMode(Container.ModesEnum.Simple)
+    }
+    switch(oFieldProperties.datatype)
+    {
+        case "nvarchar":
+        case "text":
+        case "ntext":
+        case "memo":
+            _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","string").outerHTML;
+            _oAutoShow.InnerControl.maxLength = oFieldProperties.maxlength;
+            if(Container.DisableValueControlInSimpleMode != true)
+                _oAutoShow.DefaultText = _oAutoShow.ToolTip = LOCID_AF_ENTERTEXT;
+            break;
+        case "bit":
+        case "boolean":
+        case "state":
+        case "status":
+        case "picklist":
+        case "language":
+        case "objecttypecode":
+            if(IsNameOperator(sOperator))
+            {
+                _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","string").outerHTML;
+                if(!IsNull(oFieldProperties.namemaxlength))
+                    _oAutoShow.InnerControl.maxLength = oFieldProperties.namemaxlength;
+                if(Container.DisableValueControlInSimpleMode != true)
+                    _oAutoShow.DefaultText = _oAutoShow.ToolTip = LOCID_AF_ENTERTEXT
+            }
+            else
+            {
+                var oPicklistControl = Container.ClientCache.GetElement("ValueControl","picklist");
+                _oAutoShow.InnerControlHtml = oPicklistControl.outerHTML;
+                Mscrm.FormControlInputBehavior.GetBehavior(_oAutoShow.InnerControl.id).LoadOptionsXml(oFieldProperties.optionsXML);
+                if(Container.DisableValueControlInSimpleMode != true)
+                    _oAutoShow.DefaultText = _oAutoShow.ToolTip = LOCID_AF_ENTERPICKLIST.replace("{0}",oFieldProperties.text)
+            }
+            break;
+        case "primarykey":
+        case "partylist":
+        case "uniqueidentifier":
+        case "lookup":
+        case "customer":
+        case "owner":
+            if(IsNameOperator(sOperator))
+            {
+                _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","string").outerHTML;
+                if(!IsNull(oFieldProperties.namemaxlength))
+                    _oAutoShow.InnerControl.maxLength = oFieldProperties.namemaxlength
+            }
+            else
+            {
+                var oLookupControl = Container.ClientCache.GetElement("ValueControl","lookup"),
+                    oLUImg = oLookupControl.rows[0].cells[1].firstChild;
+                oLUImg.lookuptypes = oFieldProperties.lookuptypes;
+                oLUImg.lookuptypenames = oFieldProperties.lookuptypenames;
+                oLUImg.forfield = oFieldProperties.innerText;
+                var aiLookupTypes = oFieldProperties.lookuptypes.split(",");
+                oLUImg.lookuptypeIcons = Container.ClientCache.LookupIcons[parseInt(aiLookupTypes[0],10)];
+                for(var i = 1; i < aiLookupTypes.length; i++)
+                    oLUImg.lookuptypeIcons += ":" + Container.ClientCache.LookupIcons[aiLookupTypes[i]];
+                if(oFieldProperties.lookuptypes == Subject.toString())
+                    oLUImg.lookupstyle = "subject";
+                else
+                    oLUImg.lookupstyle = "multi";
+                _oAutoShow.InnerControlHtml = oLookupControl.outerHTML
+            }
+            break;
+        case "decimal":
+        case "int":
+        case "float":
+        case "integer":
+        case "money":
+            _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","number").outerHTML;
+            _oAutoShow.InnerControl.dt = oFieldProperties.datatype == "integer" ? "int" : oFieldProperties.datatype;
+            _oAutoShow.InnerControl.Precision = parseInt(oFieldProperties.acc,10);
+            _oAutoShow.InnerControl.min = oFieldProperties.min;
+            _oAutoShow.InnerControl.max = oFieldProperties.max;
+            if(oFieldProperties.format == "duration" && Container.DisableValueControlInSimpleMode != true)
+                _oAutoShow.DefaultText = _oAutoShow.ToolTip = LOCID_AF_ENTERVALINMINS;
+            _oAutoShow.TextDirection = "ltr";
+            break;
+        case "datetime":
+        case "date":
+        case "time":
+            var minVal = [],
+                maxVal = [],
+                dateUnit = "";
+            switch(sOperator)
+            {
+                case "last-x-hours":
+                case "next-x-hours":
+                    minVal["hours"] = 1;
+                    maxVal["hours"] = 2e3;
+                    dateUnit = "hours";
+                    break;
+                case "last-x-days":
+                case "next-x-days":
+                    minVal["days"] = 1;
+                    maxVal["days"] = 500;
+                    dateUnit = "days";
+                    break;
+                case "last-x-weeks":
+                case "next-x-weeks":
+                    minVal["weeks"] = 1;
+                    maxVal["weeks"] = 100;
+                    dateUnit = "weeks";
+                    break;
+                case "last-x-months":
+                case "next-x-months":
+                case "olderthan-x-months":
+                    minVal["months"] = 1;
+                    maxVal["months"] = 100;
+                    dateUnit = "months";
+                    break;
+                case "last-x-years":
+                case "next-x-years":
+                    minVal["years"] = 1;
+                    maxVal["years"] = 100;
+                    dateUnit = "years";
+                    break;
+                case "last-x-fiscal-years":
+                case "next-x-fiscal-years":
+                    minVal["fiscalyears"] = 1;
+                    maxVal["fiscalyears"] = 100;
+                    dateUnit = "fiscalyears";
+                    break;
+                case "last-x-fiscal-periods":
+                case "next-x-fiscal-periods":
+                    minVal["fiscalperiods"] = 1;
+                    maxVal["fiscalperiods"] = 100;
+                    dateUnit = "fiscalperiods";
+                    break;
+                case "in-fiscal-year":
+                    _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","fiscalperiodandyear").outerHTML;
+                    RegisterFiscalPeriodAndYearControls(_oAutoShow);
+                    _oAutoShow.InnerControl.ShowYear = true;
+                    break;
+                case "in-fiscal-period":
+                    _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","fiscalperiodandyear").outerHTML;
+                    RegisterFiscalPeriodAndYearControls(_oAutoShow);
+                    _oAutoShow.InnerControl.ShowPeriod = true;
+                    break;
+                case "in-fiscal-period-and-year":
+                case "in-or-before-fiscal-period-and-year":
+                case "in-or-after-fiscal-period-and-year":
+                    _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","fiscalperiodandyear").outerHTML;
+                    RegisterFiscalPeriodAndYearControls(_oAutoShow);
+                    _oAutoShow.InnerControl.ShowPeriod = true;
+                    _oAutoShow.InnerControl.ShowYear = true;
+                    break;
+                default:
+                    _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","date").outerHTML;
+                    break
+            }
+            if(dateUnit != "")
+            {
+                _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","number").outerHTML;
+                _oAutoShow.InnerControl.min = minVal[dateUnit];
+                _oAutoShow.InnerControl.max = maxVal[dateUnit];
+                _oAutoShow.InnerControl.Precision = 0
+            }
+            if(Container.DisableValueControlInSimpleMode != true)
+                _oAutoShow.DefaultText = _oAutoShow.ToolTip = LOCID_AF_ENTERDATE;
+            break;
+        default:
+            var fnCallback = Container.OnCreateValueControl;
+            if(!IsNull(fnCallback) && "function" == typeof fnCallback)
+            {
+                var oArgs = {};
+                oArgs.sEntityName = ParentControl.EntityName;
+                oArgs.oField = oFieldProperties;
+                oArgs.sOperator = sOperator;
+                oRetVal = fnCallback(oArgs);
+                _oAutoShow.InnerControl = oRetVal.oValueControl
+            }
+            break
+    }
+    function RegisterFiscalPeriodAndYearControls(parentElement)
+    {
+        for(var elements = parentElement.getElementsByTagName("SELECT"),
+            i = 0,
+            length = elements.length; i < length; i++)
+        {
+            elements[i].id = parentElement.id + elements[i].id;
+            $create(Mscrm.OptionSetUIControl,{},null,null,elements[i])
+        }
+    }
+}
+
+</script>
+</html>
+</public:component>

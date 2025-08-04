@@ -1,0 +1,11 @@
+<div class="mscrm-propertyConatiner mscrm-LabelCheckBoxContainer" ng-show="isGeneralSectionOpen">
+	<input id="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}"
+		   class="mscrm-LabelCheckBox-Checkbox"
+		   type="checkbox"
+		   ng-model="propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.PassParams"
+		   title="{{PropertyDirective.nodeTooltip}}"
+		   ng-change="propertyPaneController.UpdateSubAreaProperties(passParams, PropertyDirective.nodeLabel);"
+		   ng-disabled="propertyPaneController.IsTypeAheadDisabled(['Entity', 'DefaultDashboard'])"
+		   tabindex="-1" mscrm-action-on-select/>
+	<label for="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" class="mscrm-LabelCheckBox-Label" ng-attr-title="{{PropertyDirective.nodeDisplayName}}">{{PropertyDirective.nodeDisplayName}}</label>
+</div>

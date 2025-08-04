@@ -1,0 +1,13 @@
+<div class="mscrm-requiredPropertyContainer" ng-show="isGeneralSectionOpen">
+    <div class="mscrm-propertyConatiner">
+        <div class="mscrm-propertiesLabelContainer">
+            <label for="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" class="itemLabel" title="{{PropertyDirective.nodeDisplayName}}">{{PropertyDirective.nodeDisplayName}} ({{propertyPaneController.defaultLanguage.LocaleId}})</label>
+        </div>
+        <div class="mscrm-propertiesControlContainer">
+            <input id="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" class="textTypeWidth" type="text"
+                   ng-model="PropertyDirective.nodeValue" value="{{PropertyDirective.nodeValue}}"
+                   ng-change="propertyPaneController.AddBaseLanguageTitle(PropertyDirective)"
+                   title="{{PropertyDirective.nodeTooltip}}" ng-keydown="propertyPaneController.HandleTextBoxKeyDown($event)" tabindex="-1" mscrm-trap-focus-on-error />
+        </div>
+    </div>
+</div>

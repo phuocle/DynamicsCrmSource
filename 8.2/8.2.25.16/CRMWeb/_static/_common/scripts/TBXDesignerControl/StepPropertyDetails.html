@@ -1,0 +1,362 @@
+﻿<link href="../../../_static/_common/scripts/tbxdesignercontrol/propertystyle.css" rel="stylesheet" type="text/css">
+<div id="properties">
+	<div class="header ellipsis">
+		<span class="headline1" id="StepPropertyDetails_Header"></span>
+	</div>
+	<div id="contentDivStageProp">
+	<div>
+		<span class="headline2 ellipsis" role="label" id="StepPropertyDetails_StepName"></span>
+		<input class="fieldStage field" type="text" id="descriptionTextbox" aria-labelledby="StepPropertyDetails_StepName" role="combobox">
+	</div>
+	<div>
+		<span class="headline2 ellipsis" role="label" id="StepPropertyDetails_SourceField" ></span>
+		<select class="field" id="sourceDropDown" aria-labelledby="StepPropertyDetails_SourceField" role="combobox"></select>
+	</div>
+	<div>
+		<span class="headline2 ellipsis" role="label" id="StepPropertyDetails_DataField"></span>
+		<select class="field" id="attributeNameDropDown" aria-labelledby="StepPropertyDetails_DataField" role="combobox"></select>
+	</div>
+	<div>
+		<span class="headline2 ellipsis" role="label" id="StepPropertyDetails_Sequence"></span>
+		<select class="field" id="sequenceDropDown" aria-labelledby="StepPropertyDetails_Sequence" role="combobox"></select>
+	</div>
+</div>
+</div>
+<div class="buttons align-self">
+	<span>
+		<input id="stepSave" type="button" value="" class="ellipsis" role="button"/>
+		<input id="stepDiscard" type="button" value="" class="ellipsis" role="button"/>
+	</span>
+</div>
+	<script>
+        var propertyViewCurrentModel;
+        var propertyViewCurrentModelClone;
+
+		$(function () {
+			debugger;
+			var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+			stopwatch.start();
+			document.getElementById("stepSave").addEventListener('click', sendSaveMessage);
+			document.getElementById("stepDiscard").addEventListener('click', discardCallBack);
+			document.getElementById("descriptionTextbox").addEventListener('change', valueChanged);
+			document.getElementById("attributeNameDropDown").addEventListener('change', attributeNameDropDownChanged);
+			document.getElementById("sequenceDropDown").addEventListener('change', valueChanged);
+			document.getElementById("sourceDropDown").addEventListener('change', sourceDropDownChanged);
+			setToolTips();
+			setTabindex();
+			sourceDropDownValueToEntityMap = {};
+			updateHtmlElements();
+			setLocalizedHTMLStrings();
+			propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+			propertyViewCurrentModelClone = propertyViewCurrentModel.getPropertyPageClone();
+			MscrmControls.ProcessDesigner.Validation.Errors.registerPropertyViewCurrentModelClone(propertyViewCurrentModelClone);
+			stopwatch.stop();
+			localStorage.setItem("ProcessDesignerControl_TBX_FieldPropPageLoad", stopwatch.elapsedMilliseconds.toString());
+			renderErrors();
+			GenericWorkflowDesigner.BasePropertyView.updateHtmlElements = updateHtmlElements;
+			MscrmControls.ProcessDesigner.Validation.Errors.refreshErrorMessages = renderErrors;
+		});
+
+		function valueChanged() {
+			propertyViewCurrentModelClone._description = $('#descriptionTextbox').val();
+		    propertyViewCurrentModelClone._attributeName = $("#attributeNameDropDown :selected").val();
+		    propertyViewCurrentModelClone._attributeDisplayName = $("#attributeNameDropDown :selected").text();
+		    $('#descriptionTextbox').attr("title", $('#descriptionTextbox').val());
+		    $('#sourceDropDown').attr("title", $('#sourceDropDown :selected').text());
+		    $('#attributeNameDropDown').attr("title", $('#attributeNameDropDown :selected').text());
+		    $('#sequenceDropDown').attr("title", $('#sequenceDropDown :selected').text());
+		    propertyViewCurrentModelClone.validateOnChange();
+		    renderErrors();
+		}
+
+		function renderErrors() {
+			// see if any errors exists in clone model
+			if (propertyViewCurrentModelClone.getErrorCount() > 0) {
+				MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(propertyViewCurrentModelClone, $('#properties'), propertyViewCurrentModelClone.getErrorMessages());
+			}
+			// see if any errors exists in activity model
+			else {
+			    var model = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+			    if (!CommonTypes.Types.Object.isNullOrUndefined(model) && !CommonTypes.Types.String.isNullOrEmpty(model) && model.getErrorCount() > 0 && !propertyViewCurrentModelClone.isValid) {
+			        MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel(), $('#properties'), GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel().getErrorMessages());
+			    }
+			    else {
+			        MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(propertyViewCurrentModelClone, $('#properties'), propertyViewCurrentModelClone.getErrorMessages());
+			    }
+			}
+		}
+
+		function sourceDropDownChanged() {
+		    var entityName = sourceDropDownValueToEntityMap[$("#sourceDropDown").val()].get_entityName();
+		    $('#attributeNameDropDown').val("");
+			MscrmControls.ProcessDesigner.MetadataProvider.getFieldAttributeMetadata(entityName, loadAttributeMetadata, getAttributeMetadataFailureCallback);
+		    valueChanged();
+		}
+
+		var sourceDropDownValueToEntityMap;
+
+		/* Stores the default step name from the step activity model */
+		var defaultStepName;
+
+		/* Change event handler for attributeNameDropDown */
+		function attributeNameDropDownChanged() {
+			var selectValue = $(this).val();
+
+			/* Check if DropDown value has not yet been changed by user, after the Step was newly created */
+			if (selectValue != "") {
+
+				/* Remove the Placeholder after user changes the attribute name dropdown option */
+				$("#attributeNameDropDown option[value='']").remove();
+				var stepName = $("#descriptionTextbox").val();
+
+				/* Update the Step Name to match the selected dropdown value if user has not changed it */
+				if (stepName === defaultStepName) {
+					var newStepName = $("#attributeNameDropDown option:selected").text();
+
+					// Value shown as text
+					$('#descriptionTextbox').val(newStepName);
+				}
+			}
+			valueChanged();
+		}
+
+		//Set HTML Text
+		function setLocalizedHTMLStrings() {
+			$("#StepPropertyDetails_Header").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_LibraryTileName_field"));
+			$("#StepPropertyDetails_StepName").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_FieldPropertyDetails_FieldName"));
+			$("#StepPropertyDetails_SourceField").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_BranchPropertyDetails_Source"));
+			$("#StepPropertyDetails_DataField").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_DataField"));
+			$("#StepPropertyDetails_Sequence").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_Sequence"));
+			$("#stepSave").val(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Apply'));
+			$("#stepDiscard").val(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Discard'));
+		}
+
+		/* Set the tool tips for the HTML elements*/
+		function setToolTips() {
+			$('#StepPropertyDetails_StepName').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_FieldNameTooltip"));
+			$('#StepPropertyDetails_SourceField').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_SourceTooltip"));
+			$('#StepPropertyDetails_DataField').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_Tooltip_Select_Data_Field"));
+			$('#StepPropertyDetails_Sequence').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_SequenceTooltip"));
+			$('#stepDiscard').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_DiscardChangesTooltip"));
+			if ($('#stepSave').attr("disabled") == undefined) {
+				$('#stepSave').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Available"));
+			}
+			else {
+				$('#stepSave').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Unavailable"));
+			}
+		}
+
+		/* Set the tabindex for the HTML elements*/
+		function setTabindex() {
+			$('#descriptionTextbox').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#sourceDropDown').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#attributeNameDropDown').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#sequenceDropDown').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#stepDiscard').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#stepSave').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+		}
+
+		/* Update the Html elements based on the available model properties */
+		function updateHtmlElements() {
+			var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+			// EditorDataWrapper will already be set by the time the step is opened
+			loadRelationshipMetadata(MscrmControls.ProcessDesigner.MetadataProvider.getLoadedRelationshipEntityMetadata());
+
+			var attributeNameDropdown = $('#attributeNameDropDown');
+			// Description
+			// Added current name as description
+			$('#descriptionTextbox').val(propertyViewCurrentModel._description);
+			$('#descriptionTextbox').attr("title", $('#descriptionTextbox').val());
+
+			// Attribute Name Drop Down
+			var attributeName = propertyViewCurrentModel._attributeName;
+
+			/* Check if DropDown value has not yet been changed by user, after the Step was newly created */
+			if (attributeName == null || attributeName === "") {
+				/* Prepend the placeholder to attributeNameDropdown if attribute name has not been updated */
+				attributeNameDropdown.prepend('<option value="">' + MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_Select") + '</option>');
+				attributeNameDropdown.val("");
+			}
+			else {
+				/* Bind just the attribute logical name to the 'attributeName' Dropdown, until the metadata is received from Metadata Provider */
+				attributeNameDropdown.append('<option value="' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeName) + '">' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeName) + '</option>');
+				attributeNameDropdown.val(attributeName);
+			}
+			$("#attributeNameDropDown").attr("title", $("#attributeNameDropDown :selected").text());
+			// Get attribute metadata for the selected entity and add it to the attribute dropdown
+			MscrmControls.ProcessDesigner.MetadataProvider.getFieldAttributeMetadata(propertyViewCurrentModel.entity.get_entityName(), loadAttributeMetadata, getAttributeMetadataFailureCallback);
+
+			//Update the sequence dropdown			
+			updateSequenceDropdown();
+
+			// Set the Default Step Name
+			defaultStepName = propertyViewCurrentModel._description;
+		}
+
+		// populates previously saved values in all the data fields.
+		function discardCallBack() {
+			var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+			
+			// source Dropdown
+			var sourceDropDownValue;
+			if (propertyViewCurrentModel.entity instanceof Microsoft.Crm.Workflow.Expressions.PrimaryEntity)
+			{
+				sourceDropDownValue = propertyViewCurrentModel.entity.get_entityName();
+			}
+			else
+			{
+				sourceDropDownValue = propertyViewCurrentModel.entity.get_relationshipName();
+			}
+			$('#sourceDropDown').val(sourceDropDownValue);
+			$('#sourceDropDown').attr("title", $('#sourceDropDown :selected').text());
+
+			// Description or step name
+			
+			$('#descriptionTextbox').val(propertyViewCurrentModel._description);
+			$('#descriptionTextbox').attr("title", $('#descriptionTextbox').val());
+
+			// attribute Name dropdown
+			$('#attributeNameDropDown').val(propertyViewCurrentModel._attributeName);
+			$("#attributeNameDropDown").attr("title", $("#attributeNameDropDown :selected").text());
+			MscrmControls.ProcessDesigner.MetadataProvider.getFieldAttributeMetadata(propertyViewCurrentModel.entity.get_entityName(), loadAttributeMetadata, getAttributeMetadataFailureCallback);
+
+			var parentStageModel = propertyViewCurrentModel._parentStage;
+			var currentSequence = parentStageModel.getStepSequence(propertyViewCurrentModel._stepId);
+			$('#sequenceDropDown').val(currentSequence);
+			$('#sequenceDropDown').attr("title", $('#sequenceDropDown :selected').text());
+		}
+
+		function updateSequenceDropdown() {
+			//Populate the dropdown options
+			var sequenceDropdownElement = $('#sequenceDropDown');
+			var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+			var parentStageModel = propertyViewCurrentModel._parentStage;
+			var stepsCount = parentStageModel.steps.length;
+			for (var i = 1; i <= stepsCount; i++) {
+				sequenceDropdownElement.append('<option value="' + i + '">' + i + '</option>');
+			}
+			
+			//Update the value of this dropdown to the sequence no. of current selected step
+			//TODO : <11May2016> : <depati> : <Use the _sequence attribute once the code for it is complete>
+			//sequenceDropdownElement.val(propertyViewCurrentModel._sequence);
+			var currentSequence = parentStageModel.getStepSequence(propertyViewCurrentModel._stepId);
+			sequenceDropdownElement.val(currentSequence);
+			$('#sequenceDropDown').attr("title", $('#sequenceDropDown :selected').text());
+		}
+
+		function loadRelationshipMetadata(list) {
+			// Populate the dropdown with <attributename (entityname)>, and also include the primary entity itself as a source
+			var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+			var sourceDropDown = $('#sourceDropDown');
+			var sourceEntity = propertyViewCurrentModel.entity;
+			sourceDropDown.empty();
+
+			list.forEach(function (relationshipMetadata) {
+				sourceDropDown.append('<option value="' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(relationshipMetadata.RelationshipName) + '">' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(relationshipMetadata.RelationshipAttribute.Label.Description) + ' (' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(relationshipMetadata.RelationshipEntity.DisplayName) + ')</option>');
+				sourceDropDownValueToEntityMap[relationshipMetadata.RelationshipName] = new Microsoft.Crm.Workflow.Expressions.RelatedEntityLinked(MscrmControls.ProcessDesigner.processStep, relationshipMetadata.RelationshipAttribute.LogicalName, relationshipMetadata.RelationshipEntity.EntityLogicalName, relationshipMetadata.RelationshipName);
+			});
+
+			// Apart from the relationship entities, the primary entity should be added as a source
+			sourceDropDown.prepend('<option value="' + MscrmControls.ProcessDesigner.primaryEntity + '">' +  Xrm.Internal.getEntityDisplayName(MscrmControls.ProcessDesigner.primaryEntity) + '</option>');
+			sourceDropDownValueToEntityMap[MscrmControls.ProcessDesigner.primaryEntity] = new Microsoft.Crm.Workflow.Expressions.PrimaryEntity(MscrmControls.ProcessDesigner.processStep);
+			
+			var sourceDropDownValue;
+			if (sourceEntity instanceof Microsoft.Crm.Workflow.Expressions.PrimaryEntity)
+			{
+				sourceDropDownValue = sourceEntity.get_entityName();
+			}
+			else {
+				sourceDropDownValue = sourceEntity.get_relationshipName();
+			}
+			sourceDropDown.val(sourceDropDownValue);
+			$('#sourceDropDown').attr("title", $('#sourceDropDown :selected').text());
+		}
+
+		function loadAttributeMetadata(list) {
+			// Filter the Composite fields from the list
+			var filteredAttributeList = [];
+			for (var attribute in list) {
+				if (!MscrmControls.ProcessDesigner.MetadataProxy.IsAttributeNotAllowed(list[attribute].logicalName)) {
+					filteredAttributeList.push(list[attribute]);
+				}
+			}
+			list = filteredAttributeList;
+
+			var attributeNameDropdown = $('#attributeNameDropDown');
+			// Clear the existing options from attributeNameDropdown
+			var attributeName = GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeNameDropdown.val());
+			attributeNameDropdown.empty();
+
+			// Bind the entire attribute metadata to the 'attributeName' Dropdown, now that it is received from Metadata Provider
+			for (var i = 0; i < list.length; i++) {
+				var attributeData = list[i];
+				attributeNameDropdown.append('<option value="' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeData.logicalName) + '">' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeData.displayName) + '</option>');
+			}
+
+			/* Check if DropDown value has not yet been changed by user, after the Step was newly created */
+			if (attributeName == null || attributeName === "") {
+				/* Prepend the placeholder to attributeNameDropdown if attribute name has not been updated */
+				attributeNameDropdown.prepend('<option value="">' + MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_Select") + '</option>');
+				attributeNameDropdown.val("");
+			}
+			else {
+				attributeNameDropdown.val(attributeName);
+			}
+			$("#attributeNameDropDown").attr("title", $("#attributeNameDropDown :selected").text());
+		}
+
+		function getRelationshipMetadataFailureCallback() {
+			// TODO: 4/8/2016 : abaror : Implement Error Handling
+			Console.Log("Metadata retrieval failed!");
+		}
+
+		function getAttributeMetadataFailureCallback() {
+			// TODO : 29/04/2016 : v-mandh :Implement Error Handling
+		}        
+
+		/* Retrieve the updated values from Html elements and return them back to the parent using post message */
+		function sendSaveMessage() {
+			var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+			stopwatch.start();
+
+			// Indicate to Telemetry that Property Page was saved
+			MscrmControls.ProcessDesigner.isPropertyPageSaved = true;
+
+		    var validProperties = propertyViewCurrentModelClone.validateOnAction(MscrmControls.ProcessDesigner.Validation.Level.Apply);
+		    if (validProperties) {
+				var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+				var parentStageModel = propertyViewCurrentModel._parentStage;
+				var currentPosition = parentStageModel.getStepSequence(propertyViewCurrentModel._stepId);
+				var newPosition = $("#sequenceDropDown :selected").val();
+				var stageId = parentStageModel.stageId;
+                
+				var stepSourceEntity = sourceDropDownValueToEntityMap[$('#sourceDropDown').val()];
+                
+				var editItems = {
+				    _entity: stepSourceEntity,
+				    _stepName: $("#descriptionTextbox").val(),
+				    _description: $("#descriptionTextbox").val(),
+				    _attributeName: $("#attributeNameDropDown :selected").val(),
+				    _attributeDisplayName: $("#attributeNameDropDown :selected").text(),
+				    _sequence: $('#sequenceDropDown :selected').val()
+				};
+				// FIXME : find why "GenericWorkflowDesigner.currentModel" is getting over written with StageActivity.
+				GenericWorkflowDesigner.currentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+				GenericWorkflowDesigner.eventManager.trigger(GenericWorkflowDesigner.FrameworkEvents.updateProperty, editItems);
+		    }
+
+			stopwatch.stop();
+			localStorage.setItem("ProcessDesignerControl_TBX_FieldApplyTime", stopwatch.elapsedMilliseconds.toString());
+
+		    //Refresh the errors based on user entered values
+		    renderErrors();
+		}
+
+		dialogMessageTypes = {
+			Information: 0,
+			Warning: 1,
+			Error: 2
+		}
+	</script>

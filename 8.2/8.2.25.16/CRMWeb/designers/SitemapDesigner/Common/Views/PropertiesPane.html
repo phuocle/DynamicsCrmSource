@@ -1,0 +1,11 @@
+<div class="mscrm-propertiesPaneContainer" ng-controller="mscrmPropertiesPaneController as propertyPaneController" ng-show="showPropertiesPane" data-mcteleport-destination="siteMapDesignerRightPanePropertiesTab" mscrm-init-teleport-dest>
+	<form class="mscrm-propertiesPane-PropertiesForm" name="$root.rightPaneForm" ng-hide="unsupportedComponent">
+		<div ng-repeat="PropertyDirective in PropertyDirectives">
+			<div render="PropertyDirective"></div>
+		</div>
+		<div tabindex="-1"></div> <!--Adding an empty div to fix an accesibility bug 360129, so that advanced section is never the last element. Need to remove this when we fix the accessibility infra bug 362471.-->
+	</form>
+	<div ng-show="unsupportedComponent" class="mscrm-propertiesPane-UnsupportedComponent">
+		<span id="SitemapDesigner.UnsupportedComponent.ErrorText" ><mscrm-locale mscrm-resource-key="SitemapDesigner.UnsupportedComponent" /></span>
+	</div>
+</div>

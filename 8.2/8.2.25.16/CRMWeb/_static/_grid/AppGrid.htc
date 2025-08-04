@@ -1,0 +1,705 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready"	onevent="initAppGrid()"/>
+<public:method	name="Reset"/>
+<public:method	name="Refresh"/>
+<public:method	name="Print"/>
+<public:method	name="ExportToExcel"/>
+<public:method	name="GetParameter"/>
+<public:method	name="RunReport"/>
+<public:method	name="handleAutoExpandRows"/>
+<public:event	name="onselectionchange"	id="OnSelectionChange" />
+<public:event	name="onbeforeformload"		id="OnBeforeFormLoad" />
+<public:event   name="onreset"			id="OnReset" />
+<public:event	name="onresetcomplete"	id="OnResetComplete" />
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _commandResetGrid = null,
+    _funOnResetComplete = null;
+function IsNull(o)
+{
+    return "undefined" == typeof o || "unknown" == typeof o || null == o
+}
+function Refresh()
+{
+    Reset(null)
+}
+function Reset(funOnResetComplete)
+{
+    OnReset.fire();
+    if(!IsNull(typeof Mscrm.PageManager) && !IsNull(Mscrm.PageManager.get_instance()) && Mscrm.PageManager.isFlatUIPage())
+    {
+        var gridControl = $find(this.id),
+            parameters = {};
+        parameters["viewid"] = GetParameter("viewid");
+        parameters["viewtype"] = GetParameter("viewtype");
+        gridControl.raiseEvent(Mscrm.ScriptEvents.OnGridReset,parameters)
+    }
+    if(!IsNull(typeof Mscrm.FilterSet))
+    {
+        var filterSet = $find(this.id + "_filterSet");
+        if(!IsNull(filterSet))
+        {
+            var o = this.all.divGridParams.children["fetchXml"];
+            !IsNull(o) && 
+                this.all.divGridParams.removeChild(o)
+        }
+    }
+    if(!IsNull(typeof Mscrm.FilterSet))
+    {
+        var filterSet = $find(this.id + "_filterSet");
+        !IsNull(filterSet) && 
+            filterSet.DisposeFilterMenu()
+    }
+    element.ShowLoadingMessage();
+    if(!IsNull(funOnResetComplete))
+    {
+        _funOnResetComplete = funOnResetComplete;
+        window.setTimeout(resetInternal,1)
+    }
+    else
+    {
+        _funOnResetComplete = null;
+        return resetInternal()
+    }
+}
+function GetParameter(sName)
+{
+    var oTmp,
+        oDivParams = element.all.divGridParams;
+    if(!IsNull(oDivParams))
+        oTmp = oDivParams.children[sName];
+    return !IsNull(oTmp) ? oTmp.value : null
+}
+function resetInternal()
+{
+    if(_commandResetGrid == null)
+        _commandResetGrid = new Mscrm.RemoteCommandXml("AppGridWebService","Reset");
+    _commandResetGrid.setContent(buildGridXml());
+    _commandResetGrid.setParameter("id",this.id);
+    var result = _commandResetGrid.execute();
+    return resetComplete(result)
+}
+function resetComplete(oResult)
+{
+    if(oResult.get_success() && oResult.get_returnValue() != "")
+    {
+        var oXmlDoc = XUI.Xml.LoadXml(oResult.get_returnValue()),
+            o = element.rows[0].cells[0].firstChild;
+        o.removeChild(o.firstChild);
+        o.innerHTML = oXmlDoc.selectSingleNode("gridXml/gridHtml").text;
+        var oNodes = oXmlDoc.selectNodes("gridXml/viewParameters/div");
+        if(oNodes != null)
+            for(var i = 0; i < oNodes.length; i++)
+                element.SetParameter(oNodes[i].getAttribute("id"),oNodes[i].text);
+        oNodes = oXmlDoc.selectNodes("gridXml/gridProperties/div");
+        if(oNodes != null)
+            for(var i = 0; i < oNodes.length; i++)
+                element.all.divGridProps.children[oNodes[i].getAttribute("id")].value = oNodes[i].text;
+        element.Init();
+        initAppGrid();
+        element.InitPresence();
+        if(!IsNull(typeof Mscrm.FilterSet))
+        {
+            var filterSet = $find(this.id + "_filterSet");
+            if(!IsNull(filterSet))
+            {
+                filterSet.HandleGridReset();
+                for(var menuItems = getMenuFilterItems(),
+                    length = menuItems[0].length,
+                    i = 0; i < length; i++)
+                {
+                    var type = menuItems[1][i];
+                    if(type == "string")
+                        $create(Mscrm.StringFilterPopup,{},null,null,menuItems[0][i]);
+                    else
+                        if(type == "number")
+                            $create(Mscrm.NumberFilterPopup,{},null,null,menuItems[0][i]);
+                        else
+                            if(type == "datetime")
+                                $create(Mscrm.DateTimeFilterPopup,{},null,null,menuItems[0][i]);
+                            else
+                                if(type == "picklist")
+                                    $create(Mscrm.PicklistFilterPopup,{},null,null,menuItems[0][i]);
+                                else
+                                    type == "lookup" && 
+                                        $create(Mscrm.LookupFilterPopup,{},null,null,menuItems[0][i])
+                }
+                if(filterSet.IsFilterEnabled())
+                    if(filterSet.CanEnableFilters())
+                        filterSet.EnableFilters();
+                    else
+                        filterSet.MarkFiltersAsDisabled()
+            }
+        }
+    }
+    !IsNull(_funOnResetComplete) && 
+        _funOnResetComplete(oResult);
+    OnResetComplete.fire();
+    if(!IsNull(typeof Mscrm.PageManager) && !IsNull(Mscrm.PageManager.get_instance()) && Mscrm.PageManager.isFlatUIPage())
+    {
+        var gridControl = $find(this.id),
+            parameters = {};
+        parameters["viewid"] = GetParameter("viewid");
+        parameters["viewtype"] = GetParameter("viewtype");
+        gridControl.raiseEvent(Mscrm.ScriptEvents.OnGridResetComplete,parameters)
+    }
+    return oResult.Success
+}
+function getMenuFilterItems()
+{
+    var strTag = "LI",
+        strClass = "ms-crm-FilterPopupMenu";
+    objContElm = $get(this.id + "_gridBar");
+    var objColl = objContElm.getElementsByTagName(strTag),
+        arr = [];
+    arr[0] = [];
+    arr[1] = [];
+    for(var i = 0,
+        j = objColl.length; i < j; i++)
+        if(objColl[i].className === strClass)
+            if(objColl[i].filtermenutype)
+            {
+                arr[0].push(objColl[i]);
+                arr[1].push(objColl[i].filtermenutype)
+            }
+    return arr
+}
+function Print()
+{
+    var gridControl = $find(this.id);
+    Mscrm.CrmHeader.setScriptFile(Mscrm.CrmUri.create("/_static/_common/scripts/ribbonactions.js"));
+    Mscrm.GridRibbonActions.print(gridControl)
+}
+function ExportToExcel()
+{
+    var gridControl = $find(this.id);
+    Mscrm.CrmHeader.setScriptFile(Mscrm.CrmUri.create("/_static/_common/scripts/ribbonactions.js"));
+    Mscrm.GridRibbonActions.exportToExcel(gridControl,gridControl.get_entityTypeCode())
+}
+function RunReport(bInstance,sName,iReportType,sHelpId)
+{
+    var gridControl = $find(this.id);
+    Mscrm.CrmHeader.setScriptFile(Mscrm.CrmUri.create("/_static/_common/scripts/ribbonactions.js"));
+    Mscrm.GridRibbonActions.runReportFromAppGrid(gridControl,gridControl.get_selectedIds(),bInstance,sName,iReportType,sHelpId)
+}
+function initAppGrid()
+{
+    if(element.InnerGrid)
+    {
+        element.InnerGrid.detachEvent("onselectionchange",raiseOnSelectionChange);
+        element.InnerGrid.attachEvent("onselectionchange",raiseOnSelectionChange);
+        element.InnerGrid.detachEvent("onbeforeformload",raiseOnBeforeFormLoad);
+        element.InnerGrid.attachEvent("onbeforeformload",raiseOnBeforeFormLoad)
+    }
+    element.detachEvent("onrefresh",initAppGrid);
+    element.attachEvent("onrefresh",initAppGrid);
+    var oDivDataArea = element.all[this.id + "_divDataArea"];
+    if(oDivDataArea.Expandable === "1" && this.parentElement.className != "ms-crm-Category-List")
+    {
+        element.detachEvent("onrefresh",handleAutoExpandRows);
+        element.attachEvent("onrefresh",handleAutoExpandRows);
+        window.detachEvent("onresize",handleAutoExpandRows);
+        window.attachEvent("onresize",handleAutoExpandRows);
+        deferHandleAutoExpand()
+    }
+}
+function SetDivGridParameter(parametersDiv,name,value)
+{
+    if(!IsNull(parametersDiv) && !IsNull(name) && !IsNull(value))
+    {
+        var oTmp = parametersDiv.children[name];
+        if(!IsNull(oTmp))
+            oTmp.value = value
+    }
+}
+var _timer,
+    _loopCount = 0;
+function deferHandleAutoExpand()
+{
+    if((IsNull(this.all) || element.readyState != "complete") && _loopCount < 5e3)
+    {
+        clearTimeout(_timer);
+        _timer = setTimeout(deferHandleAutoExpand,2);
+        _loopCount++;
+        return
+    }
+    if(IsNull(_bAutoSubgrid))
+        _bAutoSubgrid = IsAutoSubgrid();
+    _bAutoSubgrid && 
+        getGridInfo();
+    handleAutoExpandRows()
+}
+var _gridTdElement = null,
+    _gridRowPosition,
+    _gridRow = null,
+    _gridParentTable = null,
+    _gridParentTableControlMatrix = [],
+    _totalRowsInTable = 0,
+    _gridSpanElement = null,
+    _hiddenCells = [],
+    _gridParentTableHeightArray = [],
+    _gridColSpan,
+    _gridColumnPos = null,
+    _isLastControl = false,
+    _hiddenCellsInserted = false,
+    _bAutoSubgrid = null,
+    _oldRowSpan;
+function GetGridSpan()
+{
+    var spanName = this.id + "_span",
+        spanElement = this.element.parentElement;
+    while(!IsNull(spanElement) && spanElement.id != spanName)
+        spanElement = spanElement.parentElement;
+    return spanElement
+}
+function GetGridParentElementByTag(targetTagName,gridSpan)
+{
+    var elem = null,
+        span = gridSpan;
+    if(IsNull(span))
+    {
+        if(IsNull(_gridSpanElement))
+            _gridSpanElement = GetGridSpan();
+        span = _gridSpanElement
+    }
+    if(!IsNull(span))
+    {
+        elem = span.parentElement;
+        while(!IsNull(elem) && elem.tagName != targetTagName)
+            elem = elem.parentElement
+    }
+    return elem
+}
+function GetGridTdElement()
+{
+    return GetGridParentElementByTag("TD")
+}
+function GetGridRow()
+{
+    return GetGridParentElementByTag("TR")
+}
+function GetGridColumnPostion()
+{
+    var columnPosition = 0;
+    if(_gridTdElement != null)
+    {
+        var oElement = _gridTdElement.previousSibling;
+        while(oElement != null)
+        {
+            columnPosition += oElement.colSpan;
+            oElement = oElement.previousSibling
+        }
+    }
+    return columnPosition
+}
+function GetGridRowPostion()
+{
+    var rowPosition = 0;
+    if(_gridRow != null)
+    {
+        curRow = _gridRow;
+        while(curRow.previousSibling != null)
+        {
+            rowPosition++;
+            curRow = curRow.previousSibling
+        }
+    }
+    return rowPosition
+}
+function GetGridParentTable()
+{
+    return GetGridParentElementByTag("TABLE")
+}
+function FindFirstEmptyCellColInTableRow(rowNumber)
+{
+    for(var i = 0; i < 8; i++)
+        if(_gridParentTableControlMatrix[rowNumber][i] == -1)
+            return i;
+    Mscrm.CrmDebug.fail("Couldn't find an empty cell in row " + rowNumber);
+    return 0
+}
+function GetgridParentTableControlMatrix()
+{
+    if(_gridParentTableControlMatrix.length != 0)
+        return;
+    _gridParentTable = GetGridParentTable();
+    if(_gridParentTable != null)
+    {
+        if(_gridParentTable.rows[0].offsetHeight == 0)
+            return;
+        var currentRow;
+        _totalRowsInTable = _gridParentTable.rows.length;
+        for(var rowIndex = 0; rowIndex < _totalRowsInTable; rowIndex++)
+        {
+            _hiddenCells[rowIndex] = [null,null,null,null,null,null,null,null];
+            _gridParentTableControlMatrix[rowIndex] = [-1,-1,-1,-1,-1,-1,-1,-1]
+        }
+        for(var currentGridRowPosition = null,
+            currentGridColPosition = null,
+            currentGridColPositionInControlMatrix = null,
+            currentGridRowSpan = null,
+            currentGridColSpan = null,
+            rowIndex = 0; rowIndex < _totalRowsInTable; rowIndex++)
+        {
+            currentRow = _gridParentTable.rows[rowIndex];
+            var rowHeight = currentRow.offsetHeight,
+                cellColSpan,
+                lastCell = FindFirstEmptyCellColInTableRow(rowIndex),
+                cell,
+                isHiddenCell,
+                cellRowSpan;
+            for(j = 0; j < currentRow.cells.length; j++)
+            {
+                cell = currentRow.cells[j];
+                isHiddenCell = IsHiddenCell(cell);
+                while(_gridParentTableControlMatrix[rowIndex][lastCell] != -1)
+                {
+                    lastCell++;
+                    if(lastCell >= 8)
+                    {
+                        lastCell = 8;
+                        break
+                    }
+                }
+                cellColSpan = cell.colSpan;
+                var isCellContainsCurrentGrid = cell.topTDid == this.id + "_TopTD";
+                if(isCellContainsCurrentGrid)
+                    cellRowSpan = _oldRowSpan;
+                else
+                    cellRowSpan = cell.rowSpan;
+                for(var cellRowIndex = 0; cellRowIndex < cellRowSpan; cellRowIndex++)
+                    for(k = 0; k < cellColSpan; k++)
+                    {
+                        var flag;
+                        if(isHiddenCell)
+                        {
+                            if(cellRowIndex == 0 && k == 0)
+                                flag = "hc";
+                            else
+                                flag = "hm";
+                            _hiddenCells[rowIndex + cellRowIndex][lastCell + k] = cell
+                        }
+                        else
+                            if(isCellContainsCurrentGrid)
+                            {
+                                flag = this.id;
+                                currentGridRowPosition = rowIndex;
+                                currentGridColPosition = j;
+                                currentGridRowSpan = cellRowSpan;
+                                currentGridColSpan = cellColSpan;
+                                currentGridColPositionInControlMatrix = lastCell
+                            }
+                            else
+                                if(cellRowIndex == 0 && k == 0)
+                                    flag = "c";
+                                else
+                                    flag = "m";
+                        _gridParentTableControlMatrix[rowIndex + cellRowIndex][lastCell + k] = flag
+                    }
+                lastCell = lastCell + cellColSpan
+            }
+            _gridParentTableHeightArray[rowIndex] = rowHeight
+        }
+        InsertHiddenCell(_gridParentTable,currentGridRowPosition,currentGridColPosition,currentGridRowSpan,currentGridColSpan,currentGridColPositionInControlMatrix)
+    }
+}
+function IsHiddenCell(cell)
+{
+    var allChildrenAreHidden = true;
+    if(!IsNull(cell.children))
+        for(var i = 0; i < cell.children.length; i++)
+        {
+            var child = cell.children[i],
+                childIsHidden = !IsNull(child) && !IsNull(child.style) && child.style.display == "none";
+            if(!childIsHidden)
+            {
+                allChildrenAreHidden = false;
+                break
+            }
+        }
+    return !IsNull(cell.style) && cell.style.display == "none" || allChildrenAreHidden
+}
+var _initialRowSpan = 0;
+function GetInitialRowSpan()
+{
+    var result,
+        oDivDataArea = element.all[this.id + "_divDataArea"];
+    if(!IsNull(oDivDataArea))
+    {
+        var maxRow = oDivDataArea.MaxRowsBeforeScroll;
+        if(!IsNull(maxRow))
+            result = parseInt(maxRow,10)
+    }
+    return result
+}
+function InsertHiddenCell(gridParentTable,currentGridRowPosition,currentGridColPosition,currentGridRowSpan,currentGridColSpan,currentGridColPositionInControlMatrix)
+{
+    if(_hiddenCellsInserted || IsNull(gridParentTable) || IsNull(currentGridRowPosition))
+        return;
+    for(i = 1; i < currentGridRowSpan; i++)
+    {
+        for(var row = gridParentTable.rows[currentGridRowPosition + i],
+            insertPos = 0,
+            cellIndex = 0; cellIndex < currentGridColPositionInControlMatrix; cellIndex++)
+            if(_gridParentTableControlMatrix[currentGridRowPosition + i][cellIndex] == "c" || _gridParentTableControlMatrix[currentGridRowPosition + i][cellIndex] == "hc")
+                insertPos++;
+        if(GetParameter("LayoutStyle") != "PrintList")
+        {
+            var newCell = row.insertCell(insertPos);
+            newCell.colSpan = _gridColSpan;
+            newCell.innerHTML = '<DIV style= "display:none" />';
+            newCell.insertBy = this.id;
+            newCell.style.display = "none";
+            _hiddenCells[currentGridRowPosition + i][currentGridColPositionInControlMatrix] = newCell
+        }
+    }
+    _hiddenCellsInserted = true
+}
+function IsLastControlOfColumn()
+{
+    if(_gridParentTableControlMatrix.length > 0)
+    {
+        _gridRowPosition = GetGridRowPostion();
+        gridColPosition = GetGridColumnPostion();
+        _gridColSpan = _gridTdElement.colSpan;
+        for(row = _gridRowPosition + 1; row < _gridParentTableControlMatrix.length; row++)
+            for(col = gridColPosition; col < gridColPosition + _gridColSpan; col++)
+                if(!IsNull(_gridParentTableControlMatrix[row][col]) && (_gridParentTableControlMatrix[row][col] == "c" || _gridParentTableControlMatrix[row][col] == "mc"))
+                    return false
+    }
+    return true
+}
+function getGridInfo()
+{
+    if(this.parentElement.className == "ms-crm-Category-List")
+        return;
+    _gridSpanElement = GetGridSpan();
+    _gridTdElement = GetGridTdElement();
+    _gridRow = GetGridRow();
+    _gridColumnPos = GetGridColumnPostion();
+    _gridRowPosition = GetGridRowPostion();
+    _gridParentTable = GetGridParentTable();
+    if(!IsNull(_gridParentTable))
+    {
+        _totalRowsInTable = _gridParentTable.rows.length;
+        _oldRowSpan = _gridTdElement.rowSpan;
+        _gridColSpan = _gridTdElement.colSpan;
+        _gridTdElement.topTDid = this.id + "_TopTD";
+        var oDivDataArea = element.all[this.id + "_divDataArea"];
+        GetgridParentTableControlMatrix();
+        _isLastControl = IsLastControlOfColumn()
+    }
+}
+var _heightForNonData = 0;
+function getTotalHeight()
+{
+    var parentElement = this.element.parentElement;
+    while(!IsNull(parentElement) && parentElement.className != "ms-crm-Form-SubGrid-Layout")
+    {
+        if(parentElement.className == "ms-crm-Form")
+            return this.element.offsetHeight;
+        parentElement = parentElement.parentElement
+    }
+    var height;
+    if(IsNull(parentElement))
+        height = this.element.offsetHeight;
+    else
+        height = parentElement.parentElement.parentElement.offsetHeight;
+    return height
+}
+function IsAutoSubgrid()
+{
+    return GetParameter("subgridAutoExpand") == "1"
+}
+function handleAutoExpandRows()
+{
+    if(this.parentElement.className == "ms-crm-Category-List")
+        return;
+    var oDivDataArea = element.all[this.id + "_divDataArea"];
+    if(oDivDataArea.Expandable != "1")
+        return;
+    if(IsNull(_bAutoSubgrid))
+        _bAutoSubgrid = IsAutoSubgrid();
+    if(_heightForNonData == 0)
+        if(_bAutoSubgrid)
+        {
+            if(IsNull(_gridTdElement))
+                _gridTdElement = GetGridTdElement();
+            if(!IsNull(_gridTdElement))
+            {
+                var oldrowSpan = _gridTdElement.rowSpan;
+                _gridTdElement.rowSpan = 1;
+                _heightForNonData = getTotalHeight() - oDivDataArea.parentElement.offsetHeight;
+                _gridTdElement.rowSpan = oldrowSpan
+            }
+        }
+        else
+            _heightForNonData = getTotalHeight() - oDivDataArea.parentElement.offsetHeight;
+    _bAutoSubgrid && 
+        getGridInfo();
+    var iMaxRows = parseInt(oDivDataArea.MaxRowsBeforeScroll,10),
+        recsPerPage = this.element.GetParameter("RecordsPerPage"),
+        iRecordPerpage;
+    if(!IsNull(recsPerPage))
+    {
+        iRecordPerpage = parseInt(recsPerPage,10);
+        if(iRecordPerpage < iMaxRows)
+            iMaxRows = iRecordPerpage
+    }
+    if(!isNaN(iMaxRows) && iMaxRows > 0)
+        if(typeof element.InnerGrid != "undefined" && !IsNull(element.InnerGrid))
+        {
+            var iRowCount = element.InnerGrid.NumberOfRecords;
+            if(IsNull(iRowCount))
+                return;
+            var iRowHeight = element.InnerGrid.DefaultRowHeight;
+            if(typeof element.InnerGrid.DataTableBody.rows[0].currentStyle != "undefined" && !IsNull(element.InnerGrid.DataTableBody.rows[0].currentStyle))
+            {
+                var iRowStyleHeight = parseInt(element.InnerGrid.DataTableBody.rows[0].currentStyle.height,10);
+                if(!isNaN(iRowStyleHeight))
+                    iRowHeight = iRowStyleHeight
+            }
+            var form = window.crmForm,
+                viewportRows = iMaxRows;
+            if(IsNull(form))
+                return;
+            var viewPortHeight = form.GetViewportHeight();
+            if(viewPortHeight <= 0)
+                return;
+            var tabHeaderAndMarginHeight = 45;
+            viewportRows = Math.floor((viewPortHeight - tabHeaderAndMarginHeight - _heightForNonData) / iRowHeight);
+            if(viewportRows < 0)
+                viewportRows = 2;
+            if(iRowCount == 0 || iRowCount == 1)
+                iRowCount = 2;
+            var newStyleHeight;
+            if(_bAutoSubgrid)
+            {
+                iMaxRows = iRecordPerpage;
+                var maxRowsBeforeScroll;
+                if(ShouldExpand())
+                    maxRowsBeforeScroll = viewportRows < iMaxRows ? viewportRows : iMaxRows;
+                else
+                    maxRowsBeforeScroll = 2;
+                oDivDataArea.style.overflowY = "auto";
+                newStyleHeight = iRowHeight * (iRowCount < maxRowsBeforeScroll ? iRowCount : maxRowsBeforeScroll)
+            }
+            else
+            {
+                oDivDataArea.style.overflowY = "auto";
+                newStyleHeight = iRowHeight * iMaxRows
+            }
+            if(oDivDataArea.scrollWidth > oDivDataArea.clientWidth)
+                newStyleHeight = newStyleHeight + element.InnerGrid.ScrollBarSize;
+            if(newStyleHeight > 0)
+            {
+                oDivDataArea.style.height = newStyleHeight;
+                if(_bAutoSubgrid)
+                    if(ShouldExpand())
+                    {
+                        _gridSpanElement = GetGridSpan();
+                        !IsNull(_gridSpanElement) && 
+                            SetRowSpan(newStyleHeight + _heightForNonData)
+                    }
+                var isGridHidden = GetParameter("isGridHidden"),
+                    gridType = GetParameter("GridType");
+                if(gridType == "SubGrid" && isGridHidden != "true")
+                {
+                    if(IsNull(_gridSpanElement))
+                        _gridSpanElement = GetGridSpan();
+                    if(!IsNull(_gridSpanElement))
+                        _gridSpanElement.style.height = "1%"
+                }
+            }
+        }
+}
+function ShouldExpand()
+{
+    return _bAutoSubgrid && _isLastControl
+}
+function SetRowSpan(neededHeight)
+{
+    neededRowSpan = 0;
+    var lastRowIncluded = false;
+    _gridRowPosition;
+    if(_gridParentTableControlMatrix.length == 0 || _gridParentTable == null)
+        return;
+    for(var i = 0; i < _gridParentTable.rows.length; i++)
+        _gridParentTableHeightArray[i] = _gridParentTable.rows[i].offsetHeight;
+    _gridParentTableHeightArray[_gridRowPosition] = 1;
+    var height = _gridParentTableHeightArray[_gridRowPosition],
+        tatalRows = _gridParentTableControlMatrix.length,
+        roundupPixels = 8;
+    while(neededHeight > height + roundupPixels)
+        if(_gridRowPosition + neededRowSpan < tatalRows - 1)
+        {
+            height = height + _gridParentTableHeightArray[_gridRowPosition + neededRowSpan];
+            neededRowSpan = neededRowSpan + 1
+        }
+        else
+        {
+            lastRowIncluded = true;
+            neededRowSpan = neededRowSpan + 1;
+            break
+        }
+    neededHeight - height > 0 && lastRowIncluded && 
+        SetLastRowHeight(neededHeight - height);
+    !lastRowIncluded && 
+        SetLastRowToAuto();
+    SetCellsHidden(_gridRowPosition + 1,_gridRowPosition + neededRowSpan - 1,_gridColumnPos,_gridColumnPos + _gridTdElement.colSpan - 1,true);
+    SetCellsHidden(_gridRowPosition + neededRowSpan,_totalRowsInTable - 1,_gridColumnPos,_gridColumnPos + _gridTdElement.colSpan - 1,false);
+    _gridTdElement.rowSpan = neededRowSpan
+}
+function SetCellsHidden(startRow,endRow,startCol,endCol,hidden)
+{
+    _gridParentTable = GetGridParentTable();
+    for(i = startRow; i <= endRow; i++)
+        for(j = startCol; j <= endCol; j++)
+            if(!IsNull(_hiddenCells[i][j]))
+                _hiddenCells[i][j].style.display = hidden ? "none" : "inline"
+}
+function SetLastRowHeight(height)
+{
+    if(height > 0)
+        _gridParentTable.rows[_totalRowsInTable - 1].height = height
+}
+function SetLastRowToAuto()
+{
+    _gridParentTable.rows[_totalRowsInTable - 1].height = "100%"
+}
+function raiseOnSelectionChange()
+{
+    OnSelectionChange.fire(event);
+    return event
+}
+function raiseOnBeforeFormLoad()
+{
+    OnBeforeFormLoad.fire(event);
+    return event
+}
+function buildGridXml()
+{
+    for(var s = "<grid>",
+        i = 0,
+        oCol = this.all.divGridProps.children,
+        iLen = oCol.length,
+        i = 0; i < iLen; i++)
+        if(oCol[i].value == "")
+            s += "<" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + "/>";
+        else
+            s += "<" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + ">" + CrmEncodeDecode.CrmXmlEncode(oCol[i].value) + "</" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + ">";
+    s += "<parameters>";
+    var divGridParams = this.all["divGridParams"],
+        oCol = divGridParams.children,
+        bHasViewId = oCol["viewid"] != null && oCol["viewid"].value != "{00000000-0000-0000-0000-000000000000}";
+    for(i = 0; i < oCol.length; i++)
+        if((IsNull(oCol[i].requiredMask) || !IsNull(oCol[i].requiredMask) && oCol[i].requiredMask != RequirementLevelEnum.ServerOnly) && (!bHasViewId || oCol[i].id != "layoutXml"))
+            if(oCol[i].value == "")
+                s += "<" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + "/>";
+            else
+                s += "<" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + ">" + CrmEncodeDecode.CrmXmlEncode(oCol[i].value) + "</" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + ">";
+    return s + "</parameters></grid>"
+}
+
+</script>
+</public:component>

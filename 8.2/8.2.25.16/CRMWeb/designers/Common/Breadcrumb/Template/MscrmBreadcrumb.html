@@ -1,0 +1,6 @@
+<div class="mscrm-BreadcrumbList" ng-controller="mscrmBreadcrumbController">
+	<div ng-repeat="breadCrumb in breadcrumbList.breadCrumbs" class="mscrm-BreadcrumbItem">
+		<div id="Common.Breadcrumb.{{$index}}" tabindex="-1" ng-class="['mscrm-BreadcrumbText', { 'mscrm-BreadcrumbLink': breadCrumb.navigatable }]" ng-click="breadCrumbClickHandler(breadCrumb)" ng-attr-title="{{breadCrumb.breadcrumbText}}">{{ breadCrumb.breadcrumbText }}</div>
+		<div class="mscrm-BreadCrumbSeparator mscrm-glyph-NextArrowIcon" ng-if="!($last)"></div>
+	</div>
+</div>

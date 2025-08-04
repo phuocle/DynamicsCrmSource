@@ -1,0 +1,26 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="init()"/>
+<public:method name="SetOptions" internalname="setOptions" />
+<script language="javascript"></script><script type="text/javascript">
+
+var _sOriginalOuterHtmlStart = null,
+    _sOriginalOuterHtmlEnd = null;
+function init()
+{
+    var iEndTag = element.outerHTML.indexOf(">");
+    _sOriginalOuterHtmlStart = element.outerHTML.substring(0,iEndTag + 1);
+    _sOriginalOuterHtmlEnd = "</SELECT>"
+}
+function setOptions(sOptions)
+{
+    element.outerHTML = _sOriginalOuterHtmlStart + sOptions + _sOriginalOuterHtmlEnd;
+    $create(Mscrm.OptionSetUIControl,{},null,null,$get(this.id));
+    if(!IsNull(sOptions))
+    {
+        var ctrl = $find(this.id);
+        ctrl.set_defaultValue(ctrl.get_dataValue())
+    }
+}
+
+</script>
+</public:component>

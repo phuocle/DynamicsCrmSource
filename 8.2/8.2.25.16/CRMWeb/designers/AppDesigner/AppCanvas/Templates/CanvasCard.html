@@ -1,0 +1,95 @@
+<div class="mscrm-Canvas-Card-Wrapper" role="group">
+	<div aria-live="assertive" ng-if="appArtifacts.GetDependencyCount(artifact, entitySwimLane) != 0" 
+		 ng-class="[ 'mscrm-WarningContainer', {'mscrm-WarningContainerHidden': (appArtifacts.GetDependencyCount(artifact, entitySwimLane) == 0) }]">
+		<div class="mscrm-card-Warning">
+			<span id="AppDesigner.CanvasPane.WarningContainer.{{entitySwimLane.entitymetadata.id}}.WarningIcon" class="mscrm-WarningIcon mscrm-glyph-WarningIcon"></span>
+			<span id="AppDesigner.CanvasPane.WarningContainer.{{entitySwimLane.entitymetadata.id}}.dependencyCount" class="mscrm-WarningText" name="title-Warning" ng-attr-title="{{appArtifacts.getDependencyWarning(artifact, entitySwimLane)}}">{{appArtifacts.getDependencyWarning(artifact, entitySwimLane)}}</span>
+		</div>
+	</div>
+	<div id="AppDesigner.CanvasPane.{{artifact.displayName}}"
+		 class="mscrm-Canvas-Card"
+		 ng-class="[('mscrm-artifactType-' + artifact.componentTypeName + 'Card'),{'mscrm-Canvas-ActiveCard': (appArtifacts.IsArtifactCardSelected(artifact, entitySwimLane) || (artifact.IsFlyoutOpen && appArtifacts.ShowExpandCardLink(artifact)))}]">
+		<div ng-click="appArtifacts.OpenComponentRecordList(entitySwimLane, artifact, $event)" mscrm-action-on-select
+			 class="mscrm-Canvas-CardBody" tabindex="-1" aria-label="{{appArtifacts.getCardTitle(artifact)}} {{appArtifacts.getCardDescription(artifact)}}">
+			<div id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.Icon" ng-class="['mscrm-Canvas-CardIcon', ('mscrm-glyph-' + artifact.componentTypeName + 'Icon')]"></div>
+			<div class="mscrm-Canvas-CardDetails">
+				<div id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.CardTitle" class="mscrm-Canvas-CardTitle" ng-attr-title="{{appArtifacts.getCardTitle(artifact)}}">{{appArtifacts.getCardTitle(artifact)}}</div>
+				<div id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.CardDesc" class="mscrm-Canvas-CardDesc" ng-attr-title="{{appArtifacts.getCardDescription(artifact)}}">{{appArtifacts.getCardDescription(artifact)}}</div>
+			</div>
+		</div>
+		<div class="mscrm-Canvas-CardFooter">
+			<div class="mscrm-Canvas-CardAddedCount" ng-click="appArtifacts.OpenComponentRecordList(entitySwimLane, artifact, $event)" mscrm-action-on-select tabindex="-1" aria-labelledby="AppDesigner.CanvasPane.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.CanvasCardRecordAddedCount.Text" ng-attr-title="{{appArtifacts.getReferenceCountTitle(artifact)}}">
+				<div id="AppDesigner.CanvasPane.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.CanvasCardRecordAddedCount.Icon" class="mscrm-Canvas-CardAddedCount-Icon mscrm-glyph-TileCountIcon"></div>
+				<div id="AppDesigner.CanvasPane.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.CanvasCardRecordAddedCount.Text" class="mscrm-Canvas-CardAddedCount-Text">{{appArtifacts.getReferenceCount(artifact)}}</div>
+			</div>
+			<div role="group" class="mscrm-Canvas-CardExpandArea" ng-click="appArtifacts.OpenComponentRecordList(entitySwimLane, artifact, $event)" mscrm-action-on-select>
+				<button id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.CardExpand" ng-show="appArtifacts.ShowExpandCardLink(artifact)" type="button" tabindex="-1" class="mscrm-Canvas-CardExpand" aria-labelledby="AppDesigner.CanvasPane.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.CanvasCardExpandText" ng-click="appArtifacts.HandleToggleSeeHideDetails(artifact, entitySwimLane, $event)" mscrm-action-on-select data-isflyout-src="true" ng-attr-title="{{appArtifacts.getListStatus(artifact)}}">
+					<div class="mscrm-Canvas-CardExpandContent">
+						<div id="AppDesigner.CanvasPane.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.CanvasCardExpandText" class="mscrm-Canvas-CardExpandText"><mscrm-locale mscrm-resource-key="SystemCustomization.DisplayArea.Details" /></div>
+						<div ng-class="['mscrm-Canvas-CardExpandIcon', {
+							 'mscrm-glyph-UpArrowIcon': artifact.IsFlyoutOpen,
+							 'mscrm-glyph-DownArrowIcon': !artifact.IsFlyoutOpen}]"></div>
+					</div>
+				</button>
+			</div>
+		</div>
+		<div class="mscrm-CardRecordList mscrm-Canvas-ActiveCard"
+			 ng-if="artifact.IsFlyoutOpen && appArtifacts.ShowExpandCardLink(artifact)"
+			 mscrm-flyout-accessible-close
+			 data-flyoutsrc-id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.CardExpand"
+			 role="application">
+			<div ng-if="appArtifacts.CheckIfArtifactHasType(artifact)" role="application">
+				<div id="AppDesigner.CanvasPane.ArtifactFormType.{{entitySwimLane.entitymetadata.id}}.{{type}}"
+					 ng-repeat="type in artifact.listByTypeMap.getKeys()">
+					<div tabindex="-1"
+						 ng-click="appArtifacts.ToggleCategoryState(artifact, type, $event)"
+						 mscrm-action-on-select
+						 ng-class="['mscrm-CategoryTitle', {'mscrm-CollapsedCategoryTitle': appArtifacts.IsCategoryCollapsed(artifact, type)}]">
+						<div ng-class="['mscrm-CardCategory-CollapsibleIcon', {
+							'mscrm-glyph-collapsedIcon': appArtifacts.IsCategoryCollapsed(artifact, type),
+							'mscrm-glyph-expandedIcon': !appArtifacts.IsCategoryCollapsed(artifact, type)}]">
+						</div>
+						<div class="mscrm-Title-Name" ng-attr-title="{{appArtifacts.GetTypeMap(artifact).getValue(type)}}">{{appArtifacts.GetTypeMap(artifact).getValue(type)}}</div>
+					</div>
+					<div class="mscrm-CardRecordsContainer" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+						<div role="group" ng-repeat="record in artifact.listByTypeMap.getValue(type)" ng-hide="appArtifacts.IsCategoryCollapsed(artifact, type)"
+								 ng-class="['mscrm-CardRecord-Group', {activeCard: record.id==contextModel.selections.selectedRecordFromArtifact.id}]">
+							<div tabindex="-1" 
+								 id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.{{record.id}}"
+								 class="mscrm-CardRecord"
+								 ng-click="appArtifacts.SelectRecordFromArtifact(entitySwimLane, artifact, record, $event)" mscrm-action-on-select>
+								<div id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.{{record.id}}.Icon" ng-class="['mscrm-CardRecord-Icon', ('mscrm-glyph-' + artifact.componentTypeName + 'Icon')]"></div>
+								<div id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.{{record.id}}.DisplayName" class="mscrm-CardRecord-DisplayName" ng-attr-title="{{record.displayName}}">{{record.displayName}}</div>
+							</div>
+							<div tabindex="-1" id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.{{record.id}}.ItemEditor" class="mscrm-CardRecord-Launch mscrm-glyph-LaunchIcon" mscrm-action-on-select ng-click="appArtifacts.handleClickOnLaunch(record, artifact, entitySwimLane, $event)"
+								 ng-attr-title="{{appArtifacts.getArtifactToolTip(artifact.displayName)}}">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div ng-if="!appArtifacts.CheckIfArtifactHasType(artifact)">
+				<div class="mscrm-CardRecordsContainer" mscrm-arrow-key-navigation data-arrow-direction="vertical" role="application" >
+					<div role="group" ng-repeat="record in artifact.selectedList"
+						 ng-class="['mscrm-CardRecord-Group', {activeCard: record.id==contextModel.selections.selectedRecordFromArtifact.id}]">
+						<div tabindex="-1"
+							 id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.{{record.id}}"
+							 class="mscrm-CardRecord"
+							 ng-click="appArtifacts.SelectRecordFromArtifact(entitySwimLane, artifact, record, $event)"
+							 mscrm-action-on-select>
+							<div id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.{{record.id}}.Icon" ng-class="['mscrm-CardRecord-Icon', ('mscrm-glyph-' + artifact.componentTypeName + 'Icon')]"></div>
+							<div id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.{{record.id}}.DisplayName" class="mscrm-CardRecord-DisplayName" ng-attr-title="{{record.displayName}}">{{record.displayName}}</div>
+						</div>
+						<div tabindex="-1"
+							 id="AppDesigner.CanvasPane.Artifact.{{entitySwimLane.entitymetadata.id}}.{{artifact.displayName}}.{{record.id}}.ItemEditor"
+							 class="mscrm-CardRecord-Launch mscrm-glyph-LaunchIcon" mscrm-action-on-select
+							 ng-class="{disabledLaunch: !appArtifacts.isDesignerLaunchable(artifact.displayName)}"
+							 ng-click="appArtifacts.handleClickOnLaunch(record, artifact, entitySwimLane, $event)"
+							 ng-attr-title="{{appArtifacts.getArtifactToolTip(artifact.displayName)}}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

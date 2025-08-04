@@ -1,0 +1,90 @@
+<div id="dependencyPane" class="mscrm-DependencyPaneWindow">
+	<div ng-if="dependencyPaneController.GetLatestDependenciesInProgress" class="mscrm-DependencyProgressBar">
+		<img src="/_imgs/Designers/HorzPreloader_12x145_blue.gif" alt="...">
+		<div id="mscrm-refreshProgress" class="mscrm-DependencyProgressIndicatorText">
+			<mscrm-locale mscrm-resource-key="AppDesigner.Validate.LoadingMessage" />
+		</div>
+	</div>
+	<div class="mscrm-DependencyPaneHeader" ng-if="!dependencyPaneController.GetLatestDependenciesInProgress">
+		<div id="AppDesigner.DependencyPane.AllDependencies" class="mscrm-DependencyPaneAllDependencies"> <mscrm-locale mscrm-resource-key="AppDesigner.AllDependencies" /> </div>
+		<div class="mscrm-DependencyPaneSeparator" />
+		<div class="mscrm-DependencyPanelRefreshButtonWrapper">
+		<button tabindex="-1" type="button" id="AppDesigner.DependencyPane.Refresh" ng-disabled="dependencyPaneController.IsAppDesignerInDirtyState" class="mscrm-DependencyPanelRefreshButton" ng-click="dependencyPaneController.Validate()" mscrm-locale mscrm-resource-key="AppDesigner.GetLatestDependencies.Tooltip" mscrm-target-attr="title" mscrm-action-on-select>
+			<div id="AppDesigner.DependencyPane.Refresh.Icon" class="mscrm-DependencyPanelRefreshButtonIcon mscrm-glyph-RefreshIcon"></div>
+		</button>
+		</div>
+	</div>
+	<div class="mscrm-DependencyPaneItems" ng-if="!dependencyPaneController.GetLatestDependenciesInProgress"
+		 role="tree"
+		 mscrm-tree-control-accessibility>
+
+		<div class="mscrm-DependencyPaneItem"
+			 ng-if="dependencyPaneController.ShouldShowSitemapDependency"
+			 data-treeparentnode
+			 role="treeitem"
+			 tabindex="-1"
+			 ng-click="dependencyPaneController.togglesSitemapCollapsePanel($event)"
+			 mscrm-action-on-select
+			 aria-expanded="false"
+			 mscrm-locale mscrm-resource-key="AppDesigner.SitemapDependencies" mscrm-target-attr="aria-label">
+			<div id="AppDesigner.DependencyPane.SitemapDependencies.TileArrowIcon" ng-class="['mscrm-DependencyPaneTileArrowIcon', {'mscrm-glyph-NextArrowIcon': collapsedSitemap, 'mscrm-glyph-DownArrowIcon': !collapsedSitemap}]"></div>
+			<div id="AppDesigner.DependencyPane.SitemapDependencies.Title" class="mscrm-DependencyPane" mscrm-locale mscrm-resource-key="AppDesigner.SitemapDependencies" mscrm-target-attr="title">
+				<mscrm-locale mscrm-resource-key="AppDesigner.SitemapDependencies">
+			</div>
+		</div>
+		<div data-pseudotreeparentnode ng-if="!collapsedSitemap"><mscrm-tree-control tree="sitemapTree" /></div>
+
+		<div class="mscrm-DependencyPaneItem"
+			 ng-if="dependencyPaneController.ShouldShowDashboardDependency"
+			 data-treeparentnode
+			 role="treeitem"
+			 tabindex="-1"
+			 ng-click="dependencyPaneController.toggleDashboardCollapsePanel($event)"
+			 mscrm-action-on-select
+			 aria-expanded="false"
+			 mscrm-locale mscrm-resource-key="AppDesigner.DashboardDependencies" mscrm-target-attr="aria-label">
+			<div id="AppDesigner.DependencyPane.DashboardDependencies.TileArrowIcon" ng-class="['mscrm-DependencyPaneTileArrowIcon', {'mscrm-glyph-NextArrowIcon': collapsedDashboards, 'mscrm-glyph-DownArrowIcon': !collapsedDashboards}]"></div>
+			<div id="AppDesigner.DependencyPane.DashboardDependencies.Title" class="mscrm-DependencyPane" mscrm-locale mscrm-resource-key="AppDesigner.DashboardDependencies" mscrm-target-attr="title">
+				<mscrm-locale mscrm-resource-key="AppDesigner.DashboardDependencies">
+			</div>
+		</div>
+		<div data-pseudotreeparentnode ng-if="!collapsedDashboards"><mscrm-tree-control tree="dashboardTree" /></div>
+
+		<div class="mscrm-DependencyPaneItem"
+			 ng-if="dependencyPaneController.ShouldShowEntityDependency"
+			 data-treeparentnode
+			 role="treeitem"
+			 tabindex="-1"
+			 ng-click="dependencyPaneController.toggleEntityCollapsePanel($event)"
+			 mscrm-action-on-select
+			 aria-expanded="false"
+			 mscrm-locale mscrm-resource-key="AppDesigner.EntityDependencies" mscrm-target-attr="aria-label">
+			<div id="AppDesigner.DependencyPane.EntityDependencies.TileArrowIcon" ng-class="['mscrm-DependencyPaneTileArrowIcon', {'mscrm-glyph-NextArrowIcon': collapsedEntities, 'mscrm-glyph-DownArrowIcon': !collapsedEntities}]"></div>
+			<div id="AppDesigner.DependencyPane.EntityDependencies.Title" class="mscrm-DependencyPane" mscrm-locale mscrm-resource-key="AppDesigner.EntityDependencies" mscrm-target-attr="title">
+				<mscrm-locale mscrm-resource-key="AppDesigner.EntityDependencies">
+			</div>
+		</div>
+		<div data-pseudotreeparentnode ng-if="!collapsedEntities"><mscrm-tree-control tree="entityTree" /></div>
+
+		<div class="mscrm-DependencyPaneItem"
+			 ng-if="dependencyPaneController.ShouldShowBPFDependency"
+			 data-treeparentnode
+			 role="treeitem"
+			 tabindex="-1"
+			 ng-click="dependencyPaneController.toggleBPFCollapsePanel($event)"
+			 mscrm-action-on-select
+			 aria-expanded="false"
+			 mscrm-locale mscrm-resource-key="AppDesigner.BPFDependencies" mscrm-target-attr="aria-label">
+			<div id="AppDesigner.DependencyPane.BPFDependencies.TileArrowIcon" ng-class="['mscrm-DependencyPaneTileArrowIcon', {'mscrm-glyph-NextArrowIcon': collapsedProcesses, 'mscrm-glyph-DownArrowIcon': !collapsedProcesses}]"></div>
+			<div id="AppDesigner.DependencyPane.BPFDependencies.Title" class="mscrm-DependencyPane" mscrm-locale mscrm-resource-key="AppDesigner.BPFDependencies" mscrm-target-attr="title">
+				<mscrm-locale mscrm-resource-key="AppDesigner.BPFDependencies">
+			</div>
+		</div>
+		<div data-pseudotreeparentnode ng-if="!collapsedProcesses"><mscrm-tree-control tree="bpfTree" /></div>
+	</div>
+
+	<div class="mscrm-DependencyPaneButtonContainer" ng-if="!dependencyPaneController.GetLatestDependenciesInProgress">
+		<button tabindex="-1" id="AppDesigner.DependencyPane.Add" ng-disabled="dependencyPaneController.GetAddDependenciesDisability" class="mscrm-DependencyPaneButton mscrm-DependencyPaneAddButton" ng-click="dependencyPaneController.AddDependencies($event)" mscrm-locale mscrm-resource-key="AppDesigner.AddDependencies.Tooltip" mscrm-target-attr="title" mscrm-action-on-select><mscrm-locale mscrm-resource-key="AppDesigner.AddDependencies"></button>
+		<button tabindex="-1" id="AppDesigner.DependencyPane.Ignore" class="mscrm-DependencyPaneButton" ng-click="dependencyPaneController.IgnoreDependencies()" mscrm-locale mscrm-resource-key="AppDesigner.HideDependencies.Tooltip" mscrm-target-attr="title" mscrm-action-on-select><mscrm-locale mscrm-resource-key="AppDesigner.HideDependencies"></button>
+	</div>
+</div>

@@ -1,0 +1,466 @@
+<public:component lightweight="true" tagName="Frequency">
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:property name="DataXml" get="buildXml"/>
+<public:property name="EndDate" get="getEndDate" put="setEndDate" />
+<public:property name="StartDate" get="getStartDate" put="setStartDate" />
+<public:property name="FrequencyEnum" get="getFrequencyEnum" />
+<public:property name="Frequency" get="getFrequency" />
+<public:method name="IsValid" internalname="isValid" />
+<public:method name="SetFocus" internalname="setFocus" />
+<public:method name="GetFrequencySummary" internalname="getFrequencySummary" />
+<script type="text/javascript"></script><script type="text/javascript">
+
+var _dEnd = null,
+    _FE = null,
+    aDaysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    _bInitialized = false,
+    _freq_dtStartTime = null;
+function Init()
+{
+    _FE = createFrequencyEnum();
+    Freq_roDayXEveryMonth.attachEvent("onclick",toggleMonthly);
+    Freq_roXYEveryMonth.attachEvent("onclick",toggleMonthly);
+    Freq_roEveryXDays.attachEvent("onclick",toggleDaily);
+    Freq_roEveryWeekday.attachEvent("onclick",toggleDaily);
+    Freq_roOnce.attachEvent("onclick",toggleFrequencyDetail);
+    Freq_roHourly.attachEvent("onclick",toggleFrequencyDetail);
+    Freq_roDaily.attachEvent("onclick",toggleFrequencyDetail);
+    Freq_roWeekly.attachEvent("onclick",toggleFrequencyDetail);
+    Freq_roMonthly.attachEvent("onclick",toggleFrequencyDetail);
+    Freq_numMinutes.attachEvent("onchange",resetNumberControlNull);
+    Freq_numHours.attachEvent("onchange",resetNumberControlNull);
+    Freq_numDays.attachEvent("onchange",resetNumberControlNull);
+    Freq_numWeeks.attachEvent("onchange",resetNumberControlNull);
+    Freq_numMonthlyDay.attachEvent("onchange",resetNumberControlNull);
+    var dNow = new Date;
+    setStartDateTime(new Date(dNow.getFullYear(),dNow.getMonth(),dNow.getDate()));
+    parseXml();
+    toggleMonthly();
+    toggleDaily();
+    toggleFrequencyDetail();
+    _bInitialized = true;
+    _freq_dtStartTime = $find("Freq_dtStartTime")
+}
+function toggleFrequencyDetail()
+{
+    Freq_spanOnce.style.display = "none";
+    Freq_spanHourly.style.display = "none";
+    Freq_spanDaily.style.display = "none";
+    Freq_spanWeekly.style.display = "none";
+    Freq_spanMonthly.style.display = "none";
+    var oEnabledSlide = null;
+    switch(getFrequency())
+    {
+        case _FE.FREQ_ONCE:
+            oEnabledSlide = Freq_spanOnce;
+            break;
+        case _FE.FREQ_HOURLY:
+            oEnabledSlide = Freq_spanHourly;
+            break;
+        case _FE.FREQ_DAILY:
+            oEnabledSlide = Freq_spanDaily;
+            break;
+        case _FE.FREQ_WEEKLY:
+            oEnabledSlide = Freq_spanWeekly;
+            break;
+        case _FE.FREQ_MONTHLY:
+            oEnabledSlide = Freq_spanMonthly;
+            break
+    }
+    if(!IsNull(oEnabledSlide))
+        oEnabledSlide.style.display = "inline"
+}
+function resetNumberControlNull()
+{
+    if(IsNull(event.srcElement.DataValue))
+        event.srcElement.DataValue = event.srcElement.Min
+}
+function toggleMonthly()
+{
+    Freq_numMonthlyDay.Disabled = true;
+    Freq_selMonthlyOrdinal.Disabled = true;
+    Freq_selMonthlyDay.Disabled = true;
+    if(getMonthlyFrequency() == _FE.FREQ_MONTHLY_DAYXEVERYMONTH)
+        Freq_numMonthlyDay.Disabled = false;
+    else
+    {
+        Freq_selMonthlyOrdinal.Disabled = false;
+        Freq_selMonthlyDay.Disabled = false
+    }
+    Freq_roMonthly.checked && _bInitialized && 
+        setFocus()
+}
+function toggleDaily()
+{
+    Freq_numDays.Disabled = true;
+    if(getDailyFrequency() == _FE.FREQ_DAILY_EVERYXDAYS)
+        Freq_numDays.Disabled = false;
+    Freq_roDaily.checked && _bInitialized && 
+        setFocus()
+}
+function parseXml()
+{
+    if(IsNull(Freq_xmlScheduleDefinition.xml) || Freq_xmlScheduleDefinition.xml.length == 0)
+        return;
+    for(var oXml = XUI.Xml.LoadXml(Freq_xmlScheduleDefinition.xml),
+        oSchedDef = oXml.selectSingleNode("/CrmScheduleDefinition"),
+        aSchedDefNodes = oSchedDef.childNodes,
+        i = 0; i < aSchedDefNodes.length; i++)
+    {
+        var oCurrentNode = aSchedDefNodes.item(i);
+        switch(oCurrentNode.nodeName)
+        {
+            case "StartDateTime":
+                setStartDateTime(ParseUtcDate(oCurrentNode.text));
+                break;
+            case "EndDate":
+                setEndDate(ParseUtcDate(oCurrentNode.text));
+                break;
+            case "CrmMonthlyDOWRecurrence":
+                parseMonthlyDOWRecurrence(oCurrentNode);
+                break;
+            case "CrmMonthlyRecurrence":
+                parseMonthlyRecurrence(oCurrentNode);
+                break;
+            case "CrmWeeklyRecurrence":
+                parseWeeklyRecurrence(oCurrentNode);
+                break;
+            case "CrmDailyRecurrence":
+                parseDailyRecurrence(oCurrentNode);
+                break;
+            case "CrmMinuteRecurrence":
+                parseHourlyRecurrence(oCurrentNode);
+                break
+        }
+    }
+}
+function parseMonthlyDOWRecurrence(oRecurrenceNode)
+{
+    for(var oWhichWeekNode = oRecurrenceNode.selectSingleNode("WhichWeek"),
+        oDaysOfWeekNode = oRecurrenceNode.selectSingleNode("DaysOfWeek"),
+        iDayOfWeek = -1,
+        i = 0; i < aDaysOfWeek.length; i++)
+    {
+        var oDayNode = oDaysOfWeekNode.selectSingleNode(aDaysOfWeek[i]);
+        if(!IsNull(oDayNode) && oDayNode.text.toLowerCase() == "true")
+        {
+            iDayOfWeek = i;
+            break
+        }
+    }
+    var iWeekOrdinal = -1;
+    switch(oWhichWeekNode.text)
+    {
+        case "FirstWeek":
+            iWeekOrdinal = 1;
+            break;
+        case "SecondWeek":
+            iWeekOrdinal = 2;
+            break;
+        case "ThirdWeek":
+            iWeekOrdinal = 3;
+            break;
+        case "FourthWeek":
+            iWeekOrdinal = 4;
+            break;
+        case "LastWeek":
+            iWeekOrdinal = 5;
+            break
+    }
+    Freq_selMonthlyDay.DataValue = iDayOfWeek;
+    Freq_selMonthlyOrdinal.DataValue = iWeekOrdinal;
+    Freq_roXYEveryMonth.checked = true;
+    Freq_roMonthly.checked = true
+}
+function parseMonthlyRecurrence(oRecurrenceNode)
+{
+    var oDayNode = oRecurrenceNode.selectSingleNode("Day"),
+        iDay = parseInt(oDayNode.text,10);
+    Freq_numMonthlyDay.DataValue = iDay;
+    Freq_roDayXEveryMonth.checked = true;
+    Freq_roMonthly.checked = true
+}
+function parseWeeklyRecurrence(oRecurrenceNode)
+{
+    for(var oWeeksIntervalNode = oRecurrenceNode.selectSingleNode("WeeksInterval"),
+        oDaysOfWeekNode = oRecurrenceNode.selectSingleNode("DaysOfWeek"),
+        aDaysOfWeekCheck = [false,false,false,false,false,false,false],
+        bOnlyWeekdays = true,
+        i = 0; i < aDaysOfWeek.length; i++)
+    {
+        var oDayNode = oDaysOfWeekNode.selectSingleNode(aDaysOfWeek[i]);
+        if(!IsNull(oDayNode) && oDayNode.text.toLowerCase() == "true")
+            aDaysOfWeekCheck[i] = true;
+        if((i == 0 || i == 6) && aDaysOfWeekCheck[i])
+            bOnlyWeekdays = false;
+        if(i > 0 && i < 6 && !aDaysOfWeekCheck[i])
+            bOnlyWeekdays = false
+    }
+    var iWeeksInterval = parseInt(oWeeksIntervalNode.text,10);
+    if(iWeeksInterval == 1 && bOnlyWeekdays)
+    {
+        Freq_roEveryWeekday.checked = true;
+        Freq_roDaily.checked = true
+    }
+    else
+    {
+        Freq_numWeeks.DataValue = iWeeksInterval;
+        Freq_cbWeekly0.DataValue = aDaysOfWeekCheck[0];
+        Freq_cbWeekly1.DataValue = aDaysOfWeekCheck[1];
+        Freq_cbWeekly2.DataValue = aDaysOfWeekCheck[2];
+        Freq_cbWeekly3.DataValue = aDaysOfWeekCheck[3];
+        Freq_cbWeekly4.DataValue = aDaysOfWeekCheck[4];
+        Freq_cbWeekly5.DataValue = aDaysOfWeekCheck[5];
+        Freq_cbWeekly6.DataValue = aDaysOfWeekCheck[6];
+        Freq_roWeekly.checked = true
+    }
+}
+function parseDailyRecurrence(oRecurrenceNode)
+{
+    var oDaysIntervalNode = oRecurrenceNode.selectSingleNode("DaysInterval"),
+        iDaysInterval = parseInt(oDaysIntervalNode.text,10);
+    Freq_numDays.DataValue = iDaysInterval;
+    Freq_roEveryXDays.checked = true;
+    Freq_roDaily.checked = true
+}
+function parseHourlyRecurrence(oRecurrenceNode)
+{
+    var oMinutesIntervalNode = oRecurrenceNode.selectSingleNode("MinutesInterval"),
+        iMinutesInterval = parseInt(oMinutesIntervalNode.text,10),
+        iHours = Math.floor(iMinutesInterval / 60),
+        iMinutes = iMinutesInterval % 60;
+    Freq_numHours.DataValue = iHours;
+    Freq_numMinutes.DataValue = iMinutes;
+    Freq_roHourly.checked = true
+}
+function setStartDate(dStart)
+{
+    var dCurrentStart = _freq_dtStartTime.get_dataValue();
+    _freq_dtStartTime.set_dataValue(new Date(dStart.getFullYear(),dStart.getMonth(),dStart.getDate(),dCurrentStart.getHours(),dCurrentStart.getMinutes(),dCurrentStart.getSeconds(),dCurrentStart.getMilliseconds()))
+}
+function getStartDate()
+{
+    return _freq_dtStartTime.get_dataValue()
+}
+function setStartDateTime(dStart)
+{
+    _freq_dtStartTime.get_element().setAttribute("initialValue",FormatUtcDate(dStart));
+    _freq_dtStartTime.set_dataValue(dStart)
+}
+function setEndDate(dEnd)
+{
+    if(IsNull(dEnd))
+        _dEnd = null;
+    else
+    {
+        dEnd = new Date(dEnd.valueOf());
+        _dEnd = new Date(dEnd.getFullYear(),dEnd.getMonth(),dEnd.getDate())
+    }
+}
+function getEndDate()
+{
+    return IsNull(_dEnd) ? null : new Date(_dEnd.valueOf())
+}
+function setFocus()
+{
+    switch(getFrequency())
+    {
+        case _FE.FREQ_ONCE:
+            Freq_roOnce.focus();
+            break;
+        case _FE.FREQ_HOURLY:
+            Freq_roHourly.focus();
+            break;
+        case _FE.FREQ_DAILY:
+            Freq_roDaily.focus();
+            break;
+        case _FE.FREQ_WEEKLY:
+            Freq_roWeekly.focus();
+            break;
+        case _FE.FREQ_MONTHLY:
+            Freq_roMonthly.focus();
+            break
+    }
+}
+function isValid()
+{
+    if(Freq_roHourly.checked && Freq_numHours.DataValue == 0 && Freq_numMinutes.DataValue == 0)
+    {
+        alert(LOCID_INVALID_MINUTES_INTERVAL);
+        return false
+    }
+    if(Freq_roWeekly.checked)
+    {
+        var bAnyDaysChecked = Freq_cbWeekly0.DataValue || Freq_cbWeekly1.DataValue || Freq_cbWeekly2.DataValue || Freq_cbWeekly3.DataValue || Freq_cbWeekly4.DataValue || Freq_cbWeekly5.DataValue || Freq_cbWeekly6.DataValue;
+        if(!bAnyDaysChecked)
+        {
+            alert(LOCID_FREQ_MUST_SELECT_DAYS);
+            return false
+        }
+    }
+    return true
+}
+function buildXml()
+{
+    var aXml = [];
+    aXml.push('<CrmScheduleDefinition xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">');
+    aXml.push("<StartDateTime>");
+    aXml.push(FormatUtcDate(getStartDate()));
+    aXml.push("</StartDateTime>");
+    if(!IsNull(getEndDate()))
+    {
+        aXml.push("<EndDate>");
+        aXml.push(FormatUtcDate(getEndDate()));
+        aXml.push("</EndDate>")
+    }
+    switch(getFrequency())
+    {
+        case _FE.FREQ_HOURLY:
+            var iMinutesInterval = Freq_numHours.DataValue * 60 + Freq_numMinutes.DataValue;
+            aXml.push("<CrmMinuteRecurrence>");
+            aXml.push("<MinutesInterval>");
+            aXml.push(iMinutesInterval.toString());
+            aXml.push("</MinutesInterval>");
+            aXml.push("</CrmMinuteRecurrence>");
+            break;
+        case _FE.FREQ_DAILY:
+            if(getDailyFrequency() == _FE.FREQ_DAILY_EVERYXDAYS)
+            {
+                aXml.push("<CrmDailyRecurrence>");
+                aXml.push("<DaysInterval>");
+                aXml.push(Freq_numDays.DataValue.toString());
+                aXml.push("</DaysInterval>");
+                aXml.push("</CrmDailyRecurrence>")
+            }
+            else
+            {
+                aXml.push("<CrmWeeklyRecurrence>");
+                aXml.push("<WeeksInterval>1</WeeksInterval>");
+                aXml.push(buildDaysOfWeekXml([false,true,true,true,true,true,false]));
+                aXml.push("</CrmWeeklyRecurrence>")
+            }
+            break;
+        case _FE.FREQ_WEEKLY:
+            var aDaysChecked = [Freq_cbWeekly0.DataValue,Freq_cbWeekly1.DataValue,Freq_cbWeekly2.DataValue,Freq_cbWeekly3.DataValue,Freq_cbWeekly4.DataValue,Freq_cbWeekly5.DataValue,Freq_cbWeekly6.DataValue];
+            aXml.push("<CrmWeeklyRecurrence>");
+            aXml.push("<WeeksInterval>");
+            aXml.push(Freq_numWeeks.DataValue.toString());
+            aXml.push("</WeeksInterval>");
+            aXml.push(buildDaysOfWeekXml(aDaysChecked));
+            aXml.push("</CrmWeeklyRecurrence>");
+            break;
+        case _FE.FREQ_MONTHLY:
+            if(getMonthlyFrequency() == _FE.FREQ_MONTHLY_DAYXEVERYMONTH)
+            {
+                aXml.push("<CrmMonthlyRecurrence>");
+                aXml.push("<Day>");
+                aXml.push(Freq_numMonthlyDay.DataValue.toString());
+                aXml.push("</Day>");
+                aXml.push("</CrmMonthlyRecurrence>")
+            }
+            else
+            {
+                var aDaysSelected = [false,false,false,false,false,false,false];
+                aDaysSelected[Freq_selMonthlyDay.DataValue] = true;
+                var aWeekOrdinals = ["FirstWeek","SecondWeek","ThirdWeek","FourthWeek","LastWeek"],
+                    sWeekOrdinal = aWeekOrdinals[Freq_selMonthlyOrdinal.DataValue - 1];
+                aXml.push("<CrmMonthlyDOWRecurrence>");
+                aXml.push("<WhichWeek>");
+                aXml.push(sWeekOrdinal);
+                aXml.push("</WhichWeek>");
+                aXml.push(buildDaysOfWeekXml(aDaysSelected));
+                aXml.push("</CrmMonthlyDOWRecurrence>")
+            }
+            break
+    }
+    aXml.push("</CrmScheduleDefinition>");
+    return aXml.join("")
+}
+function buildDaysOfWeekXml(daysCheck)
+{
+    var aXml = [];
+    aXml.push("<DaysOfWeek>");
+    for(var i = 0; i < 7; i++)
+    {
+        aXml.push("<");
+        aXml.push(aDaysOfWeek[i]);
+        aXml.push(">");
+        aXml.push(daysCheck[i] ? "true" : "false");
+        aXml.push("</");
+        aXml.push(aDaysOfWeek[i]);
+        aXml.push(">")
+    }
+    aXml.push("</DaysOfWeek>");
+    return aXml.join("")
+}
+function getFrequency()
+{
+    for(var i = 0; i < Freq_radFrequency.length; i++)
+        if(Freq_radFrequency[i].checked)
+            return i
+}
+function getDailyFrequency()
+{
+    return Freq_roEveryXDays.checked ? _FE.FREQ_DAILY_EVERYXDAYS : _FE.FREQ_DAILY_EVERYWEEKDAY
+}
+function getMonthlyFrequency()
+{
+    return Freq_roDayXEveryMonth.checked ? _FE.FREQ_MONTHLY_DAYXEVERYMONTH : _FE.FREQ_MONTHLY_THEXYEVERYMONTH
+}
+function getFrequencySummary()
+{
+    var sSummary = LOCID_FREQ_ONCE_SUMMARY;
+    switch(getFrequency())
+    {
+        case _FE.FREQ_HOURLY:
+            sSummary = formatString(LOCID_FREQ_HOURLY_SUMMARY,Freq_numHours.DataValue.toString(),Freq_numMinutes.DataValue.toString());
+            break;
+        case _FE.FREQ_DAILY:
+            if(getDailyFrequency() == _FE.FREQ_DAILY_EVERYXDAYS)
+                sSummary = formatString(LOCID_FREQ_EVERYXDAYS_SUMMARY,Freq_numDays.DataValue.toString());
+            else
+                sSummary = LOCID_FREQ_EVERYWEEKDAY_SUMMARY;
+            break;
+        case _FE.FREQ_WEEKLY:
+            for(var aLocalDays = Sys.CultureInfo.CurrentCulture.dateTimeFormat["DayNames"],
+                aDaysChecked = [Freq_cbWeekly0.DataValue,Freq_cbWeekly1.DataValue,Freq_cbWeekly2.DataValue,Freq_cbWeekly3.DataValue,Freq_cbWeekly4.DataValue,Freq_cbWeekly5.DataValue,Freq_cbWeekly6.DataValue],
+                aDaysSummary = "",
+                i = 0; i < aLocalDays.length; i++)
+            {
+                var iArrayIndex = (_iWeekStartDay + i) % aDaysChecked.length;
+                if(aDaysChecked[iArrayIndex])
+                    aDaysSummary += aLocalDays[iArrayIndex] + LOCID_FREQ_DAY_SEPARATOR
+            }
+            aDaysSummary = aDaysSummary.substring(0,aDaysSummary.length - LOCID_FREQ_DAY_SEPARATOR.length);
+            sSummary = formatString(LOCID_FREQ_WEEKLY_SUMMARY,Freq_numWeeks.DataValue.toString(),aDaysSummary);
+            break;
+        case _FE.FREQ_MONTHLY:
+            if(getMonthlyFrequency() == _FE.FREQ_MONTHLY_DAYXEVERYMONTH)
+                sSummary = formatString(LOCID_FREQ_DAYXMONTHLY_SUMMARY,Freq_numMonthlyDay.DataValue.toString());
+            else
+                sSummary = formatString(LOCID_FREQ_XYMONTHLY_SUMMARY,Freq_selMonthlyOrdinal.SelectedText,Freq_selMonthlyDay.SelectedText);
+            break
+    }
+    return sSummary
+}
+function getFrequencyEnum()
+{
+    return _FE
+}
+function createFrequencyEnum()
+{
+    var o = {};
+    o.FREQ_ONCE = 0;
+    o.FREQ_HOURLY = 1;
+    o.FREQ_DAILY = 2;
+    o.FREQ_WEEKLY = 3;
+    o.FREQ_MONTHLY = 4;
+    o.FREQ_DAILY_EVERYXDAYS = 0;
+    o.FREQ_DAILY_EVERYWEEKDAY = 1;
+    o.FREQ_MONTHLY_DAYXEVERYMONTH = 0;
+    o.FREQ_MONTHLY_THEXYEVERYMONTH = 1;
+    return o
+}
+
+</script>
+</public:component>

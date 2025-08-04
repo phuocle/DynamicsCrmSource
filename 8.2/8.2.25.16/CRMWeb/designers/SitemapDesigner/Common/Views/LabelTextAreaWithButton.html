@@ -1,0 +1,8 @@
+<div class="mscrm-propertyConatiner">
+	<div class="mscrm-propertiesLabelContainer">
+		<label for="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" class="itemLabel" title="{{PropertyDirective.nodeDisplayName}}">{{PropertyDirective.nodeDisplayName}}</label>
+    </div>
+	<div class="mscrm-propertiesControlContainer">
+		<textarea id="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" class="textAreaWidth" ng-model="PropertyDirective.nodeValue[PropertyDirective.nodeLabel]" title="{{PropertyDirective.nodeTooltip}}">{{PropertyDirective.nodeValue[PropertyDirective.nodeLabel]}}</textarea>
+    </div>
+</div>

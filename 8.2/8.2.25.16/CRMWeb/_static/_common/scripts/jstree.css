@@ -1,0 +1,58 @@
+/*
+* jsTree default theme 1.0
+* Modified by ashishsh for use in InLineSubjectLookupControl
+* Supported features: dots/no-dots, icons/no-icons, focused
+* Supported plugins: ui (hovered, clicked)
+*/
+
+
+.jstree-default .jstree-hovered  {
+padding-left:2px;
+padding-right:2px;
+padding-top:0px;
+padding-bottom:0px;}
+
+.jstree-default.jstree-focused {
+background:#ffffff;
+padding-left:0px;
+padding-right:0px;
+padding-top:8px;
+padding-bottom:8px;}
+
+.jstree-default .jstree-no-dots .jstree-leaf > ins {
+background-image:url("../../../_imgs/treeNoChild.png"), url("/_imgs/treeNoChild.png");
+background-repeat:no-repeat;
+margin-left:2px;
+margin-right:2px;}
+
+.jstree-default .jstree-no-dots .jstree-open > ins {
+background-image:url("../../../_imgs/treeNodeUp.png"), url("/_imgs/treeNodeUp.png");
+background-repeat:no-repeat;
+margin-left:2px;
+margin-right:2px;}
+
+.jstree-default .jstree-no-dots .jstree-closed > ins {
+background-image:url("../../../_imgs/treeNodeDown.png"), url("/_imgs/treeNodeDown.png");
+background-repeat:no-repeat;
+margin-left:2px;
+margin-right:2px;}
+
+
+.jstree-rtl .jstree-no-dots .jstree-open > ins,
+.jstree-rtl .jstree-no-dots .jstree-closed > ins
+{
+-moz-transform: scaleX(-1);
+-o-transform: scaleX(-1);
+-webkit-transform: scaleX(-1);
+transform: scaleX(-1);
+filter: FlipH;
+-ms-filter: "FlipH";
+}
+.jstree-default .jstree-no-icons a .jstree-icon {
+display:none; }
+
+.jstree a {
+padding-left:2px;
+padding-right:2px;
+padding-top:0px !important;
+padding-bottom:0px !important;}

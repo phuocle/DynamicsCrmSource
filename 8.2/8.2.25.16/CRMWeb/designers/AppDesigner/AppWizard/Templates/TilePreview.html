@@ -1,0 +1,12 @@
+<div class="mscrm-createAppFormTile">
+	<label id="mscrm-tilePreviewLabel" class="mscrm-tilePreviewLabel"><mscrm-locale mscrm-resource-key="AppDesigner.AppTile" />:</label>
+	<div role="group" id="AppDesigner.TilePreview" aria-labelledby="mscrm-tilePreviewLabel mscrm-AppPreviewTileTitle mscrm-AppPreviewTileDescription" tabindex="-1" class="mscrm-AppPreviewCard" mscrm-locale mscrm-resource-key="AppDesigner.AppTile" mscrm-target-attr="title">
+		<div class="mscrm-AppPreviewTileImageContainer">
+			<img ng-src="{{wizardController.AppInfo.webResourceItem.fullpath}}" class="mscrm-AppPreviewTileImage" />
+		</div>
+		<div class="mscrm-AppPreviewTileDetails">
+			<div id="mscrm-AppPreviewTileTitle" class="mscrm-AppPreviewTileTitle" title="{{wizardController.AppInfo.title}}">{{wizardController.AppInfo.title}}</div>
+			<div id="mscrm-AppPreviewTileDescription" class="mscrm-AppPreviewTileDescription" title="{{wizardController.AppInfo.description}}">{{wizardController.AppInfo.description}}</div>
+		</div>
+	</div>
+</div>

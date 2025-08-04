@@ -1,0 +1,57 @@
+<public:component lightweight="true">
+<public:attach event="oncontentready" onevent="Init()"/>
+<public:attach event="onclick"	onevent="toggle()"/>
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataXml" get="dataXml"/>
+<public:property name="QueueXml" get="queueXml"/>
+<public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+<public:property name="PrimaryOTC" />
+<public:property name="AssociatedOTC" />
+<public:property name="ID" />
+<public:property name="Disabled" />
+<public:method name="Toggle" internalname="toggle"/>
+<public:method name="SetFocus" internalname="setFocus"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _nDefaultValue = null;
+function Init()
+{
+    _nDefaultValue = parseInt(this.value,10);
+    this.value = _nDefaultValue
+}
+function isDirty()
+{
+    return _nDefaultValue != getDataValue()
+}
+function getDataValue()
+{
+    return this.value
+}
+function putDataValue(vVal)
+{
+    this.value = vVal
+}
+function dataXml()
+{
+    var sItemXml = "<item ";
+    if(this.value == 1)
+    {
+        sItemXml += 'action="Create" ><dataxml><relationshiprolemap><primaryobjecttypecode>';
+        sItemXml += this.PrimaryOTC;
+        sItemXml += "</primaryobjecttypecode><associateobjecttypecode>";
+        sItemXml += this.AssociatedOTC;
+        sItemXml += "</associateobjecttypecode></relationshiprolemap></dataxml>"
+    }
+    else
+        sItemXml += 'id="' + this.id + '" action="Delete" >';
+    sItemXml += "</item>";
+    return sItemXml
+}
+function toggle()
+{
+    if(!this.Disabled)
+        this.value = this.value == 1 ? 0 : 1
+}
+
+</script>
+</public:component>

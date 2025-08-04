@@ -1,0 +1,222 @@
+<public:component lightweight="true" tagName="Condition">
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:property name="IsDirty" get="getIsDirty" put="putIsDirty"/>
+<public:property name="ClientCache" />
+<public:property name="Columns"/>
+<public:property name="ConditionId"/>
+<public:property name="PrimaryEntityCode"/>
+<public:property name="SecondaryEntityCode"/>
+<public:property name="HeaderVisible"/ get="getHeaderVisible" put="putHeaderVisible">
+<public:property name="EntityListVisible"/>
+<public:property name="RelatedEntitiesVisible"/>
+<public:property name="SimpleMode"/>
+<public:property name="ModesEnum"/>
+<public:property name="GetUserDefinedList">
+<public:property name="GetUserDefinedXml">
+<public:property name="NotifyConditionsChanged">
+<public:property name="ColumnWidthInPixels">
+<public:property name="ReadOnlyMode">
+<public:property name="ExpressionType" get="getExpressionType" put="putExpressionType"/>
+<public:property name="OnPopulateAttributeList"/>
+<public:property name="OnPopulateHeaderEntityList"/>
+<public:property name="OnPopulateEntityList"/>
+<public:property name="OnPopulateOperatorList"/>
+<public:property name="OnCreateValueControl"/>
+<public:event name="onload" id="OnLoadEvent"/>
+<public:event name="onnew" id="OnNewEvent"/>
+<public:event name="onclear" id="OnClearEvent"/>
+<public:event name="ongroup" id="OnGroupEvent"/>
+<public:event name="onaddrow" id="OnAddRowEvent"/>
+<public:event name="onchange" id="OnChangeEvent"/>
+<public:method name="New"/>
+<public:method name="LoadXml"/>
+<public:method name="GetXml"/>
+<public:method name="ParseXml"/>
+<public:method name="Clear"/>
+<public:method name="Group"/>
+<public:method name="Clone"/>
+<public:method name="GetColumnArray"/>
+<public:method name="GetColumnData"/>
+<public:method name="GetConditionGroup"/>
+<public:method name="LoadDynamicValues"/>
+<public:method name="OnPopulateFieldListForWorkflow"/>
+<html xmlns:Crm>
+<head>
+<script language="Javascript"></script><script type="text/javascript">
+
+var _bInitComplete = false,
+    _bHeaderVisible,
+    _oDetailed,
+    _expressionType;
+function Init()
+{
+    IsDirty = false;
+    if(IsNull(_bHeaderVisible))
+        HeaderVisible = false;
+    EntityListVisible = false;
+    RelatedEntitiesVisible = false;
+    ConfigureToolbars(element);
+    ClientCache = new CacheManager;
+    ClientCache.Initialize(true);
+    if(IsNull(_oControlsCache))
+    {
+        _oControlsCache = [];
+        CacheClientControls()
+    }
+    createModesEnum();
+    _bInitComplete = true;
+    element.all.cnd_spnInlineMsg.style.display = "none";
+    element.all.cnd_spnDetailed.style.display = "inline";
+    ShowXml();
+    SetConditionMode()
+}
+function OnPopulateFieldListForWorkflow(oArgs)
+{
+    var oParameters = [];
+    oParameters["entityName"] = oArgs.sEntityName;
+    var customFields = ClientCache.ExecuteCommand("GetAdditionalFieldListForCondition","Workflow",oParameters);
+    if(customFields != null && customFields != "")
+        oArgs.sCustomFields = customFields
+}
+function Clear()
+{
+    if(!IsNull(_oDetailed) && _oDetailed.Children.length > 0 && (!IsDirty || confirm(LOCID_AF_SEARCHMODIFIED_MSG)))
+    {
+        CreateInnerControls();
+        IsDirty = true;
+        var fnCallback = NotifyConditionsChanged;
+        !IsNull(fnCallback) && "function" == typeof fnCallback && 
+            fnCallback()
+    }
+}
+function createModesEnum()
+{
+    ModesEnum = {};
+    ModesEnum.None = 0;
+    ModesEnum.Simple = 1;
+    ModesEnum.Detailed = 2;
+    with(ModesEnum)
+        ModesEnum.All = Simple | Detailed
+}
+function GetColumnArray()
+{
+    var a = Columns.split(";");
+    return a
+}
+function GetColumnData(sColumn)
+{
+    return element.all.item(sColumn)
+}
+function getIsDirty()
+{
+    return _bIsDirty
+}
+function putIsDirty(bDirty)
+{
+    _bIsDirty = bDirty;
+    RaiseEvent(OnChangeEvent)
+}
+function getHeaderVisible()
+{
+    return _bHeaderVisible
+}
+function getExpressionType()
+{
+    return _expressionType
+}
+function putExpressionType(expressionType)
+{
+    _expressionType = expressionType
+}
+function fromString(sValue)
+{
+    if(sValue.toLowerCase() == "true")
+        return true;
+    return false
+}
+function putHeaderVisible(bVisible)
+{
+    if("string" == typeof bVisible)
+        _bHeaderVisible = fromString(bVisible);
+    else
+        _bHeaderVisible = Boolean(bVisible);
+    if(_bHeaderVisible)
+        cnd_header.style.display = "inline";
+    else
+        cnd_header.style.display = "none"
+}
+function ShowXml()
+{
+    CreateInnerControls();
+    if(!IsNull(element.all.Xml.xml))
+        _oDetailed.Xml = element.all.Xml.xml
+}
+function CreateInnerControls()
+{
+    _oDetailed = window.document.createElement(CONDITION_CTRL);
+    _oDetailed.id = "E";
+    _oDetailed.ParentControl = this;
+    _oDetailed.Container = this;
+    var oSpanDetailed = element.all.cnd_spnDetailed;
+    if(!IsNull(oSpanDetailed.firstChild))
+        oSpanDetailed.innerHTML = "";
+    oSpanDetailed.appendChild(_oDetailed)
+}
+function ParseXml()
+{
+    return _oDetailed.Children[0].ParseXml()
+}
+function GetConditionGroup()
+{
+    if(_oDetailed && _oDetailed.Children && _oDetailed.Children[0])
+        return _oDetailed.Children[0];
+    return null
+}
+function GetXml()
+{
+    if(IsNull(_oDetailed) || IsNull(_oDetailed.Children) || _oDetailed.Children.length == 0 || IsNull(_oDetailed.Children[0]))
+        return "";
+    return _oDetailed.Children[0].GetXml()
+}
+function LoadXml(sXml)
+{
+    element.all.Xml.xml = XUI.Xml.LoadXml(sXml);
+    ShowXml()
+}
+function CacheClientControls()
+{
+    var o = element.all;
+    ClientCache.PutElement("ValueControl","lookup",o.lookup.removeChild(o.lookup.firstChild));
+    ClientCache.PutElement("ValueControl","date",o.date.removeChild(o.date.firstChild));
+    ClientCache.PutElement("ValueControl","string",o.txt.removeChild(o.txt.firstChild));
+    ClientCache.PutElement("ValueControl","number",o.num.removeChild(o.num.firstChild));
+    ClientCache.PutElement("ValueControl","picklist",o.picklist.removeChild(o.picklist.firstChild));
+    ClientCache.PutElement("ValueControl","datetime",o.datetime.removeChild(o.datetime.firstChild))
+}
+function LoadDynamicValues(valueControl,attribute)
+{
+    try
+    {
+        LoadDynamicValuesForAttribute(valueControl,attribute)
+    }
+    catch(err)
+    {
+        if(err.message.indexOf("LoadDynamicValuesForAttribute") < 0 || err.name != "TypeError")
+            throw err
+    }
+}
+function SetConditionMode()
+{
+    try
+    {
+        _isConditionMode = true
+    }
+    catch(e)
+    {
+    }
+}
+
+</script>
+</head>
+</html>
+</public:component>

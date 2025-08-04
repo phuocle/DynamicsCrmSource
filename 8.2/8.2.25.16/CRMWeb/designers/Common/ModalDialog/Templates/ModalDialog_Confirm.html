@@ -1,0 +1,11 @@
+<div role="dialog" class="mscrm-modalDialogText" ng-controller="mscrmConfirmModalDialogController as confirmController" tabindex="-1" aria-labelledby="mscrm-confirmDialogTitle mscrm-confirmDialogText">
+	<div class="mscrm-dialogTitle">
+		<div class="mscrm-confirmDialogIcon mscrm-glyph-WarningIcon"></div>
+		<div id="mscrm-confirmDialogTitle" class="mscrm-dialogTitleText" aria-hidden="true">{{confirmController.dialogParameters.dialogTitle}}</div>
+	</div>
+	<div id="mscrm-confirmDialogText" class="mscrm-modalDialogTextElement" aria-hidden="true">{{confirmController.dialogParameters.dialogText}}</div>
+	<div class="mscrm-confirmDialogButtonStrip">
+		<button type="button" class="mscrm-confirmDialogButton mscrm-confirmDialogOKButton" ng-click="confirmController.onOK()" mscrm-action-on-select tabindex="-1">{{confirmController.dialogParameters.okButtonText}}</button>
+		<button type="button" class="mscrm-confirmDialogButton mscrm-confirmDialogCancelButton" ng-click="confirmController.onCancel()" mscrm-action-on-select tabindex="-1">{{confirmController.dialogParameters.cancelButtonText}}</button>
+	</div>
+</div>

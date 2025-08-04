@@ -1,0 +1,22 @@
+<div id="AppDesigner.ComponentPane" class="mscrm-ComponentPaneContainer">
+	<div ng-if="componentPaneController.IsDataRetrieveInProgress()" class="mscrm-ComponentPane mscrm-ComponentProgressPane">
+		<img src="/_imgs/Designers/HorzPreloader_12x145_blue.gif" alt="...">
+		<div id="mscrm-progressText" class="mscrm-ProgressIndicatorText">
+			<mscrm-locale mscrm-resource-key="PageLoadingMessage" />
+		</div>
+	</div>
+	<div ng-if="componentPaneController.IsSingleSelect(contextModel.CurrentComponentList.selectionType) && !componentPaneController.IsDataRetrieveInProgress()" class="mscrm-ComponentPane">
+		<span class="radio checkboxItem" ng-repeat="item in contextModel.CurrentComponentList.components | orderBy : 'displayName'">
+			<input id="AppDesigner.ComponentPane.ComponentListItem.{{item.id}}.RadioButton" type="radio" name="artifact" value="{{item.id}}" ng-click="componentPaneController.AddComponentInSelectedList(item)" mscrm-action-on-select ng-checked="item.status" />
+			<label for="AppDesigner.ComponentPane.ComponentListItem.{{item.id}}.RadioButton" id="AppDesigner.ComponentPane.ComponentListItem.{{item.id}}.Text"> {{ item.displayName }} </label> <br /><br />
+		</span>
+	</div>
+	<div ng-if="componentPaneController.IsComponentListFrame() && !componentPaneController.IsDataRetrieveInProgress()" class="mscrm-ComponentPane">
+		<mscrm-Component-List-Frame component-type="{{componentPaneController.ComponentListType}}"></mscrm-Component-List-Frame>
+	</div>
+	<div ng-if="componentPaneController.IsAddComponentsFrame() && !componentPaneController.IsDataRetrieveInProgress()" class="mscrm-ComponentPane">
+		<mscrm-Add-Components-Pane></mscrm-Add-Components-Pane>
+	</div>
+</div>
+
+

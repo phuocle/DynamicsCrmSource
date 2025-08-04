@@ -1,0 +1,220 @@
+<public:component lightweight="true" tagName=DataSlug>
+<public:attach event="onkeyup" onevent="OnKeyUpEvent()"/>
+<public:attach event="onkeydown" onevent="OnKeyDownEvent()"/>
+<public:attach event="onclick" onevent="onClick()"/>
+<public:attach event="ondocumentready"	onevent="Init()"/>
+<public:attach event="onfocus" onevent="onFocus()"/>
+<public:event name="deletedataslug" id="deleteDataSlugEvent"/>
+<public:event name="dataslugchange" id="onChangeEvent"/>
+<public:event name="dataslugonfocus" id="dataSlugOnFocusEvent"/>
+<public:property name="Text" put="SetText" get="GetText" />
+<public:property name="Value" put="SetValue" get="GetValue" />
+<public:method name="GetXml"/>
+<public:method name="ParseXml"/>
+<public:method name="RaiseOnChange"/>
+<public:method name="CreateInnerSlug" />
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _bInitComplete = false,
+    _sText = null,
+    _sValue = null,
+    _oValue = null,
+    _bIsReadOnly = true,
+    caretPosition = null,
+    _caretX = -1,
+    _caretY = -1,
+    _oActive = null;
+function Init()
+{
+    _bInitComplete = true
+}
+function CreateInnerSlug(value,text,isMultiSlug,isReadOnly,isDisabled,isInsertHyperLink)
+{
+    isInsertHyperLink = typeof isInsertHyperLink != "undefined" ? isInsertHyperLink : false;
+    if(!isMultiSlug && !IsNull(_oValue))
+    {
+        var oldValue = element.removeChild(_oValue);
+        oldValue = null
+    }
+    var tabIndex = 0,
+        parentContainer = parentElement.parentElement;
+    if(typeof parentContainer.firstChild.CalculateDataSlugTabIndex != "undefined")
+        tabIndex = parentContainer.firstChild.CalculateDataSlugTabIndex();
+    else
+        if(parentContainer.children.length > 1 && typeof parentContainer.children[1].CalculateDataSlugTabIndex != "undefined")
+            tabIndex = parentContainer.children[1].CalculateDataSlugTabIndex();
+    _oValue = window.document.createElement("<span class='ms-crm-DataSlug' tabindex=" + tabIndex + " contentEditable=false>");
+    var elementInserted = false;
+    if(_caretX >= 0 && _caretY >= 0 && !isInsertHyperLink)
+    {
+        if(_oActive != null && IsChild(_oActive,element))
+        {
+            if(_oActive.innerText == "")
+            {
+                _oActive.removeNode(true);
+                _oActive = null
+            }
+            else
+            {
+                _oActive.value = value;
+                _oActive.innerText = text
+            }
+            elementInserted = true
+        }
+        if(!elementInserted)
+        {
+            for(var focusedElement = null,
+                i = 0; i < element.children.length; i++)
+            {
+                var bounds = Sys.UI.DomElement.getBounds(element.children[i]);
+                if(_caretX >= bounds.x && _caretY >= bounds.y && _caretX < bounds.x + bounds.width && _caretY < _caretY + bounds.height)
+                {
+                    focusedElement = element.children[i];
+                    break
+                }
+            }
+            if(focusedElement != null)
+            {
+                element.insertBefore(_oValue,focusedElement);
+                elementInserted = true
+            }
+        }
+        if(!elementInserted)
+            elementInserted = InsertSlugAtCaretLocation(_oValue)
+    }
+    if(!elementInserted)
+        if(element.children.length > 0 && element.lastChild.tagName == "P")
+            element.lastChild.appendChild(_oValue);
+        else
+            element.appendChild(_oValue);
+    if(!isDisabled)
+    {
+        element.contentEditable = true;
+        _oValue.onkeyup = OnKeyUpEvent;
+        _oValue.onkeydown = OnKeyDownEvent;
+        element.attachEvent("onselectstart",onselectstart);
+        element.attachEvent("oncontrolselect",oncontrolselect)
+    }
+    _oValue.Value = value;
+    _oValue.style.display = "inline";
+    _oValue.innerText = IsNull(text) ? "" : text;
+    _oValue.title = _oValue.innerText;
+    _oValue.onbeforeeditfocus = function()
+    {
+        return false
+    };
+    element.title = element.innerText;
+    _bIsReadOnly = isReadOnly
+}
+function IsChild(ele,parent)
+{
+    for(var i = 0; i < parent.children.length; i++)
+        if(parent.children[i] == ele)
+            return true;
+    return false
+}
+function onselectstart()
+{
+    event.cancelBubble = true;
+    return true
+}
+function oncontrolselect()
+{
+    var ele = event.srcElement;
+    if(!IsNull(ele) && ele.tagName == "SPAN" && ele.className == "ms-crm-DataSlug")
+        _oActive = event.srcElement
+}
+function storeTextPosition()
+{
+    caretPosition = window.document.selection.createRange();
+    _caretX = caretPosition.offsetLeft;
+    _caretY = caretPosition.offsetTop
+}
+function InsertSlugAtCaretLocation(oDataSlug)
+{
+    _caretX >= 0 && _caretY >= 0 && caretPosition != null && 
+        caretPosition.select();
+    var sId = "df" + LocalDateTimeNow().getTime();
+    window.document.execCommand("insertParagraph",null,sId);
+    var oParagraph = $get(sId);
+    if(oParagraph == null)
+        return false;
+    oParagraph.parentNode.replaceChild(oDataSlug,oParagraph);
+    return true
+}
+function GetText()
+{
+    if(_bInitComplete)
+        _sText = _oValue.innerText;
+    return _sText
+}
+function SetText(sText)
+{
+    _sText = sText;
+    if(_bInitComplete)
+        _oValue.innerText = IsNull(sText) ? "" : sText
+}
+function RaiseOnChange()
+{
+    onChangeEvent.fire(createEventObject())
+}
+function GetValue()
+{
+    return _sValue
+}
+function SetValue(sValue)
+{
+    _sValue = sValue
+}
+function onClick()
+{
+    element.focus();
+    storeTextPosition();
+    _oActive = null
+}
+function onFocus()
+{
+    dataSlugOnFocusEvent.fire(createEventObject())
+}
+function OnKeyDownEvent()
+{
+    if(!_bIsReadOnly || event.keyCode == KEY_DELETE || event.keyCode == KEY_DEL || event.keyCode == KEY_TAB)
+        return;
+    event.cancelBubble = true;
+    event.returnValue = false
+}
+function OnKeyUpEvent()
+{
+    var o = event.srcElement;
+    if(event.keyCode == KEY_DELETE || event.keyCode == KEY_DEL)
+    {
+        while(!IsNull(o) && o.className != "ms-crm-DataSlugBody" && o.className != "ms-crm-DataSlugBodySingleSlug")
+            o = o.parentElement;
+        !IsNull(o) && !ContainsSlugElement(o) && 
+            deleteDataSlugEvent.fire(createEventObject())
+    }
+    else
+        storeTextPosition()
+}
+function ContainsSlugElement(element)
+{
+    for(var index = 0; index < element.children.length; index++)
+    {
+        if(element.children[index].tagName == "SPAN")
+            return true;
+        if(ContainsSlugElement(element.children[index]))
+            return true
+    }
+    return false
+}
+function GetXml()
+{
+    return null
+}
+function ParseXml()
+{
+    return true
+}
+
+</script>
+</public:component>

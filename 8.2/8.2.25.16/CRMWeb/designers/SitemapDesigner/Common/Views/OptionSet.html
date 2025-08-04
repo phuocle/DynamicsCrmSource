@@ -1,0 +1,11 @@
+<div class="mscrm-propertyConatiner" ng-show="isGeneralSectionOpen">
+	<div class="mscrm-propertiesLabelContainer">
+		<label for="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" class="itemLabel" title="{{PropertyDirective.nodeDisplayName}}">{{PropertyDirective.nodeDisplayName}}</label>
+	</div>
+	<div class="mscrm-propertiesControlContainer">
+		<select id="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" class="selectItem" ng-model="propertyPaneController.propertiesPaneService.currentSelectedSubAreaNode.SelectedType" tabindex="-1"
+				title="{{PropertyDirective.nodeTooltip}}"
+				ng-options="type.type as type.label for type in subAreaTypes"
+				ng-change="propertyPaneController.UpdateSubAreaProperties(type, PropertyDirective.nodeLabel);"></select>
+	</div>
+</div>

@@ -1,0 +1,407 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="init()"/>
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataXml" get="dataXml"/>
+<public:property name="DataValue" get="getDataValue" put="setDataValue"/>
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:property name="DisplayValue" get="getDisplayValue"/>
+<public:property name="WillSubmit"/>
+<public:property name="RequiredLevel" get="getRequiredLevel" />
+<public:property name="DataChangeHandler" />
+<public:event id="OnChangeEvent" name="OnChange"/>
+<public:event id="eventOnInitComplete" name="oninitcomplete"/>
+<public:method name="SetFocus" internalname="setFocus"/>
+<public:method name="ResetToDefault" internalname="resetToDefault"/>
+<public:method name="ResetDefault" internalname="resetDefault"/>
+<public:method name="FireOnChange" internalname="fireOnChange"/>
+<public:method name="FormatDuration" internalname="formatDuration"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oDurationSelect = null,
+    _iValue = null,
+    _validatedMinutes = null,
+    _iDefaultValue = null,
+    _bDisabled = false,
+    MAX_MINUTES,
+    MIN_MINUTES,
+    DURATION_TYPE_MINUTES = 0,
+    DURATION_TYPE_HOURS = 1,
+    DURATION_TYPE_DAYS = 2,
+    _sMinuteSingular = LOCID_SINGULAR_MINUTE,
+    _sMinutePlural = LOCID_PLURAL_MINUTE,
+    _sHourSingular = LOCID_SINGULAR_HOUR,
+    _sHourPlural = LOCID_PLURAL_HOUR,
+    _sDaySingular = LOCID_SINGULAR_DAY,
+    _sDayPlural = LOCID_PLURAL_DAY;
+function init()
+{
+    WillSubmit = true;
+    MAX_MINUTES = parseInt(element.MaxMinutes,10);
+    MIN_MINUTES = parseInt(element.MinMinutes,10);
+    _oDurationSelect = nextSibling;
+    if(!IsNull(element.InitialValue) && element.InitialValue.length != 0)
+    {
+        _iValue = parseInt(element.InitialValue,10);
+        _iDefaultValue = _iValue;
+        element.CurrentValue = _iValue
+    }
+    _oDurationSelect.attachEvent("onvalidate",onSelectValidate);
+    _oDurationSelect.attachEvent("onreturnvaluechange",onSelectChange);
+    _oDurationSelect.attachEvent("onfindnextsmallestentry",onSelectFindNextSmallestEntry);
+    if(!IsNull(element.setdisabled) && setdisabled == "1")
+        _bDisabled = true;
+    eventOnInitComplete.fire()
+}
+function onSelectChange()
+{
+    var minutes = null;
+    if(_oDurationSelect.returnValue != undefined && _oDurationSelect.returnValue != "")
+        if(_validatedMinutes == null)
+            minutes = parseDuration(_oDurationSelect.returnValue);
+        else
+        {
+            minutes = _validatedMinutes;
+            _validatedMinutes = null
+        }
+    if(_iValue != minutes)
+    {
+        _iValue = minutes;
+        element.CurrentValue = _iValue;
+        fireOnChange()
+    }
+}
+function onSelectValidate()
+{
+    if(event.type == "returnvaluechange")
+    {
+        onSelectChange();
+        return
+    }
+    if(typeof event.inputValue == "undefined")
+    {
+        onSelectChange();
+        return
+    }
+    if(event.inputValue == "")
+    {
+        if(IsNull(event.returnValue))
+            event.returnValue = true;
+        event.formattedValue = ""
+    }
+    else
+    {
+        var iMinutes = parseDuration(event.inputValue);
+        if(isNaN(iMinutes) || iMinutes < MIN_MINUTES || iMinutes > MAX_MINUTES)
+        {
+            alert(LOCID_VALID_DURATION);
+            event.returnValue = false
+        }
+        else
+        {
+            _validatedMinutes = iMinutes;
+            var sFormattedDuration = formatDuration(iMinutes);
+            if(!sFormattedDuration || sFormattedDuration == "")
+            {
+                alert(LOCID_ERROR_SAVE_DURATION);
+                event.returnValue = false
+            }
+            else
+            {
+                if(IsNull(event.returnValue))
+                    event.returnValue = true;
+                event.formattedValue = sFormattedDuration
+            }
+        }
+    }
+}
+function onSelectFindNextSmallestEntry()
+{
+    if(event.type == "returnvaluechange")
+    {
+        onSelectChange();
+        return
+    }
+    if(typeof event.inputValue == "undefined")
+    {
+        onSelectChange();
+        return
+    }
+    var sValue = event.inputValue;
+    if(sValue == "")
+        event.sEntry = "";
+    else
+    {
+        var iMinutes = parseDuration(sValue);
+        if(iMinutes <= 5)
+            event.sEntry = String.format(LOCID_ONE_MINUTE_MASK,Mscrm.NumberUtility.addFormatting(1,0));
+        else
+            if(iMinutes <= 15)
+                event.sEntry = String.format(LOCID_N_MINUTES_MASK,Mscrm.NumberUtility.addFormatting(5,0));
+            else
+                if(iMinutes <= 30)
+                    event.sEntry = String.format(LOCID_N_MINUTES_MASK,Mscrm.NumberUtility.addFormatting(15,0));
+                else
+                    if(iMinutes <= 45)
+                        event.sEntry = String.format(LOCID_N_MINUTES_MASK,Mscrm.NumberUtility.addFormatting(30,0));
+                    else
+                        if(iMinutes <= 60)
+                            event.sEntry = String.format(LOCID_N_MINUTES_MASK,Mscrm.NumberUtility.addFormatting(45,0));
+                        else
+                            if(iMinutes <= 90)
+                                event.sEntry = String.format(LOCID_1_HOUR_MASK,Mscrm.NumberUtility.addFormatting(1,0));
+                            else
+                                if(iMinutes <= 120)
+                                    event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(1.5,1));
+                                else
+                                    if(iMinutes <= 150)
+                                        event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(2,0));
+                                    else
+                                        if(iMinutes <= 180)
+                                            event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(2.5,1));
+                                        else
+                                            if(iMinutes <= 210)
+                                                event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(3,0));
+                                            else
+                                                if(iMinutes <= 240)
+                                                    event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(3.5,1));
+                                                else
+                                                    if(iMinutes <= 270)
+                                                        event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(4,0));
+                                                    else
+                                                        if(iMinutes <= 300)
+                                                            event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(4.5,1));
+                                                        else
+                                                            if(iMinutes <= 330)
+                                                                event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(5,0));
+                                                            else
+                                                                if(iMinutes <= 360)
+                                                                    event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(5.5,1));
+                                                                else
+                                                                    if(iMinutes <= 390)
+                                                                        event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(6,0));
+                                                                    else
+                                                                        if(iMinutes <= 420)
+                                                                            event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(6.5,1));
+                                                                        else
+                                                                            if(iMinutes <= 450)
+                                                                                event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(7,0));
+                                                                            else
+                                                                                if(iMinutes <= 480)
+                                                                                    event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(7.5,1));
+                                                                                else
+                                                                                    if(iMinutes <= 510)
+                                                                                        event.sEntry = String.format(LOCID_N_HOURS_MASK,Mscrm.NumberUtility.addFormatting(8,0));
+                                                                                    else
+                                                                                        if(iMinutes <= 2880)
+                                                                                            event.sEntry = String.format(LOCID_1_DAY_MASK,Mscrm.NumberUtility.addFormatting(1,0));
+                                                                                        else
+                                                                                            if(iMinutes <= 4320)
+                                                                                                event.sEntry = String.format(LOCID_N_DAYS_MASK,Mscrm.NumberUtility.addFormatting(2,0));
+                                                                                            else
+                                                                                                event.sEntry = String.format(LOCID_N_DAYS_MASK,Mscrm.NumberUtility.addFormatting(3,0))
+    }
+}
+function dataXml()
+{
+    var sID = this.id.toLowerCase(),
+        sDurationMinutes = "";
+    if(_iValue != null)
+        sDurationMinutes = new String(_iValue);
+    return "<" + sID + ">" + sDurationMinutes + "</" + sID + ">"
+}
+function resetDefault(value)
+{
+    if(IsNull(value))
+        _iDefaultValue = _iValue;
+    else
+        _iDefaultValue = value
+}
+function resetToDefault()
+{
+    setDataValue(_iDefaultValue);
+    _iValue = _iDefaultValue;
+    element.CurrentValue = _iValue
+}
+function isDirty()
+{
+    return _iValue != _iDefaultValue
+}
+function getDisabled()
+{
+    return _bDisabled
+}
+function setDisabled(bValue)
+{
+    if(bValue != _bDisabled)
+    {
+        _bDisabled = bValue;
+        if(bValue == true)
+            _oDurationSelect.disable();
+        else
+            _oDurationSelect.enable()
+    }
+}
+function getDataValue()
+{
+    return _iValue
+}
+function setDataValue(iMinutes)
+{
+    if(iMinutes != null)
+    {
+        if(typeof iMinutes != "number" || iMinutes < MIN_MINUTES || iMinutes > MAX_MINUTES)
+        {
+            alert(formatString(LOCID_DURATION_BADTYPE,MIN_MINUTES.toString(10),MAX_MINUTES.toString(10)));
+            return
+        }
+        iMinutes = Math.floor(iMinutes)
+    }
+    if(iMinutes != _iValue)
+    {
+        var sDuration = "";
+        if(iMinutes != null)
+        {
+            sDuration = formatDuration(iMinutes);
+            if(!sDuration || sDuration == "")
+            {
+                alert(LOCID_ERROR_SAVE_DURATION);
+                return
+            }
+        }
+        _iValue = iMinutes;
+        element.CurrentValue = _iValue;
+        SetDurationDisplay(sDuration)
+    }
+    var fDataChangeHandler = this.DataChangeHandler;
+    fDataChangeHandler && 
+        fDataChangeHandler()
+}
+function setFocus()
+{
+    if(!_bDisabled)
+    {
+        !IsNull(this.form) && this.form.className == "ms-crm-Form" && 
+            this.form.GetTab(element,true);
+        _oDurationSelect.SetFocus()
+    }
+}
+function SetDurationDisplay(sDisplayValue)
+{
+    if(sDisplayValue == null)
+        _oDurationSelect.setValue("",null,true);
+    else
+        _oDurationSelect.setValue(sDisplayValue,null,true)
+}
+function getDisplayValue()
+{
+    if(_iValue != null)
+        return formatDuration(_iValue);
+    else
+        return ""
+}
+function parseDuration(sDur)
+{
+    var sDuration = new String(Trim(sDur)),
+        oRegexMinutes = new RegExp("^" + _sMinuteSingular + "\\s|\\s" + _sMinuteSingular + "$|^" + _sMinutePlural + "\\s|\\s" + _sMinutePlural + "$","i"),
+        oRegexHours = new RegExp("^" + _sHourSingular + "\\s|\\s" + _sHourSingular + "$|^" + _sHourPlural + "\\s|\\s" + _sHourPlural + "$","i"),
+        oRegexDays = new RegExp("^" + _sDaySingular + "\\s|\\s" + _sDaySingular + "$|^" + _sDayPlural + "\\s|\\s" + _sDayPlural + "$","i"),
+        iDurationType = DURATION_TYPE_MINUTES;
+    if(oRegexMinutes.test(sDuration))
+    {
+        sDuration = sDuration.replace(oRegexMinutes,"");
+        iDurationType = DURATION_TYPE_MINUTES
+    }
+    else
+        if(oRegexHours.test(sDuration))
+        {
+            sDuration = sDuration.replace(oRegexHours,"");
+            iDurationType = DURATION_TYPE_HOURS
+        }
+        else
+            if(oRegexDays.test(sDuration))
+            {
+                sDuration = sDuration.replace(oRegexDays,"");
+                iDurationType = DURATION_TYPE_DAYS
+            }
+            else
+                iDurationType = DURATION_TYPE_MINUTES;
+    sDuration = Trim(sDuration);
+    var fDurationTime = Mscrm.NumberUtility.locStringToFloat(sDuration,null);
+    if(isNaN(fDurationTime))
+        return NaN;
+    switch(iDurationType)
+    {
+        case DURATION_TYPE_MINUTES:
+            return Math.round(fDurationTime);
+        case DURATION_TYPE_HOURS:
+            return Math.round(fDurationTime * 60);
+        case DURATION_TYPE_DAYS:
+            return Math.round(fDurationTime * 1440);
+        default:
+            return NaN
+    }
+}
+function formatDuration(iMinutes)
+{
+    var iDecimalAccuracy = 2,
+        rVal;
+    if(iMinutes < 60)
+    {
+        var sMinutesToDisplay = Mscrm.NumberUtility.addFormatting(iMinutes,0,true);
+        if(!sMinutesToDisplay || sMinutesToDisplay == "")
+            return null;
+        if(iMinutes == 1)
+            rVal = formatString(LOCID_ONE_MINUTE_MASK,sMinutesToDisplay);
+        else
+            rVal = formatString(LOCID_N_MINUTES_MASK,sMinutesToDisplay)
+    }
+    else
+        if(iMinutes >= 60 && iMinutes < 1440)
+        {
+            var iHours = iMinutes / 60,
+                sHoursToDisplay = Mscrm.NumberUtility.addFormatting(iHours,iDecimalAccuracy,true);
+            if(!sHoursToDisplay || sHoursToDisplay == "")
+                return null;
+            if(iHours == 1)
+                rVal = formatString(LOCID_1_HOUR_MASK,sHoursToDisplay);
+            else
+                rVal = formatString(LOCID_N_HOURS_MASK,sHoursToDisplay)
+        }
+        else
+            if(iMinutes >= 1440)
+            {
+                var iHours = iMinutes / 60,
+                    iDays = iHours / 24,
+                    sDaysToDisplay = Mscrm.NumberUtility.addFormatting(iDays,iDecimalAccuracy,true);
+                if(!sDaysToDisplay || sDaysToDisplay == "")
+                    return null;
+                if(iDays == 1)
+                    rVal = formatString(LOCID_1_DAY_MASK,sDaysToDisplay);
+                else
+                    rVal = formatString(LOCID_N_DAYS_MASK,sDaysToDisplay)
+            }
+    return rVal
+}
+function fireOnChange()
+{
+    var oEvent = createEventObject();
+    oEvent.value = _iValue;
+    OnChangeEvent.fire(oEvent)
+}
+function getRequiredLevel()
+{
+    try
+    {
+        if(IsNull(this.req))
+            return FIELD_NOT_REQUIRED;
+        else
+            return parseInt(this.req,10)
+    }
+    catch(e)
+    {
+        return FIELD_NOT_REQUIRED
+    }
+}
+
+</script>
+</public:component>

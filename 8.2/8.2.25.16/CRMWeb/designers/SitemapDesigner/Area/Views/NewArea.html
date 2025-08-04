@@ -1,0 +1,17 @@
+<div class="container-fluid" ondragstart="dragArea(event)">
+	<script>
+		function dragArea(ev) {
+			ev.dataTransfer.setData("newElement", 'NewArea');
+		}
+	</script>
+
+	<div draggable="true" class="row navActionButtonContainer navActionButton navModuleButton normal area-title textColor">
+		<span class="navActionButtonLabel">
+			<mscrm-locale mscrm-resource-key="SitemapDesigner.Area" /></span>
+		<span class="navActionButtonIconContainer">
+			<span class="navActionButtonIcon">
+				<img ng-src="{{area.Icon}}" alt="{{GetResourceString(area.ResourceId, area.Id)}}" />
+			</span>
+		</span>
+	</div>
+</div>

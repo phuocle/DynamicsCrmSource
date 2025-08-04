@@ -1,0 +1,27 @@
+
+.ms-crm-List-DataArea,
+div.crmContentPanel,
+#readFormToolBar,
+.processStepsContainer,
+DIV.ms-crm-Form-AreaContainer,
+.processControlContainer div.collapsibleArea div.scrollPane,
+.ui-flyout-dialog.processNavigateMenu div.navigateMenuSection,
+.notesContainerScrollDiv,
+div.ms-crm-DialogStrict-Main-HeaderLess,
+.ms-crm-FormBodyContainer
+{
+-webkit-overflow-scrolling:touch;
+-webkit-transform: translate3d(0,0,0);
+}
+
+body div#Dialog_scheduledstart_iTimeselectPopup.ms-crm-modalDialog.ms-crm-TouchScroll
+{
+-webkit-overflow-scrolling:touch;
+z-index:2001 !important;
+}
+
+body div#Dialog_scheduledend_iTimeselectPopup.ms-crm-modalDialog.ms-crm-TouchScroll
+{
+-webkit-overflow-scrolling:touch;
+z-index:2001 !important;
+}

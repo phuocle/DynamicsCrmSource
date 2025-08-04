@@ -1,0 +1,1283 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready"	onevent="onDocumentReady()"/>
+<public:attach event="onkeydown"		onevent="handleKeyDown()"/>
+<public:property name="SelectedValue"	get="getSelectedValue"		put="putSelectedValue"/>
+<public:property name="DefaultValue"	get="getDefaultValue"		put="putDefaultValue"/>
+<public:property name="NextValue"		get="getNextValue"		put="putNextValue"/>
+<public:property name="PrefixValue"		get="getPrefixValue"		put="putPrefixValue"/>
+<public:property name="Count"		get="getCount"/>
+<public:property name="DataXml"		get="getDataXml"			put="putDataXml"/>
+<public:property name="Disabled"		get="getDisabled"			put="setDisabled"/>
+<public:property name="BitMask"		get="getBitMask"			put="putBitMask"/>
+<public:property name="HasDefaultValue"	get="getHasDefaultValue"/>
+<public:method name="CheckFunction"	internalname="checkFunction"/>
+<public:method name="MoveValueUp"	internalname="moveValueUp"/>
+<public:method name="MoveValueDown"	internalname="moveValueDown"/>
+<public:method name="EditValue"	internalname="editValue"/>
+<public:method name="AddValue"	internalname="addValue"/>
+<public:method name="RemoveValue"	internalname="removeValue"/>
+<public:method name="SortValues"	internalname="sortValues"/>
+<public:method name="RunCommand"	internalname="runCommand"/>
+<public:method name="HandleItemSelected"	internalname="handleItemSelected"/>
+<public:method name="IsOptionSet"	internalname="isOptionSet"/>
+<public:method name="CreateDefaultControl"	internalname="createDefaultControl"/>
+<public:event name="onchange" id="onChangeEvent"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var HIGHLIGHT_COLOR = "#c4ddff",
+    DIM_COLOR = "#ffffff",
+    OptionValueSuffix = 1e4,
+    _oValues,
+    MAX_PICKLIST_VALUE = 1e5,
+    _sMode,
+    CommandAdd = "add",
+    CommandEdit = "edit",
+    CommandRemove = "remove",
+    CommandMoveUP = "moveup",
+    CommandMoveDown = "movedown",
+    CommandSortAsc = "sortasc",
+    CommandSortDes = "sortdes";
+function ValuesObj(bHasDefaultValue)
+{
+    this.bHasDefaultValue = bHasDefaultValue;
+    this.iDefaultValue = null;
+    this.iNextValue = 0;
+    this.iPrefixValue = 0;
+    this.aValues = [];
+    this.iSelectedValue = null;
+    this.SetSelectedValue = ValuesObj_setSelectedValue;
+    this.SetDefaultValue = ValuesObj_setDefaultValue;
+    this.SetNextValue = ValuesObj_setNextValue;
+    this.FindValue = ValuesObj_findValue;
+    this.FindLabel = ValuesObj_findLabel;
+    this.GetValue = ValuesObj_getValue;
+    this.AddValue = ValuesObj_addValue;
+    this.RemoveValue = ValuesObj_removeValue;
+    this.MoveValueUp = ValuesObj_moveValueUp;
+    this.MoveValueDown = ValuesObj_moveValueDown;
+    this.SortValues = ValuesObj_sortValues;
+    this.Serialize = ValuesObj_serialize;
+    this.Deserialize = ValuesObj_deserialize;
+    this.SetPrefixValue = ValuesObj_setPrefixValue;
+    function ValuesObj_setSelectedValue(iValue)
+    {
+        var oValue = this.GetValue(iValue);
+        if(oValue == null || !oValue.bEditable)
+            throw new Error("Invalid argument");
+        this.iSelectedValue = iValue
+    }
+    function ValuesObj_setDefaultValue(iValue)
+    {
+        if(!this.bHasDefaultValue)
+            throw new Error("The control does not have default value");
+        if(this.aValues.length > 0 && this.FindValue(iValue) < 0)
+        {
+            this.iDefaultValue = null;
+            return
+        }
+        this.iDefaultValue = iValue
+    }
+    function ValuesObj_setNextValue(iValue)
+    {
+        var aiClnVals = [],
+            iLen = this.aValues.length,
+            iVal,
+            bCf = false;
+        iValue = AdjustNextValue(iValue);
+        for(var i = 0; i < iLen; i++)
+        {
+            iVal = this.aValues[i].iValue;
+            if(iVal >= iValue)
+            {
+                aiClnVals[i] = iVal;
+                bCf = bCf || iVal == iValue
+            }
+        }
+        if(bCf)
+        {
+            aiClnVals.sort(function(v1,v2)
+            {
+                return v1 > v2 ? 1 : v1 < v2 ? -1 : 0
+            });
+            iLen = aiClnVals.length;
+            for(var i = 0; i < iLen; i++)
+                if(iValue == aiClnVals[i])
+                    iValue = AdjustNextValue(++iValue);
+                else
+                    if(iValue < aiClnVals[i])
+                        break
+        }
+        if(getBitMask())
+            if(0 != (iValue & iValue - 1))
+            {
+                while(0 != (iValue & iValue - 1))
+                    iValue &= iValue - 1;
+                iValue <<= 1
+            }
+        this.iNextValue = iValue
+    }
+    function AdjustNextValue(iValue)
+    {
+        return iValue > 5e3 && iValue < 5101 ? 5101 : iValue
+    }
+    function ValuesObj_findValue(iValue)
+    {
+        for(var i = 0; i < this.aValues.length; i++)
+            if(this.aValues[i].iValue == iValue)
+                return i;
+        return -1
+    }
+    function ValuesObj_findLabel(sLabel)
+    {
+        for(var i = 0; i < this.aValues.length; i++)
+            if(this.aValues[i].sLabel == sLabel)
+                return this.aValues[i].sLabel;
+        return ""
+    }
+    function ValuesObj_getValue(iValue)
+    {
+        var i = this.FindValue(iValue);
+        return i >= 0 ? this.aValues[i] : null
+    }
+    function ValuesObj_addValue(sLabel,position,sDescription)
+    {
+        var insertPos = this.aValues.length;
+        if(!IsNull(position) && typeof position == "number")
+            insertPos = position;
+        for(var newValue = new ValuesObj_valueObj(this.iNextValue,sLabel,true,true,sDescription),
+            i = this.aValues.length; i > insertPos; i--)
+            this.aValues[i] = this.aValues[i - 1];
+        this.aValues[insertPos] = newValue;
+        this.bHasDefaultValue && this.aValues.length == 1 && 
+            this.SetDefaultValue(this.iNextValue);
+        this.SetNextValue(this.iNextValue + 1);
+        return insertPos
+    }
+    function ValuesObj_moveValueUp(iValue)
+    {
+        var bResult = false,
+            i = this.FindValue(iValue),
+            j;
+        if(i < 0 || !this.aValues[i].bEditable)
+            throw new Error("Invalid argument");
+        for(j = i - 1; j >= 0 && !this.aValues[j].bEditable; j--);
+        if(j >= 0)
+        {
+            var oPrevValue = this.aValues[j];
+            this.aValues[j] = this.aValues[i];
+            this.aValues[i] = oPrevValue;
+            bResult = true
+        }
+        return bResult
+    }
+    function ValuesObj_moveValueDown(iValue)
+    {
+        var bResult = false,
+            i = this.FindValue(iValue);
+        if(i < 0 || !this.aValues[i].bEditable)
+            throw new Error("Invalid argument");
+        for(var j = i + 1; j < this.aValues.length && !this.aValues[j].bEditable; j++);
+        if(j < this.aValues.length)
+        {
+            var oNextValue = this.aValues[j];
+            this.aValues[j] = this.aValues[i];
+            this.aValues[i] = oNextValue;
+            bResult = true
+        }
+        return bResult
+    }
+    function ValuesObj_removeValue(iValue)
+    {
+        var i = this.FindValue(iValue);
+        if(i < 0 || !this.aValues[i].bEditable)
+            throw new Error("Invalid argument");
+        this.aValues.splice(i,1);
+        if(this.iSelectedValue == iValue)
+            this.iSelectedValue = null;
+        if(this.bHasDefaultValue && this.iDefaultValue == iValue)
+            this.iDefaultValue = this.aValues.length > 0 ? this.aValues[0].iValue : null
+    }
+    function ValuesObj_sortValues(bAscend)
+    {
+        if(bAscend)
+            this.aValues.sort(function(o1,o2)
+            {
+                return o1.sLabel.localeCompare(o2.sLabel)
+            });
+        else
+            this.aValues.sort(function(o1,o2)
+            {
+                return o2.sLabel.localeCompare(o1.sLabel)
+            })
+    }
+    function ValuesObj_serialize()
+    {
+        var oXmlDoc = XUI.Xml.CreateDocument(),
+            oValues = oXmlDoc.createElement("values");
+        oXmlDoc.documentElement = oValues;
+        this.bHasDefaultValue && !IsNull(this.iDefaultValue) && 
+            oValues.setAttribute("default",this.iDefaultValue);
+        oValues.setAttribute("next",this.iNextValue);
+        oValues.setAttribute("prefix",this.iPrefixValue);
+        for(var i = 0; i < this.aValues.length; i++)
+        {
+            var oValue = oXmlDoc.createElement("value");
+            oValue.setAttribute("value",this.aValues[i].iValue);
+            oValue.setAttribute("label",this.aValues[i].sLabel);
+            oValue.setAttribute("editable",this.aValues[i].bEditable ? "1" : "0");
+            oValue.setAttribute("description",IsNull(this.aValues[i].sDescription) ? "" : this.aValues[i].sDescription);
+            oValues.appendChild(oValue)
+        }
+        return oValues.xml
+    }
+    function ValuesObj_deserialize(oDataXml)
+    {
+        var oValuesNode = oDataXml.documentElement,
+            iValueNode,
+            oValueNode,
+            oValueNodeList,
+            oValue;
+        this.aValues = [];
+        oValueNodeList = oValuesNode.selectNodes("value");
+        for(iValueNode = 0; iValueNode < oValueNodeList.length; iValueNode++)
+        {
+            oValueNode = oValueNodeList.item(iValueNode);
+            var newElement = new ValuesObj_valueObj(Number(oValueNode.attributes.getNamedItem("value").value),oValueNode.attributes.getNamedItem("label").value,oValueNode.attributes.getNamedItem("editable").value == "1",false);
+            this.aValues[this.aValues.length] = newElement;
+            attrItem = oValueNode.attributes.getNamedItem("description");
+            if(!IsNull(attrItem))
+                newElement.sDescription = attrItem.value
+        }
+        if(this.bHasDefaultValue)
+        {
+            var oDefault = oValuesNode.attributes.getNamedItem("default");
+            !IsNull(oDefault) && 
+                this.SetDefaultValue(Number(oDefault.value))
+        }
+        this.SetNextValue(Number(oValuesNode.attributes.getNamedItem("next").value));
+        var oPrefix = oValuesNode.attributes.getNamedItem("prefix");
+        !IsNull(oPrefix) && 
+            this.SetPrefixValue(Number(Number(oPrefix.value)))
+    }
+    function ValuesObj_valueObj(iValue,sLabel,bEditable,bNew,sDescription)
+    {
+        this.iValue = iValue;
+        this.sLabel = sLabel;
+        this.bEditable = bEditable;
+        this.sDescription = "";
+        if(!IsNull(sDescription))
+            this.sDescription = sDescription;
+        this.sParamName = sLabel;
+        this.bNew = bNew
+    }
+    function ValuesObj_setPrefixValue(iValue)
+    {
+        this.iPrefixValue = iValue
+    }
+}
+function onDocumentReady()
+{
+    loadMessages(getObjByName("xmlMsg").XMLDocument);
+    init(getObjByName("xmlData").XMLDocument)
+}
+function init(oDataXml)
+{
+    MAX_PICKLIST_VALUE = parseInt(element.maxvalue,10);
+    _oValues = new ValuesObj(checkFunction("setdefault"));
+    _oValues.Deserialize(oDataXml);
+    updateUI();
+    if(!IsOptionSet())
+        return;
+    var valueElement = element.document.all[element.id + "_txtItemVal"];
+    !IsNull(valueElement) && 
+        valueElement.attachEvent("onchange",handleItemChange);
+    var valueLabel = element.document.all[element.id + "_txtItemLb"];
+    !IsNull(valueLabel) && 
+        valueLabel.attachEvent("onchange",handleItemChange);
+    var valueDesc = element.document.all[element.id + "_txtItemDesc"];
+    !IsNull(valueDesc) && 
+        valueDesc.attachEvent("onchange",handleItemChange);
+    InitCommandEvent()
+}
+var _oMessages = {deleteValue:"",savechangedvalue:"",valuechangedwithoutprefix:""};
+function loadMessages(oMsgXml)
+{
+    _oMessages.deleteValue = oMsgXml.documentElement.selectSingleNode("deletevalue").text;
+    _oMessages.savechangedvalue = oMsgXml.documentElement.selectSingleNode("savechangedvalue").text;
+    _oMessages.valuechangedwithoutprefix = oMsgXml.documentElement.selectSingleNode("valuechangedwithoutprefix").text
+}
+function updateUI()
+{
+    buildValueList();
+    buildDefaultValue()
+}
+function buildValueList()
+{
+    for(var sHtml = '<table cellpadding="2" cellspacing="0" width="100%">',
+        iIndex,
+        selectHtml = "",
+        i = 0; i < _oValues.aValues.length; i++)
+    {
+        var oValue = _oValues.aValues[i];
+        if(oValue.bEditable)
+            sHtml += '<tr id="' + this.id + "_val" + i + '" value="' + oValue.iValue + '" selected="0" onclick="' + this.id + ".HandleItemSelected(" + i + ');" ondblclick="' + this.id + ".EditValue(" + oValue.iValue + ');"><td nowrap class="hand">' + CrmEncodeDecode.CrmHtmlEncode(oValue.sLabel) + "</td></tr>";
+        if(_sMode != "add" && _oValues.iSelectedValue == oValue.iValue)
+        {
+            iIndex = i;
+            _oValues.iSelectedValue = oValue.iValue
+        }
+    }
+    sHtml += "</table>";
+    if(_sMode == "add")
+    {
+        _sMode = null;
+        for(var j = _oValues.aValues.length - 1; j >= 0; j--)
+            if(_oValues.aValues[j].bEditable)
+            {
+                iIndex = j;
+                _oValues.iSelectedValue = _oValues.aValues[iIndex].iValue;
+                break
+            }
+    }
+    getObjByName("divValueList").innerHTML = sHtml;
+    highliteValue(iIndex);
+    RefreshItemProperties()
+}
+function handleItemSelected(index)
+{
+    if(IsNull(index))
+        return;
+    if(_oValues.aValues.length > index)
+    {
+        this.SelectedValue = _oValues.aValues[index].iValue;
+        RefreshItemProperties()
+    }
+}
+function RefreshItemProperties()
+{
+    if(!IsOptionSet())
+        return;
+    var el = element.document.getElementById(element.id + "_txtItemVal");
+    if(IsNull(el))
+        return;
+    var oValue = _oValues.GetValue(this.SelectedValue);
+    if(IsNull(oValue))
+    {
+        ResetItemProperties();
+        return
+    }
+    var valueControl = Mscrm.FormControlInputBehavior.GetBehavior(el.id);
+    if(valueControl)
+        valueControl.set_dataValue(oValue.iValue);
+    else
+        el.DataValue = oValue.iValue;
+    el.disabled = this.disabled;
+    el = element.document.getElementById(element.id + "_txtItemLb");
+    var labelControl = Mscrm.FormControlInputBehavior.GetBehavior(el.id);
+    if(labelControl)
+        labelControl.set_dataValue(oValue.sLabel);
+    else
+        el.DataValue = oValue.sLabel;
+    el.disabled = this.disabled;
+    el = element.document.getElementById(element.id + "_txtItemDesc");
+    var descControl = Mscrm.FormControlInputBehavior.GetBehavior(el.id);
+    if(descControl)
+        descControl.set_dataValue(oValue.sDescription);
+    else
+        el.DataValue = oValue.sDescription;
+    el.disabled = this.disabled
+}
+function ResetItemProperties()
+{
+    var el = element.document.getElementById(element.id + "_txtItemVal");
+    if(IsNull(el))
+        return;
+    var valueControl = Mscrm.FormControlInputBehavior.GetBehavior(el.id);
+    if(valueControl)
+        valueControl.set_dataValue(null);
+    else
+        el.DataValue = null;
+    el.disabled = true;
+    el = element.document.getElementById(element.id + "_txtItemLb");
+    valueControl = Mscrm.FormControlInputBehavior.GetBehavior(el.id);
+    if(valueControl)
+        valueControl.set_dataValue("");
+    else
+        el.DataValue = "";
+    el.disabled = true;
+    el = element.document.getElementById(element.id + "_txtItemDesc");
+    valueControl = Mscrm.FormControlInputBehavior.GetBehavior(el.id);
+    if(valueControl)
+        valueControl.set_dataValue("");
+    else
+        el.DataValue = "";
+    el.disabled = true
+}
+function updateDefaultValue()
+{
+    if(checkFunction("setdefault") && this.HasDefaultValue && !getDisabled())
+        for(var oSelDefaultValue = getObjByName("selDefaultValue"),
+            oOptions = oSelDefaultValue.options,
+            i = 0; i < oOptions.length; i++)
+            if(Number(oOptions(i).value) == _oValues.iDefaultValue)
+                oSelDefaultValue.selectedIndex = i
+}
+function buildDefaultValue()
+{
+    if(checkFunction("setdefault") && this.HasDefaultValue)
+    {
+        var SelectDefaultValue = new Select(false,false);
+        SelectDefaultValue.ID = this.id + "_selDefaultValue";
+        SelectDefaultValue.Selected = _oValues.iDefaultValue;
+        SelectDefaultValue.OnChange = this.id + ".DefaultValue = Number(this.options[this.selectedIndex].value);";
+        for(var i = 0; i < _oValues.aValues.length; i++)
+            !_oValues.aValues[i].bEditable && 
+                SelectDefaultValue.AddOption(_oValues.aValues[i].sLabel,_oValues.aValues[i].iValue);
+        for(var i = 0; i < _oValues.aValues.length; i++)
+            _oValues.aValues[i].bEditable && 
+                SelectDefaultValue.AddOption(_oValues.aValues[i].sLabel,_oValues.aValues[i].iValue);
+        getObjByName("selDefaultValue").outerHTML = SelectDefaultValue.Render();
+        getObjByName("selDefaultValue").disabled = getDisabled()
+    }
+}
+function createDefaultControl(id,defaultValue)
+{
+    var SelectDefaultValue = new Select(false,false);
+    SelectDefaultValue.ID = id;
+    SelectDefaultValue.Selected = _oValues.iDefaultValue;
+    var iDefValue = -1;
+    if(!IsNull(defaultValue))
+        if(typeof defaultValue == "number")
+            iDefValue = defaultValue;
+        else
+            iDefValue = parseInt(defaultValue,10);
+    for(var i = 0; i < _oValues.aValues.length; i++)
+        if(!_oValues.aValues[i].bEditable)
+        {
+            SelectDefaultValue.AddOption(_oValues.aValues[i].sLabel,_oValues.aValues[i].iValue);
+            if(iDefValue == _oValues.aValues[i].iValue)
+                SelectDefaultValue.Selected = iDefValue
+        }
+    for(var i = 0; i < _oValues.aValues.length; i++)
+        if(_oValues.aValues[i].bEditable)
+        {
+            SelectDefaultValue.AddOption(_oValues.aValues[i].sLabel,_oValues.aValues[i].iValue);
+            if(iDefValue == _oValues.aValues[i].iValue)
+                SelectDefaultValue.Selected = iDefValue
+        }
+    return SelectDefaultValue.Render()
+}
+function highliteValue(iIndex)
+{
+    setValueBgColor(iIndex,HIGHLIGHT_COLOR)
+}
+function dimValue(iIndex)
+{
+    setValueBgColor(iIndex,DIM_COLOR)
+}
+function setValueBgColor(iIndex,sBgColor)
+{
+    if(iIndex != null)
+    {
+        var obj = getObjByName("val" + iIndex);
+        obj.style.backgroundColor = sBgColor;
+        obj.selected = sBgColor == DIM_COLOR ? 0 : 1
+    }
+}
+function getObjByName(sName)
+{
+    return this.all.item(this.id + "_" + sName)
+}
+function getDataXml()
+{
+    return _oValues.Serialize()
+}
+function putDataXml(sDataXml)
+{
+    var oXmlDoc = XUI.Xml.LoadXml(sDataXml);
+    init(oXmlDoc)
+}
+function getHasDefaultValue()
+{
+    return _oValues.bHasDefaultValue
+}
+function getDisabled()
+{
+    return this.disabled
+}
+function setDisabled(bValue)
+{
+    this.disabled = bValue;
+    disableFunction("move",bValue);
+    disableFunction("edit",bValue);
+    disableFunction("addremove",bValue);
+    disableFunction("sort",bValue)
+}
+function getBitMask()
+{
+    return this.bitmask
+}
+function setBitMask(bValue)
+{
+    this.bitmask = bValue
+}
+function getSelectedValue()
+{
+    return _oValues.iSelectedValue
+}
+function putSelectedValue(val)
+{
+    var iValue;
+    if(IsNull(val))
+        iValue = val;
+    else
+        if(typeof val == "number")
+            iValue = val;
+        else
+            iValue = Number(val);
+    if(!getDisabled())
+    {
+        var iPrevSelectedValue = _oValues.iSelectedValue;
+        _oValues.SetSelectedValue(iValue);
+        for(var iPrevIndex,
+            iSelectedIndex,
+            i = 0; i < _oValues.aValues.length; i++)
+            if(iPrevSelectedValue == _oValues.aValues[i].iValue)
+                iPrevIndex = i;
+            else
+                if(iValue == _oValues.aValues[i].iValue)
+                    iSelectedIndex = i;
+        if(!IsNull(iSelectedIndex))
+            _oValues.iSelectedValue = iValue;
+        else
+            _oValues.iSelectedValue = null;
+        dimValue(iPrevIndex);
+        highliteValue(iSelectedIndex)
+    }
+}
+function getDefaultValue()
+{
+    if(!checkFunction("setdefault"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    return _oValues.iDefaultValue
+}
+function putDefaultValue(iValue)
+{
+    if(!checkFunction("setdefault"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    _oValues.SetDefaultValue(iValue);
+    updateDefaultValue()
+}
+function getNextValue()
+{
+    if(!checkFunction("addremove"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    return _oValues.iNextValue
+}
+function putNextValue(iValue)
+{
+    if(!checkFunction("addremove"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    _oValues.SetNextValue(iValue)
+}
+function getPrefixValue()
+{
+    return _oValues.iPrefixValue
+}
+function putPrefixValue(iValue)
+{
+    _oValues.SetPrefixValue(iValue)
+}
+function getCount()
+{
+    return _oValues.aValues.length - 1
+}
+function disableFunction(sFunction,bDisable)
+{
+    switch(sFunction.toLowerCase())
+    {
+        case "move":
+            DisableItem(getObjByName("btnMoveValueUp"),bDisable);
+            DisableItem(getObjByName("btnMoveValueDown"),bDisable);
+            break;
+        case "edit":
+            DisableItem(getObjByName("btnEditValue"),bDisable);
+            break;
+        case "addremove":
+            DisableItem(getObjByName("btnAddValue"),bDisable);
+            DisableItem(getObjByName("btnRemoveValue"),bDisable);
+            break;
+        case "sort":
+            DisableItem(getObjByName("btnSortAsc"),bDisable);
+            DisableItem(getObjByName("btnSortDesc"),bDisable);
+            break;
+        default:
+            return
+    }
+}
+function DisableItem(o,bDisable)
+{
+    o.disabled = bDisable;
+    if(!IsNull(o.firstChild) && o.firstChild.tagName == "IMG")
+        o.firstChild.style.filter = bDisable ? "progid:DXImageTransform.Microsoft.Alpha(opacity=50)" : ""
+}
+function checkFunction(sFunction)
+{
+    switch(sFunction.toLowerCase())
+    {
+        case "move":
+            return getObjByName("btnMoveValueUp") != null && getObjByName("btnMoveValueDown") != null;
+        case "edit":
+            return getObjByName("btnEditValue") != null;
+        case "addremove":
+            return getObjByName("btnAddValue") != null && getObjByName("btnRemoveValue") != null;
+        case "setdefault":
+            return getObjByName("selDefaultValue") != null;
+        case "sort":
+            return getObjByName("btnSortAsc") != null && getObjByName("btnSortDesc") != null;
+        default:
+            return false
+    }
+}
+function moveValueUp()
+{
+    var iValue;
+    if(!checkFunction("move"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    if(arguments.length == 0)
+        iValue = _oValues.iSelectedValue;
+    else
+        if(arguments.length == 1 && typeof arguments[0] == "number")
+            iValue = arguments[0];
+        else
+            throw new Error("Invalid argument");
+    _oValues.MoveValueUp(iValue) && 
+        updateUI()
+}
+function moveValueDown()
+{
+    var iValue;
+    if(!checkFunction("move"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    if(arguments.length == 0)
+        iValue = _oValues.iSelectedValue;
+    else
+        if(arguments.length == 1 && typeof arguments[0] == "number")
+            iValue = arguments[0];
+        else
+            throw new Error("Invalid argument");
+    _oValues.MoveValueDown(iValue) && 
+        updateUI()
+}
+function editValue()
+{
+    var iValue,
+        sLabel,
+        oValue;
+    if(IsOptionSet())
+        return;
+    if(!checkFunction("edit"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    if(arguments.length == 0)
+    {
+        iValue = _oValues.iSelectedValue;
+        sLabel = null;
+        if(iValue == null)
+            return
+    }
+    else
+        if(arguments.length == 1 && typeof arguments[0] == "number")
+        {
+            iValue = arguments[0];
+            sLabel = null
+        }
+        else
+            if(arguments.length == 1 && typeof arguments[0] == "string")
+            {
+                iValue = _oValues.iSelectedValue;
+                sLabel = arguments[0]
+            }
+            else
+                if(arguments.length == 2 && typeof arguments[0] == "number" && typeof arguments[1] == "string")
+                {
+                    iValue = arguments[0];
+                    sLabel = arguments[1]
+                }
+                else
+                    throw new Error("Invalid argument");
+    oValue = _oValues.GetValue(iValue);
+    if(oValue == null || !oValue.bEditable)
+        throw new Error("Invalid argument");
+    if(sLabel == null)
+    {
+        var oArgs,
+            oResult;
+        oArgs = {};
+        oArgs.iValue = oValue.iValue;
+        oArgs.sLabel = oValue.sLabel;
+        oArgs.bIsAttribute = _bIsAttribute;
+        if(_bIsAttribute)
+        {
+            var valueControl = Mscrm.FormControlInputBehavior.GetBehavior(selType.id),
+                pickListFlag = null;
+            if(valueControl)
+                pickListFlag = valueControl.get_dataValue();
+            if(selType.DataValue == "picklist" || pickListFlag == "picklist")
+            {
+                oArgs.aValues = _oValues.aValues;
+                oArgs.isCustomAttribute = _bIsCustomAttribute;
+                oArgs.sAttributeType = pickListFlag ? pickListFlag : selType.DataValue
+            }
+        }
+        oResult = openStdDlg(Mscrm.CrmUri.create("/_controls/listEdit/listValue.aspx?mode=edit"),oArgs,300,210);
+        if(oResult == null)
+            return;
+        sLabel = oResult.sLabel;
+        iValue = oResult.iValue
+    }
+    oValue.sLabel = sLabel;
+    oValue.iValue = iValue;
+    updateUI()
+}
+function addValue()
+{
+    var sLabel,
+        sDescription,
+        iValue;
+    _sMode = "add";
+    if(!checkFunction("addremove"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    if(arguments.length == 0)
+        sLabel = null;
+    else
+        if(arguments.length == 1 && typeof arguments[0] == "string")
+            sLabel = arguments[0];
+        else
+            if(arguments.length == 2 && typeof arguments[0] == "string" && typeof arguments[1] == "string")
+            {
+                sLabel = arguments[0];
+                sDescription = arguments[1]
+            }
+            else
+                throw new Error("Invalid argument");
+    if(sLabel == null)
+    {
+        var oArgs = {};
+        oArgs.iValue = _oValues.iNextValue;
+        oArgs.sLabel = "";
+        if(oArgs.iValue == MAX_PICKLIST_VALUE)
+        {
+            if(!confirm(LOCID_MAX_PICKLIST_VALUE))
+                return
+        }
+        else
+            if(oArgs.iValue > MAX_PICKLIST_VALUE)
+            {
+                alert(LOCID_ABOVE_MAX_PICKLIST_VALUE);
+                return
+            }
+        oArgs.bIsAttribute = _bIsAttribute;
+        if(_bIsAttribute)
+        {
+            var valueControl = Mscrm.FormControlInputBehavior.GetBehavior(selType.id),
+                pickListFlag = null;
+            if(valueControl)
+                pickListFlag = valueControl.get_dataValue();
+            if(selType.DataValue == "picklist" || pickListFlag == "picklist")
+            {
+                oArgs.aValues = _oValues.aValues;
+                oArgs.isCustomAttribute = _bIsCustomAttribute;
+                oArgs.sAttributeType = pickListFlag ? pickListFlag : selType.DataValue
+            }
+        }
+        oResult = openStdDlg(Mscrm.CrmUri.create("/_controls/listEdit/listValue.aspx?mode=add"),oArgs,300,210);
+        if(oResult == null)
+            return;
+        sLabel = oResult.sLabel;
+        iValue = oResult.iValue
+    }
+    var position = null;
+    if(!IsNull(_oValues.iSelectedValue))
+        position = _oValues.FindValue(_oValues.iSelectedValue) + 1;
+    var retValue = _oValues.AddValue(sLabel,position,sDescription);
+    if(!IsNull(iValue) && !IsNull(retValue))
+        _oValues.aValues[retValue].iValue = iValue;
+    updateUI();
+    if(!IsNull(retValue))
+        if(SelectedValue != _oValues.aValues[retValue].iValue)
+            SelectedValue = _oValues.aValues[retValue].iValue
+}
+function removeValue(bShowWarning,iValue)
+{
+    if(!checkFunction("addremove"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    if(arguments.length > 2 || arguments.length >= 1 && typeof arguments[0] != "boolean" || arguments.length >= 2 && typeof arguments[1] != "number")
+        throw new Error("Invalid argument");
+    if(typeof bShowWarning == "undefined")
+        bShowWarning = false;
+    if(typeof iValue == "undefined")
+        iValue = _oValues.iSelectedValue;
+    var rowIndex = _oValues.FindValue(iValue),
+        valueObj = _oValues.aValues[rowIndex];
+    bShowWarning = bShowWarning && _oMessages.deleteValue.length > 0;
+    if(valueObj != null && valueObj.bNew)
+        bShowWarning = false;
+    if(!bShowWarning || confirm(_oMessages.deleteValue))
+    {
+        _oValues.RemoveValue(iValue);
+        updateUI()
+    }
+}
+function sortValues(bAscend)
+{
+    if(!checkFunction("sort"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    _oValues.SortValues(bAscend);
+    updateUI()
+}
+function handleKeyDown()
+{
+    var oValueList = getObjByName("divValueList"),
+        el = event.srcElement,
+        rowIndex,
+        oRow;
+    while(!IsNull(el) && (el.id != oValueList.id && el.id != "CommandBar"))
+        el = el.parentElement;
+    if(IsNull(el))
+        return;
+    switch(event.keyCode)
+    {
+        case KEY_DOWN:
+            event.returnValue = false;
+            var aValueRows = oValueList.firstChild.rows,
+                iLength = aValueRows.length;
+            if(iLength > 0)
+                if(IsNull(SelectedValue))
+                {
+                    rowIndex = GetRowIndex(aValueRows[0]);
+                    SelectedValue = _oValues.aValues[rowIndex].iValue
+                }
+                else
+                {
+                    rowIndex = _oValues.FindValue(SelectedValue);
+                    oRow = getObjByName("val" + rowIndex);
+                    if(IsNull(oRow))
+                        break;
+                    rowIndex = oRow.rowIndex;
+                    if(rowIndex >= iLength - 1)
+                    {
+                        oRow = aValueRows[0];
+                        rowIndex = GetRowIndex(oRow);
+                        SelectedValue = _oValues.aValues[rowIndex].iValue;
+                        rowIndex >= 0 && 
+                            oRow.scrollIntoView(true)
+                    }
+                    else
+                    {
+                        rowIndex = rowIndex + 1;
+                        oRow = aValueRows[rowIndex];
+                        rowIndex = GetRowIndex(oRow);
+                        if(rowIndex >= 0)
+                        {
+                            SelectedValue = _oValues.aValues[rowIndex].iValue;
+                            ScrollVerticalList(oValueList,oRow,oRow.rowIndex,iLength,false)
+                        }
+                    }
+                }
+            RefreshItemProperties();
+            break;
+        case KEY_UP:
+            event.returnValue = false;
+            var aValueRows = oValueList.firstChild.rows,
+                iLength = aValueRows.length;
+            if(iLength > 0)
+                if(IsNull(SelectedValue))
+                {
+                    rowIndex = GetRowIndex(aValueRows[0]);
+                    SelectedValue = _oValues.aValues[rowIndex].iValue
+                }
+                else
+                {
+                    rowIndex = _oValues.FindValue(SelectedValue);
+                    oRow = getObjByName("val" + rowIndex);
+                    if(IsNull(oRow))
+                        break;
+                    rowIndex = oRow.rowIndex;
+                    if(rowIndex == 0)
+                    {
+                        oRow = aValueRows[iLength - 1];
+                        rowIndex = GetRowIndex(oRow);
+                        SelectedValue = _oValues.aValues[rowIndex].iValue;
+                        rowIndex >= 0 && 
+                            oRow.scrollIntoView(true)
+                    }
+                    else
+                    {
+                        rowIndex = rowIndex - 1;
+                        oRow = aValueRows[rowIndex];
+                        rowIndex = GetRowIndex(oRow);
+                        if(rowIndex >= 0)
+                        {
+                            SelectedValue = _oValues.aValues[rowIndex].iValue;
+                            ScrollVerticalList(oValueList,oRow,oRow.rowIndex,iLength,false)
+                        }
+                    }
+                }
+            RefreshItemProperties();
+            break;
+        default:
+            break
+    }
+}
+function GetRowIndex(row)
+{
+    var rowIndex = Number(row.id.substr((this.id + "_val").length));
+    if(rowIndex == Number.NaN)
+        return -1;
+    return rowIndex
+}
+function runCommand(command)
+{
+    if(getDisabled() || !checkCommand(command))
+        return;
+    switch(command)
+    {
+        case CommandAdd:
+            if(picklistEditIsFor != "paramaterDialog")
+                addValue(formatString(LOCID_PICKLIST_DEFAULT_LABEL,""));
+            else
+                addValue(formatString("parameter_{0}",_oValues.iNextValue),$get("parameterEditValues_txtItemDesc")[0].value);
+            RefreshItemProperties();
+            break;
+        case CommandEdit:
+            break;
+        case CommandRemove:
+            if(SelectedValue != null)
+            {
+                var rowIndex = _oValues.FindValue(SelectedValue);
+                removeValue(true,SelectedValue);
+                if(IsNull(SelectedValue))
+                {
+                    var oSelected = getObjByName("val" + rowIndex);
+                    if(!IsNull(oSelected))
+                        SelectedValue = _oValues.aValues[rowIndex].iValue;
+                    else
+                    {
+                        rowIndex = rowIndex - 1;
+                        oSelected = getObjByName("val" + rowIndex);
+                        if(!IsNull(oSelected))
+                            SelectedValue = _oValues.aValues[rowIndex].iValue
+                    }
+                    RefreshItemProperties()
+                }
+            }
+            _oValues.SetNextValue(_oValues.iPrefixValue * OptionValueSuffix);
+            break;
+        case CommandMoveUP:
+            SelectedValue != null && 
+                moveValueUp();
+            break;
+        case CommandMoveDown:
+            SelectedValue != null && 
+                moveValueDown();
+            break;
+        case CommandSortAsc:
+            sortValues(true);
+            break;
+        case CommandSortDes:
+            sortValues(false);
+            break;
+        default:
+            return
+    }
+    fireChangeEvent()
+}
+function checkCommand(command)
+{
+    var o;
+    switch(command)
+    {
+        case CommandAdd:
+            o = getObjByName("btnAddValue");
+            break;
+        case CommandEdit:
+            o = getObjByName("btnEditValue");
+            break;
+        case CommandRemove:
+            o = getObjByName("btnRemoveValue");
+            break;
+        case CommandMoveUP:
+            o = getObjByName("btnMoveValueUp");
+            break;
+        case CommandMoveDown:
+            o = getObjByName("btnMoveValueDown");
+            break;
+        case CommandSortAsc:
+            o = getObjByName("btnSortAsc");
+            break;
+        case CommandSortDes:
+            o = getObjByName("btnSortDesc");
+            break
+    }
+    if(!IsNull(o) && (IsNull(o.disabled) || !o.disabled))
+        return true;
+    return false
+}
+function handleItemChange()
+{
+    if(SelectedValue == null)
+    {
+        ResetItemProperties();
+        return
+    }
+    var iValue,
+        sLabel,
+        oValue,
+        oCtrl;
+    if(!checkFunction("edit"))
+        throw new Error("Function not available");
+    else
+        if(getDisabled())
+            return;
+    iValue = _oValues.iSelectedValue;
+    oValue = _oValues.GetValue(iValue);
+    oCtrl = event.srcElement;
+    if(oCtrl != null && oCtrl.id != null)
+    {
+        var eleName = oCtrl.id.substring((this.id + "_").length),
+            realControl = Mscrm.FormControlInputBehavior.GetBehavior(oCtrl.id);
+        switch(eleName)
+        {
+            case "txtItemVal":
+                if(IsNull(oCtrl.DataValue) || realControl && IsNull(realControl.get_dataValue()) || oCtrl.value == "")
+                {
+                    if(realControl)
+                        realControl.set_dataValue(oValue.iValue);
+                    else
+                        oCtrl.DataValue = oValue.iValue;
+                    oCtrl.focus();
+                    oCtrl.select();
+                    break
+                }
+                var newVal = Number(realControl ? realControl.get_dataValue() : oCtrl.DataValue);
+                if(newVal != iValue)
+                {
+                    var bChangeValue = true,
+                        tmpValue = _oValues.GetValue(newVal);
+                    if(!IsNull(tmpValue))
+                    {
+                        alert(formatString(LOCID_VALUE_NOT_UNIQUE,Mscrm.NumberUtility.addFormatting(tmpValue.iValue,0),tmpValue.sLabel));
+                        bChangeValue = false
+                    }
+                    if(bChangeValue && _oMessages.savechangedvalue.length > 0 && !oValue.bNew)
+                        if(!confirm(_oMessages.savechangedvalue))
+                            bChangeValue = false;
+                    if(bChangeValue && _oValues.iPrefixValue >= 1e4 && _oMessages.valuechangedwithoutprefix.length > 0 && oValue.bNew)
+                        if(newVal < _oValues.iPrefixValue * 1e4 || newVal > _oValues.iPrefixValue * 1e4 + 9999)
+                            if(!confirm(formatString(_oMessages.valuechangedwithoutprefix,Mscrm.NumberUtility.addFormatting(_oValues.iPrefixValue,0),Mscrm.NumberUtility.addFormatting(_oValues.iPrefixValue * 1e4,0),Mscrm.NumberUtility.addFormatting(_oValues.iPrefixValue * 1e4 + 9999,0))))
+                                bChangeValue = false;
+                    if(!bChangeValue)
+                    {
+                        if(realControl)
+                            realControl.set_dataValue(oValue.iValue);
+                        else
+                            oCtrl.DataValue = oValue.iValue;
+                        return
+                    }
+                    oValue.iValue = newVal;
+                    _oValues.bHasDefaultValue && _oValues.iDefaultValue == iValue && 
+                        putDefaultValue(newVal);
+                    SelectedValue = newVal;
+                    _oValues.SetNextValue(_oValues.iPrefixValue * OptionValueSuffix + 1)
+                }
+                break;
+            case "txtItemLb":
+                if(!IsNull(oCtrl.DataValue) && oCtrl.DataValue != "" || realControl && !IsNull(realControl.get_dataValue()) && realControl.get_dataValue() != "")
+                    if(picklistEditIsFor != "paramaterDialog")
+                        oValue.sLabel = realControl ? realControl.get_dataValue() : oCtrl.DataValue;
+                    else
+                    {
+                        var newVal = realControl ? realControl.get_dataValue() : oCtrl.DataValue,
+                            retVal = newVal.match(new RegExp("([A-Za-z0-9])+([_])+([A-Za-z0-9_])*"));
+                        if(IsNull(retVal) || retVal[0] != newVal || newVal.substring(0,4).toUpperCase() === "CRM_")
+                        {
+                            alert(LOCID_PARAM_NAME_NOT_VALID);
+                            if(realControl)
+                                realControl.set_dataValue(oValue.sLabel);
+                            else
+                                oCtrl.DataValue = oValue.sLabel;
+                            oCtrl.focus();
+                            oCtrl.select();
+                            return
+                        }
+                        if(newVal != oValue.sLabel)
+                        {
+                            var tmpValue = _oValues.FindLabel(newVal);
+                            if(tmpValue.length > 0)
+                            {
+                                alert(formatString(LOCID_PARAM_NAME_NOT_UNIQUE,tmpValue));
+                                if(realControl)
+                                    realControl.set_dataValue(oValue.sLabel);
+                                else
+                                    oCtrl.DataValue = oValue.sLabel;
+                                return
+                            }
+                            else
+                                oValue.sLabel = realControl ? realControl.get_dataValue() : oCtrl.DataValue
+                        }
+                    }
+                else
+                {
+                    if(realControl)
+                        realControl.set_dataValue(oValue.sLabel);
+                    else
+                        oCtrl.DataValue = oValue.sLabel;
+                    oCtrl.focus();
+                    oCtrl.select()
+                }
+                break;
+            case "txtItemDesc":
+                realControl = Mscrm.FormControlInputBehavior.GetElementBehavior(event.srcElement);
+                oValue.sDescription = realControl ? realControl.get_dataValue() : event.srcElement.DataValue;
+                break
+        }
+        var iIndex = _oValues.FindValue(iValue);
+        if(iIndex >= 0)
+        {
+            var selectedRow = element.document.getElementById(this.id + "_val" + iIndex);
+            if(!IsNull(selectedRow))
+            {
+                selectedRow.value = oValue.iValue;
+                selectedRow.children[0].innerHTML = CrmEncodeDecode.CrmHtmlEncode(oValue.sLabel)
+            }
+        }
+        if(checkFunction("setdefault") && this.HasDefaultValue)
+        {
+            buildDefaultValue();
+            putDefaultValue(_oValues.iDefaultValue)
+        }
+        fireChangeEvent()
+    }
+}
+function isOptionSet()
+{
+    var txtItemDesc = element.document.getElementById(element.id + "_txtItemDesc");
+    if(!IsNull(txtItemDesc))
+        return true;
+    return false
+}
+function fireChangeEvent()
+{
+    var oArg = createEventObject();
+    onChangeEvent.fire(oArg)
+}
+function setGlow(o,isGlow)
+{
+    if(!o.firstChild.firstChild.disabled)
+        o.firstChild.className = isGlow ? "ms-crm-optionset-Label-Hovered" : "ms-crm-optionset-Label-Opened"
+}
+function resetGlow(o)
+{
+    o.firstChild.className = "ms-crm-optionset-Label"
+}
+function cmdFocusIn()
+{
+    var el = getButtonElement();
+    if(!IsNull(el))
+    {
+        if(el.firstChild.firstChild.disabled)
+            return;
+        setGlow(el,true)
+    }
+}
+function cmdFocusOut()
+{
+    var el = getButtonElement();
+    if(!IsNull(el))
+    {
+        if(el.firstChild.firstChild.disabled)
+            return;
+        resetGlow(el)
+    }
+}
+function getButtonElement()
+{
+    var el = event.srcElement;
+    while(!IsNull(el) && el.tagName != "TD")
+        el = el.parentElement;
+    return el
+}
+function InitCommandEvent()
+{
+    setCommandEvent(CommandAdd);
+    setCommandEvent(CommandRemove);
+    setCommandEvent(CommandMoveUP);
+    setCommandEvent(CommandMoveDown);
+    setCommandEvent(CommandSortAsc);
+    setCommandEvent(CommandSortDes)
+}
+function setCommandEvent(command)
+{
+    var o;
+    switch(command)
+    {
+        case CommandAdd:
+            o = getObjByName("btnAddValue");
+            break;
+        case CommandRemove:
+            o = getObjByName("btnRemoveValue");
+            break;
+        case CommandMoveUP:
+            o = getObjByName("btnMoveValueUp");
+            break;
+        case CommandMoveDown:
+            o = getObjByName("btnMoveValueDown");
+            break;
+        case CommandSortAsc:
+            o = getObjByName("btnSortAsc");
+            break;
+        case CommandSortDes:
+            o = getObjByName("btnSortDesc");
+            break
+    }
+    if(!IsNull(o) && (IsNull(o.disabled) || !o.disabled))
+    {
+        o.attachEvent("onfocus",cmdFocusIn);
+        o.attachEvent("onblur",cmdFocusOut);
+        o.attachEvent("onmouseover",cmdFocusIn);
+        o.attachEvent("onmouseout",cmdFocusOut)
+    }
+}
+
+</script>
+</public:component>

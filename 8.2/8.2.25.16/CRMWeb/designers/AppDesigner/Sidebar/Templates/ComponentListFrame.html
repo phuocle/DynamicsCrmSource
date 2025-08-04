@@ -1,0 +1,28 @@
+<div class="mscrm-ComponentListContainer">
+	<div class="mscrm-ComponentPaneReturnButtonContainer">
+	<div tabindex="-1" class="mscrm-ComponentPaneReturnButton" mscrm-locale mscrm-resource-key="AppDesigner.Return.ToolTip" mscrm-target-attr="title" ng-click="componentListController.DisplayAddComponentsPane()" mscrm-action-on-select>
+		<div id="AppDesigner.ComponentPane.Return.Icon" ng-class="['mscrm-ComponentPaneReturnButtonIcon', 'mscrm-glyph-BackIcon ']"></div>
+		<div id="AppDesigner.ComponentPane.Return" class="mscrm-ComponentPaneRetrunButtonText">
+			<mscrm-locale mscrm-resource-key="AppDesigner.Return">
+		</div>
+	</div>
+	</div>
+	<div class="mscrm-ComponentList-header">
+		<div id="AppDesigner.ComponentPane.ComponentListHeading.Text" class="mscrm-panel-heading" ng-attr-title="{{componentListController.Header}}">{{componentListController.Header}}</div>
+		<mscrm-create-new-button createnewmodel="componentListController.formFlyoutMenuModel"
+								 handlenodeclick="componentListController.CreateNewForm(nodename)"
+								 handlebuttonclick="componentListController.CreateNew($event)"
+								 tooltip="componentListController.CreateButtonTooltip" 
+								 ng-show="componentListController.CanCreateNewEntityAsset(componentListController.selectedSwimlane) && componentListController.showCreate()"/>
+	</div>
+	<mscrm-typeahead-search-control search-text="componentListController.SearchText" ng-show="componentListController.IsSearchEnabled()"></mscrm-typeahead-search-control>
+	<div ng-if="componentListController.IsEntityFilterEnabled()">
+		<select id="AppDesigner.ComponentList.Entities" class="mscrm-EntityPicker" tabindex="-1"
+				ng-options="componentListController.EntitySwimLanes.indexOf(swimlane)  as swimlane.entitymetadata.displayName for swimlane in componentListController.EntitySwimLanes"
+				ng-model="componentListController.selectedSwimlane"
+				ng-change="componentListController.OnEntityChange(componentListController.selectedSwimlane)">
+		</select>
+	</div>
+	<mscrm-component-list ng-show="!componentListController.IsCategorizedList()"></mscrm-component-list>
+	<mscrm-categorized-component-List ng-show="componentListController.IsCategorizedList()"></mscrm-categorized-component-List>
+</div>

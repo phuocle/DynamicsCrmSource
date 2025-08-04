@@ -1,0 +1,23 @@
+<div ng-class="['mscrm-ComponentListItem-ExtraOptions', {'mscrm-ComponentListItem-ExtraOptionsOpen': component.extraOptionsModel.IsFlyoutOpen}]">
+	<button tabindex="-1" id="{{component.objectTypeCode}}" class="mscrm-ComponentListItem-ExtraOptionsButton mscrm-glyph-EllipsisIcon"
+			ng-disabled="!component.isAddedToApp" ng-click="addextraoptionsclick({extraOptionsModel: component.extraOptionsModel, $event})" mscrm-action-on-select data-isflyout-src="true"
+			ng-attr-title="{{extraoptionsbuttontooltip}}" aria-label="{{extraoptionsbuttontooltip}}"></button>
+	<div class="mscrm-ExtraOptions-FlyoutContainer">
+		<div class="mscrm-ExtraOptions-FlyoutMenu" mscrm-arrow-key-navigation data-arrow-direction="vertical" ng-show="component.extraOptionsModel.IsFlyoutOpen" mscrm-flyout-accessible-close data-flyoutsrc-id="{{component.objectTypeCode}}">
+			<div class="mscrm-ExtraOptions-Flyout">
+				<div class="mscrm-ExtraOptions-FlyoutItem" mscrm-locale mscrm-resource-key="SolutionSegmentation.CheckBox.Text.Assets" mscrm-target-attr="title">
+					<input tabindex="-1" type="checkbox" class="mscrm-ExtraOptions-FlyoutItemSelector" id="mscrm-ExtraOptions-Assets-{{component.id}}"
+						   ng-checked="component.extraOptionsModel.bAllEntityAssetsAdded" value="{{component.extraOptionsModel.bAllEntityAssetsAdded}}"
+						   ng-click="handleitemclick({component:component})"
+						   mscrm-action-on-select
+						   ng-disabled="component.extraOptionsModel.bAllEntityAssetsAdded" />
+					<label for="mscrm-ExtraOptions-Assets-{{component.id}}" class="mscrm-ExtraOptions-FlyoutItemDetails"><mscrm-locale mscrm-resource-key="SolutionSegmentation.CheckBox.Text.Assets"></mscrm-locale></label>
+				</div>
+				<div class="mscrm-ExtraOptions-FlyoutItem" mscrm-locale mscrm-resource-key="SolutionSegmentation.CheckBox.Text.EntityMetadata" mscrm-target-attr="title">
+					<input tabindex="-1" class="mscrm-ExtraOptions-FlyoutItemSelector" type="checkbox" id="mscrm-ExtraOptions-Metadata" ng-disabled="true" />
+					<label for="mscrm-ExtraOptions-Metadata" class="mscrm-ExtraOptions-FlyoutItemDetails"><mscrm-locale mscrm-resource-key="SolutionSegmentation.CheckBox.Text.EntityMetadata"></mscrm-locale></label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<iframe style="display: none;" id="outFrame"></iframe>
+<script>
+	window.onload = function () {
+		var queryParts = window.location.search.substring(1).split('&', 2);
+		var signOutUri = decodeURIComponent(queryParts[0].split('=', 2)[1]);
+		var authUri = decodeURIComponent(queryParts[1].split('=', 2)[1]);
+		var frame = document.getElementById('outFrame');
+		frame.onload = function () {
+			window.location.replace(authUri);
+		}
+		frame.src = signOutUri;
+	};
+</script>
+</body>
+</html>

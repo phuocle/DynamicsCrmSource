@@ -1,0 +1,428 @@
+/* The file is AUTO generated on Mon, 17 Apr 2017 21:28:57 UTC */
+/* Do NOT manually modify this file! */
+
+@font-face {
+  font-family: 'SegoeUI-Light';
+  src: local('Segoe UI Light'), url("crmfont:segoeui-light_s_u") format("truetype");
+}
+.contentDiv[rtl=false] {
+  float: left !important;
+}
+.contentDiv[rtl=true] {
+  float: right !important;
+  text-align: right !important;
+  padding-right: 10px;
+}
+.contentDiv[rtl=true] span {
+  text-align: right !important;
+}
+.tileContainer {
+  position: relative;
+  min-height: 167px;
+  width: 307px;
+  overflow: hidden;
+}
+.tileContainer:hover {
+  border: 1px solid #000000;
+  cursor: pointer;
+}
+.tileContainer[rtl=false] {
+  text-align: left;
+}
+.tileContainer[rtl=true] {
+  text-align: right;
+}
+.centerTileColor {
+  box-shadow: 0 0 0 1px #0166ae inset;
+  background-color: #1876ba;
+  background-repeat: repeat-x;
+  color: White;
+}
+.tileNormal {
+  border-color: #989898;
+  background-color: #f5f5f5;
+  background-repeat: repeat-x;
+}
+.centerTileColor a {
+  color: White !important;
+  text-decoration: underline !important;
+}
+.tileNormal a {
+  color: Black !important;
+  text-decoration: underline !important;
+}
+.selectedTileBorder {
+  border: 3px solid #000000;
+  padding: 0px;
+}
+.selectedTileBorder:hover {
+  border: 3px solid #000000;
+  padding: 0px;
+}
+.tileUnSelected {
+  border: 1px solid #989898;
+  margin: 2px;
+}
+.tileTitle {
+  font-size: 22px;
+  font-family: SegoeUI-Light;
+  width: 175px;
+  height: 58px;
+  margin-top: 2px;
+  overflow: hidden;
+  display: inline-block;
+  word-wrap: break-word;
+}
+.tileTitle[rtl=false] {
+  float: left;
+  margin-left: 10px;
+}
+.tileTitle[rtl=true] {
+  float: right;
+  margin-right: 10px;
+}
+.tileNormal .normalTileTextColor {
+  color: Black;
+}
+.centerTileColor .normalTileTextColor {
+  color: white;
+}
+.tileContent {
+  position: absolute;
+  margin-top: 61px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  width: 285px;
+  font-family: Segoe UI;
+  display: list-item;
+  list-style-type: none;
+}
+.tileContent img {
+  display: none;
+}
+.tileContent span {
+  max-height: 20px;
+}
+.tileContent[rtl=false] {
+  margin-left: 10px;
+  margin-right: 0px;
+}
+.tileContent[rtl=true] {
+  margin-left: 0px;
+}
+.tileContentLabelWidth {
+  width: 140px;
+}
+.tileContentValueWidth {
+  width: 135px;
+}
+.tileContentTextWrap {
+  width: 135px;
+  height: 20.55px !important;
+  line-height: 20.55px !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  overflow: hidden !important;
+}
+.tileContentValueWidth[rtl=false] {
+  padding-left: 10px;
+}
+.tileContentValueWidth[rtl=true] {
+  padding-right: 10px;
+}
+.tileNormal .normalTileContentLabelColor {
+  color: #666666;
+}
+.centerTileColor .normalTileContentLabelColor {
+  color: white;
+}
+.tileCheckBox {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.tileNormal .tileCheckBox:hover {
+  background-color: #dedede;
+}
+.centerTileColor .tileCheckBox:hover {
+  background-color: #06548d;
+}
+:not(.high-contrast).tileNormal .checkboxSelected:hover:before {
+  content: url('../../../_imgs/crmtile/checkbox_grey_checked_hover.png');
+}
+:not(.high-contrast).tileNormal .checkboxUnSelected:hover:before {
+  content: url('../../../_imgs/crmtile/checkbox_grey_unchecked_hover.png');
+}
+:not(.high-contrast).centerTileColor .checkboxSelected:hover:before {
+  content: url('../../../_imgs/crmtile/checkbox_blue_checked_hover.png');
+}
+:not(.high-contrast).centerTileColor .checkboxUnSelected:hover:before {
+  content: url('../../../_imgs/crmtile/checkbox_blue_unchecked_hover.png');
+}
+:not(.high-contrast).tileNormal .tilePopOut:hover {
+  background-color: #dedede;
+}
+:not(.high-contrast).tileNormal .tilePopOut:hover div:before {
+  content: url('../../../_imgs/CRMTile/drill_down_grey_hover.png');
+}
+:not(.high-contrast).centerTileColor .tilePopOut:hover {
+  background-color: #06548d;
+}
+:not(.high-contrast).centerTileColor .tilePopOut:hover div:before {
+  content: url('../../../_imgs/CRMTile/drill_down_blue_hover.png');
+}
+.tileCheckBox[rtl=false] {
+  right: 0;
+  margin-right: 5px;
+}
+.tileCheckBox[rtl=true] {
+  left: 0;
+  margin-left: 5px;
+}
+.tileNormal .checkboxSelected:before {
+  content: url('../../../_imgs/crmtile/checkbox_grey_checked_rest.png');
+}
+.tileNormal .checkboxUnSelected:before {
+  content: url('../../../_imgs/crmtile/checkbox_grey_unchecked_rest.png');
+}
+.centerTileColor .checkboxSelected:before {
+  content: url('../../../_imgs/crmtile/checkbox_blue_checked_rest.png');
+}
+.centerTileColor .checkboxUnSelected:before {
+  content: url('../../../_imgs/crmtile/checkbox_blue_unchecked_rest.png');
+}
+.high-contrast .checkboxSelected:before {
+  content: url('../../../_imgs/crmtile/checkbox_checked_HC.png');
+}
+.high-contrast .checkboxUnSelected:before {
+  content: url('../../../_imgs/crmtile/checkbox_unchecked_HC.png');
+}
+.tilePopOut {
+  float: right;
+  width: 40px;
+  height: 40px;
+  margin-top: 0px;
+  position: absolute;
+  top: 0px;
+  cursor: pointer;
+}
+.tilePopOut[rtl=false] {
+  float: right;
+  margin-right: 0px;
+  margin-left: 10px;
+  right: 0px;
+}
+.tilePopOut[rtl=true] {
+  float: left;
+  margin-right: 10px;
+  margin-left: 0px;
+  left: 0px;
+}
+.tilePopOutImg {
+  width: 20px;
+  height: 16px;
+  margin-top: 10px;
+}
+.tilePopOutImg[rtl=false] {
+  float: right;
+  margin-right: 10px;
+}
+.tilePopOutImg[rtl=true] {
+  float: left;
+  margin-left: 10px;
+}
+.tilePopOutImgChecked {
+  padding: 0px;
+}
+.tilePopOutImgUnchecked {
+  padding: 0px;
+}
+.tileNormal .tilePopOutImg:before {
+  content: url('../../../_imgs/CRMTile/drill_down_grey.png');
+}
+.centerTileColor .tilePopOutImg:before {
+  content: url('../../../_imgs/CRMTile/drill_down_white.png');
+}
+.high-contrast .tilePopOutImg:before {
+  content: url('../../../_imgs/CRMTile/drill_down_HC.png');
+}
+.tileImage {
+  margin-top: 10px;
+  display: inline-block;
+  width: 49px;
+  height: 49px;
+}
+.tileImage2 {
+  margin-top: 0px;
+  margin-left: 0px !important;
+}
+.tileImage[rtl=false] {
+  margin-left: 10px;
+  float: left;
+}
+.tileImage[rtl=true] {
+  margin-right: 0px;
+  float: right;
+}
+.centerTileColor .normalTileImageDiv {
+  background-color: #d8742a;
+  border: 1px solid #f0a879;
+  color: White;
+}
+.tileNormal .normalTileImageDiv {
+  background-color: #f8f8f8;
+  border: 1px solid #d1d1d1;
+}
+.tileEntityImg {
+  width: 32px;
+  height: 32px;
+  margin-top: 10px;
+}
+.tileEntityImg[rtl=false] {
+  margin-left: 10px;
+  float: left;
+}
+.tileEntityImg[rtl=true] {
+  margin-right: 10px;
+  float: right;
+}
+.entityPlaceHolderImage:before {
+  font-family: 'Dyn CRM Symbol';
+  font-size: 24px;
+}
+.normalTilePlaceHolderImageColor {
+  background-color: White;
+  color: #666666;
+}
+.Lock-symbol:before {
+  font-family: 'Dyn CRM Symbol';
+  position: absolute;
+  opacity: 0.1;
+  filter: alpha(opacity=10);
+  /* For IE8 */
+
+  font-size: 184px;
+  bottom: -68px;
+  content: '\EA6B';
+}
+.tileNormal .Lock-symbol {
+  color: #595959;
+}
+.centerTileColor .Lock-symbol {
+  color: #200b00;
+}
+.Lock-symbol[rtl=true]:before {
+  right: -38px;
+}
+.Lock-symbol[rtl=false]:before {
+  left: -38px;
+}
+.entity-symbol:before {
+  content: "\EB16";
+}
+.entity-symbol.sharepointdocument:before,
+.sharepointdocument .entity-symbol:before {
+  content: "\EC42";
+}
+.entity-symbol.account:before,
+.account .entity-symbol:before {
+  content: "\EA7B";
+}
+.entity-symbol.opportunity:before,
+.opportunity .entity-symbol:before {
+  content: "\EB0F";
+}
+.entity-symbol.lead:before,
+.lead .entity-symbol:before {
+  content: "\EA93";
+}
+.entity-symbol.contact:before,
+.contact .entity-symbol:before {
+  content: "\EA85";
+}
+.entity-symbol.activitypointer:before,
+.activitypointer .entity-symbol:before {
+  content: "\EA7C";
+}
+.entity-symbol.systemuser:before,
+.systemuser .entity-symbol:before {
+  content: "\EB0A";
+}
+.entity-symbol.letter:before,
+.letter .entity-symbol:before {
+  content: "\EB11";
+}
+.entity-symbol.salesorder:before,
+.salesorder .entity-symbol:before {
+  content: "\EB12";
+}
+.entity-symbol.competitor:before,
+.competitor .entity-symbol:before {
+  content: "\EA84";
+}
+.entity-symbol.task:before,
+.task .entity-symbol:before {
+  content: "\EB07";
+}
+.entity-symbol.fax:before,
+.fax .entity-symbol:before {
+  content: "\EA90";
+}
+.entity-symbol.email:before,
+.email .entity-symbol:before {
+  content: "\E119";
+}
+.entity-symbol.phonecall:before,
+.phonecall .entity-symbol:before {
+  content: "\E13A";
+}
+.entity-symbol.contract:before,
+.contract .entity-symbol:before {
+  content: "\EA86";
+}
+.entity-symbol.quote:before,
+.quote .entity-symbol:before {
+  content: "\EA9E";
+}
+.entity-symbol.incident:before,
+.incident .entity-symbol:before {
+  content: "\EB15";
+}
+.entity-symbol.campaign:before,
+.campaign .entity-symbol:before {
+  content: "\EA82";
+}
+.entity-symbol.appointment:before,
+.appointment .entity-symbol:before {
+  content: "\EA7E";
+}
+.entity-symbol.invoice:before,
+.invoice .entity-symbol:before {
+  content: "\EA92";
+}
+.entity-symbol.product:before,
+.product .entity-symbol:before {
+  content: "\EA9B";
+}
+.entity-symbol.opportunityproduct:before,
+.opportunityproduct .entity-symbol:before {
+  content: "\EA9B";
+}
+.entity-symbol.queueitem:before,
+.queueitem .entity-symbol:before {
+  content: "\EA9C";
+}
+.centerTileColor .ms-crm-InlineTabContainer-Read {
+  background-color: #1876ba !important;
+}
+.ms-crm-InlineTabContainer-Read {
+  background-color: #f5f5f5 !important;
+}
+.centerTileColor .ms-crm-Field-Data-Print {
+  color: #FFFFFF !important;
+}

@@ -1,0 +1,16 @@
+/* The file is AUTO generated on Mon, 17 Apr 2017 21:29:00 UTC */
+/* Do NOT manually modify this file! */
+
+.scroller {
+  overflow: hidden;
+  position: relative;
+}
+.scroller > ul {
+  position: absolute;
+}
+.scroller .hideScrollerItem {
+  visibility: hidden;
+}
+.scroller > ul > li {
+  box-sizing: border-box;
+}

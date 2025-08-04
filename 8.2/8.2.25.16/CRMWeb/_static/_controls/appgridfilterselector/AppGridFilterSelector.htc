@@ -1,0 +1,52 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Initialize()"/>
+<public:property name="DataValue" get="getDataValue"/>
+<public:event name="onchange" id="OnChange"/>
+<script language="javascript"></script><script type="text/javascript">
+
+var _oFilterControl = null,
+    _oViewControl = null;
+function Initialize()
+{
+    if(window.document.media == "print")
+        return;
+    var oEle = element.all[GridId + "_FilterControl"];
+    if(!IsNull(oEle))
+    {
+        _oFilterControl = oEle.firstChild;
+        _oFilterControl.attachEvent("onchange",HandleChange)
+    }
+    _oViewControl = element.all[GridId + "_ViewControl"];
+    !IsNull(_oViewControl) && 
+        _oViewControl.attachEvent("onchange",HandleChange)
+}
+function getDataValue()
+{
+    var oKeyValuePairs = [];
+    if(!IsNull(_oFilterControl))
+        with(_oFilterControl)
+        {
+            var key = id.replace(GridId + "_","");
+            oKeyValuePairs[key] = DataValue;
+            oKeyValuePairs.length++
+        }
+    if(!IsNull(_oViewControl))
+        with(_oViewControl)
+            if(options.length > 0)
+                with(options(selectedIndex))
+                {
+                    oKeyValuePairs["queryapi"] = queryapi;
+                    oKeyValuePairs.length = oKeyValuePairs.length + 2
+                }
+    if(oKeyValuePairs.length > 0)
+        return oKeyValuePairs;
+    else
+        return null
+}
+function HandleChange()
+{
+    OnChange.fire(this.createEventObject())
+}
+
+</script>
+</public:component>

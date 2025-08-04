@@ -1,0 +1,378 @@
+<link rel="stylesheet" type="text/css" href="/_static/_common/scripts/BusinessRulesDesigner/ActionPropertyDetails.css" />
+<div id="properties" class="action-prop-container">
+    <div class="header">
+        <span class="headline1" id="lblSuggestionProperty"></span>
+    </div>
+    <div id="contentDivProp">
+        <div id="displayNameDiv">
+            <span class="headline2" role="label" for="displayName" id="lblDisplayName"></span>
+            <input class="fieldText field" id="displayName" type="text" aria-labelledby="lblDisplayName" />
+            <span style="display: none">
+                <label id="displayNameValidationText" style="color: red"></label>
+            </span>
+        </div>
+        <div id="entityNameDiv">
+            <span class="headline2" role="label" for="entityNameLabel" id="lblEntity"></span>
+            <input class="fieldText field nonEditable" id="entityNameLabel" type="text" aria-labelledby="lblEntity" aria-readonly="true" readonly />
+        </div>
+        <div id="sourceEntityDiv">
+            <span class="headline2" role="label" for="suggestionSourceDropDown" id="lblsuggestionSource"></span>
+            <select class="field" id="suggestionSourceDropDown" aria-labelledby="" role="combobox"></select>
+            <span style="display:none">
+                <label id="sourceValidationText" style="color:red"></label>
+            </span>
+        </div>
+        <div id="attributeDiv">
+            <span class="headline2" role="label" for="attributeNameDropDown" id="lblAttribute"></span>
+            <select class="field" id="attributeNameDropDown" aria-labelledby="lblAttribute" role="combobox"></select>
+        </div>
+        <div id="suggestionBodyDiv">
+            <span class="headline2" role="label" for="suggestionBody" id="lblSuggestionBody"></span>
+            <textarea class="actionprop-textarea" id="suggestionBody"></textarea>
+        </div>
+        <div id="acceptDescriptionDiv">
+            <span class="headline2" role="label" for="acceptDescription" id="lblDescription"></span>
+            <textarea class="actionprop-textarea" id="acceptDescription"></textarea>
+        </div>
+    </div>
+</div>
+<div class="buttons align-self">
+    <span class="actionprop-section-label">
+        <input id="suggestionSave" type="button" value="" class="ellipsis" role="button"/>
+        <input id="suggestionCancel" type="button" value="" class="ellipsis" role="button"/>
+    </span>
+</div>
+<script>
+    var propertyViewCurrentModel;
+    var propertyViewCurrentModelClone;
+    var SourceValueToEntityMap = null;
+
+    $(function () {
+        debugger;
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+        document.getElementById("suggestionSave").addEventListener('click', sendSaveMessage);
+        document.getElementById("suggestionCancel").addEventListener('click', sendCancelDialogMessage);
+        document.getElementById("displayName").addEventListener('change', valueChanged);
+        document.getElementById("attributeNameDropDown").addEventListener('change', valueChanged);
+        document.getElementById("suggestionBody").addEventListener('change', valueChanged);
+        document.getElementById("acceptDescription").addEventListener('change', valueChanged);
+        propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        propertyViewCurrentModelClone = propertyViewCurrentModel.getPropertyPageClone();
+        MscrmControls.ProcessDesigner.Validation.Errors.registerPropertyViewCurrentModelClone(propertyViewCurrentModelClone);
+        if (MscrmControls.ProcessDesigner.ControlManager.isPBLfromTBX) {
+            getSourcesList();
+            var suggestionSourceDropDown = $('#suggestionSourceDropDown');
+            suggestionSourceDropDown.on("change", suggestionSourceChanged);
+        } else {
+            $('#sourceEntityDiv').hide();
+        }
+        updateHtmlElements();
+        setLocalizedHTMLStrings();
+        setTooltips();
+        setReadOnlyMode(propertyViewCurrentModel.getReadonlyMode());
+        //MscrmControls.ProcessDesigner.MetadataProvider.getEntityMetadata(loadEntityMetadata, getEntityMetadataFailureCallback);
+        MscrmControls.ProcessDesigner.MetadataProvider.getAttributeMetadata(propertyViewCurrentModel.entity.entityName, loadAttributeMetadata, getAttributeMetadataFailureCallback);
+        renderErrors();
+        GenericWorkflowDesigner.BasePropertyView.updateHtmlElements = updateHtmlElements;
+        stopwatch.stop();
+        localStorage.setItem("PBL_RecommendationPropPageLoad", stopwatch.elapsedMilliseconds.toString());
+        MscrmControls.ProcessDesigner.Validation.Errors.refreshErrorMessages = renderErrors;
+    });
+
+    function valueChanged() {
+        propertyViewCurrentModelClone.field = $("#attributeNameDropDown").val();
+        propertyViewCurrentModelClone.displayName = $('#displayName').val();
+        propertyViewCurrentModelClone.suggestionBody = $('#suggestionBody').val();
+        propertyViewCurrentModelClone.acceptanceText = $('#acceptDescription').val();
+        if (MscrmControls.ProcessDesigner.ControlManager.isPBLfromTBX) {
+            var sourceValue = $("#suggestionSourceDropDown").val();
+            propertyViewCurrentModelClone.entity = SourceValueToEntityMap[sourceValue];
+        }
+        setInputTextTooltips("entityNameLabel");
+        setInputTextTooltips("displayName");
+        setInputTextTooltips("suggestionBody");
+        setInputTextTooltips("acceptDescription");
+        if ($("#attributeNameDropDown :selected").text() == "") {
+            $("#attributeNameDropDown").attr("title", MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyDropDowntooltip"));
+        }
+        else {
+            $("#attributeNameDropDown").attr("title", $("#attributeNameDropDown :selected").text());
+        }
+
+        propertyViewCurrentModelClone.validateOnChange();
+        renderErrors();
+    }
+
+    function setLocalizedHTMLStrings() {
+        $("#suggestionSave").val(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Apply'));
+        $("#suggestionCancel").val(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Discard'));
+        $("#lblDisplayName").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_DisplayName"));
+        $("#lblEntity").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StagePropertyDetails_Entity"));
+        $("#lblAttribute").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_BranchPropertyDetails_Field"));
+        $("#lblSuggestionBody").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_SuggestionBody"));
+        $("#lblDescription").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_AcceptDescription"));
+        $("#lblSuggestionProperty").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_ShowRecommendations"));
+        $("#lblsuggestionSource").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_BranchPropertyDetails_Source"));
+
+        if ($('#suggestionSave').attr("disabled") == undefined) {
+            $('#suggestionSave').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Available"));
+        }
+        else {
+            $('#suggestionSave').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Unavailable"));
+        }
+        $("#suggestionCancel").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_DiscardChangesTooltip"))
+    }
+
+    function setTooltips() {
+        $("#lblDisplayName").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_DisplayNameTooltip"));
+        $("#lblEntity").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_ActionProperty_EntityDisplayName"));
+        $("#lblAttribute").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_FieldTooltip"));
+        $("#lblSuggestionBody").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_SuggestionBodytooltip"));
+        $("#lblDescription").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_PBL_AcceptDescriptionTooltip"));
+        if ($('#suggestionBody').val() == "") {
+            $('#suggestionBody').attr("aria-label", $("#lblSuggestionBody").text());
+        }
+        else {
+            $('#suggestionBody').attr("aria-label", $("#lblSuggestionBody").text() + " " + $('#suggestionBody').val());
+        }
+        if ($('#acceptDescription').val() == "") {
+            $('#acceptDescription').attr("aria-label", $("#lblDescription").text());
+        }
+        else {
+            $('#acceptDescription').attr("aria-label", $("#lblDescription").text() + " " + $('#acceptDescription').val());
+        }
+        $('#suggestionBody').attr("aria-label", $("#lblSuggestionBody").text() + " " + $('#suggestionBody').val());
+        $('#acceptDescription').attr("aria-label", $("#lblDescription").text() + " " + $('#acceptDescription').val());
+    }
+
+    function setInputTextTooltips(id) {
+        if ($('#' + id).val() == "") {
+            $('#' + id).attr("title", MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyTexttooltip"));
+        }
+        else {
+            $('#' + id).attr("title", $('#' + id).val());
+        }
+        if (id == "suggestionBody" || id == "acceptDescription") {
+            if ($('#' + id).val() == "") {
+                if (id == "suggestionBody") {
+                    $('#suggestionBody').attr("aria-label", $("#lblSuggestionBody").text());
+                }
+                if (id == "acceptDescription") {
+                    $('#acceptDescription').attr("aria-label", $("#lblDescription").text());
+                }
+            }
+            else {
+                if (id == "suggestionBody") {
+                    $('#suggestionBody').attr("aria-label", $("#lblSuggestionBody").text() + " " + $('#suggestionBody').val());
+                }
+                if (id == "acceptDescription") {
+                    $('#acceptDescription').attr("aria-label", $("#lblDescription").text() + " " + $('#acceptDescription').val());
+                }
+            }
+        }
+    }
+
+    /* Update the Html elements based on the available model properties */
+    function updateHtmlElements() {
+        propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        // Entity Name
+        var entityName = propertyViewCurrentModel.entity.entityName;
+        var entityDisplayName = CommonTypes.Types.String.isNullOrEmpty(entityName) ? entityName : Xrm.Internal.getEntityDisplayName(entityName);
+        $('#entityNameLabel').val(entityDisplayName);
+
+        // Attribute Name
+        var attributeNameDropdown = $('#attributeNameDropDown');
+        setPlaceHolder(attributeNameDropdown, propertyViewCurrentModel.field);
+
+        // Display Name
+        var displayName = propertyViewCurrentModel.displayName;
+        $('#displayName').val(displayName);
+
+        // Suggestion Body
+        var suggestionBody = propertyViewCurrentModel.suggestionBody;
+        $('#suggestionBody').val(suggestionBody);
+
+        // Accept Description
+        var acceptDescription = propertyViewCurrentModel.acceptanceText;
+        $('#acceptDescription').val(acceptDescription);
+
+        //Update the clone
+        valueChanged();
+    }
+
+    function renderErrors() {
+        // see if any errors exists in clone model
+        if (propertyViewCurrentModelClone.getErrorCount() > 0) {
+            MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(propertyViewCurrentModelClone, $('#properties'), propertyViewCurrentModelClone.getErrorMessages());
+        }
+        // see if any errors exists in activity model
+        else {
+            var model = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            if (!CommonTypes.Types.Object.isNullOrUndefined(model) && !CommonTypes.Types.String.isNullOrEmpty(model) && model.getErrorCount() > 0 && !propertyViewCurrentModelClone.isValid) {
+                MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel(), $('#properties'), GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel().getErrorMessages());
+            }
+            else {
+                MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(propertyViewCurrentModelClone, $('#properties'), propertyViewCurrentModelClone.getErrorMessages());
+            }
+        }
+    }
+
+    // Set the place holder or intial value received from model
+    function setPlaceHolder(dropDown, value) {
+        /* Check if DropDown value has not yet been changed by user, after the Suggestion was newly created */
+        if (value === "" || value == undefined) {
+            if (dropDown.find('option[value=""]').length == 0) {
+                /* Prepend the placeholder to attributeNameDropdown if attribute name has not been updated */
+                dropDown.prepend('<option value="" aria-label ="Empty Option"></option>');
+            }
+            dropDown.val("");
+        }
+        else {
+            /* Bind just the attribute logical name to the 'attributeName' Dropdown, until the metadata is received from Metadata Provider */
+            if (dropDown.find('option[value="' + value + '"]').length == 0) {
+                /* Prepend the placeholder to attributeNameDropdown if attribute name has not been updated */
+                dropDown.append('<option value="' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(value) + '">' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(value) + '</option>');
+            }
+            dropDown.val(value);
+        }
+    }
+
+    // Loads the retrieved enity metadata in dropdown
+    function loadEntityMetadata(list) {
+        var entityNameDropDown = $('#entityNameDropDown');
+        var entityName = entityNameDropDown.val();
+        entityNameDropDown.empty();
+        //bind entity metadata
+        for (var i = 0; i < list.length; i++) {
+            var entityData = list[i];
+            entityNameDropDown.append('<option value="' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(entityData.logicalName) + '">' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(entityData.logicalName) + '</option>');
+        }
+
+        setPlaceHolder(entityNameDropDown, entityName);
+    }
+
+    function getEntityMetadataFailureCallback() {
+        // TODO : 05/05/2016 : Implement Error Handling
+    }
+
+    function loadAttributeMetadata(list) {
+        var attributeNameDropdown = $('#attributeNameDropDown');
+        // Clear the existing options from attributeNameDropdown
+        var attributeName = attributeNameDropdown.val();
+        attributeNameDropdown.empty();
+
+        // Bind the entire attribute metadata to the 'attributeName' Dropdown, now that it is received from Metadata Provider
+        for (var i = 0; i < list.length; i++) {
+            var attributeData = list[i];
+            attributeNameDropdown.append('<option value="' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeData.logicalName) + '">' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeData.displayName) + '</option>');
+        }
+
+        setPlaceHolder(attributeNameDropdown, attributeName);
+    }
+
+    // Used in case of TBX scope to select different entities as sources
+    function getSourcesList() {
+        var suggestionSourceDropdown = $('#suggestionSourceDropDown');
+        var primaryEntity = MscrmControls.ProcessDesigner.ControlManager.primaryEntityName;
+        var sourcesList = MscrmControls.ProcessDesigner.MetadataProvider.getLoadedRelationshipEntityMetadata().slice(0, MscrmControls.ProcessDesigner.MetadataProvider.getLoadedRelationshipEntityMetadata().length);
+        if (SourceValueToEntityMap == null) {
+            SourceValueToEntityMap = {};
+            SourceValueToEntityMap[primaryEntity] = new Microsoft.Crm.Workflow.Expressions.PrimaryEntity(MscrmControls.ProcessDesigner.processStep);
+            sourcesList.forEach(function (relationshipMetadata) {
+                if (typeof (relationshipMetadata) != "string") {
+                    SourceValueToEntityMap[relationshipMetadata.RelationshipName] = new Microsoft.Crm.Workflow.Expressions.RelatedEntityLinked(MscrmControls.ProcessDesigner.processStep, relationshipMetadata.RelationshipAttribute.LogicalName, relationshipMetadata.RelationshipEntity.EntityLogicalName, relationshipMetadata.RelationshipName);
+                    var optionValue = (relationshipMetadata.RelationshipName != undefined && relationshipMetadata.RelationshipName != null) ? relationshipMetadata.RelationshipName : relationshipMetadata;
+                    var optionValueText = (relationshipMetadata.RelationshipName != undefined && relationshipMetadata.RelationshipName != null) ? relationshipMetadata.RelationshipAttribute.Label.Description + ' (' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(relationshipMetadata.RelationshipEntity.DisplayName) + ')' : relationshipMetadata;
+                    var sourceSelected = (relationshipMetadata.RelationshipName != undefined && relationshipMetadata.RelationshipName != null) ? (relationshipMetadata.RelationshipEntity.EntityLogicalName == propertyViewCurrentModel.entity.entityName) ? 'selected' : '' : (relationshipMetadata == propertyViewCurrentModel.entity.entityName) ? 'selected' : '';
+                    suggestionSourceDropdown.append('<option value="' + optionValue + '" ' + sourceSelected + '>' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(optionValueText) + '</option>');
+                }
+            });
+            var isSelected = (primaryEntity == propertyViewCurrentModel.entity.entityName) ? 'selected' : '';
+            suggestionSourceDropdown.prepend('<option value="' + primaryEntity + '" ' + isSelected + '>' + Xrm.Internal.getEntityDisplayName(primaryEntity) + '</option>');
+            $('#suggestionSourceDropDown').attr("title", $('#suggestionSourceDropDown :selected').text())
+        }
+    }
+
+    function suggestionSourceChanged() {
+        var sourceValue = $("#suggestionSourceDropDown").val();
+        var relatedEntity = SourceValueToEntityMap[sourceValue];
+        if (relatedEntity) {
+            MscrmControls.ProcessDesigner.MetadataProvider.getAttributeMetadata(relatedEntity.entityName, loadAttributeMetadata, getAttributeMetadataFailureCallback);
+        }
+        $("#suggestionSourceDropDown").attr("title", $("#suggestionSourceDropDown :selected").text());
+    }
+
+    function getAttributeMetadataFailureCallback() {
+        // TODO : 05/05/2016 : Implement Error Handling
+    }
+
+    function sendCancelDialogMessage() {
+        debugger;
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+        var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        var attributeNameDropdown = $('#attributeNameDropDown');
+        var field = propertyViewCurrentModel.field === "" || propertyViewCurrentModel.field == undefined ? "" : propertyViewCurrentModel.field;
+        $('#attributeNameDropDown').val(field);
+        $('#displayName').val(propertyViewCurrentModel.displayName);
+        $('#suggestionBody').val(propertyViewCurrentModel.suggestionBody);
+        $('#acceptDescription').val(propertyViewCurrentModel.acceptanceText);
+        valueChanged();
+        stopwatch.stop();
+        localStorage.setItem("PBL_RecommendationDiscardTime", stopwatch.elapsedMilliseconds.toString());
+    }
+
+    /* Retrieve the updated values from Html elements and return them back to the parent using post message */
+    function sendSaveMessage() {
+        debugger;
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+
+        // Indicate to Telemetry that Property Page was saved
+        MscrmControls.ProcessDesigner.isPropertyPageSaved = true;
+
+        var validProperties = propertyViewCurrentModelClone.validateOnAction(MscrmControls.ProcessDesigner.Validation.Level.Change);
+
+        // Allow Apply only if entered properties are valid
+        if (validProperties) {
+            updateModel(propertyViewCurrentModelClone, propertyViewCurrentModel);
+            GenericWorkflowDesigner.eventManager.trigger(GenericWorkflowDesigner.FrameworkEvents.editDone);
+            GenericWorkflowDesigner.eventManager.trigger(GenericWorkflowDesigner.FrameworkEvents.updateProperty);
+        }
+        else {
+            // Do nothing for now
+        }
+        //Refresh the errors based on user entered values
+        renderErrors();
+        stopwatch.stop();
+        localStorage.setItem("PBL_RecommendationApplyTime", stopwatch.elapsedMilliseconds.toString());
+    }
+
+    function updateModel(source, destination) {
+        destination.field = source.field;
+        destination.displayName = source.displayName;
+        destination.suggestionBody = source.suggestionBody;
+        destination.acceptanceText = source.acceptanceText;
+        if (MscrmControls.ProcessDesigner.ControlManager.isPBLfromTBX) {
+            destination.entity = source.entity;
+        }
+    }
+
+    function setReadOnlyMode(readOnlyFlag) {
+        if (readOnlyFlag) {
+            // disable all input controls
+            $('input[type=text],textarea').attr("disabled", "disabled");
+            $('input[type=text],textarea').addClass("action-disabled-text");
+            // disable all dropdowns
+            $("select").attr("disabled", "disabled");
+            $("select").addClass("action-disabled-text");
+            // disable all buttons
+            $("#suggestionSave").attr("disabled", "disabled");
+            $("#suggestionSave").addClass("action-disabled-buttons");
+            $("#suggestionCancel").attr("disabled", "disabled");
+            $("#suggestionCancel").addClass("action-disabled-buttons");
+        }
+    }
+
+</script>

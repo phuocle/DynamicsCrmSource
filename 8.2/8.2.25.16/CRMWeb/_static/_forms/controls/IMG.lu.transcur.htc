@@ -1,0 +1,126 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:method name="SetCurrency" internalname="setCurrency"/>
+<public:property name="Form" get="getForm" put="setForm"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oCurLkItm,
+    _oForm = null,
+    _oEle = element,
+    _sCurSym = "",
+    _iCurPre = _defCurPre,
+    _component = null;
+function Init()
+{
+    Sys.Application.add_load(function()
+    {
+        _component = $find(_oEle.id);
+        _component.AddBindingColumn(_oEle.cursymclm);
+        _component.AddBindingColumn("currencyprecision");
+        _oCurLkItm = _component.get_dataValue();
+        _component.add_internalBeforeChange(validateCurrency);
+        _component.add_change(updateCurrencySymbolInUI)
+    });
+    var oEle = _oEle;
+    while(!IsNull(oEle))
+    {
+        if(oEle.tagName == "FORM")
+        {
+            _oForm = oEle;
+            break
+        }
+        oEle = oEle.parentElement
+    }
+}
+function validateCurrency(sender,args)
+{
+    if(!IsNull(_oForm))
+        for(var iLen = _oForm.all.length,
+            oCtrl,
+            i = 0; i < iLen; i++)
+        {
+            oCtrl = $find(_oForm.all[i].id);
+            if(isMoneyControl(oCtrl) && !oCtrl.get_isBaseCurrency())
+                if(IsNull(_oEle.DataValue) && !IsNull(oCtrl.get_dataValue()))
+                {
+                    alert(LOCID_CURRENCY_CANNOT_BE_NULL);
+                    _component.set_dataValue(_oCurLkItm);
+                    return false
+                }
+        }
+    _oCurLkItm = _component.get_dataValue();
+    var oCurSym = null,
+        oCurPre = null,
+        items = args.get_result().items;
+    if(!IsNull(items) && items.length > 0)
+    {
+        oCurSym = items[0].keyValues[_oEle.cursymclm];
+        oCurPre = items[0].keyValues["currencyprecision"]
+    }
+    _sCurSym = !IsNull(oCurSym) ? oCurSym.value : "";
+    _iCurPre = !IsNull(oCurPre) ? parseInt(oCurPre.value,10) : _defCurPre;
+    return true
+}
+function updateCurrencySymbolInUI(sender,args)
+{
+    if(!IsNull(_oForm))
+        for(var iLen = _oForm.all.length,
+            oCtrl,
+            i = 0; i < iLen; i++)
+        {
+            oCtrl = $find(_oForm.all[i].id);
+            if(isMoneyControl(oCtrl) && !oCtrl.get_isBaseCurrency())
+            {
+                oCtrl.set_currencySymbol(_sCurSym);
+                oCtrl.set_currencyPrecision(_iCurPre)
+            }
+        }
+}
+function isMoneyControl(oCtrl)
+{
+    return !IsNull(oCtrl) && !IsNull(oCtrl.get_isMoney) && oCtrl.get_isMoney()
+}
+function setCurrency(stransCurId)
+{
+    if(!IsNull(stransCurId) && stransCurId.length > 0)
+    {
+        var oRemoteCmd = new RemoteCommand("TransactionCurrencyWebService","Retrieve");
+        oRemoteCmd.SetParameter("transactionCurrencyId",stransCurId);
+        var oResult = oRemoteCmd.Execute();
+        if(oResult.Success && typeof oResult.ReturnValue == "string")
+        {
+            var oXml = XUI.Xml.LoadXml(oResult.ReturnValue);
+            _sCurSym = oXml.selectSingleNode("/TransactionCurrency/CurrencySymbol").text;
+            var li = new LookupControlItem;
+            li.id = stransCurId;
+            li.name = oXml.selectSingleNode("/TransactionCurrency/CurrencyName").text;
+            li.type = TransactionCurrency;
+            li.values = [];
+            li.keyValues = {};
+            li.keyValues[cursymclm] = _sCurSym;
+            var items = [];
+            items[0] = li;
+            _component.set_dataValue(items)
+        }
+    }
+    else
+    {
+        _component.set_dataValue(null);
+        _sCurSym = ""
+    }
+    if(_component.get_disabled())
+        updateCurrencySymbolInUI();
+    else
+        _component.FireOnChange()
+}
+function getForm()
+{
+    return _oForm
+}
+function setForm(oF)
+{
+    _oForm = oF
+}
+
+</script>
+</public:component>

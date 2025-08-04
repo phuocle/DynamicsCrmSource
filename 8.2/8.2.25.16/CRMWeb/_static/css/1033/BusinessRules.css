@@ -1,0 +1,1541 @@
+/* The file is AUTO generated on Fri, 20 Nov 2020 20:21:33 UTC */
+/* Do NOT manually modify this file! */
+
+/* _locID_css@font-family="BusinessRule_Light_FontFamily" _locComment="Font Family" */
+/* _locID_css@font-family="BusinessRule_FontFamily" _locComment="Font Family" */
+/* _locID_css@font-size="BusinessRule_FontSize" _locComment="Font Size" */
+.hidecontrol,
+.hidesection {
+  display: none;
+}
+.rollupsourcesection .sectionbody > .action,
+.rolluprelatedentitysection .sectionbody > div > .action,
+.rollupaggregatesection .sectionbody > div > .action,
+.sectionbody > .action,
+.sectionbody > .actioncollection > .action,
+.sectionbody > .expressioncollection > .expression {
+  /*put margin between the expressions*/
+
+  margin-top: 4px;
+  /*reduce padding inside the border*/
+
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.action.ms-crm-Inline-Value,
+.expression.ms-crm-Inline-Value {
+  margin: 0px;
+  margin-left: 12px;
+  height: 22px;
+  padding: 0px;
+  padding-left: 8px;
+  padding-top: 3px;
+}
+.action.ms-crm-Inline-Chrome > .ms-crm-Inline-Edit,
+.expression.ms-crm-Inline-Chrome > .ms-crm-Inline-Edit {
+  margin-left: 2px;
+  margin-right: 0px;
+  margin-top: -3px;
+}
+.action .ms-crm-Inline-Edit,
+.expression .ms-crm-Inline-Edit {
+  position: relative;
+}
+.action .ms-crm-Inline-Chrome.warningviewcontainer,
+.expression .ms-crm-Inline-Chrome.warningviewcontainer {
+  margin: 0px;
+  display: inline-block;
+}
+.action .ms-crm-Inline-Chrome.warningviewcontainer .warningviewiconcontainer,
+.expression .ms-crm-Inline-Chrome.warningviewcontainer .warningviewiconcontainer {
+  top: 3px;
+  position: absolute;
+  left: -15px;
+}
+.action .expressioncontent .rightoperand,
+.expression .expressioncontent .rightoperand,
+.action .expressioncontent .operand,
+.expression .expressioncontent .operand {
+  display: inline;
+  font-weight: Bold;
+  color: #1f8400;
+}
+.action .expressioncontent .expressionprefix,
+.expression .expressioncontent .expressionprefix,
+.action .expressioncontent .conditionoperator,
+.expression .expressioncontent .conditionoperator,
+.action .expressioncontent .whereclause,
+.expression .expressioncontent .whereclause {
+  display: inline-block;
+  font-weight: normal;
+  color: #1f8400;
+}
+.action .actioncontent,
+.expression .actioncontent {
+  color: #006f93;
+  font-weight: normal;
+}
+.action .actioncontent,
+.expression .actioncontent,
+.action .expressioncontent,
+.expression .expressioncontent {
+  display: inline-block;
+  float: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  width: 100%;
+}
+.action .ms-crm-Inline-EditHintState .ms-crm-ReadToolBar,
+.expression .ms-crm-Inline-EditHintState .ms-crm-ReadToolBar {
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+}
+.action.selected .ms-crm-ReadToolBar,
+.expression.selected .ms-crm-ReadToolBar {
+  display: inline-block;
+}
+.action.selected .action.ms-crm-Inline-Value,
+.expression.selected .action.ms-crm-Inline-Value,
+.action.selected .expression.ms-crm-Inline-Value,
+.expression.selected .expression.ms-crm-Inline-Value {
+  border-width: 1px;
+  border-left-width: 10px;
+  padding-left: 9px;
+  margin-left: 2px;
+}
+.action.selected .action.ms-crm-Inline-Value,
+.expression.selected .action.ms-crm-Inline-Value {
+  border-color: #006f93;
+}
+.action.selected .expression.ms-crm-Inline-Value,
+.expression.selected .expression.ms-crm-Inline-Value {
+  border-color: #1f8400;
+}
+.action .ms-crm-ReadToolBar,
+.expression .ms-crm-ReadToolBar {
+  display: none;
+  float: right;
+  height: 18px;
+  margin-right: 20px;
+}
+.action .ms-crm-ReadToolBar .ms-crm-Button,
+.expression .ms-crm-ReadToolBar .ms-crm-Button {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+.action .editstepandtoolbarcontainer,
+.expression .editstepandtoolbarcontainer {
+  border-color: #006f93;
+  width: 100%;
+}
+.action .editexpressionandtoolbarcontainer,
+.expression .editexpressionandtoolbarcontainer {
+  border-color: #1f8400;
+}
+.action .expressioncontainer,
+.expression .expressioncontainer {
+  white-space: normal;
+  display: inline-block;
+  width: 90%;
+}
+.action .editstepandtoolbarcontainer,
+.expression .editstepandtoolbarcontainer,
+.action .editexpressionandtoolbarcontainer,
+.expression .editexpressionandtoolbarcontainer {
+  background-color: #f6f6f6;
+  margin: 0px;
+  border-width: 1px;
+  border-left-width: 10px;
+  border-style: solid;
+  /*
+		 * Rules only for SetFieldValue and SetDefaultValue actions in PBL
+		 */
+
+}
+.action .editstepandtoolbarcontainer.blink,
+.expression .editstepandtoolbarcontainer.blink,
+.action .editexpressionandtoolbarcontainer.blink,
+.expression .editexpressionandtoolbarcontainer.blink {
+  border-width: 0px;
+  padding: 1px;
+  padding-left: 10px;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer,
+.action .editstepandtoolbarcontainer .editstepcontainer,
+.expression .editstepandtoolbarcontainer .editstepcontainer,
+.action .editexpressionandtoolbarcontainer .editstepcontainer,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer {
+  margin: 12px 0px 0px 0px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .expressioncelllabel,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .expressioncelllabel,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncelllabel,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncelllabel,
+.action .editstepandtoolbarcontainer .editstepcontainer .expressioncelllabel,
+.expression .editstepandtoolbarcontainer .editstepcontainer .expressioncelllabel,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .expressioncelllabel,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .expressioncelllabel {
+  height: 14px;
+  color: #444444;
+  padding-bottom: 8px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .optycon.hidecontrol,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .optycon.hidecontrol,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .optycon.hidecontrol,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .optycon.hidecontrol,
+.action .editstepandtoolbarcontainer .editstepcontainer .optycon.hidecontrol,
+.expression .editstepandtoolbarcontainer .editstepcontainer .optycon.hidecontrol,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .optycon.hidecontrol,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .optycon.hidecontrol {
+  display: none;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .lefopcon,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .lefopcon,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .lefopcon,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .lefopcon,
+.action .editstepandtoolbarcontainer .editstepcontainer .lefopcon,
+.expression .editstepandtoolbarcontainer .editstepcontainer .lefopcon,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .lefopcon,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .lefopcon,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .rigopcon,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .rigopcon,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .rigopcon,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .rigopcon,
+.action .editstepandtoolbarcontainer .editstepcontainer .rigopcon,
+.expression .editstepandtoolbarcontainer .editstepcontainer .rigopcon,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .rigopcon,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .rigopcon,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .optycon,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .optycon,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .optycon,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .optycon,
+.action .editstepandtoolbarcontainer .editstepcontainer .optycon,
+.expression .editstepandtoolbarcontainer .editstepcontainer .optycon,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .optycon,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .optycon,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .conopcon,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .conopcon,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .conopcon,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .conopcon,
+.action .editstepandtoolbarcontainer .editstepcontainer .conopcon,
+.expression .editstepandtoolbarcontainer .editstepcontainer .conopcon,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .conopcon,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .conopcon {
+  vertical-align: top;
+  display: inline-block;
+  font-size: 12px;
+  width: 22%;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .lefopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .lefopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .lefopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .lefopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editstepandtoolbarcontainer .editstepcontainer .lefopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editstepandtoolbarcontainer .editstepcontainer .lefopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .lefopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .lefopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .rigopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .rigopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .rigopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .rigopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editstepandtoolbarcontainer .editstepcontainer .rigopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editstepandtoolbarcontainer .editstepcontainer .rigopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .rigopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .rigopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .optycon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .optycon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .optycon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .optycon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editstepandtoolbarcontainer .editstepcontainer .optycon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editstepandtoolbarcontainer .editstepcontainer .optycon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .optycon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .optycon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .conopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .conopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .conopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .conopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editstepandtoolbarcontainer .editstepcontainer .conopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editstepandtoolbarcontainer .editstepcontainer .conopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .conopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .conopcon .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label {
+  width: calc(60%);
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .conopcon,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .conopcon,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .conopcon,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .conopcon,
+.action .editstepandtoolbarcontainer .editstepcontainer .conopcon,
+.expression .editstepandtoolbarcontainer .editstepcontainer .conopcon,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .conopcon,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .conopcon {
+  width: 15%;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .andorcon,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .andorcon,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .andorcon,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .andorcon,
+.action .editstepandtoolbarcontainer .editstepcontainer .andorcon,
+.expression .editstepandtoolbarcontainer .editstepcontainer .andorcon,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .andorcon,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .andorcon {
+  vertical-align: top;
+  display: inline-block;
+  width: 8%;
+  min-width: 65px;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .andorcon .expressioncelllabel,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .andorcon .expressioncelllabel,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .andorcon .expressioncelllabel,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .andorcon .expressioncelllabel,
+.action .editstepandtoolbarcontainer .editstepcontainer .andorcon .expressioncelllabel,
+.expression .editstepandtoolbarcontainer .editstepcontainer .andorcon .expressioncelllabel,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .andorcon .expressioncelllabel,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .andorcon .expressioncelllabel,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .andorcon .expressioncellbody .ms-crm-Inline-Chrome .ms-crm-Inline-Edit.ui-autocomplete-wrapper,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .andorcon .expressioncellbody .ms-crm-Inline-Chrome .ms-crm-Inline-Edit.ui-autocomplete-wrapper,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .andorcon .expressioncellbody .ms-crm-Inline-Chrome .ms-crm-Inline-Edit.ui-autocomplete-wrapper,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .andorcon .expressioncellbody .ms-crm-Inline-Chrome .ms-crm-Inline-Edit.ui-autocomplete-wrapper,
+.action .editstepandtoolbarcontainer .editstepcontainer .andorcon .expressioncellbody .ms-crm-Inline-Chrome .ms-crm-Inline-Edit.ui-autocomplete-wrapper,
+.expression .editstepandtoolbarcontainer .editstepcontainer .andorcon .expressioncellbody .ms-crm-Inline-Chrome .ms-crm-Inline-Edit.ui-autocomplete-wrapper,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .andorcon .expressioncellbody .ms-crm-Inline-Chrome .ms-crm-Inline-Edit.ui-autocomplete-wrapper,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .andorcon .expressioncellbody .ms-crm-Inline-Chrome .ms-crm-Inline-Edit.ui-autocomplete-wrapper {
+  margin-left: 14px;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer,
+.action .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer,
+.expression .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer {
+  width: 90%;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon .expressioncelllabel,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon .expressioncelllabel,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon .expressioncelllabel,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon .expressioncelllabel,
+.action .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon .expressioncelllabel,
+.expression .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon .expressioncelllabel,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon .expressioncelllabel,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon .expressioncelllabel,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon .expressioncellbody,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon .expressioncellbody,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon .expressioncellbody,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon .expressioncellbody,
+.action .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon .expressioncellbody,
+.expression .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon .expressioncellbody,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon .expressioncellbody,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon .expressioncellbody {
+  padding-right: 10px;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncelllabel,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncelllabel,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncelllabel,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncelllabel,
+.action .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncelllabel,
+.expression .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncelllabel,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncelllabel,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncelllabel,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncelllabel,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncelllabel,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncelllabel,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncelllabel,
+.action .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncelllabel,
+.expression .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncelllabel,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncelllabel,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncelllabel,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncellbody,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncellbody,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncellbody,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncellbody,
+.action .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncellbody,
+.expression .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncellbody,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncellbody,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_2 .expressioncellbody,
+.action .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncellbody,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncellbody,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncellbody,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncellbody,
+.action .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncellbody,
+.expression .editstepandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncellbody,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncellbody,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .expressioncontainer .rigopcon.rigopcon_0 .subcontrol .expressioncellbody {
+  padding-right: 0px;
+}
+.action .editstepandtoolbarcontainer .editexpressioncontainer .rigopcon.rigopcon_2,
+.expression .editstepandtoolbarcontainer .editexpressioncontainer .rigopcon.rigopcon_2,
+.action .editexpressionandtoolbarcontainer .editexpressioncontainer .rigopcon.rigopcon_2,
+.expression .editexpressionandtoolbarcontainer .editexpressioncontainer .rigopcon.rigopcon_2,
+.action .editstepandtoolbarcontainer .editstepcontainer .rigopcon.rigopcon_2,
+.expression .editstepandtoolbarcontainer .editstepcontainer .rigopcon.rigopcon_2,
+.action .editexpressionandtoolbarcontainer .editstepcontainer .rigopcon.rigopcon_2,
+.expression .editexpressionandtoolbarcontainer .editstepcontainer .rigopcon.rigopcon_2 {
+  display: block;
+  width: 100%;
+}
+.action .editstepandtoolbarcontainer .setfieldvalueeditstepcontainer,
+.expression .editstepandtoolbarcontainer .setfieldvalueeditstepcontainer,
+.action .editexpressionandtoolbarcontainer .setfieldvalueeditstepcontainer,
+.expression .editexpressionandtoolbarcontainer .setfieldvalueeditstepcontainer {
+  width: 95%;
+}
+.action .editstepandtoolbarcontainer .setfieldvalueeditstepcontainer .lefopcon,
+.expression .editstepandtoolbarcontainer .setfieldvalueeditstepcontainer .lefopcon,
+.action .editexpressionandtoolbarcontainer .setfieldvalueeditstepcontainer .lefopcon,
+.expression .editexpressionandtoolbarcontainer .setfieldvalueeditstepcontainer .lefopcon,
+.action .editstepandtoolbarcontainer .setdefaultvalueeditstepcontainer .lefopcon,
+.expression .editstepandtoolbarcontainer .setdefaultvalueeditstepcontainer .lefopcon,
+.action .editexpressionandtoolbarcontainer .setdefaultvalueeditstepcontainer .lefopcon,
+.expression .editexpressionandtoolbarcontainer .setdefaultvalueeditstepcontainer .lefopcon,
+.action .editstepandtoolbarcontainer .setfieldvalueeditstepcontainer .rigopcon,
+.expression .editstepandtoolbarcontainer .setfieldvalueeditstepcontainer .rigopcon,
+.action .editexpressionandtoolbarcontainer .setfieldvalueeditstepcontainer .rigopcon,
+.expression .editexpressionandtoolbarcontainer .setfieldvalueeditstepcontainer .rigopcon,
+.action .editstepandtoolbarcontainer .setdefaultvalueeditstepcontainer .rigopcon,
+.expression .editstepandtoolbarcontainer .setdefaultvalueeditstepcontainer .rigopcon,
+.action .editexpressionandtoolbarcontainer .setdefaultvalueeditstepcontainer .rigopcon,
+.expression .editexpressionandtoolbarcontainer .setdefaultvalueeditstepcontainer .rigopcon {
+  width: 30%;
+}
+.action .editstepandtoolbarcontainer .setfieldvalueeditstepcontainer .lefopcon .subcontrol,
+.expression .editstepandtoolbarcontainer .setfieldvalueeditstepcontainer .lefopcon .subcontrol,
+.action .editexpressionandtoolbarcontainer .setfieldvalueeditstepcontainer .lefopcon .subcontrol,
+.expression .editexpressionandtoolbarcontainer .setfieldvalueeditstepcontainer .lefopcon .subcontrol,
+.action .editstepandtoolbarcontainer .setdefaultvalueeditstepcontainer .lefopcon .subcontrol,
+.expression .editstepandtoolbarcontainer .setdefaultvalueeditstepcontainer .lefopcon .subcontrol,
+.action .editexpressionandtoolbarcontainer .setdefaultvalueeditstepcontainer .lefopcon .subcontrol,
+.expression .editexpressionandtoolbarcontainer .setdefaultvalueeditstepcontainer .lefopcon .subcontrol,
+.action .editstepandtoolbarcontainer .setfieldvalueeditstepcontainer .rigopcon .subcontrol,
+.expression .editstepandtoolbarcontainer .setfieldvalueeditstepcontainer .rigopcon .subcontrol,
+.action .editexpressionandtoolbarcontainer .setfieldvalueeditstepcontainer .rigopcon .subcontrol,
+.expression .editexpressionandtoolbarcontainer .setfieldvalueeditstepcontainer .rigopcon .subcontrol,
+.action .editstepandtoolbarcontainer .setdefaultvalueeditstepcontainer .rigopcon .subcontrol,
+.expression .editstepandtoolbarcontainer .setdefaultvalueeditstepcontainer .rigopcon .subcontrol,
+.action .editexpressionandtoolbarcontainer .setdefaultvalueeditstepcontainer .rigopcon .subcontrol,
+.expression .editexpressionandtoolbarcontainer .setdefaultvalueeditstepcontainer .rigopcon .subcontrol {
+  display: inline-block;
+  width: 50%;
+}
+.expression .expressioncontainer .subexpressioncontainer .editexpressioncontainer {
+  font-size: 0px;
+}
+/* Bpf branching condition CSS */
+.bpfConfContent .sectionbody .expressioncollection > .expression:first-child .andorcon {
+  width: 5%;
+  text-align: right;
+  max-width: 100px;
+  min-width: 65px;
+}
+.bpfConfContent .sectionbody .expressioncollection .branching-warning {
+  left: -16px;
+  top: 3px;
+}
+.bpfConfContent .sectionbody .expressioncollection .ms-crm-Inline-EditHintState ~ .branching-warning {
+  top: 6px;
+}
+.bpfConfContent .sectionbody .expressioncollection .hide-branching-warning-EditState {
+  display: none;
+}
+.bpfConfContent .sectionbody .addcontrol.branching {
+  display: block;
+  width: 13px;
+}
+.bpfConfContent .sectionbody .button-cursor {
+  cursor: pointer;
+}
+.selected .action.ms-crm-Inline-Value.ms-crm-Inline-EditHintState,
+.selected .expression.ms-crm-Inline-Value.ms-crm-Inline-EditHintState {
+  padding-left: 8px;
+}
+.action.ms-crm-Inline-Value.ms-crm-Inline-EditHintState,
+.expression.ms-crm-Inline-Value.ms-crm-Inline-EditHintState {
+  padding-left: 7px;
+  padding-top: 5px;
+  margin-bottom: -1px;
+  margin-top: -3px;
+}
+/*Loading Indicators*/
+span.processing {
+  display: none;
+}
+.currentlyprocessing span.processing {
+  display: block;
+  position: absolute;
+}
+.sectioncell .currentlyprocessing span.processing,
+.expressioncellbody .currentlyprocessing span.processing {
+  top: 2px;
+}
+.currentlyprocessing .editstepcontainer > div,
+.currentlyprocessing .ms-crm-Inline-Edit > div {
+  visibility: hidden;
+}
+.currentlyprocessing .editstepcontainer > span.processing,
+.currentlyprocessing .ms-crm-Inline-Edit > span.processing {
+  top: 40%;
+  left: 50%;
+}
+.edittoolbarcontainer {
+  display: block;
+  height: 36px;
+  padding-top: 12px;
+}
+.edittoolbarcontainer .edittoolbar {
+  margin-right: 3%;
+  display: block;
+  float: right;
+}
+.edittoolbarcontainer .edittoolbar .editdiscardimage,
+.edittoolbarcontainer .edittoolbar .editdoneimage {
+  display: inline-block;
+  margin-left: 14px;
+}
+.editstepcontainer .edittoolbarcontainer .edittoolbar .editdoneimage > img,
+.editstepcontainer .edittoolbarcontainer .edittoolbar .editdiscardimage > img {
+  padding-right: 1.4px;
+  padding-bottom: 1.25px;
+}
+.editstepcontainer .edittoolbarcontainer .edittoolbar .editdoneimage .ms-crm-ImageStrip-conditiondoneimage {
+  background-position-x: -44.8px;
+  background-position-y: -24.5px;
+}
+.editstepcontainer .edittoolbarcontainer .edittoolbar .editdiscardimage .ms-crm-ImageStrip-conditioncloseimage {
+  background-position-x: -26.8px;
+  background-position-y: -52.5px;
+}
+.sectionbody > .addcontrol {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.sectionbody .expressioncollection > .expression:first-child .lefopcon > .expressioncelllabel,
+.sectionbody .expressioncollection > .expression:first-child .lefopcon .entity .expressioncelllabel,
+.sectionbody .expressioncollection > .expression:first-child .lefopcon > .expressioncellbody .ui-autocomplete-wrapper,
+.sectionbody .expressioncollection > .expression:first-child .lefopcon .entity .expressioncellbody .ui-autocomplete-wrapper,
+.sectionbody .expressioncollection > .expression:first-child .rigopcon.rigopcon_0 .subcontrol.entity .expressioncelllabel,
+.sectionbody .expressioncollection > .expression:first-child .rigopcon.rigopcon_0 .subcontrol.entity .expressioncellbody .ui-autocomplete-wrapper {
+  margin-left: 13px;
+}
+.sectionbody .expressioncollection > .expression:first-child .andorcon {
+  width: 5%;
+  min-width: 65px;
+  text-align: center;
+}
+.sectionbody .expressioncollection > .expression:first-child .andorcon .andorwrapper {
+  padding-top: 25px;
+  padding-left: 4px;
+}
+.sectionbody .expressioncollection > .expression:first-child .andorcon .andorwrapper .andorcondition {
+  display: none;
+}
+.sectionbody .expressioncollection > .expression:first-child .andorcon .andorwrapper .firstcondition {
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sectionbody .expressioncollection .andorwrapper .firstcondition {
+  display: none;
+}
+.sectionbody .expressioncollection .rigopcon.rigopcon_2 {
+  padding-top: 32px;
+  width: 100%;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor {
+  margin-left: 24px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionheader {
+  margin-left: 0px;
+  padding-top: 12px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .editstepcontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .editstepcontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .editstepcontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .editstepcontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .editexpressioncontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .editexpressioncontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .editexpressioncontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .editexpressioncontainer {
+  margin-top: 8px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .editstepcontainer .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .editstepcontainer .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .editstepcontainer .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .editstepcontainer .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .editexpressioncontainer .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .editexpressioncontainer .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .editexpressioncontainer .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .editexpressioncontainer .sectionheader {
+  margin-left: 10px;
+  display: inline-block;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .editstepcontainer .setmessageheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .editstepcontainer .setmessageheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .editstepcontainer .setmessageheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .editstepcontainer .setmessageheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .editexpressioncontainer .setmessageheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .editexpressioncontainer .setmessageheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .editexpressioncontainer .setmessageheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .editexpressioncontainer .setmessageheader {
+  display: block;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label {
+  width: calc(71%);
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .formulareturntype,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .formulareturntype,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .formulareturntype,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .formulareturntype {
+  display: inline-block;
+  font-family: Segoe UI, Arial, Sans-Serif;
+  color: #444444;
+  text-transform: lowercase;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .formulaequalto,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .formulaequalto,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .formulaequalto,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .formulaequalto {
+  color: #006f93;
+  font-weight: bold;
+  margin-top: 12px;
+  margin-left: 10px;
+  float: left;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .formulasteptextarea,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .formulasteptextarea,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .formulasteptextarea,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .formulasteptextarea {
+  width: auto;
+  margin-left: -14px;
+  margin-top: 12px;
+  margin-right: 29px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .formulasteptextarea .ms-crm-Inline-Edit,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .formulasteptextarea .ms-crm-Inline-Edit,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .formulasteptextarea .ms-crm-Inline-Edit,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .formulasteptextarea .ms-crm-Inline-Edit {
+  margin-right: 18px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .formulasteptextarea .ms-crm-Inline-Edit textarea.formulatextarea,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .formulasteptextarea .ms-crm-Inline-Edit textarea.formulatextarea,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .formulasteptextarea .ms-crm-Inline-Edit textarea.formulatextarea,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .formulasteptextarea .ms-crm-Inline-Edit textarea.formulatextarea {
+  width: 100%;
+  font-weight: normal;
+  font-family: Segoe UI, Arial, Sans-Serif;
+  line-height: 18px;
+  margin-left: 10px;
+  display: inline-block;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-calcfield .sectionbody .formulasteptextarea .ms-crm-Inline-Edit textarea.formulatextarea.placeholder,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-calcfield .sectionbody .formulasteptextarea .ms-crm-Inline-Edit textarea.formulatextarea.placeholder,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncondition-ruleeditor .sectionbody .formulasteptextarea .ms-crm-Inline-Edit textarea.formulatextarea.placeholder,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionaction-ruleeditor .sectionbody .formulasteptextarea .ms-crm-Inline-Edit textarea.formulatextarea.placeholder {
+  color: #999999;
+  font-style: italic;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .rolluprelatedentitysection .sectionbody .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label {
+  width: calc(71%);
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .rollupsourcesection .sectionbody .sectionheader {
+  margin-top: 0px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .rollupsourcesection .sectionbody .ms-crm-Inline-Chrome.picklist .ms-crm-InlineMultiPicklist label {
+  width: calc(71%);
+}
+.sectionbody .expressioncelllabel,
+.sectionbody .expressioncellbody .ui-autocomplete-wrapper,
+.sectionbody .nvarchar .ms-crm-Inline-Edit,
+.sectionbody .datetime .ms-crm-Inline-Edit,
+.sectionbody .picklist .ms-crm-Inline-Edit,
+.sectionbody .decimal .ms-crm-Inline-Edit,
+.sectionbody .float .ms-crm-Inline-Edit,
+.sectionbody .ntext .ms-crm-Inline-Edit,
+.sectionbody .lookup .ms-crm-Inline-Edit,
+.sectionbody .owner .ms-crm-Inline-Edit,
+.sectionbody .int .ms-crm-Inline-Edit {
+  margin-left: 17px;
+  margin-right: 7px;
+}
+.sectionbody .rigopcon_1 .picklist .ms-crm-Inline-Edit {
+  margin-right: 0px;
+}
+.editstepcontainer .warningviewcontainer {
+  margin-left: 28px;
+}
+.warningviewcontainer {
+  margin-left: 14px;
+  margin-top: 16px;
+  margin-right: 20px;
+  display: none;
+  word-break: break-all;
+}
+.warningviewcontainer.error,
+.warningviewcontainer.warning {
+  display: block;
+}
+.warningviewcontainer.error .warningviewiconcontainer .erroricon {
+  display: inline;
+}
+.warningviewcontainer.warning .warningviewiconcontainer .warningicon {
+  display: inline;
+}
+.warningviewcontainer .warningviewiconcontainer {
+  display: inline-block;
+  vertical-align: top;
+}
+.warningviewcontainer .warningviewiconcontainer .erroricon,
+.warningviewcontainer .warningviewiconcontainer .warningicon {
+  display: none;
+}
+.warningviewcontainer .warningviewmessage {
+  margin-left: 8px;
+  margin-right: 20px;
+  white-space: normal;
+  display: inline-block;
+}
+.rolluprelatedentitysection > .sectionbody > .addcontrol,
+.emptycollection + .addcontrol {
+  /*when there is an empty collection the spacing is too big*/
+
+  margin-top: 7px;
+}
+.addcontrol {
+  margin-bottom: 7px;
+  margin-left: 4px;
+  margin-top: 2px;
+  display: inline-block;
+  background-color: white;
+}
+.addcontrol.preventadd {
+  display: none;
+}
+.addcontrol span {
+  margin-left: 10px;
+}
+.workflowRootStep > .addcontrol {
+  margin-top: 14px;
+}
+/*Read Only Mode*/
+.readonly .addcontrol {
+  display: none;
+}
+.readonly .ms-crm-Inline-Chrome:focus .ms-crm-Inline-Value .actioncontent,
+.readonly .ms-crm-Inline-Chrome:focus .ms-crm-Inline-Value .expressioncontent {
+  outline: -webkit-focus-ring-color auto 5px;
+}
+/*End Read Only Mode*/
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression:first-child .rigopcon.rigopcon_1 .expressioncellbody,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression:first-child .rigopcon.rigopcon_1 .expressioncellbody {
+  padding-right: 30px;
+}
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression:first-child .expressioncontainer,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression:first-child .expressioncontainer {
+  width: 90%;
+}
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression:first-child .lefopcon .ms-crm-InlineEdit,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression:first-child .lefopcon .ms-crm-InlineEdit,
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression:first-child .conopcon .ms-crm-InlineEdit,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression:first-child .conopcon .ms-crm-InlineEdit,
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression:first-child .optycon .ms-crm-InlineEdit,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression:first-child .optycon .ms-crm-InlineEdit,
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression:first-child .rigopcon.rigopcon_1 .ms-crm-InlineEdit,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression:first-child .rigopcon.rigopcon_1 .ms-crm-InlineEdit {
+  margin-right: 20px;
+}
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression .rigopcon.rigopcon_0,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression .rigopcon.rigopcon_0 {
+  vertical-align: top;
+  display: block;
+  padding-top: 32px;
+}
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression .lefopcon,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression .lefopcon,
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression .rigopcon.rigopcon_0,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression .rigopcon.rigopcon_0 {
+  width: 34.5%;
+}
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression .lefopcon .subcontrol,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression .lefopcon .subcontrol,
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression .rigopcon.rigopcon_0 .subcontrol,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression .rigopcon.rigopcon_0 .subcontrol {
+  display: inline-block;
+  width: 50%;
+}
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression .conopcon,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression .conopcon {
+  width: 19%;
+}
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression .optycon,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression .optycon {
+  width: 12%;
+}
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression .rigopcon.rigopcon_1,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression .rigopcon.rigopcon_1 {
+  width: 21%;
+}
+.sectioncondition-calcfield .sectionbody .expressioncollection > .expression .lefopcon + .conopcon + .optycon + .rigopcon.rigopcon_0,
+.sectioncondition-relationship .sectionbody .expressioncollection > .expression .lefopcon + .conopcon + .optycon + .rigopcon.rigopcon_0 {
+  display: inline-block;
+  padding-top: 0;
+}
+/*make the margin above the first sectionheader below the description (if PBL editor) 0px*/
+.workflowRootStep .actioncollection:first-child .actioncollection:first-child > .sectionheader {
+  margin-top: 0px;
+}
+.mscrm-pbleditor-Body #moreCommandsList LI.moreMenuSelected {
+  background: #d7ebf9;
+  padding-left: 10px;
+  border-color: #d7ebf9;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-width: 0px;
+}
+.mscrm-pbleditor-Body .moreMenuUnselected:hover {
+  background: #d7ebf9;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor {
+  background: white;
+  font-size: 12px;
+  font-family: Segoe UI, Arial, Sans-Serif;
+  /*
+		 * Rules only for SetVisibility, SetBusinessRequired, SetDisplayMode actions
+		 * that support related entity
+		 */
+
+  /*
+		 * Rules only for SetMessage action that supports related entity
+		 */
+
+  /*
+		 * Rules only for SetMessage action that supports related entity
+		 */
+
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .deleteiconalignmiddle {
+  vertical-align: middle;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .ms-crm-MenuItem-Text {
+  padding-left: 4px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer {
+  margin: 0px 20px;
+  min-width: 800px;
+  height: 120px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer.messagebarshown {
+  height: 150px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer.calcfield {
+  height: 120px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer.calcfield.messagebarshown {
+  height: 150px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer.rollupfield {
+  height: 120px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer.rollupfield.messagebarshown {
+  height: 150px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar {
+  height: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-color: #dddddd;
+  background-color: #fff19d;
+  white-space: nowrap;
+  display: none;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar .messagetext {
+  height: 18px;
+  display: inline-block;
+  vertical-align: text-bottom;
+  max-width: 97%;
+  min-width: 770px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar .messageiconcontainer {
+  display: inline-block;
+  margin-left: 8px;
+  margin-right: 4px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar .messageiconcontainer .warningicon,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar .messageiconcontainer .erroricon {
+  display: none;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar.warning {
+  display: block;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar.warning .learnmore,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar.warning .securitylearnmore,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar.warning .warningicon {
+  display: inline-block;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar.error {
+  display: block;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar.error .learnmore,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar.error.genericxamlerror .genericxamllearnmore,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar.error .erroricon {
+  display: inline-block;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar.warning .messagetext,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar.error.genericxamlerror .messagetext {
+  max-width: 48%;
+  min-width: 380px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar .securitylearnmore,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar .genericxamllearnmore {
+  height: 18px;
+  vertical-align: text-bottom;
+  display: none;
+  max-width: 48%;
+  min-width: 380px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar .securitylearnmore a,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .messagebar .genericxamllearnmore a {
+  text-decoration: underline;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .commandBarContainer {
+  height: 40px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .ruleNameContainer .ms-crm-Inline-Value.ruletitlecontent,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .ruleNameContainer .ms-crm-Inline-Edit {
+  margin-left: 0px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .ruleNameContainer .ms-crm-Inline-EmptyValue {
+  color: #a8a8a8;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .arrowcollapsedimagestyle {
+  margin-top: 2px;
+  vertical-align: top;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .arrowcollapsedimage {
+  margin-top: 1px;
+  vertical-align: top;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer {
+  position: absolute;
+  top: 120px;
+  left: 0px;
+  right: 0px;
+  bottom: 28px;
+  overflow: auto;
+  /* rollup field */
+
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.messagebarshown {
+  top: 150px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.calcfield {
+  bottom: 0px;
+  top: 120px;
+  /*Side-by-side related-attribute operand view*/
+
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.calcfield.messagebarshown {
+  top: 150px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.calcfield .workflowRootStep .sectionaction-calcfield .sectionbody .actioncollection > .action .rigopcon.rigopcon_0 {
+  width: 44%;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.calcfield .workflowRootStep .sectionaction-calcfield .sectionbody .actioncollection > .action .rigopcon.rigopcon_0 .subcontrol {
+  display: inline-block;
+  width: 50%;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield {
+  bottom: 55px;
+  top: 120px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield.messagebarshown {
+  top: 150px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .filterSection {
+  margin-left: 20px;
+  padding-top: 6px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .rollupsourcesection .sectionbody .action .actioncontent {
+  color: #1f8400;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .rollupsourcesection .sectionbody .action .editstepandtoolbarcontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .rollupsourcesection .sectionbody .action .selected .ms-crm-Inline-Value.ms-crm-Inline-EditHintState {
+  border-color: #1f8400;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .rollupaggregatesection .sectionbody .action .actioncontent {
+  color: #1f8400;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .rollupaggregatesection .sectionbody .action .editstepandtoolbarcontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .rollupaggregatesection .sectionbody .action .selected .ms-crm-Inline-Value.ms-crm-Inline-EditHintState {
+  border-color: #1f8400;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .rollupaggregatesection .sectionbody .action .editstepandtoolbarcontainer {
+  height: 108px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .rollupaggregatesection .sectionbody .action .editstepandtoolbarcontainer .editstepcontainer .sectionheader {
+  display: none;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .rollupaggregatesection .sectionbody .action .editstepandtoolbarcontainer .editstepcontainer .sectioncell {
+  margin: 0px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .workflowRootStep .rollupaggregatesection .sectionbody .action .editstepandtoolbarcontainer .edittoolbarcontainer {
+  padding-top: 0px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .rollupEditStepFloat {
+  float: left;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .rollupStepLabel {
+  display: inline-block;
+  margin-left: 20px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .rollupStepLabel.rollupHierarchyNameEditLabel {
+  margin-left: 30px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer.rollupfield .rollupStepValue {
+  display: inline-block;
+  width: 200px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionbody {
+  margin-left: -20px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep {
+  min-width: 800px;
+  padding: 0px 20px;
+  min-height: 60px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .actioncollection .actioncollection:first-child .sectionheader.ruleeditor,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .actioncollection .actioncollection:first-child .sectionheader.ruleeditor,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .actioncollection .actioncollection:first-child .sectionheader.calcfield,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .actioncollection .actioncollection:first-child .sectionheader.calcfield,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .rollupsourcesection,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .rollupsourcesection {
+  padding-top: 0px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionbody,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionbody {
+  margin-left: 6px;
+  margin-top: 3px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionbody .descriptionsection .ms-crm-Inline-Value,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionbody .descriptionsection .ms-crm-Inline-Value,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionbody .descriptionsection .ms-crm-Inline-Edit,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionbody .descriptionsection .ms-crm-Inline-Edit {
+  margin-left: -5px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionbody .descriptionsection .ms-crm-Inline-Value span,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionbody .descriptionsection .ms-crm-Inline-Value span,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionbody .descriptionsection .ms-crm-Inline-Edit span,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionbody .descriptionsection .ms-crm-Inline-Edit span {
+  font-weight: normal;
+  color: #444444;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionbody .descriptionsection .ms-crm-Inline-Value textarea,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionbody .descriptionsection .ms-crm-Inline-Value textarea,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionbody .descriptionsection .ms-crm-Inline-Edit textarea,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionbody .descriptionsection .ms-crm-Inline-Edit textarea {
+  font-weight: normal;
+  color: black;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionbody .descriptionsection .ntext,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionbody .descriptionsection .ntext {
+  overflow: visible;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .descriptionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .descriptionheader {
+  font-family: Segoe UI, Arial, Sans-Serif;
+  color: #999999;
+  height: 16px;
+  margin-top: 1px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionheader {
+  height: 18px;
+  padding-top: 5px;
+  padding-bottom: 4px;
+  margin-left: 0px;
+  margin-top: 6px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionheader.elseheader,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionheader.elseheader {
+  display: inline-block;
+  width: 100%;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionheader.elseheader.selected,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionheader.elseheader.selected {
+  box-shadow: 1px 1px 2px #ccc;
+  margin-left: -1px;
+  margin-top: 5px;
+  margin-bottom: -1px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionheader .sectionheadercontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionheader .sectionheadercontainer {
+  color: #444444;
+  height: 28px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionheader .sectionheadercontainer .sectionheadertext,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionheader .sectionheadercontainer .sectionheadertext {
+  font-weight: bold;
+  display: inline-block;
+  padding-left: 7px;
+  vertical-align: top;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionheader .sectionheadercontainer .sectionheadertext.brackets,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionheader .sectionheadercontainer .sectionheadertext.brackets {
+  font-weight: normal;
+  color: #444444;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections .sectionheader .sectionheadercontainer .sectionheaderimage,
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep .sectionheader .sectionheadercontainer .sectionheaderimage {
+  display: inline-block;
+  height: 12px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer {
+  height: 28px;
+  line-height: 28px;
+  position: absolute;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  background-color: #F4D89D;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer.rollupfield {
+  height: auto;
+  max-height: 58px;
+  line-height: 18px;
+  background-color: #FFF19D;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .crmRollupBottomBarIcon {
+  vertical-align: top;
+  padding-top: 3px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerActivateState {
+  display: inline-block;
+  margin-left: 20px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerActivateState span {
+  font-weight: bold;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerSpliter {
+  width: 4px;
+  height: 28px;
+  background-color: white;
+  float: right;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerReadOnlyState {
+  width: 150px;
+  float: right;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerReadOnlyState span {
+  margin-left: 60px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerReadOnlyState img {
+  margin-left: 10px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .actiontoolbar {
+  display: inline-block;
+  width: 50px;
+  background-color: red;
+  position: absolute;
+  height: 28px;
+  right: 0px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionheader {
+  color: #006f93;
+  font-weight: bold;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionheader .ms-crm-ReadToolBar.elsebutton {
+  display: none;
+  float: right;
+  height: 18px;
+  margin-right: 29px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionheader.selected .ms-crm-ReadToolBar.elsebutton {
+  display: inline-block;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectionsubheader {
+  margin-left: 23px;
+  margin-top: 6px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .setmessagetextarea {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .runscriptsectioncell,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncell,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellforrelatedentity {
+  display: inline-block;
+  margin: 12px 34px 0px 0px;
+  width: 220px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .runscriptsectioncell .celllabel,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncell .celllabel,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellforrelatedentity .celllabel {
+  height: 14px;
+  margin-left: 17px;
+  padding-bottom: 8px;
+  color: #444444;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .runscriptsectioncell .cellvalue,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncell .cellvalue,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellforrelatedentity .cellvalue {
+  height: 30px;
+  margin-top: 8px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .runscriptsectioncell .cellvaluesetmessagecontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncell .cellvaluesetmessagecontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellforrelatedentity .cellvaluesetmessagecontainer {
+  width: 100%;
+  overflow: visible;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellforrelatedentity {
+  width: 440px;
+  margin-right: 0px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellforrelatedentity .subcontrol {
+  display: inline-block;
+  width: 50%;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellsetmessagefieldcontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellsetmessagefieldcontainerforrelatedentity {
+  vertical-align: top;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellsetmessagefieldcontainerforrelatedentity {
+  width: 440px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellsetmessagefieldcontainerforrelatedentity .subcontrol {
+  width: 50%;
+  display: inline-block;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .sectioncellsetmessagecontainer {
+  width: auto;
+  position: absolute;
+  right: 2px;
+  left: 230px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .editsetmessagecontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .runscriptsectioncell {
+  width: 100%;
+  height: 300px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .editsetmessagecontainer,
+.mscrm-pbleditor-Body .mscrm-pbleditor .editsetmessagecontainerforrelatedentity {
+  display: inline-block;
+  margin: 0px 34px 0px 0px;
+  width: 230px;
+  height: 100px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .editrunscriptcontainer {
+  display: inline-block;
+  margin: 0px 34px 0px 0px;
+  width: 100%;
+  height: 355px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .editrunscriptcontainer .runscriptsectioncell .runscripttextareawrapper div {
+  margin-right: 17px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .editsetmessagecontainerforrelatedentity {
+  height: 105px;
+  display: block;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .editsetmessagecontainerforrelatedentity .sectioncellsetmessagecontainer {
+  left: 2px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .ruleentityname {
+  font-size: 13px;
+  color: #444444;
+  cursor: default;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .ruletitlecontent,
+.mscrm-pbleditor-Body .mscrm-pbleditor INPUT.ruletitlecontent {
+  font-family: Segoe UI Light, Segoe UI, Arial, Sans-Serif;
+  font-size: 36px;
+  font-weight: normal;
+  color: black;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .ms-crm-ImageStrip-plussign,
+.mscrm-pbleditor-Body .mscrm-pbleditor .ms-crm-ImageStrip-hoverplussign {
+  margin-right: 10px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .plussigntext {
+  font-weight: normal;
+  vertical-align: top;
+  color: #666666;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .plussigntext.hover {
+  color: #919CC2;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .scopeselector {
+  float: right;
+  margin-top: 0px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .scopeselectorelement {
+  display: inline-block;
+  width: 130px;
+  vertical-align: top;
+  margin-top: 6px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .scopeselectorlabel {
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 3px;
+  margin-top: 6px;
+}
+.mscrm-pbleditor-Body .mscrm-pbleditor .ruledisplayhelp {
+  display: inline-block;
+}
+.ui-flyout-dialog {
+  border: 1px solid #0072C6;
+}
+.ui-flyout-dialog .ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 30px;
+}
+.ui-flyout-dialog .ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix .ui-dialog-title {
+  font-size: 35px;
+  font-family: Segoe UI Light, Segoe UI, Arial, Sans-Serif;
+  color: #262626;
+  font-weight: lighter;
+  line-height: 39px;
+  display: block;
+  margin-top: 20px;
+  max-width: 415px;
+  word-wrap: break-word;
+}
+.ui-flyout-dialog .ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix .ui-dialog-titlebar-close.ui-corner-all {
+  right: 30px;
+  top: 0px;
+}
+.ui-flyout-dialog .ui-dialog-content.ui-flyout-dialog-moreCommands {
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.ui-flyout-dialog .ui-dialog-content .pbleditor-dialog-content {
+  position: absolute;
+  left: 30px;
+  right: 27px;
+  top: 10px;
+  bottom: 0px;
+}
+.ui-flyout-dialog .ui-dialog-content .pbleditor-dialog-content .pbleditor-dialog-icon {
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 8px;
+}
+.ui-flyout-dialog .ui-dialog-content .pbleditor-dialog-content .pbleditor-dialog-area {
+  padding-top: 8px;
+  display: inline-block;
+  font-family: Segoe UI Light, Segoe UI, Arial, Sans-Serif;
+  color: #444444;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+.ui-flyout-dialog .ui-dialog-content .pbleditor-dialog-content .pbleditor-dialog-area .pbleditor-dialog-body {
+  font-family: Segoe UI Light, Segoe UI, Arial, Sans-Serif;
+  font-size: 11px;
+}
+.ui-flyout-dialog .ui-dialog-content .pbleditor-dialog-content .pbleditor-dialog-area .pbleditor-dialog-detail {
+  bottom: 20px;
+  right: 30px;
+  left: 0px;
+}
+.ui-flyout-dialog .ui-dialog-content .pbleditor-dialog-content .pbleditor-dialog-area .pbleditor-dialog-detailAttribute {
+  margin-left: 46px;
+  word-wrap: break-word;
+}
+.ui-flyout-dialog .ui-dialog-content .pbleditor-dialog-content .pbleditor-dialog-errorFlyout {
+  width: 290px;
+  display: table-cell;
+  position: relative;
+}
+.ui-flyout-dialog .ui-dialog-content .pbleditor-dialog-content .pbleditor-dialog-errorFlyout .pbleditor-dialog-detailAttribute {
+  padding-left: 8px;
+  display: table-cell;
+  word-wrap: break-word;
+  max-width: 282px;
+}
+.ui-flyout-dialog .ui-dialog-buttonset {
+  margin-right: 16px;
+}
+.ui-flyout-dialog .ui-dialog-buttonset .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+  width: 69px;
+  height: 22px;
+}
+li.actiondropdownitemcontent,
+.moreMenuSelected {
+  font-family: Segoe UI, Arial, Sans-Serif;
+  font-size: 12px;
+  color: black;
+  height: 24px;
+  padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.actiondropdownitem {
+  padding-top: 5px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.action .ui-combobox-toggle,
+.expression .ui-combobox-toggle {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  background-color: white;
+  border-top: solid 1px #cccccc;
+  border-bottom: solid 1px #cccccc;
+  border-right: solid 0px #cccccc;
+  width: 23px;
+  *margin-top: -1px;
+  /* IE7 */
+
+  *margin-bottom: 1px;
+  /* IE7 */
+
+}
+.action .ui-combobox-toggle.combobox-ltr,
+.expression .ui-combobox-toggle.combobox-ltr {
+  right: -5px;
+}
+.action .ui-combobox-toggle.combobox-rtl,
+.expression .ui-combobox-toggle.combobox-rtl {
+  right: -2px;
+}
+.ui-menu {
+  background-color: white;
+  border: solid 1px #cccccc;
+  max-height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+  display: inline-block;
+  position: absolute;
+  z-index: 1100 !important;
+}
+.ui-menu .ui-menu-item a {
+  display: block;
+  line-height: 2;
+  height: 21px;
+  padding: 1px 5px;
+  color: #444444;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.ui-menu .ui-menu-item a .intellisenseleftcolumn {
+  width: 400px;
+  float: left;
+}
+.ui-menu .ui-menu-item a .intellisenseleftcolumn .intellisenselogicalname {
+  float: left;
+  color: black;
+  padding-right: 4px;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  max-width: 400px;
+  overflow: hidden;
+}
+.ui-menu .ui-menu-item a .intellisenseleftcolumn .intellisensetypelabel {
+  float: left;
+  color: #444444;
+  text-transform: lowercase;
+}
+.ui-menu .ui-menu-item a .intellisensedisplayname {
+  color: #444444;
+  font-style: italic;
+}
+.ui-state-hover {
+  background-color: #CDE7F8;
+}
+.ui-autocomplete-input {
+  margin-right: -29px !important;
+}
+.ui-ac-dropdown-img {
+  margin-left: 5px;
+  margin-top: 3px;
+}
+.ms-crm-InlineMultiPicklist {
+  min-height: 20px;
+  max-height: 168px;
+  overflow-x: hidden;
+  border: 1px solid #ababab;
+  background-color: white;
+}
+.maskPanel {
+  position: absolute;
+  left: 0px;
+  background: url("../../../_imgs/imagestrips/transparent_spacer.gif") repeat scroll 0 0 transparent, url("/_imgs/imagestrips/transparent_spacer.gif") repeat scroll 0 0 transparent;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  z-index: 1000;
+  width: 100%;
+  min-width: 840px;
+}
+.resize-sensor,
+.resize-sensor > div {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: scroll;
+  z-index: -1;
+  visibility: hidden;
+}
+.resize-expand div {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.resize-shrink div {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 200%;
+  height: 200%;
+}
