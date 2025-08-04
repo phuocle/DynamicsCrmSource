@@ -1,0 +1,5 @@
+﻿CREATE FULLTEXT CATALOG [ftcat_documentindex_8a0aa7db84c34ddfbdca6fbc8b5e12c6]
+    WITH ACCENT_SENSITIVITY = OFF
+    AS DEFAULT
+    AUTHORIZATION [dbo];
+

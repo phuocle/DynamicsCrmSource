@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[RoleBaseIds] (
+    [RoleId] UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT [PK_RoleBaseIds] PRIMARY KEY CLUSTERED ([RoleId] ASC)
+);
+

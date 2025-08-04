@@ -1,0 +1,21 @@
+﻿CREATE TABLE [dbo].[MatchCodec069196642a04240a00dd85b521f5b36] (
+    [ObjectId]   UNIQUEIDENTIFIER NOT NULL,
+    [MatchCode]  NVARCHAR (450)   NULL,
+    [ModifiedOn] DATETIME         NULL
+);
+
+
+GO
+CREATE UNIQUE CLUSTERED INDEX [Index3]
+    ON [dbo].[MatchCodec069196642a04240a00dd85b521f5b36]([ObjectId] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [Index1]
+    ON [dbo].[MatchCodec069196642a04240a00dd85b521f5b36]([MatchCode] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [Index2]
+    ON [dbo].[MatchCodec069196642a04240a00dd85b521f5b36]([ModifiedOn] ASC);
+

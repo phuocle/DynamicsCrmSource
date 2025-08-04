@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[PluginTypeStatisticBase] (
+    [TerminateMemoryContributionPercent]  INT              CONSTRAINT [DF_PluginTypeStatisticBase_TerminateMemoryContributionPercent] DEFAULT ((0)) NOT NULL,
+    [OrganizationId]                      UNIQUEIDENTIFIER NOT NULL,
+    [AverageExecuteTimeInMilliseconds]    INT              CONSTRAINT [DF_PluginTypeStatisticBase_AverageExecuteTimeInMilliseconds] DEFAULT ((0)) NOT NULL,
+    [FailurePercent]                      INT              CONSTRAINT [DF_PluginTypeStatisticBase_FailurePercent] DEFAULT ((0)) NOT NULL,
+    [PluginTypeStatisticId]               UNIQUEIDENTIFIER NOT NULL,
+    [ModifiedOnBehalfBy]                  UNIQUEIDENTIFIER NULL,
+    [CrashPercent]                        INT              CONSTRAINT [DF_PluginTypeStatisticBase_CrashPercent] DEFAULT ((0)) NOT NULL,
+    [CreatedBy]                           UNIQUEIDENTIFIER NULL,
+    [FailureCount]                        INT              CONSTRAINT [DF_PluginTypeStatisticBase_FailureCount] DEFAULT ((0)) NOT NULL,
+    [CreatedOnBehalfBy]                   UNIQUEIDENTIFIER NULL,
+    [CrashCount]                          INT              CONSTRAINT [DF_PluginTypeStatisticBase_CrashCount] DEFAULT ((0)) NOT NULL,
+    [CrashContributionPercent]            INT              CONSTRAINT [DF_PluginTypeStatisticBase_CrashContributionPercent] DEFAULT ((0)) NOT NULL,
+    [TerminateCpuContributionPercent]     INT              CONSTRAINT [DF_PluginTypeStatisticBase_TerminateCpuContributionPercent] DEFAULT ((0)) NOT NULL,
+    [ModifiedBy]                          UNIQUEIDENTIFIER NULL,
+    [TerminateHandlesContributionPercent] INT              CONSTRAINT [DF_PluginTypeStatisticBase_TerminateHandlesContributionPercent] DEFAULT ((0)) NOT NULL,
+    [PluginTypeId]                        UNIQUEIDENTIFIER NOT NULL,
+    [ModifiedOn]                          DATETIME         NULL,
+    [ExecuteCount]                        INT              CONSTRAINT [DF_PluginTypeStatisticBase_ExecuteCount] DEFAULT ((0)) NOT NULL,
+    [TerminateOtherContributionPercent]   INT              CONSTRAINT [DF_PluginTypeStatisticBase_TerminateOtherContributionPercent] DEFAULT ((0)) NOT NULL,
+    [CreatedOn]                           DATETIME         NULL,
+    CONSTRAINT [cndx_PrimaryKey_plugintypestatistic] PRIMARY KEY CLUSTERED ([PluginTypeStatisticId] ASC) WITH (FILLFACTOR = 80),
+    CONSTRAINT [createdby_plugintypestatistic] FOREIGN KEY ([CreatedBy]) REFERENCES [dbo].[SystemUserBase] ([SystemUserId]) NOT FOR REPLICATION,
+    CONSTRAINT [modifiedby_plugintypestatistic] FOREIGN KEY ([ModifiedBy]) REFERENCES [dbo].[SystemUserBase] ([SystemUserId]) NOT FOR REPLICATION,
+    CONSTRAINT [plugintype_plugintypestatistic] FOREIGN KEY ([PluginTypeId]) REFERENCES [dbo].[PluginTypeBaseIds] ([PluginTypeId]) NOT FOR REPLICATION
+);
+
