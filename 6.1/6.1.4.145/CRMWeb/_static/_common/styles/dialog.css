@@ -1,0 +1,155 @@
+.ms-crm-Dialog-columnValue
+{
+width: 33%;
+height: 20px;
+padding: 1px;
+}
+
+.ms-crm-Dialog-columnLabel
+{
+width: 15%;
+height: 20px;
+padding: 1px;
+font-weight: bold;
+}
+
+TD.ms-crm-Dialog-InfoBar
+{
+width: 100%;
+height: 20px;
+padding-right: 10px;
+padding-left: 10px;
+vertical-align: top;
+}
+
+.ms-crm-Dialog-HiddenField
+{
+display: none;
+}
+
+.ms-crm-StandardColumn
+{
+width: 160px;
+}
+
+.ms-crm-FirstColumn
+{
+width: 160px;
+border-left-width: 1px;
+}
+
+.ms-crm-SmallColumn
+{
+width: 140px;
+}
+
+.ms-crm-VerySmallColumn
+{
+width: 100px;
+}
+
+TABLE.ms-crm-Dialog-TableData
+{
+width: 100%;
+border-top-width: 0px;
+border-top-style: none;
+background-color: #FFFFFF;
+padding: 0px;
+table-layout: fixed;
+}
+
+TABLE.ms-crm-Dialog-TableHeader
+{
+width: 100%;
+padding: 0px;
+table-layout: fixed;
+}
+
+TH.ms-crm-Dialog-HeaderColumn
+{
+min-height: 23px;
+color: #376092;
+background-color: #F2F2F2;
+vertical-align: middle;
+white-space: normal;
+text-overflow: ellipsis;
+border-style: solid;
+border-width: 1px 0px 0px 1px;
+border-color: #BFBFBF;
+padding-left: 5px;
+padding-right: 5px;
+}
+
+TD.ms-crm-Dialog-DataColumn
+{
+min-height: 20px;
+vertical-align: middle;
+text-overflow: ellipsis;
+border-style: solid;
+border-width: 0px 0px 1px 1px;
+border-color: #BFBFBF;
+border-spacing: 0px;
+padding-left: 5px;
+padding-right: 5px;
+}
+
+DIV.ms-crm-Dialog-TableMembers
+{
+width: 100%;
+top: 110px;
+height: 65%;
+overflow-y: auto;
+overflow-x: hidden;
+}
+
+DIV.ms-crm-Lookup
+{
+border-width: 0px;
+border-style: none;
+}
+
+DIV.ms-crm-ReadOnly
+{
+background-color: transparent;
+}
+
+.ms-crm-Hidden-Header
+{
+overflow: hidden;
+height: 0px;
+line-height: 0px;
+padding-left: 5px;
+padding-right: 5px;
+border: 0px;
+border-right-width: 1px;
+border-style: none;
+border-right-style: solid;
+}
+
+.ms-crm-Hidden-HeaderRow
+{
+height: 0px;
+line-height: 0px;
+left: 0px;
+}
+
+.ms-crm-RefreshDialog-Main
+{
+top: 50px;
+bottom: 35px;
+}
+
+.ms-crm-RefreshDialog-Header
+{
+height: 50px;
+}
+
+.ms-crm-RefreshDialog-Button
+{
+margin-top: 0px;
+}
+
+.ms-crm-RefreshDialog-Footer
+{
+height: 25px;
+}

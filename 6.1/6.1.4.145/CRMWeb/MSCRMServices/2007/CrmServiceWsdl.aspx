@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Microsoft.Crm.Sdk.Crm2007.CrmServiceWsdl" CodeBehind="Microsoft.Crm.WebServices.dll"%>

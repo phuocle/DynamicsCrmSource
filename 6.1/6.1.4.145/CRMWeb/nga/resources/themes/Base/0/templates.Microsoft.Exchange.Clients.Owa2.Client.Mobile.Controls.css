@@ -1,0 +1,59 @@
+/* Css for TemplateId: PickerNarrow */
+.tnarrow ._button_PickerNarrow_2 {
+  border:1px solid #BBBDBF;
+  padding:0px 7px 2px 7px;
+  color:#282828;
+  font:13px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.tnarrow ._pressed_PickerNarrow_3 {
+  color:#3B7893;
+  background:#E4EAEF;
+}
+
+.tnarrow ._disabled_PickerNarrow_4 {
+  color:#BBBDBF;
+}
+
+/* Css for TemplateId: InfoBarNarrow */
+._expandLink_InfoBarNarrow_5 {
+  float:right;
+  text-align:right;
+}
+
+._infobarText_InfoBarNarrow_6 {
+  margin-left:4px;
+}
+
+.mouse ._infobarText_InfoBarNarrow_6 {
+  font:14px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.twide ._infobarText_InfoBarNarrow_6 {
+  font:13px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.tnarrow ._infobarText_InfoBarNarrow_6 {
+  font:13px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+._infobarDiv_InfoBarNarrow_7 {
+  overflow:auto;
+}
+
+.mouse ._infobarDiv_InfoBarNarrow_7 {
+  background-color:#EAECEE;
+}
+
+.twide ._infobarDiv_InfoBarNarrow_7 {
+  background-color:#F5F6F7;
+}
+
+.tnarrow ._infobarDiv_InfoBarNarrow_7 {
+  background-color:#F5F6F7;
+}
+
+._infobarPanel_InfoBarNarrow_8 {
+  margin-left:4px;
+}
+

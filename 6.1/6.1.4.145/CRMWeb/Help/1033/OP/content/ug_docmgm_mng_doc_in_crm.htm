@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Manage SharePoint documents from within Microsoft Dynamics CRM</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Manage SharePoint documents from within Microsoft Dynamics CRM</h1>
+			<p class="bodyText">Store your documents on Microsoft SharePoint and manage these from within Microsoft Dynamics CRM by using the document management capabilities of SharePoint.</p>
+			<p class="bodyText">Integrate Microsoft Dynamics CRM with SharePoint to access, share, and collaborate more effectively. You can protect your stored documents in SharePoint from unauthorized access or use. More information:  <a target="_blank" href="http://technet.microsoft.com/en-us/library/cc721640(v=office.14).aspx">Manage permissions for a list, library, folder, document, or list item</a></p>
+			<p class="bodyText" />
+			<h2 class="heading2">Enable document management on entities</h2>
+			<div class="l2">
+				<p class="bodyText">To manage documents for an entity, you must enable document management for that entity. You can manage documents for any entities on SharePoint. By default, document management is automatically enabled on the following entities when you enable document management for the organization: </p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">Account</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Article</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Lead</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Opportunity</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Product</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Quote</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Sales Literature</p>
+					</li>
+				</ul>
+				<p class="bodyText">Define which entities manage documents on Microsoft Dynamics CRM in the <b>Document Management Settings</b> dialog box. More information:<b> </b> <a href="ui_docmgm_settings_enable_docmgmt.htm">Enable document management on entities</a></p>
+				<p class="bodyText">When you set up document management, SharePoint creates document libraries and folders in the context of the Microsoft Dynamics CRM entities and records. </p>
+				<p class="bodyText" />
+			</div>
+			<h2 class="heading2">How document management works</h2>
+			<div class="l2">
+				<p class="bodyText">When you set up document management, you specify a SharePoint site collection or site URL where the documents will be stored. More information:<b> </b> <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkId=200952">Sites and site collections overview</a></p>
+				<p class="bodyText">Microsoft Dynamics CRM uses the specified site collection or site to create document libraries for entities and folders for records on SharePoint. </p>
+				<p class="bodyText">When the document libraries and folders are created automatically on SharePoint, corresponding document location records are created on Microsoft Dynamics CRM that point to the newly created folders. </p>
+				<p class="bodyText">If you do not want to use the automatic creation feature, you can manually create document libraries and folders on SharePoint. Then, create document location records in Microsoft Dynamics CRM that point to the document libraries and folders on SharePoint, and then associate the document location records with the entity records. </p>
+				<p class="bodyText">After the folder structure to store the documents is in place, you can start using all the document management capabilities. </p>
+				<p class="bodyText" />
+			</div>
+			<h2 class="heading2">How document libraries and folders are created automatically</h2>
+			<div class="l2">
+				<p class="bodyText">There are two ways to create a folder structure:</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">Manually create document libraries and folders in the context of Microsoft Dynamics CRM entities and records. Then, associate the SharePoint folders with Microsoft Dynamics CRM records.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Let Microsoft Dynamics CRM automatically create the document libraries and folders in SharePoint.</p>
+					</li>
+				</ul>
+				<p class="bodyText">Microsoft Dynamics CRM automatically creates document libraries and folders on SharePoint if the URL you specify is for one of the following:</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">A site collection that is on Microsoft SharePoint Server 2010 or Microsoft SharePoint Server 2013, and has the Microsoft Dynamics CRM List Component installed on it.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">A site under a site collection that is on Microsoft SharePoint Server 2010 or Microsoft SharePoint Server 2013, and the site collection has the Microsoft Dynamics CRM List Component installed. </p>
+					</li>
+				</ul>
+				<p class="bodyText">When you choose to have Microsoft Dynamics CRM automatically create folders for you, you must specify whether you want the folders to be created based on the default (generic) structure or based on the entity. </p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">
+							<b>Default structure.</b> A folder is created for each record in the document library for the entity. This is the default folder structure.</p>
+						<p class="bodyText">For example, you have <em class="emphasis">100 bikes</em> and <em class="emphasis">250 bikes</em> opportunity records. These are opportunities for <em class="emphasis">Margie's Travel</em>. Microsoft Dynamics CRM creates this folder structure:</p>
+						<p class="bodyText">
+							<em class="emphasis">../opportunity/100 Bikes</em>.</p>
+						<p class="bodyText">In this structure:</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">opportunity</em> is the document library.</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">100 bikes</em> and <em class="emphasis">250 bikes</em> are opportunity record folders.</p>
+							</li>
+						</ul>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">
+							<b>Structure based on entity.</b> A folder is created so that folders for primary entities (for which you want to manage documents) and their records are created under the document library of the related entity that you select. To create folders using this structure, select the <b>Based on entity</b> check box and then select an entity from the list (such as Account or Contact).</p>
+						<p class="bodyText">For example, you have <em class="emphasis">100 bikes</em> and <em class="emphasis">250 bikes</em> opportunity records. These opportunities are associated with <em class="emphasis">Margie's Travel</em> as the parent customer. You select Account for the entity. This is the created folder structure:</p>
+						<p class="bodyText">
+							<em class="emphasis">../account/Margie's Travel/opportunity/100 bikes</em>
+						</p>
+						<p class="bodyText">In this structure: </p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">account</em> is the document library.</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">Margie's Travel</em> is the folder for the related records.</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">opportunity</em> is the folder for the related opportunity records.</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">100 bikes</em> and <em class="emphasis">250 bikes</em> are related opportunity record folders for the main entity.</p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<p class="bodyText">Microsoft Dynamics CRM creates the document library when you set up document management. However, Microsoft Dynamics CRM creates the various folders in the document library only when you open the <b>Documents</b> list for a record. </p>
+			</div>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

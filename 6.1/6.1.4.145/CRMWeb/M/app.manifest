@@ -1,0 +1,18 @@
+CACHE MANIFEST
+# Generated on: 2016-02-08T19:31:36
+
+CACHE:
+
+../nga/scripts/jquery-1.7.1.js
+../nga/scripts/jquery.cookie.js
+../nga/scripts/MicrosoftAjax.js
+../nga/scripts/EncodeDecode.js
+../nga/scripts/Microsoft.Exchange.Clients.Owa2.Client.Core.Framework.js
+../nga/scripts/Microsoft.Dynamics.Client.Core.Framework.js
+../nga/scripts/Microsoft.Crm.Client.Core.Framework.js
+../nga/scripts/Microsoft.Dynamics.Client.Core.Imported.js
+../nga/scripts/Microsoft.Crm.Client.Application.PhoneApp.js
+
+NETWORK:
+*
+

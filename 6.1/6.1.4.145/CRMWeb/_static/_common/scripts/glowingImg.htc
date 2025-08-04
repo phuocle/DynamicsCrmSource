@@ -1,0 +1,9 @@
+<public:component lightweight="true">
+<public:attach event="onmouseover"	onevent="glowOn()"/>
+<public:attach event="onmouseout"	onevent="glowOff()"/>
+<public:attach event="onmousedown"	onevent="downOn()"/>
+<public:attach event="onmouseup"	onevent="downOff()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+function setGlowImage(srcPath){var elementImageInfo=Mscrm.ImageStrip.getImageInfo(Mscrm.CrmUri.create(srcPath));element.src=elementImageInfo.source;element.className=Mscrm.ImageStrip.replaceExistingImageStripClass(element.className,elementImageInfo.cssClass)}function glowOn(){setGlowImage(element.imgBase+"hover.gif")}function glowOff(){setGlowImage(element.imgBase+".gif")}function downOn(){IsNull(element.hideDown)&&setGlowImage(element.imgBase+"down.gif")}function downOff(){setGlowImage(element.imgBase+".gif")}
+</script>
+</public:component>

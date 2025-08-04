@@ -1,0 +1,6 @@
+﻿ALTER ROLE [db_owner] ADD MEMBER [CRM\SQLAccessGroup {8a0aa7db-84c3-4ddf-bdca-6fbc8b5e12c6}];
+
+
+GO
+ALTER ROLE [db_owner] ADD MEMBER [NT AUTHORITY\NETWORK SERVICE];
+

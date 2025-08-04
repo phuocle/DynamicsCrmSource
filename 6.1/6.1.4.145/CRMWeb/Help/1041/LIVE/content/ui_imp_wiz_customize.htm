@@ -1,0 +1,108 @@
+﻿<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>設定の確認とデータのインポート</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script language="JavaScript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">設定の確認とデータのインポート</h1>
+			<p class="bodyText">データ インポート ウィザードがインポートの重複データをチェックおよび処理するかどうか、誰がインポート済みデータを編集または共有し、このインポートに使用した設定を後に再び使用するために保存するかを設定します。</p>
+			<a class="expand" id="tID0ECBAA" href="." onclick="expandCollapse('ID0ECBAA',1);return false;">
+				<p class="procHeading hanging">
+					<img id="iID0ECBAA" src="Help-Collapse-Section-Microsoft-CRM.png" />重複データの確認</p>
+			</a>
+			<div id="dID0ECBAA" style="display:none">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">インポートしている情報の種類に対する重複データ検出ルールが存在することを確認します。既定では、システムには、取引先担当者、取引先企業および潜在顧客のためのルールが含まれています。別の種類のデータをインポートしている際に、重複データ検出ルールを設定する必要がある場合は、 <a href="ui_dd_duprules_list.htm">Set up duplicate detection rules</a>の手順を実行します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">データ インポート ウィザードで重複レコードをインポートできる場合、<b>[重複の許可]</b> セクションで、<b>[可能］</b> を選択します。</p>
+						<div class="alertContent">
+							<p class="importanthead">注意 </p>
+							<p class="bodyText">ほとんどの場合は、重複した情報のインポートを防ぐために、このオプション セットで <b>[不可]</b> にしておきます。</p>
+						</div>
+					</li>
+				</ol>
+			</div>
+			<a class="expand" id="tID0EBBAA" href="." onclick="expandCollapse('ID0EBBAA',1);return false;">
+				<p class="procHeading hanging">
+					<img id="iID0EBBAA" src="Help-Collapse-Section-Microsoft-CRM.png" />インポートしたデータを誰が所有するかを設定する</p>
+			</a>
+			<div id="dID0EBBAA" style="display:none">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">インポート済みレコードの所有者を設定するには、<b>[インポート済みレコードの所有者の選択]</b> セクションで <b>[検索]</b> ボタン <img src="lookup_v4.gif" title="lookup_v4" /> をクリックまたはタップします。</p>
+						<div class="alertContent">
+							<p class="importanthead">重要 </p>
+							<p class="bodyText">インポートしたデータを誰が所有しますか?ほとんどのセキュリティ ロールでは、ユーザーはデータを表示することができます。ただし、所有者は、フィールドを編集し、共有することが許されます。以下はその一例です: インポート ファイルに見本市で集めた取引先担当者が含まれており、あるユーザーにそれらの取引先担当者をフォローアップするように割り当てる場合、そのユーザーを所有者に選択します。</p>
+							<p class="bodyText">インポートされたレコードの所有者として自分以外のユーザーを割り当てるには、そのユーザー用にレコードを作成する権限を含むセキュリティ ロールが必要です。十分なアクセス許可を持っていない場合は、ウィザードでは、既定で、インポート済みレコードの所有者として自分自身を割り当てます。</p>
+							<p class="bodyText">また、該当する場合、所有権は、データ マップ メタデータおよびユーザー .csv ファイルに定義されているユーザーに割り当てられます。</p>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">検索ボックスに、ユーザーの名前を入力するか、<b>[検索]</b> ボタン <img src="lookup_v4.gif" title="lookup_v4" /> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">名前を選択し、<b>[追加]</b> をクリックまたはタップします。</p>
+					</li>
+				</ol>
+			</div>
+			<a class="expand" id="tID0EABAA" href="." onclick="expandCollapse('ID0EABAA',1);return false;">
+				<p class="procHeading hanging">
+					<img id="iID0EABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />再利用するためにインポート設定を保存する</p>
+			</a>
+			<div id="dID0EABAA" style="display:none">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">再利用するためにインポート設定を保存するには、設定 ("データ マップ" と呼ばれる) の名前を入力します。</p>
+						<p class="bodyText">次にデータ インポート ウィザードを実行するときに、<b>[カスタム マップ]</b>の下に新しいデータ マップが一覧表示されます。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">データをインポートするには、<b>[確定]</b>をクリックまたはタップします。</p>
+					</li>
+				</ol>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ui_sf_Contact_list.htm">連絡先のインポート</a>
+			</p>
+			<p class="relateditemlink">Import data</p>
+			<p class="relateditemlink">Create custom fields with the Import Data wizard</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V5.2" /><input type="hidden" id="DocVersion" value="V5.2.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

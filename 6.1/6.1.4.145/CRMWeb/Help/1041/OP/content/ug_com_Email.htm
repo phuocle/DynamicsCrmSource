@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>チーム テンプレートを作成し、エンティティ フォームに追加</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">チーム テンプレートを作成し、エンティティ フォームに追加</h1>
+			<p class="bodyText">チーム テンプレートは、自動的に作成されたチームのアクセスに対して有効になっているエンティティに使用できます。チーム テンプレートで、エンティティ レコードに対するアクセス権とエンティティの種類を指定する必要があります。たとえば、取引先企業エンティティのチーム テンプレートを作成し、チームが自動的に作成されたときに、チーム メンバーに付与された取引先企業レコードのアクセス権の読み取り、書き込み、共有を指定することができます。チーム用テンプレートを作成した後は、新しいチーム テンプレートを挿入するエンティティのメイン フォームをカスタマイズする必要があります。カスタマイズを公開すると、アクセス チーム テンプレートが、一覧フォームで、指定されたエンティティの全レコード フォームに追加されます。たとえば、取引先企業エンティティ用の"営業チーム"というチーム テンプレートを作成したとします。すべての取引先企業レコード フォームで、"営業チーム" と呼ばれる一覧が表示されます。この一覧を使用して、チーム メンバーを追加または削除できます。</p>
+			<a class="expand" id="tID0EDAA" href="." onclick="expandCollapse('ID0EDAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EDAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />アクセス チームのエンティティの有効化</h2>
+			</a>
+			<div id="dID0EDAA" class="l2" style="display:none">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Microsoft Dynamics CRM のシステム管理者セキュリティ ロールまたは同等のアクセス許可を持っている必要があります。</p>
+						<a class="expand" id="tID0EBAFABADAA" href="." onclick="expandCollapse('ID0EBAFABADAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAFABADAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />セキュリティ ロールの確認</p>
+						</a>
+						<div id="dID0EBAFABADAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">「 <a href="how_persopt_ViewProfile.htm">ユーザー プロファイルの表示</a>」の手順を実行してください。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">適切なアクセス許可を持っていない場合は、システム管理者に問い合わせてください。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>
+						<a class="expand" id="tID0ECAEABADAA" href="." onclick="expandCollapse('ID0ECAEABADAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECAEABADAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />CRM Web アプリケーションを使用する場合</p>
+						</a>
+						<div id="dID0ECAEABADAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b>、<b>[設定]</b> の順にクリックまたはタップします。</p>
+									<p class="bodyText">ナビゲーション バーに <b>[設定]</b> と表示されます。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">
+										<b>[設定]</b>、<b>[カスタマイズ]</b> の順にクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBAEABADAA" href="." onclick="expandCollapse('ID0EBAEABADAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAEABADAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p>
+						</a>
+						<div id="dID0EBAEABADAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション ウィンドウで、必要に応じて組織を展開してから、<b>[設定]</b> &gt; <b>[カスタマイズ]</b> を選択します。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">カスタマイズ ウィンドウで、<b>[システムのカスタマイズ]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">ナビゲーション ウィンドウで、<b>[エンティティ]</b> を展開してから、そのチーム テンプレートで使用するエンティティをクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[エンティティ定義]</b> フォームの、<b>[通信 &amp; 共同]</b> セクションで、<b>[チームにアクセス]</b> チェック ボックスを選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">[操作] ツール バーで、<b>[保存]</b> をクリックまたはタップします。</p>
+					</li>
+				</ol>
+				<p class="bodyText" />
+			</div>
+			<a class="expand" id="tID0ECAA" href="." onclick="expandCollapse('ID0ECAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0ECAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />チーム テンプレートの作成</h2>
+			</a>
+			<div id="dID0ECAA" class="l2" style="display:none">
+				<a class="expand" id="tID0EAACAA" href="." onclick="expandCollapse('ID0EAACAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" /></p>
+				</a>
+				<div id="dID0EAACAA" style="display:none">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>CRM Web アプリケーションを使用する場合<ol class="numberedlist2"><li class="numberedlistitem"><p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b>、<b>[設定]</b> の順にクリックまたはタップします。</p><p class="bodyText">ナビゲーション バーに <b>[設定]</b> と表示されます。</p></li><li class="numberedlistitem"><p class="bodyText"><b>[設定]</b>、<b>[管理]</b> の順にクリックまたはタップします。</p></li></ol><a class="expand" id="tID0EBACAAACAA" href="." onclick="expandCollapse('ID0EBACAAACAA',2);return false;"><p class="procHeading hanging"><img id="iID0EBACAAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p></a><div id="dID0EBACAAACAA" style="display:none"><ol class="numberedlist2"><li class="numberedlistitem"><p class="bodyText">ナビゲーション ウィンドウで、必要に応じて組織を展開してから、<b>[設定]</b> &gt; <b>[システム]</b> &gt; <b>[管理]</b> をクリックまたはタップします。</p></li></ol></div><p class="bodyText" /></li>
+						<li class="numberedlistitem">
+							<p class="bodyText">
+								<b>[チーム テンプレートにアクセス]</b> をクリックまたはタップします。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">[操作] ツール バーで、<b>[新規]</b> をクリックまたはタップして、必須フィールドに入力してから、<b>[保存]</b> をクリックまたはタップします。</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />エンティティ フォームへのチーム テンプレートの追加</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<p class="bodyText" />
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Microsoft Dynamics CRM のシステム管理者セキュリティ ロールまたは同等のアクセス許可を持っている必要があります。</p>
+						<a class="expand" id="tID0EBAMAAABAA" href="." onclick="expandCollapse('ID0EBAMAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAMAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />セキュリティ ロールの確認</p>
+						</a>
+						<div id="dID0EBAMAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">「 <a href="how_persopt_ViewProfile.htm">ユーザー プロファイルの表示</a>」の手順を実行してください。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">適切なアクセス許可を持っていない場合は、システム管理者に問い合わせてください。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>
+						<a class="expand" id="tID0ECALAAABAA" href="." onclick="expandCollapse('ID0ECALAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECALAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />CRM Web アプリケーションを使用する場合</p>
+						</a>
+						<div id="dID0ECALAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b>、<b>[設定]</b> の順にクリックまたはタップします。</p>
+									<p class="bodyText">ナビゲーション バーに <b>[設定]</b> と表示されます。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">
+										<b>[設定]</b>、<b>[カスタマイズ]</b> の順にクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBALAAABAA" href="." onclick="expandCollapse('ID0EBALAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBALAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p>
+						</a>
+						<div id="dID0EBALAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション ウィンドウで、必要に応じて組織を展開してから、<b>[設定]</b> &gt; <b>[カスタマイズ]</b> をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">カスタマイズ ウィンドウで、<b>[システムのカスタマイズ]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">ナビゲーション ウィンドウで、<b>[エンティティ]</b> を展開し、そのチーム テンプレートで使用するエンティティを展開してから、<b>フォーム</b>をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[システム フォーム]</b> で、<b>[アクティブなフォーム]</b> &gt; <b>[メイン]</b> フォームを選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[メイン]</b> フォームで、<b>[挿入]</b> タブをオープンします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">リボンで、<b>[サブグリッド]</b> をクリックまたはタップします。</p>
+						<p class="bodyText">
+							<b>[プロパティの設定]</b> ダイアログ ボックスが表示されます。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[プロパティの設定]</b> で、必須フィールドに入力してから、<b>[フォームにラベルを表示]</b> チェック ボックスを選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[レコード]</b>ドロップダウン リストで、<b> [すべてのレコードの種類]</b> を選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[エンティティ]</b> ドロップダウン リストで、<b>[ユーザー]</b> を選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[既定のビュー]</b> ドロップダウン リストで、<b>[関連するレコード チーム メンバー]</b> を選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[チーム テンプレート]</b> ドロップダウン リストで、必要なテンプレートを選択し、<b>[セット]</b>をクリックまたはタップします。</p>
+						<p class="bodyText">これで、選択したチーム テンプレートがメイン フォームに表示されます。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">[操作] ツール バーで、<b>[保存]</b> をクリックまたはタップし、次に <b>[公開]</b> をクリックまたはタップします。</p>
+					</li>
+				</ol>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ug_cs_que_manage.htm">チーム テンプレートについて</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

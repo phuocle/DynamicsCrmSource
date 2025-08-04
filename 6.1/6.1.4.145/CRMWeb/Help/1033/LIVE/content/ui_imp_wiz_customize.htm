@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Review settings and import data</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Review settings and import data</h1>
+			<p class="bodyText">Set whether the Import Data wizard checks for and handles duplicate data on import, decide who can edit or share the imported data, and save the settings you used for this import so you can use them again later. </p>
+			<a class="expand" id="tID0ECBAA" href="." onclick="expandCollapse('ID0ECBAA',1);return false;">
+				<p class="procHeading hanging">
+					<img id="iID0ECBAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Check for duplicate data</p>
+			</a>
+			<div id="dID0ECBAA" style="display:none">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure there is a duplicate detection rule for the type of information you're importing. By default, the system includes rules for contacts, accounts, and leads. If you're importing a different type of data and need to set up duplicate detection rules, follow the steps in  <a href="ui_dd_duprules_list.htm">Set up duplicate detection rules</a>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">If it's okay for the Import Data wizard to import duplicate records, in the <b>Allow Duplicates</b> section, select <b>Yes</b>. </p>
+						<div class="alertContent">
+							<p class="importanthead">Caution </p>
+							<p class="bodyText">In most cases, to avoid importing duplicate information, you should keep this option set to <b>No</b>.</p>
+						</div>
+					</li>
+				</ol>
+			</div>
+			<a class="expand" id="tID0EBBAA" href="." onclick="expandCollapse('ID0EBBAA',1);return false;">
+				<p class="procHeading hanging">
+					<img id="iID0EBBAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Set who owns the imported data</p>
+			</a>
+			<div id="dID0EBBAA" style="display:none">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">To set who owns the imported records, in the <b>Select Owner for the Imported Records</b> section, click or tap the <b>Lookup</b> button <img src="lookup_v4.gif" title="lookup_v4" />.</p>
+						<div class="alertContent">
+							<p class="importanthead">Important </p>
+							<p class="bodyText">Who should “own” the imported data? Most security roles allow people to view the data. However, the owner is also allowed to edit and share it. Here's an example: If your import file contains contacts you collected at a trade show and you want to assign a user to follow up with these contacts, select that person for the owner. </p>
+							<p class="bodyText">To assign someone other than yourself as the owner of the imported records, your security role must include permissions to create records for the user. If you don't have sufficient permissions, the wizard assigns you as the owner of the imported records by default.</p>
+							<p class="bodyText">Also, if applicable, ownership is assigned to the person defined in the data map metadata and users.csv file.</p>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the search box, type the person's name, then click or tap the <b>Lookup</b> button <img src="lookup_v4.gif" title="lookup_v4" />.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Select the name, then click or tap <b>Add</b>.</p>
+					</li>
+				</ol>
+			</div>
+			<a class="expand" id="tID0EABAA" href="." onclick="expandCollapse('ID0EABAA',1);return false;">
+				<p class="procHeading hanging">
+					<img id="iID0EABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Save these import settings to use again</p>
+			</a>
+			<div id="dID0EABAA" style="display:none">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">To save these import settings so you can use them again, enter a name for the settings (called a “data map”).</p>
+						<p class="bodyText">The next time you run the Import Data wizard, you'll see the new data map listed under <b>Custom Maps</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">To import the data, click or tap <b>Submit</b>.</p>
+					</li>
+				</ol>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_sf_Contact_list.htm">Import contacts</a>
+			</p>
+			<p class="relateditemlink">Import data</p>
+			<p class="relateditemlink">Create custom fields with the Import Data wizard</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

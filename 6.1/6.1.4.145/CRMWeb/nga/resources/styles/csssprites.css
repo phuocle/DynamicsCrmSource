@@ -1,0 +1,176 @@
+.csimgbg
+{
+	background-image:url('../images/csssprites.png');
+}
+.csimg
+{
+	overflow:hidden;
+}
+.sprites-drparw-gif
+{
+	background-position:-90px -725px;
+	width: 14px;
+	height: 16px;
+}
+.sprites-strikethrough-png
+{
+	background-position:-75px -395px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-justifyleft-png
+{
+	background-position:-225px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-justifycenter-png
+{
+	background-position:-250px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-justifyright-png
+{
+	background-position:-100px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-insertunorderedlist-png
+{
+	background-position:-272px -345px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-insertunorderedlistrtl-png
+{
+	background-position:-297px -345px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-insertorderedlist-png
+{
+	background-position:-75px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-insertorderedlistrtl-png
+{
+	background-position:0px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-indent-png
+{
+	background-position:-322px -345px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-indentrtl-png
+{
+	background-position:-25px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-outdent-png
+{
+	background-position:-150px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-outdentrtl-png
+{
+	background-position:-125px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-backcolor-png
+{
+	background-position:-200px -345px;
+	width: 34px;
+	height: 22px;
+}
+.sprites-forecolor-png
+{
+	background-position:-236px -345px;
+	width: 34px;
+	height: 22px;
+}
+.sprites-removeformat-png
+{
+	background-position:-300px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-inserthorizontalrule-png
+{
+	background-position:-50px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-undo-png
+{
+	background-position:-50px -395px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-redo-png
+{
+	background-position:-200px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-createlink-png
+{
+	background-position:-175px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-unlink-png
+{
+	background-position:-25px -395px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-superscript-png
+{
+	background-position:-325px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-subscript-png
+{
+	background-position:0px -395px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-blockdirltr-png
+{
+	background-position:-100px -395px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-blockdirrtl-png
+{
+	background-position:-125px -395px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-customize-png
+{
+	background-position:-275px -371px;
+	width: 23px;
+	height: 22px;
+}
+.sprites-clear-gif
+{
+	background-position:-72px -617px;
+	width: 16px;
+	height: 16px;
+}
+.sprites-flg-compl-gif
+{
+	background-position:-324px -437px;
+	width: 16px;
+	height: 16px;
+}

@@ -1,0 +1,543 @@
+/* The file is AUTO generated on Mon, 8 Feb 2016 19:24:46 UTC */
+/* Do NOT manually modify this file! */
+
+.mscrm-pbleditor {
+  background: white;
+  font-size: 12px;
+  /* _locID_css@font-size="BusinessRule_FontSize" _locComment="Font Size" */
+
+  font-family: Segoe UI, Arial, Sans-Serif;
+  /* _locID_css@font-family="BusinessRule_FontFamily" _locComment="Font Family" */
+
+}
+.mscrm-pbleditor .ms-crm-MenuItem-Text {
+  padding-left: 4px;
+}
+.mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer {
+  margin: 0px 20px;
+  min-width: 800px;
+  height: 140px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+}
+.mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .commandBarContainer {
+  height: 40px;
+}
+.mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .ruleNameContainer .ms-crm-Inline-Value.ruletitlecontent,
+.mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .ruleNameContainer .ms-crm-Inline-Edit {
+  margin-left: 0px;
+}
+.mscrm-pbleditor .mscrm-pbleditor-HeaderViewContainer .ruleNameContainer .ms-crm-Inline-EmptyValue {
+  color: #a8a8a8;
+}
+.mscrm-pbleditor .arrowcollapsedimagestyle {
+  margin-top: 2px;
+  vertical-align: top;
+}
+.mscrm-pbleditor .arrowcollapsedimage {
+  margin-top: 1px;
+  vertical-align: top;
+}
+.mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer {
+  position: absolute;
+  top: 140px;
+  left: 0px;
+  right: 0px;
+  bottom: 28px;
+  overflow: auto;
+}
+.mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .workflowRootStep {
+  min-width: 800px;
+  padding: 0px 20px;
+}
+.mscrm-pbleditor .mscrm-pbleditor-BodyViewContainer .moreSections {
+  min-width: 800px;
+  padding: 0px 20px;
+}
+.mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer {
+  height: 28px;
+  line-height: 28px;
+  position: absolute;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  background-color: #F4D89D;
+}
+.mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerActivateState {
+  display: inline-block;
+  margin-left: 20px;
+}
+.mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerActivateState span {
+  font-weight: bold;
+}
+.mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerSpliter {
+  width: 4px;
+  height: 28px;
+  background-color: white;
+  float: right;
+}
+.mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerReadOnlyState {
+  width: 150px;
+  float: right;
+}
+.mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerReadOnlyState span {
+  margin-left: 60px;
+}
+.mscrm-pbleditor .mscrm-pbleditor-FooterViewContainer .footerReadOnlyState img {
+  margin-left: 10px;
+}
+.mscrm-pbleditor .sectionheader {
+  height: 18px;
+}
+.mscrm-pbleditor .sectionheadercontainer {
+  font-weight: bold;
+  color: #666666;
+  height: 28px;
+}
+.mscrm-pbleditor .sectionheadertext {
+  display: inline-block;
+  padding-left: 6px;
+  vertical-align: top;
+}
+.mscrm-pbleditor .sectionheaderimage {
+  display: inline-block;
+  height: 12px;
+}
+.mscrm-pbleditor .hidecontrol,
+.mscrm-pbleditor .hidesection {
+  display: none;
+}
+.mscrm-pbleditor .action.ms-crm-Inline-Value,
+.mscrm-pbleditor .expression.ms-crm-Inline-Value {
+  margin: 0px;
+  margin-left: 12px;
+  height: 22px;
+  padding: 0px;
+  padding-left: 8px;
+  padding-top: 6px;
+}
+.mscrm-pbleditor .ms-crm-Inline-EditHintState .ms-crm-ReadToolBar {
+  display: inline-block;
+}
+.mscrm-pbleditor .selected .ms-crm-ReadToolBar {
+  display: inline-block;
+}
+.mscrm-pbleditor .selected .action.ms-crm-Inline-Value,
+.mscrm-pbleditor .selected .expression.ms-crm-Inline-Value {
+  border-width: 1px;
+  border-left-width: 10px;
+  padding-left: 9px;
+  margin-left: 2px;
+}
+.mscrm-pbleditor .selected .action.ms-crm-Inline-Value {
+  border-color: #0080aa;
+}
+.mscrm-pbleditor .selected .expression.ms-crm-Inline-Value {
+  border-color: #008000;
+}
+.mscrm-pbleditor .action .ms-crm-Inline-Edit,
+.mscrm-pbleditor .expression .ms-crm-Inline-Edit {
+  position: relative;
+}
+.mscrm-pbleditor .action.ms-crm-Inline-Chrome > .ms-crm-Inline-Edit,
+.mscrm-pbleditor .expression.ms-crm-Inline-Chrome > .ms-crm-Inline-Edit {
+  margin-left: 2px;
+}
+.mscrm-pbleditor .rightoperand,
+.mscrm-pbleditor .operand {
+  display: inline;
+  font-weight: Bold;
+  color: #008000;
+}
+.mscrm-pbleditor .expressionprefix,
+.mscrm-pbleditor .conditionoperator {
+  display: inline-block;
+  font-weight: normal;
+  color: #008000;
+}
+.mscrm-pbleditor .ms-crm-ReadToolBar {
+  display: none;
+  float: right;
+  height: 18px;
+}
+.mscrm-pbleditor .ms-crm-ReadToolBar .ms-crm-Button {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+.mscrm-pbleditor .actiontoolbar {
+  display: inline-block;
+  width: 50px;
+  background-color: red;
+  position: absolute;
+  height: 28px;
+  right: 0px;
+}
+.mscrm-pbleditor .edittoolbarcontainer {
+  display: block;
+  height: 36px;
+  padding-top: 12px;
+}
+.mscrm-pbleditor .edittoolbar {
+  display: block;
+  float: right;
+  margin-right: 30px;
+}
+.mscrm-pbleditor .editexpressioncontainer,
+.mscrm-pbleditor .editstepcontainer {
+  margin: 12px 0px 0px 0px;
+  position: relative;
+  white-space: nowrap;
+}
+.mscrm-pbleditor .editexpressioncontainer .sectionheader,
+.mscrm-pbleditor .editstepcontainer .sectionheader {
+  color: #0080aa;
+  font-weight: bold;
+  margin-left: 23px;
+}
+.mscrm-pbleditor .editexpressioncontainer .sectioncell,
+.mscrm-pbleditor .editstepcontainer .sectioncell {
+  display: inline-block;
+  margin: 12px 34px 0px 0px;
+}
+.mscrm-pbleditor .editexpressioncontainer .sectioncell .celllabel,
+.mscrm-pbleditor .editstepcontainer .sectioncell .celllabel {
+  width: 220px;
+  height: 14px;
+  color: #868686;
+  margin-left: 23px;
+}
+.mscrm-pbleditor .editexpressioncontainer .sectioncell .cellvalue,
+.mscrm-pbleditor .editstepcontainer .sectioncell .cellvalue {
+  width: 220px;
+  height: 30px;
+  margin-top: 8px;
+}
+.mscrm-pbleditor .editexpressioncontainer .sectioncell .cellvaluesetmessagecontainer,
+.mscrm-pbleditor .editstepcontainer .sectioncell .cellvaluesetmessagecontainer {
+  width: 100%;
+}
+.mscrm-pbleditor .editexpressioncontainer .sectioncellsetmessagefieldcontainer,
+.mscrm-pbleditor .editstepcontainer .sectioncellsetmessagefieldcontainer {
+  vertical-align: top;
+}
+.mscrm-pbleditor .editexpressioncontainer .sectioncellsetmessagecontainer,
+.mscrm-pbleditor .editstepcontainer .sectioncellsetmessagecontainer {
+  position: absolute;
+  right: 2px;
+  left: 230px;
+}
+.mscrm-pbleditor .editexpressioncontainer .sectionbody,
+.mscrm-pbleditor .editstepcontainer .sectionbody {
+  margin-top: 8px;
+}
+.mscrm-pbleditor .editsetmessagecontainer {
+  display: inline-block;
+  margin: 0px 34px 0px 0px;
+  width: 230px;
+  height: 100px;
+}
+.mscrm-pbleditor .expressioncelllabel {
+  height: 14px;
+  color: #868686;
+  margin-left: 23px;
+  margin-bottom: 8px;
+}
+.mscrm-pbleditor .editdiscardimage,
+.mscrm-pbleditor .editdoneimage {
+  display: inline-block;
+  margin-left: 16px;
+}
+.mscrm-pbleditor .actioncontent,
+.mscrm-pbleditor .expressioncontent {
+  display: inline-block;
+  float: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 75%;
+}
+.mscrm-pbleditor .editstepandtoolbarcontainer,
+.mscrm-pbleditor .editexpressionandtoolbarcontainer {
+  background-color: #eeeeee;
+  margin: 0px;
+  border-width: 1px;
+  border-left-width: 10px;
+  border-style: solid;
+}
+.mscrm-pbleditor .editstepandtoolbarcontainer {
+  border-color: #0080aa;
+}
+.mscrm-pbleditor .editexpressionandtoolbarcontainer {
+  border-color: #008000;
+}
+.mscrm-pbleditor .editstepandtoolbarcontainer.blink,
+.mscrm-pbleditor .editexpressionandtoolbarcontainer.blink {
+  border-width: 0px;
+  padding: 1px;
+  padding-left: 10px;
+}
+.mscrm-pbleditor .actioncontent {
+  color: #0080aa;
+  font-weight: normal;
+}
+.mscrm-pbleditor .addcontrol {
+  height: 28px;
+  margin-left: 23px;
+  margin-top: 8px;
+  display: inline-block;
+  background-color: #FFFFFF;
+}
+.mscrm-pbleditor .ruleentityname {
+  font-size: 13px;
+  color: #444444;
+  cursor: default;
+}
+.mscrm-pbleditor .ruletitlecontent,
+.mscrm-pbleditor INPUT.ruletitlecontent {
+  font-family: Segoe UI Light, Segoe UI, Arial, Sans-Serif;
+  /* _locID_css@font-family="BusinessRule_Light_FontFamily" _locComment="Font Family" */
+
+  font-size: 36px;
+  font-weight: normal;
+  color: #000000;
+}
+.mscrm-pbleditor .ms-crm-ImageStrip-plussign {
+  margin-right: 10px;
+}
+.mscrm-pbleditor .optycon.hidecontrol {
+  display: none;
+}
+.mscrm-pbleditor .lefopcon,
+.mscrm-pbleditor .rigopcon,
+.mscrm-pbleditor .optycon,
+.mscrm-pbleditor .conopcon {
+  vertical-align: top;
+  display: inline-block;
+  width: 25%;
+}
+.mscrm-pbleditor .rigopcon.rigopcon_0 .ms-crm-Inline-Edit,
+.mscrm-pbleditor .rigopcon.rigopcon_1 .ms-crm-Inline-Edit {
+  margin-right: 46px;
+}
+.mscrm-pbleditor .rigopcon.rigopcon_2 {
+  display: block;
+  width: 100%;
+}
+.mscrm-pbleditor .scopeselector {
+  float: right;
+  margin-top: 0px;
+}
+.mscrm-pbleditor .scopeselectorelement {
+  display: inline-block;
+  width: 130px;
+  vertical-align: top;
+  margin-top: 6px;
+}
+.mscrm-pbleditor .scopeselectorlabel {
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 3px;
+  margin-top: 6px;
+}
+.mscrm-pbleditor .ruledisplayhelp {
+  display: inline-block;
+}
+.mscrm-pbleditor .ms-crm-ReadToolBar {
+  float: right;
+  margin-right: 20px;
+}
+.pbleditor-dialog-icon {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 8px;
+}
+.pbleditor-dialog-area {
+  display: inline-block;
+  font-family: Segoe UI Light, Segoe UI, Arial, Sans-Serif;
+  /* _locID_css@font-family="BusinessRule_Light_FontFamily" _locComment="Font Family" */
+
+  color: #444444;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+.pbleditor-dialog-content {
+  position: absolute;
+  left: 28px;
+  right: 27px;
+  top: 0px;
+  bottom: 0px;
+}
+.pbleditor-dialog-heading {
+  font-size: 35px;
+  font-family: Segoe UI Light, Segoe UI, Tahoma, Arial;
+  /* _locID_css@font-family="BusinessRule_Light_FontFamily" _locComment="Font Family" */
+
+  color: #262626;
+  font-weight: lighter;
+}
+.pbleditor-dialog-headingAttribute {
+  margin-left: 50px;
+}
+.pbleditor-dialog-body {
+  padding-top: 23px;
+  padding-bottom: 15px;
+  font-family: Segoe UI,Tahoma,Arial;
+  /* _locID_css@font-family="BusinessRule_FontFamily" _locComment="Font Family" */
+
+  font-size: 11px;
+}
+.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix {
+  height: 10px;
+}
+.ui-dialog-buttonset {
+  margin-right: 16px;
+}
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+  width: 69px;
+  height: 22px;
+}
+.pbleditor-dialog-closebutton {
+  float: right;
+  margin-top: 6px;
+}
+.pbleditor-dialog-detail {
+  bottom: 20px;
+  right: 30px;
+  left: 0px;
+}
+.pbleditor-dialog-detailAttribute {
+  margin-left: 50px;
+}
+li.actiondropdownitemcontent,
+.moreMenuSelected {
+  font-family: Segoe UI, Arial, Sans-Serif;
+  /* _locID_css@font-family="BusinessRule_FontFamily" _locComment="FontFamily" */
+
+  font-size: 12px;
+  color: #000000;
+  height: 24px;
+  padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.actiondropdownitem {
+  padding-top: 5px;
+  display: inline-block;
+}
+.mscrm-pbleditor-Body #moreCommandsList LI.moreMenuSelected {
+  background: #d7ebf9;
+  padding-left: 10px;
+  border-color: #d7ebf9;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-width: 0px;
+}
+.mscrm-pbleditor-Body .moreMenuUnselected:hover {
+  background: #d7ebf9;
+}
+.mscrm-pbleditor-Body .ui-flyout-dialog {
+  border: 1px solid #0072C6;
+}
+.mscrm-pbleditor-Body .ui-flyout-dialog .ui-dialog-content.ui-flyout-dialog-moreCommands {
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.ui-combobox-toggle {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  background-color: #FFFFFF;
+  border-top: solid 1px #CCCCCC;
+  border-bottom: solid 1px #CCCCCC;
+  width: 23px;
+  *margin-top: -1px;
+  /* IE7 */
+
+  *margin-bottom: 1px;
+  /* IE7 */
+
+}
+.ui-combobox-toggle.combobox-ltr {
+  right: -5px;
+}
+.ui-combobox-toggle.combobox-rtl {
+  right: -1px;
+}
+.ui-menu {
+  background-color: #ffffff;
+  border: solid 1px #CCCCCC;
+  max-height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+  display: inline-block;
+  width: 185px;
+  /*set to the size of entire autcomplete input (including dropdown) */
+
+  position: absolute;
+  z-index: 1100 !important;
+}
+.ui-menu .ui-menu-item a {
+  display: block;
+  line-height: 2;
+  padding: 1px 5px;
+  color: #666666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ui-state-hover {
+  background-color: #CDE7F8;
+}
+.ui-autocomplete-input {
+  margin-right: -29px !important;
+}
+.ui-ac-dropdown-img {
+  margin-left: 5px;
+  margin-top: 3px;
+}
+.ms-crm-InlineMultiPicklist {
+  max-height: 168px;
+  overflow-x: hidden;
+  border: 1px solid #ababab;
+  background-color: white;
+}
+.maskPanel {
+  position: absolute;
+  left: 0px;
+  background: url("/_imgs/imagestrips/transparent_spacer.gif") repeat scroll 0 0 transparent;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  z-index: 1000;
+  width: 100%;
+  min-width: 840px;
+}
+.resize-sensor,
+.resize-sensor > div {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: scroll;
+  z-index: -1;
+  visibility: hidden;
+}
+.resize-expand div {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.resize-shrink div {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 200%;
+  height: 200%;
+}

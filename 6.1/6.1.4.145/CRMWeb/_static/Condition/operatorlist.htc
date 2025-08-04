@@ -1,0 +1,23 @@
+<public:component lightweight="true" tagName=OperatorList>
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:event name="onchange" id="OnChangeHandler"/>
+<public:property name="ParentControl"/>
+<public:property name="ColumnData"/>
+<public:property name="Container"/>
+<public:property name="DataValue" get="GetDataValue" put="SetDataValue"/>
+<public:property name="Attribute" get="GetAttribute" put="SetAttribute"/>
+<public:property name="Width"/>
+<public:property name="Index"/>
+<public:property name="DependentValue"/>
+<public:method name="GetSelectList"/>
+<public:method name="GetXml"/>
+<public:method name="ParseXml"/>
+<public:method name="IsUnary"/>
+<public:method name="HideDependents"/>
+<public:method name="AddDependent"/>
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+var _oAutoShow=null,_oDependents=[],_sDataValue=null,_attribute=null,_bInitialized=false;Sys.Application.add_load(SysInit);function SysInit(){Init()}function InitOnDocReady(){Sys.Application.get_isInitialized()&&!_bInitialized&&Init()}function Init(){element.innerHTML="<Crm:AutoShow id='"+element.id+"OP'/>";_oAutoShow=element.firstChild;_oAutoShow.Container=element.Container;with(_oAutoShow){if(Container.ReadOnlyMode=="1")Disabled=true;InnerControlHtml=RetrieveOperatorList();DefaultText=LOCID_AF_SELECTFIELDENTITY;onchange=FieldChanged;Value=_sDataValue;oninitcomplete=OnAutoShowInitComplete}_oAutoShow.Width=Width}function OnAutoShowInitComplete(){_bInitialized=true;!IsNull(_attribute)&&SetAttribute(_attribute);SetDataValue(_sDataValue)}function GetSelectList(){return _oAutoShow.InnerControl}function GetAttribute(){return _attribute}function SetAttribute(o){!IsNull(_attribute)&&_attribute!=o&&SetDataValue(null);_attribute=o;if(!_bInitialized||IsNull(_oAutoShow))return;with(_oAutoShow){var sInnerHtml,fnCallback=Container.GetUserDefinedList;if(!IsNull(fnCallback)&&"function"==typeof fnCallback)sInnerHtml=fnCallback(ColumnData.id,element);if(IsNull(sInnerHtml))sInnerHtml=RetrieveOperatorList();InnerControlHtml=sInnerHtml}GetSelectList().selectedIndex=-1}function RetrieveOperatorList(){if(IsNull(_attribute))return "<select class='ms-crm-SelectBox'></select>";var sOperatorList=null;if(IsTimeoutCondition(ParentControl))sOperatorList=GetTimeoutExpressionOperator();else if(_attribute=="date"||_attribute=="lookupwithuser"||_attribute=="owner"||_attribute=="partylist"||_attribute=="lookupwithuserwithname"||_attribute=="ownerwithname"||_attribute=="lookupwithbusinessunit"||_attribute=="lookupwithbusinessunitwithname")sOperatorList=Container.ClientCache.GetElement("ConditionControlOperator",_attribute).outerHTML;else sOperatorList=Container.ClientCache.GetElement("Operator",_attribute).outerHTML;return sOperatorList}function GetDataValue(){return _sDataValue}function SetDataValue(sValue){_sDataValue=sValue;if(_bInitialized){_oAutoShow.Value=sValue;if(IsUnary())HideDependents();else if(!IsNull(DependentValue))DependentValue.Operator=_sDataValue}}function ParseXml(){return true}function GetTimeoutExpressionOperator(){var sb=new StringBuilder;sb.Append("<select class='ms-crm-SelectBox'>");sb.Append("<OPTION value='eq' selected>");sb.Append(LOCID_AF_EQUALS);sb.Append("</OPTION></select>");return sb.ToString()}function GetXml(){if(IsNull(GetDataValue()))return null;else return '<column id="'+ColumnData.id+'" value="'+CrmEncodeDecode.CrmXmlEncode(GetDataValue())+'"/>'}function FieldChanged(){var o=GetSelectList();if(o.selectedIndex==-1)return;var sOldValue=_sDataValue;_sDataValue=event.srcElement.Value;if(IsUnary())HideDependents();else if(sOldValue!=_sDataValue&&!IsNull(DependentValue))DependentValue.Operator=_sDataValue;RaiseFieldChangedEvent(false);var fnCallback=Container.NotifyConditionsChanged;!IsNull(fnCallback)&&"function"==typeof fnCallback&&fnCallback()}function RaiseFieldChangedEvent(bRaisedByCode){ParentControl.FieldChanged();ParentControl.HideAffectedControls(Index)}function IsUnary(){if(IsNull(_sDataValue))return false;else return !IsValueBoundOperator(_sDataValue)}function HideDependents(){var iLen=_oDependents.length,i=0;while(i<iLen){ParentControl.HideChild(_oDependents[i]);i++}}function AddDependent(i){_oDependents.push(i)}
+</script>
+</html>
+</public:component>

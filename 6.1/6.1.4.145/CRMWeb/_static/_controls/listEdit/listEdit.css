@@ -1,0 +1,47 @@
+
+DIV.listEdit_valuelist
+{
+background:		#ffffff;
+border-width:	1px;
+border-style:	solid;
+overflow:		auto;
+}
+
+
+TD.listEdit_buttons
+{
+width:			205px;
+}
+
+.listEdit_button {
+width:          100%;
+height:         20px;
+font-family:    Segoe UI,Tahoma,Arial;
+border:         1px solid #C6C6C6;
+background-image:none;
+min-width:      80px;
+white-space:    nowrap;
+}
+
+.listEdit_button:Enabled:Hover
+{
+background-color: #B1D6F0;
+}
+
+
+TR.listEdit_vspacer
+{
+height:			5px;
+}
+
+
+TD.listEdit_hspacer
+{
+width:			5px;
+}
+
+
+TD.listEdit_dropdown
+{
+width:			245px;
+}

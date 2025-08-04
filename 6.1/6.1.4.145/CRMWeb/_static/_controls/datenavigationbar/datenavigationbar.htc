@@ -1,0 +1,11 @@
+<public:component lightweight="true">
+<public:method name="DateNavigationOnInit"/>
+<public:method name="HandleDateChange"/>
+<public:method name="NextDate"/>
+<public:method name="PrevDate"/>
+<public:method name="MouseOver"/>
+<public:method name="MouseOut"/>
+<script language="JavaScript"></script><script type="text/javascript">
+var oClient,clientType="calendar";function DateNavigationOnInit(){InitCalendar(USER_DATE_FORMATSTRING,USER_DATE_SEPARATOR,ORG_DATE_START_DAY);try{oClient=crmGrid;clientType="grid"}catch(e){oClient=frmGrid}}function submitForm(){if(clientType=="calendar")oClient.submit();else oClient.Refresh()}function SetDateParam(oDate){if(clientType=="calendar")oClient.date.value=FormatUtcDate(oDate);else oClient.SetParameter("date",FormatUtcDate(oDate))}function GetDateParam(){if(clientType=="calendar")return oClient.date.value;else return oClient.GetParameter("date")}function handleTitleChange(){if(parseInt(dateincrement,10)==12)dateNavigationButton1.innerHTML="&nbsp;"+CrmEncodeDecode.CrmHtmlEncode(Mscrm.DateTimeUtility.getCalendarYear(_d))+"&nbsp;";else dateNavigationButton1.innerHTML="&nbsp;"+CrmEncodeDecode.CrmHtmlEncode(Mscrm.DateTimeUtility.formatDate(_d,"y"))+"&nbsp;"}function HandleDateChange(){_d.setTime(Mscrm.DateTimeUtility.parseDate(dateValue.value));SetDateParam(_d);handleTitleChange();submitForm()}function NextDate(){_d=ParseUtcDate(GetDateParam());_d.setDate(1);_d.setMonth(_d.getMonth()+parseInt(dateincrement,10));SetDateParam(_d);handleTitleChange();submitForm()}function PrevDate(){_d=ParseUtcDate(GetDateParam());_d.setDate(1);_d.setMonth(_d.getMonth()-parseInt(dateincrement,10));SetDateParam(_d);handleTitleChange();submitForm()}function MouseOver(){var oSpan=event.srcElement;if(oSpan.tagName=="IMG")oSpan=oSpan.parentElement;if(oSpan.className=="ms-crm-Cal-Month-Nav-Button"){event.returnValue=false;oSpan.className="ms-crm-Cal-Month-Nav-Button-Hovered"}}function MouseOut(){var oSpan=event.srcElement;if(oSpan.tagName=="IMG")oSpan=oSpan.parentElement;if(oSpan.className=="ms-crm-Cal-Month-Nav-Button-Hovered"){event.returnValue=false;oSpan.className="ms-crm-Cal-Month-Nav-Button"}}
+</script>
+</public:component>

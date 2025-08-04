@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>電子メールのプロセス エラーの監視</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">電子メールのプロセス エラーの監視</h1>
+			<p class="bodyText">Microsoft Dynamics CRM は電子メールの処理中にエラーが発生した場合に警告を生成します。エラーの特性に基づき、また電子メール、メールボックス、または電子メール サーバー プロファイルのエラーであるかに基づき、エラーが分類されます。</p>
+			<p class="bodyText">次の表は永久エラーと一時的エラーの間の違いを示します。</p>
+			<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">永久エラー</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">一時的エラー</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">これらは永久的な特性を持ち、一時的エラーの修正を数回試みても修正できない場合に生じることがあります。</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">これらは一時的な特性を持ち、修正を数回試みた後に自動的に修正されることがあります。</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">これらのエラーが発生した場合、影響のあるメールボックスの電子メール処理が停止します。これらにはメールボックスの所有者または CRM の管理者による修正措置が必要です。</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">これらのエラーには CRM ユーザーによる修正措置が必ずしも必要ではありませんが、これらを参照することをお勧めします。</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">管理者とユーザーには、対処して電子メール処理を開始するための警告ウォールが通知されます。</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">管理者とユーザーにはこれらのエラーに関する警告ウォールが通知されますが、これらのエラーに対処する必要はありません。</p>
+					</td>
+				</tr>
+			</table>
+			<p class="bodyText">次の表には、電子メール レベル、メールボックス レベル、および電子メール サーバー プロファイル レベルの違い、および対処措置が必要であるかどうかが示されます。</p>
+			<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">電子メール レベルのエラー</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">メールボックス レベルのエラー</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">電子メール サーバー プロファイル レベルのエラー</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">これらは電子メール メッセージ特有のエラーです。</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">このエラーはメールボックス特有のエラーです。</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">これらのエラーは1つ以上のメールボックスに対して発生する可能性があります。</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">これらは他の電子メール処理に影響しません。</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">メールボックスの所有者は警告ウォールの通知を受け、所有者は対応措置を取る必要があります。</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">関連する電子メール サーバー プロファイルの所有者は警告ウォールの通知を受け、所有者は対応措置を取る必要があります。</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">これらの警告は電子メール フォームの警告セクションに表示されます。</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">警告は関係するメールボックスのフォームにも表示されます。</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">影響を受けるメールボックスの所有者も警告ウォールの通知を受けますが、対処措置を必要ではありません。</p>
+					</td>
+				</tr>
+			</table>
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />警告の表示</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<p class="bodyText">警告は、メールボックスまたは電子メール サーバー プロファイル レコードの、警告レコード ウォールまたは警告セクションに表示されます。次の表は、警告とこれらの警告で実行できる操作を表示する方法を示しています。</p>
+				<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">宛先</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">アクション</p>
+						</td>
+					</tr>
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">すべての警告を表示</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">ナビゲーション バーで、<b>Microsoft Dynamics CRM</b> &gt; <b>営業</b> &gt; <b>警告</b>をクリックまたはタップします。</p>
+							<ul class="bulletedlist">
+								<li class="bulletedlistitem">
+									<p class="bodyText">すべての警告を一度に削除するには、警告ウォールのすべての警告を削除アイコンをクリックするかタップします。</p>
+								</li>
+								<li class="bulletedlistitem">
+									<p class="bodyText">エラー、警告、または情報を表示するには、<b>エラー</b>、<b>警告</b>、または各<b>情報</b>をクリックするかタップします。</p>
+								</li>
+							</ul>
+							<p class="bodyText">また、サーバー側の同期によって、予定、連絡先、およびタスクを同期する場合、以下の場合に警告が表示されます。</p>
+							<ul class="bulletedlist">
+								<li class="bulletedlistitem">
+									<p class="bodyText">Exchange から Microsoft Dynamics CRM にレコードを保存するときに1つ以上の重複レコードが Microsoft Dynamics CRM 内に発見されるとき。</p>
+								</li>
+								<li class="bulletedlistitem">
+									<p class="bodyText">メールボックスがその時間に使用できないため、Exchange から Microsoft Dynamics CRM に予定を保存するときにスケジュールの競合が発見されるとき。</p>
+								</li>
+								<li class="bulletedlistitem">
+									<p class="bodyText">リンク済みのアイテムが特定のメールボックスに存在するとき。</p>
+								</li>
+							</ul>
+							<p class="bodyText">予定、連絡先、およびタスク同期についてのエラーに対してアクションを行うよう求められます。</p>
+						</td>
+					</tr>
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">メールボックス固有の警告を表示</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<ol class="numberlist">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>Microsoft Dynamics CRM</b> &gt; <b>設定</b> &gt; <b>電子メール アクセス構成</b> &gt; <b>メールボックス</b> をクリックまたはタップします。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">メールボックス レコードを開き、左側のナビゲーション バーの<b>共通</b>の下で、<b>警告</b>をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</td>
+					</tr>
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">電子メール サーバー プロファイル特有の警告を表示</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<ol class="numberlist">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>Microsoft Dynamics CRM</b> &gt; <b>設定</b> &gt; <b>電子メール アクセス構成</b> &gt; <b>電子メール サーバー プロファイル</b>をクリックするか、タップします。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">電子メール サーバー プロファイル レコードを開き、左側のナビゲーション バーの<b>共通</b>の下で、<b>警告</b>をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</td>
+					</tr>
+				</table>
+				<div class="alertContent">
+					<p class="notehead-end">メモ</p>
+					<p class="bodyText">警告を表示したくない場合、 <a href="ui_set_SystemSet_dlg_email.htm">システムの設定ダイアログ ボックス - 電子メール タブ</a> から警告のチェックボックスをクリアして、それらを無効にできます。</p>
+				</div>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_test_configuration_and_enable_mailboxes.htm">メールボックスの電子メール構成をテスト</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_set_up_server_side_synchronization.htm">サーバー側の同期による電子メールの設定</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,150 @@
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="Microsoft.Crm.Common.Application.Web.Pages.AppPortalGlobal"
+	EnableViewState="true" CodeBehind="Microsoft.Crm.Application.Pages.dll" %>
+
+<%@ Register TagPrefix="cnt" Namespace="Microsoft.Crm.Application.Controls" Assembly="Microsoft.Crm.Application.Components.Application" %>
+<%@ Register TagPrefix="loc" Namespace="Microsoft.Crm.Application.Controls.Localization"
+	Assembly="Microsoft.Crm.Application.Components.Application" %>
+<!DOCTYPE html>
+<html>
+<head id="Head1" runat="server">
+	<!-- Page Title-->
+	<title>
+		<loc:text id="appPortalHeaderTitle" resourceid="HomePage_CRM_Live_Title" runat="server" />
+	</title>
+	<!-- AppHeader control used for adding page title, linking script files, linking style sheets and rendering jscript variables. -->
+	<asp:Panel ID="HeaderPanel" runat="server" />
+    
+	<% =CssLinkHtmlIfNoHeaderPresent() %>
+    
+	<!-- Page header -->
+	<asp:ContentPlaceHolder ID="globalPageHeader" runat="server" />
+	<!-- Page scripts -->
+	<script type="text/javascript">
+		
+		function AppPortal_Startup()
+		{
+			<asp:contentplaceholder id="globalPageLoadScript" runat="server" />
+				
+			// Set initial object focus
+			var controlId = <asp:Literal ID="InitialControlId" runat="server"/>;
+			if (controlId != null)
+			{
+				$(controlId).focus();
+			}
+		}
+
+		// This function is to adjust the app portal screen layout so that we can have rich gradient and drop shadow UI
+		function AppPortal_AdjustScreenLayout()
+		{
+			// Reasonable default value
+			var windowHeight = 700;
+			var topHeaderHeight = 68;
+			var bottomFooterHeight = 38;
+
+			windowHeight = document.documentElement.clientHeight;
+
+			if (windowHeight == null)
+			{
+				windowHeight = window.innerHeight;
+			}
+
+			if (windowHeight == null)
+			{
+				windowHeight = document.body.offsetHeight;
+			}
+
+			if (windowHeight == null)
+			{
+				windowHeight = 700;
+			}
+
+			if (document.getElementById("GlobalContentBox") != null)
+			{
+				try
+				{
+					document.getElementById("GlobalContentBox").style.minHeight = (windowHeight - topHeaderHeight - bottomFooterHeight) + "px";
+					document.getElementById("GlobalContentDiv").style.minHeight = (windowHeight - topHeaderHeight - bottomFooterHeight) + "px";
+				}
+				catch(err){
+					// When the window is resized frequently very fast by dragging the resize handle, IE doesn't allow javascript to set the style
+				}
+			}
+			else
+			{
+				// if for some reason controls did not load, then adjust layout later
+				window.setTimeout("AppPortal_AdjustScreenLayout()", 10);
+			}
+		}
+
+		function SetSignOutCookie()
+		{
+			var cookie_date = new Date();
+			// 1 minute expiry
+			cookie_date.setTime(cookie_date.getTime() + (1000 * 60));
+			document.cookie = "SignoutRequested=1;expires=" + cookie_date.toGMTString();
+		}
+
+		function PageOnUnLoad()
+		{
+			if (typeof $removeHandler != 'undefined')
+			{
+				$removeHandler(window, 'load', AppPortal_AdjustScreenLayout);			
+				$removeHandler(window, 'resize', AppPortal_AdjustScreenLayout);
+			}
+		}
+
+		if (typeof $addHandler != 'undefined')
+		{
+			$addHandler(window, 'load', AppPortal_AdjustScreenLayout);			
+			$addHandler(window, 'resize', AppPortal_AdjustScreenLayout);
+			$addHandler(window, 'unload', PageOnUnLoad);
+		}
+
+		<asp:contentplaceholder id="globalPageScript" runat="server" />
+	</script>
+</head>
+<body class="GlobalBody" runat="server" id="mainBody">
+	<table border="0" cellpadding="0" cellspacing="0" class="GlobalCenterTable">
+		<tr style="vertical-align: top;">
+			<td>
+				<div class="GlobalHeaderContainer" id="GlobalHeadContainer">
+					<div class="GlobalHeaderLogo">
+					</div>
+					<div class="GlobalAuthPanelContainer">
+						<div class="GlobalAuthPanel">
+							<div id="AuthUserName" class="AuthUserName" runat="server">
+							</div>
+							<div>
+								<a id="AuthSignOutLink" class="AuthSignoutLink" runat="server">
+									<loc:text resourceid="AppPortal.AuthPanel.SignOut" runat="server" />
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="GlobalContentBox" id="GlobalContentBox">
+					<div class="GlobalContentDiv" id="GlobalContentDiv">
+						<asp:contentplaceholder id="globalPageContent" runat="server">
+					</asp:contentplaceholder>
+					</div>
+				</div>
+				<div class="ClearBoth">
+				</div>
+				<div class="GlobalFooter" id="GlobalFooter">
+					<div class="GlobalFooterContent" id="GlobalFooterContent">
+						<div class="GlobalFooterLeft" id="GlobalFooterLeft">
+							<loc:text resourceid="Web.About.default.aspx_98" runat="server" />
+						</div>
+						<div class="GlobalFooterRight" id="GlobalFooterRight">
+							<a id="SupportLink" target="_new" runat="server">
+								<loc:text resourceid="AppPortal.Footer.SupportLink" runat="server" />
+							</a>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<input type="hidden" id="PageId" value="" runat="server" />
+</body>
+</html>

@@ -1,0 +1,432 @@
+/* Css for TemplateId: ActivityIndicatorInline */
+/* Css for TemplateId: ActivityIndicatorPanelView */
+._labelContainer_ActivityIndicatorPanelView_2 {
+  width:100%;
+  position:absolute;
+  top:50%;
+  bottom:50%;
+}
+
+._labelHContainer_ActivityIndicatorPanelView_3 {
+  margin:auto;
+  text-align:center;
+}
+
+._labelImage_ActivityIndicatorPanelView_4 {
+  display:block;
+}
+
+/* Css for TemplateId: Button */
+._labelMargin_Button_5 {
+  margin-left:4px;
+}
+
+._image_Button_6, ._label_Button_7 {
+  vertical-align:middle;
+}
+
+/* Css for TemplateId: Checkbox */
+._labelMargin_Checkbox_8 {
+  vertical-align:middle;
+  margin-left:4px;
+}
+
+._checkboxEnabled_Checkbox_9 {
+  border:2px solid #497084;
+}
+
+._checkboxDisabled_Checkbox_a {
+  border:2px solid #CFD3D3;
+}
+
+.tnarrow ._checkboxDiv_Checkbox_b {
+  display:inline-block;
+  vertical-align:middle;
+  width:20px;
+  height:20px;
+}
+
+.twide ._checkboxDiv_Checkbox_b {
+  display:inline-block;
+  vertical-align:middle;
+  width:14px;
+  height:13px;
+}
+
+.mouse ._checkboxDiv_Checkbox_b {
+  display:inline-block;
+  vertical-align:middle;
+  width:14px;
+  height:13px;
+}
+
+/* Css for TemplateId: ConfirmDialog */
+._closeButton_ConfirmDialog_c {
+  margin:5px;
+  float:right;
+}
+
+._button_ConfirmDialog_d {
+  width:100%;
+  text-align:left;
+  margin:12px 0px;
+  padding:5px 11px;
+  border:1px solid #6B8376;
+  background-color:#FFFFFF;
+}
+
+._btnLabel_ConfirmDialog_e {
+  color:#888888;
+}
+
+.mouse ._btnLabel_ConfirmDialog_e {
+  font:14px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.twide ._btnLabel_ConfirmDialog_e {
+  font:14px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.tnarrow ._btnLabel_ConfirmDialog_e {
+  font:20px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+._btnDesc_ConfirmDialog_f {
+  color:#282828;
+  display:block;
+}
+
+.mouse ._btnDesc_ConfirmDialog_f {
+  font:15px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.twide ._btnDesc_ConfirmDialog_f {
+  font:15px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.tnarrow ._btnDesc_ConfirmDialog_f {
+  font:13px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+._hidden_ConfirmDialog_g {
+  display:none;
+}
+
+._titleBar_ConfirmDialog_h {
+  min-height:36px;
+  vertical-align:top;
+}
+
+._title_ConfirmDialog_i {
+  display:block;
+  padding:18px 15px 8px 15px;
+  font:24px 'Segoe UI WPC Semilight','Segoe UI Semilight','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+  color:#FFFFFF;
+}
+
+._mainDialog_ConfirmDialog_j {
+  background-color:#64B862;
+  width:300px;
+}
+
+._msg_ConfirmDialog_k {
+  padding:0px 23px;
+  font:13px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+  color:#FFFFFF;
+}
+
+._listview_ConfirmDialog_l {
+  padding:0px 18px 18px 18px;
+}
+
+.mouse ._title_ConfirmDialog_i {
+  width:244px;
+}
+
+.twide ._closeButton_ConfirmDialog_c {
+  display:none;
+}
+
+.tnarrow ._mainDialog_ConfirmDialog_j {
+  width:100%;
+}
+
+.tnarrow ._closeButton_ConfirmDialog_c {
+  display:none;
+}
+
+/* Css for TemplateId: InfoBarMessageForComplexContent */
+/* Css for TemplateId: InfoBarMessageSimple */
+._infobarText_InfoBarMessageSimple_m {
+  color:#798489;
+}
+
+.mouse ._infobarText_InfoBarMessageSimple_m {
+  font:12px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.twide ._infobarText_InfoBarMessageSimple_m {
+  font:14px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.tnarrow ._infobarText_InfoBarMessageSimple_m {
+  font:14px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+/* Css for TemplateId: InfoBarMessageWithAction */
+._infobarText_InfoBarMessageWithAction_n {
+  color:#798489;
+}
+
+.mouse ._infobarText_InfoBarMessageWithAction_n {
+  font:12px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.twide ._infobarText_InfoBarMessageWithAction_n {
+  font:14px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.tnarrow ._infobarText_InfoBarMessageWithAction_n {
+  font:14px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+._actionLinkText_InfoBarMessageWithAction_o {
+  color:#4A93C3;
+  margin-left:4px;
+}
+
+.mouse ._actionLinkText_InfoBarMessageWithAction_o {
+  font:12px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.twide ._actionLinkText_InfoBarMessageWithAction_o {
+  font:14px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.tnarrow ._actionLinkText_InfoBarMessageWithAction_o {
+  font:14px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+/* Css for TemplateId: PickerMouse */
+._pickerButton_PickerMouse_p {
+  border:1px solid #BBBDBF;
+  width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  outline:none;
+  text-align:left;
+  margin:0px;
+  position:relative;
+  padding-top:0px;
+  padding-bottom:0px;
+  color:#282828;
+  background:#FFFFFF;
+}
+
+.mouse ._pickerButton_PickerMouse_p {
+  font:15px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.twide ._pickerButton_PickerMouse_p {
+  font:15px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.tnarrow ._pickerButton_PickerMouse_p {
+  font:13px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+._pickerButtonPressed_PickerMouse_q {
+  color:#6B8376;
+}
+
+.mouse ._pickerButtonPressed_PickerMouse_q {
+  background:#EAECEE;
+}
+
+.twide ._pickerButtonPressed_PickerMouse_q {
+  background:#F5F6F7;
+}
+
+.tnarrow ._pickerButtonPressed_PickerMouse_q {
+  background:#F5F6F7;
+}
+
+._pickerButtonDisabled_PickerMouse_r {
+  color:#BBBDBF;
+}
+
+._pickerButtonTemplateContainer_PickerMouse_s {
+  padding-left:5px;
+}
+
+._pickerImageContainer_PickerMouse_t {
+  position:absolute;
+  top:0px;
+  right:0px;
+  background:#FFFFFF;
+  width:10px;
+  bottom:0px;
+  padding:0px 3px;
+}
+
+._pickerImageContainerPressed_PickerMouse_u {
+}
+
+.mouse ._pickerImageContainerPressed_PickerMouse_u {
+  background:#EAECEE;
+}
+
+.twide ._pickerImageContainerPressed_PickerMouse_u {
+  background:#F5F6F7;
+}
+
+.tnarrow ._pickerImageContainerPressed_PickerMouse_u {
+  background:#F5F6F7;
+}
+
+._pickerImage_PickerMouse_v {
+  display:block;
+  margin-top:9px;
+}
+
+._contextMenu_PickerMouse_w {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.mouse ._contextMenu_PickerMouse_w {
+  background-color:#EAECEE;
+}
+
+.twide ._contextMenu_PickerMouse_w {
+  background-color:#F5F6F7;
+}
+
+.tnarrow ._contextMenu_PickerMouse_w {
+  background-color:#F5F6F7;
+}
+
+._contextMenuItemContainer_PickerMouse_x {
+  color:#282828;
+  text-align:left;
+  padding:1px 6px 2px 6px;
+  margin:1px 0px;
+  height:100%;
+  display:block;
+}
+
+.mouse ._contextMenuItemContainer_PickerMouse_x {
+  font:15px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.twide ._contextMenuItemContainer_PickerMouse_x {
+  font:15px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.tnarrow ._contextMenuItemContainer_PickerMouse_x {
+  font:13px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+._contextMenuItem_PickerMouse_y {
+  display:inline-block;
+}
+
+._activeMenuItem_PickerMouse_z:hover {
+  background-color:#64B862;
+  color:#FFFFFF;
+}
+
+.twide ._contextMenuItemContainer_PickerMouse_x {
+  padding:3px 6px 4px 6px;
+}
+
+.twide ._activeMenuItem_PickerMouse_z:hover {
+  background-color:#F5F6F7;
+  color:#282828;
+}
+
+.twide ._pickerImageContainer_PickerMouse_t {
+  display:none;
+}
+
+/* Css for TemplateId: PivotMenu */
+._text_PivotMenu_A {
+  padding:0px 0px 0px 13px;
+  cursor:pointer;
+}
+
+.mouse ._text_PivotMenu_A {
+  font:18px 'Segoe UI WPC Semilight','Segoe UI Semilight','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.twide ._text_PivotMenu_A {
+  font:28px 'Segoe UI WPC Semilight','Segoe UI Semilight','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+.tnarrow ._text_PivotMenu_A {
+  font:32px 'Segoe UI WPC Semilight','Segoe UI Semilight','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+}
+
+._textTransitionEnabled_PivotMenu_B {
+  -webkit-transition-property:color, opacity;
+  -webkit-transition-duration:0.5s, 0.5s;
+  -moz-transition-property:color, opacity;
+  -moz-transition-duration:0.5s, 0.5s;
+  -ms-transition-property:color, opacity;
+  -ms-transition-duration:0.5s, 0.5s;
+}
+
+._selected_PivotMenu_C {
+  color:#6B8376;
+}
+
+._unselected_PivotMenu_D {
+}
+
+.mouse ._unselected_PivotMenu_D {
+  color:#B7BFC0;
+}
+
+.twide ._unselected_PivotMenu_D {
+  color:#FFFFFF;
+}
+
+.tnarrow ._unselected_PivotMenu_D {
+  color:#FFFFFF;
+}
+
+._visible_PivotMenu_E {
+  opacity:1.0;
+}
+
+._invisible_PivotMenu_F {
+  opacity:0.0;
+}
+
+._optionContainerTransitionEnabled_PivotMenu_G {
+  -webkit-transition-property:-webkit-transform;
+  -webkit-transition-duration:0.33s;
+  -webkit-transition-timing-function:cubic-bezier(0,0,0,1);
+  -moz-transition-property:-moz-transform;
+  -moz-transition-duration:0.33s;
+  -moz-transition-timing-function:cubic-bezier(0,0,0,1);
+  -ms-transition-property:-ms-transform;
+  -ms-transition-duration:0.33s;
+  -ms-transition-timing-function:cubic-bezier(0,0,0,1);
+}
+
+._optionContainer_PivotMenu_H {
+  position:relative;
+  white-space:nowrap;
+  -webkit-user-select:none;
+  user-select:none;
+  -moz-user-select:none;
+}
+
+._controlContainer_PivotMenu_I {
+  width:100%;
+  overflow:hidden;
+}
+
+/* Css for TemplateId: RadioButton */

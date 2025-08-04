@@ -1,0 +1,1 @@
+function recurringAppointmentWindowOnLoadHandler(){attachWindowOnUnload(RefreshParentCampaignResponseGrid)}window.onload=recurringAppointmentWindowOnLoadHandler

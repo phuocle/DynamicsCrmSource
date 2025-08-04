@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Enable tracing in CRM for tablets</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Enable tracing in CRM for tablets</h1>
+			<a name="BKMK_MoCA_tracing" />
+			<div class="l2">
+				<p class="bodyText">You can enable tracing in the Microsoft Dynamics CRM for tablets app to diagnose issues. When you enable tracing, verbose information is recorded on the device. This information can be analyzed to help identify the source of an issue. The way to enable and view tracing differs depending on the tablet operating system.</p>
+				<a class="expand" id="tID0ECABAA" href="." onclick="expandCollapse('ID0ECABAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0ECABAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Windows 8</h3>
+				</a>
+				<div id="dID0ECABAA" class="l3" style="display:none">
+					<p class="bodyText">Follow these steps to view events. Tracing is enabled by default.</p>
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">Open the Event Viewer (eventvwr.exe).</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Select the <b>AppHost</b> folder under Application And Services Logs\Microsoft\Windows</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">From the <b>View</b> menu, click or tap <b>Show Analytic and Debug Logs</b>.</p>
+							<p class="bodyText" />
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Additional nodes will appear under the <b>AppHost</b> folder.</p>
+							<p class="bodyText" />
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Right-click (press and hold) the <b>AppTracing</b> node and then click or tap <b>Enable Log</b>.</p>
+							<p class="bodyText" />
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>OK</b> to agree to the following warning.</p>
+							<p class="bodyText" />
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Restart Microsoft Dynamics CRM and reproduce the issue.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">After reproducing the issue, right-click (press and hold) <b>AppTracing</b> and then click or tap <b>Disable Log</b>.</p>
+							<p class="bodyText" />
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Refresh the Event Viewer to view log events. You can use <b>F5</b> or right-click (press and hold) <b>AppTracing</b> and then click or tap <b>Refresh</b>.</p>
+							<p class="bodyText" />
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Review the details of events that are logged. Look for entries containing “Dynamics CRM” in the field under the <b>General</b> tab.</p>
+							<p class="bodyText" />
+							<a class="expand" id="tID0EAABAAACABAA" href="." onclick="expandCollapse('ID0EAABAAACABAA',1);return false;">
+								<p class="tiphead-end">
+									<img id="iID0EAABAAACABAA" class="expandicon" src="Help-Collapse-Section-Microsoft-CRM.png" alt="" border="0" />Tip </p>
+							</a>
+							<div id="dID0EAABAAACABAA" class="expandedendtips" style="display: none">
+								<p class="bodyText">You can right-click (press and hold) <b>AppTracing</b> and then click or tap <b>Find</b> to initiate a find. Then search for any events containing a word such as “CRM.” Ctrl + F is the keyboard shortcut.</p>
+							</div>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Also check the events logged under <b>Admin</b>.</p>
+							<p class="bodyText">To save an event log, right-click (press and hold) the log and select <b>Save All Events As</b>. Specify the directory where you want to save the log file.</p>
+							<p class="bodyText" />
+						</li>
+					</ol>
+				</div>
+				<a class="expand" id="tID0EBABAA" href="." onclick="expandCollapse('ID0EBABAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EBABAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />iPad</h3>
+				</a>
+				<div id="dID0EBABAA" class="l3" style="display:none">
+					<p class="bodyText">Follow these steps to set up and view logging on the iPad.</p>
+					<a class="expand" id="tID0EBABABAA" href="." onclick="expandCollapse('ID0EBABABAA',2);return false;">
+						<p class="procHeading hanging">
+							<img id="iID0EBABABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Enable logging on the iPad</p>
+					</a>
+					<div id="dID0EBABABAA" style="display:none">
+						<ol class="numberlist">
+							<li class="numberedlistitem">
+								<p class="bodyText">Open <b>Settings</b>.</p>
+								<p class="bodyText" />
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">Select <b>Dynamics CRM</b> from the Settings list.</p>
+								<p class="bodyText" />
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">The <b>Enable Logging</b> option is set to <b>OFF</b> by default.  Toggle this option to switch the setting to <b>ON</b>.</p>
+								<p class="bodyText" />
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">Restart the CRM for tablets app and reproduce the issue.</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">After reproducing the issue, toggle the <b>Enable Logging</b> setting to <b>OFF</b>.</p>
+								<p class="bodyText" />
+							</li>
+						</ol>
+					</div>
+					<a class="expand" id="tID0EAABABAA" href="." onclick="expandCollapse('ID0EAABABAA',2);return false;">
+						<p class="procHeading hanging">
+							<img id="iID0EAABABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />View the iPad log files</p>
+					</a>
+					<div id="dID0EAABABAA" style="display:none">
+						<ol class="numberlist">
+							<li class="numberedlistitem">
+								<p class="bodyText">Connect your iPad to your computer.</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">Open iTunes.</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">Select your device from the Devices section.</p>
+								<p class="bodyText" />
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">Select the Apps area from the header.</p>
+								<p class="bodyText" />
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">Locate the File Sharing section and select the Dynamics CRM app.</p>
+								<p class="bodyText" />
+								<p class="bodyText" />
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">On the right-side column you should see a list of log files if logging was enabled for the app. Select a log file, press <b>Save to</b>, and then choose a location to save the log file.</p>
+								<p class="bodyText" />
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">Locate the log file you saved and open it to view the log details.</p>
+							</li>
+						</ol>
+					</div>
+				</div>
+				<a class="expand" id="tID0EAABAA" href="." onclick="expandCollapse('ID0EAABAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EAABAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Sample log</h3>
+				</a>
+				<div id="dID0EAABAA" class="l3" style="display:none">
+					<p class="bodyText">The following example shows you what you might see in a log file.</p>2013-08-20 15:33:23 +0000 [INFO]: Unique install id | 5FDD3711-9E89-4D8B-B835-88B2C7C51703 
+2013-08-20 15:33:23 +0000 [INFO]: Application activated 
+2013-08-20 15:33:24 +0000 [INFO]: Application resume 
+2013-08-20 15:33:25 +0000 [ERROR]: App WebView Load failed | -1003 
+2013-08-20 15:33:32 +0000 [INFO]: [PAL] | Authentication: Starting 
+2013-08-20 15:33:32 +0000 [INFO]: [PAL] | Authentication: Starting authorization 
+2013-08-20 15:33:32 +0000 [INFO]: [PAL] | Authentication: Authorization error: -2147093999 
+2013-08-20 15:33:39 +0000 [INFO]: [PAL] | Authentication: Starting 
+2013-08-20 15:33:39 +0000 [INFO]: [PAL] | Authentication: Starting authorization 
+2013-08-20 15:33:39 +0000 [INFO]: [PAL] | Authentication: Authorization error: -2147093999 
+2013-08-20 15:33:42 +0000 [INFO]: Application Pause 
+2013-08-20 15:34:27 +0000 [INFO]: Unique install id | 5FDD3711-9E89-4D8B-B835-88B2C7C51703 
+2013-08-20 15:34:27 +0000 [INFO]: Application activated 
+2013-08-20 15:34:27 +0000 [INFO]: Application resume 
+2013-08-20 15:34:27 +0000 [INFO]: [PAL] | Authentication: Failed - cookie setup 
+2013-08-20 15:34:28 +0000 [INFO]: [PAL] | Authentication: Complete 
+2013-08-20 15:34:30 +0000 [INFO]: [PAL] | Authentication: Starting 
+2013-08-20 15:34:30 +0000 [INFO]: [PAL] | Authentication: Starting authorization 
+2013-08-20 15:34:30 +0000 [INFO]: [PAL] | Authentication: Authorization complete 
+2013-08-20 15:34:30 +0000 [INFO]: [PAL] | Authentication: Complete 
+2013-08-20 15:34:31 +0000 [INFO]: [PAL] | Error Messages: 
+1: Principal user (Id=d0961fb9-0f09-e311-b8aa-00155d05381a, type=8) is missing prvReadAccount privilege (Id=886b280c-6396-4d56-a0a3-2c1b0a50ceb0)
+2: Principal user (Id=d0961fb9-0f09-e311-b8aa-00155d05381a, type=8) is missing prvReadAccount privilege (Id=886b280c-6396-4d56-a0a3-2c1b0a50ceb0)
+2013-08-20 15:36:30 +0000 [INFO]: Application Pause<p class="bodyText" /></div>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlinktemplate">
+				<a target="_blank" href="http://www.microsoft.com/en-US/dynamics/crm-customer-center/product-support.aspx">Product Support</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Create or edit entity fields</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Create or edit entity fields</h1>
+			<p class="bodyText">Create new fields to capture data when existing system entities don't have fields that meet your requirements.</p>
+			<p class="bodyText">After you create new fields, be sure to include them on the forms and views for the entity so that they are available from the Microsoft Dynamics CRM user interface. You can also add the new fields to relevant reports with the following restrictions:</p>
+			<ul class="bulletedlist">
+				<li class="bulletedlistitem">
+					<p class="bodyText">In the default solution, you can edit some of the properties for all fields. You can create new fields for only some entities.</p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">In a managed solution, you cannot create new fields or edit existing fields for entities. However, you can create new fields or edit existing fields in the Customization area of Microsoft Dynamics CRM.</p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">In an unmanaged solution, you can edit some of the properties for all fields. You can create new fields for any entities that you create for the solution. If you add an existing business entity to the solution, you can add new fields only if that entity allows it.</p>
+				</li>
+			</ul>
+			<p class="bodyText">You can find more information about creating and editing entities in the  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=320204">Customization Guide</a>.</p>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure you have the System Administrator security role or equivalent permissions in Microsoft Dynamics CRM.</p>
+						<a class="expand" id="tID0EAAIABABAA" href="." onclick="expandCollapse('ID0EAAIABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EAAIABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Check your security role</p>
+						</a>
+						<div id="dID0EAAIABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Follow the steps in  <a href="how_persopt_ViewProfile.htm">View your user profile</a>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Don't have the correct permissions? Contact your system administrator.</p>
+								</li>
+							</ol>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Follow the steps for the app you're using.</p>
+						<p class="bodyText" />
+						<a class="expand" id="tID0EBAHABABAA" href="." onclick="expandCollapse('ID0EBAHABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAHABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using the CRM web application</p>
+						</a>
+						<div id="dID0EBAHABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM &gt; Settings</b>.</p>
+									<p class="bodyText">
+										<b>Settings</b> appears on the nav bar.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Customizations</b> &gt; <b>Customize the System</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EAAHABABAA" href="." onclick="expandCollapse('ID0EAAHABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EAAHABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using CRM for Outlook</p>
+						</a>
+						<div id="dID0EAAHABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the Navigation Pane, expand your organization if necessary, and then click or tap <b>Settings</b> &gt; <b>Customization</b> &gt; <b>Customizations</b> &gt; <b>Customize the System</b>.</p>
+								</li>
+							</ol>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Under <b>Components</b>, expand <b>Entities</b>, and then expand the entity you want.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Fields</b>.</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">To add a new field, on the Actions toolbar, click or tap <b>New</b>, and enter a <b>Display Name</b> to generate the <b>Name</b>.</p>
+								<p class="bodyText">- OR -</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">To edit a field, select it in the list, and then on the Actions toolbar, click or tap <b>Edit</b>.</p>
+								<ul class="bulletedlist">
+									<li class="bulletedlistitem">
+										<p class="bodyText">Select the <b>Field Requirement</b>.</p>
+									</li>
+									<li class="bulletedlistitem">
+										<p class="bodyText">In <b>Searchable</b>, select whether to include this field in the list of fields shown in Advanced Find for this entity and also in the field available for customizing the find columns in the Quick Find view and the Lookup view.</p>
+									</li>
+									<li class="bulletedlistitem">
+										<p class="bodyText">For <b>Field Security</b>, enable or disable the feature for this field. More information:  <a href="ui_addsecuritytofield_fs.htm">Add or remove security from a field</a>.</p>
+									</li>
+									<li class="bulletedlistitem">
+										<p class="bodyText">For <b>Auditing</b>, enable or disable the feature for this field. </p>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<div class="alertContent">
+							<p class="importanthead">Important </p>
+							<p class="bodyText">Auditing tracks value changes to the field, but does not track enabling or disabling Field Security for the field. </p>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">For new fields, select the <b>Type</b>, and then enter required information for the specified type. For existing fields, you cannot modify the type, but you can modify the settings for the type.</p>
+						<p class="bodyText">
+							<b>Possible data types for a field</b>
+						</p>
+						<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Data Type</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Notes</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Single Line of Text</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">The following formats are available:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>E-mail</b>. This opens a new e-mail message in the default e-mail software when clicked.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Text</b>. This creates a text box.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Text area</b>. This creates a scrolling text box.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>URL</b>. This opens the URL in the user's default browser when clicked.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Ticker Symbol</b>. This creates a stock ticker symbol in all capital letters. Click the symbol to open information about the stock in the user's default browser. By default, the MSN website opens.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Phone</b>. This creates a link that enables Skype or Lync users to initiate a call by using the linked number.</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Option Set</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select an existing option set, or define a new one. </p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Two Options</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">After creating this field, configure it in the form to which it was added. In the form, select whether the field is displayed as option buttons (also known as radio buttons), a check box, or a list.</p>
+									<p class="bodyText" />
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Image</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Each entity can have one image field. When an entity has an image field it can be configured to display the image for the record in the application.</p>
+									<p class="bodyText" />
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Whole Number</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">The following formats are available for this field:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>None.</b> The defaults are integer values between -2,147,483,648 and 2,147,483,648, although you can set different minimum and maximum values.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Duration.</b> This creates a drop-down list box with values in minutes, hours, and days.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Time Zone.</b> This creates a drop-down list box with options for every available time zone.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Language.</b> This creates a drop-down list box with options for every language that your organization has made available for users.</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Floating Point Number</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select up to 5 precision points. You can set the minimum and maximum values.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Decimal Number</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select up to 10 decimal points. You can set the minimum and maximum values.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Currency</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">When you add a currency field to an entity, a corresponding (Base) field is also created. The (Base) field also has a currency data type.</p>
+									<p class="bodyText">If the entity does not already have a field with a currency data type, two additional fields are created:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Currency.</b> A lookup data type whose value must be set before you can set the value of a field with a currency data type.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Exchange Rate.</b> This has a decimal number data type.</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Multiple Lines of Text</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">This is a scrolling text box. You can set the maximum number of characters for this field.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Date and Time</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">There are two formats: date only, or date and time.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Lookup</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">You can create a lookup field using an entity relationship that has already been created, but not yet used with another lookup field. If you create a lookup field in an entity form, the relationship is automatically generated. A lookup field is created as a relationship field.</p>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Set Status Reason options.</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">Many entities have the status reason system attribute that may be customized. The status reason attribute is displayed like a picklist attribute except that it also contains a reference to the status attribute.</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">Valid values for <b>Status Reason</b> are dependent on the <b>Status (state)</b> attribute. You must first select the appropriate status before you can set the <b>Status Reason</b> options.</p>
+							</li>
+						</ul>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Select the IME mode for this attribute.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Save and Close</b> to close the form editor.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Publish your customization.</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">To publish view customizations for just one entity, under <b>Components</b>, click or tap <b>Entities</b>. Then, on the Actions toolbar, click or tap <b>Publish</b>.</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">To publish all customizations you have made to any entities or components, on the Actions toolbar, click or tap <b>Publish All Customizations</b> .</p>
+							</li>
+						</ul>
+					</li>
+				</ol>
+				<div class="alertContent">
+					<p class="notehead-end">Note </p>
+					<p class="bodyText">Installing a solution or publishing customizations can interfere with normal system operation. We recommend that you schedule a solution import when it's least disruptive to users.</p>
+				</div>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlinktemplate">
+				<a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=320204">Customization Guide</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

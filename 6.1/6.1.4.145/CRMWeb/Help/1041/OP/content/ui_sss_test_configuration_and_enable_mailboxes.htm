@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>メールボックスの電子メール構成をテスト</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">メールボックスの電子メール構成をテスト</h1>
+			<p class="bodyText">電子メール サーバー プロファイルをメールボックスに関連付けた後、電子メールがメールボックスに対して正しく構成されているかをテストしてから、メールボックスを有効にする必要があります。構成テストは、受信および送信電子メール メッセージが正しく構成されているかどうか、予定、連絡先、およびタスクが正しく同期されているかどうかを確認します。テストが送信電子メールに対して実行されると、実際のテスト電子メールは、それぞれのメールボックス アカウントからそのメールボックス自体の電子メール アドレスに送られます。テスト中にエラーが発生した場合は、メールボックスの所有者または電子メール サーバー プロファイルの所有者は、エラーの種類に基づいて通知を受け取ります。 <a href="ui_sss_email_error_tracking.htm">電子メールのプロセス エラーの監視</a>の方法を参照してください。</p>
+			<h2 class="heading2">メールボックスに関する構成のテスト</h2>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">管理者の特権を持っていることを確認します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b> &gt; <b>[設定]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">ナビゲーション バーで、<b>[設定]</b> &gt; <b>[電子メール アクセス構成]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[メールボックス]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">テストするメールボックスを選択し、<b>[その他のコマンド (...)]</b> アイコンをクリックまたはタップし、<b>[メールボックスのテスト &amp; 有効化]</b> をクリックまたはタップします。</p>
+						<p class="bodyText">これにより、選択されたメールボックスの受信および送信電子メール アクセス構成がテストされ、電子メール処理に使用するメールボックスを有効にします。メールボックスでエラーが発生した場合、警告がメールボックスとプロファイルの所有者の通知ウォールに表示されます。エラーの種類に基づいて、Microsoft Dynamics CRM は、後ほど電子メールの処理を再度試みるか、処理している電子メール用のメールボックスを無効にします。電子メール サーバー プロファイルのフォームの <b>[メールボックスのテスト &amp; 有効化]</b> をクリックまたはタップすると、Microsoft Dynamics CRM は、その電子メール サーバー プロファイルに関連付けられたすべてのメールボックスの電子メール構成をテストします。予定、タスク、および取引先担当者を同期するサーバー側の同期で構成されるメールボックスに対して、適切に構成されているかがチェックされます。</p>
+						<p class="bodyText">電子メール アクセス構成テストの結果が、メールボックス レコードの <b>[受信電子メールの状態]</b>、<b>[送信電子メールの状態]</b>、および <b>[予定、取引先担当者、およびタスクの状態]</b> のフィールドに表示されます。メールボックスのアクセス構成が正常に完了したときも、警告が生成されます。この警告は、メールボックス所有者に表示されます。</p>
+					</li>
+				</ol>
+			</div>
+			<h2 class="heading2">電子メール サーバー プロファイルに関連付けられているすべてのメールボックスの電子メール アクセス構成のテスト</h2>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">管理者の特権を持っていることを確認します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">ナビゲーション バーで、<b>[設定]</b> &gt; <b>[電子メール アクセス構成]</b> &gt; <b>[電子メール サーバー プロファイル]</b>をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">電子メール サーバー プロファイル レコードを開き、<b>[操作]</b> グループで <b>[メールボックスのテスト &amp; 有効化]</b> をクリックまたはタップします。</p>
+						<p class="bodyText">- または -</p>
+						<p class="bodyText">電子メール サーバー プロファイルを選択し、<b>[その他のコマンド (...)]</b> アイコンをクリックまたはタップし、<b>[メールボックスのテスト &amp; 有効化]</b> をクリックまたはタップします。</p>
+					</li>
+				</ol>
+				<div class="alertContent">
+					<p class="notehead-end">メモ</p>
+					<p class="bodyText">電子メール アクセス構成をテストする際、非同期ジョブはバックグラウンドで実行されます。完了するには数分かかる場合があります。</p>
+				</div>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_set_up_server_side_synchronization.htm">サーバー側の同期による電子メールの設定</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_create_email_server_profiles.htm">電子メール サーバー プロファイルの作成とメールボックスの追加</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_create_forward_mailboxes.htm">転送用メールボックスの作成またはメールボックスの編集</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

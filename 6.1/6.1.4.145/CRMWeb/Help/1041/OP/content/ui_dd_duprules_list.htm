@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>重複データ検出ルールの設定</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">重複データ検出ルールの設定</h1>
+			<p class="bodyText">データの整合性を維持するには、システム内の重複レコードを減らすためのルールを設定することが適切です。</p>
+			<p class="bodyText">Microsoft Dynamics CRM には、取引先企業、取引先担当者、および潜在顧客のための既定の重複データ検出ルールが組み込まれています。他のレコードの種類のための既定のルールは存在しません。システムが他のレコードの種類の重複データを検出するようにするには、新しいルールを作成する必要があります。</p>
+			<p class="bodyText">組織の重複データ検出ルールを作成したら、重複データ検出を有効にする必要があります。</p>
+			<p class="bodyText">重複データを定期的にチェックするように、スタッフをトレーニングしてください。詳細 : <a href="how_dd_findandmerge.htm">重複データの確認</a></p>
+			<div class="alertContent">
+				<p class="importanthead">重要</p>
+				<p class="bodyText">重複データ検出は、ユーザーが Microsoft Dynamics CRM 2013 で作業するために更新されたレコードの種類を作成または編集するときはサポートされません。これらのレコードの種類の一覧については、「 <a target="_blank" href="http://go.microsoft.com/fwlink/p/?LinkID=317910">Developer Toolkit</a>」を参照してください。これらのレコードの種類に対する重複データ検出ルールを作成し、定期的にジョブを実行して、システム データを消去する必要があります。重複データ検出は、データ インポート時にサポートされます。詳細 : <a href="ui_dd_systemwide.htm">重複データを検出するシステム ジョブの実行</a></p>
+			</div>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">システム管理者、システム カスタマイザー、営業課長、営業担当副社長、マーケティング担当副社長、最高経営責任者のいずれかのセキュリティ ロール、または同等のアクセス許可を持っている必要があります。</p>
+						<a class="expand" id="tID0EBAFABABAA" href="." onclick="expandCollapse('ID0EBAFABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAFABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />セキュリティ ロールの確認</p>
+						</a>
+						<div id="dID0EBAFABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">「 <a href="how_persopt_ViewProfile.htm">ユーザー プロファイルの表示</a>」の手順を実行してください。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">適切なアクセス許可を持っていない場合は、システム管理者に問い合わせてください。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>
+						<a class="expand" id="tID0EBAEABABAA" href="." onclick="expandCollapse('ID0EBAEABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAEABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />CRM Web アプリケーションを使用する場合</p>
+						</a>
+						<div id="dID0EBAEABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b>、<b>[設定]</b> の順にクリックまたはタップします。</p>
+									<p class="bodyText">ナビゲーション バーに <b>[設定]</b> と表示されます。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">
+										<b>[設定]</b> &gt; <b>[データ管理]</b> &gt; <b>[重複データ検出ルール]</b> をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EAAEABABAA" href="." onclick="expandCollapse('ID0EAAEABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EAAEABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p>
+						</a>
+						<div id="dID0EAAEABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション ウィンドウで、<b>[設定]</b> &gt; <b>[データ管理]</b> &gt; <b>[重複データ検出ルール]</b> をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">新しい重複データ検出ルールを作成するには、<b>[新規]</b> をクリックまたはタップします。名前と説明を入力します。</p>
+						<p class="bodyText">- または -</p>
+						<p class="bodyText">公開されていない既存の重複データ検出ルールを編集するには、その重複データ検出ルールをクリックまたはタップします。</p>
+						<p class="bodyText">- または -</p>
+						<p class="bodyText">公開されている重複データ検出ルールを編集するには、そのルールを選択し、<b>[操作]</b> メニューの <b>[公開の取り下げ]</b> をクリックまたはタップし、次にその検出ルールをクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">レコードを重複データとして識別するために使用する条件を選択します。</p>
+						<ol class="numberedlist2">
+							<li class="numberedlistitem">
+								<p class="bodyText">新しいルールを作成する場合は、次のようにします。</p>
+								<ul class="bulletedlist">
+									<li class="bulletedlistitem">
+										<p class="bodyText">
+											<b>[重複データ検出ルールの条件]</b> セクションの <b>[基本のレコードの種類]</b> の一覧で、このルールを適用するレコードの種類をクリックまたはタップします。</p>
+									</li>
+									<li class="bulletedlistitem">
+										<p class="bodyText">
+											<b>[一致するレコードの種類]</b> ボックスで、そのルールを適用するレコードの種類をクリックまたはタップします。</p>
+									</li>
+								</ul>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">重複を検出するときにアクティブなレコードのみをルールで考慮する場合は、<b>[非アクティブな一致レコードを除外する]</b> チェック ボックスをオンにします。重複検出ルールの条件がステータス フィールドに基づいている場合には、このチェック ボックスをオンにする必要があります。</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">ルールで大文字と小文字を区別する場合は、<b>[大文字と小文字の区別]</b> チェック ボックスをオンにします。</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">基本のレコードの種類および一致するレコードの種類に対して異なるレコードの種類を選択した場合は、新しい条件のそれぞれについて、<b>[基本レコードのフィールド]</b> 列で <b>[選択]</b> をクリックまたはタップし、次にフィールド名をクリックまたはタップします。同じ行の <b>[一致するレコードのフィールド]</b> 列で <b>[選択]</b> をクリックまたはタップし、次にフィールドをクリックまたはタップします。</p>
+								<p class="bodyText">- または -</p>
+								<p class="bodyText">基本のレコードの種類および一致するレコードの種類に対して同じレコードの種類を選択した場合は、新しい条件のそれぞれについて、<b>[フィールド]</b> 列で <b>[選択]</b> をクリックまたはタップし、次にフィールドをクリックまたはタップします。</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">同じ行の <b>[条件]</b> 列で <b>[選択]</b> をクリックまたはタップし、演算子をクリックまたはタップします。</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">
+									<b>[最初の文字が同じ]</b> または <b>[最後の文字が同じ]</b> を指定した場合は、<b>[文字数]</b> 列で <b>[値の入力]</b> をクリックまたはタップし、比較する文字数を入力します。</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">重複データの識別時に空白フィールド (null 値) を等しいものと見なすルールが必要でない場合は、<b>[空白の値を無視]</b> チェック ボックスをオンにします。</p>
+								<p class="bodyText" />
+							</li>
+						</ol>
+						<div class="alertContent">
+							<p class="importanthead">重要</p>
+							<p class="bodyText">重複データ検出ルールに含まれる条件が 1 つだけの場合、重複データ検出ジョブで、空白値は無視されます。</p>
+						</div>
+						<p class="bodyText">選択可能な条件の数は、レコードのマッチコードに格納できる文字数によって制限されます。条件を追加するときは、フォームの下部に表示される <b>[現在のマッチコードの長さ]</b> の値に注意してください。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[保存して閉じる]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">新規または変更した重複データ検出ルールを使用できるようにするには、そのルールを選択し、<b>[公開]</b> をクリックまたはタップします。</p>
+						<p class="bodyText">重複データ検出ルールを公開すると、そのルールに一致するレコードの種類のすべてのレコードに対してマッチコードが作成されます。</p>
+					</li>
+				</ol>
+				<div class="alertContent">
+					<p class="notehead-end">メモ</p>
+					<ul class="bulletedlist">
+						<li class="bulletedlistitem">
+							<p class="bodyText">重複データ検出条件は、電子メールなど、一意の値を持つフィールドに設定することをお勧めします。</p>
+						</li>
+						<li class="bulletedlistitem">
+							<p class="bodyText">レコード タイプごとに、複数の重複データ検出ルールを設定できます。</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="how_dd_findandmerge.htm">重複データの確認</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_dd_global.htm">重複データ検出の開始または停止</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_dd_systemwide.htm">重複データを検出するシステム ジョブの実行</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

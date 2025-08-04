@@ -1,0 +1,1 @@
+Type.registerNamespace("Mscrm");Mscrm.Form_onload=function(){!IsNull(Mscrm.EntityPageHandlerFactory)&&Mscrm.EntityPageHandlerFactory.create()};Mscrm.directioncode_onchange=function(){var oLookUpA=Xrm.Page.data.entity.attributes.get("from"),oLookUpB=Xrm.Page.data.entity.attributes.get("to");SwapLookups(oLookUpA,oLookUpB)}

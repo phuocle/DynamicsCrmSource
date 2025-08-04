@@ -1,0 +1,1 @@
+function appointmentWindowOnLoadHandler(){attachWindowOnUnload(RefreshParentCampaignResponseGrid)}window.onload=appointmentWindowOnLoadHandler

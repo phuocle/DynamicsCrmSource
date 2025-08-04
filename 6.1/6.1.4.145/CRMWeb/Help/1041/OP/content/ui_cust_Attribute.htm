@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>エンティティ フィールドの作成または編集</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">エンティティ フィールドの作成または編集</h1>
+			<p class="bodyText">既存のシステム エンティティに要件を満すフィールドがない場合は、データを取得するのに新しいフィールドを作成します。</p>
+			<p class="bodyText">新しいフィールドを作成したら、それらのフィールドを Microsoft Dynamics CRM のユーザー インターフェイスから使用できるようにするために、必ずエンティティのフォームとビューに含めます。さらに、以下のよう制約事項を伴う関連するレポートに新しいフィールドを追加できます:</p>
+			<ul class="bulletedlist">
+				<li class="bulletedlistitem">
+					<p class="bodyText">既定のソリューションでは、すべてのフィールドで、いくつかのプロパティを編集できます。新しいフィールドは、一部のエンティティでのみ作成できます。</p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">マネージド ソリューションでは、新しいフィールドを作成したり、エンティティの既存のフィールドを編集したりすることはできません。ただし、Microsoft Dynamics CRM の [カスタマイズ] 領域では、新しいフィールドを作成したり、既存のフィールドを編集したりすることができます。</p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">アンマネージド ソリューションでは、すべてのフィールドで、いくつかのプロパティを編集できます。ソリューション用に作成した任意のエンティティに新しいフィールドを作成できます。既存のビジネス エンティティをソリューションに追加する場合は、そのエンティティで許可されているときに限り、新しいフィールドを追加できます。</p>
+				</li>
+			</ul>
+			<p class="bodyText"> <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=320204">カスタマイズ ガイド</a>で、エンティティを作成し、編集する方法の詳細を参照できます。</p>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Microsoft Dynamics CRM のシステム管理者セキュリティ ロールまたは同等のアクセス許可を持っている必要があります。</p>
+						<a class="expand" id="tID0EAAIABABAA" href="." onclick="expandCollapse('ID0EAAIABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EAAIABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />セキュリティ ロールの確認</p>
+						</a>
+						<div id="dID0EAAIABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">「 <a href="how_persopt_ViewProfile.htm">ユーザー プロファイルの表示</a>」の手順を実行してください。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">適切なアクセス許可を持っていない場合は、システム管理者に問い合わせてください。</p>
+								</li>
+							</ol>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>
+						<p class="bodyText" />
+						<a class="expand" id="tID0EBAHABABAA" href="." onclick="expandCollapse('ID0EBAHABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAHABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />CRM Web アプリケーションを使用する場合</p>
+						</a>
+						<div id="dID0EBAHABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM] &gt; [設定] </b>をクリックまたはタップします。</p>
+									<p class="bodyText">ナビゲーション バーに <b>[設定]</b> と表示されます。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">
+										<b>[設定]</b> &gt; <b>[カスタマイズ]</b> &gt; <b>[システムのカスタマイズ]</b> をクリックするか、またはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EAAHABABAA" href="." onclick="expandCollapse('ID0EAAHABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EAAHABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p>
+						</a>
+						<div id="dID0EAAHABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション ウィンドウで、必要に応じて組織を展開し、<b>[設定]</b> &gt; <b>[カスタマイズ]</b> &gt; <b>[カスタマイズ]</b> &gt; <b>[システムのカスタマイズ]</b> をクリックするか、またはタップします。</p>
+								</li>
+							</ol>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[コンポーネント]</b> で <b>[エンティティ]</b> を展開し、目的のエンティティを展開します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[フィールド]</b> をクリックまたはタップします。</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">新しいフィールドを追加するには、[操作] ツール バーで、<b>[新規]</b> をクリックまたはタップして、<b>[表示名]</b> を入力して <b>[名前]</b> を生成します。</p>
+								<p class="bodyText">または</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">フィールドを編集するには、一覧からフィールドを選択し、[操作] ツール バーの <b>[編集]</b> ボタンをクリックまたはタップします。</p>
+								<ul class="bulletedlist">
+									<li class="bulletedlistitem">
+										<p class="bodyText">
+											<b>フィールド要件</b>を選択します。</p>
+									</li>
+									<li class="bulletedlistitem">
+										<p class="bodyText">
+											<b>[検索可能]</b> で、このエンティティに関して [高度な検索] で表示されるフィールドの一覧と、簡易検索ビューと検索ダイアログ ビューでの検索列のカスタマイズに使用できるフィールドにも、このフィールドを含めるかどうかを選択します。</p>
+									</li>
+									<li class="bulletedlistitem">
+										<p class="bodyText">
+											<b>[フィールド セキュリティ]</b> の場合、このフィールドの機能を有効または無効にします。詳細については、「 <a href="ui_addsecuritytofield_fs.htm">フィールドに対するセキュリティの追加または削除</a>」を参照してください。</p>
+									</li>
+									<li class="bulletedlistitem">
+										<p class="bodyText">
+											<b>監査</b>の場合、このフィールドの機能を有効または無効にします。</p>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<div class="alertContent">
+							<p class="importanthead">重要</p>
+							<p class="bodyText">監査では、そのフィールドに対する値の変更のみが追跡されますが、そのフィールドに対するフィールド セキュリティの有効化または無効化は追跡されません。</p>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">新しいフィールドの場合は、<b>[種類]</b> を選択し、指定した種類で必要とされる情報を入力します。既存のフィールドの場合、種類を変更することはできませんが、その種類に関する設定は変更できます。</p>
+						<p class="bodyText">
+							<b>フィールドで使用可能なデータの種類</b>
+						</p>
+						<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">[データの種類]</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">注意</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">1 行テキスト</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">次の形式を使用できます。</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>電子メール</b>。これをクリックすると、既定の電子メール ソフトウェアで新しい電子メール メッセージが開かれます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>テキスト</b>。テキスト ボックスが作成されます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>テキスト領域</b>。スクロール テキスト ボックスが作成されます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>[URL]</b>。これをクリックすると、ユーザーの既定のブラウザーで URL が開かれます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>株式銘柄コード </b>。株式銘柄コードをすべて大文字で作成します。これをクリックすると、株式銘柄に関する情報がユーザーの既定のブラウザーで開かれます。既定では、MSN web サイトが開きます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Phone</b>。これは Skype または Lync ユーザーがリンクされた番号を使用して連絡を開始できるように、リンクを作成します。</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">[オプション セット]</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">既存のオプション セットを選択するか、新しいオプション セットを定義します。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">2 つのオプション</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">このフィールドを作成した後、このフィールドが追加されたフォームでこのフィールドを構成します。フォームでは、オプション ボタン (ラジオ ボタンとも呼ばれる)、チェック ボックス、またはリストのうち、どの形式でフィールドを表示するかを選択できます。</p>
+									<p class="bodyText" />
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">イメージ</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">各エンティティでは 1 だけイメージ フィールドを設定できます。エンティティに画像フィールドがある場合、アプリケーションのレコードの画像を表示するように構成できます。</p>
+									<p class="bodyText" />
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">整数</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">このフィールドでは、次の形式を使用できます。</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>なし</b>。既定値は -2,147,483,648 ～ 2,147,483,648 の整数ですが、別の最小値および最大値を設定できます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>期間</b>。分数、時数、および日数を示すドロップダウン リスト ボックスが作成されます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>タイム ゾーン</b>。使用可能な各タイム ゾーンのオプションを示すドロップダウン リスト ボックスが作成されます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>言語</b>。組織内でユーザーに対して使用できるようにしている各言語のオプションを示すドロップダウン リスト ボックスが作成されます。</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">浮動小数点数</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">最大 5 つの精度点を選択します。最小値および最大値を設定できます。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">10 進数</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">最大 10 個の精度点を選択します。最小値および最大値を設定できます。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">[通貨]</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">通貨型フィールドをエンティティに追加すると、対応する (基本) フィールドも作成されます。(基本) フィールドにも通貨型があります。</p>
+									<p class="bodyText">エンティティにまだ通貨型フィールドがない場合は、2 つのフィールドが追加で作成されます。</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>通貨。</b>通貨型フィールドの値を設定する前に値を設定する必要がある "検索" データの種類。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>為替レート。</b>このデータの種類は 10 進数です。</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">複数行テキスト</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">スクロール テキスト ボックス。このフィールドの最大文字数を設定できます。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">日付と時間</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">日付のみ、または日付と時刻という 2 つの形式があります。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">ルックアップ</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">検索フィールドの作成には、既に作成済みで別の検索フィールドで使用されていないエンティティ関係を使用します。検索フィールドをエンティティ フォームで作成すると、エンティティ関係が自動的に生成されます。検索フィールドは関連付けフィールドとして作成されます。</p>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">[ステータス] オプションの設定。</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">カスタマイズ可能なステータス システム属性を持つエンティティが多くあります。ステータス属性は、候補リスト属性と同じように表示されますが、ステータス属性への参照が含まれている点で候補リスト属性とは異なります。</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<b>[ステータス]</b> の有効な値は、<b>ステータス (状態) </b> 属性に依存します。<b>[ステータス]</b> オプションを設定する前に、適切な状態を選択する必要があります。</p>
+							</li>
+						</ul>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">この属性の IME モードを選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[保存して閉じる]</b> をクリックまたはタップしてフォーム エディターを閉じます。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">カスタマイズを公開します。</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">1 つのエンティティでのみビューのカスタマイズを公開するには、<b>[コンポーネント]</b> で、<b>[エンティティ]</b> をクリックまたはタップします。次に、[操作] ツール バーで <b>[公開]</b> をクリックまたはタップします。</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">エンティティやコンポーネントに加えたカスタマイズをすべて公開するには、[操作] ツール バーで、<b>[すべてのカスタマイズの公開]</b> をクリックまたはタップします。</p>
+							</li>
+						</ul>
+					</li>
+				</ol>
+				<div class="alertContent">
+					<p class="notehead-end">メモ</p>
+					<p class="bodyText">ソリューションのインストールやカスタマイズの発行は、通常のシステム操作に影響を与える可能性があります。ソリューションのインポートは、ユーザーへの影響が最小限に留まるようにスケジューリングすることを推奨します。</p>
+				</div>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlinktemplate">
+				<a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=320204">カスタマイズ ガイド</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

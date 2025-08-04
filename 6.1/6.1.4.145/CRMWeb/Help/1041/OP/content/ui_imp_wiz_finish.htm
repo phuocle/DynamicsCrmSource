@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>取引先企業、潜在顧客、または他のデータをインポートする</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">取引先企業、潜在顧客、または他のデータをインポートする</h1>
+			<p class="bodyText">データがスプレッドシート、データベースまたは他のシステムに保存されているかどうかにかかわらず、Microsoft Dynamics CRM にデータをインポートすることで、1 か所ですべての顧客情報を追跡できます。</p>
+			<p class="bodyText">取引先企業、潜在顧客、または営業案件、活動やサポート案件などあらある種類の情報をインポートできます。(情報のさまざまな種類は「レコードの種類」と呼びます。)</p>
+			<div class="alertContent">
+				<p class="notehead-end">メモ</p>
+				<p class="bodyText">取引先担当者をインポートするには、詳細 : <a href="ui_sf_Contact_list.htm">連絡先のインポート</a></p>
+			</div>
+			<a class="expand" id="tID0ECAA" href="." onclick="expandCollapse('ID0ECAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0ECAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />ステップ 1: インポート ファイルの準備をする</h2>
+			</a>
+			<div id="dID0ECAA" class="l2" style="display:none">
+				<p class="bodyText">まず、ファイルにデータを読み込む必要があります。</p>
+				<p class="bodyText">インポート ファイルを作成する際に、データはできるだけ完全で適切であることを確認します。不足している情報を入力して、名前や他の情報が正しく入力されていることを確認します。</p>
+				<p class="bodyText">次のファイル形式がサポートされています:</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">コンマ区切り値(.csv)</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">テキスト(.txt)</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">圧縮 (.zip)</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Excel スプレッドシート 2003 (.xml)</p>
+					</li>
+				</ul>
+				<p class="bodyText">.zip ファイルに許可されるファイルの最大サイズは 32 MB です。他のファイル形式では、許可されているファイルの最大サイズは 8 MB です。</p>
+				<a class="expand" id="tID0EAACAA" href="." onclick="expandCollapse('ID0EAACAA',1);return false;">
+					<p class="tiphead-end">
+						<img id="iID0EAACAA" class="expandicon" src="Help-Collapse-Section-Microsoft-CRM.png" alt="" border="0" />ヒント</p>
+				</a>
+				<div id="dID0EAACAA" class="expandedendtips" style="display: none">
+					<p class="bodyText">大きなデータをインポートする必要がある場合は、詳細について「 <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=31788">Microsoft Dynamics CRM の開発者ツールキット</a>」を確認してください。</p>
+					<p class="bodyText">複数のインポート ファイル 1 つの .zip ファイルに追加し、その .zip ファイルをインポートすることですべてのファイルを一度にインポートできます。たとえば、複数の営業担当者が見本市での潜在顧客を別々のスプレッドシートに入力する場合、1 つの .zip ファイルにそれらをまとめてインポートすることができます。</p>
+					<p class="bodyText">最善の結果を得るには、ユーザー (またはユーザーが管理者でない場合、CRM 管理者) がデータをインポートする際に重複を削減する一定の規則 (「重複データ検出ルール」と呼ばれる) があることが大切です。詳細 : <a href="ui_dd_duprules_list.htm">重複データ検出ルールの設定</a></p>
+				</div>
+			</div>
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />ステップ 2: データ インポート ウィザードを実行する</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<p class="bodyText">[<b>データ インポート</b>] ウィザードを使用してファイルをインポートします。</p>
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>
+						<a class="expand" id="tID0ECALAAABAA" href="." onclick="expandCollapse('ID0ECALAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECALAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />CRM Web アプリケーションを使用する場合</p>
+						</a>
+						<div id="dID0ECALAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b>、<b>[設定]</b> の順にクリックまたはタップします。</p>
+									<p class="bodyText">
+										<b>[設定]</b> がナビゲーション バーに表示されます。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">
+										<b>[設定]</b>、<b>[データ管理]</b> の順にクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBALAAABAA" href="." onclick="expandCollapse('ID0EBALAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBALAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p>
+						</a>
+						<div id="dID0EBALAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション ウィンドウで、<b>[設定]</b> &gt; <b>[システム]</b> &gt; <b>[データ管理]</b> をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[インポート]</b> &gt; <b>[データのインポート]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">インポート ファイルを含むファイルを保存したフォルダーを参照します。ファイルを選択し、<b>[開く]</b> をクリックまたはタップします。<b>[次へ]</b> をクリックまたはタップします。</p>
+						<a class="expand" id="tID0EAAJAAABAA" href="." onclick="expandCollapse('ID0EAAJAAABAA',1);return false;">
+							<p class="tiphead-end">
+								<img id="iID0EAAJAAABAA" class="expandicon" src="Help-Collapse-Section-Microsoft-CRM.png" alt="" border="0" />ヒント</p>
+						</a>
+						<div id="dID0EAAJAAABAA" class="expandedendtips" style="display: none">
+							<p class="bodyText">一度にインポートできるファイルは 1 つだけです。多くのファイルをインポートするには、ウィザードを後で再実行するか、1 つの .zip ファイルにすべてのインポート ファイルを追加します。</p>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">ファイル名を確認し、ファイルが .csv または .txt 形式の場合は、フィールドとデータ区切り文字が正しいことを確認します。<b>[次へ]</b> をクリックまたはタップします。</p>
+						<div class="alertContent">
+							<p class="notehead-end">メモ</p>
+							<p class="bodyText">通常、既定の区切り文字を使用できます。</p>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">データ用にどのフィールドを使用するかをウィザードが決定する方法を選択します。</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">ウィザードが Microsoft Dynamics CRM に対応するフィールドを自動的に決定するようにしたい場合、<b>[既定値 (自動マッピング)]</b> を選択します。ウィザードがフィールドを見つけられない場合は、後ほど手動で「マップ」できます。<br /><br />-- または --<br /></p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">インポート ファイルに取引先担当者および取引先企業がある (取引先担当者が主なデータ) 場合、<b>[取引先担当者と取引先企業の汎用データ用]</b> を選択します。<br /><br />-- または --<br /></p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">インポート ファイルに Microsoft Outlook 2010 with Business Contact Manager からの取引先担当者が含まれている場合は、<b>[BCM 2010 用]</b> を選択します。<br /><br />-- または --<br /></p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">組織で使用可能な場合、ユーザー定義のデータ マップを選択します。(使用可能な場合、一覧に表示されます。)</p>
+							</li>
+						</ul>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[次へ]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">要求された場合、Microsoft Dynamics CRM<b>[レコードの種類]</b> ドロップダウン リストで、インポートするレコードの種類 (たとえば、<b>[アカウント]</b> または <b>[潜在顧客]</b>) を選択します。<b>[次へ]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">警告アイコンがあるすべてのレコードの種類に対して、インポート ファイルのフィールドを Microsoft Dynamics CRM の対応するフィールドにマップします。スクロールして、一覧全体を閲覧します。<b>[次へ]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">要約を確認し、<b>[次へ]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">追加のインポート設定を選択します。</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">データ インポート ウィザードで重複レコードをインポートできる場合、<b>[重複の許可]</b> セクションで、<b>[可能］</b> を選択します。</p>
+								<div class="alertContent">
+									<p class="importanthead">注意</p>
+									<p class="bodyText">ほとんどの場合は、重複した情報のインポートを防ぐために、このオプション セットで <b>[不可]</b> にしておきます。</p>
+								</div>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">インポート済みレコードの所有者を設定するには、<b>[インポート済みレコードの所有者の選択]</b> セクションで <b>[検索]</b> ボタン <img src="lookup_v4.gif" title="lookup_v4" /> をクリックまたはタップします。<b>[他のレコードの検索]</b> を選択して、ユーザーの名前を入力し、<b>[追加]</b> をクリックまたはタップします。</p>
+								<div class="alertContent">
+									<p class="notehead-end">メモ</p>
+									<p class="bodyText">インポートされたデータを誰が「所有する」必要があるかをどのように決定しますか。通常、所有者は、データの操作を担当する人です。以下はその一例です: インポート ファイルに見本市で集めた取引先担当者が含まれており、あるユーザーにそれらの取引先担当者をフォローアップするように割り当てる場合、そのユーザーを所有者に選択します。インポートされたレコードの所有者として自分以外のユーザーを割り当てるには、そのユーザー用にレコードを作成する権限を含むセキュリティ ロールが必要です。十分なアクセス許可を持っていない場合は、ウィザードでは、既定で、インポート済みレコードの所有者として自分自身を割り当てます。</p>
+								</div>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">再利用するためにインポート設定を保存するには、設定 ("データ マップ" と呼ばれる) の名前を入力します。</p>
+								<p class="bodyText">次にデータ インポート ウィザードを実行するときに、<b>[カスタム マップ]</b>の下に新しいデータ マップが一覧表示されます。</p>
+							</li>
+						</ul>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[確定]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">ウィザードが成功したかどうかを確認するには、<b>[インポート]</b> をクリックまたはタップして、レポートを確認します。確認しない場合は、<b>[完了]</b> をクリックまたはタップします。</p>
+					</li>
+				</ol>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ui_sf_Contact_list.htm">連絡先のインポート</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

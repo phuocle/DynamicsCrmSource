@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Known issues for CRM for tablets and phones</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Known issues for CRM for tablets and phones</h1>
+			<p class="bodyText">The following are known issues with Microsoft Dynamics CRM for tablets and Microsoft Dynamics CRM for phones.</p>
+			<h2 class="heading2">CRM for tablets</h2>
+			<div class="l2">
+				<p class="bodyText">
+					<img src="video-thumbnail-4-Microsoft-CRM.png" title="Video" /> Video:  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=331136">Microsoft Dynamics CRM 2013 for Tablets - Troubleshooting</a></p>
+				<a class="expand" id="tID0ERADAA" href="." onclick="expandCollapse('ID0ERADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0ERADAA" class="expandicon" alt="" border="0" src="Help-Expand-Section-Microsoft-CRM.png" />Important considerations</h3>
+				</a>
+				<div id="dID0ERADAA" class="l3" style="display:block">
+					<p class="bodyText">Before you begin to configure CRM for tablets, it's important to review the requirements:</p>
+					<ul class="bulletedlist">
+						<li class="bulletedlistitem">
+							<p class="bodyText">
+								<b>Understand what operating systems, devices, and languages are supported</b>. Review the requirements in  <a href="ui_set_Home.htm">CRM for tablets: Set up and use</a>.</p>
+						</li>
+						<li class="bulletedlistitem">
+							<p class="bodyText">
+								<b>Be aware that Internet Facing Deployment (IFD) is required if you are using Microsoft Dynamics CRM 2013 (on-premises version)</b>. The system administrator must configure claims-based authentication before users can access Microsoft Dynamics CRM data with CRM for tablets. If you have your Microsoft Dynamics CRM website available over the internet but it is not using the Microsoft Dynamics CRM IFD configuration, <b>it is not supported</b>. To verify that your on-premises deployment is configured for IFD, open Microsoft Dynamics CRM Deployment Manager on your Microsoft Dynamics CRM Server. The Authentication Summary section should show that both Claims-Based Authentication and Internet-Facing Deployment are enabled. For more information, see  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=321101">Configuring Claims-based Authentication for Microsoft Dynamics CRM 2011</a>.</p>
+						</li>
+					</ul>
+				</div>
+				<a class="expand" id="tID0EQADAA" href="." onclick="expandCollapse('ID0EQADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EQADAA" class="expandicon" alt="" border="0" src="Help-Expand-Section-Microsoft-CRM.png" />Potential issues and resolutions</h3>
+				</a>
+				<div id="dID0EQADAA" class="l3" style="display:block">
+					<p class="bodyText">Use the error message that appears in the app to identify a potential fix listed below. Be aware that an error may have multiple causes. To narrow down the possibilities, system administrators can use tracing to capture details for analysis. See  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=321732">Enable tracing in CRM for tablets</a>.</p>
+				</div>
+				<a class="expand" id="tID0EPADAA" href="." onclick="expandCollapse('ID0EPADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EPADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />You cannot change the user or organization in the CRM for tablets or CRM for phones app</h3>
+				</a>
+				<div id="dID0EPADAA" class="l3" style="display:none">
+					<p class="bodyText">After you install and set up the CRM for tablets app on a device, you cannot reconfigure the app to switch users or change the organization URL. To change the user or organization, uninstall the app and then install it again to specify the new settings.</p>
+				</div>
+				<a class="expand" id="tID0EOADAA" href="." onclick="expandCollapse('ID0EOADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EOADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />By design: “—d” added to URL</h3>
+				</a>
+				<div id="dID0EOADAA" class="l3" style="display:none">
+					<p class="bodyText">
+						<b>For Microsoft Dynamics CRM Online users</b>
+					</p>
+					<p class="bodyText">To improve the reliability of DNS resolutions to Microsoft Dynamics CRM Online organizations, CRM for tablets modifies the organization URL used when signing in. When a user signs in, CRM for tablets adds “—d” (two dashes + d) to the URL. For example, if the organization URL is <b>https://contoso.crm.dynamics.com</b>, CRM for tablets will change the URL to <b>https://contoso--d.crm.dynamics.com</b>.</p>
+					<p class="bodyText">If a user needs to retry signing in, they'll see “—d” in the web address. They can sign in with the modified URL or reset it to the URL normally used.</p>
+				</div>
+				<a class="expand" id="tID0ENADAA" href="." onclick="expandCollapse('ID0ENADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0ENADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />After providing credentials the app appears to load indefinitely and never completes</h3>
+				</a>
+				<div id="dID0ENADAA" class="l3" style="display:none">
+					<p class="bodyText">This can occur if the time on the device is not within a certain variance of the Microsoft Dynamics CRM server. For example: you may encounter this issue if the time on the server is 2 PM on November 11th but the device is set to 2 PM on November 12th. </p>
+					<p class="bodyText" />
+					<p class="bodyText">You may see events like the following logged multiple times in the trace files:</p>
+					<p class="bodyText">Dynamics CRM [PAL] | Authentication: Token Expired with Token Timeout value (-255674015) --- Retrieving new Auth Token from shim</p>
+				</div>
+				<a class="expand" id="tID0EMADAA" href="." onclick="expandCollapse('ID0EMADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EMADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />When trying to connect from a Windows 8 device to a Microsoft Dynamics CRM 2013 on-premises organization, you are repeatedly prompted for credentials</h3>
+				</a>
+				<div id="dID0EMADAA" class="l3" style="display:none">
+					<p class="bodyText">
+						<b>Cause</b>: This can occur if certain directories under the Microsoft Dynamics CRM website have Windows Authentication enabled. In order for CRM for tablets to successfully connect to a new deployment of Microsoft Dynamics CRM Server 2013, you must run a <b>Repair</b> of Microsoft Dynamics CRM Server 2013 on the server running IIS where the Web Application Server role is installed after the Internet-Facing Deployment Wizard is successfully completed.</p>
+					<p class="bodyText">For repair instructions, see the topic “Uninstall, change, or repair Microsoft Dynamics CRM Server 2013” in the Installing Guide section of the  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=320849">Microsoft Dynamics CRM 2013 Implementation Guide</a>.</p>
+					<div class="alertContent">
+						<p class="importanthead">Important </p>
+						<p class="bodyText">To resolve this issue by running <b>Repair</b>, the Microsoft Dynamics CRM deployment must already be configured for claims-based authentication and IFD.</p>
+					</div>
+					<div class="alertContent">
+						<p class="notehead-end">Note </p>
+						<p class="bodyText">When the logon prompt appears, it is an Active Directory logon prompt instead of the sign-in page of your Secure Token Service (STS) such as Active Directory Federation Services (AD FS). The prompt looks like the one shown below:</p>
+					</div>
+					<p class="bodyText" />
+					<p class="bodyText">After you click or tap <b>Cancel</b> or enter credentials 3 times, you see the correct sign-in prompt.</p>
+				</div>
+				<a class="expand" id="tID0ELADAA" href="." onclick="expandCollapse('ID0ELADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0ELADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Customization changes do not appear in CRM for tablets</h3>
+				</a>
+				<div id="dID0ELADAA" class="l3" style="display:none">
+					<p class="bodyText">
+						<b>Cause 1</b>: The customizations (metadata) from your Microsoft Dynamics CRM organization are cached on your device. The app checks for updated metadata after 24 hours or any time you reopen the app. For customization changes to become available immediately, you must completely close and then reopen the app. If new metadata is found, you will be prompted to download it. For more information on how to completely close an app, refer to the help for your operating system or reference one of the articles provided:</p>
+					<ul class="bulletedlist">
+						<li class="bulletedlistitem">
+							<p class="bodyText">
+								<b>Windows 8</b>:  <a target="_blank" href="http://windows.microsoft.com/en-us/windows-8/how-close-app">http://windows.microsoft.com/en-us/windows-8/how-close-app</a></p>
+						</li>
+						<li class="bulletedlistitem">
+							<p class="bodyText">
+								<b>iPad</b>:  <a target="_blank" href="http://support.apple.com/kb/ht5137">http://support.apple.com/kb/ht5137</a></p>
+						</li>
+					</ul>
+					<p class="bodyText">
+						<b>Cause 2</b>: You may be seeing a different form than the one you customized. If you have multiple forms for an entity, you will see the first form in the form order that you have access to. This is different than the web application where you see the last form you used and have the ability to change between forms. For more information, refer to the “Multiple Forms” topic in the  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=320204">Customization Guide</a>.</p>
+				</div>
+				<a class="expand" id="tID0EKADAA" href="." onclick="expandCollapse('ID0EKADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EKADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Error message: “Invalid user” when you try to sign in on a device that was recently used to sign-in by another user</h3>
+				</a>
+				<div id="dID0EKADAA" class="l3" style="display:none">
+					<p class="bodyText">When a user signs in to Microsoft Dynamics CRM and selects "Save email and password" using the Microsoft Dynamics CRM for Windows 8 app, another user may be unable to sign in to Microsoft Dynamics CRM using the device after the initial sign in even after the required reinstall. This behavior occurs because the sign-in token must expire before another user can sign in using the same device.</p>
+					<p class="bodyText">To work around this issue, either wait a period of time (48 hours by default) for the sign-in token to expire or sign in from another Windows 8 device.</p>
+				</div>
+				<a class="expand" id="tID0EJADAA" href="." onclick="expandCollapse('ID0EJADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EJADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Error message: “You do not have sufficient permissions on the server to load the application. Please contact your administrator to update your permissions.”</h3>
+				</a>
+				<div id="dID0EJADAA" class="l3" style="display:none">
+					<p class="bodyText">
+						<b>Cause 1</b>: This error can occur if you are missing a certain privilege such as <b>System Application Metadata</b> or <b>User Application Metadata</b>. The error in the traces will help identify the specific privilege that is missing from your security role. Make sure your Microsoft Dynamics CRM security role includes Organization level access to the System Application Metadata privilege and User level access to each of the User Application Metadata privileges (Create, Read, Write, and Delete). These privileges are located on the <b>Customization</b> tab of a security role.</p>
+					<p class="bodyText" />
+					<p class="bodyText">
+						<b>Sample Trace Messages for Cause 1</b>:</p>
+					<p class="bodyText">“User does not have sufficient privileges for SystemApplicationMetadata entity”</p>
+					<p class="bodyText">“User does not have sufficient privileges for UserApplicationMetadata entity”</p>
+				</div>
+				<a class="expand" id="tID0EIADAA" href="." onclick="expandCollapse('ID0EIADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EIADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Error message: "You haven't been authorized to use this app. Check with your system administrator to update your settings."</h3>
+				</a>
+				<div id="dID0EIADAA" class="l3" style="display:none">
+					<p class="bodyText">
+						<b>Cause 1</b>: Verify that your Microsoft Dynamics CRM security role includes the <b>Use CRM for Tablets</b> privilege. </p>
+					<p class="bodyText">
+						<b>Cause 2</b>: This error can occur if you configured CRM for tablets with a certain organization and are now trying to configure against another CRM organization. You must uninstall and reinstall the application to configure to another organization or as another user. </p>
+					<p class="bodyText">
+						<b>Cause 3</b>: This error can occur if you have a Microsoft Dynamics CRM Online organization and your user has not been assigned a Microsoft Dynamics CRM Online license. If you add a Microsoft Dynamics CRM Online subscription to an existing Microsoft Office 365 tenant, your user may not have a Microsoft Dynamics CRM Online license assigned. If the user has the Global Administrator or Service Administrator role in the  <a target="_blank" href="https://portal.microsoftonline.com/">Microsoft Online Service Portal</a>, you are able to sign in to the Microsoft Dynamics CRM web application to perform certain administrative actions, but you cannot perform end user tasks, such as creating records (for example, accounts, contacts, and leads) or configuring CRM for tablets. When you sign in to the web application, you may notice that not all areas appear within the navigation (for example, Sales and Marketing are missing):</p>
+					<p class="bodyText" />
+					<p class="bodyText">Access the <b>Users and Groups</b> section within the  <a target="_blank" href="https://portal.microsoftonline.com/">Microsoft Online Service Portal</a> and verify you have a Microsoft Dynamics CRM Online license assigned to your user record.</p>
+				</div>
+				<a class="expand" id="tID0EHADAA" href="." onclick="expandCollapse('ID0EHADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EHADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Error message: “Your server is not available or does not support this application”</h3>
+				</a>
+				<div id="dID0EHADAA" class="l3" style="display:none">
+					<p class="bodyText">
+						<b>Cause 1</b>: The CRM organization is not upgraded to Microsoft Dynamics CRM 2013 or the CRM Online Fall ‘13 Service Update. Prior versions of Microsoft Dynamics CRM are not supported with CRM for tablets. </p>
+					<p class="bodyText">
+						<b>Sample Trace Message for Cause 1</b>: </p>
+					<p class="bodyText">“Dynamics CRM [Error] | Connection error: 404”</p>
+					<p class="bodyText">
+						<b>Cause 2</b>: This error can also occur if you enter an invalid URL. Make sure the same URL you have provided works to access Microsoft Dynamics CRM in your browser on your device. </p>
+					<p class="bodyText">
+						<b>Sample Trace Messages for Cause 2</b>: </p>
+					<p class="bodyText">“XMLHttpRequest: Network Error 0x2ee7, Could not complete the operation due to error 00002ee7.”</p>
+					<p class="bodyText">“Dynamics CRM [Error] | Connection error: 0”</p>
+					<p class="bodyText">
+						<b>Cause 3</b>: If you are connecting to a Microsoft Dynamics CRM 2013 on-premises organization, this error can occur if the certificate from the Microsoft Dynamics CRM website is not trusted by the device. To avoid this scenario make sure to use a publicly trusted certificate. For more information, see  <a target="_blank" href="http://support.microsoft.com/kb/2899983/en-us">http://support.microsoft.com/kb/2899983/en-us</a>.</p>
+					<p class="bodyText">
+						<b>Sample Trace Messages for Cause 3</b>: </p>
+					<p class="bodyText">Windows 8: “XMLHttpRequest: Network Error 0x800c0019, Security certificate required to access this resource is invalid”</p>
+					<p class="bodyText">iPad: “[ERROR] Loading app failed due to SSL error”</p>
+				</div>
+				<a class="expand" id="tID0EGADAA" href="." onclick="expandCollapse('ID0EGADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EGADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Error message: “We can't connect to the service you need right now. Check your network connection or try this again later.”</h3>
+				</a>
+				<div id="dID0EGADAA" class="l3" style="display:none">
+					<p class="bodyText">
+						<b>Cause 1</b>: This error can occur when connecting to a Microsoft Dynamics CRM 2013 on-premises organization that is not configured for IFD. For more information, see  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=321101">Configuring Claims-based Authentication for Microsoft Dynamics CRM 2011</a>.</p>
+				</div>
+				<a class="expand" id="tID0EFADAA" href="." onclick="expandCollapse('ID0EFADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EFADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Error message: "You need an internet connection to use this app. Reconnect and try again."</h3>
+				</a>
+				<div id="dID0EFADAA" class="l3" style="display:none">
+					<p class="bodyText">
+						<b>Cause 1</b>: This error can occur if you do not have an internet connection. Verify you are connected to the internet and can access the same URL in your web browser. </p>
+					<p class="bodyText">
+						<b>Cause 2</b>: Check if you are using a preview build of Windows 8.1. So far this issue has only been reported with the preview version of Windows 8.1.</p>
+				</div>
+				<a class="expand" id="tID0EEADAA" href="." onclick="expandCollapse('ID0EEADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EEADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Error message: "Sorry, something went wrong while initializing the app. Please try again, or restart the app"</h3>
+				</a>
+				<div id="dID0EEADAA" class="l3" style="display:none">
+					<p class="bodyText">
+						<b>Cause 1</b>: See the following KB article:</p>
+					<p class="bodyText">An error occurs in the Microsoft Dynamics CRM app for users in child business units: "Sorry, something went wrong while initializing the app". For more information, see  <a target="_blank" href="http://support.microsoft.com/kb/2899860/en-us">http://support.microsoft.com/kb/2899860/en-us</a>.</p>
+					<p class="bodyText">
+						<b>Sample Trace Message for Cause 1</b>:</p>
+					<p class="bodyText">Error Message:System.NullReferenceException: Object reference not set to an instance of an object.</p>
+					<p class="bodyText">Microsoft.Crm.Application.WebServices.ApplicationMetadataService.&lt;&gt;c__DisplayClass30.&lt;UserRolesChanged&gt;b__2d(Entity role)</p>
+					<p class="bodyText"> at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)</p>
+					<p class="bodyText"> at Microsoft.Crm.Application.WebServices.ApplicationMetadataService.UserRolesChanged(Guid[] clientUserRoles, DateTime syncTime, ExecutionContext context)</p>
+					<p class="bodyText">at Microsoft.Crm.Application.WebServices.ApplicationMetadataService.RetrieveUserContext(UserContextRetrieveRequest userContextRetrieveRequest)</p>
+					<p class="bodyText">
+						<b>Cause 2</b>: This can occur if the download of the metadata failed. The next attempt to connect will fully regenerate the metadata and successfully connect. Microsoft is aware of an issue where metadata may fail to download due to a timeout and plans to address this issue in a future update. </p>
+					<p class="bodyText">
+						<b>Sample Trace Messages for Cause 2</b>: </p>
+					<p class="bodyText">“Error occurred during complete refresh of Application/Entity/Attribute metadata” </p>
+					<p class="bodyText">“XMLHttpRequest: Network Error 0x2ef3, Could not complete the operation due to error 00002ef3.”</p>
+					<p class="bodyText">
+						<b>Cause 3</b>: This issue can occur if the telephone fields on the Contact or User entity have the format set as text instead of phone. The format may be set this way after you import a solution that was created in Microsoft Dynamics CRM 2011. If the error message in the trace matches the one below and you are using Microsoft Dynamics CRM (on-premises), apply  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=389733">Microsoft Dynamics CRM Update Rollup 1</a> on the Microsoft Dynamics CRM server to prevent this error. If your organization uses Microsoft Dynamics CRM Online, this update has already been applied.</p>
+					<p class="bodyText" />
+					<p class="bodyText">
+						<b>Sample Trace Message for Cause 3</b>: </p>
+					<p class="bodyText">Message Dynamics CRM [PAL] | Error Message:System.NullReferenceException: Object reference not set to an instance of an object. at Microsoft.Crm.ObjectModel.ApplicationMetadata.Tiles.Builders.EntityFormCommunicationCardBuilder.Build() at Microsoft.Crm.ObjectModel.FormConverter.ConvertFormToJson(EntityMetadata entityMetadata, Dictionary`2 savedQueryIds) at Microsoft.Crm.Application.WebServices.ApplicationMetadata.ApplicationMetadataFormConverter.Convert(ApplicationMetadataSourceObjectModel source) at Microsoft.Crm.Application.WebServices.ApplicationMetadata.ApplicationMetadataSourceRetrieverBase.RegenerateApplicationMetadataRecords(IEnumerable`1 sourceObjectModels, Boolean createOrUpdateInDb) at Microsoft.Crm.Application.WebServices.ApplicationMetadataService.Sync(ApplicationMetadataSyncRequest applicationMetadataSyncRequest)</p>
+				</div>
+				<a class="expand" id="tID0EDADAA" href="." onclick="expandCollapse('ID0EDADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EDADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Error message: “The language installed on your company's system isn't available on the app. Please contact your system administrator to set up a supported language.” </h3>
+				</a>
+				<div id="dID0EDADAA" class="l3" style="display:none">
+					<p class="bodyText">
+						<b>Cause</b>: This error will occur if one of the supported languages is not enabled in Microsoft Dynamics CRM. For more information on the supported languages, see  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=325404">CRM for tablets: Set up and use</a> and expand <b>What you need to use CRM for tablets</b> and <b>Supported Languages</b>. </p>
+				</div>
+				<a class="expand" id="tID0ECADAA" href="." onclick="expandCollapse('ID0ECADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0ECADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Error message: “The process assigned to this record is unavailable or has been deleted.”</h3>
+				</a>
+				<div id="dID0ECADAA" class="l3" style="display:none">
+					<p class="bodyText">If you receive this message for a record which has a non-deleted process assigned to it, you should manually synchronize CRM for tablets with your Microsoft Dynamics CRM data. Close the CRM for tablets app, reopen, and then choose to download the latest customizations. This procedure forces CRM for tablets to check for updated customizations. Recently viewed data while you were connected is cached and synched. Record data like Accounts or Contacts are not synched. You can't choose which data synchronizes to the device like you can with Microsoft Dynamics CRM for Outlook.</p>
+				</div>
+				<a class="expand" id="tID0EBADAA" href="." onclick="expandCollapse('ID0EBADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EBADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Error message: “This operation failed because you're offline. Reconnect and try again.”</h3>
+				</a>
+				<div id="dID0EBADAA" class="l3" style="display:none">
+					<p class="bodyText">This error may occur for the following scenarios when you are using a Windows 8 device and you have a Microsoft Dynamics CRM Online organization that uses Microsoft Account (formerly named Live ID). This issue does not occur for organizations provisioned through Office 365.</p>
+					<p class="bodyText">
+						<b>Cause 1</b>: You are automatically authenticated as a different Microsoft account that is not a member of the Microsoft Dynamics CRM organization. This may happen if you sign into your Windows 8 device and your domain account is connected to a Microsoft account. For example: you sign in to your device as &lt;userid&gt;@contoso.com (your domain account) and that account is connected to &lt;userid&gt;@live.com (a Microsoft account). If your connected account (for example, &lt;userid&gt;@live.com) is not a member of the Microsoft Dynamics CRM organization, you will encounter this error. In this scenario, the error occurs after providing your URL, but you are never prompted for credentials. When you connect your domain account to a Microsoft account, that Microsoft account will be used to automatically sign in to apps and services that use Microsoft Account for authentication. If you are using a Windows 8 device, use the steps below to check if your domain account is connected to a Microsoft account. If you are using a Windows RT device, see the <b>Windows RT</b> section below. </p>
+					<p class="bodyText">
+						<b>Windows 8</b>
+					</p>
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">Swipe from the right side of the screen to access the charms bar and then click or tap <b>Settings</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>Change PC settings</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>Users</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Check to see if under the <b>Your Account</b> section it says “This domain account is connected to &lt;Your Microsoft account&gt;”</p>
+						</li>
+					</ol>
+					<p class="bodyText">
+						<b>Windows RT</b>
+					</p>
+					<p class="bodyText">If you are using a Windows RT device and need to authenticate as a Microsoft account that is different than the one you use to log on to your device, you must create another account and switch to that account when using the app. For example: you currently sign in to your Windows RT device as &lt;userid&gt;@live.com, but want to access your Microsoft Dynamics CRM organization via the tablet app as &lt;userid&gt;@outlook.com. For more information on how to create a new account on your device, see  <a target="_blank" href="http://windows.microsoft.com/en-us/windows/create-user-account#create-user-account=windows-8">Create a user account</a>.</p>
+					<p class="bodyText">
+						<b>Sample Trace Message for Cause 1</b>:</p>
+					<p class="bodyText">The app couldn't navigate to https://port.crm.dynamics.com/portal/notification/notification.aspx?lc=1033&amp;organizationid=&lt;OrganizationId&gt; because of this error: FORBIDFRAMING.</p>
+					<p class="bodyText">
+						<b>Cause 2</b>: This error may occur if you previously authenticated to the app as a different Microsoft account and chose the option “Keep me signed in”. Even after uninstalling and reinstalling the app, the token for the previous credentials is still stored on your device. If you are trying to connect as a different user, you will need to remove the token. To completely clear the app, after you uninstall the app, you must clear the Indexed DB folder (C:\Users\%USERNAME%\AppData\Local\Microsoft\Internet Explorer\Indexed DB). You may have to sign in as a different user and use the command prompt as an administrator to clear the Indexed DB folder. That is because some files in this folder can be held by the Host Process for Windows Tasks. Once the token is successfully removed, you should see the sign-in page after you enter your URL in the app.</p>
+					<p class="bodyText" />
+					<p class="bodyText">The same error as Cause 1 may be found in the traces.</p>
+					<p class="bodyText">
+						<b>Cause 3</b>: You have not accepted your invitation to the Microsoft Dynamics CRM organization. If you attempt to access the same URL through your browser, you see a notification that you are invited to the organization but need to accept the invitation. Once you accept the invitation, you are able to configure the app successfully.</p>
+					<p class="bodyText">
+						<b>Sample Trace Message for Cause 3</b>:</p>
+					<p class="bodyText">The app couldn't navigate to https://port.crm.dynamics.com/portal/response/Response.aspx?token=KFES-CK5C-NL8R-X1U0&amp;expiration=635211904207200000&amp;cs=Lkya6zs9EeOtJXjjtRc6AeZa5xqt94YAppfqrXFgZa5slinq2iaabTmwfX0AR4HLGvz&amp;cb=invite&amp;cbcxt=invite&amp;wlid=&lt;username&gt;%40live.com&amp;lc=1033 because of this error: FORBIDFRAMING.</p>
+					<p class="bodyText">For each of the causes listed above you may also see the following event logged in the traces: </p>
+					<p class="bodyText">“Authentication: Failed - cookie setup”</p>
+				</div>
+				<a class="expand" id="tID0EAADAA" href="." onclick="expandCollapse('ID0EAADAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EAADAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Issue still not resolved?</h3>
+				</a>
+				<div id="dID0EAADAA" class="l3" style="display:none">
+					<p class="bodyText">If the information provided above does not resolve your issue, either  <a target="_blank" href="https://community.dynamics.com/crm/f/117/p/addpost.aspx?GroupToJoin=57">Post your issue in the Dynamics CRM Community</a> or  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=321650">Contact Technical Support</a>. The following are some suggested details to provide:</p>
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">What are the specific symptoms you encounter? For example, if you encounter an error, what is the exact error message?</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Does the issue only occur for users with certain Microsoft Dynamics CRM security roles?</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Does the issue only occur on certain devices but works correctly for the same user on another device?</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">If you attempt to connect to a different Microsoft Dynamics CRM organization that does not include your customizations, does the same issue occur? If the issue only occurs with your customizations, provide a copy of the customizations if possible.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Does the issue still occur after uninstalling the app and reinstalling it?</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Please provide traces. See  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=321732">Enable tracing in CRM for tablets</a>. </p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">What type of device (ex. iPad 4th Generation, Microsoft Surface, etc…) are you using and what is the version of the operating system (ex. iOS 6.0, Windows 8, etc…)?</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<h2 class="heading2">CRM for phones</h2>
+			<div class="l2">
+				<p class="bodyText" />
+				<a class="expand" id="tID0ECACAA" href="." onclick="expandCollapse('ID0ECACAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0ECACAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />You can't change the user or organization in the CRM for tablets or CRM for phones app</h3>
+				</a>
+				<div id="dID0ECACAA" class="l3" style="display:none">
+					<p class="bodyText">After you install and set up the CRM for phones app on a device, you can't reconfigure the app to switch users or change the organization URL. To change the user or organization, uninstall the app and then install it again to specify the new settings.</p>
+				</div>
+				<a class="expand" id="tID0EBACAA" href="." onclick="expandCollapse('ID0EBACAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EBACAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Changes in the web application aren't changed in CRM for phones</h3>
+				</a>
+				<div id="dID0EBACAA" class="l3" style="display:none">
+					<p class="bodyText">For Windows Phone users, changes made in the web application may not appear when you use Windows Phone. To force the change to appear in Windows Phone:</p>
+					<ul class="bulletedlist">
+						<li class="bulletedlistitem">
+							<p class="bodyText">For organization settings such as customization changes, clear the cache on your Windows Phone by tapping the <b>gear</b> icon and then tapping <b>clear local cache</b>.</p>
+							<p class="bodyText">Organization settings are commonly managed using <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b> &gt; <b>Administration</b>.</p>
+						</li>
+						<li class="bulletedlistitem">
+							<p class="bodyText">For user settings changes such as language settings, you must uninstall and reinstall Windows Phone.</p>
+							<p class="bodyText">User settings are commonly managed by clicking the <b>gear</b> icon &gt; <b>Options</b>.</p>
+						</li>
+					</ul>
+				</div>
+				<a class="expand" id="tID0EAACAA" href="." onclick="expandCollapse('ID0EAACAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EAACAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Furi-gana is not included on mobile forms</h3>
+				</a>
+				<div id="dID0EAACAA" class="l3" style="display:none">
+					<p class="bodyText">By default, Furi-gana (Yomi field) is not included on mobile forms. You can add the Yomi field by going to <b>Settings</b> &gt; <b>Customizations</b> &gt; <b>Customize the System</b>. Select the entity you want, and then click or tap <b>Forms</b>. Open up the mobile form and add the <b>Yomi Account Name</b> attribute to the list of <b>Selected Attributes</b>.</p>
+				</div>
+			</div>
+			<h2 class="heading2">Web browser</h2>
+			<div class="l2">
+				<p class="bodyText" />
+				<a class="expand" id="tID0EBABAA" href="." onclick="expandCollapse('ID0EBABAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EBABAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Microsoft Dynamics CRM (on-premises) URL doesn't resolve on Nexus tablets</h3>
+				</a>
+				<div id="dID0EBABAA" class="l3" style="display:none">
+					<p class="bodyText">When you try to access Microsoft Dynamics CRM (on-premises) using an internal URL on a Nexus 10 tablet in the Chrome web browser, the URL doesn't resolve and you can't access the site. For example, a URL in the form of https://servername:5555 doesn't resolve.</p>
+					<p class="bodyText">This is a known issue with Android devices accessing IIS intranet sites. To work around this issue, select one of the following solutions.</p>
+					<ul class="bulletedlist">
+						<li class="bulletedlistitem">
+							<p class="bodyText">Use the fully qualified domain name to resolve the address, such as https://servername.contoso.com:5555.</p>
+						</li>
+						<li class="bulletedlistitem">
+							<p class="bodyText">Use the server IP address, such as https://10.0.0.1:5555.</p>
+						</li>
+					</ul>
+				</div>
+				<a class="expand" id="tID0EAABAA" href="." onclick="expandCollapse('ID0EAABAA',1);return false;">
+					<h3 class="heading3 hanging">
+						<img id="iID0EAABAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Microsoft Dynamics CRM doesn't run in your tablet's browser</h3>
+				</a>
+				<div id="dID0EAABAA" class="l3" style="display:none">
+					<p class="bodyText">CRM isn't supported in the iOS 7.0 Safari browser at this time. More information:<b> </b> “Compatible browsers and apps” in  <a href="ui_set_Home.htm">CRM for tablets: Set up and use</a>.</p>
+				</div>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlinktemplate">
+				<a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=317906">Set up CRM for tablets (for admins)</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_set_Home.htm">CRM for tablets: Set up and use</a>
+			</p>
+			<p class="relateditemlinktemplate">
+				<a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=327922">Set up CRM for phones (for admins)</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="GS_CRM_mobility.htm">CRM for phones: Set up and use</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

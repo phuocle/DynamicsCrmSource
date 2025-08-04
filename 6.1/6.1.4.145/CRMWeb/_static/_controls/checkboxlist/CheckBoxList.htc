@@ -1,0 +1,7 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:property name="DataValues" get="getDataValues" put="setDataValues"/>
+<script language="JavaScript"></script><script type="text/javascript">
+var _oaCheckBoxes;function Init(){_oaCheckBoxes=element.all.tags("INPUT")}function getDataValues(){for(var saDataValues=[],i=0;i<_oaCheckBoxes.length;i++){var oCheckBox=_oaCheckBoxes[i];oCheckBox.checked&&saDataValues.push(oCheckBox.value)}return saDataValues.length>0?saDataValues:null}function setDataValues(saDataValues){if(IsNull(saDataValues))saDataValues=[];for(var saDataValuesDictionary=[],i=0;i<saDataValues.length;i++){var sDataValue=saDataValues[i];saDataValuesDictionary[sDataValue]=sDataValue}for(var i=0;i<_oaCheckBoxes.length;i++){var oCheckBox=_oaCheckBoxes[i];oCheckBox.checked=!IsNull(saDataValuesDictionary[oCheckBox.value])}}
+</script>
+</public:component>

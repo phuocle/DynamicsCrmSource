@@ -1,0 +1,589 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Create email server profiles and add mailboxes</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Create email server profiles and add mailboxes</h1>
+			<p class="bodyText">Email server profiles in Microsoft Dynamics CRM store settings that are used by server-side synchronization to connect to an email server and process email for the associated mailboxes. You must configure at least one email server profile to process email for your CRM organization. Depending on the complexity of your organization's email system, you may have to create multiple email server profiles.</p>
+			<a class="expand" id="tID0ECAA" href="." onclick="expandCollapse('ID0ECAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0ECAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Create an email server profile</h2>
+			</a>
+			<div id="dID0ECAA" class="l2" style="display:none">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure you have the System Administrator security role or equivalent permissions in Microsoft Dynamics CRM.</p>
+						<a class="expand" id="tID0EBAIAAACAA" href="." onclick="expandCollapse('ID0EBAIAAACAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAIAAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Check your security role</p>
+						</a>
+						<div id="dID0EBAIAAACAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Follow the steps in  <a href="how_persopt_ViewProfile.htm">View your user profile</a>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Don't have the correct permissions? Contact your system administrator.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Follow the steps for the app you're using.</p>
+						<a class="expand" id="tID0ECAHAAACAA" href="." onclick="expandCollapse('ID0ECAHAAACAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECAHAAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using the CRM web application</p>
+						</a>
+						<div id="dID0ECAHAAACAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+									<p class="bodyText">
+										<b>Settings</b> appears on the nav bar.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Email Configuration</b> &gt; <b>Email Server Profiles</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBAHAAACAA" href="." onclick="expandCollapse('ID0EBAHAAACAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAHAAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using CRM for Outlook</p>
+						</a>
+						<div id="dID0EBAHAAACAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the Navigation Pane, expand your organization if necessary, and then click or tap <b>Settings</b> &gt; <b>System</b> &gt; <b>Email Configuration</b> &gt; <b>Email Server Profiles</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>New</b> &gt; <b>Exchange Profile</b> or <b>POP3-SMTP Profile</b>. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>For an Exchange email server profile, specify the following details:</b>
+						</p>
+						<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Fields</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Description</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>General</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Name</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Specify a meaningful name for the profile.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Description</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Type a short description about the objective of the email server profile.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Auto Discover Server Location</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Click or tap <b>Yes</b> if you want to use the automatically discover service to determine the server location. This applies only if you are creating a profile for an Exchange Server. If you set this to <b>No</b>, you must specify the email server location manually.</p>
+									<div class="alertContent">
+										<p class="notehead-end">Note </p>
+										<p class="bodyText">If the server location doesn't change for mailboxes, we recommended that you don't use auto discover because it may affect performance.</p>
+									</div>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Incoming Server Location and Outgoing Server Location</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">If you have selected <b>No</b> in <b>Auto Discover Server Location</b>, type the location of the incoming and outgoing email server.</p>
+									<p class="bodyText">For Exchange Server, use the Exchange Web Services (EWS) URL format &lt;EWS/exchange.asmx&gt;, as illustrated in the following examples: </p>
+									<p class="bodyText">https://autodiscover-red001.mail.microsoftonline.com/ews/exchange.asmx</p>
+									<p class="bodyText">https://autodiscover-red002.mail.emea.microsoftonline.com/ews/exchange.asmx</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>Credentials</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Authenticate Using</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select the method to authenticate while connecting to the specified email server. You can select one of the following:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Credentials Specified by a User or Queue</b>. If you select this option, the credentials specified in the mailbox record of a user or queue are used for sending or receiving email for the respective user or queue. </p>
+											<div class="alertContent">
+												<p class="notehead-end">Note </p>
+												<p class="bodyText">To ensure the credentials are secured in Microsoft Dynamics CRM, SQL encryption is used to encrypt the credentials stored in the mailbox.</p>
+											</div>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Credentials Specified in Email Server Profile.</b> If you select this option, the credentials specified in the email server profile are used for sending or receiving email for the mailboxes of all users and queues associated to this profile. The credentials must have impersonation or delegation permissions on the mailboxes associated with profile. This option requires some configuration on the email server, for example, configuring impersonation rights on Exchange for the mailboxes associated with the profile. </p>
+											<div class="alertContent">
+												<p class="notehead-end">Note </p>
+												<p class="bodyText">To ensure the credentials are secured in Microsoft Dynamics CRM, SQL encryption is used to encrypt the credentials stored in the email server profile if you are processing email by using server-side synchronization.</p>
+											</div>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Windows Integrated Authentication</b>. This option applies only to Exchange and SMTP email server types. If you select this option, the credentials with which the Microsoft Dynamics CRM Asynchronous Service has been configured will be used. </p>
+										</li>
+									</ul>
+									<p class="bodyText">The other options in the list aren't applicable for Exchange.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">User Name</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Type the user name that is used to connect to the email server for sending or receiving email for the mailboxes of all users and queues associated to this profile. This field is enabled and valid only if <b>Authenticate Using</b> is set to <b>Credentials Specified in Email Server Profile</b>. The user name that you specify must have permission to send and receive email from the mailboxes of users and queues associated with this profile.</p>
+									<div class="alertContent">
+										<p class="notehead-end">Note </p>
+										<p class="bodyText">If you are using HTTP for Microsoft Dynamics CRM, the <b>User Name</b> and <b>Password</b> fields will be disabled. To enable the option, change the value of the deployment property AllowCredentialsEntryViaNonSecureChannels to 1.  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=313232">Read about the configuration settings</a></p>
+									</div>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Password</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Specify the password of the user that will be used together with the user name to connect to the email server for sending or receiving email for the mailboxes of users and queues associated with this profile. The password is stored securely.</p>
+									<div class="alertContent">
+										<p class="notehead-end">Note </p>
+										<p class="bodyText">If you are using HTTP for Microsoft Dynamics CRM, the <b>User Name</b> and <b>Password</b> fields will be disabled. To enable the option, change the value of the deployment property AllowCredentialsEntryViaNonSecureChannels to 1.  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=313232">Read about the configuration settings</a></p>
+									</div>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Use Impersonation</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Click or tap <b>Yes</b> if you have configured Exchange impersonation rights to send or receive email on behalf of the other mailboxes. Click <b>No</b> if you have configured Exchange delegation rights to send or receive email on behalf of other mailboxes.  <a target="_blank" href="http://msdn.microsoft.com/en-us/library/exchange/bb204095(v=exchg.140).aspx">Read how to configure Exchange impersonation</a>.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Use same settings for Outgoing</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">If you want to use the same credential settings for the incoming and outgoing connections, click or tap <b>Yes</b>. </p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>Advanced</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Incoming Port</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">This field shows the port on the email server for accessing the incoming email. This field is automatically populated when you save the record.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Outgoing Port</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">This field shows the port on the email server for accessing the outgoing email. This field is automatically populated when you save the record.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Use SSL for Outgoing Connection</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Click or tap <b>Yes</b> if the email channel is on a secure channel and SSL must be used for sending email. In Microsoft Dynamics CRM (on-premises), this field is set to <b>Yes</b> by default, but the configuration database setting “AllowNonSSLEmail” allows you to override this and set the value to False.  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=313232">Read about the configuration settings</a>.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Use SSL for Incoming Connection</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Click or tap <b>Yes</b> if the email channel is on a secure channel and SSL must be used for receiving email. In Microsoft Dynamics CRM (on-premises), this field is set to <b>Yes</b> by default, but the configuration database setting “AllowNonSSLEmail” allows you to override this and set the value to False.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Incoming Authentication Protocol and Outgoing Authentication Protocol</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select a protocol that will be used for authentication for incoming and outgoing email.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Move Failed Emails to Undeliverable Folder</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">To move the undelivered email to the Undeliverable folder, click or tap <b>Yes</b>. If there's an error in tracking email messages in CRM as email activities, and if this option is set to <b>Yes</b>, the email message will be moved to the Undeliverable folder. This option is available only for an Exchange email server profile.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>Additional Settings</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Process Email From</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select a date and time. Email received after the date and time will be processed by server-side synchronization for all mailboxes associated to this profile. If you set a value less than the current date, the change will be applied to all newly associated mailboxes and their earlier processed emails will be pulled.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Maximum Concurrent Connections</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Type the maximum number of simultaneous connections that can be made by CRM to the corresponding email server per mailbox. Increase the value to allow more parallel calls to Exchange to improve performance or reduce the value if there are errors on Exchange due to large number of calls from Microsoft Dynamics CRM. The default value of this field is 10. The maximum number is considered per mailbox or per email server profile depending on whether the credentials are specified in a mailbox or email server profile.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Minimum Polling Intervals in Minutes</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Type the minimum polling interval, in minutes, for mailboxes that are associated with this email server profile. The polling interval determines how often server-side synchronization polls your mailboxes for new email messages. </p>
+								</td>
+							</tr>
+						</table>
+						<p class="bodyText" />
+						<p class="bodyText">
+							<b>-OR-</b>
+						</p>
+						<p class="bodyText" />
+						<p class="bodyText">
+							<b>For a POP3/SMTP profile, specify the following:</b>
+						</p>
+						<p class="bodyText" />
+						<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Fields</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Description</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>General</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Name</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Specify a meaningful name for the profile.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Description</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Type a short description about the objective of the email server profile.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Incoming Server Location and Outgoing Server Location </p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Type the location of the incoming and outgoing email server in the format “&lt;server&gt;”.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>Credentials</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Authenticate Using</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select the method to authenticate while connecting to the specified email server. You can select one of the following:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Credentials Specified by a User or Queue</b>. If you select this option, the credentials specified in the mailbox record of a user or queue are used for sending or receiving email for the user or queue. </p>
+											<div class="alertContent">
+												<p class="notehead-end">Note </p>
+												<p class="bodyText">To ensure the credentials are secured in  Microsoft Dynamics CRM, SQL encryption is used to encrypt the credentials stored in the mailbox.</p>
+											</div>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Windows Integrated Authentication</b>. This option applies only to Exchange and SMTP email server types. If you select this option, the credentials with which the Microsoft Dynamics CRM Asynchronous Service has been configured will be used. </p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">
+												<b>Windows Credentials (Anonymous).</b> You can select this option when anonymous authentication has been enabled on the email server. This applies only to the SMTP email server type. </p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Use same settings for Outgoing</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">If you want to use the same credential settings for incoming and outgoing connections, click or tap <b>Yes</b>. </p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>Advanced</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Incoming Port</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">This field shows the port on the email server for accessing the incoming email. This field is automatically populated when you save the record.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Outgoing Port</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">This field shows the port on the email server for accessing the outgoing email. This field is automatically populated when you save the record.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Use SSL for Outgoing Connection</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Click or tap <b>Yes</b> if the email channel is on a secure channel and SSL must be used for sending email. In Microsoft Dynamics CRM (on-premises), this field is set to <b>Yes</b> by default, but the configuration database setting “AllowNonSSLEmail” allows you to override this and set the value to False.  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=313232">Read about the configuration settings</a>.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Use SSL for Incoming Connection</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Click or tap <b>Yes</b> if the email channel is on a secure channel and SSL must be used for receiving email. For Microsoft Dynamics CRM Online, this field can't be set to <b>No</b>. In Microsoft Dynamics CRM (on-premises), this field is set to <b>Yes</b> by default, but the configuration database setting “AllowNonSSLEmail” allows you to override this and set the value to False.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Incoming Authentication Protocol and Outgoing Authentication Protocol</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select a protocol to use for authentication for incoming and outgoing email.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>Additional Settings</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Process Email From</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select a date and time. Email received after the date and time will be processed by server-side synchronization for all mailboxes associated to this profile. If you set a value less than the current date, the change will be applied to all newly associated mailboxes and their earlier processed emails will be pulled.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Maximum Concurrent Connections</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Type the maximum number of simultaneous connections that can be made by CRM to the corresponding email server per mailbox. Increase the value to allow more parallel calls to Exchange to improve performance or reduce the value if there are errors on Exchange due to a large number of calls from Microsoft Dynamics CRM. The default value of this field is 10. The maximum number is considered per mailbox or per email server profile depending on whether the credentials are specified in a mailbox or email server profile.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Minimum Polling Intervals in Minutes</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Type the minimum polling interval, in minutes, for mailboxes that are associated with this email server profile. The polling interval determines how often server-side synchronization polls your mailboxes for new email messages. </p>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Save</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the left side of the email server profile form, under <b>Common</b>, click or tap <b>Mailboxes</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Add New Forward Mailbox</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Complete the details in the mailbox form and click or tap <b>Save</b>. See how to  <a href="ui_sss_create_forward_mailboxes.htm">Create forward mailboxes or edit mailboxes</a>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Save</b>.</p>
+					</li>
+				</ol>
+			</div>
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Add mailboxes to an email server profile</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure you have the System Administrator security role or equivalent permissions in Microsoft Dynamics CRM.</p>
+						<a class="expand" id="tID0EBAEAAABAA" href="." onclick="expandCollapse('ID0EBAEAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAEAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Check your security role</p>
+						</a>
+						<div id="dID0EBAEAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Follow the steps in  <a href="how_persopt_ViewProfile.htm">View your user profile</a>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Don't have the correct permissions? Contact your system administrator.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Follow the steps for the app you're using.</p>
+						<a class="expand" id="tID0ECADAAABAA" href="." onclick="expandCollapse('ID0ECADAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECADAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using the CRM web application</p>
+						</a>
+						<div id="dID0ECADAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+									<p class="bodyText">
+										<b>Settings</b> appears on the nav bar.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Email Configuration</b> &gt; <b>Mailboxes</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBADAAABAA" href="." onclick="expandCollapse('ID0EBADAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBADAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using CRM for Outlook</p>
+						</a>
+						<div id="dID0EBADAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the Navigation Pane, expand your organization if necessary, and then click or tap <b>Settings</b> &gt; <b>System</b> &gt; <b>Email Configuration</b> &gt; <b>Mailboxes</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Select all the mailboxes that you want to associate with the email server profile, and click or tap <b>Edit</b>. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the <b>Change Multiple Records</b> form, under <b>Synchronization Method</b>, in <b>Server Profile</b>, select the email server profile that you want to add the mailboxes to, and then click or tap <b>Change</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Alternately, select multiple mailboxes, and click or tap <b>More Commands (...)</b> &gt; <b>Apply Default Email Settings</b>, and then click or tap OK. The mailboxes will be added to the email server profile that's selected as the default in the <b>System Settings</b> dialog box. Read about setting default email settings in  <a href="ui_set_SystemSet_dlg_email.htm">System Settings dialog box - Email tab</a>.</p>
+					</li>
+				</ol>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_set_up_server_side_synchronization.htm">Set up email through server-side synchronization</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_create_forward_mailboxes.htm">Create forward mailboxes or edit mailboxes</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

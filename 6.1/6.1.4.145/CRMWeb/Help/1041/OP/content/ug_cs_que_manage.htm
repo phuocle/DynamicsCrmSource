@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>チーム テンプレートについて</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">チーム テンプレートについて</h1>
+			<p class="bodyText">Microsoft Dynamics CRM のチームの使用はオプションですが、チームは、情報を共有し、全部署のユーザー グループと共同作業するための簡便な手段を提供します。"チーム" はユーザーのグループです。グループとして、レコードに関する情報を追跡して、より効率の良い協調的な方法で割り当てられたタスクを実行できます。1 つのチームは 1 つの部署にのみ所属すると同時に、他の部署のユーザーを含めることができます。一人のユーザーを複数のチームに関連付けることができます。</p>
+			<p class="bodyText">協調した作業ができるチームには、所有者とアクセスの 2 つの種類があります。</p>
+			<ul class="bulletedlist">
+				<li class="bulletedlistitem">
+					<p class="bodyText">所有者チームはレコードを所有し、チームにセキュリティ ロールが割り当てられています。チームの特権は、セキュリティ ロールによって定義されます。チームのセキュリティ ロールによって得られる特権に加えて、ユーザーは個々のセキュリティ ロールによって定義される特権と、メンバーとなっている他のチームの役割によって定義される特権を所有します。チームは、チームが所有するレコードに対するフル アクセス権を所有しています。</p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">アクセス チームは独自のレコードを所有していないし、チームにセキュリティ ロールが割り当てられていません。ユーザーは、個々のセキュリティ ロールによって定義される特権と、メンバーとなっている他のチームのロールによって定義される特権を所有します。レコードはアクセス チームで共有され、チーム メンバーには、そのレコードに対する、読み取り、書き込み、または追加などのアクセス権が付与されます。</p>
+				</li>
+			</ul>
+			<p class="bodyText">アクセス チームは、手動 (ユーザー作成) で、または自動的 (システム管理) に作成できます。複数のレコードを、ユーザー作成のアクセス チームと共有できます。システム管理チームは特定のレコードについて作成され、他のレコードをこのチームで共有することはできません。システム管理チームの場合、システムがチームを作成するために使用するチーム テンプレートを用意する必要があります。このテンプレートで、チーム作成時にチーム メンバーに付与する、エンティティの種類とレコードに対するアクセス権を定義します。チーム テンプレートは、指定したエンティティのすべてのレコード フォーム上に、一覧として表示されます。最初のユーザーを一覧に追加すると、このレコードに対する実際のアクセス チームが作成されます。この一覧を使用して、チームのメンバーを追加または削除できます。チーム テンプレートは、伝播規則に従って、指定したエンティティの種類および関連するエンティティのレコードに適用されます。チーム メンバーにレコードに対する別のアクセス権を付与するために、それぞれが異なるアクセス権を指定する、複数のチーム テンプレートを用意できます。たとえば、読み取りアクセス権を持つ取引先企業エンティティ用のチーム テンプレートを作成できます。これにより、チーム メンバーが、指定した取引先企業を表示できます。同じ取引先企業へのさらなるアクセスが必要な別のチームに対して、読み取り、書き込み、共有、およびその他のアクセス権を持つチーム テンプレートを作成できます。</p>
+			<p class="bodyText">システム管理アクセス チームに対してのみ有効なエンティティを、テンプレートで指定できます。</p>
+			<p class="bodyText">チーム テンプレートのアクセス権を変更する場合、この変更は、新しいシステム管理アクセス チームにのみ適用されます。既存のチームは影響を受けません。</p>
+			<p class="bodyText">チーム テンプレートを作成する方法、システム管理されたアクセス チームのエンティティを有効にする方法、およびチーム テンプレートを追加するためのエンティティ フォームをカスタマイズする方法については、「 <a href="ug_com_Email.htm">チーム テンプレートを作成し、エンティティ フォームに追加</a>」を参照してください。</p>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ug_com_Email.htm">チーム テンプレートを作成し、エンティティ フォームに追加</a>
+			</p>
+			<p class="relateditemlink">Work with Teams</p>
+			<p class="relateditemlink">
+				<a href=".htm">チームの作成または編集</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

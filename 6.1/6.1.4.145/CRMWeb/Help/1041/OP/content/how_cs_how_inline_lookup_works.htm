@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>インライン検索のしくみ</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">インライン検索のしくみ</h1>
+			<p class="bodyText">Microsoft Dynamics CRMでインライン検索を使用すると、検索するレコードが迅速に見つかります。既定では、検索ボタンをクリックまたはタップすると、特定のレコードの種類について 10 件の結果が表示されます。</p>
+			<p class="bodyText">インライン検索フィールドを使用すると、キーワードを使用してレコードを検索できます。インライン検索では、キーワードを入力していくと、一覧に最近使用 (検索、更新または作成) したレコードが表示されます。特定のテキスト入力するか検索フィールドから選択すると、1 つだけ合致するレコードが見つかった場合、検索は自動的に決定されます。複数のレコードが合致する場合、一致の結果の一覧が表示され、その一覧からレコードを選択できます。</p>
+			<div class="alertContent">
+				<p class="notehead-end">メモ</p>
+				<p class="bodyText">最近使用したレコードは、従来なフォームでのみ表示されます。</p>
+			</div>
+			<p class="bodyText">
+				<b>[Enter]</b> キーを押すか検索ボタンをクリックまたはタップすると、キーワードに合う検索結果が表示されます。Microsoft Dynamics CRM は、エンティティの簡易検索ビューまたはエンティティの既定ビューとして設定されたビューに定義された列のキーワードを検索することにより、一致するレコードを検索します。検索の検索結果には、エンティティの主フィールドを含む、エンティティの検索ダイアログ ビューまたはその検索の既定のビューとして設定されたビューで定義された最初の 3 列を示します。詳細:  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkId=316364">ビューの作成と編集</a></p>
+			<p class="bodyText">
+				<b>[顧客の検索]</b> などの検索フィールドが複数のレコードの種類を指す場合、顧客は取引先企業または取引先担当者のいずれかである場合があるため、インライン検索結果には取引先企業と取引先担当者に対する結果が含まれています。<b>[他のレコードの検索]</b> をクリックまたはタップして、標準の <b>[レコードの検索]</b> ダイアログ ボックスをオープンし、さらにレコードを検索することもできます。</p>
+			<p class="bodyText">レコードが見つからない場合、インライン検索領域で<b>[新規]</b> をクリックまたはタップすることで、新しいレコードを作成できます。これで、新しいレコードが迅速に作成できます。</p>
+			<div class="alertContent">
+				<p class="notehead-end">メモ</p>
+				<p class="bodyText">従来のフォームの検索フィールドには、新しいレコードを作成するオプションはありません。</p>
+			</div>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

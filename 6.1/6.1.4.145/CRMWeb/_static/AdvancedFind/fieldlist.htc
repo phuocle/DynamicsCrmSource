@@ -1,0 +1,19 @@
+<public:component lightweight="true" tagName=FieldList>
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:event name="onchange" id="OnChangeHandler"/>
+<public:property name="EntityName"/>
+<public:property name="Container"/>
+<public:property name="ParentControl" />
+<public:property name="Value" get="GetValue" put="SetValue"/>
+<public:property name="DataType" get="GetDataType"/>
+<public:property name="RelatedEntitiesVisible"/>
+<public:property name="Width"/>
+<public:method name="GetFieldList" />
+<public:method name="SetMode"/>
+<public:method name="SetFocus"/>
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+var _oAutoShow=null,_sValue=null;Sys.Application.add_load(Init);var _bInitComplete=false;Sys.Application.add_load(SysInit);function SysInit(){Init()}function InitOnDocReady(){Sys.Application.get_isInitialized()&&!_bInitComplete&&Init()}function Init(){element.innerHTML="<Crm:AutoShow id='"+ParentControl.id+"FLD'/>";_bInitComplete=true;_oAutoShow=element.firstChild;var innerControlId=_oAutoShow.id+"_select";with(_oAutoShow){Container=element.Container;InnerControlHtml="<select id='"+innerControlId+"' class='ms-crm-SelectBox' Sort='ascending'>"+(IsNull(EntityName)||element.EntityName==""?"":RetrieveFieldList(EntityName))+"</select>";oninitcomplete=OnAutoShowInit;onchange=FieldChanged;DefaultText=LOCID_AF_SELECTFIELDENTITY;if(!IsNull(this.Width))_oAutoShow.Width=this.Width}}function OnAutoShowInit(){SetValue(_sValue);_bFocus&&SetFocus();SetMode(Container.Mode)}var _bFocus=false;function SetFocus(){_bFocus=true;if(_bInitComplete){_oAutoShow.SetFocus();_bFocus=false}}function GetFieldList(){return _oAutoShow.InnerControl}function GetValue(){return _sValue}function SetValue(sValue){_sValue=sValue;if(_bInitComplete){_oAutoShow.Value=_sValue;!IsNull(sValue)&&RaiseFieldChangedEvent(true,FIELD_GROUP)}}function GetDataType(){var oFieldList=GetFieldList();return oFieldList.selectedIndex!=-1?oFieldList.options[oFieldList.selectedIndex].datatype:null}function RaiseFieldChangedEvent(bRaisedByCode,sGrpType){var oEvent=this.createEventObject(),oArgs={};oArgs.bRaisedByCode=bRaisedByCode;oArgs.oFieldList=GetFieldList();oArgs.sGrpType=sGrpType;oEvent.oArgs=oArgs;OnChangeHandler.fire(oEvent);return oEvent}function FieldChanged(){var o=GetFieldList();if(o.selectedIndex==-1)return;var sOldValue=_sValue;_sValue=event.srcElement.Value;o=o.options[o.selectedIndex];var oEvent=RaiseFieldChangedEvent(false,o.parentElement.id);if(oEvent.returnValue==false){event.srcElement.Value=sOldValue;_sValue=sOldValue}}function RetrieveFieldList(sEntity){var sFieldList=Container.ClientCache.GetElement("Field",sEntity),sEntityList=Container.ClientCache.GetElement("Entity",sEntity);sFieldList="<optgroup id='"+FIELD_GROUP+"' label=\""+LOCID_AF_OPTGRPFIELDS+'">'+(IsNull(sFieldList)?"":sFieldList)+"</optgroup>";sEntityList="<optgroup id='"+ENTITY_GROUP+"' label=\""+LOCID_AF_OPTGRPRELATED+'">'+(IsNull(sEntityList)?"":sEntityList)+"</optgroup>";return RelatedEntitiesVisible?sFieldList+sEntityList:sFieldList}function SetMode(iMode){_oAutoShow.Disabled=iMode==Container.ModesEnum.Simple;_oAutoShow.SetMode(iMode)}
+</script>
+</html>
+</public:component>

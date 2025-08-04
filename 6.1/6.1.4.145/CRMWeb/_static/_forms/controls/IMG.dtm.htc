@@ -1,0 +1,9 @@
+<public:component lightweight="true">
+<public:attach event="onclick" onevent="Launch()"/>
+<public:attach event="onmouseover" onevent="On()"/>
+<public:attach event="onmouseout" onevent="Off()"/>
+<public:attach event="ondocumentready" onevent="init()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+function init(){if(disabled)style.cursor="default"}function Launch(){var oInput=this.parentElement.previousSibling.firstChild;oInput.focus();var oDateControl=this.parentElement.parentElement.parentElement.parentElement,oDate=oDateControl.DataValue;if(IsNull(oDate))oDate=LocalDateTimeNow();InitCalendar(USER_DATE_FORMATSTRING!=null?USER_DATE_FORMATSTRING:parent.USER_DATE_FORMATSTRING,parent.USER_DATE_SEPARATOR!=null?USER_DATE_SEPARATOR:parent.USER_DATE_SEPARATOR,parent.ORG_DATE_START_DAY!=null?ORG_DATE_START_DAY:parent.ORG_DATE_START_DAY,null,null);LaunchCalendar(oInput,oDate,1,false,null,null,HILITE_DAY,oDate)}function On(){src="/_imgs/btn_on_Cal.gif"}function Off(){src="/_imgs/btn_off_Cal.gif"}
+</script>
+</public:component>

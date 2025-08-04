@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Define support terms for customers using contracts</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script language="JavaScript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Define support terms for customers using contracts</h1>
+			<p class="bodyText">Maintain service level agreements (SLAs) and terms and conditions for providing services to your customers by using contracts in Microsoft Dynamics CRM. Use contracts to define information, such as the duration of the contract, how many case incidents or minutes of service is purchased, what hours and days of the week coverage is available, and the service entitlements.</p>
+			<p class="bodyText" />
+			<h2 class="heading2">Create contracts</h2>
+			<div class="l2">
+				<p class="bodyText">You can create new contracts based on contract templates. These define some information, such as allotment types, before you actually write a contract. You can create contracts only for existing accounts and contacts. </p>
+				<p class="bodyText">A contract has the status of <em class="emphasis">draft</em> until it is invoiced. Each new contract is assigned a unique ID that cannot be used for another contract, unless the contract is being renewed. When renewing a contract, the contract is saved as a draft with an ID that corresponds to the original contract. </p>
+				<p class="bodyText" />
+			</div>
+			<h2 class="heading2">Invoice and activate a contract</h2>
+			<div class="l2">
+				<p class="bodyText">After a contract has at least one contract line and a billing address, you can mark the contract status as invoiced. Changing the status implies that you have accepted the contract. </p>
+				<p class="bodyText">Microsoft Dynamics CRM does not automatically invoice the customer or create an invoice record unless your business has integrated Microsoft Dynamics CRM with a Microsoft BackOffice product. </p>
+				<p class="bodyText">The contract status is <em class="emphasis">invoiced</em> until the start date has passed. Then, the status changes to <em class="emphasis">active</em>. You cannot delete a contract with an invoiced or active status.</p>
+				<p class="bodyText" />
+			</div>
+			<h2 class="heading2">Renew a contract</h2>
+			<div class="l2">
+				<p class="bodyText">After passing the end date of the contract, the contract is expired and cases cannot be opened against it. To open a new case against the contract, renew the contract. </p>
+				<p class="bodyText">When you renew a contract, a draft copy of the contract is created with the same ID number as the original, expired contract. You can make modifications to the new draft contract, including adding or modifying contract lines. You have the option of including contract lines that were canceled from the original contract. After the original contract expires, invoice and activate the renewed contract.</p>
+				<p class="bodyText">A renewed contract has the same ID number as the original contract, reflecting the renewal action in the contract's history. The start date is automatically set to the day after the existing contract expires. While Microsoft Dynamics CRM gives the renewed contract the same duration as the original contract automatically, you can change the duration manually.</p>
+				<p class="bodyText" />
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="source_cs_contract_Create.htm">Create or edit a contract</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="source_set_ContractTemp_create.htm">Create or edit a contract template</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ug_cs_Overview.htm">Support customer service with Microsoft Dynamics CRM</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

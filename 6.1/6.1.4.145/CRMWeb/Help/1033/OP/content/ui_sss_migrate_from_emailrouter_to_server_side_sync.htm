@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Migrate settings from the Email Router to server-side synchronization</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Migrate settings from the Email Router to server-side synchronization</h1>
+			<p class="bodyText">Server-side synchronization is a method in Microsoft Dynamics CRM that you can use to set up email and synchronize your appointments, contacts, and tasks. With server-side synchronization, you can centrally manage mailboxes and profiles, and also track errors about email processing. If your organization is currently using the Email Router, but wants to start using server-side synchronization instead, you can easily migrate the configuration settings from the Email Router to server-side synchronization to set up email. </p>
+			<div class="alertContent">
+				<p class="notehead-end">Note </p>
+				<p class="bodyText">An organization can only use either the Email Router or server-side synchronization to process email. You can define what to use in the <b>Email</b> tab of System Settings in Microsoft Dynamics CRM. If you select server-side synchronization, the Email Router stops functioning for the organization. </p>
+				<p class="bodyText">To switch from Microsoft Office Outlook synchronization to server-side synchronization, simply change the synchronization method in mailbox records to server-side synchronization. That's all you have to do to make the change from Outlook synchronization to server-side synchronization.</p>
+			</div>
+			<p class="bodyText">During migration, the old incoming and outgoing profiles for the user and queue mailboxes are merged to create a new email server profile that will be used by server-side synchronization. </p>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Before you start, make sure you have Read, Write, and Create privileges on the Mailbox entity and Read, Write, and Create privileges on the Email Server Profile entity. </p>
+						<a class="expand" id="tID0EBAHABABAA" href="." onclick="expandCollapse('ID0EBAHABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAHABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Check your security role</p>
+						</a>
+						<div id="dID0EBAHABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Follow the steps in  <a href="how_persopt_ViewProfile.htm">View your user profile</a>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Don't have the correct permissions? Contact your system administrator.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Follow the steps for the app you're using.</p>
+						<a class="expand" id="tID0ECAGABABAA" href="." onclick="expandCollapse('ID0ECAGABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECAGABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using the CRM web application</p>
+						</a>
+						<div id="dID0ECAGABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+									<p class="bodyText">
+										<b>Settings</b> appears on the nav bar.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Email Configuration</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBAGABABAA" href="." onclick="expandCollapse('ID0EBAGABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAGABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using CRM for Outlook</p>
+						</a>
+						<div id="dID0EBAGABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the Navigation Pane, expand your organization if necessary, and then click or tap <b>Settings</b> &gt; <b>System</b> &gt; <b>Email Configuration</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Migrate Email Router Data</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the Email Router Data Migration wizard, in the three text boxes, click or tap <b>Browse</b>, and select the three files specified at the top of the page in the same order. If you must migrate data from multiple email routers, click or tap <b>More Email Routers</b> and again select the three files. You can migrate data from up to four email routers at once.</p>
+						<p class="bodyText" />
+						<div class="alertContent">
+							<p class="notehead-end">Note </p>
+							<p class="bodyText">The maximum combined size of all the files from all the email routers that you can upload at a time is 32 MB. </p>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Next</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the <b>Select Email Server Profiles to Migrate</b> page, the incoming and outgoing email server profiles of the Email Router are listed and the details about the new email server profile for server-side synchronization is also listed. If you want to migrate the profile, in <b>Migrate Server Profile</b>, click or tap <b>Yes</b>. </p>
+						<p class="bodyText">In the Email Router, incoming and outgoing email server profiles are different and each user or queue is associated with both incoming and outgoing profiles. However, with server-side synchronization, the incoming and outgoing settings are defined in a single profile and a user or queue is associated with this profile. Thus, when you migrate the data, the data from two server profiles is combined into one. The <b>Select Email Server Profiles to Migrate</b> page shows details about the new email server profile that will be created. Read more about  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkId=313223">merging email server profiles for migration</a>. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Next</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">The <b>Migration Review Summary</b> page shows what data will be migrated. Click or tap <b>Start</b>.</p>
+					</li>
+				</ol>
+				<p class="bodyText">After the migration is complete, you'll see the summary of the migrated data. You must test the email configuration for the mailboxes after the migration is complete. To be able to start email processing through server-side synchronization, in the <b>Process Email From</b> field in the <b>System Settings</b> dialog box, select <b>Server-Side Synchronization</b>. Read how to configure  <a href="ui_set_SystemSet_dlg_email.htm">System Settings dialog box - Email tab</a>.</p>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_test_configuration_and_enable_mailboxes.htm">Test email configuration of mailboxes</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_email_error_tracking.htm">Monitor email processing errors</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

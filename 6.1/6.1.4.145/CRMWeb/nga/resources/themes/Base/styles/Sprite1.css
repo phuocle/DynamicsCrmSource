@@ -1,0 +1,2277 @@
+.csimg
+{
+    padding:0;
+    border:none;
+    background-repeat:no-repeat;
+}
+
+.image-brokenimage-png
+{
+    background:url('../images/brokenimage.png');
+    width:200px;
+    height:200px;
+}
+.image-thinking16-gif
+{
+    background:url('../images/thinking16.gif');
+    width:16px;
+    height:16px;
+}
+.image-thinking24-gif
+{
+    background:url('../images/thinking24.gif');
+    width:24px;
+    height:24px;
+}
+.image-thinking-gif
+{
+    background:url('../images/thinking.gif');
+    width:60px;
+    height:60px;
+}
+.image-loading_blackbg-gif
+{
+    background:url('../images/loading_blackbg.gif');
+    width:16px;
+    height:16px;
+}
+.image-loading_whitebg-gif
+{
+    background:url('../images/loading_whitebg.gif');
+    width:16px;
+    height:16px;
+}
+.image-pin-png
+{
+    background:url('../images/pin.png');
+    width:21px;
+    height:39px;
+}
+.image-pincurrentlocation-png
+{
+    background:url('../images/pincurrentlocation.png');
+    width:21px;
+    height:39px;
+}
+.image-doughboy-png
+{
+    background:url('../images/doughboy.png');
+    width:48px;
+    height:48px;
+}
+.image-doughboylarge-png
+{
+    background:url('../images/doughboylarge.png');
+    width:96px;
+    height:96px;
+}
+.image-doughboymlarge-png
+{
+    background:url('../images/doughboymlarge.png');
+    width:64px;
+    height:64px;
+}
+.image-doughboydl-png
+{
+    background:url('../images/doughboydl.png');
+    width:48px;
+    height:48px;
+}
+.image-doughboydllarge-png
+{
+    background:url('../images/doughboydllarge.png');
+    width:96px;
+    height:96px;
+}
+.image-doughboydlmlarge-png
+{
+    background:url('../images/doughboydlmlarge.png');
+    width:64px;
+    height:64px;
+}
+.image-arrow_staticleft_16-png
+{
+    background:url('../images/arrow_staticleft_16.png');
+    width:16px;
+    height:16px;
+}
+.image-arrow_hoverleft_16-png
+{
+    background:url('../images/arrow_hoverleft_16.png');
+    width:16px;
+    height:16px;
+}
+.image-arrow_staticright_16-png
+{
+    background:url('../images/arrow_staticright_16.png');
+    width:16px;
+    height:16px;
+}
+.image-arrow_hoverright_16-png
+{
+    background:url('../images/arrow_hoverright_16.png');
+    width:16px;
+    height:16px;
+}
+.image-arrow_staticup_16-png
+{
+    background:url('../images/arrow_staticup_16.png');
+    width:16px;
+    height:16px;
+}
+.image-arrow_hoverup_16-png
+{
+    background:url('../images/arrow_hoverup_16.png');
+    width:16px;
+    height:16px;
+}
+.image-arrow_staticdown_16-png
+{
+    background:url('../images/arrow_staticdown_16.png');
+    width:16px;
+    height:16px;
+}
+.image-arrow_hoverdown_16-png
+{
+    background:url('../images/arrow_hoverdown_16.png');
+    width:16px;
+    height:16px;
+}
+
+.image-audio-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -0px -0px;
+}
+.image-blockedfile-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -102px -0px;
+}
+.image-calendar_item-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -204px -0px;
+}
+.image-doc-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -306px -0px;
+}
+.image-file-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -0px -102px;
+}
+.image-image_preview-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -102px -102px;
+}
+.image-mail_item-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -204px -102px;
+}
+.image-one-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -306px -102px;
+}
+.image-pdf-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -0px -204px;
+}
+.image-ppt-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -102px -204px;
+}
+.image-vsd-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -204px -204px;
+}
+.image-xls-png
+{
+    width:101px;
+    height:101px;
+    background:url('../images/sprite1.png') -306px -204px;
+}
+.image-avlblvbarlarge-png
+{
+    width:11px;
+    height:97px;
+    background:url('../images/sprite1.png') -408px -204px;
+}
+.image-awayvbarlarge-png
+{
+    width:11px;
+    height:97px;
+    background:url('../images/sprite1.png') -420px -204px;
+}
+.image-blockedvbarlarge-png
+{
+    width:11px;
+    height:97px;
+    background:url('../images/sprite1.png') -432px -204px;
+}
+.image-busyvbarlarge-png
+{
+    width:11px;
+    height:97px;
+    background:url('../images/sprite1.png') -0px -306px;
+}
+.image-dndvbarlarge-png
+{
+    width:11px;
+    height:97px;
+    background:url('../images/sprite1.png') -12px -306px;
+}
+.image-offlinevbarlarge-png
+{
+    width:11px;
+    height:97px;
+    background:url('../images/sprite1.png') -24px -306px;
+}
+.image-unkwnvbarlarge-png
+{
+    width:11px;
+    height:97px;
+    background:url('../images/sprite1.png') -36px -306px;
+}
+.image-avlblvbarmlarge-png
+{
+    width:7px;
+    height:65px;
+    background:url('../images/sprite1.png') -48px -306px;
+}
+.image-awayvbarmlarge-png
+{
+    width:7px;
+    height:65px;
+    background:url('../images/sprite1.png') -56px -306px;
+}
+.image-blockedvbarmlarge-png
+{
+    width:7px;
+    height:65px;
+    background:url('../images/sprite1.png') -64px -306px;
+}
+.image-busyvbarmlarge-png
+{
+    width:7px;
+    height:65px;
+    background:url('../images/sprite1.png') -72px -306px;
+}
+.image-dndvbarmlarge-png
+{
+    width:7px;
+    height:65px;
+    background:url('../images/sprite1.png') -80px -306px;
+}
+.image-offlinevbarmlarge-png
+{
+    width:7px;
+    height:65px;
+    background:url('../images/sprite1.png') -88px -306px;
+}
+.image-unkwnvbarmlarge-png
+{
+    width:7px;
+    height:65px;
+    background:url('../images/sprite1.png') -96px -306px;
+}
+.image-checkmark-png
+{
+    width:54px;
+    height:54px;
+    background:url('../images/sprite1.png') -104px -306px;
+}
+.image-lightcheckmark-png
+{
+    width:54px;
+    height:54px;
+    background:url('../images/sprite1.png') -159px -306px;
+}
+.image-edit-png
+{
+    width:50px;
+    height:50px;
+    background:url('../images/sprite1.png') -214px -306px;
+}
+.image-bell-png
+{
+    width:49px;
+    height:49px;
+    background:url('../images/sprite1.png') -265px -306px;
+}
+.image-info-png
+{
+    width:49px;
+    height:49px;
+    background:url('../images/sprite1.png') -315px -306px;
+}
+.image-pause-png
+{
+    width:49px;
+    height:49px;
+    background:url('../images/sprite1.png') -365px -306px;
+}
+.image-play-png
+{
+    width:49px;
+    height:49px;
+    background:url('../images/sprite1.png') -0px -404px;
+}
+.image-search-png
+{
+    width:49px;
+    height:49px;
+    background:url('../images/sprite1.png') -50px -404px;
+}
+.image-avlblvbar-png
+{
+    width:10px;
+    height:49px;
+    background:url('../images/sprite1.png') -100px -404px;
+}
+.image-awayvbar-png
+{
+    width:10px;
+    height:49px;
+    background:url('../images/sprite1.png') -111px -404px;
+}
+.image-blockedvbar-png
+{
+    width:10px;
+    height:49px;
+    background:url('../images/sprite1.png') -122px -404px;
+}
+.image-busyvbar-png
+{
+    width:10px;
+    height:49px;
+    background:url('../images/sprite1.png') -133px -404px;
+}
+.image-dndvbar-png
+{
+    width:10px;
+    height:49px;
+    background:url('../images/sprite1.png') -144px -404px;
+}
+.image-offlinevbar-png
+{
+    width:10px;
+    height:49px;
+    background:url('../images/sprite1.png') -155px -404px;
+}
+.image-unkwnvbar-png
+{
+    width:10px;
+    height:49px;
+    background:url('../images/sprite1.png') -166px -404px;
+}
+.image-callback-png
+{
+    width:46px;
+    height:46px;
+    background:url('../images/sprite1.png') -177px -404px;
+}
+.image-pin_active-png
+{
+    width:26px;
+    height:40px;
+    background:url('../images/sprite1.png') -224px -404px;
+}
+.image-pin_inactive-png
+{
+    width:26px;
+    height:40px;
+    background:url('../images/sprite1.png') -251px -404px;
+}
+.image-avlbllarge-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -278px -404px;
+}
+.image-awaylarge-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -310px -404px;
+}
+.image-blockedlarge-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -342px -404px;
+}
+.image-busylarge-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -374px -404px;
+}
+.image-call_touch-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -406px -404px;
+}
+.image-chat-presence-error-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -0px -454px;
+}
+.image-chat-presence-offline-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -32px -454px;
+}
+.image-chat-presence-online-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -64px -454px;
+}
+.image-collapse-gif
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -96px -454px;
+}
+.image-dndlarge-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -128px -454px;
+}
+.image-expand-gif
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -160px -454px;
+}
+.image-im_touch-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -192px -454px;
+}
+.image-offlinelarge-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -224px -454px;
+}
+.image-schedule_touch-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -256px -454px;
+}
+.image-send_touch-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -288px -454px;
+}
+.image-unkwnlarge-png
+{
+    width:31px;
+    height:31px;
+    background:url('../images/sprite1.png') -320px -454px;
+}
+.image-accept-png
+{
+    width:30px;
+    height:30px;
+    background:url('../images/sprite1.png') -352px -454px;
+}
+.image-decline-png
+{
+    width:30px;
+    height:30px;
+    background:url('../images/sprite1.png') -383px -454px;
+}
+.image-tentative-png
+{
+    width:30px;
+    height:30px;
+    background:url('../images/sprite1.png') -414px -454px;
+}
+.image-accept_time_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -0px -486px;
+}
+.image-affordance-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -30px -486px;
+}
+.image-affordance-mail_inline_mo-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -60px -486px;
+}
+.image-attachments_mail_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -90px -486px;
+}
+.image--black-add-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -120px -486px;
+}
+.image-black-affordance-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -150px -486px;
+}
+.image--black-back-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -180px -486px;
+}
+.image--black-basecircle-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -210px -486px;
+}
+.image--black-camera-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -240px -486px;
+}
+.image-black-cancel-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -270px -486px;
+}
+.image--black-cancel-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -300px -486px;
+}
+.image--black-check-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -330px -486px;
+}
+.image--black-delete-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -360px -486px;
+}
+.image--black-download-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -390px -486px;
+}
+.image--black-edit-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -420px -486px;
+}
+.image--black-favsaddto-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -0px -516px;
+}
+.image--black-ff-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -30px -516px;
+}
+.image--black-flag-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -60px -516px;
+}
+.image--black-flagfollowup-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -90px -516px;
+}
+.image--black-folder-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -120px -516px;
+}
+.image--black-gotoday-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -150px -516px;
+}
+.image--black-heart-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -180px -516px;
+}
+.image--black-i-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -210px -516px;
+}
+.image--black-linkcontacts-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -240px -516px;
+}
+.image--black-mail-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -270px -516px;
+}
+.image--black-microphone-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -300px -516px;
+}
+.image--black-minus-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -330px -516px;
+}
+.image--black-month-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -360px -516px;
+}
+.image--black-move-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -390px -516px;
+}
+.image--black-next-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -420px -516px;
+}
+.image--black-parent-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -0px -546px;
+}
+.image--black-pause-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -30px -546px;
+}
+.image--black-phone-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -60px -546px;
+}
+.image--black-play-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -90px -546px;
+}
+.image--black-questionmark-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -120px -546px;
+}
+.image--black-refresh-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -150px -546px;
+}
+.image--black-reply-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -180px -546px;
+}
+.image--black-rew-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -210px -546px;
+}
+.image--black-save-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -240px -546px;
+}
+.image--black-search-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -270px -546px;
+}
+.image-black-send-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -300px -546px;
+}
+.image--black-settings-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -330px -546px;
+}
+.image--black-share-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -360px -546px;
+}
+.image--black-tick-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -390px -546px;
+}
+.image--black-upload-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -420px -546px;
+}
+.image--black-video-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -0px -576px;
+}
+.image--black-view-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -30px -576px;
+}
+.image-cancelmulti_mail_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -60px -576px;
+}
+.image-close-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -90px -576px;
+}
+.image-decline_time_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -120px -576px;
+}
+.image-delete_time_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -150px -576px;
+}
+.image-edit-grey-circle-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -180px -576px;
+}
+.image-ellipses-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -210px -576px;
+}
+.image-getdirections_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -240px -576px;
+}
+.image-getdirections_taskbar_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -270px -576px;
+}
+.image-miniatures_affordance_icon-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -300px -576px;
+}
+.image-nocircle_accept_time_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -330px -576px;
+}
+.image-nocircle_decline_time_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -360px -576px;
+}
+.image-nocircle_tentative_time_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -390px -576px;
+}
+.image-readingpane-multiselect-cancel-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -420px -576px;
+}
+.image-readingpane-multiselect-delete-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -0px -606px;
+}
+.image-readingpane-multiselect-flag-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -30px -606px;
+}
+.image-readingpane-multiselect-move-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -60px -606px;
+}
+.image-saveevent-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -90px -606px;
+}
+.image-send_time_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -120px -606px;
+}
+.image-tentative_time_inline_to-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -150px -606px;
+}
+.image--white-add-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -180px -606px;
+}
+.image--white-back-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -210px -606px;
+}
+.image--white-basecircle-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -240px -606px;
+}
+.image--white-camera-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -270px -606px;
+}
+.image--white-cancel-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -300px -606px;
+}
+.image--white-check-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -330px -606px;
+}
+.image--white-delete-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -360px -606px;
+}
+.image--white-download-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -390px -606px;
+}
+.image--white-edit-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -420px -606px;
+}
+.image--white-favsaddto-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -0px -636px;
+}
+.image--white-ff-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -30px -636px;
+}
+.image--white-flag-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -60px -636px;
+}
+.image--white-flagfollowup-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -90px -636px;
+}
+.image--white-folder-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -120px -636px;
+}
+.image--white-gotoday-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -150px -636px;
+}
+.image--white-heart-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -180px -636px;
+}
+.image--white-i-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -210px -636px;
+}
+.image--white-linkcontacts-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -240px -636px;
+}
+.image--white-mail-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -270px -636px;
+}
+.image--white-microphone-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -300px -636px;
+}
+.image--white-minus-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -330px -636px;
+}
+.image--white-month-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -360px -636px;
+}
+.image--white-move-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -390px -636px;
+}
+.image--white-next-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -420px -636px;
+}
+.image--white-nocircle-overflowdots-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -0px -666px;
+}
+.image--white-parent-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -30px -666px;
+}
+.image--white-pause-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -60px -666px;
+}
+.image--white-phone-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -90px -666px;
+}
+.image--white-play-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -120px -666px;
+}
+.image--white-questionmark-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -150px -666px;
+}
+.image--white-refresh-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -180px -666px;
+}
+.image--white-reply-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -210px -666px;
+}
+.image--white-rew-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -240px -666px;
+}
+.image--white-save-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -270px -666px;
+}
+.image--white-settings-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -300px -666px;
+}
+.image--white-share-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -330px -666px;
+}
+.image--white-tick-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -360px -666px;
+}
+.image--white-upload-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -390px -666px;
+}
+.image--white-video-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -420px -666px;
+}
+.image--white-view-png
+{
+    width:29px;
+    height:29px;
+    background:url('../images/sprite1.png') -0px -696px;
+}
+.image-respond-png
+{
+    width:30px;
+    height:28px;
+    background:url('../images/sprite1.png') -30px -696px;
+}
+.image-mark-read-png
+{
+    width:28px;
+    height:28px;
+    background:url('../images/sprite1.png') -61px -696px;
+}
+.image-mark-unread-png
+{
+    width:28px;
+    height:28px;
+    background:url('../images/sprite1.png') -90px -696px;
+}
+.image--white-search-png
+{
+    width:28px;
+    height:28px;
+    background:url('../images/sprite1.png') -119px -696px;
+}
+.image-mapgetdirectionsdark-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -148px -696px;
+}
+.image-mapgetdirectionsdarkhover-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -176px -696px;
+}
+.image-mapgetdirectionslight-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -204px -696px;
+}
+.image-mapgetdirectionslighthover-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -232px -696px;
+}
+.image-mapshowcurrentlocationdark-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -260px -696px;
+}
+.image-mapshowcurrentlocationdarkhover-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -288px -696px;
+}
+.image-mapshowcurrentlocationlight-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -316px -696px;
+}
+.image-mapshowcurrentlocationlighthover-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -344px -696px;
+}
+.image-mapshowtrafficdark-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -372px -696px;
+}
+.image-mapshowtrafficdarkhover-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -400px -696px;
+}
+.image-mapshowtrafficlight-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -0px -726px;
+}
+.image-mapshowtrafficlighthover-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -28px -726px;
+}
+.image-microphone-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -56px -726px;
+}
+.image-swipe-delete-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -84px -726px;
+}
+.image-swipe-flagged-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -112px -726px;
+}
+.image-swipe-read-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -140px -726px;
+}
+.image-swipe-unread-png
+{
+    width:27px;
+    height:27px;
+    background:url('../images/sprite1.png') -168px -726px;
+}
+.image-add-grey_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -196px -726px;
+}
+.image-additemdisabled-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -222px -726px;
+}
+.image-addpersonafield-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -248px -726px;
+}
+.image-back_26_white-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -274px -726px;
+}
+.image-calendar_monthpicker_leftarrow-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -300px -726px;
+}
+.image-calendar_monthpicker_rightarrow-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -326px -726px;
+}
+.image-calendar_task_new_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -352px -726px;
+}
+.image-calendar_time_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -378px -726px;
+}
+.image-calendar_time_inline_to-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -404px -726px;
+}
+.image-calendar_timestrip_leftarrow_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -0px -754px;
+}
+.image-calendar_timestrip_rightarrow_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -26px -754px;
+}
+.image-call_mouse-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -52px -754px;
+}
+.image-call_people_inline_to-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -78px -754px;
+}
+.image-checkmark24-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -104px -754px;
+}
+.image-closeim_mail_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -130px -754px;
+}
+.image-collapsethread_readingpane_mail-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -156px -754px;
+}
+.image-complete-action_reading_pane-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -182px -754px;
+}
+.image-discard_compose_mail_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -208px -754px;
+}
+.image-discard_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -234px -754px;
+}
+.image-discard-black_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -260px -754px;
+}
+.image-edit-grey_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -286px -754px;
+}
+.image-ellipses_readingpane_mail_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -312px -754px;
+}
+.image-email_blue-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -338px -754px;
+}
+.image-expandthread_readingpane_mail-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -364px -754px;
+}
+.image-folder-pane-collapsed-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -390px -754px;
+}
+.image-fwd_readingpane_mail_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -416px -754px;
+}
+.image-im_mouse-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -0px -780px;
+}
+.image-im_people_inline_to-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -26px -780px;
+}
+.image-insert_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -52px -780px;
+}
+.image-keepunread-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -78px -780px;
+}
+.image-lightcheckmark24-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -104px -780px;
+}
+.image-link-contacts_inline_to-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -130px -780px;
+}
+.image-new_time_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -156px -780px;
+}
+.image-popout_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -182px -780px;
+}
+.image-popout-big-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -208px -780px;
+}
+.image-reply_all_by_im-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -234px -780px;
+}
+.image-reply_by_im-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -260px -780px;
+}
+.image-reply_readingpane_mail_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -286px -780px;
+}
+.image-replyall_readingpane_mail_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -312px -780px;
+}
+.image-replyinactive-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -338px -780px;
+}
+.image-schedule_mouse-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -364px -780px;
+}
+.image-search_26_white-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -390px -780px;
+}
+.image-search24-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -416px -780px;
+}
+.image-search-grey_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -0px -806px;
+}
+.image-send_compose_mail_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -26px -806px;
+}
+.image-send_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -52px -806px;
+}
+.image-send_mouse-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -78px -806px;
+}
+.image-send-black_inline_mo-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -104px -806px;
+}
+.image-typedownsearch24-png
+{
+    width:25px;
+    height:25px;
+    background:url('../images/sprite1.png') -130px -806px;
+}
+.image-recurrence-png
+{
+    width:23px;
+    height:24px;
+    background:url('../images/sprite1.png') -156px -806px;
+}
+.image-minusbig-png
+{
+    width:27px;
+    height:22px;
+    background:url('../images/sprite1.png') -180px -806px;
+}
+.image-plusbig-png
+{
+    width:27px;
+    height:22px;
+    background:url('../images/sprite1.png') -208px -806px;
+}
+.image-additem-png
+{
+    width:21px;
+    height:21px;
+    background:url('../images/sprite1.png') -236px -806px;
+}
+.image-lv_chk_touch-png
+{
+    width:21px;
+    height:21px;
+    background:url('../images/sprite1.png') -258px -806px;
+}
+.image-mobile-check-disabled-png
+{
+    width:21px;
+    height:21px;
+    background:url('../images/sprite1.png') -280px -806px;
+}
+.image-lv_unchk_touch-png
+{
+    width:19px;
+    height:21px;
+    background:url('../images/sprite1.png') -302px -806px;
+}
+.image-chat-notification-tray-png
+{
+    width:19px;
+    height:19px;
+    background:url('../images/sprite1.png') -322px -806px;
+}
+.image-envelope-png
+{
+    width:19px;
+    height:19px;
+    background:url('../images/sprite1.png') -342px -806px;
+}
+.image-reminders-notification-tray-png
+{
+    width:19px;
+    height:19px;
+    background:url('../images/sprite1.png') -362px -806px;
+}
+.image-envelope_negative-png
+{
+    width:25px;
+    height:18px;
+    background:url('../images/sprite1.png') -382px -806px;
+}
+.image-collapse-conversation-png
+{
+    width:18px;
+    height:18px;
+    background:url('../images/sprite1.png') -408px -806px;
+}
+.image-expand-conversation-png
+{
+    width:18px;
+    height:18px;
+    background:url('../images/sprite1.png') -427px -806px;
+}
+.image-greencheck-png
+{
+    width:18px;
+    height:18px;
+    background:url('../images/sprite1.png') -0px -832px;
+}
+.image-redx-png
+{
+    width:18px;
+    height:18px;
+    background:url('../images/sprite1.png') -19px -832px;
+}
+.image-send-png
+{
+    width:35px;
+    height:17px;
+    background:url('../images/sprite1.png') -38px -832px;
+}
+.image-folder-collapsed_tox2-png
+{
+    width:18px;
+    height:17px;
+    background:url('../images/sprite1.png') -74px -832px;
+}
+.image-folder-expanded_tox2-png
+{
+    width:18px;
+    height:17px;
+    background:url('../images/sprite1.png') -93px -832px;
+}
+.image-add-attendees-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -112px -832px;
+}
+.image-arrow_down-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -130px -832px;
+}
+.image-checked_multiselect_hover_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -148px -832px;
+}
+.image-checked_multiselect_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -166px -832px;
+}
+.image-checkmark16-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -184px -832px;
+}
+.image-clear-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -202px -832px;
+}
+.image-collapse_task-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -220px -832px;
+}
+.image-dc2-docx-gif
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -238px -832px;
+}
+.image-delete-action_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -256px -832px;
+}
+.image-delete-action-hover_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -274px -832px;
+}
+.image-downarrow-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -292px -832px;
+}
+.image-email16-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -310px -832px;
+}
+.image-expand_task-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -328px -832px;
+}
+.image-flag_empty-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -346px -832px;
+}
+.image-flag-complete_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -364px -832px;
+}
+.image-flag-complete-action_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -382px -832px;
+}
+.image-flag-complete-action-hover_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -400px -832px;
+}
+.image-flag-off_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -418px -832px;
+}
+.image-flag-off-action_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -0px -851px;
+}
+.image-flag-off-action-hover_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -18px -851px;
+}
+.image-flag-on_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -36px -851px;
+}
+.image-flag-on-action_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -54px -851px;
+}
+.image-flag-on-action-hover_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -72px -851px;
+}
+.image-lock-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -90px -851px;
+}
+.image-lowimportant_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -108px -851px;
+}
+.image-lv-high-importance-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -126px -851px;
+}
+.image-lv-low-importance-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -144px -851px;
+}
+.image-lv-msg-rd-reverse-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -162px -851px;
+}
+.image-lv-msg-unrd-reverse-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -180px -851px;
+}
+.image-minus-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -198px -851px;
+}
+.image-paperclip_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -216px -851px;
+}
+.image-plus-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -234px -851px;
+}
+.image-remove_mailtip-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -252px -851px;
+}
+.image-remove_mailtip_hover-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -270px -851px;
+}
+.image-signature-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -288px -851px;
+}
+.image-star-hot-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -306px -851px;
+}
+.image-star-tepid-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -324px -851px;
+}
+.image-unchecked_multiselect_hover_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -342px -851px;
+}
+.image-unchecked_multiselect_listview_mail-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -360px -851px;
+}
+.image-uparrow-png
+{
+    width:17px;
+    height:17px;
+    background:url('../images/sprite1.png') -378px -851px;
+}
+.image-important_listview_mail-png
+{
+    width:13px;
+    height:17px;
+    background:url('../images/sprite1.png') -396px -851px;
+}
+.image-searchreset-png
+{
+    width:16px;
+    height:16px;
+    background:url('../images/sprite1.png') -410px -851px;
+}
+.image-add_people_off-png
+{
+    width:12px;
+    height:16px;
+    background:url('../images/sprite1.png') -427px -851px;
+}
+.image-attachment_gray_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -0px -869px;
+}
+.image-attachment_white_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -16px -869px;
+}
+.image-caratleft_gray_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -32px -869px;
+}
+.image-caratleft_white_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -48px -869px;
+}
+.image-caratright_gray_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -64px -869px;
+}
+.image-caratright_white_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -80px -869px;
+}
+.image-exception_gray_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -96px -869px;
+}
+.image-exception_white_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -112px -869px;
+}
+.image-private_gray_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -128px -869px;
+}
+.image-private_white_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -144px -869px;
+}
+.image-reoccuring_gray_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -160px -869px;
+}
+.image-reoccuring_white_14x14-png
+{
+    width:15px;
+    height:15px;
+    background:url('../images/sprite1.png') -176px -869px;
+}
+.image-timestrip_leftarrow-png
+{
+    width:14px;
+    height:15px;
+    background:url('../images/sprite1.png') -192px -869px;
+}
+.image-timestrip_rightarrow-png
+{
+    width:14px;
+    height:15px;
+    background:url('../images/sprite1.png') -207px -869px;
+}
+.image-lv-chk-png
+{
+    width:15px;
+    height:14px;
+    background:url('../images/sprite1.png') -222px -869px;
+}
+.image-predicted-action-delete-big-png
+{
+    width:15px;
+    height:14px;
+    background:url('../images/sprite1.png') -238px -869px;
+}
+.image-predicted-action-flag-big-png
+{
+    width:15px;
+    height:14px;
+    background:url('../images/sprite1.png') -254px -869px;
+}
+.image-predicted-action-reply-big-png
+{
+    width:15px;
+    height:14px;
+    background:url('../images/sprite1.png') -270px -869px;
+}
+.image-tw-desktop-check-disabled-png
+{
+    width:15px;
+    height:14px;
+    background:url('../images/sprite1.png') -286px -869px;
+}
+.image-lv-unchk-png
+{
+    width:14px;
+    height:14px;
+    background:url('../images/sprite1.png') -302px -869px;
+}
+.image-rightarrow-png
+{
+    width:13px;
+    height:14px;
+    background:url('../images/sprite1.png') -317px -869px;
+}
+.image-hotitem_listview_mail-png
+{
+    width:13px;
+    height:13px;
+    background:url('../images/sprite1.png') -331px -869px;
+}
+.image-hotitem_low_listview_mail-png
+{
+    width:13px;
+    height:13px;
+    background:url('../images/sprite1.png') -345px -869px;
+}
+.image-star-cold-png
+{
+    width:13px;
+    height:13px;
+    background:url('../images/sprite1.png') -359px -869px;
+}
+.image-delete_listview_mail-png
+{
+    width:12px;
+    height:13px;
+    background:url('../images/sprite1.png') -373px -869px;
+}
+.image-moveitems_mail_inline_mo-png
+{
+    width:14px;
+    height:12px;
+    background:url('../images/sprite1.png') -386px -869px;
+}
+.image-popout-png
+{
+    width:12px;
+    height:12px;
+    background:url('../images/sprite1.png') -401px -869px;
+}
+.image-mini_affordance-png
+{
+    width:31px;
+    height:11px;
+    background:url('../images/sprite1.png') -414px -869px;
+}
+.image-arrowright-blue-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -0px -885px;
+}
+.image-arrowup-grey-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -12px -885px;
+}
+.image-avlbl-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -24px -885px;
+}
+.image-away-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -36px -885px;
+}
+.image-blocked-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -48px -885px;
+}
+.image-busy-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -60px -885px;
+}
+.image-closed-folders-mouse-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -72px -885px;
+}
+.image-dnd-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -84px -885px;
+}
+.image-lv-attachment-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -96px -885px;
+}
+.image-offline-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -108px -885px;
+}
+.image-open_folders_mail-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -120px -885px;
+}
+.image-open-folders-mouse-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -132px -885px;
+}
+.image-orghierarchy_arrow_blank-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -144px -885px;
+}
+.image-owa2_delete-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -156px -885px;
+}
+.image-predicted-action-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -168px -885px;
+}
+.image-time_arrow_left_inline-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -180px -885px;
+}
+.image-time_arrow_right_inline-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -192px -885px;
+}
+.image-unkwn-png
+{
+    width:11px;
+    height:11px;
+    background:url('../images/sprite1.png') -204px -885px;
+}
+.image-twisty-read-checked_listview_mail-png
+{
+    width:7px;
+    height:10px;
+    background:url('../images/sprite1.png') -216px -885px;
+}
+.image-twisty-read-checked-hover_listview_mail-png
+{
+    width:7px;
+    height:10px;
+    background:url('../images/sprite1.png') -224px -885px;
+}
+.image-twisty-read-unchecked_listview_mail-png
+{
+    width:7px;
+    height:10px;
+    background:url('../images/sprite1.png') -232px -885px;
+}
+.image-twisty-read-unchecked-hover_listview_mail-png
+{
+    width:7px;
+    height:10px;
+    background:url('../images/sprite1.png') -240px -885px;
+}
+.image-twisty-unread-checked_listview_mail-png
+{
+    width:7px;
+    height:10px;
+    background:url('../images/sprite1.png') -248px -885px;
+}
+.image-twisty-unread-checked-hover_listview_mail-png
+{
+    width:7px;
+    height:10px;
+    background:url('../images/sprite1.png') -256px -885px;
+}
+.image-twisty-unread-unchecked_listview_mail-png
+{
+    width:7px;
+    height:10px;
+    background:url('../images/sprite1.png') -264px -885px;
+}
+.image-twisty-unread-unchecked-hover_listview_mail-png
+{
+    width:7px;
+    height:10px;
+    background:url('../images/sprite1.png') -272px -885px;
+}
+.image-amo_time_arrow_down-png
+{
+    width:11px;
+    height:5px;
+    background:url('../images/sprite1.png') -280px -885px;
+}
+.image-clear1x1-gif
+{
+    width:2px;
+    height:2px;
+    background:url('../images/sprite1.png') -292px -885px;
+}
+

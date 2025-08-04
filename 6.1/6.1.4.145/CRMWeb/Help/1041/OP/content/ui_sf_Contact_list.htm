@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>連絡先のインポート</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">連絡先のインポート</h1>
+			<p class="bodyText">取引先担当者が、電子メール プログラム、スプレッドシート、または電話に保存されているかどうかにかかわらず、1 か所ですべて取引担当者を追跡できるように、Microsoft Dynamics CRM にインポートしたいと思うかもしれません。</p>
+			<a class="expand" id="tID0EDAA" href="." onclick="expandCollapse('ID0EDAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EDAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />ステップ 1: インポート ファイルの準備をする</h2>
+			</a>
+			<div id="dID0EDAA" class="l2" style="display:none">
+				<p class="bodyText">まず、ファイルに取引先担当者をエクスポートします。</p>
+				<p class="bodyText">次のファイル形式がサポートされています:</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">コンマ区切り値(.csv)</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">テキスト(.txt)</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">圧縮 (.zip)</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Excel スプレッドシート 2003 (.xml)</p>
+					</li>
+				</ul>
+				<p class="bodyText">.zip ファイルに許可されるファイルの最大サイズは 32 MB です。他のファイル形式では、許可されているファイルの最大サイズは 8 MB です。</p>
+				<a class="expand" id="tID0ECCDAA" href="." onclick="expandCollapse('ID0ECCDAA',1);return false;">
+					<p class="tiphead-end">
+						<img id="iID0ECCDAA" class="expandicon" src="Help-Collapse-Section-Microsoft-CRM.png" alt="" border="0" />ヒント</p>
+				</a>
+				<div id="dID0ECCDAA" class="expandedendtips" style="display: none">
+					<p class="bodyText">大きなデータをインポートする必要がある場合は、詳細について「 <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=31788">Microsoft Dynamics CRM の開発者ツールキット</a>」を参照してください。</p>
+					<p class="bodyText">複数のプログラムに取引先担当者を保存している場合、1 つの .zip ファイルにインポート ファイルを追加します。その後、.zip ファイルをインポートして、すべてのファイルを一度にインポートします。</p>
+				</div>
+				<p class="bodyText">取引先担当者が格納されているプログラムまたは場所の手順に従います。</p>
+				<a class="expand" id="tID0EACDAA" href="." onclick="expandCollapse('ID0EACDAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EACDAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />電子メール プログラムから取引先担当者をエクスポートする</p>
+				</a>
+				<div id="dID0EACDAA" style="display:none">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">コンマ区切り値ファイル (.csv) に取引先担当者をエクスポートします。</p>
+							<p class="bodyText">取引先担当者を使用している電子メール プログラムからエクスポートする特定のステップを見つけるには、プログラムのヘルプを開いて、"エクスポート"を検索します。タイトルに "取引先担当者をエクスポートする"、"アドレス帳をエクスポートする" または "エクスポートのウィザード" を含むトピックを検索してください。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">後で簡単に検索できる場所にファイルを保存します。</p>
+						</li>
+					</ol>
+				</div>
+				<a class="expand" id="tID0EBBDAA" href="." onclick="expandCollapse('ID0EBBDAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EBBDAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />スプレッドシートから取引先担当者をエクスポートする</p>
+				</a>
+				<div id="dID0EBBDAA" style="display:none">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">スプレッドシートを開きます。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">必要に応じて、スプレッドシートの列名を編集し、ここに表示される対応する名前に正確に一致するようにます。</p>
+							<div class="alertContent">
+								<p class="importanthead">警告</p>
+								<p class="bodyText">スプレッドシートが一覧のすべての列名を含めない場合は OK です。ただし、列名がある場合、一覧の対応する名前に正確に一致しない場合はインポートできません。スペースは必要です。"Email" という単語にハイフンを含まないことに注意してください。</p>
+							</div>
+							<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">
+											<b>スプレッドシートの列名(スペルが、完全に一致する必要がある)</b>
+										</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">名</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">ミドル ネーム</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">姓</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">勤務先電話番号</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">携帯電話</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">役職</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">勤務先番地</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">勤務先市町村</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">勤務先都道府県</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">[勤務先郵便番号]</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">[国 (会社)/地域]</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">電子メール アドレス</p>
+									</td>
+								</tr>
+							</table>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">ファイルを保存します。</p>
+						</li>
+					</ol>
+				</div>
+				<a class="expand" id="tID0EABDAA" href="." onclick="expandCollapse('ID0EABDAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EABDAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />電話の取引先担当者をエクスポートする</p>
+				</a>
+				<div id="dID0EABDAA" style="display:none">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">電話またはコンピューターから取引先担当者をエクスポートするのに USB ケーブルまたはアプリを使用します。</p>
+							<p class="bodyText">使用しているブランドの電話から取引先担当者をエクスポートする特定のステップを見つけるには、任意の検索エンジン (Bing など) で、"使用している電話から取引先担当者をエクスポート" を検索します。</p>
+							<p class="bodyText">アプリを見つけるには、使用している電話のオンライン ストアを検索してください。</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<a class="expand" id="tID0ECAA" href="." onclick="expandCollapse('ID0ECAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0ECAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />ステップ 2: ファイルをインポートする</h2>
+			</a>
+			<div id="dID0ECAA" class="l2" style="display:none">
+				<p class="bodyText">[<b>データ インポート</b>] ウィザードを使用して取引先担当者をインポートします。</p>
+				<a class="expand" id="tID0EAACAA" href="." onclick="expandCollapse('ID0EAACAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" /></p>
+				</a>
+				<div id="dID0EAACAA" style="display:none">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>
+							<a class="expand" id="tID0ECAJAAACAA" href="." onclick="expandCollapse('ID0ECAJAAACAA',2);return false;">
+								<p class="procHeading hanging">
+									<img id="iID0ECAJAAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />CRM Web アプリケーションを使用する場合</p>
+							</a>
+							<div id="dID0ECAJAAACAA" style="display:none">
+								<ol class="numberedlist2">
+									<li class="numberedlistitem">
+										<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b>、<b>[設定]</b> の順にクリックまたはタップします。</p>
+										<p class="bodyText">
+											<b>[設定]</b> がナビゲーション バーに表示されます。</p>
+									</li>
+									<li class="numberedlistitem">
+										<p class="bodyText">
+											<b>[設定]</b>、<b>[データ管理]</b> の順にクリックまたはタップします。</p>
+									</li>
+									<li class="numberedlistitem">
+										<p class="bodyText">
+											<b>[インポート]</b> をクリックまたはタップします。</p>
+									</li>
+								</ol>
+							</div>
+							<a class="expand" id="tID0EBAJAAACAA" href="." onclick="expandCollapse('ID0EBAJAAACAA',2);return false;">
+								<p class="procHeading hanging">
+									<img id="iID0EBAJAAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p>
+							</a>
+							<div id="dID0EBAJAAACAA" style="display:none">
+								<ol class="numberedlist2">
+									<li class="numberedlistitem">
+										<p class="bodyText">ナビゲーション ウィンドウで、<b>[設定]</b> &gt; <b>[システム]</b> &gt; <b>[データ管理]</b> &gt; <b>[インポート]</b> をクリックまたはタップします。</p>
+									</li>
+								</ol>
+							</div>
+							<p class="bodyText" />
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">
+								<b>[データのインポート]</b> をクリックまたはタップします。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">取引先担当者のエクスポートを含むファイルを保存したフォルダーを参照します。ファイルを選択し、<b>[開く]</b> をクリックまたはタップします。<b>[次へ]</b> をクリックまたはタップします。</p>
+							<a class="expand" id="tID0EAAHAAACAA" href="." onclick="expandCollapse('ID0EAAHAAACAA',1);return false;">
+								<p class="tiphead-end">
+									<img id="iID0EAAHAAACAA" class="expandicon" src="Help-Collapse-Section-Microsoft-CRM.png" alt="" border="0" />ヒント</p>
+							</a>
+							<div id="dID0EAAHAAACAA" class="expandedendtips" style="display: none">
+								<p class="bodyText">一度にインポートできるファイルは 1 つだけです。多くのファイルをインポートするには、ウィザードを後で再実行するか、1 つの .zip ファイルにすべての取引先担当者ファイルを追加します。</p>
+							</div>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">ファイル名を確認し、ファイルが .csv または .txt 形式の場合は、フィールドとデータ区切り文字が正しいことを確認します。<b>[次へ]</b> をクリックまたはタップします。</p>
+							<div class="alertContent">
+								<p class="notehead-end">メモ</p>
+								<p class="bodyText">通常、既定の区切り文字を使用できます。</p>
+							</div>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">システム データ マップに <b>[既定値 (自動マッピング)]</b> を選択します。<b>[次へ]</b> をクリックまたはタップします。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Microsoft Dynamics CRM<b>[レコードの種類]</b> ドロップダウン リストで、<b>[取引先担当者]</b>を選択します。<b>[次へ]</b> をクリックまたはタップします。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">警告アイコンがあるすべてのレコードの種類に対して、取引先担当者ファイルの列を Microsoft Dynamics CRM の対応するフィールドにマップします。<b>[OK]</b> をクリックまたはタップし、<b>[次へ]</b> をクリックまたはタップします。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">要約を確認し、<b>[次へ]</b> をクリックまたはタップします。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">
+								<b>[確定]</b> をクリックまたはタップします。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">ウィザードが成功したかどうかを確認するには、<b>[インポート]</b> をクリックまたはタップして、レポートを確認します。確認しない場合は、<b>[完了]</b> をクリックまたはタップします。</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />ステップ 3: 取引先担当者が正常にインポートされたかどうかを確認する</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<p class="bodyText">ウィザードが終了したら、取引先担当者が正常にインポートされたかどうかを確認するために取引先担当者の一覧を確認します。</p>
+				<a class="expand" id="tID0EAABAA" href="." onclick="expandCollapse('ID0EAABAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EAABAA" src="Help-Chapter-Open-Microsoft-CRM.png" /></p>
+				</a>
+				<div id="dID0EAABAA" style="display:block">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">
+								<b>Microsoft Dynamics CRM</b> をクリックまたはタップし、自分のロール (営業、サービス、マーケティング) をクリックまたはタップします。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">
+								<b>[取引先担当者]</b> をクリックまたはタップします。</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">取引先担当者の一覧をスクロールします。各担当者が一覧されているかを確認し、フィールドの内容が正確かを確認します。</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ui_imp_wiz_finish.htm">取引先企業、潜在顧客、または他のデータをインポートする</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

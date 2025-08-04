@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Import contacts</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Import contacts</h1>
+			<p class="bodyText">Whether your contacts are stored in an email program, a spreadsheet, or on your phone, you'll probably want to import them into Microsoft Dynamics CRM so you can keep track of the people you do business with all in one place.</p>
+			<a class="expand" id="tID0EDAA" href="." onclick="expandCollapse('ID0EDAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EDAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Step 1: Get your import file ready</h2>
+			</a>
+			<div id="dID0EDAA" class="l2" style="display:none">
+				<p class="bodyText">First, you export your contacts into a file. </p>
+				<p class="bodyText">These file formats are supported:</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">Comma-separated values (.csv)</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Text (.txt)</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Compressed (.zip)</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Excel Spreadsheet 2003 (.xml)</p>
+					</li>
+				</ul>
+				<p class="bodyText">The maximum file size allowed for .zip files is 32 MB. For the other file formats, the maximum file size allowed is 8 MB.</p>
+				<a class="expand" id="tID0ECCDAA" href="." onclick="expandCollapse('ID0ECCDAA',1);return false;">
+					<p class="tiphead-end">
+						<img id="iID0ECCDAA" class="expandicon" src="Help-Collapse-Section-Microsoft-CRM.png" alt="" border="0" />Tip </p>
+				</a>
+				<div id="dID0ECCDAA" class="expandedendtips" style="display: none">
+					<p class="bodyText">If you need to import a larger amount of data, see the  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=31788">Developer Toolkit for Microsoft Dynamics CRM</a> for additional details.</p>
+					<p class="bodyText">If you store contacts in more than one program, add your import files to a single .zip file. Then import the .zip file to bring in all the files at once.</p>
+				</div>
+				<p class="bodyText">Follow the procedure for the program or location where your contacts are stored:</p>
+				<a class="expand" id="tID0EACDAA" href="." onclick="expandCollapse('ID0EACDAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EACDAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Export contacts from an email program</p>
+				</a>
+				<div id="dID0EACDAA" style="display:none">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">Export the contacts into a comma separated values file (.csv).</p>
+							<p class="bodyText">To find specific steps to export contacts from your email program, open the program's Help, and search for “export.” Look for topics that include “exporting contacts” or “exporting your address book” or “export wizard” in the title.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Save the file in a location where you can find it easily later.</p>
+						</li>
+					</ol>
+				</div>
+				<a class="expand" id="tID0EBBDAA" href="." onclick="expandCollapse('ID0EBBDAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EBBDAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Export contacts from a spreadsheet</p>
+				</a>
+				<div id="dID0EBBDAA" style="display:none">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">Open the spreadsheet.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">If necessary, edit any column name in the spreadsheet to match exactly with the corresponding name shown here. </p>
+							<div class="alertContent">
+								<p class="importanthead">Warning </p>
+								<p class="bodyText">If the spreadsheet doesn't include all the column names listed, that's okay. However, if a column name does exist, it must match exactly with the corresponding name in the list or the import won't work. Spaces are required. Note that the word “Email” doesn't contain a hyphen.</p>
+							</div>
+							<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">
+											<b>Column Name in Spreadsheet (spelling must match exactly)</b>
+										</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">First Name</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Middle Name</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Last Name</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Business Phone</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Mobile Phone</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Job Title</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Business Street</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Business City</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Business State</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Business Postal Code</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Business Country/Region</p>
+									</td>
+								</tr>
+								<tr align="left" valign="top">
+									<td style="border: 1px solid #010101;">
+										<p class="bodyText">Email Address</p>
+									</td>
+								</tr>
+							</table>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Save the file.</p>
+						</li>
+					</ol>
+				</div>
+				<a class="expand" id="tID0EABDAA" href="." onclick="expandCollapse('ID0EABDAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EABDAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Export contacts from your phone</p>
+				</a>
+				<div id="dID0EABDAA" style="display:none">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">Use a USB cable or an app to export your contacts from your phone to your computer.</p>
+							<p class="bodyText">To find specific steps to export contacts for your brand of phone, search for “export contacts from my phone” in your favorite search engine (like Bing).</p>
+							<p class="bodyText">To find an app, search your phone's online store.</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<a class="expand" id="tID0ECAA" href="." onclick="expandCollapse('ID0ECAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0ECAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Step 2: Import the file</h2>
+			</a>
+			<div id="dID0ECAA" class="l2" style="display:none">
+				<p class="bodyText">You'll use the <b>Import Data</b> wizard to import your contacts. </p>
+				<a class="expand" id="tID0EAACAA" href="." onclick="expandCollapse('ID0EAACAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" /></p>
+				</a>
+				<div id="dID0EAACAA" style="display:none">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">Follow the steps for the app you're using.</p>
+							<a class="expand" id="tID0ECAJAAACAA" href="." onclick="expandCollapse('ID0ECAJAAACAA',2);return false;">
+								<p class="procHeading hanging">
+									<img id="iID0ECAJAAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using the CRM web application</p>
+							</a>
+							<div id="dID0ECAJAAACAA" style="display:none">
+								<ol class="numberedlist2">
+									<li class="numberedlistitem">
+										<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+										<p class="bodyText">
+											<b>Settings</b> appears on the nav bar.</p>
+									</li>
+									<li class="numberedlistitem">
+										<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Data Management</b>.</p>
+									</li>
+									<li class="numberedlistitem">
+										<p class="bodyText">Click or tap <b>Imports</b>.</p>
+									</li>
+								</ol>
+							</div>
+							<a class="expand" id="tID0EBAJAAACAA" href="." onclick="expandCollapse('ID0EBAJAAACAA',2);return false;">
+								<p class="procHeading hanging">
+									<img id="iID0EBAJAAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using CRM for Outlook</p>
+							</a>
+							<div id="dID0EBAJAAACAA" style="display:none">
+								<ol class="numberedlist2">
+									<li class="numberedlistitem">
+										<p class="bodyText">In the Navigation Pane, click or tap <b>Settings</b> &gt; <b>System</b> &gt; <b>Data Management</b> &gt; <b>Imports</b>.</p>
+									</li>
+								</ol>
+							</div>
+							<p class="bodyText" />
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>Import Data</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Browse to the folder where you saved the file that contains the export of your contacts. Select the file, then click or tap <b>Open</b>. Click or tap <b>Next</b>. </p>
+							<a class="expand" id="tID0EAAHAAACAA" href="." onclick="expandCollapse('ID0EAAHAAACAA',1);return false;">
+								<p class="tiphead-end">
+									<img id="iID0EAAHAAACAA" class="expandicon" src="Help-Collapse-Section-Microsoft-CRM.png" alt="" border="0" />Tip </p>
+							</a>
+							<div id="dID0EAAHAAACAA" class="expandedendtips" style="display: none">
+								<p class="bodyText">You can import only one file at a time. To bring in more files, run the wizard again later, or add all your contacts files to a single .zip file.</p>
+							</div>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Review the file name, and if the file is in .csv or .txt format, verify that the field and data delimiters are correct. Click or tap <b>Next</b>.</p>
+							<div class="alertContent">
+								<p class="notehead-end">Note </p>
+								<p class="bodyText">In most cases, you can accept the default delimiters.</p>
+							</div>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Select <b>Default (Automatic Mapping)</b> for the System Data Map. Click or tap <b>Next</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">In the Microsoft Dynamics CRM<b>Record Types</b> drop-down list, select <b>Contacts</b>. Click or tap <b>Next</b>. </p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">For any record type with an alert icon, map the column from your contacts file to the corresponding field in Microsoft Dynamics CRM. Click or tap <b>OK</b>, then click or tap <b>Next</b>. </p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Review the summary, then click or tap <b>Next</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>Submit</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">To verify that the wizard was successful, click or tap <b>Imports</b>, then review the report. Otherwise, click or tap <b>Finish</b>.</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Step 3: Check that the contacts imported successfully</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<p class="bodyText">After the wizard finishes, check your list of contacts to make sure they imported correctly.</p>
+				<a class="expand" id="tID0EAABAA" href="." onclick="expandCollapse('ID0EAABAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EAABAA" src="Help-Chapter-Open-Microsoft-CRM.png" /></p>
+				</a>
+				<div id="dID0EAABAA" style="display:block">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>Microsoft Dynamics CRM</b>, then click or tap your role (either Sales, Service, or Marketing).</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>Contacts</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Scroll through the contact list. Check that each person is listed and verify the contents of the fields for accuracy.</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_imp_wiz_finish.htm">Import accounts, leads, or other data</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

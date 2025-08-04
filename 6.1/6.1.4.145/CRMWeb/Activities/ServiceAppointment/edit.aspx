@@ -1,0 +1,1 @@
+<%@ Page Inherits="Microsoft.Crm.Service.Web.Activities.ServiceAppointmentDetailPage" %>
