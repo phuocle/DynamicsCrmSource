@@ -1,0 +1,5 @@
+(window.bundleExecutionMarkers=window.bundleExecutionMarkers||{})["scripts/performanceinterface.js?v=1.4.9962-v91onpremise"]={begin:performance.now()},(window.__wpJsonpUci=window.__wpJsonpUci||[]).push([[95],{Aoj4:function(e,n,o){"use strict";o.r(n),o.d(n,"PerformanceInterfaceRoot",(function(){return p}));var r=o("nuS9"),t=o("6dVr"),i=o("VnJU"),a=o("t6P7"),c=o("Hm+e"),s=o("u+q+"),u=o("ruPX"),w=o("49GN");
+/**
+ * @license Copyright (c) Microsoft Corporation. All rights reserved.
+ */
+function d(e){const n={"Memoization test":a.a,"Get metrics":c.a};return r.createElement(w.PerformanceInterface,{scenarioMap:t.scenarioMap,automationContext:new i.a(e.navigateTo),buttons:n})}d.displayName="PerformanceInterfaceRoot";const p=Object(s.a)(void 0,(function(e){return{navigateTo(n,o){e(Object(u.a)(n,o))}}}))(d)}}]),window.bundleExecutionMarkers["scripts/performanceinterface.js?v=1.4.9962-v91onpremise"].end=window.performance.now(),window.reportBundleExecutionTimes&&window.reportBundleExecutionTimes();

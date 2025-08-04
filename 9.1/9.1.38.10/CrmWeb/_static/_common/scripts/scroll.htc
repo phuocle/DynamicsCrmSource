@@ -1,0 +1,67 @@
+<public:component lightweight="true">
+<public:attach event="oncontentready" onevent="init()"/>
+<public:attach event="onresize"	onevent="Resize()"/>
+<public:attach event="onmousewheel" onevent="WheelScroll()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _iTimerID,
+    _oScroller,
+    BUTTON_HEIGHT = 12;
+function init()
+{
+    var oBtn = null,
+        oTr,
+        oTd;
+    _oScroller = element.rows[0].cells[0].firstChild;
+    AddScrollButton("U");
+    AddScrollButton("D");
+    _oScroller.style.height = "100%";
+    _oScroller.style.width = "100%";
+    _oScroller.style.overflowY = "hidden";
+    Resize()
+}
+function Resize()
+{
+    element.rows[0].style.display = element.rows[2].style.display = _oScroller.scrollHeight - BUTTON_HEIGHT * 2 > _oScroller.clientHeight ? "inline" : "none"
+}
+function StartScrollDown()
+{
+    ScrollDown();
+    _iTimerID = window.setInterval(ScrollDown,100)
+}
+function ScrollDown()
+{
+    _oScroller.doScroll("down")
+}
+function StopScrolling()
+{
+    window.clearTimeout(_iTimerID)
+}
+function StartScrollUp()
+{
+    ScrollUp();
+    _iTimerID = window.setInterval(ScrollUp,100)
+}
+function ScrollUp()
+{
+    _oScroller.doScroll("up")
+}
+function WheelScroll()
+{
+    event.wheelDelta >= 120 ? ScrollUp() : ScrollDown()
+}
+function AddScrollButton(sDirection)
+{
+    var oBtn = ownerDocument.createElement("<button style='width:100%;height:100%;'>");
+    oBtn.appendChild(ownerDocument.createElement("<img alt='' src='/_imgs/ico_Arrow_" + sDirection + ".gif'>"));
+    oBtn.attachEvent("onmousedown",sDirection == "U" ? StartScrollUp : StartScrollDown);
+    oBtn.attachEvent("onmouseup",StopScrolling);
+    oBtn.attachEvent("onmouseout",StopScrolling);
+    var oTr = element.insertRow(sDirection == "U" ? 0 : -1);
+    oTr.style.height = BUTTON_HEIGHT;
+    oTr.style.display = "none";
+    oTr.insertCell().appendChild(oBtn)
+}
+
+</script>
+</public:component>

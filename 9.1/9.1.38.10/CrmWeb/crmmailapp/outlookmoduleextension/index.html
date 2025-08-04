@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact Tracking Module</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/crmmailapp/resources/styles/outlookmoduleextension.css?v=1.2.652-240702-221507-v91onpremise" type="text/css" />
+</head>
+<body>
+	<div id="app" />
+
+	<script src="/uclient/scripts/bluebird.min.js"></script>
+	<script src="/crmmailapp/scripts/outlookmoduleextension.vendor.js?v=1.2.652-240702-221507-v91onpremise>"></script>
+	<script src="/crmmailapp/scripts/outlookmoduleextension.js?v=1.2.652-240702-221507-v91onpremise"></script>
+	<script>
+		// Object.assign polyfill because the iframe is only allowing me to load one script...
+		if (typeof Object.assign != "function") {
+			(function () {
+				Object.assign = function (target) {
+					"use strict";
+					if (target === undefined || target === null) {
+						throw new TypeError("Cannot convert undefined or null to object");
+					}
+
+					var output = Object(target);
+					for (var index = 1; index < arguments.length; index++) {
+						var source = arguments[index];
+						if (source !== undefined && source !== null) {
+							for (var nextKey in source) {
+								if (source.hasOwnProperty(nextKey)) {
+									output[nextKey] = source[nextKey];
+								}
+							}
+						}
+					}
+					return output;
+				};
+			})();
+		}
+		// Let the shim know we are ready.
+		function buildDispatchMessage(k, n, m, a, v, c)
+		{
+			return "?k=" + k +
+			  "&n=" + n +
+			  "&m=" + m +
+			  "&a=" + a +
+			  "&v=" + v +
+			  "&c=" + c
+		}
+
+		window.addEventListener("message", function initialListener(event)
+		{
+			var data = JSON.parse(event.data);
+
+			if (data.functionName === "deviceReady" && !window.ShimMessageKey)
+			{
+				dispatchKey = data.functionArguments[0];
+
+				var readyMessage = buildDispatchMessage(dispatchKey, "Application", "clientInitialized", "{}", "1", "{}");
+				event.source.postMessage(readyMessage, event.origin);
+
+				window.InitialListener = this;
+				window.ShimMessageKey = dispatchKey;
+			}
+		});
+	</script>
+</body>
+</html>

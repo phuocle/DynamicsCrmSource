@@ -1,0 +1,58 @@
+.npsHost {
+display: none;
+}
+
+.npsHost.npsDialog {
+display: flex;
+align-items: center;
+justify-content: center;
+background: rgba(0,0,0,.4);
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+width: auto;
+height: auto;
+z-index: 9999999;
+}
+
+iframe#npsFrame {
+position: relative;
+height: 467px;
+box-shadow: 0 2px 5px #333333;
+background: white;
+border-color: black;
+border-width: 1px;
+}
+
+@media screen and (min-width: 1200px) {
+iframe#npsFrame {
+width: 580px;
+height: 500px;
+}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px){
+iframe#npsFrame {
+width: 580px;
+height: 500px;
+}
+}
+
+@media screen and (max-width: 767px) {
+iframe#npsFrame {
+width: 290px;
+height: 250px;
+}
+}
+
+iframe#npsFrame.thankyoudialog{
+height: 261px;
+}
+
+@media screen and (min-width: 1199px){
+iframe#npsFrame.thankyoudialog{
+height: 235px;
+}
+}

@@ -1,0 +1,676 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="init()"/>
+<public:attach event="ondetach" onevent="cleanUp()" />
+<public:attach event="onfocus" onevent="SetFocus()"/>
+<public:property id="showTimeProperty" name="ShowTime" get="getShowTime" put="setShowTime"/>
+<public:property id="allowTimeEditProperty" name="AllowTimeEdit" get="getAllowTimeEdit" put="setAllowTimeEdit"/>
+<public:property id="initDisableProperty" name="InitDisable" get="getInitDisable" put="setInitDisable"/>
+<public:property id="allDayDisplayProperty" name="AllDayDisplay" get="getAllDayDisplay" put="setAllDayDisplay"/>
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataXml" get="dataXml"/>
+<public:property name="DataValue" get="getDataValue" put="setDataValue"/>
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:property name="RequiredLevel" get="getRequiredLevel" />
+<public:property name="InnerText" get="getInnerText"/>
+<public:property name="WillSubmit"/>
+<public:property name="DataChangeHandler" />
+<public:event id="OnChangeEvent" name="onchange"/>
+<public:event id="eventOnInitComplete" name="oninitcomplete"/>
+<public:event id="eventOnFocus" name="onfocus"/>
+<public:method name="SetFocus" internalname="setFocus"/>
+<public:method name="ResetDefault" internalname="resetDefault"/>
+<public:method name="FireOnChange" internalname="fireOnChange"/>
+<public:method name="refreshTimeValue" />
+<public:method name="attachAsOnlyHandler" />
+<public:method name="attachEventHandler" />
+<script language="JavaScript"></script><script type="text/javascript">
+
+var FORMAT_DATEONLY = "date",
+    FORMAT_DATETIME = "datetime",
+    FORMAT_TIMEONLY = "time",
+    _oTimeControl = null,
+    _oDateControl = null,
+    _bAllowBlankDate = true,
+    _sFormat = "",
+    _bShowTime = true,
+    _bAllowTimeEdit = true,
+    _bInitDisable = false,
+    _bAllDayDisplay = false,
+    _dtDefaultValue = null,
+    _bInitialized = false,
+    _bCacheValuesOnClient = false;
+function init()
+{
+    if(element["OnChangePreAttach"] == null)
+        attachEventHandler("onchange",function()
+        {
+        });
+    else
+        attachAsOnlyHandler("onchange",new Function(element["OnChangePreAttach"]));
+    if(element["OnInitCompletePreAttach"] == null)
+        attachEventHandler("oninitcomplete",function()
+        {
+        });
+    else
+        attachAsOnlyHandler("oninitcomplete",new Function(element["OnInitCompletePreAttach"]));
+    attachEventHandler("onfocus",function()
+    {
+    });
+    if(!IsNull(element.initialDisableInit) && element.initialDisableInit == "true")
+        _bInitDisable = true;
+    if(!_bInitDisable)
+    {
+        WillSubmit = true;
+        _sFormat = element.format;
+        if(_sFormat == FORMAT_DATEONLY || _sFormat == FORMAT_DATETIME)
+            _oDateControl = element.all["DateInput"];
+        if(_sFormat == FORMAT_DATETIME || _sFormat == FORMAT_TIMEONLY)
+            _oTimeControl = element.all["time"];
+        if(!IsNull(element.initialValue) && element.initialValue.length != 0)
+        {
+            this._dtValue = ParseUtcDate(element.initialValue);
+            _dtDefaultValue = ParseUtcDate(element.initialValue)
+        }
+        if(_oDateControl != null)
+        {
+            _oDateControl.attachEvent("onbeforedeactivate",ParseDateInput);
+            _oDateControl.attachEvent("onchange",ParseDateInput);
+            _oDateControl.attachEvent("onfocus",onFocusHandler)
+        }
+        if(_oTimeControl != null)
+        {
+            _oTimeControl.attachEvent("onreturnvaluechange",ParseTimeInput);
+            _oTimeControl.attachEvent("onvalidate",onSelectValidate);
+            _oTimeControl.attachEvent("onfindnextsmallestentry",onSelectFindNextSmallestEntry);
+            _oTimeControl.attachEvent("onfocus",onFocusHandler)
+        }
+        if(!IsNull(element.initialShowTime) && element.initialShowTime == "false")
+            _bShowTime = false;
+        if(!IsNull(element.initialAllowTimeEdit) && element.initialAllowTimeEdit == "false")
+            _bAllowTimeEdit = false;
+        if(!IsNull(element.initialAllowBlankDate) && element.initialAllowBlankDate == "false")
+            _bAllowBlankDate = false;
+        if(!IsNull(element.initialAllDayDisplayMode) && element.initialAllDayDisplayMode == "true")
+            _bAllDayDisplay = true;
+        if(!IsNull(element.cacheValuesOnClient) && element.cacheValuesOnClient == "true")
+            _bCacheValuesOnClient = true;
+        _bInitialized = true;
+        if(_bCacheValuesOnClient && !IsNull(element.cachedDataValue) && element.cachedDataValue.length != 0)
+        {
+            var date = element.cachedDataValue,
+                error = false;
+            try
+            {
+                dateValue = new Date(date.valueOf())
+            }
+            catch(e)
+            {
+                error = true
+            }
+            if(!error)
+            {
+                setDataValue(dateValue);
+                this._dtValue = dateValue;
+                _dtDefaultValue = dateValue
+            }
+        }
+        if(!isDateTimeValueSynched())
+        {
+            var o = this._dtValue;
+            this._dtValue = null;
+            if(o == "null")
+                o = null;
+            setDataValue(o)
+        }
+        RaiseEvent(null,this.oninitcompleteHandler,eventOnInitComplete)
+    }
+}
+function attachEventHandler(sEventName,fNewHandler)
+{
+    var sHandlerName = sEventName.toLowerCase() + "Handler",
+        fBothHandlers;
+    if(typeof element[sEventName] === "function")
+    {
+        var fExistingHandler;
+        if(typeof element[sHandlerName] === "function")
+            fExistingHandler = element[sHandlerName];
+        else
+            fExistingHandler = element[sEventName];
+        fBothHandlers = function()
+        {
+            fExistingHandler();
+            fNewHandler()
+        }
+    }
+    else
+        fBothHandlers = fNewHandler;
+    element[sHandlerName] = fBothHandlers;
+    element[sEventName.toLowerCase()] = function()
+    {
+        if(typeof event.CustomHandler === "function")
+            event.CustomHandler();
+        else
+            fBothHandlers()
+    }
+}
+function attachAsOnlyHandler(sEventName,fNewHandler)
+{
+    element[sEventName] = element[sEventName.toLowerCase()] = element[sEventName.toLowerCase() + "Handler"] = null;
+    attachEventHandler(sEventName,fNewHandler)
+}
+function RaiseEvent(oEvent,customHandler,eventId)
+{
+    if(IsNull(oEvent))
+        oEvent = createEventObject();
+    if(typeof customHandler === "function")
+        oEvent.CustomHandler = customHandler;
+    AttachToUnattachedEvents();
+    eventId.fire(oEvent)
+}
+function AttachToUnattachedEvents()
+{
+    if(typeof onchange !== "function")
+        element["onchange"] = this.HandleUnattachedEvent;
+    if(typeof oninitcomplete !== "function")
+        this.oninitcomplete = this.HandleUnattachedEvent;
+    if(typeof onfocus !== "function")
+        this.onfocus = this.HandleUnattachedEvent
+}
+function HandleUnattachedEvent()
+{
+    typeof event.CustomHandler === "function" && 
+        event.CustomHandler()
+}
+function isDateTimeValueSynched()
+{
+    if(IsNull(this._dtValue))
+        return false;
+    var sDateTimeValue = getInnerText(),
+        iDateTimeValue = Date.parse(sDateTimeValue);
+    if(isNaN(iDateTimeValue))
+        return false;
+    if(_bAllDayDisplay)
+        iDateTimeValue += 8.64e7;
+    var oDateTime = new Date(iDateTimeValue);
+    if(!IsNull(_oDateControl) && !FDatesEqual(oDateTime,this._dtValue))
+        return false;
+    if(!IsNull(_oTimeControl) && !FTimesEqual(oDateTime,this._dtValue))
+        return false;
+    return true
+}
+function onFocusHandler()
+{
+    if(event.type == "returnvaluechange")
+    {
+        ParseTimeInput();
+        return
+    }
+    RaiseEvent(null,this.onfocusHandler,eventOnFocus)
+}
+function cleanUp()
+{
+    try
+    {
+        if(_oDateControl != null)
+        {
+            _oDateControl.detachEvent("onbeforedeactivate",ParseDateInput);
+            _oDateControl.detachEvent("onchange",ParseDateInput)
+        }
+        if(_oTimeControl != null)
+        {
+            _oTimeControl.detachEvent("onreturnvaluechange",ParseTimeInput);
+            _oTimeControl.detachEvent("onvalidate",onSelectValidate);
+            _oTimeControl.detachEvent("onfindnextsmallestentry",onSelectFindNextSmallestEntry)
+        }
+    }
+    catch(e)
+    {
+    }
+}
+function resetDefault()
+{
+    if(this._dtValue != null)
+        _dtDefaultValue = new Date(this._dtValue)
+}
+function isDirty()
+{
+    if(!FDatesEqual(this._dtValue,_dtDefaultValue) || !FTimesEqual(this._dtValue,_dtDefaultValue))
+        return true;
+    else
+        return false
+}
+function getShowTime()
+{
+    if(_sFormat == FORMAT_TIMEONLY)
+        return true;
+    else
+        if(_sFormat == FORMAT_DATEONLY)
+            return false;
+        else
+            return _bShowTime
+}
+function setShowTime(bVisible)
+{
+    if(readyState == "complete" && _sFormat == FORMAT_DATETIME && bVisible != _bShowTime)
+    {
+        _oTimeControl.runtimeStyle.display = bVisible ? "inline" : "none";
+        _bShowTime = bVisible;
+        showTimeProperty.fireChange()
+    }
+}
+function refreshTimeValue()
+{
+    if(_oTimeControl != null)
+    {
+        _oTimeControl.detachEvent("onreturnvaluechange",ParseTimeInput);
+        _oTimeControl.attachEvent("onreturnvaluechange",ParseTimeInput);
+        _oTimeControl.fireReturnValChange()
+    }
+}
+function dataXml()
+{
+    var sDate = "";
+    if(this._dtValue != null)
+        sDate = FormatUtcDate(new Date(this._dtValue));
+    return "<" + this.id + ">" + sDate + "</" + this.id + ">"
+}
+function getDisabled()
+{
+    return element.contentEditable == "false"
+}
+function setDisabled(bValue)
+{
+    if(bValue == false && element.contentEditable == "false" || bValue == true && element.contentEditable != "false")
+    {
+        element.contentEditable = bValue ? "false" : "true";
+        if(_oDateControl != null)
+        {
+            _oDateControl.contentEditable = bValue ? "false" : "true";
+            _oDateControl.className = bValue ? "ms-crm-ReadOnly" : null;
+            with(_oDateControl.parentElement.nextSibling.firstChild)
+            {
+                src = bValue ? "/_imgs/btn_dis_cal.gif" : "/_imgs/btn_off_cal.gif";
+                disabled = bValue;
+                style.cursor = bValue ? "default" : "hand"
+            }
+            disabled = bValue
+        }
+        if(_oTimeControl != null)
+            if(bValue == true)
+                _oTimeControl.disable();
+            else
+                (this._dtValue != null || _sFormat == FORMAT_TIMEONLY) && 
+                    _oTimeControl.enable()
+    }
+}
+function setFocus()
+{
+    if(!element.disabled && _bInitialized)
+        if(_oDateControl != null)
+        {
+            if(!window.event || window.event.type !== "focus")
+            {
+                var oForm = _oDateControl.form;
+                !IsNull(oForm) && oForm.className == "ms-crm-Form" && 
+                    oForm.GetTab(element,true);
+                if(isControlVisible(this.element))
+                {
+                    _oDateControl.focus();
+                    _oDateControl.select()
+                }
+            }
+        }
+        else
+            _oTimeControl.SetFocus()
+}
+function getDataValue()
+{
+    return this._dtValue == null ? null : new Date(this._dtValue.valueOf())
+}
+function getInnerText()
+{
+    switch(_sFormat)
+    {
+        case FORMAT_DATETIME:
+            if(_bShowTime)
+                return _oDateControl.value + " " + _oTimeControl.returnValue;
+        case FORMAT_DATEONLY:
+            return _oDateControl.value;
+        case FORMAT_TIMEONLY:
+            return _oTimeControl.returnValue
+    }
+}
+function storeInternalDateValue(dtVal)
+{
+    this._dtValue = dtVal;
+    if(_bCacheValuesOnClient)
+    {
+        var clientCached = element.document.createAttribute("cachedDataValue");
+        clientCached.value = this._dtValue;
+        element.attributes.setNamedItem(clientCached)
+    }
+}
+function setDataValue(dtDate)
+{
+    if(!isNaN(dtDate) && dtDate != null)
+        dtDate = new Date(dtDate.valueOf());
+    else
+        dtDate = null;
+    if(!_bInitialized)
+    {
+        storeInternalDateValue(dtDate);
+        return
+    }
+    if(FDatesEqual(dtDate,this._dtValue) && FTimesEqual(dtDate,this._dtValue))
+        return;
+    if(FIsInvalid(dtDate) && (_sFormat == FORMAT_TIMEONLY || !_bAllowBlankDate))
+        return;
+    storeInternalDateValue(dtDate);
+    _oDateControl != null && 
+        SetDateDisplay(dtDate);
+    if(_oTimeControl != null)
+    {
+        SetTimeDisplay(dtDate);
+        if(dtDate == null)
+            _oTimeControl.disable();
+        else
+            !this.Disabled && 
+                _oTimeControl.enable()
+    }
+    var fDataChangeHandler = this.DataChangeHandler;
+    fDataChangeHandler && 
+        fDataChangeHandler()
+}
+function SetDateDisplay(dtDate)
+{
+    if(_oDateControl == null)
+        return;
+    if(!FIsInvalid(dtDate))
+        if(!_bAllDayDisplay)
+            _oDateControl.value = Mscrm.DateTimeUtility.formatDate(dtDate);
+        else
+            _oDateControl.value = Mscrm.DateTimeUtility.formatDate(decrementDayAcrossTimeZones(dtDate));
+    else
+        _oDateControl.value = ""
+}
+function SetTimeDisplay(dtDate)
+{
+    if(_oTimeControl == null)
+        return;
+    if(FIsInvalid(dtDate))
+        _oTimeControl.setValue("",null,true);
+    else
+    {
+        var sTime = timeToString(dtDate);
+        _oTimeControl.setValue(sTime,null,true)
+    }
+}
+function SetInternalDate(dtNewDate)
+{
+    if(_bAllDayDisplay)
+        dtNewDate = incrementDayAcrossTimeZones(dtNewDate);
+    if(this._dtValue == null)
+        storeInternalDateValue(dtNewDate);
+    else
+        storeInternalDateValue(new Date(dtNewDate.getFullYear(),dtNewDate.getMonth(),dtNewDate.getDate(),this._dtValue.getHours(),this._dtValue.getMinutes(),this._dtValue.getSeconds(),this._dtValue.getMilliseconds()))
+}
+function SetInternalTime(dtNewTime)
+{
+    SetInternalTimeCommon(dtNewTime.getHours(),dtNewTime.getMinutes(),dtNewTime.getSeconds(),dtNewTime.getMilliseconds())
+}
+function SetInternalTimeToMidnight()
+{
+    SetInternalTimeCommon(0,0,0,0)
+}
+function SetInternalTimeCommon(iHours,iMinutes,iSeconds,iMilliseconds)
+{
+    if(this._dtValue != null)
+    {
+        storeInternalDateValue(new Date(_dtValue.getYear(),_dtValue.getMonth(),_dtValue.getDate(),iHours,iMinutes,iSeconds,iMilliseconds));
+        if(iHours == 0 && iMinutes == 0 && iSeconds == 0 && iMilliseconds == 0)
+            _dtValue = AdjustDateForDst(_dtValue);
+        (iHours != _dtValue.getHours() || iMinutes != _dtValue.getMinutes()) && 
+            SetTimeDisplay(_dtValue)
+    }
+    else
+        _sFormat == FORMAT_TIMEONLY && 
+            storeInternalDateValue(dtNewTime)
+}
+function AdjustDateForDst(dtValue)
+{
+    var hours = dtValue.getHours(),
+        newDateTime = new Date(dtValue);
+    if(hours == 0)
+        return dtValue;
+    else
+        hours > 12 && hours <= 23 && 
+            newDateTime.setDate(newDateTime.getDate() + 1);
+    for(var adjustedDateTime,
+        i,
+        maxLoops,
+        adjustStage = 0; adjustStage < 3; adjustStage++)
+    {
+        switch(adjustStage)
+        {
+            case 0:
+                maxLoops = 25;
+                break;
+            case 1:
+            case 2:
+                maxLoops = 61;
+                break
+        }
+        for(i = 0; i < maxLoops; i++)
+        {
+            adjustedDateTime = new Date(newDateTime.getYear(),newDateTime.getMonth(),newDateTime.getDate(),adjustStage == 0 ? newDateTime.getHours() - 1 : newDateTime.getHours(),adjustStage == 1 ? newDateTime.getMinutes() - 1 : newDateTime.getMinutes(),adjustStage == 2 ? newDateTime.getSeconds() - 1 : newDateTime.getSeconds());
+            if(adjustedDateTime.getDate() == newDateTime.getDate())
+                newDateTime = adjustedDateTime;
+            else
+                i = maxLoops
+        }
+    }
+    return newDateTime
+}
+function FDatesEqual(dtFirstDate,dtSecondDate)
+{
+    if(FIsInvalid(dtFirstDate) && FIsInvalid(dtSecondDate))
+        return true;
+    if(FIsInvalid(dtFirstDate) && !FIsInvalid(dtSecondDate) || !FIsInvalid(dtFirstDate) && FIsInvalid(dtSecondDate) || dtFirstDate.getFullYear() != dtSecondDate.getFullYear() || dtFirstDate.getMonth() != dtSecondDate.getMonth() || dtFirstDate.getDate() != dtSecondDate.getDate())
+        return false;
+    else
+        return true
+}
+function FIsInvalid(dtDate)
+{
+    if(isNaN(dtDate) || dtDate == null || dtDate == undefined || typeof dtDate == undefined)
+        return true;
+    else
+        return false
+}
+function FTimesEqual(dtFirstTime,dtSecondTime)
+{
+    if(dtFirstTime == null && dtSecondTime == null)
+        return true;
+    if(dtFirstTime == null && dtSecondTime != null || dtFirstTime != null && dtSecondTime == null || dtFirstTime.getHours() != dtSecondTime.getHours() || dtFirstTime.getMinutes() != dtSecondTime.getMinutes() || dtFirstTime.getSeconds() != dtSecondTime.getSeconds() || dtFirstTime.getMilliseconds() != dtSecondTime.getMilliseconds())
+        return false;
+    else
+        return true
+}
+function ParseDateInput()
+{
+    if(Disabled || _oDateControl == null)
+        return;
+    _oDateControl.value = Trim(_oDateControl.value);
+    var sInputDate = _oDateControl.value;
+    if(this._dtValue != null)
+    {
+        var sFormattedDate = _bAllDayDisplay ? Mscrm.DateTimeUtility.formatDate(decrementDayAcrossTimeZones(this._dtValue)) : Mscrm.DateTimeUtility.formatDate(this._dtValue);
+        if(sFormattedDate == sInputDate)
+            return
+    }
+    if(sInputDate.length == 0)
+        if(_bAllowBlankDate)
+        {
+            if(this._dtValue != null)
+            {
+                if(_oTimeControl)
+                {
+                    SetTimeDisplay(null);
+                    _oTimeControl.disable()
+                }
+                storeInternalDateValue(null);
+                fireOnChange()
+            }
+        }
+        else
+        {
+            alert(LOCID_DTM_BLANK_DATE_ERROR);
+            SetDateDisplay(this._dtValue);
+            if(!IsNull(event) && event.type == "beforedeactivate")
+                event.returnValue = false;
+            _oDateControl.focus()
+        }
+    else
+    {
+        var dtInputDate = Mscrm.DateTimeUtility.parseDate(sInputDate);
+        if(dtInputDate)
+        {
+            dtInputDate = AdjustDateForDst(dtInputDate);
+            if(!FDatesEqual(dtInputDate,this._dtValue) || _bAllDayDisplay)
+            {
+                var bDateWasEmpty = this._dtValue == null;
+                SetInternalDate(dtInputDate);
+                SetDateDisplay(this._dtValue);
+                if(_oTimeControl == null)
+                    SetInternalTimeToMidnight();
+                else
+                    if(bDateWasEmpty)
+                    {
+                        _oTimeControl.enable();
+                        SetTimeDisplay(dtInputDate);
+                        if(!IsNull(event) && event.type == "beforedeactivate")
+                        {
+                            event.returnValue = false;
+                            _oTimeControl.SetFocus()
+                        }
+                    }
+                fireOnChange()
+            }
+        }
+        else
+        {
+            SetDateDisplay(this._dtValue);
+            if(!IsNull(event) && event.type == "beforedeactivate")
+                event.returnValue = false;
+            _oDateControl.focus()
+        }
+    }
+}
+function ParseTimeInput()
+{
+    if(event.type == "onvalidate")
+        return onSelectValidate();
+    if(Disabled || _oTimeControl == null)
+        return;
+    var oTimeControl = event.srcElement,
+        oTime = parseTime(oTimeControl.returnValue);
+    if(!FTimesEqual(oTime,this._dtValue))
+    {
+        SetInternalTime(oTime);
+        fireOnChange()
+    }
+}
+function onSelectValidate()
+{
+    if(event.type == "returnvaluechange")
+    {
+        ParseTimeInput();
+        return
+    }
+    var sDate = Trim(event.inputValue);
+    oDate = parseTime(sDate);
+    if(isNaN(oDate.valueOf()))
+    {
+        alert(LOCID_DTM_BLANK_TIME_ERROR);
+        event.returnValue = false
+    }
+    else
+    {
+        if(IsNull(event.returnValue))
+            event.returnValue = true;
+        event.formattedValue = timeToString(oDate)
+    }
+}
+function onSelectFindNextSmallestEntry()
+{
+    if(event.type == "returnvaluechange")
+    {
+        ParseTimeInput();
+        return
+    }
+    var sValue = event.inputValue;
+    if(IsNull(sValue))
+        sValue = this.DataValue.toString();
+    oCurrentTime = parseTime(sValue);
+    if(oCurrentTime.getMinutes() == 0)
+        oCurrentTime.setMinutes(-30);
+    else
+        if(oCurrentTime.getMinutes() <= 30)
+            oCurrentTime.setMinutes(0);
+        else
+            oCurrentTime.setMinutes(30);
+    event.sEntry = timeToString(oCurrentTime)
+}
+function getAllowTimeEdit()
+{
+    return _bAllowTimeEdit
+}
+function setAllowTimeEdit(bAllow)
+{
+    if(readyState == "complete" && _oTimeControl && bAllow != _bAllowTimeEdit)
+    {
+        _oTimeControl.allowValueEdit = bAllow;
+        _bAllowTimeEdit = bAllow;
+        allowTimeEditProperty.fireChange()
+    }
+}
+function getInitDisable()
+{
+    return _bInitDisable
+}
+function setInitDisable(bInit)
+{
+    _bInitDisable = bInit
+}
+function getAllDayDisplay()
+{
+    return _bAllDayDisplay
+}
+function setAllDayDisplay(bInit)
+{
+    _bAllDayDisplay = bInit;
+    SetDateDisplay(this._dtValue)
+}
+function fireOnChange()
+{
+    var oEvent = createEventObject();
+    oEvent.value = this._dtValue;
+    RaiseEvent(oEvent,this.onchangeHandler,OnChangeEvent)
+}
+function getRequiredLevel()
+{
+    try
+    {
+        if(IsNull(this.req))
+            return FIELD_NOT_REQUIRED;
+        else
+            return parseInt(this.req,10)
+    }
+    catch(e)
+    {
+        return FIELD_NOT_REQUIRED
+    }
+}
+
+</script>
+</public:component>

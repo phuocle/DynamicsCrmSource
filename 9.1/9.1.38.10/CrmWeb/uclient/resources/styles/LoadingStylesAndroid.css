@@ -1,0 +1,20 @@
+/*-------------------------------------
+	Fonts
+--------------------------------------*/
+/* Use url calls to get segoe fonts loaded from local resources in Android */
+
+@font-face {
+	font-family: 'Android Hindi';
+	src: local('DroidSansDevanagari-Regular'), url("sysfont:hindi") format("truetype");
+}
+
+@font-face {
+	font-family: 'Android Thai';
+	src: local('DroidSansThai'), url("sysfont:thai") format("truetype");
+}
+
+/*Font-face with dummy url call to send the system CJK font in the Android Shim.*/
+@font-face {
+	font-family: 'Android CJK';
+	src: local('Droid Sans Fallback'), url("sysfont:cjk") format("truetype");
+}

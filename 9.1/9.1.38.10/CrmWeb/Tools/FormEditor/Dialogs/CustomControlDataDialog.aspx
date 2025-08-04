@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Microsoft.Crm.Application.Pages.Tools.FormEditor.Dialogs.CustomControlDataDialog" %>

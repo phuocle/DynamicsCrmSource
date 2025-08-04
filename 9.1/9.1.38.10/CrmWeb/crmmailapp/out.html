@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+	<iframe style="display: none;" id="outFrame"
+		sandbox="allow-scripts allow-modals allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+	<!-- CodeQl [SM02170] Allow scripts and same origin as unknown if MailApp.OnPremSignOutUrl will be from same origin-->
+	<script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+	<script>
+		window.onload = function () {
+			var signOutUri = window.localStorage.getItem("MailApp.OnPremSignOutUrl");
+			var authUri = window.localStorage.getItem("MailApp.OnPremSignInUrl");
+			var frame = document.getElementById('outFrame');
+
+			// If local storage is available and contains required items, use it
+			if (signOutUri && authUri) {
+				frame.onload = function () {
+					window.location.replace(authUri);
+				}
+				frame.src = decodeURIComponent(signOutUri);
+			} else {
+				Office.onReady(function () {
+					Office.context.ui.addHandlerAsync(Office.EventType.DialogParentMessageReceived,
+						onMessageFromParent);
+
+					// requesting auth urls from parent 
+					Office.context.ui.messageParent("request-auth-urls");
+				});
+
+				function onMessageFromParent(arg) {
+					// expecting auth urls from parent
+					// signOutUrl: url to sign out from on-prem server
+					// signInUrl: url to sign in to on-prem server
+					try {
+						var authUrls = JSON.parse(arg.message);
+
+						var signOutUri = authUrls.signOutUrl;
+						var onpremSignInUri = authUrls.signInUrl;
+						var frame = document.getElementById('outFrame');
+
+						// redirecting to on-prem server
+						frame.onload = function () {
+							window.location.replace(onpremSignInUri);
+						}
+						frame.src = decodeURIComponent(signOutUri);
+					} catch (e) {
+						console.log(e);
+					}
+				}
+			}
+		};
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,1514 @@
+/* The file is AUTO generated on Thu, 10 Jul 2025 23:49:20 UTC */
+/* Do NOT manually modify this file! */
+
+.offScreen {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.basic-button {
+  min-width: 80px;
+  width: auto;
+  height: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: 0px;
+  margin-right: 10px;
+  border: 1px solid #666666;
+  background: white;
+  font-size: 12px;
+  color: #262626;
+}
+.basic-button:active {
+  background: #0072c6;
+  color: white;
+}
+.basic-button:disabled {
+  background: white;
+  color: #262626;
+  opacity: 0.6;
+}
+.basic-button[disabled] {
+  background: white;
+  color: #262626;
+  opacity: 0.6;
+}
+.hideWithEllipses {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.highContrastBorder {
+  /* Render a transparent border for the element. It will not be visible
+	normally, but will be rendered in high contrast mode. */
+
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+/* When field label is not on the left, descrease padding to let control icons cover it */
+.ms-crm-ReadField-Normal ~ div .socialInsight {
+  padding-top: 0px;
+}
+.ms-crm-ReadField-Normal ~ div .socialInsight .nbContent {
+  top: 11px;
+  bottom: 0;
+}
+.socialInsight {
+  height: 100%;
+  position: relative;
+  padding-top: 16px;
+  /* Addditional style for form runtime controls with no labels. */
+
+}
+.socialInsight .hidden {
+  display: none;
+}
+.socialInsight .buttons {
+  opacity: 1;
+  /*This is required to allow passing comma-separated arguments*/
+
+  -webkit-transition: opacity 1s ease-out, visibility 0s linear;
+  -moz-transition: opacity 1s ease-out, visibility 0s linear;
+  -ms-transition: opacity 1s ease-out, visibility 0s linear;
+  -o-transition: opacity 1s ease-out, visibility 0s linear;
+  transition: opacity 1s ease-out, visibility 0s linear;
+  position: absolute;
+  right: 1px;
+  bottom: 3px;
+}
+.socialInsight .buttons.hidden {
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0s ease-in;
+  -moz-transition: opacity 0s ease-in;
+  -ms-transition: opacity 0s ease-in;
+  -o-transition: opacity 0s ease-in;
+  transition: opacity 0s ease-in;
+}
+.socialInsight .buttons .button {
+  display: inline-block;
+}
+.socialInsight .titleAndButtons {
+  border-bottom: 1px #cccccc solid;
+  height: 10px;
+  position: relative;
+  margin-top: 5px;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.socialInsight .runtimeSpinner {
+  position: absolute;
+  width: 150px;
+  height: 84px;
+  top: 50%;
+  left: 50%;
+  margin-left: -75px;
+  margin-top: -42px;
+  text-align: center;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.socialInsight .runtimeSpinner > div {
+  padding-top: 4px;
+  font-size: 13px;
+}
+.socialInsight .configurationLink {
+  position: relative;
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  font-size: 12px;
+  padding-top: 10px;
+  color: #666666;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.socialInsight .configurationLink > a {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+}
+.socialInsight .configurationLink > a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.socialInsight .unauthorizedMessage {
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.socialInsight .disabledByAdmin {
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.socialInsight .configurationMessage {
+  position: relative;
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  font-size: 12px;
+  padding-top: 10px;
+  color: #666666;
+  padding-left: 10px;
+  padding-right: 10px;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.socialInsight .nbContent {
+  position: absolute;
+  top: 27px;
+  bottom: 0;
+  width: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.socialInsight .newEntityScreen {
+  color: #8b8b8b;
+}
+.socialInsight.dashboard {
+  padding-top: 0px;
+  border: 1px solid #DDD;
+}
+.socialInsight.dashboard .titleAndButtons {
+  display: none;
+}
+.socialInsight.dashboard .nbContent {
+  top: 0px;
+  bottom: 2px;
+}
+.socialInsight.titleMissing {
+  /* The parent element of this control will not enforce our height. We need
+		to be responsible for staying within the allocated space. */
+
+  padding-top: 0px;
+  /* Extra margin for the buttons to keep them from overlapping the control
+		above this one. */
+
+  /* Shift the content frame a bit downward, away from the buttons. */
+
+}
+.socialInsight.titleMissing .titleAndButtons {
+  margin-top: 20px;
+}
+.socialInsight.titleMissing .nbContent {
+  top: 6px;
+}
+.socialInsight.ie {
+  height: calc(84%);
+}
+.WidgetListEditor {
+  margin-top: 19px;
+  overflow-x: visible;
+  display: table;
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  /* _locID_css@font-family="WidgetListEditor" _locComment="Font Family" */
+
+  color: #262626;
+  font-size: 12px;
+}
+.WidgetListEditor .WidgetListEditor-Title {
+  max-width: 620px;
+}
+.WidgetListEditor .WidgetListEditor-Title > * {
+  vertical-align: middle;
+}
+.WidgetListEditor .WidgetListEditor-Title .WidgetListEditor-AddButton {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: auto;
+  float: right;
+}
+.WidgetListEditor .WidgetListEditor-Title .WidgetListEditor-AddButton.disabled {
+  cursor: auto;
+}
+.WidgetListEditor .WidgetListEditor-Title .WidgetListEditor-AddButton img {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+.WidgetListEditor .WidgetListEditor-Title .WidgetListEditor-AddButton img {
+  width: 20px;
+  height: 20px;
+}
+.WidgetListEditor .WidgetListEditor-Title .WidgetListEditor-AddCaption {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #262626;
+}
+.WidgetListEditor .WidgetListEditor-Title .WidgetListEditor-TopicContainer {
+  display: inline;
+}
+.WidgetListEditor .WidgetListEditor-Title .WidgetListEditor-TopicCaption {
+  font-size: 12px;
+  color: #999999;
+}
+.WidgetListEditor .WidgetListEditor-Title .WidgetListEditor-Topic {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #262626;
+  /* Ellipsize the topic title to maintain the editor width. */
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 490px;
+}
+.WidgetListEditor .WidgetListEditor-Header {
+  margin-top: 10px;
+  height: 18px;
+  border-top: 1px #DADADB solid;
+  margin-right: 17px;
+  padding-top: 13px;
+  padding-bottom: 7px;
+}
+.WidgetListEditor .WidgetListEditor-List {
+  height: 274px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  clear: both;
+  padding-right: 36px;
+}
+.WidgetListEditor .listview-item-index {
+  float: left;
+  padding-left: 5px;
+  width: 14px;
+  padding-right: 15px;
+  text-align: right;
+}
+.WidgetListEditor .listview-item-container {
+  position: relative;
+  left: 34px;
+}
+.WidgetListEditor .widget-type {
+  float: left;
+  width: 190px;
+  margin-right: 20px;
+}
+.WidgetListEditor .widget-type-description {
+  float: left;
+  margin-right: 20px;
+  width: 190px;
+}
+.WidgetListEditor .widget-type-description-text {
+  height: 32px;
+  line-height: 16px;
+  max-width: 190px;
+  overflow: hidden;
+  height: 32px;
+}
+.WidgetListEditor .widget-type-description-text:before {
+  content: "";
+  float: left;
+  width: 5px;
+  height: 32px;
+}
+.WidgetListEditor .widget-type-description-text  > *:first-child {
+  float: right;
+  width: 100%;
+  margin-left: -5px;
+}
+.WidgetListEditor .widget-type-description-text:after {
+  content: "\02026";
+  background: url("../../../_imgs/SocialInsight/TruncationGradient_White.png") repeat-y, url("/_imgs/SocialInsight/TruncationGradient_White.png") repeat-y;
+  float: right;
+  position: relative;
+  top: -16px;
+  left: 100%;
+  width: 72px;
+  margin-left: -72px;
+  padding-right: 5px;
+  text-align: right;
+  color: white;
+}
+.WidgetListEditor .widget-type-description-cell {
+  display: table-cell;
+  vertical-align: middle;
+  width: 190px;
+  height: 40px;
+}
+.WidgetListEditor .widget-type-preview {
+  float: left;
+  width: 160px;
+  padding-right: 5px;
+}
+.WidgetListEditor .listview-item {
+  clear: both;
+  height: 50px;
+  position: relative;
+  width: 619px;
+  overflow-y: visible;
+}
+.WidgetListEditor .listview-item .listview-item-index {
+  position: absolute;
+  top: 50%;
+  height: 16px;
+  margin-top: -8px;
+}
+.WidgetListEditor .listview-item .widget-type-view {
+  position: relative;
+  height: 50px;
+}
+.WidgetListEditor .listview-item .widget-type {
+  position: absolute;
+  top: 50%;
+  height: 24px;
+  margin-top: -12px;
+}
+.WidgetListEditor .listview-item .widget-type-preview {
+  left: 420px;
+  position: absolute;
+  top: 50%;
+  height: 40px;
+  margin-top: -20px;
+}
+.WidgetListEditor .listview-item .widget-type-description {
+  left: 210px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  height: 40px;
+  margin-top: -20px;
+}
+.WidgetListEditor .listview-item .WidgetListEditor-DeleteButton {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  left: 590px;
+  width: 12px;
+  display: none;
+  position: absolute;
+  top: 50%;
+  height: 12px;
+  margin-top: -6px;
+}
+.WidgetListEditor .listview-item .WidgetListEditor-DeleteButton.disabled {
+  cursor: auto;
+}
+.WidgetListEditor .listview-item .WidgetListEditor-DeleteButton img {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+.WidgetListEditor .listview-item .WidgetListEditor-DeleteButton img {
+  width: 12px;
+  height: 12px;
+}
+.WidgetListEditor .listview-item .widget-type-description-text[direction=rtl]:after {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.WidgetListEditor .listview-item:hover {
+  background: #b1d6f0;
+}
+.WidgetListEditor .listview-item:hover .widget-type-description-text:after {
+  background: url("/_imgs/SocialInsight/TruncationGradient_Hover.png") repeat-y;
+  color: #b1d6f0;
+}
+.WidgetListEditor .listview-item.selected {
+  background: #0072c6;
+  /* Render a transparent border for the element. It will not be visible
+	normally, but will be rendered in high contrast mode. */
+
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+.WidgetListEditor .listview-item.selected .widget-type-description,
+.WidgetListEditor .listview-item.selected .listview-item-index {
+  color: white;
+}
+.WidgetListEditor .listview-item.selected .widget-type-description-text:after {
+  background: url("/_imgs/SocialInsight/TruncationGradient_Select.png") repeat-y;
+  color: #0072c6;
+}
+.WidgetListEditor .selected .WidgetListEditor-DeleteButton,
+.WidgetListEditor .listview-item:hover .WidgetListEditor-DeleteButton,
+.WidgetListEditor .listview-item.focused .WidgetListEditor-DeleteButton {
+  display: block;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls {
+  clear: both;
+  border-top: 1px #DADADB solid;
+  margin-right: 17px;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls button {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  margin: 5px 0;
+  float: left;
+  width: 30px;
+  height: 30px;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls button.disabled {
+  cursor: auto;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls button img {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls button img {
+  width: 30px;
+  height: 30px;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls button:hover {
+  background: #b1d6f0;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls button:active {
+  background: #0072c6;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls button.disabled:hover,
+.WidgetListEditor .WidgetListEditor-MoveControls button.disabled:active {
+  background: none;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls .WidgetListEditor-MoveCaptionCell {
+  float: left;
+  display: table-cell;
+  line-height: 30px;
+  height: 30px;
+  margin: 5px 0;
+  margin-left: 10px;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls .WidgetListEditor-MoveCaptionCell .List-MoveCaption {
+  vertical-align: middle;
+  max-width: 206.33333333333334px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls .WidgetListEditor-MoveCaptionCell .List-MoveCaption.disabled {
+  color: #B1B1B1;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls .WidgetListEditor-VisualNotSupported {
+  float: right;
+  display: inline;
+  margin-top: 10px;
+  display: none;
+  font-size: 12px;
+  color: #444444;
+  white-space: nowrap;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls WidgetListEditor-VisualNotSupportedInfoIcon {
+  vertical-align: top;
+  padding-right: 8px;
+  width: 16px;
+  height: 16px;
+}
+.WidgetListEditor .WidgetListEditor-MoveControls WidgetListEditor-VisualNotSupportedMessageCssClass {
+  max-width: 480px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.rotate180deg {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.provisioning {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  /* _locID_css@font-family="WidgetListEditor" _locComment="Font Family" */
+
+  color: #262626;
+  font-size: 12px;
+}
+.provisioning .content {
+  margin-top: 44px;
+}
+.provisioning .title {
+  font-family: "Segoe UI Light", "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  font-size: 36px;
+  color: #444;
+  line-height: 45px;
+  display: table-cell;
+}
+.provisioning .title img {
+  vertical-align: middle;
+  margin-left: 40px;
+  margin-right: 30px;
+  width: 45px;
+  height: 45px;
+}
+.provisioning .title span {
+  vertical-align: middle;
+}
+.provisioning .logoOffset {
+  margin-left: 115px;
+}
+.provisioning #Disclaimer .logoOffset {
+  margin-top: 21px;
+}
+.provisioning #Disclaimer .bottomButtons {
+  margin-top: 70px;
+}
+.provisioning #InstanceSelection {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  overflow-y: auto;
+}
+.provisioning #InstanceSelection .logoOffset {
+  margin-top: 15px;
+  width: 705px;
+}
+.provisioning #InstanceSelection .instance {
+  margin-top: 8px;
+  display: block;
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  color: #444;
+  padding-bottom: 12px;
+}
+.provisioning #InstanceSelection .instance select {
+  width: 400px;
+  height: 32px;
+  vertical-align: middle;
+  font-size: 12px;
+  color: #444444;
+  border: 1px solid #98A3A6;
+}
+.provisioning #InstanceSelection .instance button {
+  margin-left: 30px;
+  vertical-align: middle;
+}
+.provisioning #InstanceSelection .instance .connect-description {
+  font-size: 14px;
+  padding-left: 1px;
+}
+.provisioning #InstanceSelection .instance .onprem-description {
+  margin: 0px;
+  padding-left: 20px;
+  margin-left: 6px;
+}
+.provisioning #InstanceSelection .instance .onprem-description a {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+}
+.provisioning #InstanceSelection .instance .onprem-description a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.provisioning #InstanceSelection .instance .onprem-description .listitem-title {
+  font-size: 18px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .normaltext {
+  font-size: 12px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configuremsl {
+  margin-top: 28px;
+  margin-bottom: 29px;
+  font-size: 18px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configuremsl > div:nth-child(1) {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configuremsl div:nth-child(2) {
+  font-size: 12px;
+  margin-bottom: 13px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configuremsl > ol {
+  padding-left: 17px;
+  font-size: 12px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configuremsl > ol > li:nth-child(1) {
+  margin-bottom: 10px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configuremsl > ol > ul {
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configuremsl > ol > ul > li {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configuremsl > ol > li {
+  margin-bottom: 8px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configuremsl > ol > li > div {
+  margin-left: 5px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm {
+  font-size: 18px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm > div:nth-child(1) {
+  font-size: 18px;
+  margin-left: 0px;
+  margin-bottom: 13px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm table #allowSocialInsightsRow td {
+  padding: 0px;
+  vertical-align: top;
+  font-size: 12px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm table #allowSocialInsightsRow td input[type="checkbox"] {
+  padding: 0px;
+  margin: 0px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm table #allowSocialInsightsRow #allowSocialInsightsTextColumn {
+  padding-left: 6px;
+  padding-bottom: 14px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm table #enterURLTextRow td {
+  padding-left: 5px;
+  font-size: 12px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm table #enterURLTextBoxAndTestButtonRow td {
+  padding-left: 5px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm table #enterURLTextBoxAndTestButtonRow #enterURLTextBoxAndTestButtonColumn {
+  display: inline-block;
+  margin-bottom: 11px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm table #enterURLTextBoxAndTestButtonRow #enterURLTextBoxAndTestButtonColumn > button {
+  margin-top: 6px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm table #saveSettingsButtonRow td {
+  padding-left: 5px;
+  padding-bottom: 1px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm table #errorMessagesRow td > div {
+  margin-top: 13px;
+  padding-left: 6px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm > div {
+  font-size: 12px;
+  margin-left: 23px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm input[type="text"] {
+  height: 20px;
+  border: 1px solid #98A3A6;
+  background: none;
+  width: 430px;
+  padding-left: 10px;
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  font-size: 12px;
+  color: #444444;
+  vertical-align: middle;
+  margin-top: 6px;
+  margin-left: 1px;
+  margin-right: 10px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm input[type="text"]:disabled {
+  color: #b1b1b1;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm button {
+  margin-left: 1px;
+  margin-right: 14px;
+  color: #666;
+  border-color: #98A3A6;
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm #MSLSuccessFailureMessages {
+  min-height: 18px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm #MSLSuccessFailureMessages img {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm #MSLSuccessFailureMessages div {
+  vertical-align: middle;
+  display: inline-block;
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  font-size: 12px;
+  color: #444;
+}
+.provisioning #InstanceSelection .instance .onprem-description .configurecrm #MSLSuccessFailureMessages #AddToTrustedSitesMessage {
+  margin-top: 10px;
+}
+.provisioning #InstanceSelection .reset {
+  margin-top: 70px;
+  color: #444;
+}
+.provisioning #InstanceSelection .reset button {
+  margin-bottom: 11px;
+  color: #666;
+  border-color: #98A3A6;
+}
+.provisioning #InstanceSelection .resetOnPremContainer {
+  color: #444;
+  padding-left: 2px;
+}
+.provisioning #InstanceSelection .resetOnPremContainer button {
+  margin-top: 2px;
+  margin-bottom: 6px;
+  color: #666;
+  border-color: #98A3A6;
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+}
+.provisioning #InstanceSelection .resetStatus {
+  height: 16px;
+  display: inline-block;
+  margin-top: 20px;
+  vertical-align: middle;
+}
+.provisioning #InstanceSelection .resetStatus img {
+  height: 16px;
+  width: 16px;
+  padding-right: 10px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.provisioning #InstanceSelection #SolutionUnavailableContainer {
+  min-height: 18px;
+}
+.provisioning #InstanceSelection #SolutionUnavailableContainer .solutionUnavailable {
+  vertical-align: middle;
+}
+.provisioning #InstanceSelection #SolutionUnavailableContainer .solutionUnavailable img {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+TABLE.ms-crm-ConfigureSocialInsights-SingleSelect {
+  table-layout: fixed;
+  width: 600px;
+}
+DIV.SocialInsightsConfiguration DIV.ms-crm-WizardForm-Main {
+  background-color: #FFFFFF;
+  bottom: 0px;
+  padding-bottom: 0px;
+  border-bottom-width: 0px;
+  border-bottom-style: none;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main {
+  top: 64px;
+  background-color: #ffffff;
+  padding-top: 24px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 640px;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-buttonset {
+  margin-left: 135px;
+  margin-top: 70px;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-buttonset .ui-state-default {
+  background: #ffffff;
+  border: 1px solid #AAAAAA;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-buttonset .ui-state-default:hover {
+  border: 1px solid #27A0DA;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-buttonset .ui-state-active {
+  border: 1px solid #27A0DA;
+  background-color: #0072C3;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-buttonset input:focus + label {
+  border: 1px solid black;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-buttonset input {
+  width: 0px;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-buttonset .ui-button {
+  margin-left: 30px;
+  margin-right: 30px;
+  height: 125px;
+  width: 125px;
+  vertical-align: top;
+  vertical-align: top;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-buttonset .ui-button .ui-icon {
+  width: 65px;
+  height: 65px;
+  left: 39px;
+  top: 39px;
+  margin-left: -8px;
+  margin-top: -8px;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-buttonset .ui-button.ui-button-text-icon-primary .ui-button-text {
+  padding: 0px;
+  margin-top: 137px;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-corner-left {
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  border-top-left-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+DIV#wizardFormMain.ms-crm-WizardForm-Main .ui-corner-right {
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+#wizardFormMain .ms-crm-WizardForm-Body DIV.ms-crm-WizardForm-Body-Inner {
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+#wizardFormMain .ms-crm-WizardForm-Body DIV.ms-crm-WizardForm-Body-Inner input {
+  width: auto;
+  vertical-align: top;
+  margin-right: 5px;
+}
+body DIV.ms-crm-WizardForm-Header {
+  height: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 640px;
+}
+body DIV.ms-crm-WizardForm-Header div.ms-crm-WizardForm-Header-Title {
+  margin-left: 0px;
+}
+body DIV.ms-crm-WizardForm-Header SPAN.ms-crm-WizardForm-Header-Title {
+  color: #262626;
+  font-size: 36px;
+  font-family: "Segoe UI Light", "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  font-weight: normal;
+  max-width: 450px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+body DIV.ms-crm-WizardForm-Header .ms-crm-WizardForm-Header-Help {
+  margin-top: 10px;
+  margin-right: 0px;
+}
+body DIV.ms-crm-WizardForm-Header .ms-crm-WizardForm-Header-Help a {
+  margin-left: 15px;
+}
+.spinner-Container {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  width: 100%;
+  height: 89%;
+  background-color: #ffffff;
+  opacity: 1.0;
+  color: #262626;
+  font-family: "Segoe UI Light", "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+}
+.spinner-Container > div {
+  text-align: center;
+}
+.spinner-Container .spinner-AnimationContainer {
+  margin-top: 170px;
+}
+.spinner-Container .spinner-Title {
+  margin-top: 10px;
+  font-size: 36px;
+}
+.spinner-Container .spinner-Action {
+  font-size: 18px;
+}
+DIV#wizardStagesContainer {
+  white-space: nowrap;
+}
+DIV#wizardStagesContainer .wizardStageTextContainer .wizardStageText {
+  display: inline-block;
+  word-wrap: break-word;
+  color: #444444;
+  font-size: 18px;
+  font-family: "Segoe UI Light", "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  white-space: normal;
+  float: left;
+  line-height: 21px;
+  width: 33%;
+}
+DIV#wizardStagesContainer .wizardStageTextContainer .wizardStageText div {
+  padding-left: 15px;
+  display: inline-block;
+}
+DIV#wizardStagesContainer .wizardStageTextContainer .wizardStageText.active.wizardStageText {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  color: #444444;
+}
+DIV#wizardStagesContainer .wizardStageTextContainer .wizardStageText:first-child div {
+  padding-left: 0px;
+}
+DIV#wizardStagesContainer .wizardStageArrowContainer {
+  clear: both;
+}
+DIV#wizardStagesContainer .wizardStageArrowContainer .arrow {
+  margin-top: 6px;
+  display: inline-block;
+  width: 33%;
+}
+DIV#wizardStagesContainer .wizardStageArrowContainer .arrow .arrowtail-right {
+  border-top: 4px solid #f3f1f1;
+  border-bottom: 4px solid #f3f1f1;
+  border-left: 8px solid transparent;
+  float: left;
+}
+DIV#wizardStagesContainer .wizardStageArrowContainer .arrow .arrowhead-right {
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 8px solid #f3f1f1;
+  float: right;
+}
+DIV#wizardStagesContainer .wizardStageArrowContainer .arrow .arrowbody {
+  border-top: 8px solid #f3f1f1;
+  overflow: hidden;
+}
+DIV#wizardStagesContainer .wizardStageArrowContainer .arrow.active.arrow .arrowtail-right {
+  border-top-color: #0072c6;
+  border-bottom-color: #0072c6;
+}
+DIV#wizardStagesContainer .wizardStageArrowContainer .arrow.active.arrow .arrowbody {
+  border-top-color: #0072c6;
+}
+DIV#wizardStagesContainer .wizardStageArrowContainer .arrow.active.arrow .arrowhead-right {
+  border-left-color: #0072c6;
+}
+.errorDivStyle {
+  display: none;
+  height: 45px;
+  background-color: white;
+  color: red;
+  padding-top: 20px;
+  font-size: 12px;
+}
+.errorDivStyle .errorIcon {
+  float: left;
+}
+.errorDivStyle .description {
+  padding-top: 1px;
+  padding-left: 42px;
+}
+.topicCategoryPickerContainer {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  font-size: 14px;
+  color: #262626;
+  cursor: default;
+}
+.topicCategoryPickerContainer .errorDiv {
+  display: none;
+  height: 45px;
+  background-color: white;
+  color: red;
+  padding-top: 20px;
+  font-size: 12px;
+}
+.topicCategoryPickerContainer .errorDiv .errorIcon {
+  float: left;
+}
+.topicCategoryPickerContainer .errorDiv .description {
+  padding-top: 1px;
+  padding-left: 42px;
+}
+.topicCategoryPickerContainer .errorDiv.errorVisible {
+  display: block;
+}
+.topicCategoryPickerContainer .errorDiv.errorVisible ~ .topicCategoryPickerInstructions {
+  padding-top: 0px;
+}
+.topicCategoryPickerContainer .errorDiv.errorVisible ~ .topicCategoryPicker .topicCategorySelect,
+.topicCategoryPickerContainer .errorDiv.errorVisible ~ .topicCategoryPicker .topicCategoryPreviewContainer {
+  height: 277px;
+}
+.topicCategoryPickerContainer .topicCategoryPickerInstructions {
+  margin: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 7px;
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  font-weight: normal;
+}
+.topicCategoryPickerContainer .topicCategorySelect,
+.topicCategoryPickerContainer .topicCategoryPreview {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 26px;
+}
+.topicCategoryPickerContainer .topicCategorySelect,
+.topicCategoryPickerContainer .topicCategoryPreviewContainer {
+  float: left;
+  height: 326px;
+  background-color: #ffffff;
+}
+.topicCategoryPickerContainer .topicCategorySelect {
+  /* Don't scroll.
+        This is not an issue for Leo because we aren't supporting custom
+        categories, but will need to be revisited in the future.
+        */
+
+  white-space: nowrap;
+  overflow: hidden;
+  width: 319px;
+}
+.topicCategoryPickerContainer .topicCategorySelect:hover {
+  overflow-y: auto;
+}
+.topicCategoryPickerContainer .topicCategorySelect > li {
+  padding-left: 7px;
+  cursor: pointer;
+  /* Prevent user from selecting text. Not strictly necessary, but
+            prevents users from accidentally scrolling the lists horizontally
+            by selecting long class titles or search item titles. */
+
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.topicCategoryPickerContainer .topicCategorySelect > li:hover {
+  background-color: #b1d6f0;
+}
+.topicCategoryPickerContainer .topicCategorySelect > li:active,
+.topicCategoryPickerContainer .topicCategorySelect > li.selected-category {
+  background-color: #0072c6;
+  color: #ffffff;
+  /* Render a transparent border for the element. It will not be visible
+	normally, but will be rendered in high contrast mode. */
+
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+.topicCategoryPickerContainer .topicCategorySelect > li.selected-category::after {
+  /* The arrow on the right side of the selected category that
+            makes the topic preview pane appear to be popping out of the
+            list item.
+            On older browsers, this will not work. The arrow will simply
+            not appear, which is an acceptable fallback. */
+
+  content: "";
+  width: 0px;
+  height: 0px;
+  font-size: 0px;
+  /* On the right side. */
+
+  float: right;
+  /* Center the arrow vertically in the list item. */
+
+  position: relative;
+  top: 7px;
+  border-top-width: 6px;
+  border-top-style: solid;
+  border-top-color: transparent;
+  border-right-width: 6px;
+  border-right-style: solid;
+  border-right-color: #f5fafe;
+  border-bottom-width: 6px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+  border-left-width: 6px;
+  border-left-style: solid;
+  border-left-color: transparent;
+}
+.topicCategoryPickerContainer .topicCategoryPreviewContainer {
+  padding-left: 20px;
+  background-color: #f5fafe;
+}
+.topicCategoryPickerContainer .topicCategoryPreviewTitle {
+  margin: 0;
+  padding: 9px 0 8px 0;
+  color: #444444;
+  font-size: 14px;
+  font-family: "Segoe UI Light", "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.topicCategoryPickerContainer .topicCategoryPreview {
+  /* 319px - 20px padding-left in container. */
+
+  width: 299px;
+  height: 290px;
+  /* Cut off long titles. */
+
+  white-space: nowrap;
+  overflow-x: hidden;
+  /* Don't scroll unless the mouse is on top. This will break scrolling for touch interfaces. 
+            (TODO andshe: figure out a way to support scrolling for touch interfaces.) */
+
+  overflow-y: hidden;
+  font-size: 12px;
+  color: #262626;
+}
+.topicCategoryPickerContainer .topicCategoryPreview > li {
+  /* Show ellipsis for the titles that were cut off. */
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.topicCategoryPickerContainer .topicCategoryPreview:hover {
+  /* The mouse is over the preview list. It's OK to show the
+        scrollbar now, because one would expect a long list to scroll. */
+
+  overflow-y: auto;
+}
+DIV#topicsList {
+  margin-top: 24px;
+  font-family: "Segoe UI";
+  font-size: 12px;
+  color: #444444;
+}
+DIV#topicsList .listview-item.selected {
+  background: #0072c6;
+  color: #ffffff;
+  /* Render a transparent border for the element. It will not be visible
+	normally, but will be rendered in high contrast mode. */
+
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+DIV#topicsList .listview-item.selected:hover {
+  background: #0072c6;
+  color: #ffffff;
+}
+DIV#topicsList .listview-item:hover {
+  background: #b1d6f0;
+}
+DIV#topicsList .listview-item .listview-item-container {
+  margin-left: 4px;
+}
+DIV#topicsList .listview-item-index {
+  display: none;
+}
+DIV#topicsList .searchTopicTableHeader {
+  font-size: 18px;
+  color: #262626;
+  padding-bottom: 5px;
+}
+DIV#topicsList .searchTopicHeader {
+  height: 20px;
+  border-top: 1px solid #DADADB;
+  border-bottom: 1px solid #DADADB;
+  padding-top: 5px;
+  padding-bottom: 1px;
+}
+DIV#topicsList .searchTopicItemsList {
+  overflow-y: auto;
+  height: 279px;
+}
+DIV#topicsList .searchTopicItemsList .searchTopicItem {
+  display: inline-block;
+  margin-top: 5px;
+}
+DIV#topicsList .searchTopicItemsList .searchTopicItem .searchTopicName {
+  width: 200px;
+  float: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+DIV#topicsList .searchTopicItemsList .searchTopicItem .searchTopicKeywords {
+  margin-left: 4px;
+  float: left;
+  max-width: 415px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+DIV#topicsList .searchTopicNameHeader {
+  margin-left: 4px;
+  width: 200px;
+  float: left;
+}
+DIV#topicsList .searchTopicKeywordsHeader {
+  margin-left: 4px;
+  float: left;
+}
+.selectCreatePage .selectCreateRadio {
+  padding-top: 24px;
+  font-size: 13px;
+}
+.selectCreatePage .selectCreateRadio .selectATopicLabel > input {
+  margin-left: 0px;
+}
+.selectCreatePage .selectCreateRadio .createNewTopicLabel {
+  padding-left: 25px;
+}
+.selectCreatePage .selectCreateRadio .createNewTopicLabel div {
+  display: inline-block;
+}
+.selectCreatePage .errorDiv {
+  display: none;
+  height: 45px;
+  background-color: white;
+  color: red;
+  padding-top: 20px;
+  font-size: 12px;
+}
+.selectCreatePage .errorDiv .errorIcon {
+  float: left;
+}
+.selectCreatePage .errorDiv .description {
+  padding-top: 1px;
+  padding-left: 42px;
+}
+.selectCreatePage .errorDiv .description {
+  display: none;
+}
+.selectCreatePage .errorDiv.topicTooBroadVisible #topicTooBroadDescription {
+  display: block;
+}
+.selectCreatePage .errorDiv.searchItemNotFoundVisible #searchItemNotFoundDescription {
+  display: block;
+}
+.selectCreatePage .errorDiv.topicTooBroadVisible,
+.selectCreatePage .errorDiv.searchItemNotFoundVisible {
+  display: block;
+}
+.selectCreatePage .errorDiv.topicTooBroadVisible ~ .createNewTopicSection,
+.selectCreatePage .errorDiv.searchItemNotFoundVisible ~ .createNewTopicSection {
+  padding-top: 0px;
+}
+.selectCreatePage .errorDiv.topicTooBroadVisible ~ .createNewTopicSection .edit,
+.selectCreatePage .errorDiv.searchItemNotFoundVisible ~ .createNewTopicSection .edit {
+  height: 296px;
+}
+.selectCreatePage .errorDiv.topicTooBroadVisible ~ #selectATopicSection #topicsList,
+.selectCreatePage .errorDiv.searchItemNotFoundVisible ~ #selectATopicSection #topicsList {
+  margin-top: 4px;
+}
+.selectCreatePage .errorDiv.topicTooBroadVisible ~ #selectATopicSection .searchTopicItemsList,
+.selectCreatePage .errorDiv.searchItemNotFoundVisible ~ #selectATopicSection .searchTopicItemsList {
+  height: 234px;
+}
+.selectCreatePage .createNewTopicSection {
+  font-size: 12px;
+  padding-top: 20px;
+}
+.selectCreatePage .createNewTopicSection .loading {
+  width: 100%;
+  height: 100%;
+}
+.selectCreatePage .createNewTopicSection .loading img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.selectCreatePage .createNewTopicSection .edit {
+  height: 341px;
+  overflow: auto;
+}
+.selectCreatePage .createNewTopicSection .edit .row {
+  display: block;
+  clear: both;
+  width: 98%;
+}
+.selectCreatePage .createNewTopicSection .edit .row#row1 {
+  height: 62px;
+}
+.selectCreatePage .createNewTopicSection .edit .row > div {
+  display: inline-block;
+  width: 50%;
+  float: left;
+}
+.selectCreatePage .createNewTopicSection .edit .row > div.keywords {
+  width: 100%;
+}
+.selectCreatePage .createNewTopicSection .edit .row > div input {
+  border: 1px solid lightgray;
+  height: 20px;
+}
+.selectCreatePage .createNewTopicSection .edit .row > div .nameInput,
+.selectCreatePage .createNewTopicSection .edit .row > div .inclusionsInput {
+  width: 91%;
+}
+.selectCreatePage .createNewTopicSection .edit .row > div .keywordsInput,
+.selectCreatePage .createNewTopicSection .edit .row > div .exclusionsInput {
+  width: 100%;
+}
+.selectCreatePage .createNewTopicSection .edit .row > div .categorySelect {
+  width: 101%;
+  height: 24px;
+}
+.selectCreatePage .createNewTopicSection .edit .row > div .title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 7px;
+  color: #444444;
+}
+.selectCreatePage .createNewTopicSection .edit .row > div .example {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 7px;
+  color: #AAAAAA;
+}
+.selectCreatePage .createNewTopicSection .edit .row#row2 .example {
+  margin-bottom: 7px;
+}
+.selectCreatePage .createNewTopicSection .edit .row#row2 input {
+  width: 100%;
+}
+.selectCreatePage .createNewTopicSection .edit .row#row4 .field {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 20px;
+  color: #AAAAAA;
+}
+.selectCreatePage .createNewTopicSection .edit .row.advancedEdit {
+  display: block;
+  clear: both;
+  padding-bottom: 8px;
+}
+.selectCreatePage .createNewTopicSection .edit .row.advancedEdit a {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  cursor: pointer;
+}
+.selectCreatePage .createNewTopicSection .edit .row.advancedEdit a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.selectCreatePage .createNewTopicSection .quickSetupUnavailable {
+  display: block;
+  clear: both;
+  padding-bottom: 8px;
+}
+.selectCreatePage .createNewTopicSection .quickSetupUnavailable a {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+  cursor: pointer;
+}
+.selectCreatePage .createNewTopicSection .quickSetupUnavailable a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+DIV.ms-crm-WizardForm-Footer {
+  height: auto;
+  background-color: #f8f8f8;
+  /* Center the footer content by halving the dialog padding for each side. */
+
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 670px;
+  padding-top: 0px;
+  padding-bottom: 8px;
+}
+DIV.ms-crm-WizardForm-Footer #buttonSettings {
+  float: left;
+  margin-top: 10px;
+}
+DIV.ms-crm-WizardForm-Footer #buttonNext {
+  /* Match the left margin set by .ms-crm-RefreshDialog-Button for the
+        last button to make the footer symmetrical. */
+
+  margin-right: 10px;
+}
+DIV.ms-crm-WizardForm-Body {
+  width: 640px;
+}
+button.ms-crm-RefreshDialog-Button {
+  margin-right: 0px;
+  margin-left: 10px;
+}
+.bodyTextStyle {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+}
+DIV.mslSignInDescription {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  margin-top: 24px;
+}
+DIV.mslSignInaddTrustedSites {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  margin-top: 12px;
+}
+DIV.chooseTopicTypeDescription {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  margin-top: 24px;
+}
+DIV#radio span {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+}
+DIV.selectCreateRadio {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+}
+.hide {
+  display: none;
+}
+.hyperlink {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+}
+.hyperlink:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.mslSignIn {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  margin-top: 12px;
+}
+.mslSignIn a {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+}
+.mslSignIn a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.runtimeSignInRequired {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  margin-left: 15px;
+  margin-right: 15px;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.runtimeSignInRequired > div {
+  margin-top: 13px;
+  font-size: 12px;
+  color: #666666;
+}
+.runtimeSignInRequired > div a {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+}
+.runtimeSignInRequired > div a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.runtimeSessionExpired {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  margin-left: 15px;
+  margin-right: 15px;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.runtimeSessionExpired > div {
+  margin-top: 13px;
+  font-size: 12px;
+  color: #666666;
+}
+.runtimeSessionExpired > div div {
+  display: inline-block;
+}
+.runtimeSessionExpired > div div a {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Tahoma", "Microsoft Sans Serif", "Verdana", "Arial", sans-serif;
+}
+.runtimeSessionExpired > div div a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.runtimeSessionExpired > div div:nth-child(1) {
+  padding-right: 11px;
+  border-right: 1px solid;
+  border-right-color: #0072C5;
+}
+.runtimeSessionExpired > div div:nth-child(2) {
+  padding-left: 11px;
+}
+.noLeftMargin {
+  margin-left: 0px;
+}

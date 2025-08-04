@@ -1,0 +1,387 @@
+﻿<link rel="stylesheet" type="text/css" href="../../../_static/_common/scripts/processcontrol/BranchPropertyDetails.css" />
+<script type="text/javascript" src="../../../_static/_common/scripts/processcontrol/BranchPropertyDetails.js"></script>
+<script type="text/template" id='prop-view'>
+    <div id="properties" aria-labelledby="branchpropertydetails_title">
+        <div class="cond-prop-container">
+            <div class="header">
+                <span class="headline1" id="branchpropertydetails_title"></span>
+            </div>
+            <div id="conditionExpression">
+                <span class="err1" style="margin-bottom:5px;"></span>
+            </div>
+            <div class="prop-section">
+                <span class="prop-section-label">
+                    <span class="headline2 ellipsis" role="label" for="name" id="branchpropertydetails_header" title=""></span>
+                </span>
+                <div>
+                    <input id="name" class="prop-input headline4" type="text" aria-labelledby="branchpropertydetails_header" value="<%- conditionName %>">
+                </div>
+            </div>
+
+            <span class="prop-rule-section-label">
+                <span class="headline2 ellipsis" for="attribute" id="branchpropertydetails_rule" style="width:100%" title="">
+                    <table width="100%">
+                        <tr>
+                            <td width="50%"><label id="lblbranchpropertydetails_rule" class="headline2 ellipsis" style="max-width:120px;"></label></td>
+                            <td width="50%" align="right"><div class="prop-addnew" role="button" > <span class="CCFSymbolFont add-symbol lib-font-size prop-addsymbol"></span><span class="prop-addtext" id="branchpropertydetails_add"></span> </div></td>
+                        </tr>
+                    </table>
+                </span>
+            </span>
+            <div class="prop-container">
+                <div class="prop-exp-container"></div>
+                <div class="prop-section" id="conditionRuleLogic">
+                    <span class="prop-section-label">
+                        <span class="headline2 ellipsis" role="label" for="rule" id="branchpropertydetails_rulelogic" title=""></span>
+                    </span>
+                    <div>
+                        <select id="rule" class="prop-input headline4" aria-labelledby="branchpropertydetails_rulelogic" role="combobox">
+                            <% _.each( ruleLogic, function( value ) { %>
+                            <option value="<%- value.value %>"> <%- value.name %> </option>
+                            <% }); %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="prop-section">
+                    <span class="prop-section-label">
+                        <span class="headline2 ellipsis" role="label" for="attribute" id="branchpropertydetails_conditionexpression" title=""></span>
+                    </span>
+                    <div>
+                        <textarea id="exptext" class="prop-input prop-textarea headline4" aria-labelledby="branchpropertydetails_conditionexpression" aria-readonly="true" readonly> <%- expressionText %> </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/template" id='exp-view'>
+    <div id="rules">
+        <div class="prop-close">
+            <span class="headline2 rule-head-label ellipsis" id="ruleHeadLabel"></span>
+            <span class="prop-expression-close"><div class="prop-tab-close" role="button" ><span class="CCFSymbolFont cancel-symbol lib-font-size"></span></div></span>
+        </div>
+        <% if(isTaskFlow) {%>
+        <div>
+            <span class="headline2 ellipsis top-lable" role="label" for="source" id="branchpropertydetails_source" title="<%- conditonRuleLabels['branchpropertydetails_sourceTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_source"] %></span>
+            <div class="prop-exp-column-input">
+                <select id="source" role="combobox" class="prop-exp-input headline4" aria-labelledby="branchpropertydetails_source">
+                    <% _.each( sourceList, function( value ) { %>
+                    <% sourceSelected = (value.RelationshipName != undefined && value.RelationshipName != null) ? (value.RelationshipName == selectedSource) ? 'selected' : '' : (value == selectedSource) ? 'selected' : ''; %>
+                    <% optionValue = (value.RelationshipName != undefined && value.RelationshipName != null) ? value.RelationshipName : value; %>
+                    <option value="<%- optionValue %>"<%- sourceSelected %>> <%- (value.RelationshipName != undefined && value.RelationshipName != null) ? value.RelationshipAttribute.Label.Description + ' (' + value.RelationshipEntity.DisplayName + ')' : Xrm.Internal.getEntityDisplayName(value) %> </option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+        <div>
+            <span class="headline2 ellipsis rule-label" role="label" for="attribute" id="branchpropertydetails_field" title="<%- conditonRuleLabels['branchpropertydetails_fieldTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_field"] %></span>
+            <div class="prop-exp-column-input">
+                <select id="attribute" class="prop-exp-input headline4" role="combobox" aria-labelledby="branchpropertydetails_field">
+                    <% _.each( attributeList, function( value ) { %>
+                    <% selected = (value.logicalName == selectedAttribute) ? 'selected' : ''; %>
+                    <option value="<%- value.logicalName %>"<%- selected %>> <%- value.displayName %> </option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+        <% } else { %>
+        <div>
+            <span class="headline2 ellipsis top-lable" role="label" for="attribute" id="branchpropertydetails_field" title="<%- conditonRuleLabels['branchpropertydetails_fieldTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_field"] %></span>
+            <div class="prop-exp-column-input">
+                <select id="attribute" class="prop-exp-input headline4" aria-labelledby="branchpropertydetails_field" role="combobox">
+                    <% _.each( attributeList, function( value ) { %>
+                    <% selected = (value.logicalName == selectedAttribute) ? 'selected' : ''; %>
+                    <option value="<%- value.logicalName %>"<%- selected %>> <%- value.displayName %> </option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+        <% } %>
+        <div>
+            <span class="headline2 ellipsis rule-label" role="label" for="operator" id="branchpropertydetails_operator" title="<%- conditonRuleLabels['branchpropertydetails_operatorTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_operator"] %></span>
+            <div class="prop-exp-column-input">
+                <select id="operator" class="prop-exp-input headline4" aria-labelledby="branchpropertydetails_operator" role="combobox">
+                    <% _.each( operators, function( value ) { %>
+                    <% selected = (value.value == selectedOperator) ? 'selected' : ''; %>
+                    <option value="<%- value.value %>"<%- selected %>> <%- value.name %> </option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+        <% if(!(typeof types === "undefined")) { %>
+        <div>
+            <div class="prop-exp-div">
+                <span class="headline2 ellipsis rule-label" role="label" for="type" id="branchpropertydetails_type" title="<%- conditonRuleLabels['branchpropertydetails_typeTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_type"] %></span>
+                <div class="prop-exp-column-input">
+                    <select id="type" class="prop-exp-input headline4" aria-labelledby="branchpropertydetails_type" role="combobox">
+                        <% _.each( types, function( val ) { %>
+                        <option value="<%- val %>"> <%- val %> </option>
+                        <% }); %>
+                    </select>
+                </div>
+            </div>
+            <div id="valueFields" class="prop-exp-div">
+                <span class="headline2 ellipsis rule-label" role="label" for="value" id="branchpropertydetails_value" title="<%- conditonRuleLabels['branchpropertydetails_valueTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_value"] %></span>
+                <div id="fieldValueControls" class="prop-exp-column-input">
+
+                    <% if(types[0] == MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_PBL_PlainTextGenerator_Field')) {%>
+                    <% if (isTaskFlow) {%>
+                    <span class="headline2 ellipsis rule-label" role="label" for="value-source" id="branchpropertydetails_source1" title="<%- conditonRuleLabels['branchpropertydetails_sourceTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_source"] %></span>
+                    <div class="prop-exp-column-input">
+                        <select id="value-source" class="prop-exp-input headline4 taskflow-source" aria-labelledby="branchpropertydetails_source1" role="combobox">
+                            <% _.each( sourceList, function( val ) { %>
+                            <% sourceSelected = (val.RelationshipName != undefined && val.RelationshipName != null) ? (val.RelationshipName == value.selectedSource) ? 'selected' : '' : (val == value.selectedSource) ? 'selected' : ''; %>
+                            <% optionValue = (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipName : val; %>
+                            <option value="<%- optionValue %>"<%- sourceSelected %>> <%- (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipAttribute.Label.Description + ' (' + val.RelationshipEntity.DisplayName + ')' : Xrm.Internal.getEntityDisplayName(val) %> </option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <span class="headline2 ellipsis rule-label" role="label" for="value" id="branchpropertydetails_field1" title="<%- conditonRuleLabels['branchpropertydetails_fieldTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_field"] %></span>
+                    <div class="prop-exp-column-input">
+                        <select id="value" class="prop-exp-input_type headline4" aria-labelledby="branchpropertydetails_field1" role="combobox">
+                            <% _.each( value.attributeList, function( val ) { %>
+                            <% selected = (val.logicalName == value.selectedAttribute) ? 'selected' : ''; %>
+                            <option value="<%- val.logicalName %>"<%- selected %>> <%- val.displayName %> </option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <% } else { %>
+                    <select id="value" class="prop-exp-input_type headline4" aria-labelledby="branchpropertydetails_value" role="combobox">
+                        <% _.each( value.attributeList, function( val ) { %>
+                        <% selected = (val.logicalName == value.selectedAttribute) ? 'selected' : ''; %>
+                        <option value="<%- val.logicalName %>"<%- selected %>> <%- val.displayName %> </option>
+                        <% }); %>
+                    </select>
+                    <% } %>
+                    <% } else if(types[0] == MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_PBL_PlainTextGenerator_Formula')) {%>
+                    <div id="expression1" class="prop-expression prop-sub-section">
+                        <% if (isTaskFlow) {%>
+                        <div>
+                            <span class="headline2 ellipsis rule-label" role="label" for="formula-source" id="branchpropertydetails_source1" title="<%- conditonRuleLabels['branchpropertydetails_sourceTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_source"] %></span>
+                            <div class="prop-exp-column-input">
+                                <select id="formula-source" class="prop-exp-input headline4" aria-labelledby="branchpropertydetails_source1" role="combobox">
+                                    <% _.each( sourceList, function( val ) { %>
+                                    <% sourceSelected = (val.RelationshipName != undefined && val.RelationshipName != null) ? (val.RelationshipName == value.selectedSource) ? 'selected' : '' : (val == value.selectedSource) ? 'selected' : ''; %>
+                                    <% optionValue = (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipName : val; %>
+                                    <option value="<%- optionValue %>"<%- sourceSelected %>> <%- (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipAttribute.Label.Description + ' (' + val.RelationshipEntity.DisplayName + ')' : Xrm.Internal.getEntityDisplayName(val) %> </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                        <% } %>
+                        <div>
+                            <span class="headline2 ellipsis rule-label" role="label" for="formula-attribute" id="branchpropertydetails_field1" title="<%- conditonRuleLabels['branchpropertydetails_fieldTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_field"] %></span>
+                            <div class="prop-exp-column-input">
+                                <select id="formula-attribute" class="prop-exp-input headline4" aria-labelledby="branchpropertydetails_field1" role="combobox">
+                                    <% _.each( value.attributeList, function( val ) { %>
+                                    <% selected = (val.logicalName == value.selectedAttribute) ? 'selected' : ''; %>
+                                    <option value="<%- val.logicalName %>"<%- selected %>> <%- val.displayName %> </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="headline2 ellipsis rule-label" role="label" for="formula-operator" id="branchpropertydetails_operator1" title="<%- conditonRuleLabels['branchpropertydetails_operatorTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_operator"] %></span>
+                            <div class="prop-exp-column-input">
+                                <select id="formula-operator" class="prop-exp-input headline4" aria-labelledby="branchpropertydetails_operator1" role="combobox">
+                                    <% _.each( value.operators, function( operator ) { %>
+                                    <% selected = (operator.value == value.selectedOperator) ? 'selected' : ''; %>
+                                    <option value="<%- operator.value %>"<%- selected %>> <%- operator.name %> </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="headline2 ellipsis rule-label" role="label" for="formula-type" id="branchpropertydetails_type1" title="<%- conditonRuleLabels['branchpropertydetails_typeTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_type"] %></span>
+                            <div class="prop-exp-column-input">
+                                <select id="formula-type" class="prop-exp-input headline4" aria-labelledby="branchpropertydetails_type1" role="combobox">
+                                    <% _.each( value.types, function( val ) { %>
+                                    <option value="<%- val %>"> <%- val %> </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <% if(value.types[0] == MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_PBL_PlainTextGenerator_Field')) { %>
+                            <% if (isTaskFlow) {%>
+                            <span class="headline2 ellipsis rule-label" role="label" for="formula-value-source" id="branchpropertydetails_source2" title="<%- conditonRuleLabels['branchpropertydetails_sourceTooltip'] %>"><%- conditonRuleLabels["branchpropertydetails_source"] %></span>
+                            <div class="prop-exp-column-input">
+                                <select id="formula-value-source" class="prop-exp-input headline4" aria-labelledby="branchpropertydetails_value1" role="combobox">
+                                    <% _.each( sourceList, function( val ) { %><% sourceSelected = (val.RelationshipName != undefined && val.RelationshipName != null) ? (val.RelationshipName == value.rightSelectedSource) ? 'selected' : '' : (val == value.rightSelectedSource) ? 'selected' : ''; %><% optionValue = (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipName : val; %>
+                                    <option value="<%- optionValue %>"<%- sourceSelected %>><%- (val.RelationshipName != undefined && val.RelationshipName != null) ? val.RelationshipAttribute.Label.Description + ' (' + val.RelationshipEntity.DisplayName + ')' : Xrm.Internal.getEntityDisplayName(val) %>
+								</option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                            <% } %>
+                            <% } %>
+                        </div>
+                        <div>
+                            <% if(value.selectedAttributeType == 2) { %>
+                            <span class="headline2 ellipsis rule-label" role="label" for="formula-value" id="branchpropertydetails_days" title="<%= conditonRuleLabels['branchpropertydetails_daysTooltip'] %>">
+                                <%= conditonRuleLabels["branchpropertydetails_days"] %>
+                            </span>
+                            <% } else { %>
+                            <% if(value.types[0] == MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_PBL_PlainTextGenerator_Field')) { %>
+                            <span class="headline2 ellipsis rule-label" role="label" for="formula-value" id="branchpropertydetails_field1" title="<%- conditonRuleLabels['branchpropertydetails_fieldTooltip'] %>">
+                                <%- conditonRuleLabels["branchpropertydetails_field"] %>
+                            </span>
+                            <% } else { %>
+                            <span class="headline2 ellipsis rule-label" role="label" for="formula-value" id="branchpropertydetails_value1" title="<%- conditonRuleLabels['branchpropertydetails_valueTooltip'] %>">
+                                <%- conditonRuleLabels["branchpropertydetails_value"] %>
+                            </span>
+                            <% } %>
+                            <% } %>
+                            <div class="prop-exp-column-input">
+                                <% if(value.types[0] == MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_PBL_PlainTextGenerator_Field')) { %>
+                                <% if(value.rightAttributeList != null) { %>
+                                <select id="formula-value" class="prop-exp-input_type headline4" aria-labelledby="branchpropertydetails_value1" role="combobox">
+                                    <% _.each( value.rightAttributeList, function( val ) {
+                                    selected = (val.logicalName == value.selectedValue) ? 'selected' : ''; %>
+                                    <option value="<%- val.logicalName %>"<%- selected %>><%- val.displayName %>
+								</option><%  }); %>
+                                </select><% }
+                                else { %>
+                                <select id="formula-value" class="prop-exp-input_type headline4" aria-labelledby="branchpropertydetails_value1" role="combobox">
+                                    <% _.each( value.attributeList, function( val ) {
+                                    selected = (val.logicalName == value.selectedValue) ? 'selected' : ''; %>
+                                    <option value="<%- val.logicalName %>"<%- selected %>><%- val.displayName %>
+								</option><%  }); %>
+                                </select><% }}
+                                else { %>
+                                <div id="formulaValueContainer" /><% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } else { %>
+                <div id="valueContainer" />
+                <% }
+                }
+                %>
+            </div>
+        </div>
+    </div>
+</script>
+<div id="prop-panel-button-wrapper">
+    <div id="properties-panel"></div>
+    <div class="prop-button-div">
+        <div id="noteForUnsavedchangesIcon" class="warningNotificationSymbol" tabindex="0" aria-labelledby="noteForUnsavedchangesIconTooltip">
+            <span aria-live="polite" id="noteForUnsavedchangesIconTooltip" class="ellipsis"></span>
+        </div>
+        <span class="prop-section-button">
+            <button id="prop-save" class="ellipsis" role="button"></button>
+            <button id="prop-discard" class="ellipsis" role="button"></button>
+        </span>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+        stopwatch.start();
+        try {
+            var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            if (!propertyViewCurrentModel) {
+                throw ("Internal : Current Condition Model is not set");
+            }
+
+			var expressions = propertyViewCurrentModel._conditionExpression.map(function (exp) {
+				return exp.clone();
+			});
+			var _isValid = propertyViewCurrentModel._isValid ? propertyViewCurrentModel._isValid : true;
+			var model = { displayName: propertyViewCurrentModel.displayName, entityName: propertyViewCurrentModel.parentStageEntityName, conditionExpression: expressions, _errorMessages: propertyViewCurrentModel._errorMessages, _isValid: _isValid, validationMode: propertyViewCurrentModel.getValidationMode() };
+			new MscrmControls.ConditionPropertyPage.PropertiesView({ model: model });
+		} catch (ex) {
+			console.log(ex.stack);
+		}
+		setLocalizedHTMLStrings();
+		setTooltips();
+		stopwatch.stop();
+		localStorage.setItem("PerfMarker_BranchPropPageLoad", stopwatch.elapsedMilliseconds.toString());
+		localStorage.setItem("ProcessDesignerControl_BPF_BranchPropPageLoad", stopwatch.elapsedMilliseconds.toString());
+		if ($('[id=ruleHeadLabel]').length == 1) {
+			$(".lib-font-size").addClass("lib-font-size-disabled");
+			$(".prop-tab-close").addClass("prop-close-disabled");
+		}
+		$('[id=valueFields]:has(#expression1)').find('#branchpropertydetails_value').attr("style", "display: none !important");
+		$('[id=ruleHeadLabel]').html(function (i) { return MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_BranchPropertyDetails_Rule") + ' ' + (i + 1); });
+		$('[id=ruleHeadLabel]').attr("title", function (i) { return MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_BranchPropertyDetails_Rule") + ' ' + (i + 1); });
+		GenericWorkflowDesigner.BasePropertyView.updateHtmlElements = updateHtmlElements;
+
+		MscrmControls.ConditionPropertyPage.PropertiesView.conditionPropertiesView.resetUnsavedChanges();
+		$("#properties :input:not(:button):not([type=hidden])").on("change", MscrmControls.ConditionPropertyPage.PropertiesView.conditionPropertiesView.showUnsavedChangesNote);
+    });
+
+	function setTooltips() {
+		if ($("#name").val() == "") {
+		    $("#name").attr("title", MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyTexttooltip"));
+		}
+		else {
+		    $("#name").attr("title", $("#name").val());
+		}
+		$("#attribute").attr("title", $("#attribute :selected").text());
+		$("#operator").attr("title", $("#operator :selected").text());
+		$("#source").attr("title", $("#source :selected").text());
+		$("#type").attr("title", $("#type :selected").text());
+		$("#exptext").attr("title", $("#exptext").val());
+		$("#ruleHeadLabel").attr("title", function (i) { return MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_BranchPropertyDetails_Rule") + ' ' + (i + 1); });
+		$("#formula-value").attr("title", $("#formula-value :selected").text());
+		$("#value").attr("title", $("#value").val());
+	}
+
+	function setLocalizedHTMLStrings() {
+		$("#prop-save").html(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Apply'));
+		$("#prop-discard").html(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Discard'));
+		$("#branchpropertydetails_header").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_BranchPropertyDetails_Header"));
+		$("#branchpropertydetails_header").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_ConditionNameTooltip"));
+		$("#lblbranchpropertydetails_rule").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_BranchPropertyDetails_Rules"));
+		$("#branchpropertydetails_rule").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_BranchPropertyDetails_Rule"));
+		$("#branchpropertydetails_add").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_New"));
+		$("#branchpropertydetails_add").attr('class', "prop-addtext");
+		$("#branchpropertydetails_rulelogic").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_BranchPropertyDetails_RuleLogic"));
+		$("#branchpropertydetails_rulelogic").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_RuleLogicTooltip"));
+		$("#branchpropertydetails_conditionexpression").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Condition_Expression_Label"));
+		$("#branchpropertydetails_conditionexpression").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Condition_Expression_Label"));
+		$("#branchpropertydetails_title").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Library_Condition"));
+	}
+
+    function updateHtmlElements() {
+        propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+        $('#name').val(propertyViewCurrentModel.displayName);
+        $('#name').trigger("change");
+    }
+
+    // event to capture windows zoom
+    $(window).resize(function () {
+        $(window).trigger('zoom');
+    });
+
+    // zoom event handler
+    $(window).on('zoom', function () {
+        var zoomRatio = parseFloat(window.devicePixelRatio).toFixed(2);
+        var contentDiv = $(".prop-container");
+        if (zoomRatio > 1) {
+            switch (zoomRatio) {
+                case "1.10":
+                    contentDiv.css('height', '170px');
+                    break;
+                case "1.25":
+                    contentDiv.css('height', '84px');
+                    break;
+                case "1.50":
+                    contentDiv.css('height', '20px');
+                    break;
+                case "1.75":
+                    contentDiv.css('height', '10px');
+                    break;
+                default:
+                    break;
+            }
+        }
+        else {
+            // reset the height of content div
+            contentDiv.css('height', '215px');
+        }
+    });
+</script>

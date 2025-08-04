@@ -1,0 +1,32 @@
+<public:component lightweight="true">
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:attach event="onmouseover" onevent="glowOn()"/>
+<public:attach event="onmouseout" onevent="glowOff()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+function glowOn()
+{
+    if(!element.Disabled)
+        element.childNodes[0].src = "/_imgs/next_hover.gif";
+    window.parent.parent.status = "";
+    return true
+}
+function glowOff()
+{
+    if(!element.Disabled)
+        element.childNodes[0].src = "/_imgs/next_rest.gif"
+}
+function setDisabled(val)
+{
+    element.disabled = val;
+    element.className = val ? "ms-crm-NextButton ms-crm-NextButton-Disabled" : "ms-crm-NextButton";
+    element.childNodes[0].src = val ? "/_imgs/next_disabled.gif" : "/_imgs/next_rest.gif";
+    element.href = val ? "javascript:" : element.originalaction
+}
+function getDisabled()
+{
+    return element.disabled
+}
+
+</script>
+</public:component>

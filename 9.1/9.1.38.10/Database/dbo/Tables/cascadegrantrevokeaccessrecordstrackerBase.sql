@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[cascadegrantrevokeaccessrecordstrackerBase] (
+    [cascadegrantrevokeaccessrecordstrackerId] UNIQUEIDENTIFIER NOT NULL,
+    [name]                                     NVARCHAR (100)   NULL,
+    [CreatedBy]                                UNIQUEIDENTIFIER NULL,
+    [CreatedOn]                                DATETIME         NULL,
+    [CreatedOnBehalfBy]                        UNIQUEIDENTIFIER NULL,
+    [ImportSequenceNumber]                     INT              NULL,
+    [ModifiedBy]                               UNIQUEIDENTIFIER NULL,
+    [ModifiedOn]                               DATETIME         NULL,
+    [ModifiedOnBehalfBy]                       UNIQUEIDENTIFIER NULL,
+    [OverriddenCreatedOn]                      DATETIME         NULL,
+    [ProcessedRecords]                         INT              NULL,
+    [RecordsAttachment]                        UNIQUEIDENTIFIER NULL,
+    [RecordsJson]                              NVARCHAR (4000)  NULL,
+    [statecode]                                INT              NULL,
+    [statuscode]                               INT              NULL,
+    [SyncTrackerId]                            UNIQUEIDENTIFIER NULL,
+    [TimeZoneRuleVersionNumber]                INT              NULL,
+    [TotalRecords]                             INT              NULL,
+    [UTCConversionTimeZoneCode]                INT              NULL,
+    CONSTRAINT [PK_cascadegrantrevokeaccessrecordstrackerBase] PRIMARY KEY CLUSTERED ([cascadegrantrevokeaccessrecordstrackerId] ASC) WITH (FILLFACTOR = 100, DATA_COMPRESSION = ROW),
+    CONSTRAINT [FileAttachment_cascadegrantrevokeaccessrecordstracker_RecordsAttachment] FOREIGN KEY ([RecordsAttachment]) REFERENCES [dbo].[FileAttachmentBase] ([FileAttachmentId]),
+    CONSTRAINT [SyncTrackerIdLookup] FOREIGN KEY ([SyncTrackerId]) REFERENCES [dbo].[cascadegrantrevokeaccessversiontrackerBase] ([cascadegrantrevokeaccessversiontrackerId])
+);
+

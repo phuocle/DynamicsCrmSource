@@ -1,0 +1,815 @@
+/* Symbols */
+@font-face {
+  font-family: "Dyn CRM Symbol";
+  src: url("./CrmSymbols.woff");
+}
+/*
+	Please add new symbols in ascending order of their Unicode values.
+	This will help in easier maintenance of this map file.
+*/
+.mscrm-glyph-iFrameIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-iFrameIcon:before {
+  content: '\E154';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-HamburgerIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-HamburgerIcon:before {
+  content: '\E700';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-DownArrowIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-DownArrowIcon:before {
+  content: '\E70D';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-RightArrowIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-RightArrowIcon:before {
+  content: '\E76C';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-UpArrowIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-UpArrowIcon:before {
+  content: '\E70E';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-EditIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-EditIcon:before {
+  content: '\E70F';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-AddIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-AddIcon:before {
+  content: '\E710';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-CrossIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-CrossIcon:before {
+  content: '\E711';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-EllipsisIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-EllipsisIcon:before {
+  content: '\E712';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-emailIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-emailIcon:before {
+  content: '\E715';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-phoneIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-phoneIcon:before {
+  content: '\E717';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-filterIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-filterIcon:before {
+  content: '\E71C';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-SearchIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-SearchIcon:before {
+  content: '\E721';
+  font-family: "Dyn CRM Symbol";
+}
+
+.mscrm-glyph-BackIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-BackIcon:before {
+  content: '\E72B';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-RefreshIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-RefreshIcon:before {
+  content: '\E72C';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-LockIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-LockIcon:before {
+  content: '\E72E';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-RenderErrorIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-RenderErrorIcon:before {
+  content: '\E733';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-DNDSuccessIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-DNDSuccessIcon:before {
+  content: '\E73E';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-RemoveIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-RemoveIcon:before {
+  content: '\E74D';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-SaveIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-SaveIcon:before {
+  content: '\E74E';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-GlobeIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-GlobeIcon:before {
+  content: '\E774';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-ErrorIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-ErrorIcon:before {
+  content: '\E783';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-dateIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-dateIcon:before {
+  content: '\E787';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-fieldsIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-fieldsIcon:before {
+  content: '\E7B6';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-WarningIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-WarningIcon:before {
+  content: '\E7BA';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-tickerIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-tickerIcon:before {
+  content: '\E7BB';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-SitemapIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-SitemapIcon:before {
+  content: '\E800';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-LaunchIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-LaunchIcon:before {
+  content: '\E8AD';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-durationIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-durationIcon:before {
+  content: '\E91E';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-InfoIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-InfoIcon:before {
+  content: '\E946';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-PrevArrowIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-PrevArrowIcon:before {
+  content: '\E973';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-NextArrowIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-NextArrowIcon:before {
+  content: '\E974';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-BPFIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-BPFIcon:before {
+  content: '\E9D4';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-textAreaIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-textAreaIcon:before {
+  content: '\EA37';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-DialogErrorIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-DialogErrorIcon:before {
+  content: '\EA39';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-ValidateIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-ValidateIcon:before {
+  content: '\EADF';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-SavedQueryVisualizationIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-SavedQueryVisualizationIcon:before {
+  content: '\EAE7';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-currencyIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-currencyIcon:before {
+  content: '\EB0D';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-imageIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-imageIcon:before {
+  content: '\EB9F';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-timeZoneIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-timeZoneIcon:before {
+  content: '\EBF9';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-DashboardIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-DashboardIcon:before {
+  content: '\EC4A';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-EntityIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-EntityIcon:before {
+  content: '\EC8B';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-dateTimeIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-dateTimeIcon:before {
+  content: '\EC92';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-PublishIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-PublishIcon:before {
+  content: '\ECDB';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-SystemFormIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-SystemFormIcon:before {
+  content: '\ECEF';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-SavedQueryIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-SavedQueryIcon:before {
+  content: '\ED86';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-ascendingOrderIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-ascendingOrderIcon:before {
+  content: '\EE68';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-descendingOrderIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-descendingOrderIcon:before {
+  content: '\EE69';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-customerIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-customerIcon:before {
+  content: '\EEBD';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-TileCountIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-TileCountIcon:before {
+  content: '\EF68';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-GroupedListIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-GroupedListIcon:before {
+  content: '\EF74';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-SectionsIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-SectionsIcon:before {
+  content: '\EF76';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-CloneIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-CloneIcon:before {
+  content: '\EFF6';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-SaveAndCloseIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-SaveAndCloseIcon:before {
+  content: '\F038';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-languageIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-languageIcon:before {
+  content: '\F039';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-textIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-textIcon:before {
+  content: '\F06C';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-optionSetIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-optionSetIcon:before {
+  content: '\F072';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-expandedIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-expandedIcon:before {
+  content: '\F08E';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-collapsedIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-collapsedIcon:before {
+  content: '\F08F';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-OpenInDesigner {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-OpenInDesigner:before {
+  content: '\E8A7';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-ManageRole {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-ManageRole:before {
+  content: '\EE12';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-PublishApp {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-PublishApp:before {
+  content: '\ECDB';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-ShowAllRole {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-ShowAllRole:before {
+  content: '\E890';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-HideAllRole {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-HideAllRole:before {
+  content: '\EF89';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-CopyIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-CopyIcon:before {
+  content: '\E8C8';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-AppDesignerIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-AppDesignerIcon:before {
+  content: '\F069';
+  font-family: "Dyn CRM Symbol";
+}
+.mscrm-glyph-PlusIcon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mscrm-glyph-PlusIcon:before {
+  content: '\ECC8';
+  font-family: "Dyn CRM Symbol";
+}
+

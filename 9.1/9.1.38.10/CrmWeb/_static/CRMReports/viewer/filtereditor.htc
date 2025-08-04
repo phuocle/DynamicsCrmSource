@@ -1,0 +1,183 @@
+<public:component lightweight="true" tagName="FilterEditor">
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:property name="FilterXml" get="getFilterXml" put="putFilterXml"/>
+<public:property name="FilterExecXml" get="getFilterExecXml"/>
+<public:property name="FilterSummary" get="getFilterSummary"/>
+<public:property name="DefaultFilter" get="getDefaultFilter"/>
+<public:property name="IsDirty" get="getIsDirty" put="putIsDirty"/>
+<public:property name="IsDisabled" get="getIsDisabled" />
+<public:property name="FetchXmlLoaded" get="getFetchXmlLoaded" />
+<public:event name="onchange" id="OnChangeEvent"/>
+<html xmlns:Crm>
+<head>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oAFControls,
+    _advFind = null,
+    _bInitComplete = false;
+Sys.Application.add_load(SysInit);
+function SysInit()
+{
+    Init()
+}
+function InitOnDocReady()
+{
+    Sys.Application.get_isInitialized() && !_bInitComplete && 
+        Init()
+}
+function Init()
+{
+    _bInitComplete = true;
+    _advFind = $find("advFind");
+    if(!getIsDisabled())
+    {
+        FilterXml = DefaultFilter;
+        initDetailedMode()
+    }
+}
+function getAFControls()
+{
+    if(IsNull(_oAFControls))
+        _oAFControls = element.all("divAFControls");
+    return _oAFControls
+}
+function getFetchXmlLoaded()
+{
+    var oAFControls = getAFControls();
+    if(IsNull(oAFControls) || IsNull(oAFControls.children) || oAFControls.children.length == 0)
+        return false;
+    for(var oAF,
+        i = 0; i < oAFControls.children.length; i++)
+    {
+        oAF = oAFControls.children[i].all("feAdvFindCtl").firstChild;
+        if(!$find(oAF.id).get_fetchXmlLoaded())
+            return false
+    }
+    return true
+}
+function appendEntityControl(oEntityNode)
+{
+    var sDisplayName = oEntityNode.selectSingleNode("@displayname").value,
+        oNumber = oEntityNode.selectSingleNode("@number"),
+        oDoNotConvert = oEntityNode.selectSingleNode("@donotconvert"),
+        sInnerHtml = "<div id='feEntityProperties' style='display:none'><div id='paramname' value='" + CrmEncodeDecode.CrmXmlEncode(oEntityNode.selectSingleNode("@paramname").value) + "'></div><div id='displayname' value='" + CrmEncodeDecode.CrmXmlEncode(sDisplayName) + (IsNull(oNumber) ? "" : "'></div><div id='number' value='" + oNumber.value) + (IsNull(oDoNotConvert) ? "" : "'></div><div id='donotconvert' value='" + oDoNotConvert.value) + "'></div></div><div class='feEntityHeadingBar'><table class='feEntityHeading'><tr class='feEntityHeadingText'><td>" + CrmEncodeDecode.CrmXmlEncode(sDisplayName) + "</td></tr></table></div><div id='feAdvFindCtl' class='feAdvFindCtl'></div>",
+        oControl = window.document.createElement("div");
+    oControl.innerHTML = sInnerHtml;
+    oControl = _oAFControls.appendChild(oControl);
+    var properties = {};
+    properties["entityName"] = oEntityNode.selectSingleNode("fetch/entity/@name").value;
+    var aFControl = $find(_advFind.Clone($get("feAdvFindCtl",oControl),oEntityNode.selectSingleNode("@paramname").value,properties).id);
+    aFControl.set_fetchXml(oEntityNode.selectSingleNode("fetch").xml);
+    aFControl.add_onChange(OnChangeHandler);
+    aFControl.set_onGetFetchAttributes(GetAllAttributesXml)
+}
+function putFilterXml(sFilterXml)
+{
+    var oAFControls = getAFControls();
+    while(oAFControls.childNodes.length > 0)
+        oAFControls.childNodes[0].removeNode(true);
+    for(var oXml = XUI.Xml.LoadXml(sFilterXml),
+        oEntityNodes = oXml.selectNodes("/ReportFilter/ReportEntity"),
+        i = 0; i < oEntityNodes.length; i++)
+        appendEntityControl(oEntityNodes[i])
+}
+function getReportFilterXml(iFetchMode)
+{
+    for(var sFilterXml = "<ReportFilter>",
+        sFetchXml,
+        oAF,
+        oProperties,
+        oAFControls = getAFControls(),
+        i = 0; i < oAFControls.children.length; i++)
+    {
+        oAF = oAFControls.children[i].all("feAdvFindCtl").firstChild;
+        var oAfControl = $find(oAF.id);
+        oProperties = oAFControls.children[i].all("feEntityProperties");
+        oAfControl.set_fetchMode(iFetchMode);
+        sFetchXml = oAfControl.get_fetchXml();
+        if(IsNull(sFetchXml))
+            return null;
+        else
+        {
+            var oNumber = oProperties.all("number"),
+                oDoNotConvert = oProperties.all("donotconvert");
+            sFilterXml += '<ReportEntity paramname="' + CrmEncodeDecode.CrmXmlEncode(oProperties.all("paramname").value) + '" displayname="' + CrmEncodeDecode.CrmXmlEncode(oProperties.all("displayname").value) + (IsNull(oNumber) ? "" : '" number="' + oNumber.value) + (IsNull(oDoNotConvert) ? "" : '" donotconvert="' + oDoNotConvert.value) + '">' + sFetchXml + "</ReportEntity>"
+        }
+    }
+    sFilterXml += "</ReportFilter>";
+    return sFilterXml
+}
+function getFilterXml()
+{
+    return getReportFilterXml(Mscrm.FetchModes.ignoreEmpty)
+}
+function getFilterExecXml()
+{
+    return getReportFilterXml(Mscrm.FetchModes.skipEmpty)
+}
+function getFilterSummary()
+{
+    var oXml = XUI.Xml.LoadXml(getReportFilterXml(Mscrm.FetchModes.summary)),
+        stylesheet = null;
+    XUI.Xml.Load(Mscrm.CrmUri.create("/CRMReports/viewer/filterxmltosummary.xsl").toString(),false,function(xmlDoc)
+    {
+        stylesheet = xmlDoc
+    },function(statusCode,xmlDoc)
+    {
+        stylesheet = null
+    });
+    var xslTemplate = CreateXslTemplate();
+    xslTemplate.stylesheet = stylesheet;
+    var xslProcessor = xslTemplate.createProcessor();
+    xslProcessor.input = oXml;
+    xslProcessor.transform();
+    return xslProcessor.output
+}
+function getIsDirty()
+{
+    if(!getIsDisabled())
+        for(var oAFControls = getAFControls(),
+            i = 0; i < oAFControls.children.length; i++)
+        {
+            var oAfControl = $find(oAFControls.children[i].all("feAdvFindCtl").firstChild.id);
+            if(oAfControl.get_isDirty())
+                return true
+        }
+    return false
+}
+function putIsDirty(bDirty)
+{
+    for(var oAFControls = getAFControls(),
+        i = 0; i < oAFControls.children.length; i++)
+    {
+        var oAfControl = $find(oAFControls.children[i].all("feAdvFindCtl").firstChild.id);
+        oAfControl.set_isDirty(bDirty)
+    }
+}
+function getDefaultFilter()
+{
+    return element.all.xmlDefaultFilter.xml
+}
+function GetAllAttributesXml()
+{
+    return "<all-attributes/>"
+}
+function initDetailedMode()
+{
+    var divMessage = element.all("divMessage");
+    divMessage.style.display = "none";
+    _oAFControls.style.display = "inline"
+}
+function OnChangeHandler()
+{
+    OnChangeEvent.fire(XUI.Html.CreateDomEvent("change"))
+}
+function getIsDisabled()
+{
+    return IsNull(_advFind)
+}
+
+</script>
+</head>
+</html>
+</public:component>

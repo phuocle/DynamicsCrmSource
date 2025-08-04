@@ -1,0 +1,2573 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:attach event="onclick" onevent="Lookup()"/>
+<public:attach event="onkeyup" onevent="OnKeyUp()"/>
+<public:attach event="onmouseover" onevent="On()"/>
+<public:attach event="onmouseout" onevent="Off()"/>
+<public:attach event="onfocus" onevent="Focus()"/>
+<public:attach event="onblur" onevent="Blur()"/>
+<public:attach event="ondetach" onevent="cleanUp()" />
+<public:property name="lookupdisabled" put="setDisabled" get="getDisabled"/>
+<public:property name="readonly" put="setDisabled" get="getDisabled"/>
+<public:property name="lookupstyle" put="setLookupStyle" get="getLookupStyle"/>
+<public:property name="lookuptypes" put="setLookupTypes" get="getLookupTypes"/>
+<public:property name="crmattributeid">
+<public:property name="lookuptypeIcons"/>
+<public:property name="showproperty"/>
+<public:property name="bindingcolumns"/>
+<public:property name="additionalparams"/>
+<public:property name="DefaultType" get="getDefaultType" put="setDefaultType"/>
+<public:property name="forfield"/>
+<public:property name="DependantAttributeName"/>
+<public:property name="AllowUnknownItems" value="false" />
+<public:property name="AutoResolve" get="getAutoResolve" set="setAutoResolve" />
+<public:property name="ResolveEmailAddress" get="getResolveEmailAddress" set="setResolveEmailAddress" />
+<public:property name="lookupbrowse" value="0" put="setLookupBrowse" get="getLookupBrowse"/>
+<public:property name="DefaultValue" get="getDefaultValue" put="setDefaultValue"/>
+<public:property name="isDisplayOnly" value="false" />
+<public:property name="DefaultViewId" get="getDefaultViewId" put="setDefaultViewId" />
+<public:property name="CustomViews" get="getCustomViews" put="setCustomViews" />
+<public:property name="RelationshipId" get="getFilterRelationshipId" put="setFilterRelationshipId" />
+<public:property name="DataProviderOverride" get="getDataProviderOverride" put="DataProviderOverride" />
+<public:property name="DataChangeHandler" />
+<public:method name="AddDependantParameters" />
+<public:method name="AddParam"/>
+<public:method name="AddBindingColumn"/>
+<public:method name="setDisabled"/>
+<public:method name="getLookupField"/>
+<public:method name="Clear"/>
+<public:method name="Lookup"/>
+<public:method name="AddItems"/>
+<public:method name="Items"/>
+<public:method name="RemoveItem"/>
+<public:method name="UpdateItem"/>
+<public:method name="ResetIsDirty"/>
+<public:method name="IsPermissibleType"/>
+<public:method name="IsValid"/>
+<public:method name="setDisabled"/>
+<public:method name="RaiseOnAfterSelectEvent"/>
+<public:method name="RaiseOnChangeEvent"/>
+<public:method name="RaiseSetAdditionalParamsEvent"/>
+<public:method name="AreValuesDifferent"/>
+<public:method name="RefreshLookupItemImage" />
+<public:method name="GetLookupTypeIcon" />
+<public:method name="focus" internalname="Focus" />
+<public:method name="attachEventHandler" />
+<public:method name="AddCustomView" />
+<public:method name="GetDataXml" internalname="getDataXml" />
+<public:event name="onafterselect" id="afterSelectEvent"/>
+<public:event name="onchange" id="onChangeEvent"/>
+<public:event name="setadditionalparams" id="setAdditionalParamsEvent"/>
+<public:event name="generatedataxml" id="generateDataXmlEvent"/>
+<public:event name="onshowdialog" id="onShowDialogEvent"/>
+<public:property name="IsDirty" get="getHasChanged"/>
+<public:property name="InnerText" get="getInnerText"/>
+<public:property name="DataXml" get="getDataXml"/>
+<public:property name="DataValue" get="getValue" put="setValue"/>
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:property name="Visible" get="getVisible" put="setVisible"/>
+<public:property name="RequiredLevel" get="getRequiredLevel" />
+<public:property name="ForceSubmit"/>
+<public:method name="SetFocus" internalname="setFocus"/>
+<public:method name="FireOnChange" internalname="RaiseOnChangeEvent"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _defaultValue = null,
+    _customViews = null,
+    _filterRelationshipId = "",
+    _dataProviderOverride = "",
+    _typeToName = [],
+    _typeToDisplayName = [],
+    oREFuncHeader = new RegExp("[^{]+{[ \x0a\x09]*"),
+    oREFuncTrailer = new RegExp("[ \x0a\x09]*}[ \x0a\x09]*$"),
+    oRETypeName = new RegExp,
+    _vLastFocusItem = null,
+    _validEmailRegexp = /^[^@\s\"<>)(\[\]:;,]+@[^@\s\"<>)(\[\]:;,]+$/,
+    _bSwallowNextFocus = false,
+    _bSwallowNextFocusEdit = false,
+    _sDivDefaultClass = "ms-crm-Lookup",
+    _bResolving = false;
+function attachEventHandler(sEventName,fNewHandler)
+{
+    var sHandlerName = sEventName.toLowerCase() + "Handler",
+        fBothHandlers;
+    if(typeof element[sEventName] === "function")
+    {
+        var fExistingHandler;
+        if(typeof element[sHandlerName] === "function")
+            fExistingHandler = element[sHandlerName];
+        else
+            fExistingHandler = element[sEventName];
+        fBothHandlers = function()
+        {
+            fExistingHandler();
+            fNewHandler()
+        }
+    }
+    else
+        fBothHandlers = fNewHandler;
+    element[sHandlerName] = fBothHandlers;
+    element[sEventName.toLowerCase()] = function()
+    {
+        if(typeof event.CustomHandler === "function")
+            event.CustomHandler();
+        else
+            fBothHandlers()
+    }
+}
+function setFocus()
+{
+    if(_bSwallowNextFocus)
+    {
+        _bSwallowNextFocus = false;
+        return
+    }
+    _vLastFocusItem = "start";
+    if(!IsNull(event) && event.shiftKey)
+        _vLastFocusItem = "end";
+    if(!IsNull(event) && !IsNull(event.srcElement))
+    {
+        var oSrc = event.srcElement;
+        switch(oSrc.className.toLowerCase())
+        {
+            case "ms-crm-lookup-item":
+            case "ms-crm-lookup-partyitem-noaddress":
+            case "ms-crm-lookup-partyitem-unresolved":
+            case "ms-crm-lookup-ambiguous":
+            case "ms-crm-lookup-unresolved":
+                switch(oSrc.tagName.toUpperCase())
+                {
+                    case "SPAN":
+                    case "IMG":
+                        return
+                }
+                break
+        }
+    }
+    if(element.disabled == false)
+    {
+        var oEdit = getLookupEdit();
+        if(!IsNull(oEdit))
+            oEdit.disabled = true;
+        var bFromFocusEvent = window.event && window.event.type === "focus";
+        if(IsEditable() && !bFromFocusEvent)
+        {
+            var oForm = GetCurrentForm();
+            if(!IsNull(oForm))
+                var oTab = oForm.GetTab(element,true)
+        }
+        oLookupField = getLookupField();
+        if(oLookupField.innerText.length <= 0 && Items(true,true).length == 0)
+            if(isControlVisible(this.element))
+                SetContentEditable();
+            else
+                return;
+        if(LOCID_UI_DIR == "RTL" && !IsNull(oLookupField) && !IsNull(oLookupField.firstChild) && !IsNull(oLookupField.firstChild.firstChild))
+        {
+            var oSpan = oLookupField.firstChild.firstChild;
+            oSpan.scrollIntoView(false)
+        }
+        element.fireEvent("onfocus")
+    }
+}
+function FocusEdit()
+{
+    if(_bSwallowNextFocusEdit)
+    {
+        _bSwallowNextFocusEdit = false;
+        return
+    }
+    element.fireEvent("onfocus")
+}
+function OnFocusEdit()
+{
+    FocusEdit()
+}
+function Focus()
+{
+    var o = getLookupField(),
+        oEdit = getLookupEdit();
+    if(IsNull(oEdit) || oEdit.className == "ms-crm-Hidden-NoBehavior")
+    {
+        o.runtimeStyle.backgroundColor = "#abc0e7";
+        try
+        {
+            o.focus()
+        }
+        catch(e)
+        {
+        }
+        oEdit.disabled = true
+    }
+    else
+        try
+        {
+            oEdit.focus()
+        }
+        catch(e)
+        {
+        }
+}
+function GetCurrentForm()
+{
+    var o = element;
+    while(!IsNull(o) && o.tagName != "FORM")
+        o = o.parentElement;
+    if(IsNull(o))
+        return null;
+    return o.className == "ms-crm-Form" ? o : null
+}
+function cleanUp()
+{
+    try
+    {
+        var o = getLookupField();
+        o.detachEvent("onblur",Blur);
+        o.detachEvent("ondblclick",LookupFromDiv);
+        o.detachEvent("onfocus",setFocus);
+        o.detachEvent("onkeyup",OnKeyUp);
+        o.detachEvent("onkeypress",OnKeyPressed);
+        o.detachEvent("onkeydown",OnKeyDown);
+        var oe = getLookupEdit();
+        if(!IsNull(oe))
+        {
+            oe.detachEvent("ondblclick",LookupFromEdit);
+            oe.detachEvent("onkeyup",OnKeyUpEdit);
+            oe.detachEvent("onkeypress",OnKeyPressedEdit);
+            oe.detachEvent("onkeydown",OnKeyDownEdit);
+            oe.detachEvent("onblur",OnBlurEdit);
+            oe.detachEvent("onfocus",OnFocusEdit)
+        }
+    }
+    catch(e)
+    {
+    }
+}
+function getAutoResolve()
+{
+    return IsNull(element.autoresolve) || element.autoresolve == "1"
+}
+function setAutoResolve(bVal)
+{
+    element.autoresolve = bVal ? "1" : "0"
+}
+function getResolveEmailAddress()
+{
+    return IsNull(element.resolveemailaddress) || element.resolveemailaddress == "1"
+}
+function setResolveEmailAddress(bVal)
+{
+    element.resolveemailaddress = bVal ? "1" : "0"
+}
+function AddAndRemoveClass(sClassName,sAddClass,sRemoveClass)
+{
+    var sTempClassName = sClassName;
+    if(sRemoveClass.length > 0)
+        sTempClassName = sTempClassName.replace(sRemoveClass,"");
+    if(sAddClass.length > 0)
+        if(sTempClassName.indexOf(sAddClass) < 0)
+        {
+            if(sTempClassName.length > 0 && sTempClassName.charAt(sTempClassName.length - 1) != " ")
+                sTempClassName += " ";
+            sTempClassName = sTempClassName + sAddClass
+        }
+    return sTempClassName
+}
+function stringToInt(sValue)
+{
+    var nValue = parseInt(sValue);
+    return nValue == NaN ? 0 : nValue
+}
+function SetContentEditable()
+{
+    if(IsTypingAllowed())
+    {
+        var oEdit = getLookupEdit(),
+            oField = getLookupField(),
+            isMultiLookupStyle = IsMultiLookup() && oField.innerText.length > 0;
+        if(!IsNull(oEdit) && oEdit.className != "ms-crm-Normal ms-crm-LookupNormal")
+        {
+            oEdit.disabled = false;
+            oEdit.className = "ms-crm-Normal ms-crm-LookupNormal";
+            oField.className = AddAndRemoveClass(oField.className,isMultiLookupStyle ? "ms-crm-FloatLookup" : "ms-crm-Hidden-NoBehavior","");
+            oEdit.focus();
+            if(isMultiLookupStyle)
+                oField.style.posTop = oField.offsetTop + oEdit.offsetHeight;
+            else
+                oField.style.width = "0px"
+        }
+    }
+}
+function EndContentEditing(bIsOnBlur)
+{
+    hideMru();
+    var oEdit = getLookupEdit(),
+        oField = getLookupField();
+    if(!IsNull(oEdit) && oEdit.className != "ms-crm-Hidden-NoBehavior")
+    {
+        if(oField.className.indexOf("ms-crm-FloatLookup") >= 0)
+            oField.style.posTop = oField.style.posTop - oEdit.offsetHeight;
+        else
+            oField.style.width = "100%";
+        oEdit.className = "ms-crm-Hidden-NoBehavior";
+        oField.className = AddAndRemoveClass(oField.className,"","ms-crm-FloatLookup");
+        oField.className = AddAndRemoveClass(oField.className,"","ms-crm-Hidden-NoBehavior");
+        oEdit.value = "";
+        if(!bIsOnBlur && element.tabIndex != 0)
+        {
+            oField.focus();
+            oEdit.disabled = true
+        }
+    }
+}
+function SetupLookupEdit()
+{
+    var o = getLookupEdit();
+    if(IsNull(o))
+        return;
+    o.attachEvent("ondblclick",LookupFromEdit);
+    o.attachEvent("onkeyup",OnKeyUpEdit);
+    o.attachEvent("onkeypress",OnKeyPressedEdit);
+    o.attachEvent("onkeydown",OnKeyDownEdit);
+    o.attachEvent("onblur",OnBlurEdit);
+    o.attachEvent("onfocus",OnFocusEdit);
+    CheckAndSetEditStatus()
+}
+function CheckAndSetEditStatus()
+{
+    var o = getLookupEdit();
+    if(IsNull(o))
+        return;
+    o.disabled = true;
+    if(IsTypingAllowed() && o.style.display == "none")
+        o.style.display = "inline";
+    else
+        if(!IsTypingAllowed() && o.style.display != "none")
+            o.style.display = "none"
+}
+function IsTypingAllowed()
+{
+    return AutoResolve && !getLookupField().disabled && IsEditable()
+}
+function Init()
+{
+    ResetIsDirty();
+    if(window.document.media == "print")
+        return;
+    clearUnattachedEvents();
+    var o = getLookupField();
+    o.attachEvent("ondblclick",LookupFromDiv);
+    o.attachEvent("onkeyup",OnKeyUp);
+    o.attachEvent("onkeypress",OnKeyPressed);
+    o.attachEvent("onkeydown",OnKeyDown);
+    o.attachEvent("onfocus",setFocus);
+    o.attachEvent("onblur",Blur);
+    SetupLookupEdit();
+    title = element.alt = Disabled ? "" : GetToolTip();
+    nextSibling.title = title;
+    var oEdit = getLookupEdit();
+    if(!IsNull(oEdit))
+        oEdit.previousSibling.innerText = GetLookupLabel();
+    setDefaultValue(getValue());
+    ForceSubmit = false;
+    if(typeof lookuptypenames != "undefined" && !IsNull(lookuptypenames) && lookuptypenames.length > 0)
+    {
+        var re = new RegExp("(?:^|,)\\s*([^:]+)\\s*:\\s*([0-9]+)\\s*:\\s*([^,]+)\\s*","ig");
+        while(re.exec(lookuptypenames) != null)
+        {
+            _typeToName[parseInt(RegExp.$2,10)] = RegExp.$1;
+            _typeToDisplayName[parseInt(RegExp.$2,10)] = RegExp.$3
+        }
+    }
+    initMru()
+}
+function GetToolTip()
+{
+    var sLabel = GetLookupLabel();
+    if(!IsNull(sLabel) && Trim(sLabel).length > 0)
+        return formatString(LOCID_LU_SELECT_VALUE_FOR,sLabel);
+    else
+        return LOCID_LU_SELECT_VALUE
+}
+function GetLookupLabel()
+{
+    if(forfield)
+        return forfield;
+    var o = parentElement.parentElement.parentElement.parentElement.parentElement.previousSibling;
+    if(!IsNull(o) && !IsNull(o.innerText) && Trim(o.innerText).length > 0)
+        return o.innerText;
+    var listCell = this.parentElement.parentElement.firstChild;
+    if(!IsNull(listCell))
+    {
+        var listContainer = listCell.firstChild;
+        if(!IsNull(listContainer))
+        {
+            o = listContainer.nextSibling;
+            if(!IsNull(o) && !IsNull(o.innerText) && Trim(o.innerText).length > 0)
+                return o.innerText
+        }
+    }
+    return ""
+}
+function LookupFromEdit()
+{
+    var oEdit = getLookupEdit();
+    if(oEdit.className != "ms-crm-Hidden-NoBehavior")
+    {
+        if(oEdit.value.length == 0)
+            if(isMruEnabled() && !isMruVisible())
+            {
+                showMru(true);
+                return
+            }
+        Lookup(true,true,oEdit.value);
+        EndContentEditing(false)
+    }
+}
+function LookupFromDiv()
+{
+    var o = event.srcElement;
+    while(o.tagName != "DIV")
+        o = o.parentElement;
+    if(element.disabled == false && o.innerText == " ")
+    {
+        Focus();
+        click()
+    }
+}
+function addNamesToType(oItems)
+{
+    for(var i = 0; i < oItems.length; i++)
+        oItems[i].typename = _typeToName[parseInt(oItems[i].type,10)]
+}
+function getTypeCode(typeName)
+{
+    if(!isNullOrEmptyString(lookuptypenames))
+    {
+        var typeRegex = new RegExp;
+        typeRegex.compile("(?:^|,)\\s*" + typeName + "\\s*:\\s*([0-9]+)\\s*:\\s*([^,]+)\\s*(?:,|$)","i");
+        if(typeRegex.test(lookuptypenames))
+            return RegExp.$1
+    }
+    return 0
+}
+function deserializeValues(oItems)
+{
+    for(var oSerializer = Sys.Serialization.JavaScriptSerializer,
+        i = 0; i < oItems.length; i++)
+    {
+        var oItem = oItems[i];
+        if(oItem.values && typeof oItem.values === Mscrm.TypeNames.stringType)
+            oItem.values = oSerializer.deserialize(oItem.values);
+        if(oItem.keyValues && typeof oItem.keyValues === Mscrm.TypeNames.stringType)
+            oItem.keyValues = oSerializer.deserialize(oItem.keyValues)
+    }
+}
+function FilterRelationshipData(name,id,type,dependantAttributeName)
+{
+    this.Name = name;
+    this.Id = id;
+    this.Type = type;
+    this.DependantAttributeName = dependantAttributeName
+}
+function getFilterRelationshipData()
+{
+    var rName = getFilterRelationshipId(),
+        rId = "",
+        rType = "",
+        rDependantAttributeName = "";
+    if(!IsNull(rName) && rName != "")
+        if(!IsNull(this.DependantAttributeName) && this.DependantAttributeName != "" && !IsNull(this.DependantAttributeType) && this.DependantAttributeType != "")
+        {
+            var oForm = GetCurrentForm();
+            if(!IsNull(oForm))
+            {
+                rDependantAttributeName = this.DependantAttributeName;
+                var dependAttrSegments = rDependantAttributeName.split(".");
+                if(dependAttrSegments.length > 1)
+                    if(dependAttrSegments[0] != oForm.ObjectTypeName)
+                    {
+                        rId = oForm.ObjectId;
+                        rType = oForm.ObjectTypeCode
+                    }
+                    else
+                    {
+                        var oDependantAttr = oForm.GetControl(dependAttrSegments[1]);
+                        if(!IsNull(oDependantAttr))
+                        {
+                            rType = this.DependantAttributeType;
+                            var aoItems = oDependantAttr.DataValue;
+                            if(!IsNull(aoItems))
+                                if(oDependantAttr.className == "ms-crm-Hidden")
+                                    rId = aoItems;
+                                else
+                                    if(aoItems[0].id != "")
+                                        if(this.DependantAttributeType == aoItems[0].type)
+                                        {
+                                            rId = aoItems[0].id;
+                                            rType = aoItems[0].type
+                                        }
+                        }
+                    }
+            }
+            if(IsNull(rId) || IsNull(rType) || IsNull(rDependantAttributeName) || rId == "" || rType == "" || rDependantAttributeName == "")
+            {
+                rId = "";
+                rType = "";
+                rName = "";
+                rDependantAttributeName = ""
+            }
+        }
+    return new FilterRelationshipData(rName,rId,rType,rDependantAttributeName)
+}
+function Lookup(bIgnoreOnClick,bNoDialog,sSearchString,bAsynchOperation)
+{
+    if(readonly)
+        return;
+    if(bIgnoreOnClick || onclick == null)
+    {
+        !bNoDialog && 
+            Focus();
+        RaiseSetAdditionalParamsEvent();
+        var lookupField = getLookupField(),
+            lookupItems = null;
+        if(bNoDialog)
+        {
+            GetItemsFromServer(bAsynchOperation);
+            return
+        }
+        else
+            if(typeof onshowdialog == "function" && onshowdialog !== this.HandleUnattachedEvent)
+            {
+                var oDialogEvent = createEventObject();
+                oDialogEvent.oLookupField = lookupField;
+                RaiseOnShowDialogEventEvent(oDialogEvent);
+                lookupItems = oDialogEvent.oLookupItems
+            }
+            else
+            {
+                var filterRelationshipData = getFilterRelationshipData(),
+                    oForm = GetCurrentForm();
+                if(!IsNull(oForm) && !IsNull(oForm.ObjectId) && oForm.ObjectId != "")
+                {
+                    AddParam("currentid",oForm.ObjectId);
+                    !IsNull(oForm.ObjectTypeCode) && 
+                        AddParam("currentObjectType",oForm.ObjectTypeCode)
+                }
+                var allowFilterOff = !IsNull(element.allowFilterOff) ? element.allowFilterOff : null,
+                    disableQuickFind = !IsNull(element.disableQuickFind) ? element.disableQuickFind : null,
+                    disableViewPicker = !IsNull(element.disableViewPicker) ? element.disableViewPicker : null,
+                    availableViewIds = !IsNull(element.availableViewIds) ? element.availableViewIds : null;
+                lookupItems = LookupObjects(lookupField,lookupstyle,lookuptypes,lookupbrowse,bindingcolumns,additionalparams,"1",showproperty,false,this.DefaultType,sSearchString,getDataProviderOverride(),getDefaultViewId(),getCustomViews(),filterRelationshipData.Name,filterRelationshipData.Id,filterRelationshipData.Type,filterRelationshipData.DependantAttributeName,allowFilterOff,disableQuickFind,disableViewPicker,availableViewIds,crmattributeid)
+            }
+        HandleAfterLookup(lookupItems)
+    }
+}
+function HandleAfterLookup(lookupItems)
+{
+    var lookupField = getLookupField();
+    if(lookupItems == null)
+        return;
+    var bChanged = false;
+    addNamesToType(lookupItems.items);
+    var aoItemsBefore = Items(false,true);
+    Clear(false);
+    AddItems(lookupItems.items);
+    bChanged = bItemsDifferent(aoItemsBefore,Items(false,true));
+    this.items = lookupItems.items;
+    var oEvent = createEventObject();
+    deserializeValues(lookupItems.items);
+    oEvent.result = lookupItems;
+    RaiseOnAfterSelectEvent(oEvent);
+    bChanged && 
+        RaiseOnChangeEvent(oEvent);
+    setLookupItemImages();
+    EndContentEditing();
+    ResetIsDirty();
+    addMru();
+    this.FocusEdit()
+}
+function HandleDataChange()
+{
+    var fDataChangeHandler = this.DataChangeHandler;
+    fDataChangeHandler && 
+        fDataChangeHandler()
+}
+function RaiseOnAfterSelectEvent(oEvent)
+{
+    if(IsNull(oEvent))
+        oEvent = CreateResultEvent();
+    RaiseEvent(oEvent,this.onafterselectHandler,afterSelectEvent)
+}
+function RaiseSetAdditionalParamsEvent(oEvent)
+{
+    RaiseEvent(oEvent,this.setadditionalparamsHandler,setAdditionalParamsEvent)
+}
+function RaiseGenerateDataXmlEventEvent(oEvent)
+{
+    RaiseEvent(oEvent,this.generatedataxmlHandler,generateDataXmlEvent)
+}
+function RaiseOnShowDialogEventEvent(oEvent)
+{
+    RaiseEvent(oEvent,this.onshowdialogHandler,onShowDialogEvent)
+}
+function RaiseOnChangeEvent(oEvent)
+{
+    if(IsNull(oEvent))
+        oEvent = CreateResultEvent();
+    var bSuccess = true;
+    if(!IsNull(element.internalBeforeOnchange) && typeof element.internalBeforeOnchange == "function")
+        bSuccess = element.internalBeforeOnchange(oEvent.result.items);
+    bSuccess && 
+        RaiseEvent(oEvent,this.onchangeHandler,onChangeEvent)
+}
+function RaiseEvent(oEvent,customHandler,eventId)
+{
+    if(IsNull(oEvent))
+        oEvent = createEventObject();
+    if(typeof customHandler === "function")
+        oEvent.CustomHandler = customHandler;
+    else
+        oEvent.CustomHandler = CustomEmptyHandler;
+    AttachToUnattachedEvents();
+    eventId.fire(oEvent)
+}
+function CustomEmptyHandler()
+{
+}
+function CreateResultEvent()
+{
+    var oEvent = createEventObject();
+    oEvent.result = {};
+    oEvent.result.items = this.Items();
+    return oEvent
+}
+function HandleUnattachedEvent()
+{
+    typeof event.CustomHandler === "function" && 
+        event.CustomHandler()
+}
+function clearUnattachedEvents()
+{
+    if(typeof element.aoUnattachedEvents == "undefined" || element.aoUnattachedEvents == null)
+        element.aoUnattachedEvents = [];
+    while(element.aoUnattachedEvents.length > 0)
+    {
+        var sEventName = element.aoUnattachedEvents.pop();
+        this[sEventName] = null
+    }
+}
+function AttachToUnattachedEvents()
+{
+    if(IsNull(element.aoUnattachedEvents))
+        element.aoUnattachedEvents = [];
+    if(typeof onafterselect !== "function")
+    {
+        this.onafterselect = this.HandleUnattachedEvent;
+        element.aoUnattachedEvents.push("onafterselect")
+    }
+    if(typeof onchange !== "function")
+    {
+        element["onchange"] = this.HandleUnattachedEvent;
+        element.aoUnattachedEvents.push("onchange")
+    }
+    if(typeof setadditionalparams !== "function")
+    {
+        this.setadditionalparams = this.HandleUnattachedEvent;
+        element.aoUnattachedEvents.push("setadditionalparams")
+    }
+    if(typeof generatedataxml !== "function")
+    {
+        this.generatedataxml = this.HandleUnattachedEvent;
+        element.aoUnattachedEvents.push("generatedataxml")
+    }
+    if(typeof onshowdialog !== "function")
+    {
+        this.onshowdialog = this.HandleUnattachedEvent;
+        element.aoUnattachedEvents.push("onshowdialog")
+    }
+}
+function NormalizeSelectedElementForKeyboard(oElement)
+{
+    if(IsNull(oElement))
+        return null;
+    if(IsNull(oElement.tagName))
+        return null;
+    do
+    {
+        if(oElement.tagName == "DIV" || oElement.tagName == "SPAN" || oElement.tagName == "LI")
+            if(oElement.className.toLowerCase().indexOf("ms-crm-lookup") >= 0)
+                return oElement;
+        if(IsNull(oElement.parentElement) || oElement.parentElement == oElement)
+            return null;
+        oElement = oElement.parentElement
+    } while(true)
+}
+function OnKeyUpEdit()
+{
+    switch(event.keyCode)
+    {
+        case KEY_ENTER:
+            event.cancelBubble = true;
+            return false;
+        case KEY_ESC:
+            event.cancelBubble = true;
+            return false;
+        case KEY_DELETE:
+        case KEY_UP:
+        case KEY_DOWN:
+        case KEY_TAB:
+        case KEY_SHIFT:
+        case KEY_CTRL:
+        case KEY_ALT:
+            event.cancelBubble = true;
+            return false;
+        default:
+            showMru();
+            break
+    }
+}
+function OnKeyUp()
+{
+    switch(event.keyCode)
+    {
+        case 8:
+            event.returnValue = false;
+            event.cancelBubble = true;
+            return false;
+        case KEY_ENTER:
+            event.cancelBubble = true;
+            return false;
+        case 85:
+            if(event.ctrlKey)
+            {
+                event.cancelBubble = true;
+                return false
+            }
+    }
+}
+function OnKeyDownEdit()
+{
+    switch(event.keyCode)
+    {
+        case KEY_UP:
+            if(navigateMru(false))
+            {
+                event.cancelBubble = true;
+                return false
+            }
+            break;
+        case KEY_DOWN:
+            if(navigateMru(true,event.altKey && !event.ctrlKey && !event.shiftKey))
+            {
+                event.cancelBubble = true;
+                return false
+            }
+            break;
+        case KEY_ESC:
+            if(isMruVisible())
+            {
+                restoreOriginalMruSearch();
+                hideMru();
+                event.cancelBubble = true;
+                return false
+            }
+            break;
+        case KEY_ENTER:
+            if(isMruVisible())
+            {
+                if(selectMru())
+                {
+                    event.cancelBubble = true;
+                    return false
+                }
+                hideMru()
+            }
+            if(!readonly)
+            {
+                event.cancelBubble = true;
+                var sEditValue = getLookupEdit().value;
+                getLookupEdit().value = "";
+                Lookup(true,false,sEditValue);
+                EndContentEditing(false);
+                return false
+            }
+            break;
+        case KEY_DELETE:
+            if(event.ctrlKey && !event.altKey && !event.shiftKey)
+                if(LookupMruUIInstance.isSelected())
+                {
+                    deleteMru();
+                    event.cancelBubble = true;
+                    return false
+                }
+            break;
+        case 75:
+            !readonly && event.ctrlKey && AutoResolve && 
+                ResolveAndExitEdit(false,true);
+            break;
+        case KEY_TAB:
+            if(isMruVisible())
+                if(selectMru())
+                    return;
+                else
+                    hideMru();
+            if(element.tabIndex != 0 || getLookupEdit().tabIndex != 0)
+                if(!event.shiftKey)
+                {
+                    _bSwallowNextFocus = true;
+                    getLookupField().focus();
+                    return
+                }
+            break;
+        case 123:
+            if(event.shiftKey && getLookupEdit().className != "ms-crm-Hidden-NoBehavior" && getLookupEdit().value.length > 0)
+            {
+                Lookup(true,true,getLookupEdit().value,false);
+                EndContentEditing(false)
+            }
+            break;
+        case 83:
+            if(!readonly && event.ctrlKey)
+            {
+                if(event.altKey)
+                    return;
+                Lookup(true,true,getLookupEdit().value,false);
+                EndContentEditing(false)
+            }
+            break
+    }
+}
+function OnKeyDown()
+{
+    var selectedElement = NormalizeSelectedElementForKeyboard(IsNull(_vLastFocusItem) || _vLastFocusItem == "end" || _vLastFocusItem == "start" ? event.srcElement : _vLastFocusItem);
+    if(IsNull(selectedElement))
+        return;
+    if(!IsMultiLookup())
+        if(selectedElement.tagName == "DIV" && !IsNull(selectedElement.firstChild))
+        {
+            selectedElement = selectedElement.firstChild;
+            for(var i = 0; i < selectedElement.all.length; i++)
+                if(selectedElement.all[i].tagName == "SPAN")
+                {
+                    selectedElement = selectedElement.all[i];
+                    break
+                }
+        }
+    switch(event.keyCode)
+    {
+        case 32:
+        case KEY_ENTER:
+            if(selectedElement.tagName == "SPAN" || selectedElement.tagName == "LI")
+            {
+                selectedElement.click();
+                event.returnValue = false;
+                event.cancelBubble = true;
+                return false
+            }
+            else
+                if(!readonly)
+                {
+                    event.cancelBubble = true;
+                    Lookup(true,false);
+                    return false
+                }
+            break;
+        case KEY_DOWN:
+            if(event.altKey)
+                if(selectedElement.className == "ms-crm-Lookup-Ambiguous")
+                {
+                    selectedElement.click();
+                    event.returnValue = false;
+                    return false
+                }
+            break;
+        case KEY_U:
+            if(event.ctrlKey)
+                if(selectedElement.className == "ms-crm-Lookup-Item")
+                {
+                    selectedElement.click();
+                    event.returnValue = false;
+                    event.cancelBubble = true;
+                    return false
+                }
+            break;
+        case KEY_BACKSPACE:
+            event.returnValue = false;
+            event.cancelBubble = true;
+        case KEY_DELETE:
+            if(IsDisplayOnlyLookup() || !readonly)
+                if(selectedElement.tagName != "SPAN" && selectedElement.tagName != "LI")
+                {
+                    if(event.keyCode == KEY_DELETE || event.keyCode == KEY_BACKSPACE && !IsMultiLookup())
+                    {
+                        Clear();
+                        RaiseOnChangeEvent()
+                    }
+                }
+                else
+                {
+                    if(IsMultiLookup() && IsDisplayOnlyLookup())
+                    {
+                        for(var tmpItems = Items(),
+                            i = 0; i < tmpItems.length; i++)
+                            tmpItems[i].selected && 
+                                RemoveItem(tmpItems[i].id);
+                        getLookupField().focus()
+                    }
+                    else
+                    {
+                        var oNextSpan = !IsNull(selectedElement.parentElement.previousSibling) ? selectedElement.parentElement.previousSibling : selectedElement.parentElement.nextSibling;
+                        getLookupField().firstChild.removeChild(selectedElement.parentElement);
+                        if(!IsNull(oNextSpan))
+                        {
+                            oNextSpan = oNextSpan.firstChild;
+                            if(IsNull(oNextSpan))
+                            {
+                                _vLastFocusItem = "start";
+                                Focus()
+                            }
+                            else
+                            {
+                                _vLastFocusItem = oNextSpan;
+                                _vLastFocusItem.style.border = "BLUE 1 DOTTED";
+                                _vLastFocusItem.scrollIntoView(false);
+                                getLookupField().focus()
+                            }
+                        }
+                        Off()
+                    }
+                    RaiseOnChangeEvent()
+                }
+            break;
+        case KEY_TAB:
+            if(element.tabIndex != 0)
+                if(event.shiftKey && IsEditable())
+                {
+                    try
+                    {
+                        SetContentEditable();
+                        _bSwallowNextFocusEdit = true
+                    }
+                    catch(e)
+                    {
+                    }
+                    return
+                }
+            if(!IsMultiLookup())
+                return;
+            var oLookupField = getLookupField().firstChild,
+                aoItems = Items(false,true);
+            if(aoItems.length == 0)
+                return;
+            if(_vLastFocusItem == null || _vLastFocusItem == (event.shiftKey ? "start" : "end"))
+                return;
+            if(_vLastFocusItem == (event.shiftKey ? "end" : "start"))
+                for(var sOid = aoItems[event.shiftKey ? aoItems.length - 1 : 0].id,
+                    i = 0; i < oLookupField.childNodes.length; i++)
+                {
+                    var oSpan = oLookupField.childNodes[i].firstChild;
+                    if(oSpan.oid == sOid)
+                    {
+                        oSpan.style.border = "BLACK 1 DOTTED";
+                        oSpan.scrollIntoView(false);
+                        _vLastFocusItem = oSpan;
+                        event.cancelBubble = true;
+                        return false
+                    }
+                }
+            else
+            {
+                _vLastFocusItem.style.border = "";
+                var oNextSpan = event.shiftKey ? _vLastFocusItem.parentElement.previousSibling : _vLastFocusItem.parentElement.nextSibling;
+                if(!IsNull(oNextSpan))
+                {
+                    oNextSpan = oNextSpan.firstChild;
+                    if(oNextSpan && oNextSpan.tagName == "SPAN")
+                    {
+                        _vLastFocusItem = oNextSpan;
+                        _vLastFocusItem.style.border = "BLUE 1 DOTTED";
+                        _vLastFocusItem.scrollIntoView(false);
+                        event.cancelBubble = true;
+                        return false
+                    }
+                }
+                _vLastFocusItem = null;
+                return
+            }
+            break
+    }
+}
+function OnKeyPressedEdit()
+{
+    switch(event.keyCode)
+    {
+        case KEY_ENTER:
+            event.cancelBubble = true;
+            return false;
+            break;
+        case KEY_VERTICAL_TAB:
+        case KEY_K:
+            if(event.ctrlKey)
+                return false;
+            break
+    }
+}
+function OnKeyPressed()
+{
+    switch(event.keyCode)
+    {
+        case KEY_BACKSPACE:
+            event.returnValue = false;
+            event.cancelBubble = true;
+            return false;
+        case KEY_ENTER:
+            event.cancelBubble = true;
+            return false;
+            break;
+        case KEY_VERTICAL_TAB:
+        case KEY_K:
+            if(event.ctrlKey)
+                return false;
+            break;
+        case KEY_U:
+            if(event.ctrlKey)
+            {
+                event.cancelBubble = true;
+                return false
+            }
+            break
+    }
+    (IsEditable() || IsTypingAllowed()) && 
+        SetContentEditable()
+}
+function AddParam(sName,sValue)
+{
+    var s = "&" + CrmEncodeDecode.CrmUrlEncode(sName) + "=" + CrmEncodeDecode.CrmUrlEncode(sValue);
+    if(!IsNull(additionalparams) && additionalparams != "")
+    {
+        var i = additionalparams.indexOf(sName);
+        if(i > -1)
+        {
+            var iStart = i - 1,
+                iEnd = additionalparams.indexOf("&",i);
+            if(iEnd == -1)
+                iEnd = additionalparams.length;
+            additionalparams = additionalparams.substring(0,iStart) + additionalparams.substring(iEnd)
+        }
+        additionalparams += s
+    }
+    else
+        additionalparams = s
+}
+function AddBindingColumn(sName)
+{
+    if(bindingcolumns)
+    {
+        if(bindingcolumns.indexOf(sName.toLowerCase()) == -1)
+            bindingcolumns += "," + sName
+    }
+    else
+        bindingcolumns = sName
+}
+function getLookupEdit()
+{
+    try
+    {
+        return this.parentElement.parentElement.firstChild.lastChild
+    }
+    catch(e)
+    {
+        return null
+    }
+}
+function getLookupField()
+{
+    try
+    {
+        return this.parentElement.parentElement.firstChild.firstChild
+    }
+    catch(e)
+    {
+        return null
+    }
+}
+function setDisabled(val)
+{
+    var lookupField = getLookupField();
+    EndContentEditing(true);
+    element.disabled = val;
+    CheckAndSetEditStatus();
+    if(val)
+    {
+        Sys.UI.DomElement.addCssClass(element,"ms-crm-ReadOnly");
+        Sys.UI.DomElement.addCssClass(element,"ms-crm-Lookup-ReadOnly")
+    }
+    else
+    {
+        Sys.UI.DomElement.removeCssClass(element,"ms-crm-ReadOnly");
+        Sys.UI.DomElement.removeCssClass(element,"ms-crm-Lookup-ReadOnly")
+    }
+    element.style.cursor = val ? "auto" : "hand";
+    Mscrm.ImageStrip.changeImage(element,val ? "/_imgs/btn_dis_lookup.png" : "/_imgs/btn_off_lookup.png");
+    element.alt = val ? "" : GetToolTip();
+    title = val ? "" : GetToolTip();
+    nextSibling.title = title
+}
+function getDisabled()
+{
+    return element.disabled
+}
+var _ctrlRoot = this.parentElement.parentElement.parentElement.parentElement;
+function getVisible()
+{
+    return _ctrlRoot.style.display != "none"
+}
+function setVisible(val)
+{
+    _ctrlRoot.style.display = val ? "block" : "none"
+}
+function Clear(bExecuteDataChangeHandler)
+{
+    getLookupField().firstChild.innerText = "";
+    value = "";
+    (IsNull(bExecuteDataChangeHandler) || bExecuteDataChangeHandler) && 
+        HandleDataChange()
+}
+function clearItemFocus(sNextFocusLocation)
+{
+    if(_vLastFocusItem == null || typeof _vLastFocusItem == "string")
+    {
+        _vLastFocusItem = sNextFocusLocation;
+        return
+    }
+    var oLookupField = getLookupField();
+    _vLastFocusItem.style.border = "";
+    _vLastFocusItem = sNextFocusLocation
+}
+function ResolveAndExitEdit(bIsBlur,bAsynchOperation)
+{
+    var o = getLookupEdit();
+    if(IsNull(o))
+        return false;
+    if(AutoResolve && hasUnresolvedText())
+    {
+        if(IsMultiLookup())
+            getLookupField().firstChild.innerHTML += '<LI style="display:inline">' + CrmEncodeDecode.CrmHtmlEncode(o.value) + "</LI>";
+        else
+            getLookupField().firstChild.innerHTML = '<LI style="display:inline">' + CrmEncodeDecode.CrmHtmlEncode(o.value) + "</LI>";
+        ResetIsDirty();
+        Lookup(true,true,o.value,bAsynchOperation)
+    }
+    EndContentEditing(bIsBlur);
+    o.disabled = true
+}
+function hasUnresolvedText()
+{
+    var oLookupEdit = getLookupEdit();
+    return !IsNull(oLookupEdit) && Trim(oLookupEdit.value).length > 0
+}
+function OnBlurEdit()
+{
+    if(isMruVisible())
+    {
+        var oEdit = getLookupEdit();
+        !IsNull(oEdit) && 
+            oEdit.focus();
+        return
+    }
+    if(element.tabIndex == 0)
+    {
+        var oEdit = getLookupEdit();
+        if(!IsNull(oEdit) && !Sys.UI.DomElement.containsCssClass(oEdit,"ms-crm-Hidden-NoBehavior"))
+        {
+            _bSwallowNextFocus = true;
+            setTimeout(function()
+            {
+                _bSwallowNextFocus = false
+            },50)
+        }
+    }
+    ResolveAndExitEdit(true,true)
+}
+function Blur()
+{
+    if(element.tabIndex == 0)
+        _bSwallowNextFocusEdit = true;
+    clearItemFocus("end");
+    var o = getLookupField();
+    o.runtimeStyle.backgroundColor = ""
+}
+function On()
+{
+    if(disabled)
+        return;
+    src = "/_imgs/btn_on_lookup.png"
+}
+function Off()
+{
+    src = "/_imgs/btn_off_lookup.png"
+}
+function Resolving()
+{
+    if(disabled)
+        return;
+    src = "/_imgs/btn_lookup_resolving.gif"
+}
+function getDefaultValue()
+{
+    if(IsNull(_defaultValue))
+        return null;
+    return _defaultValue
+}
+function setDefaultValue(oVal)
+{
+    _defaultValue = oVal
+}
+function getDefaultViewId()
+{
+    if(IsNull(element.defaultViewId))
+        return null;
+    return element.defaultViewId
+}
+function setDefaultViewId(oVal)
+{
+    if(!IsNull(element.disableViewPicker) && element.disableViewPicker == "1")
+        return;
+    element.defaultViewId = oVal
+}
+function getDefaultType()
+{
+    if(IsNull(element.defaulttype))
+        return null;
+    return element.defaulttype
+}
+function setDefaultType(oVal)
+{
+    element.defaulttype = oVal
+}
+function getFilterRelationshipId()
+{
+    if(IsNull(_filterRelationshipId))
+        return null;
+    return _filterRelationshipId
+}
+function setFilterRelationshipId(oVal)
+{
+    _filterRelationshipId = oVal
+}
+function getDataProviderOverride()
+{
+    if(IsNull(_dataProviderOverride))
+        return null;
+    return _dataProviderOverride
+}
+function setDataProviderOverride(oVal)
+{
+    _dataProviderOverride = oVal
+}
+function getCustomViews()
+{
+    if(IsNull(_customViews))
+        return null;
+    return _customViews
+}
+function setCustomViews(oVal)
+{
+    _customViews = oVal
+}
+function AddCustomView(viewid,entityName,sName,sFetchXml,sLayoutXml,isDefault)
+{
+    var iRecordType = 0;
+    try
+    {
+        var lookupService = new RemoteCommand("LookupService","RetrieveTypeCode");
+        lookupService.SetParameter("entityName",entityName);
+        var result = lookupService.Execute();
+        if(result.Success && typeof result.ReturnValue == "number")
+            iRecordType = result.ReturnValue;
+        else
+        {
+            Mscrm.CrmDebug.fail("LOOKUP CONTROL ERROR: Invalid entity name '" + entityName + "'! Unable to add custom view.");
+            return
+        }
+    }
+    catch(e)
+    {
+        Mscrm.CrmDebug.fail(e.Message);
+        return
+    }
+    if(!IsNull(viewid))
+        viewid = viewid.toUpperCase();
+    if(isDefault)
+    {
+        if(this.DefaultType != iRecordType.toString())
+            this.DefaultType = iRecordType.toString();
+        this.DefaultViewId = viewid
+    }
+    if(IsNull(_customViews))
+        _customViews = [];
+    var view = null;
+    for(i = 0; i < _customViews.length; i++)
+        if(_customViews[i].id === viewid)
+        {
+            view = _customViews[i];
+            break
+        }
+    if(view != null)
+    {
+        view.recordType = iRecordType;
+        view.name = sName;
+        view.fetchXml = sFetchXml;
+        view.layoutXml = sLayoutXml
+    }
+    else
+    {
+        view = new CustomView(viewid,iRecordType,sName,sFetchXml,sLayoutXml);
+        _customViews.push(view)
+    }
+}
+function getValue(bGetUnresolvedText,bGetUnresolvedItems)
+{
+    !this._bResolving && AutoResolve && hasUnresolvedText() && 
+        ResolveAndExitEdit(true,false);
+    var aoItems = Items(bGetUnresolvedText,bGetUnresolvedItems);
+    if(aoItems.length == 0)
+        return null;
+    return aoItems
+}
+function getInnerText()
+{
+    var aoItems = Items();
+    if(aoItems.length == 0)
+        return "";
+    else
+        return getLookupField().innerText
+}
+function setValue(aoVal)
+{
+    Clear(false);
+    !IsNull(aoVal) && 
+        AddItems(aoVal,false);
+    HandleDataChange()
+}
+function AreValuesDifferent(aoItems)
+{
+    return bItemsDifferent(aoItems,getValue())
+}
+function bItemsDifferent(aoItemsA,aoItemsB)
+{
+    if(IsNull(aoItemsA) && IsNull(aoItemsB))
+        return false;
+    if(IsNull(aoItemsA) || IsNull(aoItemsB))
+        return true;
+    if(aoItemsA.length != aoItemsB.length)
+        return true;
+    var i = aoItemsA.length - 1;
+    while(i >= 0)
+    {
+        if(areItemsDifferent(aoItemsA[i],aoItemsB[i]))
+            return true;
+        i--
+    }
+    return false
+}
+function areItemsDifferent(oItemA,oItemB)
+{
+    if(oItemB.id != oItemA.id && oItemB.type != 0 || oItemB.type != oItemA.type || oItemB.data != oItemA.data || oItemB.resourceSpecId != oItemA.resourceSpecId || oItemB.effort != oItemA.effort)
+        return true;
+    return false
+}
+function ResetIsDirty()
+{
+    this.isDirtyCached = null
+}
+function getHasChanged()
+{
+    if(this.isDirtyCached != null)
+        return this.isDirtyCached;
+    var defaultValue = getDefaultValue();
+    if(!IsNull(defaultValue) && defaultValue.length > 0)
+        for(var i = 0; i < defaultValue.length; i++)
+            if(!IsNull(defaultValue[i].name))
+                defaultValue[i].name = Mscrm.Utilities.trimSpaces(defaultValue[i].name);
+    var isChanged = bItemsDifferent(getValue(),defaultValue);
+    if(!isChanged)
+    {
+        var allItems = getValue(true,true);
+        if(!IsNull(allItems) && allItems.length > 0)
+            for(var itemCtr = 0; itemCtr < allItems.length; itemCtr++)
+            {
+                var currentItem = allItems[itemCtr];
+                if(!IsNull(currentItem) && (currentItem.category == LookupItemCategories.AMBIGUOUS || currentItem.category == LookupItemCategories.UNKNOWN))
+                {
+                    isChanged = true;
+                    break
+                }
+            }
+    }
+    this.isDirtyCached = isChanged;
+    return isChanged
+}
+function AddItems(aoLookupControlItems,bExecuteDataChangeHandler)
+{
+    clearItemFocus("start");
+    for(var bReturnValue = true,
+        existingItems = Items(false,true),
+        addResults = "",
+        i = 0; i < aoLookupControlItems.length; i++)
+    {
+        if(IsLookupItemInCollection(aoLookupControlItems[i],existingItems))
+        {
+            bReturnValue = false;
+            continue
+        }
+        var addResult = AddItemEx(aoLookupControlItems[i],false);
+        if(addResult == "")
+            bReturnValue = false;
+        else
+            addResults += addResult;
+        existingItems.push(aoLookupControlItems[i])
+    }
+    if(addResults != "")
+    {
+        getLookupField().firstChild.innerHTML += addResults;
+        ResetIsDirty();
+        addMru()
+    }
+    setLookupItemImages();
+    element.InitializeLookupPresence();
+    (IsNull(bExecuteDataChangeHandler) || bExecuteDataChangeHandler) && 
+        HandleDataChange();
+    return bReturnValue
+}
+function setLookupItemImages()
+{
+    setTimeout(this.RefreshLookupItemImage,10)
+}
+function RefreshLookupItemImage()
+{
+    var o = getLookupField();
+    if(o == null)
+        return;
+    for(var arrNodes = o.getElementsByTagName("Img"),
+        i = 0; arrNodes != null && i < arrNodes.length; i++)
+    {
+        var oImg = arrNodes[i];
+        if(oImg != null && typeof oImg.imageSrc != "undefined" && oImg.imageSrc != null)
+            oImg.src = oImg.imageSrc
+    }
+}
+function IsPermissibleType(oLUControlItem)
+{
+    if(typeof oLUControlItem == "string")
+        return true;
+    if(oLUControlItem.category == LookupItemCategories.UNKNOWN_TYPE)
+        return true;
+    if(this.AllowUnknownItems == "true" && parseInt(oLUControlItem.type,10) == None || parseInt(oLUControlItem.type,10) == UnresolvedEmailParty)
+        return true;
+    with(oLUControlItem)
+    {
+        if(!this._bResolving && !hasUnresolvedText())
+            if(!this.IsDirty)
+                return true;
+        if(typeof oLUControlItem.typename != "undefined" && !IsNull(typename) && typename.length > 0)
+        {
+            if(IsNull(lookuptypenames) || lookuptypenames.length == 0)
+                return false;
+            oRETypeName.compile("(?:^|,)\\s*" + typename + "\\s*:\\s*([0-9]+)\\s*:\\s*([^,]+)\\s*(?:,|$)","i");
+            if(oRETypeName.test(lookuptypenames))
+                oLUControlItem.type = RegExp.$1;
+            else
+                return false
+        }
+        else
+            if(!IsNull(type) && !isNaN(parseInt(type,10)))
+            {
+                var typeResolved = type == 9005 ? 4700 : type;
+                if(IsActivityTypeCode(typeResolved) && (lookuptypes == "4200" || lookuptypes.indexOf("4200,") != -1 || lookuptypes.indexOf(",4200") != -1))
+                    return true;
+                if(IsNull(lookuptypes) || lookuptypes.length == 0)
+                    return false;
+                if(typeResolved != lookuptypes)
+                    if(lookuptypes.indexOf(typeResolved + ",") == -1)
+                        if(lookuptypes.indexOf("," + typeResolved) == -1)
+                            return false;
+                        else
+                            oLUControlItem.typename = _typeToName[parseInt(oLUControlItem.type,10)]
+            }
+            else
+                return false
+    }
+    return true
+}
+function IsLookupItemInCollection(oLookupControlItem,aoLUItems)
+{
+    for(i = 0; i < aoLUItems.length; i++)
+        if(!areItemsDifferent(aoLUItems[i],oLookupControlItem))
+            return true;
+    return false
+}
+function AddItem(oLookupControlItem)
+{
+    return AddItemEx(oLookupControlItem,true) != ""
+}
+function AddItemEx(oLookupControlItem,addImmediately)
+{
+    if(lookupstyle == "single" && getLookupField().getElementsByTagName("SPAN").length != 0)
+        return "";
+    if(!IsPermissibleType(oLookupControlItem))
+        return "";
+    if(typeof addImmediately == "undefined")
+        addImmediately = true;
+    var oLookupField = getLookupField();
+    if(typeof oLookupControlItem == "string")
+    {
+        if(addImmediately)
+        {
+            oLookupField.firstChild.innerHTML += oLookupControlItem;
+            ResetIsDirty()
+        }
+        return oLookupControlItem
+    }
+    else
+    {
+        if(addImmediately)
+        {
+            var aoLUItems = Items(false,true);
+            if(IsLookupItemInCollection(oLookupControlItem,aoLUItems))
+                return ""
+        }
+        var i,
+            sIds = "",
+            sTypes = "",
+            sItemsHTML = new StringBuilder;
+        sItemsHTML.Append('<LI style="display:inline"><SPAN id="lookupItem" contentEditable="false"');
+        sItemsHTML.Append(' oid="');
+        sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.id));
+        sItemsHTML.Append('" otype="');
+        if(IsNull(oLookupControlItem.type))
+            oLookupControlItem.type = getTypeCode(oLookupControlItem.typename);
+        sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.type));
+        sItemsHTML.Append('" otypename="');
+        sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.typename));
+        sItemsHTML.Append('"');
+        if(oLookupControlItem.category == LookupItemCategories.AMBIGUOUS)
+        {
+            oLookupControlItem.displayClass = "ms-crm-Lookup-Ambiguous";
+            sItemsHTML.Append(' category="');
+            sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.category));
+            sItemsHTML.Append('" title="');
+            sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(LOCID_LU_LOOKUPAMBIGUOUSTOOLTIP));
+            sItemsHTML.Append('" ambiguousRecordsXml="');
+            sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.ambiguousRecordsXml))
+        }
+        else
+            if(oLookupControlItem.category == LookupItemCategories.UNKNOWN)
+            {
+                oLookupControlItem.displayClass = "ms-crm-lookup-unresolved";
+                sItemsHTML.Append(' category="');
+                sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.category));
+                sItemsHTML.Append('" title="');
+                sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(LOCID_LU_LOOKUPUNRESOLVEDTOOLTIP))
+            }
+            else
+                if(oLookupControlItem.category == LookupItemCategories.UNKNOWN_EMAIL)
+                {
+                    oLookupControlItem.displayClass = "ms-crm-Lookup-PartyItem-Unresolved";
+                    if(IsNull(oLookupControlItem.onclick))
+                        oLookupControlItem.onclick = "ResolveUnkownParty(" + CrmEncodeDecode.CrmJavaScriptEncode(oLookupControlItem.name) + ")";
+                    sItemsHTML.Append(' category="');
+                    sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.category))
+                }
+                else
+                    if(oLookupControlItem.category == LookupItemCategories.NON_ENTITY)
+                    {
+                        oLookupControlItem.displayClass = "ms-crm-Lookup-Item-NonEntity";
+                        oLookupControlItem.onclick = ""
+                    }
+                    else
+                        if(oLookupControlItem.category == LookupItemCategories.UNKNOWN_TYPE)
+                        {
+                            oLookupControlItem.displayClass = "ms-crm-Lookup-Item-NonEntity";
+                            sItemsHTML.Append(' category="');
+                            sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.category))
+                        }
+                        else
+                            if(oLookupControlItem.category == LookupItemCategories.MRU_ITEM)
+                            {
+                                sItemsHTML.Append(' category="');
+                                sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.category));
+                                sItemsHTML.Append('"');
+                                sItemsHTML.Append('title="');
+                                sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.name))
+                            }
+                            else
+                            {
+                                sItemsHTML.Append('title="');
+                                sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.name))
+                            }
+        sItemsHTML.Append('" class="');
+        sItemsHTML.Append(IsNull(oLookupControlItem.displayClass) ? "ms-crm-Lookup-Item" : CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.displayClass));
+        sItemsHTML.Append('" onclick="');
+        sItemsHTML.Append(IsNull(oLookupControlItem.onclick) ? "openlui()" : CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.onclick));
+        (!additionalparams || additionalparams.toUpperCase().indexOf("DISABLECONTEXTMENU=1") === -1) && 
+            sItemsHTML.Append('" oncontextmenu="handleGridRightClick()');
+        if(!IsNull(oLookupControlItem.data))
+        {
+            sItemsHTML.Append('" data="');
+            sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.data))
+        }
+        oLookupControlItem.resourceSpecId && 
+            sItemsHTML.Append('" resourcespecid="' + CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.resourceSpecId));
+        oLookupControlItem.effort && 
+            sItemsHTML.Append('" effort="' + CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.effort));
+        oLookupControlItem.exchangeEntryId && 
+            sItemsHTML.Append('" exchangeentryid="' + CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.exchangeEntryId));
+        oLookupControlItem.activityPartyId && 
+            sItemsHTML.Append('" activitypartyid="' + CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.activityPartyId));
+        if(oLookupControlItem.values)
+        {
+            var sSerializedValues = serializeIfNecessary(oLookupControlItem.values);
+            sItemsHTML.Append('" values="' + CrmEncodeDecode.CrmHtmlAttributeEncode(sSerializedValues))
+        }
+        if(oLookupControlItem.keyValues)
+        {
+            var sSerializedKeyValues = serializeIfNecessary(oLookupControlItem.keyValues);
+            sItemsHTML.Append('" keyValues="' + CrmEncodeDecode.CrmHtmlAttributeEncode(sSerializedKeyValues))
+        }
+        sItemsHTML.Append('">');
+        IsMultiLookup() && 
+            sItemsHTML.Append('<SPAN contentEditable="false" unselectable="on" wrapper="true">');
+        if(oLookupControlItem.category == null || typeof oLookupControlItem.category == "undefined" || oLookupControlItem.category != LookupItemCategories.NON_ENTITY && oLookupControlItem.category != LookupItemCategories.UNKNOWN_TYPE)
+        {
+            var oImg = GetLookupTypeIcon(oLookupControlItem.type,oLookupControlItem.category),
+                sImgTitle = GetLookupImgTitle(oImg.Src);
+            sItemsHTML.Append('<IMG alt="');
+            sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(sImgTitle));
+            sItemsHTML.Append('" class="ms-crm-Lookup-Item" imageSrc="');
+            sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oImg.Src));
+            sItemsHTML.Append('"');
+            LOCID_UI_DIR == "RTL" && oImg.Flip && 
+                sItemsHTML.Append(' style="filter:fliph();"');
+            sItemsHTML.Append(">")
+        }
+        sItemsHTML.Append(CrmEncodeDecode.CrmHtmlEncode(oLookupControlItem.name));
+        if(oLookupControlItem.category != LookupItemCategories.NON_ENTITY)
+        {
+            sItemsHTML.Append("<a contentEditable='false' id=\"at");
+            sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.id));
+            sItemsHTML.Append('" tabindex=-1 onclick="return false;" href="javascript:onclick();" target="_self" title="');
+            sItemsHTML.Append(CrmEncodeDecode.CrmHtmlAttributeEncode(oLookupControlItem.name));
+            sItemsHTML.Append("\" class='atLink'></a>")
+        }
+        if(IsDisplayOnlyLookup())
+        {
+            var sOnClickScript = id + ".RemoveItem(" + CrmEncodeDecode.CrmJavaScriptEncode(oLookupControlItem.id) + "); return false;";
+            sItemsHTML.Append('<a class="atLink" href="javascript:onclick();" onclick="' + CrmEncodeDecode.CrmHtmlAttributeEncode(sOnClickScript) + '" tabIndex="-1" title="' + CrmEncodeDecode.CrmHtmlAttributeEncode(LOCID_LOOKUP_ITEM_REMOVE) + '"></a>');
+            sItemsHTML.Append('<a class="atLink" href="javascript:onclick();" onclick="openlui(); return false;" tabIndex="-1" title="' + CrmEncodeDecode.CrmHtmlAttributeEncode(LOCID_LOOKUP_ITEM_PROPERTIES) + '"></a>')
+        }
+        sItemsHTML.Append('<b class="IMG_lu_htc_b"></b>');
+        IsMultiLookup() && 
+            sItemsHTML.Append("</SPAN>");
+        sItemsHTML.Append("</SPAN></LI>");
+        if(oLookupField.innerHTML == "&nbsp;")
+            oLookupField.innerText = "";
+        var sItemsText = sItemsHTML.ToString();
+        if(addImmediately)
+        {
+            oLookupField.firstChild.innerHTML += sItemsText;
+            ResetIsDirty();
+            addMru()
+        }
+        return sItemsText
+    }
+}
+function GetLookupImgTitle(imgSrc)
+{
+    switch(imgSrc)
+    {
+        case "/_imgs/error/notif_icn_warn16.png":
+            return LOCID_LU_LOOKUPAMBIGUOUSTOOLTIP;
+        case "/_imgs/error/notif_icn_crit16.png":
+            return LOCID_LU_LOOKUPUNRESOLVEDTOOLTIP
+    }
+    return ""
+}
+function GetLookupTypeIcon(iCurrentType,iUnresolvedCategory)
+{
+    var sImgSrc,
+        bFlip = true;
+    bFlip = Mscrm.IconUtil.isIconFlipped(iCurrentType,Mscrm.IconType.gridIcon);
+    if(IsActivityTypeCode(iCurrentType) && (lookuptypes == "4200" || lookuptypes.indexOf("4200,") != -1 || lookuptypes.indexOf(",4200") != -1) || iCurrentType == 9005)
+        sImgSrc = Mscrm.IconUtil.getIconPath(iCurrentType,Mscrm.IconType.gridIcon).toString();
+    else
+    {
+        if(!IsNull(lookuptypes) && !IsNull(lookuptypeIcons) && lookuptypes.length > 0 && lookuptypeIcons.length > 0)
+            for(var aLuType = lookuptypes.split(","),
+                aLuTypeIco = lookuptypeIcons.split(":"),
+                i = 0; i < aLuType.length; i++)
+                if(aLuType[i] == iCurrentType)
+                    sImgSrc = aLuTypeIco[i];
+        if(iCurrentType == UnresolvedEmailParty)
+        {
+            sImgSrc = "/_imgs/ico_16_9206.gif";
+            bFlip = false
+        }
+        else
+            if(iUnresolvedCategory == LookupItemCategories.AMBIGUOUS)
+                sImgSrc = "/_imgs/error/notif_icn_warn16.png";
+            else
+                if(iUnresolvedCategory == LookupItemCategories.UNKNOWN)
+                    sImgSrc = "/_imgs/error/notif_icn_crit16.png"
+    }
+    return {Src:sImgSrc,Flip:bFlip}
+}
+function Items(bAddUnresolvedText,bAddUnresolvedItems,bClearOnClickMethod,bResetClassName,bSerializeValues)
+{
+    for(var bAddUnresolvedItems = typeof bAddUnresolvedItems == "undefined" ? false : bAddUnresolvedItems,
+        bClearOnClickMethod = typeof bClearOnClickMethod == "undefined" ? false : bClearOnClickMethod,
+        bResetClassName = typeof bResetClassName == "undefined" ? false : bResetClassName,
+        oLookupField = getLookupField(),
+        aoLookupSPANs = oLookupField.firstChild.childNodes,
+        aLookupControlItems = [],
+        iLen = aoLookupSPANs.length,
+        oItem,
+        aoSPAN,
+        i = 0; i < iLen; i++)
+    {
+        if(aoLookupSPANs[i].nodeName == "LI")
+            aoSPAN = aoLookupSPANs[i].firstChild;
+        else
+            if(aoLookupSPANs[i].nodeName == "#text")
+                aoSPAN = aoLookupSPANs[i].firstChild;
+        if(aoSPAN == null || (aoSPAN.category == LookupItemCategories.AMBIGUOUS || aoSPAN.category == LookupItemCategories.UNKNOWN) && !bAddUnresolvedItems)
+            continue;
+        oItem = new LookupControlItem;
+        oItem.id = aoSPAN.oid;
+        oItem.type = aoSPAN.otype;
+        oItem.typename = _typeToName[parseInt(oItem.type,10)];
+        if(typeof oItem.typename == "undefined" && IsActivityTypeCode(oItem.type))
+            oItem.typename = _typeToName[4200];
+        oItem.resourceSpecId = aoSPAN.resourcespecid;
+        oItem.effort = aoSPAN.effort;
+        oItem.exchangeEntryId = aoSPAN.exchangeentryid;
+        oItem.activityPartyId = aoSPAN.activitypartyid;
+        oItem.name = aoSPAN.innerText;
+        oItem.category = aoSPAN.category;
+        oItem.ambiguousRecordsXml = aoSPAN.ambiguousRecordsXml;
+        oItem.selected = aoSPAN.selected;
+        oItem.onclick = null;
+        oItem.values = formatValuesCollection(aoSPAN.values,[],bSerializeValues);
+        oItem.keyValues = formatValuesCollection(aoSPAN.keyValues,{},bSerializeValues);
+        if(aoSPAN.nodeName == "SPAN")
+        {
+            if(!IsNull(aoSPAN.onclick) && !bClearOnClickMethod)
+            {
+                oItem.onclick = aoSPAN.onclick.toString();
+                oItem.onclick = oItem.onclick.replace(oREFuncHeader,"");
+                oItem.onclick = oItem.onclick.replace(oREFuncTrailer,"")
+            }
+            if(bResetClassName)
+                oItem.displayClass = "ms-crm-Lookup-Item";
+            else
+                oItem.displayClass = aoSPAN.className;
+            oItem.data = aoSPAN.data;
+            aLookupControlItems.push(oItem)
+        }
+        else
+            if(aoSPAN.nodeName == "#text" && bAddUnresolvedText)
+                if(IsMultiLookup())
+                    for(var aoStrings = aoSPAN.data.split(";"),
+                        j = 0; j < aoStrings.length; j++)
+                    {
+                        var str = Trim(aoStrings[j]);
+                        str.length > 0 && 
+                            aLookupControlItems.push(str)
+                    }
+                else
+                    aLookupControlItems.push(Trim(aoSPAN.data));
+            else
+                aoSPAN.nodeName == "A" && bAddUnresolvedText && 
+                    aLookupControlItems.push(Trim(aoSPAN.innerText))
+    }
+    return aLookupControlItems
+}
+function RemoveItem(sGUID)
+{
+    var oLookupField = getLookupField().firstChild,
+        aoSPANS = oLookupField.getElementsByTagName("LI");
+    if(aoSPANS.length == 0)
+        return false;
+    var i = aoSPANS.length - 1;
+    while(i >= 0)
+    {
+        if(aoSPANS[i].firstChild.oid == sGUID)
+            with(aoSPANS[i].firstChild)
+            {
+                var onclickFn = IsNull(onclick) ? "" : onclick.toString();
+                onclickFn = onclickFn.replace(oREFuncHeader,"");
+                onclickFn = onclickFn.replace(oREFuncTrailer,"");
+                otype = IsNull(otype) ? "" : otype;
+                className = IsNull(className) ? "" : className;
+                element.data = IsNull(element.data) ? "" : element.data;
+                var oLUCtrlItem = new LookupControlItem(oid,otype,innerText,onclickFn,className,data,_typeToName[parseInt(otype,10)]);
+                oLookupField.removeChild(aoSPANS[i]);
+                ResetIsDirty();
+                return oLUCtrlItem
+            }
+        i--
+    }
+    Off();
+    return null
+}
+function UpdateItem(sGUID,oLUControlItem,bFireOnChange)
+{
+    if(!IsPermissibleType(oLUControlItem) || IsNull(oLUControlItem.name) || IsNull(oLUControlItem.displayClass))
+        return false;
+    for(var bIsMultiLookup = IsMultiLookup(),
+        aoSPANS = getLookupField().getElementsByTagName("SPAN"),
+        i = 0; i < aoSPANS.length; i++)
+        if(aoSPANS[i].oid == sGUID)
+        {
+            with(oLUControlItem)
+            {
+                if(bIsMultiLookup)
+                {
+                    if(!IsNull(aoSPANS[i].firstChild.firstChild.nextSibling))
+                        aoSPANS[i].firstChild.firstChild.nextSibling.nodeValue = name
+                }
+                else
+                    if(!IsNull(aoSPANS[i].firstChild.nextSibling))
+                        aoSPANS[i].firstChild.nextSibling.nodeValue = name;
+                aoSPANS[i].title = name;
+                if(!IsNull(id))
+                    aoSPANS[i].oid = id;
+                if(!IsNull(type))
+                {
+                    aoSPANS[i].otype = type;
+                    aoSPANS[i].otypename = IsNull(typename) ? _typeToName[parseInt(type,10)] : typename;
+                    var oImg = aoSPANS[i].children[0];
+                    if(bIsMultiLookup)
+                        oImg = oImg.children[0];
+                    oImg.src = GetLookupTypeIcon(type,category).Src
+                }
+                if(!IsNull(displayClass))
+                    aoSPANS[i].className = displayClass;
+                if(!IsNull(onclick))
+                    aoSPANS[i].onclick = new Function(onclick);
+                if(!IsNull(data))
+                    aoSPANS[i].data = data;
+                if(!IsNull(category))
+                    aoSPANS[i].category = category;
+                if(!IsNull(ambiguousRecordsXml))
+                    aoSPANS[i].ambiguousRecordsXml = ambiguousRecordsXml;
+                if(typeof resourceSpecId != "undefined")
+                    aoSPANS[i].resourcespecid = resourceSpecId;
+                if(typeof effort != "undefined")
+                    aoSPANS[i].effort = effort;
+                if(typeof exchangeEntryId != "undefined")
+                    aoSPANS[i].exchangeentryid = exchangeEntryId;
+                if(typeof activityPartyId != "undefined")
+                    aoSPANS[i].activitypartyid = activityPartyId;
+                if(typeof values != "undefined")
+                    aoSPANS[i].values = serializeIfNecessary(values);
+                if(typeof keyValues != "undefined")
+                    aoSPANS[i].keyValues = serializeIfNecessary(keyValues)
+            }
+            var oEvent = CreateResultEvent();
+            if(!bIsMultiLookup)
+                if(!IsNull(oEvent.result.items) && oEvent.result.items.length > 0)
+                    oEvent.result.items[0].keyValues = oLUControlItem.keyValues;
+            RaiseOnAfterSelectEvent(oEvent);
+            if(bFireOnChange)
+            {
+                oEvent = CreateResultEvent();
+                if(!bIsMultiLookup)
+                    if(!IsNull(oEvent.result.items) && oEvent.result.items.length > 0)
+                        oEvent.result.items[0].keyValues = oLUControlItem.keyValues;
+                RaiseOnChangeEvent(oEvent)
+            }
+            var aoSPANLookup = [];
+            aoSPANLookup[0] = aoSPANS[i];
+            element.QueryLookupPresence(aoSPANLookup);
+            ResetIsDirty();
+            addMru();
+            return true
+        }
+    return false
+}
+function getDataXml(sAttributeName)
+{
+    var oEvent = createEventObject(),
+        sDataXml = "",
+        aoLUItems,
+        i;
+    oEvent.result = null;
+    RaiseGenerateDataXmlEventEvent(oEvent);
+    if(null != oEvent.result)
+    {
+        Mscrm.CrmDebug.assert(!sAttributeName,String.Format("Control '{0}': sAttributeName cannot be specified when a GenerateDataXmlEvent handler builds the data XML.",this.id));
+        sDataXml = oEvent.result
+    }
+    else
+    {
+        var sNodeName = sAttributeName || this.id;
+        sDataXml = "<" + CrmEncodeDecode.CrmXmlEncode(sNodeName);
+        if(lookupstyle.toLowerCase() == "single" || lookupstyle.toLowerCase() == "subject")
+        {
+            aoLUItems = Items();
+            if(aoLUItems.length > 0)
+            {
+                sDataXml += ' type="' + CrmEncodeDecode.CrmXmlAttributeEncode(aoLUItems[0].type) + '"';
+                sDataXml += ' name="' + CrmEncodeDecode.CrmXmlAttributeEncode(aoLUItems[0].name) + '"';
+                sDataXml += ">" + CrmEncodeDecode.CrmXmlEncode(aoLUItems[0].id)
+            }
+            else
+            {
+                var oDefault = this.DefaultValue;
+                sDataXml += ' type="';
+                if(IsNull(oDefault))
+                    sDataXml += '0">';
+                else
+                {
+                    sDataXml += CrmEncodeDecode.CrmXmlAttributeEncode(_defaultValue[0].type);
+                    sDataXml += '" name="' + CrmEncodeDecode.CrmXmlAttributeEncode(_defaultValue[0].name) + '">'
+                }
+            }
+        }
+        else
+            if(lookupstyle.toLowerCase() == "multi")
+            {
+                sDataXml += ">";
+                aoLUItems = Items();
+                for(i = 0; i < aoLUItems.length; i++)
+                {
+                    sDataXml += "<item><id>" + CrmEncodeDecode.CrmXmlEncode(aoLUItems[i].id) + "</id><type>" + CrmEncodeDecode.CrmXmlEncode(aoLUItems[i].type) + "</type>";
+                    sDataXml += "<name>" + CrmEncodeDecode.CrmXmlEncode(aoLUItems[i].name) + "</name></item>"
+                }
+            }
+            else
+                sDataXml += ">dataxml NYI for lookup of style = " + CrmEncodeDecode.CrmXmlEncode(lookupstyle);
+        sDataXml += "</" + CrmEncodeDecode.CrmXmlEncode(sNodeName) + ">"
+    }
+    return sDataXml
+}
+function getRequiredLevel()
+{
+    try
+    {
+        if(IsNull(this.req))
+            return FIELD_NOT_REQUIRED;
+        else
+            return parseInt(this.req,10)
+    }
+    catch(e)
+    {
+        return FIELD_NOT_REQUIRED
+    }
+}
+function hasUnresolvedItem()
+{
+    for(var aoItems = Items(true),
+        i = 0; i < aoItems.length; i++)
+    {
+        var oItem = aoItems[i];
+        if(typeof oItem == "string")
+            return true
+    }
+    return false
+}
+function GetItemsFromServer(bASyncOperation)
+{
+    this._bResolving = true;
+    if(typeof bASyncOperation == "undefined")
+        var bASyncOperation = true;
+    try
+    {
+        var reference = {},
+            lookupService = getLookupWebServiceRequest(reference),
+            values = reference.values;
+        if(values !== "")
+        {
+            Resolving();
+            this.disabled = true;
+            if(bASyncOperation)
+                lookupService.Execute(AutoResolveHandler);
+            else
+                AutoResolveHandler(lookupService.Execute())
+        }
+        else
+            this._bResolving = false
+    }
+    catch(e)
+    {
+        alert(LOCID_LU_ERROR_RESOLVED)
+    }
+}
+function getLookupWebServiceRequest(reference)
+{
+    var lookupService = null;
+    try
+    {
+        var aoItems = Items(true,true),
+            aiLookupTypes = [];
+        aiLookupTypes.type = "int";
+        for(var asLookupTypes = lookuptypes.split(","),
+            i = 0; i < asLookupTypes.length; i++)
+            aiLookupTypes[i] = parseInt(asLookupTypes[i],10);
+        var values = [],
+            positions = [];
+        values.type = "string";
+        positions.type = "int";
+        for(i = 0; i < aoItems.length; i++)
+        {
+            var oItem = aoItems[i];
+            if(typeof oItem == "string")
+            {
+                values.push(oItem);
+                positions.push(i)
+            }
+        }
+        var defaultViewId = getDefaultViewId(),
+            customViews = getCustomViews(),
+            defaultCustomView = null;
+        if(customViews != null)
+            for(i = 0; i < customViews.length; i++)
+                if(customViews[i].id === defaultViewId)
+                {
+                    defaultCustomView = customViews[i];
+                    break
+                }
+        var addParams = additionalparams,
+            relationshipData = getFilterRelationshipData();
+        if(relationshipData.Id != "")
+        {
+            addParams += "&filterrelationship=true&relationshipid=" + CrmEncodeDecode.CrmUrlEncode(relationshipData.Name);
+            addParams += "&oId=" + CrmEncodeDecode.CrmUrlEncode(relationshipData.Id);
+            addParams += "&oType=" + CrmEncodeDecode.CrmUrlEncode(relationshipData.Type);
+            addParams += "&rDependAttr=" + CrmEncodeDecode.CrmUrlEncode(relationshipData.DependantAttributeName)
+        }
+        lookupService = new RemoteCommand("LookupService","RetrieveItem");
+        lookupService.SetParameter("typesArray",aiLookupTypes);
+        lookupService.SetParameter("bindingColumns",bindingcolumns === null ? "" : bindingcolumns);
+        lookupService.SetParameter("additionalParameters",addParams);
+        lookupService.SetParameter("positions",positions);
+        lookupService.SetParameter("resolveEmailAddress",this.ResolveEmailAddress);
+        lookupService.SetParameter("savedQueryTypeParameter",this.savedquerytype);
+        lookupService.SetParameter("defaultViewId",defaultViewId);
+        if(defaultCustomView != null)
+        {
+            lookupService.SetParameter("defaultViewId","{00000000-0000-0000-0000-000000000000}");
+            lookupService.SetParameter("defaultViewType",defaultCustomView.recordType);
+            lookupService.SetParameter("defaultViewFetchXml",defaultCustomView.fetchXml);
+            lookupService.SetParameter("defaultViewLayoutXml",defaultCustomView.layoutXml)
+        }
+        if(!IsNull(reference))
+            reference.values = values;
+        values !== "" && 
+            lookupService.SetParameter("values",values)
+    }
+    catch(e)
+    {
+        alert(LOCID_LU_ERROR_RESOLVED)
+    }
+    return lookupService
+}
+function AutoResolveHandler(result)
+{
+    if(!hasUnresolvedItem())
+    {
+        this.disabled = false;
+        this._bResolving = false;
+        Off();
+        return
+    }
+    var aoItems = Items(true,true);
+    if(result.Success && typeof result.ReturnValue == "string")
+        for(var oXml = XUI.Xml.LoadXml(result.ReturnValue),
+            oRecordsNodes = oXml.selectNodes("/items/records"),
+            i = 0; i < oRecordsNodes.length; i++)
+        {
+            var li = new LookupControlItem;
+            li.values = [];
+            li.keyValues = {};
+            li.data = "";
+            var oPositionAttribute = oRecordsNodes[i].selectSingleNode("@position"),
+                iPosition = oPositionAttribute.text,
+                oItem = aoItems[iPosition],
+                oRecordNodes = oRecordsNodes[i].selectNodes("record");
+            if(oRecordNodes.length == 1)
+            {
+                var recordNode = oRecordNodes[0];
+                li.id = recordNode.getAttribute("oid");
+                li.name = recordNode.getAttribute("oname");
+                li.type = recordNode.getAttribute("otype");
+                for(var j = 0; j < recordNode.childNodes.length; j++)
+                {
+                    var childNode = recordNode.childNodes[j],
+                        attributeName = childNode.nodeName,
+                        attributeValue = childNode.text;
+                    li.values.push(new LookupItemData(attributeName,attributeValue));
+                    li.keyValues[attributeName] = new LookupItemData(attributeName,attributeValue)
+                }
+            }
+            else
+                if(oRecordNodes.length > 1)
+                {
+                    li.id = (new Date).valueOf() + i.toString();
+                    li.name = oItem;
+                    this.AllowUnknownItems = "true";
+                    li.type = None;
+                    li.category = LookupItemCategories.AMBIGUOUS;
+                    li.ambiguousRecordsXml = oRecordsNodes[i].xml
+                }
+                else
+                {
+                    li.id = (new Date).valueOf();
+                    li.name = oItem;
+                    this.AllowUnknownItems = "true";
+                    if(this.ResolveEmailAddress && (!IsNull(oItem.match(_validEmailRegexp)) || Mscrm.EmailAddressAttribute.isValidEmailWithQuotedString(oItem)))
+                    {
+                        li.category = LookupItemCategories.UNKNOWN_EMAIL;
+                        li.type = UnresolvedEmailParty;
+                        li.data = oItem
+                    }
+                    else
+                    {
+                        li.category = LookupItemCategories.UNKNOWN;
+                        li.type = None
+                    }
+                }
+            aoItems[iPosition] = li
+        }
+    this.disabled = false;
+    aoItems.items = aoItems;
+    HandleAfterLookup(aoItems);
+    this._bResolving = false;
+    Off()
+}
+function IsEditable()
+{
+    return (lookupstyle === "single" || lookupstyle === "subject" || lookupstyle === "multi") && element.disabled == false && AutoResolve
+}
+function IsMultiLookup()
+{
+    return lookupstyle == "multi"
+}
+function IsDisplayOnlyLookup()
+{
+    return isDisplayOnly == "True"
+}
+function IsValid()
+{
+    !this._bResolving && AutoResolve && hasUnresolvedText() && 
+        ResolveAndExitEdit(true,false);
+    if(this._bResolving)
+    {
+        alert(LOCID_LU_MSG_HASUNRESOLVEDITEMS);
+        return false
+    }
+    for(var oItems = Items(true,true),
+        i = 0; i < oItems.length; i++)
+    {
+        if(oItems[i].category == LookupItemCategories.AMBIGUOUS || oItems[i].category == LookupItemCategories.UNKNOWN)
+        {
+            alert(LOCID_LU_MSG_HASUNRESOLVEDITEMS);
+            return false
+        }
+        if(oItems[i].category == LookupItemCategories.MRU_ITEM)
+        {
+            alert("The Lookup MRU Item that you have selected hasn't been resolved yet.");
+            return false
+        }
+    }
+    return true
+}
+function AddDependantParameters(sDependantFieldId)
+{
+    if(IsNull(sDependantFieldId) || sDependantFieldId.length === 0)
+        return;
+    var oForm = GetCurrentForm();
+    if(IsNull(oForm))
+        return;
+    var oDependantLookup = oForm.GetControl(sDependantFieldId);
+    if(IsNull(oDependantLookup))
+        return;
+    var aoItems = oDependantLookup.DataValue;
+    if(aoItems != null)
+        if(aoItems[0].id != "")
+        {
+            AddParam("rId",aoItems[0].id);
+            AddParam("rType",aoItems[0].type)
+        }
+}
+function LookupItemData(name,value)
+{
+    this.name = name;
+    this.value = value
+}
+function serializeIfNecessary(o)
+{
+    return typeof o === "string" ? o : Sys.Serialization.JavaScriptSerializer.serialize(o)
+}
+function formatValuesCollection(sSerializedValues,oDefaultValue,bSerializeValues)
+{
+    if(IsNull(sSerializedValues))
+        return bSerializeValues ? Sys.Serialization.JavaScriptSerializer.serialize(oDefaultValue) : oDefaultValue;
+    return bSerializeValues ? sSerializedValues : Sys.Serialization.JavaScriptSerializer.deserialize(sSerializedValues)
+}
+var mruInit = false,
+    mruEnabled = null,
+    mruSearch = "",
+    LookupMruUIInstance = null;
+function isMruEnabled()
+{
+    if(IsNull(mruEnabled))
+    {
+        try
+        {
+            if(!IsNull(Mscrm.LookupMruListUI))
+            {
+                LookupMruUIInstance = new Mscrm.LookupMruListUI;
+                LookupMruUIInstance.set_onDeleteCallback(updateLookupEditCallback);
+                LookupMruUIInstance.set_shouldDisplayMru(shouldDisplayMru)
+            }
+        }
+        catch(e)
+        {
+            LookupMruUIInstance = null
+        }
+        mruEnabled = !IsMultiLookup() && !IsNull(LookupMruUIInstance) && !IsNull(Mscrm.LookupMruListUI.get_mruList()) && !(IsNull(element.disableMru) || element.disableMru == "1")
+    }
+    return mruEnabled
+}
+function shouldDisplayMru()
+{
+    return isMruEnabled() && getLookupEdit().className != "ms-crm-Hidden-NoBehavior"
+}
+function isMruVisible()
+{
+    return isMruEnabled() && LookupMruUIInstance.isVisible()
+}
+function initMru()
+{
+    if(mruInit)
+        return;
+    mruInit = true
+}
+function restoreOriginalMruSearch()
+{
+    var lookupTextbox = getLookupEdit();
+    lookupTextbox.value = mruSearch
+}
+function showMru(forceShow)
+{
+    if(!isMruEnabled())
+        return;
+    var lookupField = getLookupField(),
+        isMultiLookupStyle = IsMultiLookup() && lookupField.innerText.length > 0,
+        lookupTextbox = getLookupEdit(),
+        searchText = getSearchTextForMru(lookupTextbox),
+        selectedText = LookupMruUIInstance.lookupMruSelectedItemTitle();
+    if(!forceShow && (IsNull(searchText) || searchText.length == 0))
+    {
+        mruSearch = "";
+        hideMru();
+        return
+    }
+    if(searchText != mruSearch && searchText != selectedText)
+        mruSearch = searchText;
+    else
+        if(!forceShow)
+            return;
+    if(isMruVisible())
+        LookupMruUIInstance.refreshLookupMruList(mruSearch,false);
+    else
+    {
+        var xyPos = Mscrm.Utilities.getXYPos(lookupTextbox,LOCID_UI_DIR == "RTL"),
+            x = parseInt(xyPos["x"],10),
+            y = parseInt(xyPos["y"],10),
+            w = lookupTextbox.scrollWidth,
+            h = lookupTextbox.parentElement.scrollHeight;
+        if(LOCID_UI_DIR == "RTL")
+        {
+            x += lookupTextbox.parentNode.parentNode.scrollWidth;
+            x -= 7
+        }
+        LookupMruUIInstance.showLookupMruItems(x,y,w,h,lookuptypes,mruSearch,selectMru)
+    }
+}
+function addMru()
+{
+    if(!isMruEnabled())
+        return;
+    mruSearch = "";
+    var lookupItems = Items(false,false);
+    if(lookupItems != null && lookupItems.length > 0)
+    {
+        for(var mruItems = [],
+            i = 0; i < lookupItems.length; i++)
+        {
+            var item = lookupItems[i];
+            if(Trim(item.name).length > 0)
+            {
+                var displayName = _typeToDisplayName[parseInt(item.type,10)];
+                if(typeof displayName == "undefined" && IsActivityTypeCode(item.type))
+                    displayName = _typeToDisplayName[4200];
+                mruItems[mruItems.length] = new Mscrm.LookupMruItem.createLookupMruItem(item.id,item.type,item.typename,item.name,displayName)
+            }
+        }
+        mruItems.length > 0 && 
+            LookupMruUIInstance.addLookupMruItems(mruItems)
+    }
+}
+function hideMru()
+{
+    if(!isMruEnabled())
+        return;
+    hideMruInternal();
+    window.setTimeout(hideMruInternal,0)
+}
+function hideMruInternal()
+{
+    if(!isMruEnabled())
+        return;
+    LookupMruUIInstance.hideLookupMruItems()
+}
+function navigateMru(down,altKey)
+{
+    if(!isMruEnabled())
+        return false;
+    var itemTitle = null;
+    if(down)
+    {
+        if(altKey)
+        {
+            if(!isMruVisible())
+            {
+                showMru(true);
+                return true
+            }
+        }
+        else
+            if(isMruVisible())
+                itemTitle = LookupMruUIInstance.selectNextLookupMruItem()
+    }
+    else
+        if(isMruVisible() && !altKey)
+            itemTitle = LookupMruUIInstance.selectPreviousLookupMruItem();
+    if(!IsNull(itemTitle))
+    {
+        updateSearchTextForMru(getLookupEdit(),itemTitle);
+        return true
+    }
+    else
+        restoreOriginalMruSearch();
+    return false
+}
+function selectMru(selectedMenuItem)
+{
+    var retValue = false;
+    if(IsMultiLookup() || !isMruEnabled())
+        return retValue;
+    var mruItem = LookupMruUIInstance.lookupMruSelectedMruItem();
+    if(IsNull(mruItem))
+        mruItem = selectedMenuItem;
+    if(!IsNull(mruItem))
+    {
+        Clear(false);
+        var lookupItem = new LookupControlItem(mruItem.get_objectId(),mruItem.get_entityTypeCode(),mruItem.get_title(),"openlui(); return false;","ms-crm-Lookup-Item","",mruItem.get_entityTypeName(),LookupItemCategories.MRU_ITEM);
+        AddItem(lookupItem);
+        RefreshLookupItemImage();
+        mruSearch = "";
+        restoreOriginalMruSearch();
+        ResolveAndExitEdit(false,false);
+        getLookupField().focus();
+        ResolveLookupMruItem(lookupItem,true);
+        retValue = true
+    }
+    return retValue
+}
+function ResolveLookupMruItem(oLookupItem,needAssociate)
+{
+    Resolving();
+    RaiseSetAdditionalParamsEvent();
+    AddParam("needAssociate",needAssociate ? "1" : "0");
+    var webservice = getLookupWebServiceRequest(),
+        guids = [];
+    guids[0] = oLookupItem.id;
+    guids.type = "string";
+    webservice.SetParameter("guidValues",guids);
+    webservice.Reference = oLookupItem.id;
+    var result = webservice.Execute(resolveMruLookupItemCallback)
+}
+var _lookupXmlDoc = null;
+function resolveMruLookupItemCallback(oResult)
+{
+    if(IsMultiLookup())
+        return;
+    if(oResult.Success)
+        try
+        {
+            var lookupXml = oResult.ReturnValue;
+            if(lookupXml.indexOf("</record>") > 0)
+            {
+                _lookupXmlDoc = XUI.Xml.LoadXml(lookupXml);
+                var node = _lookupXmlDoc.selectSingleNode("items/records/record"),
+                    oid = node.attributes.getNamedItem("oid").text,
+                    title = node.attributes.getNamedItem("oname").text,
+                    items = Items(),
+                    item = items[0];
+                if(!IsNull(node.childNodes))
+                {
+                    for(var keyValues = {},
+                        j = 0; j < node.childNodes.length; j++)
+                    {
+                        var childNode = node.childNodes[j];
+                        keyValues[childNode.nodeName] = new LookupItemData(childNode.nodeName,childNode.text)
+                    }
+                    var lookupItem = getSingleLookupItem();
+                    if(!IsNull(lookupItem))
+                        lookupItem.keyValues = Sys.Serialization.JavaScriptSerializer.serialize(keyValues)
+                }
+                if(compareGuids(item.id,oid))
+                {
+                    updateCategoryForSingleLookup(LookupItemCategories.NONE);
+                    Off();
+                    raiseDataSelectedAndChangedEvent(Items());
+                    if(title != item.name)
+                    {
+                        updateTitleForSingleLookup(title);
+                        var mruItems = [],
+                            displayName = _typeToDisplayName[parseInt(item.type,10)];
+                        mruItems[0] = new Mscrm.LookupMruItem.createLookupMruItem(item.id,item.type,item.typename,title,displayName);
+                        LookupMruUIInstance.updateLookupMruItems(mruItems)
+                    }
+                }
+            }
+            else
+            {
+                var item = Items()[0];
+                if(item.id == oResult.RemoteCommand.Reference)
+                {
+                    updateCategoryForSingleLookup(LookupItemCategories.UNKNOWN);
+                    Off()
+                }
+            }
+        }
+        catch(e)
+        {
+            Mscrm.CrmDebug.fail(e.message)
+        }
+}
+function compareGuids(guidA,guidB)
+{
+    var first = guidA,
+        second = guidB;
+    if(first.length == 36 && first.charAt(0) != "{" && first.charAt(35) != "}")
+        first = "{" + first + "}";
+    if(second.length == 36 && second.charAt(0) != "{" && second.charAt(35) != "}")
+        second = "{" + second + "}";
+    return first.toUpperCase() == second.toUpperCase()
+}
+function raiseDataSelectedAndChangedEvent(oLookupItems)
+{
+    var oEvent = createEventObject();
+    oEvent.result = {};
+    oEvent.result.items = oLookupItems;
+    RaiseOnAfterSelectEvent(oEvent);
+    RaiseOnChangeEvent(oEvent)
+}
+function getSingleLookupItem()
+{
+    var lookupItem = null;
+    if(IsMultiLookup())
+        return lookupItem;
+    var lookupField = getLookupField(),
+        lookupSpan = lookupField.firstChild.childNodes[0];
+    if(lookupSpan.nodeName == "LI" || lookupSpan.nodeName == "#text")
+        lookupItem = lookupSpan.firstChild;
+    return lookupItem
+}
+function updateTitleForSingleLookup(sTitle)
+{
+    var lookupItem = getSingleLookupItem();
+    lookupItem.firstChild.nextSibling.nodeValue = sTitle
+}
+function updateCategoryForSingleLookup(sCategory)
+{
+    var lookupItem = getSingleLookupItem();
+    if(IsNull(lookupItem))
+        return;
+    lookupItem.category = sCategory;
+    var imgSrc = getIconByLookupCategory(sCategory);
+    if(!IsNull(imgSrc) && imgSrc.length > 0)
+        lookupItem.firstChild.src = imgSrc
+}
+function getIconByLookupCategory(sCategory)
+{
+    switch(sCategory)
+    {
+        case LookupItemCategories.UNKNOWN:
+            return "/_imgs/error/notif_icn_crit16.png";
+        default:
+            return null
+    }
+}
+function deleteMru()
+{
+    if(!isMruVisible())
+        return;
+    var nextItemTitle = LookupMruUIInstance.deleteCurrLookupMruItem();
+    if(!IsNull(nextItemTitle))
+        getLookupEdit().value = nextItemTitle
+}
+function updateLookupEditCallback(sText)
+{
+    if(!IsNull(sText))
+        getLookupEdit().value = sText
+}
+function getSearchTextForMru(oTextarea)
+{
+    var text = oTextarea.value;
+    return text
+}
+function updateSearchTextForMru(oTextarea,newText)
+{
+    var text = newText;
+    oTextarea.value = text
+}
+function getLookupStyle()
+{
+    return element._lookupstyle
+}
+function setLookupStyle(oVal)
+{
+    if(typeof element._lookupstyle != "undefined" && element._lookupstyle !== oVal)
+        element.crmattributeid = "";
+    element._lookupstyle = oVal
+}
+function getLookupTypes()
+{
+    return element._lookuptypes
+}
+function setLookupTypes(oVal)
+{
+    if(typeof element._lookuptypes != "undefined" && element._lookuptypes !== oVal)
+        element.crmattributeid = "";
+    element._lookuptypes = oVal
+}
+function getLookupBrowse()
+{
+    return element._lookupbrowse
+}
+function setLookupBrowse(oVal)
+{
+    if(typeof element._lookupbrowse != "undefined" && element._lookupbrowse !== oVal)
+        element.crmattributeid = "";
+    element._lookupbrowse = oVal
+}
+
+</script>
+</public:component>

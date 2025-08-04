@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Microsoft.Crm.Web.SiteMapNavPage" CodeBehind="Microsoft.Crm.Application.Pages.dll" %>

@@ -1,0 +1,131 @@
+﻿CREATE PROCEDURE [dbo].[p_Rollup_Bootstrap_MainTableUpdate_41c8b73e9cb64a999323532be502f234]
+
+@batchSize INT = 5000
+, @operationType INT = 0
+
+AS
+BEGIN
+SET NOCOUNT ON;
+
+
+ DECLARE @start  INT 
+ DECLARE @end  INT 
+ DECLARE @maxRecord  INT 
+ DECLARE @recordsTobeProcessed  INT 
+ DECLARE @index  INT 
+ DECLARE @rollupPropertyId  uniqueidentifier 
+
+		 SET @rollupPropertyId = '41c8b73e-9cb6-4a99-9323-532be502f234'; 
+		 IF(@operationType IN (0,1))
+ BEGIN 
+		 SELECT TOP (1) @maxRecord = [Id] FROM [dbo].[Rollup_Bootstrap_41c8b73e9cb64a999323532be502f234] ORDER BY [Id] DESC 
+SET @maxRecord = ISNULL(@maxRecord,0)
+
+		 SELECT @start = [BootstrapTargetPointer] FROM [RollupPropertiesBase] WHERE [RollupPropertiesId] = @rollupPropertyId 
+
+		 SET @start = ISNULL(@start, 0); 
+		 SET @end = @start + @batchSize; 
+		 IF @end > @maxRecord SET @end = @maxRecord
+
+		 IF(@operationType = 0) 
+		 BEGIN 
+			 -- Pass1 for through the entire table and update the main 
+
+			 -- Update Main Table 
+
+			 UPDATE [a]
+ SET [Rating] = CASE WHEN ([CountValue] = 0) THEN 0 ELSE ROUND([b].[OutputValue] /([b].[CountValue]),2) END, [Rating_Sum] = [OutputValue], [Rating_Count] = [CountValue]
+, [Rating_Date] = [b].[CalculatedDateTime]
+, [Rating_State]= CASE WHEN ([b].[Status] IS NULL OR [b].[Status] = 6) THEN 1 ELSE [b].[Status] END
+			 FROM [KnowledgeArticleBase] [a]
+			 JOIN [dbo].[Rollup_Bootstrap_41c8b73e9cb64a999323532be502f234] [b]
+			 ON [a].[knowledgearticleId] = [b].[EntityId] WHERE ([b].[Id] BETWEEN @start AND @end )
+			 AND (([a].[Rating] IS NULL AND [b].[OutputValue] IS NOT NULL) OR 
+			 ([a].[Rating] IS NOT NULL AND [b].[OutputValue] IS NULL) OR 
+			 ([a].[Rating] != CASE WHEN ([CountValue] = 0) THEN 0 ELSE ROUND([b].[OutputValue] /([b].[CountValue]),2) END)
+			 OR ([Rating_Sum] IS NULL AND [OutputValue] IS NOT NULL) OR 
+			 ([Rating_Sum] IS NOT NULL AND [OutputValue] IS NULL) OR 
+			 ([Rating_Sum] != [OutputValue])
+			 OR ([Rating_Count] IS NULL AND [CountValue] IS NOT NULL) OR 
+			 ([Rating_Count] IS NOT NULL AND [CountValue] IS NULL) OR 
+			 ([Rating_Count] != [CountValue]))
+			 OPTION (OPTIMIZE FOR (@start = 1, @end = 5000))
+
+		 END 
+		 ELSE IF (@operationType = 1) -- Add entry to Markers table 
+		 BEGIN 
+				 -- For Rerun on Error Passes, we need to add entry into _markers table if needed 
+
+				 IF NOT EXISTS( SELECT * FROM [dbo].[Rollup_Bootstrap_Markers_41c8b73e9cb64a999323532be502f234] WHERE [Start] = @start) 
+				 BEGIN 
+					 SELECT @index = MAX([Id]) FROM [dbo].[Rollup_Bootstrap_Markers_41c8b73e9cb64a999323532be502f234] 
+
+					 SET @index = ISNULL(@index,0) 
+
+					 INSERT INTO [dbo].[Rollup_Bootstrap_Markers_41c8b73e9cb64a999323532be502f234]([Id],[Start],[End]) VALUES (@index +1, @start,@end) 
+				 END 
+		 END 
+
+		 -- Update Pointer on main table 
+		 UPDATE [RollupPropertiesBase] SET [BootstrapTargetPointer] = @end +1 WHERE [RollupPropertiesId] = @rollupPropertyId 
+
+		 -- Are there any records to be processed? 
+
+		 SET @recordsTobeProcessed = @maxRecord - @end 
+
+		 -- Once all records are processed in Pass 1 
+		 IF(@recordsTobeProcessed < 1) 
+		 BEGIN 
+			 SELECT @index = MIN([Id]) FROM [dbo].[Rollup_Bootstrap_Markers_41c8b73e9cb64a999323532be502f234]
+			 -- No More records in pass1. so set the Properties ready for next step (Error Pass)
+			 UPDATE [RollupPropertiesBase] SET [BootstrapTargetPointer] = 0, [BootstrapCurrentDepth]=@index WHERE [RollupPropertiesId] = @rollupPropertyId
+		 END 
+		 SELECT @recordsTobeProcessed 
+ END 
+
+		 ELSE IF (@operationType = 2)
+ BEGIN 
+		 SELECT @index =[BootstrapCurrentDepth] FROM [RollupPropertiesBase] WHERE [RollupPropertiesId] = @rollupPropertyId
+
+		 IF(@index IS NULL)
+		 BEGIN
+			 SELECT 0
+			 RETURN
+		 END
+
+		 SELECT @start = [Start], @end = [End] FROM [dbo].[Rollup_Bootstrap_Markers_41c8b73e9cb64a999323532be502f234] WHERE [Id] = @index
+
+		 -- Update Main Table
+
+			 UPDATE [a]
+ SET [Rating] = CASE WHEN ([CountValue] = 0) THEN 0 ELSE ROUND([b].[OutputValue] /([b].[CountValue]),2) END, [Rating_Sum] = [OutputValue], [Rating_Count] = [CountValue]
+, [Rating_Date] = [b].[CalculatedDateTime]
+, [Rating_State]= CASE WHEN ([b].[Status] IS NULL OR [b].[Status] = 6) THEN 1 ELSE [b].[Status] END
+			 FROM [KnowledgeArticleBase] [a]
+			 JOIN [dbo].[Rollup_Bootstrap_41c8b73e9cb64a999323532be502f234] [b]
+			 ON [a].[knowledgearticleId] = [b].[EntityId] WHERE ([b].[Id] BETWEEN @start AND @end )
+			 AND (([a].[Rating] IS NULL AND [b].[OutputValue] IS NOT NULL) OR 
+			 ([a].[Rating] IS NOT NULL AND [b].[OutputValue] IS NULL) OR 
+			 ([a].[Rating] != CASE WHEN ([CountValue] = 0) THEN 0 ELSE ROUND([b].[OutputValue] /([b].[CountValue]),2) END)
+			 OR ([Rating_Sum] IS NULL AND [OutputValue] IS NOT NULL) OR 
+			 ([Rating_Sum] IS NOT NULL AND [OutputValue] IS NULL) OR 
+			 ([Rating_Sum] != [OutputValue])
+			 OR ([Rating_Count] IS NULL AND [CountValue] IS NOT NULL) OR 
+			 ([Rating_Count] IS NOT NULL AND [CountValue] IS NULL) OR 
+			 ([Rating_Count] != [CountValue]))
+			 OPTION (OPTIMIZE FOR (@start = 1, @end = 5000))
+
+		 DELETE [dbo].[Rollup_Bootstrap_Markers_41c8b73e9cb64a999323532be502f234] WHERE [Id] = @index
+
+		 SET @index = NULL
+		 SELECT @index = MIN([Id]) FROM [dbo].[Rollup_Bootstrap_Markers_41c8b73e9cb64a999323532be502f234]
+
+		 UPDATE [RollupPropertiesBase] SET [BootstrapTargetPointer] = 0, [BootstrapCurrentDepth]=@index WHERE [RollupPropertiesId] = @rollupPropertyId
+
+		 IF(@index IS NULL)
+			 SELECT 0
+		 ELSE
+			 SELECT 1
+
+ END
+END

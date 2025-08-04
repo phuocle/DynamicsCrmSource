@@ -1,0 +1,207 @@
+﻿
+
+
+--
+-- base view for QuoteDetail
+--
+create view dbo.[QuoteDetail]
+ (
+    -- logical attributes
+    [OwnerId],
+    [OwnerIdType],
+    [OwningUser],
+    [ProductIdName],
+    [OwningBusinessUnit],
+    [CreatedByName],
+    [CreatedByYomiName],
+    [CreatedOnBehalfByName],
+    [CreatedOnBehalfByYomiName],
+    [ModifiedByName],
+    [ModifiedByYomiName],
+    [ModifiedOnBehalfByName],
+    [ModifiedOnBehalfByYomiName],
+    [QuoteIdName],
+    [SalesRepIdName],
+    [TransactionCurrencyIdName],
+    [SalesRepIdYomiName],
+    [QuoteStateCode],
+    [UoMIdName],
+
+    -- ownership entries
+    OwnerIdName,
+    OwnerIdYomiName,
+    OwnerIdDsc,
+    OwningTeam,
+
+    -- physical attributes
+    [QuoteDetailId],
+    [CreatedOn],
+    [CreatedBy],
+    [ModifiedOn],
+    [ModifiedBy],
+    [CreatedOnBehalfBy],
+    [ModifiedOnBehalfBy],
+    [VersionNumber],
+    [ImportSequenceNumber],
+    [OverriddenCreatedOn],
+    [TimeZoneRuleVersionNumber],
+    [UTCConversionTimeZoneCode],
+    [BaseAmount],
+    [TransactionCurrencyId],
+    [ExchangeRate],
+    [BaseAmount_Base],
+    [Description],
+    [ExtendedAmount],
+    [ExtendedAmount_Base],
+    [IsPriceOverridden],
+    [IsProductOverridden],
+    [LineItemNumber],
+    [ManualDiscountAmount],
+    [ManualDiscountAmount_Base],
+    [ParentBundleId],
+    [ProductAssociationId],
+    [ProductTypeCode],
+    [PricePerUnit],
+    [PricePerUnit_Base],
+    [PricingErrorCode],
+    [ProductDescription],
+    [ProductName],
+    [ProductId],
+    [Quantity],
+    [QuoteId],
+    [RequestDeliveryBy],
+    [SalesRepId],
+    [ShipTo_AddressId],
+    [ShipTo_City],
+    [ShipTo_ContactName],
+    [ShipTo_Country],
+    [ShipTo_Fax],
+    [ShipTo_FreightTermsCode],
+    [ShipTo_Line1],
+    [ShipTo_Line2],
+    [ShipTo_Line3],
+    [ShipTo_Name],
+    [ShipTo_PostalCode],
+    [ShipTo_StateOrProvince],
+    [ShipTo_Telephone],
+    [Tax],
+    [Tax_Base],
+    [UoMId],
+    [VolumeDiscountAmount],
+    [VolumeDiscountAmount_Base],
+    [WillCall],
+    [SequenceNumber],
+    [PropertyConfigurationStatus],
+    [QuoteDetailName],
+    [ParentBundleIdRef],
+    [SkipPriceCalculation],
+    [ProductNumber]
+) with view_metadata as
+select
+    -- logical attributes
+    [quote_details].[OwnerId],
+    [quote_details].[OwnerIdType],
+    case when [quote_details].OwnerIdType = 8
+    then [quote_details].OwnerId
+    else null
+    end,
+    [product_quote_details].[Name],
+    [quote_details].[OwningBusinessUnit],
+    [lk_quotedetailbase_createdby].[FullName],
+    [lk_quotedetailbase_createdby].[YomiFullName],
+    [lk_quotedetailbase_createdonbehalfby].[FullName],
+    [lk_quotedetailbase_createdonbehalfby].[YomiFullName],
+    [lk_quotedetailbase_modifiedby].[FullName],
+    [lk_quotedetailbase_modifiedby].[YomiFullName],
+    [lk_quotedetailbase_modifiedonbehalfby].[FullName],
+    [lk_quotedetailbase_modifiedonbehalfby].[YomiFullName],
+    [quote_details].[Name],
+    [system_user_quotedetail].[FullName],
+    [transactioncurrency_quotedetail].[CurrencyName],
+    [system_user_quotedetail].[YomiFullName],
+    [quote_details].[StateCode],
+    [unit_of_measurement_quote_details].[Name],
+
+    -- ownership entries
+    OwnerName = XXowner.Name,
+    OwnerYomiName =  XXowner.YomiName,
+    OwnerDsc = 0, -- DSC is removed, stub it to 0
+    OwningTeam = case 
+ 		when XXowner.OwnerIdType= 9 then XXowner.OwnerId
+		else null
+		end,
+
+    -- physical attribute
+    [QuoteDetailBase].[QuoteDetailId],
+    [QuoteDetailBase].[CreatedOn],
+    [QuoteDetailBase].[CreatedBy],
+    [QuoteDetailBase].[ModifiedOn],
+    [QuoteDetailBase].[ModifiedBy],
+    [QuoteDetailBase].[CreatedOnBehalfBy],
+    [QuoteDetailBase].[ModifiedOnBehalfBy],
+    [QuoteDetailBase].[VersionNumber],
+    [QuoteDetailBase].[ImportSequenceNumber],
+    [QuoteDetailBase].[OverriddenCreatedOn],
+    [QuoteDetailBase].[TimeZoneRuleVersionNumber],
+    [QuoteDetailBase].[UTCConversionTimeZoneCode],
+    [QuoteDetailBase].[BaseAmount],
+    [QuoteDetailBase].[TransactionCurrencyId],
+    [QuoteDetailBase].[ExchangeRate],
+    [QuoteDetailBase].[BaseAmount_Base],
+    [QuoteDetailBase].[Description],
+    [QuoteDetailBase].[ExtendedAmount],
+    [QuoteDetailBase].[ExtendedAmount_Base],
+    [QuoteDetailBase].[IsPriceOverridden],
+    [QuoteDetailBase].[IsProductOverridden],
+    [QuoteDetailBase].[LineItemNumber],
+    [QuoteDetailBase].[ManualDiscountAmount],
+    [QuoteDetailBase].[ManualDiscountAmount_Base],
+    [QuoteDetailBase].[ParentBundleId],
+    [QuoteDetailBase].[ProductAssociationId],
+    [QuoteDetailBase].[ProductTypeCode],
+    [QuoteDetailBase].[PricePerUnit],
+    [QuoteDetailBase].[PricePerUnit_Base],
+    [QuoteDetailBase].[PricingErrorCode],
+    [QuoteDetailBase].[ProductDescription],
+    [QuoteDetailBase].[ProductName],
+    [QuoteDetailBase].[ProductId],
+    [QuoteDetailBase].[Quantity],
+    [QuoteDetailBase].[QuoteId],
+    [QuoteDetailBase].[RequestDeliveryBy],
+    [QuoteDetailBase].[SalesRepId],
+    [QuoteDetailBase].[ShipTo_AddressId],
+    [QuoteDetailBase].[ShipTo_City],
+    [QuoteDetailBase].[ShipTo_ContactName],
+    [QuoteDetailBase].[ShipTo_Country],
+    [QuoteDetailBase].[ShipTo_Fax],
+    [QuoteDetailBase].[ShipTo_FreightTermsCode],
+    [QuoteDetailBase].[ShipTo_Line1],
+    [QuoteDetailBase].[ShipTo_Line2],
+    [QuoteDetailBase].[ShipTo_Line3],
+    [QuoteDetailBase].[ShipTo_Name],
+    [QuoteDetailBase].[ShipTo_PostalCode],
+    [QuoteDetailBase].[ShipTo_StateOrProvince],
+    [QuoteDetailBase].[ShipTo_Telephone],
+    [QuoteDetailBase].[Tax],
+    [QuoteDetailBase].[Tax_Base],
+    [QuoteDetailBase].[UoMId],
+    [QuoteDetailBase].[VolumeDiscountAmount],
+    [QuoteDetailBase].[VolumeDiscountAmount_Base],
+    [QuoteDetailBase].[WillCall],
+    [QuoteDetailBase].[SequenceNumber],
+    [QuoteDetailBase].[PropertyConfigurationStatus],
+    [QuoteDetailBase].[QuoteDetailName],
+    [QuoteDetailBase].[ParentBundleIdRef],
+    [QuoteDetailBase].[SkipPriceCalculation],
+    [QuoteDetailBase].[ProductNumber]
+from [QuoteDetailBase] 
+    left join [SystemUserBase] [lk_quotedetailbase_createdby] on ([QuoteDetailBase].[CreatedBy] = [lk_quotedetailbase_createdby].[SystemUserId])
+    left join [SystemUserBase] [lk_quotedetailbase_createdonbehalfby] on ([QuoteDetailBase].[CreatedOnBehalfBy] = [lk_quotedetailbase_createdonbehalfby].[SystemUserId])
+    left join [SystemUserBase] [lk_quotedetailbase_modifiedby] on ([QuoteDetailBase].[ModifiedBy] = [lk_quotedetailbase_modifiedby].[SystemUserId])
+    left join [SystemUserBase] [lk_quotedetailbase_modifiedonbehalfby] on ([QuoteDetailBase].[ModifiedOnBehalfBy] = [lk_quotedetailbase_modifiedonbehalfby].[SystemUserId])
+    left join [ProductBase] [product_quote_details] on ([QuoteDetailBase].[ProductId] = [product_quote_details].[ProductId])
+    left join [QuoteBase] [quote_details] on ([QuoteDetailBase].[QuoteId] = [quote_details].[QuoteId])
+    left join [SystemUserBase] [system_user_quotedetail] on ([QuoteDetailBase].[SalesRepId] = [system_user_quotedetail].[SystemUserId])
+    left join [TransactionCurrencyBase] [transactioncurrency_quotedetail] on ([QuoteDetailBase].[TransactionCurrencyId] = [transactioncurrency_quotedetail].[TransactionCurrencyId])
+    left join [UoMBase] [unit_of_measurement_quote_details] on ([QuoteDetailBase].[UoMId] = [unit_of_measurement_quote_details].[UoMId])
+    left join OwnerBase XXowner on ([quote_details].OwnerId = XXowner.OwnerId)

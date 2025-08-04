@@ -1,0 +1,948 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="init()"/>
+<public:attach event="onmousedown" onevent="mouseDown()"/>
+<public:attach event="onmouseover" onevent="mouseOver()"/>
+<public:attach event="onmouseout" onevent="mouseOut()"/>
+<public:attach event="onclick" onevent="clickHandler()"/>
+<public:attach event="ondblclick" onevent="doubleClickHandler()"/>
+<public:attach event="onkeydown" onevent="handleKey()"/>
+<public:property name="SelectedNodeId" put="setSelectedId" get="getSelectedId" />
+<public:property name="Count" internalName="_iCount" />
+<public:property name="ImageFolder" put="setImageFolder" get="putImageFolder" />
+<public:property name="Xml" put="setXml" get="getXml" />
+<public:property name="XmlNode" get="getXmlNode" />
+<public:property name="HideSelection" internalName="_bHideSelection" />
+<public:property name="HideMouseover" internalName="_bHideMouseover" />
+<public:method name="RegisterNodeType" />
+<public:method name="RegisterNodeTypeWithImageStrip" />
+<public:method name="RenderTree" />
+<public:method name="RenderTreeToDepth" />
+<public:method name="InsertChildNode" />
+<public:method name="GetNodeElement" />
+<public:method name="GetNodeId" />
+<public:method name="GetParentId" />
+<public:method name="UpdateNodeXml" />
+<public:method name="UpdateNode" />
+<public:method name="DeleteNode" />
+<public:event id="eventOnInitComplete" name="oninitcomplete"/>
+<public:event id="eventOnTreeChange" name="ontreechange"/>
+<public:event id="eventOnSelectChange" name="onselectchange"/>
+<public:event id="eventOnReturn" name="onreturn"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _bIsInitialized = false,
+    _oLastGlow = null,
+    _oSelectedItem = null,
+    _iSelectedId = -1,
+    _iNextId = 0,
+    _iCount = 0,
+    _iDepth = 0,
+    _iLastDepth = 0,
+    _bHideSelection = false,
+    _bHideMouseover = false,
+    _oFocusedItem = null,
+    _sImageFolder = null,
+    _imgExpCorner = new Image(20,26),
+    _imgColCorner = new Image(20,26),
+    _imgExpTee = new Image(20,26),
+    _imgColTee = new Image(20,26),
+    _imgExpDash = new Image(20,26),
+    _imgColDash = new Image(20,26),
+    _imgDash = new Image(20,26),
+    _imgTee = new Image(20,26),
+    _imgCorner = new Image(20,26),
+    _imgExpFolder = new Image(20,26),
+    _imgColFolder = new Image(20,26),
+    _imgVertical = new Image(20,26),
+    _imgBlank = new Image(20,26),
+    _imgNode = new Image(20,26),
+    _aoAncestors = [],
+    _aoNodeTypes = [],
+    _asIds = [],
+    _sMouseOverBackgroundColor = "#c4ddff",
+    _oXml = null,
+    STATUS_NEW = "new",
+    STATUS_UPDATE = "updated",
+    STATUS_DELETE = "deleted",
+    STATUS_EXISTING = "existing",
+    fullTreeKeyLeft = KEY_LEFT,
+    fullTreeKeyRight = KEY_RIGHT;
+if(LOCID_UI_DIR == "RTL")
+{
+    fullTreeKeyLeft = KEY_RIGHT;
+    fullTreeKeyRight = KEY_LEFT
+}
+function init()
+{
+    _oXml = XUI.Xml.CreateDocument();
+    setImagePaths();
+    RegisterNodeType("node");
+    _bIsInitialized = true;
+    eventOnInitComplete.fire()
+}
+function NodeType(sName,sIcon,sIconCollapsed,sIconExpanded,sDisplayXpath,sDescriptionXpath,bEncodeDisplayHtml,bEncodeDescriptionHtml)
+{
+    this.sName = sName;
+    this.sIcon = sIcon;
+    this.sIconCollapsed = sIconCollapsed;
+    this.sIconExpanded = sIconExpanded;
+    this.sDisplayXpath = sDisplayXpath;
+    this.sDescriptionXpath = sDescriptionXpath;
+    this.bEncodeDisplayHtml = bEncodeDisplayHtml;
+    this.bEncodeDescriptionHtml = bEncodeDescriptionHtml;
+    return this
+}
+function RegisterNodeTypeWithImageStrip(sTypeName,sIconLeafUrl,sIconLeafClassName,sIconCollapsedUrl,sIconExpandedUrl,sDisplayTextXPath,sDescriptionXpath,bEncodeDisplayHtml,bEncodeDescriptionHtml)
+{
+    if(sDisplayTextXPath == null)
+        sDisplayTextXPath = "@name";
+    if(sIconLeafUrl == null)
+        sIconLeafUrl = _imgNode.src;
+    if(sIconCollapsedUrl == null)
+        sIconCollapsedUrl = getFolderBitmap(false);
+    if(sIconExpandedUrl == null)
+        sIconExpandedUrl = getFolderBitmap(true);
+    if(sDescriptionXpath == null)
+        sDescriptionXpath = "@description";
+    if(bEncodeDisplayHtml == null)
+        bEncodeDisplayHtml = true;
+    if(bEncodeDescriptionHtml == null)
+        bEncodeDescriptionHtml = true;
+    var oNodeType = new NodeType(sTypeName,sIconLeafUrl,sIconCollapsedUrl,sIconExpandedUrl,sDisplayTextXPath,sDescriptionXpath,bEncodeDisplayHtml,bEncodeDescriptionHtml);
+    if(sIconLeafClassName != null)
+        oNodeType.className = sIconLeafClassName;
+    _aoNodeTypes.push(oNodeType)
+}
+function RegisterNodeType(sTypeName,sIconLeafUrl,sIconCollapsedUrl,sIconExpandedUrl,sDisplayTextXPath,sDescriptionXpath,bEncodeDisplayHtml,bEncodeDescriptionHtml)
+{
+    RegisterNodeTypeWithImageStrip(sTypeName,sIconLeafUrl,null,sIconCollapsedUrl,sIconExpandedUrl,sDisplayTextXPath,sDescriptionXpath,bEncodeDisplayHtml,bEncodeDescriptionHtml)
+}
+function RenderTree()
+{
+    RenderTreeToDepth(-1);
+    element.UseFixedWidth && 
+        FixDivWidth(element)
+}
+function FixDivWidth(oDiv)
+{
+    for(var oChildren = oDiv.children,
+        iChildCount = oChildren.length,
+        oChild,
+        oLabel,
+        i = 0; i < iChildCount; i++)
+    {
+        oChild = oChildren(i);
+        if(oChild.tagName == "DIV")
+            FixDivWidth(oChild);
+        else
+            if(oChild.tagName == "SPAN")
+                if(oChild.className == "ftSelectTarget")
+                {
+                    oLabel = oChild.children(1);
+                    if(oLabel != null && oDiv.offsetWidth > oLabel.offsetLeft)
+                        oLabel.style.width = oDiv.offsetWidth - oLabel.offsetLeft + 2
+                }
+    }
+}
+function RenderTreeToDepth(iMaxDepth)
+{
+    var sHtml = "";
+    _iCount = 0;
+    _aoAncestors.length = 0;
+    _asIds.length = 0;
+    _iDepth = 0;
+    _iLastDepth = 0;
+    var oCurrentNode = _oXml.documentElement;
+    if(oCurrentNode != null)
+        oCurrentNode = getNextNode(oCurrentNode);
+    while(oCurrentNode != null)
+    {
+        assignNodeId(oCurrentNode);
+        if(getNodeStatus(oCurrentNode) != STATUS_DELETE)
+        {
+            _iCount++;
+            sHtml += renderRow(oCurrentNode,iMaxDepth)
+        }
+        oCurrentNode = getNextNode(oCurrentNode)
+    }
+    sHtml += renderRow(null,iMaxDepth);
+    sHtml += "<div>&nbsp;</div>";
+    element.innerHTML = sHtml;
+    selectNode(_oSelectedItem)
+}
+function InsertChildNode(sParentId,sXmlNode)
+{
+    var bAdded = false,
+        xmlDoc = XUI.Xml.LoadXml(sXmlNode);
+    if(xmlDoc.parseError.errorCode != 0)
+        var error = xmlDoc.parseError.reason;
+    var oRoot = xmlDoc.documentElement;
+    if(oRoot != null)
+    {
+        for(var i = 0; i < oRoot.childNodes.length; i++)
+        {
+            var oNode = oRoot.childNodes[i];
+            if(oNode != null)
+            {
+                var oChildNode = oNode.cloneNode(true),
+                    oParentNode = null;
+                if(sParentId < 0)
+                    oParentNode = _oXml.documentElement;
+                else
+                    oParentNode = _oXml.selectSingleNode('//node()[@fulltree_id="' + sParentId + '"]');
+                if(oParentNode != null)
+                {
+                    setNodeStatus(oChildNode,STATUS_NEW);
+                    for(var j = 0; j < _aoNodeTypes.length; j++)
+                    {
+                        var sXpathSearch = ".//" + _aoNodeTypes[j].sName,
+                            aDescendantNodes = oChildNode.selectNodes(sXpathSearch);
+                        if(aDescendantNodes != null)
+                            for(var k = 0; k < aDescendantNodes.length; k++)
+                                setNodeStatus(aDescendantNodes[k],STATUS_NEW)
+                    }
+                    oParentNode.appendChild(oChildNode);
+                    var sParentStatus = oParentNode.getAttribute("fulltree_status");
+                    (sParentStatus == null || sParentStatus != STATUS_NEW) && 
+                        setNodeStatus(oParentNode,STATUS_UPDATE);
+                    bAdded = true
+                }
+            }
+        }
+        if(bAdded)
+        {
+            RenderTree();
+            eventOnTreeChange.fire()
+        }
+    }
+}
+function UpdateNodeXml(oTargetNode,sXmlNode)
+{
+    if(oTargetNode == null)
+        return false;
+    var oDocNewNode = XUI.Xml.LoadXml(sXmlNode),
+        oRootNode = oDocNewNode.documentElement;
+    return UpdateNode(oTargetNode,oRootNode)
+}
+function UpdateNode(oTargetNode,oNewNode)
+{
+    var sTargetId = oTargetNode.getAttribute("fulltree_id");
+    getNodeStatus(oNewNode) != STATUS_NEW && 
+        setNodeStatus(oNewNode,STATUS_UPDATE);
+    setNodeId(oNewNode,sTargetId);
+    var oParentNode = oTargetNode.parentNode;
+    if(oParentNode != null)
+    {
+        oParentNode.replaceChild(oNewNode,oTargetNode);
+        RenderTree();
+        eventOnTreeChange.fire();
+        return true
+    }
+    return false
+}
+function DeleteNode(sTargetId)
+{
+    var oTargetNode = _oXml.selectSingleNode('//*[@fulltree_id="' + sTargetId + '"]');
+    if(oTargetNode != null)
+    {
+        var oParentNode = oTargetNode.parentNode,
+            status = oTargetNode.selectSingleNode("@fulltree_status");
+        if(status != null && status.value == "new")
+            oParentNode.removeChild(oTargetNode);
+        else
+        {
+            innerDeleteNode(oTargetNode);
+            if(oParentNode != null)
+            {
+                var sParentStatus = oParentNode.getAttribute("fulltree_status");
+                (sParentStatus == null || sParentStatus == STATUS_NEW) && 
+                    setNodeStatus(oParentNode,STATUS_UPDATE)
+            }
+        }
+        RenderTree();
+        eventOnTreeChange.fire();
+        return true
+    }
+    return false
+}
+function setSelectedId(sId)
+{
+    var oNodeToSelect = getNodeElementDocument(sId);
+    if(oNodeToSelect == null)
+    {
+        _iSelectedId = -1;
+        selectNode(null)
+    }
+    else
+    {
+        _iSelectedId = sId;
+        selectNode(getSelectTargetSpan(oNodeToSelect))
+    }
+}
+function getSelectedId()
+{
+    return _iSelectedId
+}
+function setImageFolder(sValue)
+{
+    _sImageFolder = sValue;
+    if(_sImageFolder.charAt(_sImageFolder.length - 1) != "/")
+        _sImageFolder += "/";
+    setImagePaths()
+}
+function getImageFolder()
+{
+    return _sImageFolder
+}
+function setXml(sXmlTree)
+{
+    _oXml = XUI.Xml.LoadXml(sXmlTree);
+    _iNextId = 0;
+    _oXml.parseError.errorCode == 0 && 
+        eventOnTreeChange.fire()
+}
+function getXml()
+{
+    return _oXml.xml
+}
+function getXmlNode()
+{
+    return _oXml.documentElement
+}
+function mouseDown()
+{
+    var oSrc = selAncestor(event.srcElement,"SPAN","ftSelectTarget");
+    event.cancelBubble = true;
+    selectNode(oSrc)
+}
+function mouseOver()
+{
+    var oSrc = selAncestor(event.srcElement,"SPAN","ftSelectTarget");
+    event.cancelBubble = true;
+    if(oSrc != null)
+    {
+        if(!_bHideMouseover)
+            oSrc.runtimeStyle.backgroundColor = _sMouseOverBackgroundColor;
+        _oLastGlow = oSrc
+    }
+}
+function mouseOut()
+{
+    event.cancelBubble = true;
+    if(_oLastGlow)
+    {
+        _oLastGlow.runtimeStyle.backgroundColor = "";
+        _oLastGlow = null
+    }
+}
+function doubleClickHandler()
+{
+    if(_iSelectedId == -1)
+    {
+        var oSrc = selAncestor(event.srcElement,"SPAN","ftSelectTarget");
+        selectNode(oSrc)
+    }
+    attachParametersToEvent(event)
+}
+function clickHandler()
+{
+    var oSrc = event.srcElement;
+    if(oSrc != null)
+    {
+        var oTypeAttribute = oSrc.attributes.getNamedItem("type");
+        oTypeAttribute != null && oTypeAttribute.value == "expander" && 
+            toggleItem(oSrc)
+    }
+    attachParametersToEvent(event)
+}
+function handleKey()
+{
+    var i = event.keyCode,
+        index = 0;
+    switch(i)
+    {
+        case KEY_SPACE:
+        case KEY_ENTER:
+            raiseEvent(eventOnReturn);
+            break;
+        case KEY_UP:
+            moveSelection(true);
+            break;
+        case KEY_DOWN:
+            moveSelection(false);
+            break;
+        case fullTreeKeyLeft:
+            expandCollapse(false);
+            break;
+        case fullTreeKeyRight:
+            expandCollapse(true);
+            break
+    }
+}
+function expandCollapse(bExpand)
+{
+    divParent = selAncestor(_oSelectedItem,"DIV","ftRow");
+    divParent != null && isExpanded(divParent) != bExpand && 
+        toggleItem(getExpanderNode(divParent))
+}
+function moveSelection(bUp)
+{
+    if(_iSelectedId == -1)
+    {
+        selectFirstNode();
+        return
+    }
+    var iStep = bUp ? -1 : 1;
+    for(index = 0; index < _asIds.length; index++)
+        if(_iSelectedId == _asIds[index])
+        {
+            for(index += iStep; bUp ? index >= 0 : index < _asIds.length; index += iStep)
+                if(isItemVisible(_asIds[index]))
+                {
+                    setSelectedId(_asIds[index]);
+                    break
+                }
+            break
+        }
+}
+function raiseEvent(oEventToRaise)
+{
+    var oEvent = this.createEventObject();
+    oEvent.iId = _iSelectedId;
+    oEvent.oNode = _oSelectedItem;
+    oEventToRaise.fire(oEvent);
+    return oEvent
+}
+function attachParametersToEvent(oEvent)
+{
+    oEvent.iId = _iSelectedId;
+    oEvent.oNode = _oSelectedItem;
+    return oEvent
+}
+function selAncestor(oSrc,sTagName,sClassName)
+{
+    while(oSrc != null && oSrc !== element)
+    {
+        if(oSrc.tagName == sTagName && oSrc.className.indexOf(sClassName) != -1)
+            break;
+        oSrc = oSrc.parentElement
+    }
+    return oSrc === element ? null : oSrc
+}
+function selectNode(oTarget)
+{
+    if(oTarget != null && oTarget == _oSelectedItem)
+        return;
+    if(_oSelectedItem != null)
+    {
+        _oSelectedItem.style.backgroundColor = "";
+        _oSelectedItem.style.borderStyle = "none";
+        _oSelectedItem = null;
+        _iSelectedId = -1
+    }
+    if(oTarget != null)
+    {
+        var divParent = selAncestor(oTarget,"DIV","ftRow");
+        if(divParent != null)
+        {
+            var sId = divParent.attributes.getNamedItem("fulltree_id");
+            if(sId != null)
+            {
+                if(!_bHideSelection)
+                {
+                    oTarget.style.backgroundColor = "#a7cdf0";
+                    oTarget.style.borderStyle = "solid";
+                    oTarget.style.borderWidth = "1px";
+                    oTarget.style.borderColor = "#6893cf";
+                    if(LOCID_UI_DIR == "RTL")
+                        oTarget.style.height = "26px"
+                }
+                _oSelectedItem = oTarget;
+                _iSelectedId = sId.value
+            }
+        }
+    }
+    raiseEvent(eventOnSelectChange)
+}
+function toggleItem(oImg)
+{
+    if(oImg != null)
+    {
+        var oTarget = oImg.parentElement,
+            oRowDiv = oTarget.parentElement,
+            bExpanded = isExpanded(oRowDiv);
+        setExpanded(oRowDiv,!bExpanded);
+        var oNewSource = getOppositeExpander(oImg.src);
+        oImg.src = oNewSource.src;
+        if(oNewSource.className != null)
+            oImg.className = oNewSource.className;
+        oImg.alt = oNewSource.alt;
+        var oAdjacentBitmap = oTarget.nextSibling.firstChild.firstChild,
+            sNodeId = oRowDiv.getAttribute("fulltree_id");
+        if(sNodeId == null)
+            sNodeId = 0;
+        var oNodeElement = GetNodeElement(sNodeId);
+        oAdjacentBitmap.src = getIconUrl(oNodeElement,!bExpanded);
+        setNodeExpanded(oNodeElement,!bExpanded);
+        while(oTarget != null)
+        {
+            if(oTarget.tagName == "DIV")
+                if(bExpanded)
+                    oTarget.style.display = "none";
+                else
+                    oTarget.style.display = "block";
+            oTarget = oTarget.nextSibling
+        }
+    }
+}
+function getExpanderNode(oParentNode)
+{
+    var oTarget = oParentNode.firstChild;
+    while(oTarget != null)
+    {
+        var oGrandTarget = oTarget.firstChild;
+        if(oTarget.tagName == "SPAN" && oGrandTarget != null && oGrandTarget.tagName == "IMG")
+        {
+            var oTypeAttribute = oGrandTarget.attributes.getNamedItem("type");
+            if(oTypeAttribute != null)
+                if(oTypeAttribute.value == "expander")
+                    return oGrandTarget
+        }
+        oTarget = oTarget.nextSibling
+    }
+    return null
+}
+function getSelectTargetSpan(oParentNode)
+{
+    var oTarget = oParentNode.firstChild;
+    while(oTarget != null)
+    {
+        if(oTarget.tagName == "SPAN" && oTarget.className.substr(0,14) == "ftSelectTarget")
+            return oTarget;
+        oTarget = oTarget.nextSibling
+    }
+    return null
+}
+function setImagePaths()
+{
+    if(_sImageFolder == null)
+        _sImageFolder = "/_imgs/tree/";
+    _imgExpCorner.src = _sImageFolder + "CornerPlus.gif";
+    _imgExpCorner.alt = LOCID_TREE_PLUS;
+    _imgColCorner.src = _sImageFolder + "CornerMinus.gif";
+    _imgColCorner.alt = LOCID_TREE_MINUS;
+    _imgExpTee.src = _sImageFolder + "TeePlus.gif";
+    _imgExpTee.alt = LOCID_TREE_PLUS;
+    _imgColTee.src = _sImageFolder + "TeeMinus.gif";
+    _imgColTee.alt = LOCID_TREE_MINUS;
+    _imgExpDash.src = _sImageFolder + "DashPlus.gif";
+    _imgExpDash.alt = LOCID_TREE_PLUS;
+    _imgColDash.src = _sImageFolder + "DashMinus.gif";
+    _imgColDash.alt = LOCID_TREE_MINUS;
+    _imgDash.src = _sImageFolder + "Dash.gif";
+    _imgDash.alt = "";
+    _imgTee.src = _sImageFolder + "Tee.gif";
+    _imgTee.alt = "";
+    _imgCorner.src = _sImageFolder + "Corner.gif";
+    _imgCorner.alt = "";
+    _imgExpFolder.src = _sImageFolder + "FolderVertical.gif";
+    _imgExpFolder.alt = "";
+    _imgColFolder.src = _sImageFolder + "Folder.gif";
+    _imgColFolder.alt = "";
+    _imgVertical.src = _sImageFolder + "Vertical.gif";
+    _imgVertical.alt = "";
+    _imgBlank.src = _sImageFolder + "Blank.gif";
+    _imgBlank.alt = "";
+    _imgNode.src = _sImageFolder + "defaultNode.gif";
+    _imgNode.alt = "";
+    if(LOCID_UI_DIR == "RTL")
+    {
+        _imgExpCorner.style.filter = "FlipH()";
+        _imgColCorner.style.filter = "FlipH()";
+        _imgExpTee.style.filter = "FlipH()";
+        _imgColTee.style.filter = "FlipH()";
+        _imgExpDash.style.filter = "FlipH()";
+        _imgColDash.style.filter = "FlipH()";
+        _imgTee.style.filter = "FlipH()";
+        _imgCorner.style.filter = "FlipH()";
+        _imgExpFolder.style.filter = "FlipH()";
+        _imgColFolder.style.filter = "FlipH()";
+        _imgVertical.style.filter = "FlipH()";
+        _imgNode.style.filter = "FlipH()"
+    }
+}
+function getOppositeExpander(sCurrentImageSource)
+{
+    switch(sCurrentImageSource)
+    {
+        case _imgExpCorner.src:
+            return _imgColCorner;
+        case _imgColCorner.src:
+            return _imgExpCorner;
+        case _imgExpTee.src:
+            return _imgColTee;
+        case _imgColTee.src:
+            return _imgExpTee;
+        case _imgExpDash.src:
+            return _imgColDash;
+        case _imgColDash.src:
+            return _imgExpDash
+    }
+}
+function getFolderBitmap(bExpanded)
+{
+    return bExpanded ? _imgExpFolder.src : _imgColFolder.src
+}
+function getControlImage(bChildren,bParent,bMoreSiblings,bExpanded)
+{
+    if(bParent)
+        if(bMoreSiblings)
+            if(bChildren)
+                return bExpanded ? _imgColTee : _imgExpTee;
+            else
+                return _imgTee;
+        else
+            if(bChildren)
+                return bExpanded ? _imgColCorner : _imgExpCorner;
+            else
+                return _imgCorner;
+    else
+        if(bChildren)
+            return bExpanded ? _imgColDash : _imgExpDash;
+        else
+            return _imgDash
+}
+function getNextNode(oCurrentNode)
+{
+    var oNextOne = firstNodeChild(oCurrentNode);
+    if(oNextOne != null)
+    {
+        _aoAncestors.push(oCurrentNode);
+        _iDepth++;
+        return oNextOne
+    }
+    oNextOne = nextNodeSibling(oCurrentNode);
+    if(oNextOne != null)
+        return oNextOne;
+    var oParent = oCurrentNode.parentNode;
+    _aoAncestors.pop();
+    _iDepth--;
+    while(_iDepth > 0 && oParent != null)
+    {
+        sibling = nextNodeSibling(oParent);
+        if(sibling != null)
+            return sibling;
+        oParent = oParent.parentNode;
+        _aoAncestors.pop();
+        _iDepth--
+    }
+    _iDepth++;
+    return null
+}
+function firstNodeChild(oParent)
+{
+    if(oParent.hasChildNodes)
+    {
+        var oFirstOne = oParent.firstChild;
+        while(oFirstOne != null && (!isNodeRegistered(oFirstOne) || getNodeStatus(oFirstOne) == STATUS_DELETE))
+            oFirstOne = oFirstOne.nextSibling;
+        return oFirstOne
+    }
+}
+function nextNodeSibling(oCurrentSibling)
+{
+    var oNextOne = oCurrentSibling.nextSibling;
+    while(oNextOne != null && (!isNodeRegistered(oNextOne) || getNodeStatus(oNextOne) == STATUS_DELETE))
+        oNextOne = oNextOne.nextSibling;
+    return oNextOne
+}
+function setNodeId(oXmlNode,sId)
+{
+    if(sId == null || sId < 0)
+        oXmlNode.attributes.removeNamedItem("fulltree_id");
+    else
+    {
+        var oIdAttribute = _oXml.createAttribute("fulltree_id");
+        oIdAttribute.value = sId;
+        oXmlNode.attributes.setNamedItem(oIdAttribute)
+    }
+}
+function assignNodeId(oXmlNode)
+{
+    var sTargetId = oXmlNode.getAttribute("fulltree_id");
+    if(sTargetId == null)
+    {
+        _iNextId++;
+        setNodeId(oXmlNode,_iNextId)
+    }
+}
+function setNodeStatus(oNode,status)
+{
+    var oStatusAttribute = _oXml.createAttribute("fulltree_status");
+    oStatusAttribute.value = status;
+    oNode.attributes.setNamedItem(oStatusAttribute)
+}
+function getNodeStatus(oNode)
+{
+    var oStatusAttribute = oNode.attributes.getNamedItem("fulltree_status");
+    return oStatusAttribute == null ? STATUS_EXISTING : oStatusAttribute.value
+}
+function isExpanded(oNode)
+{
+    var oStatusAttribute = oNode.attributes.getNamedItem("fulltree_expanded");
+    return !(oStatusAttribute != null && oStatusAttribute.value == "collapsed")
+}
+function setExpanded(oNode,bExpanded)
+{
+    var oStatusAttribute = element.document.createAttribute("fulltree_expanded");
+    oStatusAttribute.value = bExpanded ? "expanded" : "collapsed";
+    oNode.attributes.setNamedItem(oStatusAttribute)
+}
+function setNodeExpanded(oNode,bExpanded)
+{
+    var oStatusAttribute = _oXml.createAttribute("fulltree_expanded");
+    oStatusAttribute.value = bExpanded ? "expanded" : "collapsed";
+    oNode.attributes.setNamedItem(oStatusAttribute)
+}
+function isItemVisible(sId)
+{
+    var oNode = getNodeElementDocument(sId);
+    return oNode != null && (oNode.style == null || oNode.style.display == null || oNode.style.display != "none")
+}
+function getNodeToolTip(oCurrentNode,oLabel)
+{
+    var oTypeNode = oCurrentNode.selectSingleNode("type");
+    if(oTypeNode != null)
+        if(oTypeNode.text == ResourceSpec)
+            return oLabel.descriptionText;
+        else
+        {
+            var oSpan = parent.document.createElement("SPAN");
+            oSpan.innerHTML = oLabel.displayText;
+            return CrmEncodeDecode.CrmHtmlAttributeEncode(oSpan.innerText)
+        }
+    return ""
+}
+function renderRow(oCurrentNode,iMaxDepth)
+{
+    for(var sRowHtml = "",
+        bExpanded = true,
+        bParentExpanded = true,
+        i = _iDepth; i <= _iLastDepth; i++)
+        sRowHtml += "</div>";
+    _iLastDepth = _iDepth;
+    if(oCurrentNode == null)
+        return sRowHtml;
+    var sNodeId = oCurrentNode.getAttribute("fulltree_id");
+    if(sNodeId == null)
+        sNodeId = 0;
+    _asIds.push(sNodeId);
+    if(iMaxDepth < 0)
+        bExpanded = isExpanded(oCurrentNode);
+    else
+    {
+        bExpanded = _iDepth <= iMaxDepth;
+        setNodeExpanded(oCurrentNode,bExpanded)
+    }
+    bParentExpanded = isExpanded(oCurrentNode.parentNode);
+    sRowHtml += '<div class="ftRow" fulltree_expanded="' + (bExpanded ? "expanded" : "collapsed") + '" fulltree_id="' + sNodeId + '" fulltree_nodetype="' + oCurrentNode.name + '" style="display:';
+    sRowHtml += bParentExpanded ? "block" : "none";
+    sRowHtml += '">';
+    for(var oLabel = getDisplayAndDescriptionText(oCurrentNode),
+        oImage = null,
+        col = 0; col <= _iDepth + 1; col++)
+    {
+        var bChildren = firstNodeChild(oCurrentNode) != null;
+        if(col == _iDepth + 1)
+        {
+            if(oLabel != null && oLabel.displayText.length > 0)
+            {
+                var sToolTip = getNodeToolTip(oCurrentNode,oLabel);
+                sRowHtml += '<span class="ftLabel" type="label" title="' + sToolTip + '">' + oLabel.displayText + "</span>"
+            }
+            sRowHtml += "</span>"
+        }
+        else
+            if(col == _iDepth)
+            {
+                var sBitmapName = getIconUrl(oCurrentNode,bExpanded);
+                if(sBitmapName != null)
+                {
+                    var oIdElement = oCurrentNode.selectSingleNode("id"),
+                        sId = "";
+                    if(oIdElement != null)
+                        sId = oIdElement.text;
+                    var oTypeElement = oCurrentNode.selectSingleNode("type"),
+                        iType = "";
+                    if(oTypeElement != null)
+                        iType = oTypeElement.text;
+                    var sToolTip = getNodeToolTip(oCurrentNode,oLabel);
+                    sRowHtml += '<span class="ftSelectTarget" itemId="' + sId + '" itemType="' + iType + '">';
+                    sRowHtml += '<span class="ftImage"><img src="' + sBitmapName + '" type="icon"';
+                    if(LOCID_UI_DIR == "RTL")
+                        sRowHtml += ' style="filter:FlipH();"';
+                    var sBitmapClassName = getIconClassName(oCurrentNode);
+                    if(sBitmapClassName != null)
+                        sRowHtml += ' class="' + sBitmapClassName + '"';
+                    sRowHtml += ' alt="' + sToolTip + '"></span>'
+                }
+            }
+            else
+                if(col == _iDepth - 1)
+                {
+                    var bParent = _iDepth > 1,
+                        bMoreSiblings = nextNodeSibling(oCurrentNode) != null;
+                    oImage = getControlImage(bChildren,bParent,bMoreSiblings,bExpanded);
+                    sRowHtml += '<span class="ftImage"><img alt="';
+                    sRowHtml += oImage.alt;
+                    sRowHtml += '" src="';
+                    sRowHtml += oImage.src;
+                    sRowHtml += '"';
+                    if(oImage.className != null)
+                    {
+                        sRowHtml += '" class="';
+                        sRowHtml += oImage.className;
+                        sRowHtml += '"'
+                    }
+                    if(oImage.style.cssText != null)
+                        sRowHtml += ' style="' + oImage.style.cssText + '"';
+                    if(bChildren)
+                        sRowHtml += ' type="expander"';
+                    sRowHtml += "></span>"
+                }
+                else
+                    if(nextNodeSibling(_aoAncestors[col + 1]) != null)
+                    {
+                        sRowHtml += '<span class="ftImage"><img alt="" src="' + _imgVertical.src + '" type="guide"';
+                        if(LOCID_UI_DIR == "RTL")
+                            sRowHtml += ' style="filter:FlipH();"';
+                        sRowHtml += "></span>"
+                    }
+                    else
+                        sRowHtml += '<span class="ftImage"><img alt="" src="' + _imgBlank.src + '"></span>'
+    }
+    return sRowHtml
+}
+function innerDeleteNode(oTargetNode)
+{
+    var aDescendantNodes = oTargetNode.selectNodes(".//*[@fulltree_id]");
+    if(aDescendantNodes != null)
+        for(var i = 0; i < aDescendantNodes.length; i++)
+        {
+            setNodeStatus(aDescendantNodes[i],STATUS_DELETE);
+            setNodeId(aDescendantNodes[i])
+        }
+    setNodeStatus(oTargetNode,STATUS_DELETE)
+}
+function GetNodeId(oTargetNode)
+{
+    var sNodeId = null,
+        oRowNode = selAncestor(oTargetNode,"DIV","ftRow");
+    if(oRowNode != null)
+        sNodeId = oRowNode.getAttribute("fulltree_id");
+    return sNodeId
+}
+function GetParentId(oTargetNode)
+{
+    var sNodeId = null,
+        oRowNode = selAncestor(oTargetNode,"DIV","ftRow");
+    if(oRowNode != null)
+    {
+        var oParentRowNode = oRowNode.parentElement;
+        if(oParentRowNode != null)
+            sNodeId = oParentRowNode.getAttribute("fulltree_id")
+    }
+    return sNodeId
+}
+function GetNodeElement(sTargetId)
+{
+    return _oXml.selectSingleNode('//node()[@fulltree_id="' + sTargetId + '"]')
+}
+function getNodeElementDocument(sTargetId)
+{
+    for(var aDivNodes = element.getElementsByTagName("DIV"),
+        i = 0; i < aDivNodes.length; i++)
+    {
+        var oTargetNode = aDivNodes[i],
+            sFulltreeId = oTargetNode.getAttribute("fulltree_id");
+        if(sFulltreeId != null && sFulltreeId == sTargetId)
+            return oTargetNode
+    }
+    return null
+}
+function getRegisteredType(oElement)
+{
+    for(var i = 0; i < _aoNodeTypes.length; i++)
+        if(_aoNodeTypes[i].sName == oElement.nodeName)
+            return _aoNodeTypes[i];
+    return null
+}
+function isNodeRegistered(oElement)
+{
+    return getRegisteredType(oElement) != null
+}
+function getDisplayAndDescriptionText(oElement)
+{
+    var oRetValue = {};
+    oRetValue.displayText = oElement.nodeName;
+    oRetValue.descriptionText = "";
+    var oNodeType = getRegisteredType(oElement);
+    if(oNodeType != null)
+    {
+        var oNode = oElement.selectSingleNode(oNodeType.sDisplayXpath);
+        if(oNode != null)
+        {
+            oRetValue.displayText = getInnerXml(oNode);
+            if(oNodeType.bEncodeDisplayHtml)
+                oRetValue.displayText = CrmEncodeDecode.CrmHtmlEncode(oRetValue.displayText)
+        }
+        if(oNodeType.sDescriptionXpath.length > 0)
+        {
+            oNode = oElement.selectSingleNode(oNodeType.sDescriptionXpath);
+            if(oNode != null)
+            {
+                oRetValue.descriptionText = getInnerXml(oNode);
+                if(oNodeType.bEncodeDescriptionHtml)
+                    oRetValue.descriptionText = CrmEncodeDecode.CrmHtmlAttributeEncode(oRetValue.descriptionText)
+            }
+        }
+    }
+    return oRetValue
+}
+function getInnerXml(oNode)
+{
+    return oNode.text;
+    var iTagLength = oNode.tagName.length,
+        iStart = iTagLength + 2,
+        iLength = oNode.xml.length - (iTagLength * 2 + 5);
+    return iLength > 0 ? oNode.xml.substr(iStart,iLength) : ""
+}
+function getIconUrl(oElement,bExpanded)
+{
+    var oNodeType = getRegisteredType(oElement);
+    if(oNodeType != null)
+    {
+        if(firstNodeChild(oElement) != null)
+            return bExpanded ? oNodeType.sIconExpanded : oNodeType.sIconCollapsed;
+        return oNodeType.sIcon
+    }
+    return null
+}
+function getIconClassName(oElement)
+{
+    var oNodeType = getRegisteredType(oElement);
+    if(oNodeType != null)
+        return oNodeType.className;
+    return null
+}
+function selectFirstNode()
+{
+    var oCurrentNode = _oXml.documentElement;
+    if(oCurrentNode != null)
+        oCurrentNode = getNextNode(oCurrentNode);
+    var sTargetId = oCurrentNode.getAttribute("fulltree_id");
+    setSelectedId(sTargetId)
+}
+
+</script>
+</public:component>

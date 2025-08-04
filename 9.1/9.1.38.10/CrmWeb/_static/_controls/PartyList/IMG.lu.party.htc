@@ -1,0 +1,46 @@
+<public:component lightweight="true">
+<public:method name="GetDataXml" internalname="getDataXml" />
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:property name="DataXml" get="getDataXml"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _component = null;
+function Init()
+{
+    Sys.Application.add_load(function()
+    {
+        _component = $find(element.id);
+        _component.set_allowUnknownItems(true)
+    })
+}
+function getDataXml(sAttributeName)
+{
+    for(var aoPartyItems = _component.Items(false,true),
+        sFieldName = sAttributeName || this.id,
+        sDataXml = "<" + CrmEncodeDecode.CrmXmlEncode(sFieldName) + ">",
+        numberOfItems = aoPartyItems.length,
+        i = 0; i < numberOfItems; i++)
+    {
+        sDataXml += "<activityparty>";
+        if(!IsNull(aoPartyItems[i].id) && aoPartyItems[i].id.toLowerCase() != "null" && aoPartyItems[i].type != UnresolvedEmailParty && (IsNull(aoPartyItems[i].category) || aoPartyItems[i].category != LookupItemCategories.UNKNOWN_EMAIL))
+            sDataXml += '<partyid name="' + CrmEncodeDecode.CrmXmlEncode(aoPartyItems[i].name) + '" type="' + aoPartyItems[i].type + '">' + CrmEncodeDecode.CrmXmlEncode(aoPartyItems[i].id) + "</partyid>";
+        else
+            sDataXml += "<addressused>" + CrmEncodeDecode.CrmXmlEncode(aoPartyItems[i].name) + "</addressused>";
+        if(aoPartyItems[i].resourceSpecId)
+            sDataXml += "<resourcespecid>" + CrmEncodeDecode.CrmXmlEncode(aoPartyItems[i].resourceSpecId) + "</resourcespecid>";
+        if(aoPartyItems[i].effort)
+            sDataXml += "<effort>" + CrmEncodeDecode.CrmXmlEncode(aoPartyItems[i].effort) + "</effort>";
+        if(aoPartyItems[i].exchangeEntryId)
+            sDataXml += "<exchangeentryid>" + CrmEncodeDecode.CrmXmlEncode(aoPartyItems[i].exchangeEntryId) + "</exchangeentryid>";
+        if(aoPartyItems[i].activityPartyId && aoPartyItems[i].activityPartyId != "")
+            sDataXml += "<activitypartyid>" + CrmEncodeDecode.CrmXmlEncode(aoPartyItems[i].activityPartyId) + "</activitypartyid>";
+        sDataXml += "</activityparty>"
+    }
+    sDataXml += "</" + CrmEncodeDecode.CrmXmlEncode(sFieldName) + ">";
+    var oInput = parentElement.lastChild;
+    oInput.dataxml = sDataXml;
+    return sDataXml
+}
+
+</script>
+</public:component>

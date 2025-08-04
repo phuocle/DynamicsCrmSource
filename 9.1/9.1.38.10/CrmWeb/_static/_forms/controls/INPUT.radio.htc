@@ -1,0 +1,218 @@
+<public:component lightweight="true">
+<public:attach event="oncontentready" onevent="Init()"/>
+<public:event id="eventOnChange" name="onchange"/>
+<public:event id="eventOnFocus" name="onfocus"/>
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataXml" get="dataXml"/>
+<public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+<public:property name="DefaultValue" get="getDefaultValue"/>
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:property name="RequiredLevel" get="getRequiredLevel" />
+<public:property name="DataChangeHandler" />
+<public:method name="attachEventHandler" />
+<public:method name="SetFocus" internalname="setFocus"/>
+<public:method name="FireOnChange" internalname="fireOnChange"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oButtons,
+    _bDefaultValue = null,
+    _oStartingValue = null;
+function Init()
+{
+    attachEventHandler("onchange",function()
+    {
+    });
+    attachEventHandler("onfocus",function()
+    {
+    });
+    _oButtons = element.all.tags("INPUT");
+    if(!element.disabled)
+    {
+        initOnClick();
+        initOnFocus()
+    }
+    if(typeof FORM_TYPE == "undefined" || FORM_TYPE != "BulkEdit")
+        _bDefaultValue = getDataValue()
+}
+function initOnClick()
+{
+    for(var i = 0; i < _oButtons.length; i++)
+    {
+        _oButtons[i].attachEvent("onclick",onChangeHandler);
+        if(_oButtons[i].checked)
+            if(typeof FORM_TYPE != "undefined" && FORM_TYPE == "BulkEdit")
+                _oButtons[i].checked = false;
+            else
+                _oStartingValue = _oButtons[i]
+    }
+}
+function initOnFocus()
+{
+    for(var i = 0; i < _oButtons.length; i++)
+        _oButtons[i].attachEvent("onfocus",onFocusHandler)
+}
+function attachEventHandler(sEventName,fNewHandler)
+{
+    var sHandlerName = sEventName.toLowerCase() + "Handler",
+        fHandlerToUse = fNewHandler;
+    if(typeof element[sEventName] === "function")
+    {
+        var fExistingHandler;
+        if(typeof element[sHandlerName] === "function")
+            fExistingHandler = element[sHandlerName];
+        else
+            fExistingHandler = element[sEventName];
+        fHandlerToUse = function()
+        {
+            fExistingHandler();
+            fNewHandler()
+        }
+    }
+    element[sHandlerName] = fHandlerToUse;
+    element[sEventName] = function()
+    {
+        if(typeof event.CustomHandler === "function")
+            event.CustomHandler();
+        else
+            fHandlerToUse()
+    };
+    element[sEventName.toLowerCase()] = element[sEventName]
+}
+function RaiseEvent(oEvent,customHandler,eventId)
+{
+    if(IsNull(oEvent))
+        oEvent = createEventObject();
+    if(typeof customHandler === "function")
+        oEvent.CustomHandler = customHandler;
+    AttachToUnattachedEvents();
+    eventId.fire(oEvent)
+}
+function AttachToUnattachedEvents()
+{
+    if(typeof onchange !== "function")
+        element["onchange"] = this.HandleUnattachedEvent;
+    if(typeof onfocus !== "function")
+        this.onfocus = this.HandleUnattachedEvent
+}
+function HandleUnattachedEvent()
+{
+    typeof event.CustomHandler === "function" && 
+        event.CustomHandler()
+}
+function onChangeHandler()
+{
+    if(event.srcElement !== _oStartingValue)
+    {
+        _oStartingValue = event.srcElement;
+        RaiseEvent(null,this.onchangeHandler,eventOnChange)
+    }
+}
+function onFocusHandler()
+{
+    RaiseEvent(null,this.onfocusHandler,eventOnFocus)
+}
+function getDefaultValue()
+{
+    return _bDefaultValue
+}
+function isDirty()
+{
+    return _bDefaultValue != getDataValue()
+}
+function getDataValue()
+{
+    var vVal = getSelectedRadioValue();
+    if(vVal != null)
+        if(this.atype == null || this.atype == "Boolean")
+            return "1" == vVal;
+        else
+            return vVal;
+    return null
+}
+function getSelectedRadioValue()
+{
+    for(var i = 0; i < _oButtons.length; i++)
+        if(_oButtons[i].checked)
+            return _oButtons[i].value;
+    return null
+}
+function putDataValue(vVal)
+{
+    if(null == vVal && this.atype != "String")
+        vVal = -1;
+    else
+        if(null == vVal && "String" == this.atype)
+            vVal = "";
+        else
+            if(this.atype == null || this.atype == "Boolean")
+            {
+                if("boolean" != typeof vVal)
+                {
+                    alert(LOCID_DEVERROR_BADDATATYPE_BOOL);
+                    return
+                }
+                vVal = vVal ? 1 : 0
+            }
+    for(var i = 0; i < _oButtons.length; i++)
+    {
+        _oButtons[i].checked = vVal == _oButtons[i].value;
+        if(_oButtons[i].checked)
+            _oStartingValue = _oButtons[i]
+    }
+    var fDataChangeHandler = this.DataChangeHandler;
+    fDataChangeHandler && 
+        fDataChangeHandler()
+}
+function dataXml()
+{
+    var vVal = getDataValue(),
+        sVal = "",
+        sID = this.id;
+    if(vVal != null)
+        if(_oButtons.length > 2)
+            sVal = vVal;
+        else
+            sVal = vVal ? "1" : "0";
+    return "<" + sID + ">" + sVal + "</" + sID + ">"
+}
+function getDisabled()
+{
+    return element.disabled
+}
+function setDisabled(bValue)
+{
+    element.disabled = bValue;
+    !bValue && 
+        initOnClick()
+}
+function setFocus()
+{
+    var firstButton = _oButtons[0];
+    if(!IsNull(firstButton.form) && firstButton.form.className == "ms-crm-Form")
+    {
+        firstButton.form.GetTab(element,true);
+        firstButton.focus()
+    }
+}
+function fireOnChange()
+{
+    var oEvent = createEventObject();
+    RaiseEvent(oEvent,this.onchangeHandler,eventOnChange)
+}
+function getRequiredLevel()
+{
+    try
+    {
+        if(IsNull(this.req))
+            return FIELD_NOT_REQUIRED;
+        else
+            return parseInt(this.req,10)
+    }
+    catch(e)
+    {
+        return FIELD_NOT_REQUIRED
+    }
+}
+
+</script>
+</public:component>

@@ -1,0 +1,183 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:attach event="ondblclick" onevent="Launch()"/>
+<public:attach event="onchange" onevent="Parse()"/>
+<public:attach event="ondetach" onevent="cleanUp()" />
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataXml" get="dataXml"/>
+<public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:property name="RequiredLevel" get="getRequiredLevel" />
+<public:property name="MaxLength" get="getMaxLength" />
+<public:property name="DataChangeHandler" />
+<public:method name="SetFocus" internalname="setFocus"/>
+<public:method name="IsValid" internalname="Parse" />
+<public:method name="FireOnChange" internalname="fireOnChange"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _bInvalidValueEntered = false;
+function Init()
+{
+    element.attachEvent("onblur",onBlur)
+}
+function onBlur()
+{
+    _bInvalidValueEntered && 
+        Parse()
+}
+function cleanUp()
+{
+    try
+    {
+        typeof element !== "undefined" && 
+            element.detachEvent("onblur",onBlur)
+    }
+    catch(e)
+    {
+    }
+}
+function isDirty()
+{
+    return this.defaultValue != this.value
+}
+function dataXml()
+{
+    var sID = this.id;
+    return "<" + sID + ">" + CrmEncodeDecode.CrmXmlEncode(Trim(this.value)) + "</" + sID + ">"
+}
+function Parse()
+{
+    var bShowValidationMessage = !window.event || IsNull(window.event.returnValue) || window.event.returnValue;
+    _bInvalidValueEntered = false;
+    value = Trim(value);
+    if(isDirty())
+        if(value.length > 0)
+        {
+            var result = validateUrlProtocol(value);
+            switch(validateUrlProtocol(value))
+            {
+                case 0:
+                    value = prefixHttp(value,element.maxLength);
+                case 1:
+                    title = LOCID_DBLCLICK_URL_OPEN;
+                    break;
+                default:
+                case 2:
+                    bShowValidationMessage && 
+                        alert(LOCID_URLCTRL_INVALID_PROTOCOL);
+                    setFocus();
+                    if(!IsNull(window.event))
+                        event.returnValue = false;
+                    _bInvalidValueEntered = true;
+                    return false
+            }
+        }
+        else
+            title = "";
+    if(!IsNull(window.event) && IsNull(event.returnValue))
+        event.returnValue = true;
+    return true
+}
+function fireOnChange()
+{
+    this.fireEvent("onchange")
+}
+function Launch()
+{
+    value = Trim(value);
+    if(value.length > 0)
+    {
+        var sUrl = "";
+        switch(validateUrlProtocol(value))
+        {
+            case 0:
+                sUrl = prefixHttp(value,element.maxLength);
+                break;
+            case 1:
+                sUrl = value;
+                break;
+            default:
+            case 2:
+                select();
+                return
+        }
+        var newWindowUri = Mscrm.CrmUri.createForOrganization(sUrl,null);
+        newWindowUri.checkParamsNoEqual = true;
+        safeWindowOpen(newWindowUri,"","height=" + screen.availHeight * .75 + ",width=" + screen.availWidth * .75 + ",scrollbars=1,resizable=1,status=1,toolbar=1,menubar=1,location=1",false,true)
+    }
+    else
+        title = ""
+}
+function getDataValue()
+{
+    var vVal = Trim(this.value);
+    return "" == vVal ? null : vVal
+}
+function putDataValue(vVal)
+{
+    var sDisplayValue = vVal || "";
+    if("string" == typeof sDisplayValue)
+    {
+        value = sDisplayValue;
+        if(Parse())
+        {
+            var fDataChangeHandler = this.DataChangeHandler;
+            fDataChangeHandler && 
+                fDataChangeHandler()
+        }
+    }
+    else
+        alert(LOCID_DEVERROR_BADTYPE_STRING)
+}
+function getDisabled()
+{
+    return this.contentEditable == "false"
+}
+function setDisabled(bValue)
+{
+    this.className = bValue ? "ms-crm-Url ms-crm-ReadOnly" : "ms-crm-Url";
+    this.contentEditable = bValue ? "false" : "true";
+    this.disabled = bValue
+}
+function setFocus()
+{
+    !IsNull(this.form) && this.form.className == "ms-crm-Form" && 
+        this.form.GetTab(element,true);
+    element.focus();
+    element.select()
+}
+function getMaxLength()
+{
+    try
+    {
+        return parseInt(this.maxLength,10)
+    }
+    catch(e)
+    {
+        return 2e3
+    }
+}
+function getRequiredLevel()
+{
+    try
+    {
+        if(IsNull(this.req))
+            return FIELD_NOT_REQUIRED;
+        else
+            return parseInt(this.req,10)
+    }
+    catch(e)
+    {
+        return FIELD_NOT_REQUIRED
+    }
+}
+function prefixHttp(url,maxlength)
+{
+    url = Trim(url);
+    if("http://" != url.substr(0,"http://".length).toLowerCase() && "https://" != url.substr(0,"https://".length).toLowerCase())
+        url = "http://" + url.substring(0,maxlength - "http://".length);
+    return url
+}
+
+</script>
+</public:component>

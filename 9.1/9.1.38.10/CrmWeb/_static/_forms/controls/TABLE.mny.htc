@@ -1,0 +1,52 @@
+<public:component lightweight="true">
+<public:attach event="onfocus" onevent="SetFocus()"/>
+<public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+<public:property name="InnerDataXml" get="getDataXml"/>
+<public:property name="InnerControlId" get="getInnerControlId"/>
+<public:property name="value" get="getValue"/>
+<public:method name="FireOnChange"/>
+<public:method name="SetFocus"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+function SetFocus()
+{
+    var innerControl = getInnerControl();
+    innerControl.SetFocus()
+}
+function getDataValue()
+{
+    var innerControl = getInnerControl();
+    return innerControl.DataValue
+}
+function putDataValue(vVal)
+{
+    var innerControl = getInnerControl();
+    innerControl.DataValue = vVal
+}
+function getDataXml()
+{
+    var innerControl = getInnerControl();
+    return innerControl.DataXml
+}
+function getInnerControlId()
+{
+    var innerControl = getInnerControl();
+    return innerControl.id
+}
+function getValue()
+{
+    var innerControl = getInnerControl();
+    return innerControl.value
+}
+function FireOnChange()
+{
+    var innerControl = getInnerControl();
+    innerControl.FireOnChange()
+}
+function getInnerControl()
+{
+    return element.children[0].children[0].children[1].children[0]
+}
+
+</script>
+</public:component>

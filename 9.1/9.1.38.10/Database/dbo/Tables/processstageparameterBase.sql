@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[processstageparameterBase] (
+    [processstageparameterId]   UNIQUEIDENTIFIER NOT NULL,
+    [CreatedOn]                 DATETIME         NULL,
+    [CreatedBy]                 UNIQUEIDENTIFIER NULL,
+    [ModifiedOn]                DATETIME         NULL,
+    [ModifiedBy]                UNIQUEIDENTIFIER NULL,
+    [CreatedOnBehalfBy]         UNIQUEIDENTIFIER NULL,
+    [ModifiedOnBehalfBy]        UNIQUEIDENTIFIER NULL,
+    [OwnerId]                   UNIQUEIDENTIFIER NOT NULL,
+    [OwnerIdType]               INT              CONSTRAINT [DF_processstageparameterBase_OwnerIdType] DEFAULT ((8)) NOT NULL,
+    [OwningBusinessUnit]        UNIQUEIDENTIFIER NULL,
+    [statecode]                 INT              NOT NULL,
+    [statuscode]                INT              NULL,
+    [VersionNumber]             ROWVERSION       NULL,
+    [ImportSequenceNumber]      INT              NULL,
+    [OverriddenCreatedOn]       DATETIME         NULL,
+    [TimeZoneRuleVersionNumber] INT              NULL,
+    [UTCConversionTimeZoneCode] INT              NULL,
+    [name]                      NVARCHAR (100)   NULL,
+    [ProcessStageId]            UNIQUEIDENTIFIER NULL,
+    [Value]                     NVARCHAR (2000)  NULL,
+    CONSTRAINT [PK_processstageparameterBase] PRIMARY KEY CLUSTERED ([processstageparameterId] ASC) WITH (FILLFACTOR = 100, DATA_COMPRESSION = ROW),
+    CONSTRAINT [business_unit_processstageparameter] FOREIGN KEY ([OwningBusinessUnit]) REFERENCES [dbo].[BusinessUnitBase] ([BusinessUnitId]),
+    CONSTRAINT [owner_processstageparameter] FOREIGN KEY ([OwnerId]) REFERENCES [dbo].[OwnerBase] ([OwnerId]),
+    CONSTRAINT [processstage_processstageparameter] FOREIGN KEY ([ProcessStageId]) REFERENCES [dbo].[ProcessStageBase] ([ProcessStageId])
+);
+

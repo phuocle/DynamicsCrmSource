@@ -1,0 +1,2 @@
+﻿CREATE USER [D365\ReportingGroup {17e68c54-332d-46c1-9c02-8ffa9543cd64}] FOR LOGIN [D365\ReportingGroup {17e68c54-332d-46c1-9c02-8ffa9543cd64}];
+

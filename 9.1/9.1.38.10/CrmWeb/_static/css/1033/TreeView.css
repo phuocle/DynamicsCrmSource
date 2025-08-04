@@ -1,0 +1,254 @@
+/* The file is AUTO generated on Thu, 10 Jul 2025 23:49:21 UTC */
+/* Do NOT manually modify this file! */
+
+.jstree-default.jstree-focused {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 5px;
+  padding-bottom: 8px;
+  margin-left: 0px;
+}
+.jstree-default .jstree-no-icons a .jstree-icon {
+  display: none;
+}
+/* ------------- LI margin and background color ------------- */
+.jstree LI {
+  line-height: 13px !important;
+  margin-top: 0px;
+  padding-top: 17px;
+  min-height: 13px !important;
+  /* Any LAST child except root */
+
+  /* Non root nodes */
+
+}
+.jstree LI LI.jstree-last {
+  margin-left: 7px;
+  border: none;
+  background-image: url("../../../_imgs/TreeViewControl/vertical_23_for_last.png"), url("/_imgs/TreeViewControl/vertical_23_for_last.png"), url("../../../_imgs/TreeViewControl/horizontal_dots.png"), url("/_imgs/TreeViewControl/horizontal_dots.png");
+  background-repeat: no-repeat;
+  background-position: 0% 0%, 0% 0%, 0% 23px, 0% 23px;
+  vertical-align: top;
+}
+.jstree LI LI.jstree-last ins {
+  margin-left: 18px;
+}
+.jstree LI LI {
+  margin-left: 7px;
+  border-left: 1px dotted #aba7a7;
+  background-image: url("../../../_imgs/TreeViewControl/horizontal_dots.png"), url("/_imgs/TreeViewControl/horizontal_dots.png");
+  background-repeat: no-repeat;
+  background-position: 0px 23px;
+  /* NON-Root & non root children*/
+
+  /* NON-Root & non root children & last */
+
+}
+.jstree LI LI LI {
+  margin-left: 23px;
+  border-left: 1px dotted #aba7a7;
+}
+.jstree LI LI LI.jstree-last {
+  margin-left: 23px;
+}
+.jstree LI.jstree-open > ins {
+  background-image: url("../../../_imgs/TreeViewControl/minus_rest.png"), url("/_imgs/TreeViewControl/minus_rest.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  height: 11px !important;
+  width: 11px !important;
+  margin-left: 17px;
+  vertical-align: top;
+}
+.jstree LI.jstree-closed > ins {
+  background-image: url("../../../_imgs/TreeViewControl/plus_rest.png"), url("/_imgs/TreeViewControl/plus_rest.png");
+  background-repeat: no-repeat;
+  height: 11px !important;
+  width: 11px !important;
+  margin-left: 17px;
+  vertical-align: top;
+}
+.jstree LI.jstree-leaf > ins {
+  display: none;
+}
+.jstree LI.jstree-open > ins.jstree-icon:hover {
+  background-image: url("../../../_imgs/TreeViewControl/minus_hover.png"), url("/_imgs/TreeViewControl/minus_hover.png");
+}
+.jstree LI.jstree-closed > ins.jstree-icon:hover {
+  background-image: url("../../../_imgs/TreeViewControl/plus_hover.png"), url("/_imgs/TreeViewControl/plus_hover.png");
+}
+.jstree a {
+  height: 13px !important;
+  font-size: 13px;
+  font-family: Segoe UI;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
+  vertical-align: top;
+  display: inline;
+  margin-left: 5px;
+  line-height: 13px !important;
+}
+.jstree a:focus {
+  background: #e7f4f9;
+}
+.jstree .heroNode > a {
+  color: #000000;
+  font-weight: 700;
+  display: inline;
+}
+.jstree .jstree-leaf > a {
+  margin-left: 30px;
+  padding-left: 4px;
+}
+.jstree a.jstree-popout-icon {
+  margin-left: 8px;
+  padding: 0px;
+}
+.jstree a.jstree-popout-icon:hover,
+.jstree a.jstree-popout-icon:focus {
+  background: none;
+}
+.jstree .jstree-popout-icon > img {
+  vertical-align: top;
+  height: 13px;
+  width: 16px;
+}
+.jstree a.jstree-popout-icon.jstree-hovered {
+  background: none;
+}
+/* Root */
+DIV.jstree > UL > LI {
+  margin-left: 0px;
+  padding-top: 4px;
+}
+/* Root when open */
+DIV.jstree > UL > .jstree-open {
+  background-image: none;
+}
+DIV.jstree > UL > .jstree-open > ins {
+  margin-left: 1px;
+}
+DIV.jstree > UL > .jstree-closed > ins {
+  margin-left: 1px;
+}
+/* ----------------------RTL------------------- */
+/* Root */
+DIV.jstree-rtl > UL > LI {
+  margin-right: 0px;
+}
+.jstree-rtl {
+  /*Non Root */
+
+  /* Last Node*/
+
+}
+.jstree-rtl LI {
+  /* Root's LAST child */
+
+}
+.jstree-rtl LI LI {
+  margin-right: 7px;
+  border-right: 1px dotted #aba7a7;
+  border-left: none;
+  background-position: 100% 23px;
+  /* NOT Root's children */
+
+}
+.jstree-rtl LI LI LI {
+  margin-right: 23px;
+  border-right: 1px dotted #aba7a7;
+  border-left: none;
+}
+.jstree-rtl LI LI LI.jstree-last {
+  margin-right: 23px;
+}
+.jstree-rtl LI LI.jstree-last {
+  border: none;
+}
+.jstree-rtl LI LI.jstree-last {
+  background-position: 100% 0%, 100% 23px;
+}
+.jstree-rtl LI.jstree-open > ins {
+  margin-right: 18px;
+  margin-left: 0px !important;
+}
+.jstree-rtl LI.jstree-closed > ins {
+  margin-right: 18px;
+  margin-left: 0px !important;
+}
+.jstree-rtl LI.jstree-last > ins {
+  margin-right: 18px;
+  margin-left: 0px !important;
+}
+.jstree-rtl a {
+  margin-right: 5px;
+  margin-left: 0px;
+}
+.jstree-rtl a.jstree-popout-icon {
+  margin-right: 8px;
+}
+.jstree-rtl .jstree-leaf > a {
+  margin-right: 30px;
+  margin-left: 0px;
+  padding-right: 4px;
+  padding-left: 0px;
+}
+.jstree-rtl .jstree-leaf > a.jstree-popout-icon {
+  margin-right: 8px;
+  padding-right: 2px;
+}
+/* Root */
+DIV.jstree-rtl > UL > .jstree-open > ins {
+  margin-right: 2px;
+}
+DIV.jstree-rtl > UL > .jstree-closed > ins {
+  margin-right: 2px;
+}
+.FolderViewUpAndHome {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+.FolderViewUpAndHome div.treeHome {
+  margin-bottom: 2px;
+  height: 20px;
+  width: 62px;
+  cursor: pointer;
+}
+.FolderViewUpAndHome div.treeUp {
+  margin-top: 1px;
+  height: 11px;
+  width: 11px;
+  cursor: pointer;
+}
+.FolderViewUpAndHome div.treeUp.disabled {
+  cursor: auto;
+}
+/* ------------- High Contrast------------- */
+.high-contrast div.jstree LI {
+  border: none;
+  background-image: none !important;
+}
+.high-contrast div.jstree LI ins {
+  background-image: none;
+}
+.high-contrast div.jstree LI.jstree-open > ins::before {
+  content: "\2198";
+}
+.high-contrast div.jstree LI.jstree-closed > ins::before {
+  content: "\2192";
+}
+.high-contrast div.jstree-rtl LI {
+  border: none;
+  background-image: none !important;
+}
+.high-contrast div.jstree-rtl LI ins {
+  background-image: none;
+}
+.high-contrast div.jstree-rtl LI.jstree-open > ins::before {
+  content: "\2199";
+}
+.high-contrast div.jstree-rtl LI.jstree-closed > ins::before {
+  content: "\2190";
+}

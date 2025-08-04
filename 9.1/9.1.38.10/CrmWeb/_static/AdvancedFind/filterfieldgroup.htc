@@ -1,0 +1,440 @@
+<public:component lightweight="true" tagName=FilterFieldGroup>
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:attach event="onclick" onevent="handleClick()"/>
+<public:event name="onentitychange" id="OnEntityChangeHandler"/>
+<public:property name="GroupClause" get="GetGroupClause" put="SetGroupClause"/>
+<public:property name="Selected" get="GetSelected" put="SetSelected"/>
+<public:property name="FetchXml" put="SetFetchXml"/>
+<public:property name="Container"/>
+<public:property name="EntityName"/>
+<public:property name="ParentControl" />
+<public:property name="Children" get="GetChildren"/>
+<public:method name="GetNumControls" />
+<public:method name="GetControl" />
+<public:method name="GetControlsTable" />
+<public:method name="DeleteControl" />
+<public:method name="AddControl"/>
+<public:method name="AddNewFilterField"/>
+<public:method name="SetMode"/>
+<public:method name="Group" />
+<public:method name="GetFetchStartElement"/>
+<public:method name="GetFetchEndElement"/>
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oMenuBtn = null,
+    _oGrpTxtSpn = null,
+    _oGrpControls = null,
+    _oPopupMenu = null,
+    _sGroupClause = "",
+    _bSelected = false,
+    _oFetchXmlNode,
+    _aoControls = [],
+    _bInitComplete = false;
+function SysInit()
+{
+    Init()
+}
+function InitOnDocReady()
+{
+    Sys.Application.get_isInitialized() && !_bInitComplete && 
+        Init()
+}
+function Init()
+{
+    var oButtonImg = Mscrm.ImageStrip.getImageInfo(Mscrm.CrmUri.create("/_imgs/grid/Dropdown_Arrow.png"));
+    element.innerHTML = "<table class='ms-crm-AdvFind-FilterGroup' cellspacing=0 cellpadding=0 style='display:none'><tr><td class='ms-crm-AdvFind-GroupName'><span tabindex=0 class='ms-crm-AdvFind-GroupMenu'><img alt='' src='" + oButtonImg.source + "' class = 'ms-crm-View-icon " + oButtonImg.cssClass + "'/><a contentEditable='false' tabindex='-1' onclick='return false;' href='#' target='_self' title=\"" + CrmEncodeDecode.CrmHtmlAttributeEncode(LOCID_AF_OPT_ATGROUP) + "\" class='atLink'></a></span><span class='ms-crm-AdvFind-GroupLabel'></span></td><td class='ms-crm-AdvFind-GroupPadding'></td><td><span class='ms-crm-AdvFind-ControlsGroup'></span></td></tr></table>";
+    _bInitComplete = true;
+    _oMenuBtn = element.firstChild.rows[0].cells[0].firstChild;
+    _oGrpTxtSpn = element.firstChild.rows[0].cells[0].children[1];
+    _oGrpControls = element.firstChild.rows[0].cells[2].firstChild;
+    SetGroupClause(_sGroupClause);
+    SetFetchXml(_oFetchXmlNode);
+    _oFetchXmlNode = null;
+    var iLen = _aoControls.length,
+        i = 0;
+    while(i < iLen)
+    {
+        AddControl(_aoControls[i],AT_END);
+        delete _aoControls[i];
+        i++
+    }
+    with(_oMenuBtn)
+    {
+        onclick = ShowPopupMenu;
+        onmouseenter = OnMouseEnter;
+        onmouseleave = OnMouseLeave;
+        onkeyup = onMnuKeyUp;
+        id = element.id + "MNU";
+        lastChild.id = "at" + id
+    }
+    ShowGroupBox(Container.Mode != Container.ModesEnum.Simple && !IsImplicitANDGroup())
+}
+function onMnuKeyUp()
+{
+    (event.keyCode == KEY_SPACE || event.keyCode == KEY_ENTER) && 
+        ShowPopupMenu()
+}
+function OnMouseEnter()
+{
+    _oMenuBtn.className = "ms-crm-AdvFind-SelectedGroupMenu"
+}
+function OnMouseLeave()
+{
+    _oMenuBtn.className = "ms-crm-AdvFind-GroupMenu"
+}
+function GetGroupTD()
+{
+    return element.firstChild.rows[0].cells[0]
+}
+function GetGroupPad()
+{
+    return element.firstChild.rows[0].cells[1]
+}
+function GetNumControls()
+{
+    return _bInitComplete ? _oGrpControls.children.length : _aoControls.length
+}
+function IsImplicitANDGroup()
+{
+    return ParentControl.tagName == "FilterControl" && _sGroupClause == "and"
+}
+function ShowGroupBox(bShow)
+{
+    GetGroupPad().style.display = GetGroupTD().style.display = bShow ? "inline" : "none"
+}
+function Group(sGroupClause)
+{
+    var iLen = GetNumControls(),
+        iInsertPos = -1,
+        i = 0,
+        iNumGrouped = 0;
+    while(i < iLen)
+    {
+        if(GetControl(i).Selected)
+            if(iInsertPos == -1)
+            {
+                iInsertPos = i;
+                iNumGrouped++
+            }
+            else
+            {
+                var ct = 0;
+                while(ct < iLen)
+                {
+                    if(!GetControl(ct).Selected)
+                        break;
+                    ct++
+                }
+                if(ct == iLen && !IsImplicitANDGroup())
+                {
+                    if(_sGroupClause != sGroupClause)
+                    {
+                        GroupClause = sGroupClause;
+                        Container.IsDirty = true
+                    }
+                    ct = 0;
+                    while(ct < iLen)
+                        GetControl(ct++).Selected = false;
+                    return ct
+                }
+                i = iInsertPos;
+                break
+            }
+        i++
+    }
+    if(i != iLen)
+    {
+        var oNewFilterGroup = window.document.createElement(FILTERFIELDGRP_CTRL);
+        oNewFilterGroup.id = element.id + "FGRP";
+        var oCtrl,
+            iIndex;
+        while(i < iLen)
+        {
+            oCtrl = GetControl(i);
+            if(oCtrl.Selected)
+            {
+                oCtrl = RemoveControl(oCtrl);
+                oCtrl.Selected = false;
+                oNewFilterGroup.AddControl(oCtrl,AT_END);
+                iLen--;
+                iNumGrouped++
+            }
+            else
+                i++
+        }
+        AddControl(oNewFilterGroup,null,null,iInsertPos);
+        oNewFilterGroup.GroupClause = sGroupClause
+    }
+    return iNumGrouped
+}
+function ShowPopupMenu()
+{
+    var bIsATLink = false;
+    if(!IsNull(event) && !IsNull(event.srcElement))
+        if(event.srcElement.className == "atLink")
+            bIsATLink = true;
+    HideVisibleControl(element.Container);
+    _oPopupMenu = new PopupMenu;
+    with(_oPopupMenu)
+    {
+        AddMenuItem(_bSelected ? LOCID_AF_UNSELECTGROUP : LOCID_AF_SELECTGROUP,ToggleSelected);
+        AddMenuItem(LOCID_AF_UNGROUP,Ungroup);
+        AddMenuItem(formatString(LOCID_AF_CHANGEGRP,_sGroupClause == "or" ? LOCID_AF_TXTAND : LOCID_AF_TXTOR),ChangeGroupClause);
+        AddMenuItem(LOCID_AF_ADDROWTOGRP,AddClause);
+        AddMenuItem(LOCID_AF_MNUITMDELETE,Delete);
+        Show(0,event.srcElement.offsetHeight,null,null,event.srcElement,bIsATLink)
+    }
+}
+function Delete()
+{
+    confirm(LOCID_AF_DELETEGROUP) && 
+        ParentControl.DeleteControl(element)
+}
+function SetMode(iMode)
+{
+    var bVisibleInSimple = false,
+        i = GetNumControls() - 1;
+    while(i >= 0)
+    {
+        if(GetControl(i).style.display != "none")
+        {
+            bVisibleInSimple = true;
+            break
+        }
+        i--
+    }
+    ShowGroupBox(iMode == Container.ModesEnum.Detailed && !IsImplicitANDGroup());
+    ShowIfDetailedOrNotHidden(element,bVisibleInSimple,iMode)
+}
+function DeleteControl(oControl)
+{
+    RemoveControl(oControl,true);
+    switch(GetNumControls())
+    {
+        case 1:
+            Ungroup();
+            break;
+        case 0:
+            ParentControl.DeleteControl(element);
+            break
+    }
+    Container.IsDirty = true
+}
+function RemoveControl(oControl)
+{
+    return _oGrpControls.removeChild(oControl)
+}
+function Ungroup()
+{
+    !IsNull(_oPopupMenu) && 
+        _oPopupMenu.Hide();
+    var i = GetNumControls();
+    while(i > 0)
+    {
+        oControl = RemoveControl(GetControl(0));
+        i--;
+        if(oControl.tagName == "FilterField" && !oControl.Defined)
+            continue;
+        ParentControl.AddControl(oControl,AT_BEFORE,element,null,true)
+    }
+    ParentControl.DeleteControl(element)
+}
+function AddClause()
+{
+    !IsNull(_oPopupMenu) && 
+        _oPopupMenu.Hide();
+    HideVisibleControl(element.Container);
+    var oFilterField = AddNewFilterField(AT_END);
+    oFilterField != null && 
+        oFilterField.SetFocus()
+}
+function ChangeGroupClause()
+{
+    IsNull(_oPopupMenu) ? false : _oPopupMenu.Hide();
+    GroupClause = _sGroupClause == "and" ? "or" : "and";
+    Container.IsDirty = true
+}
+function GetGroupClause()
+{
+    return _sGroupClause
+}
+function SetGroupClause(sClause)
+{
+    _sGroupClause = sClause;
+    if(_bInitComplete)
+    {
+        _oGrpTxtSpn.innerText = _sGroupClause == "and" ? LOCID_AF_TXTAND : LOCID_AF_TXTOR;
+        ShowGroupBox(Container.Mode != Container.ModesEnum.Simple && !IsImplicitANDGroup())
+    }
+}
+function SetSelected(bSelect)
+{
+    _bSelected = bSelect;
+    GetGroupTD().className = Selected ? "ms-crm-AdvFind-SelectedGroup" : "ms-crm-AdvFind-GroupName"
+}
+function GetSelected()
+{
+    return _bSelected
+}
+function ToggleSelected()
+{
+    !IsNull(_oPopupMenu) && 
+        _oPopupMenu.Hide();
+    SetSelected(!_bSelected)
+}
+function handleClick()
+{
+    if(event.ctrlKey)
+    {
+        ToggleSelected();
+        event.cancelBubble = true
+    }
+}
+function GetFetchStartElement()
+{
+    if(Container.FetchMode == Container.FetchModesEnum.Summary)
+        return "";
+    return GetNumControls() > 0 ? '<filter type="' + _sGroupClause + '">' : ""
+}
+function GetFetchEndElement()
+{
+    if(Container.FetchMode == Container.FetchModesEnum.Summary)
+        return "";
+    return GetNumControls() > 0 ? "</filter>" : ""
+}
+function GetChildren()
+{
+    var aoChildren = [],
+        iLen = GetNumControls(),
+        i = 0;
+    while(i < iLen)
+    {
+        aoChildren.push(GetControl(i));
+        i++
+    }
+    return aoChildren
+}
+function SetFetchXml(oFilterNode)
+{
+    _oFetchXmlNode = oFilterNode;
+    if(!_bInitComplete || IsNull(oFilterNode))
+        return;
+    _sGroupClause = oFilterNode.getAttribute("type");
+    _sGroupClause = _sGroupClause != null ? _sGroupClause.toLowerCase() : "and";
+    SetGroupClause(_sGroupClause);
+    var oFilterNodes = oFilterNode.selectNodes("filter|condition");
+    if(oFilterNodes == null)
+        return;
+    var oNewFilterField,
+        oNewFilterFieldGroup,
+        iLen = oFilterNodes.length;
+    Container.Mode == Container.ModesEnum.Simple && 
+        ShowIfDetailedOrNotHidden(element,oFilterNode.selectSingleNode(XPATH_SHOWNINSIMPLE) != null,Container.Mode);
+    for(var i = 0; i < iLen; i++)
+        switch(oFilterNodes[i].tagName.toLowerCase())
+        {
+            case "condition":
+                oNewFilterField = AddNewFilterField(AT_END);
+                oNewFilterField.FetchXml = oFilterNodes[i];
+                break;
+            case "filter":
+                oNewFilterFieldGroup = AddNewFilterFieldGroup(AT_END);
+                oNewFilterFieldGroup.FetchXml = oFilterNodes[i];
+                break
+        }
+}
+function AddControl(oControl,iWhere,oWhichControl,iPos)
+{
+    var i,
+        iLen;
+    oControl.ParentControl = element;
+    oControl.Container = Container;
+    oControl.EntityName = EntityName;
+    if(_bInitComplete)
+    {
+        if(IsNull(iPos))
+        {
+            if((iWhere == AT_AFTER || iWhere == AT_BEFORE) && (IsNull(oWhichControl) || oWhichControl.parentElement !== _oGrpControls))
+                return null;
+            switch(iWhere)
+            {
+                case AT_BEGIN:
+                    if(_oGrpControls.hasChildNodes())
+                        _oGrpControls.insertBefore(oControl,_oGrpControls.children[0]);
+                    else
+                        _oGrpControls.appendChild(oControl);
+                    break;
+                case AT_AFTER:
+                    var bFound = false,
+                        iLen = _oGrpControls.children.length - 1;
+                    for(i = 0; i < iLen; i++)
+                        if(_oGrpControls.children[i] === oWhichControl)
+                        {
+                            _oGrpControls.insertBefore(oControl,_oGrpControls.children[i + 1]);
+                            bFound = true;
+                            break
+                        }
+                    !bFound && 
+                        _oGrpControls.appendChild(oControl);
+                    break;
+                case AT_BEFORE:
+                    iLen = _oGrpControls.children.length;
+                    for(i = 0; i < iLen; i++)
+                        if(_oGrpControls.children[i] === oWhichControl)
+                        {
+                            _oGrpControls.insertBefore(oControl,_oGrpControls.children[i]);
+                            break
+                        }
+                    break;
+                case AT_END:
+                default:
+                    _oGrpControls.appendChild(oControl);
+                    break
+            }
+        }
+        else
+        {
+            if(iPos > _oGrpControls.children.length || iPos < 0)
+                return null;
+            if(iPos == _oGrpControls.children.length)
+                _oGrpControls.appendChild(oControl);
+            else
+                _oGrpControls.insertBefore(oControl,_oGrpControls.children[iPos])
+        }
+        element.firstChild.style.display = "inline"
+    }
+    else
+        switch(iWhere)
+        {
+            case AT_END:
+                _aoControls.push(oControl);
+                break;
+            case AT_BEGIN:
+                _aoControls.unshift(oControl);
+                break;
+            default:
+                return null
+        }
+    return oControl
+}
+function AddNewFilterFieldGroup(iWhere,oCtrl)
+{
+    var oNewFilterFieldGroup = window.document.createElement(FILTERFIELDGRP_CTRL);
+    oNewFilterFieldGroup.id = element.id + "FGRP";
+    return AddControl(oNewFilterFieldGroup,iWhere,oCtrl)
+}
+function AddNewFilterField(iWhere,oCtrl)
+{
+    var oNewFilterField = window.document.createElement(FILTERFIELD_CTRL);
+    oNewFilterField.id = element.id + "FF" + GetNumControls();
+    return AddControl(oNewFilterField,iWhere,oCtrl)
+}
+function GetControl(iIndex)
+{
+    return _bInitComplete ? _oGrpControls.children[iIndex] : _aoControls[iIndex]
+}
+
+</script>
+</html>
+</public:component>

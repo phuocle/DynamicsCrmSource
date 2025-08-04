@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[MatchCode8cc596e838044630bd79b04b01d64e2d] (
+    [ObjectId]   UNIQUEIDENTIFIER NOT NULL,
+    [MatchCode]  NVARCHAR (450)   NULL,
+    [ModifiedOn] DATETIME         NULL
+);
+
+
+GO
+ALTER TABLE [dbo].[MatchCode8cc596e838044630bd79b04b01d64e2d] SET (LOCK_ESCALATION = DISABLE);
+
+
+GO
+CREATE UNIQUE CLUSTERED INDEX [Index3]
+    ON [dbo].[MatchCode8cc596e838044630bd79b04b01d64e2d]([ObjectId] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [Index1]
+    ON [dbo].[MatchCode8cc596e838044630bd79b04b01d64e2d]([MatchCode] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [Index2]
+    ON [dbo].[MatchCode8cc596e838044630bd79b04b01d64e2d]([ModifiedOn] ASC);
+

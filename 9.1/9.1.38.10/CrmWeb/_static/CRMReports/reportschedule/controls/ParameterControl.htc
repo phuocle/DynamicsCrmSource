@@ -1,0 +1,116 @@
+<public:component lightweight="true" tagName="Parameter">
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:property name="DataXml" get="buildXml"/>
+<public:property name="NumControls" get="getNumControls"/>
+<public:property name="ReturnOnlyDirtyParameters" internalname="_bReturnOnlyDirtyParameters" />
+<public:method name="IsValid" internalname="isValid" />
+<public:method name="SetDrillThroughUrlParameterValue" internalname="setDrillThroughUrlParameterValue" />
+<public:method name="SetFilterTextParameterValue" internalname="setFilterTextParameterValue" />
+<public:method name="SetFocus" internalname="setFocus" />
+<public:method name="SetParameterValue" internalname="setParameterValue" />
+<script language="JavaScript"></script><script type="text/javascript">
+
+var aControls = null,
+    iControlCount = 0,
+    _bReturnOnlyDirtyParameters = true,
+    _firstControl = null;
+function Init()
+{
+    aControls = [];
+    for(var oaElements = element.all,
+        i = 0; i < oaElements.length; i++)
+    {
+        var oElement = oaElements[i];
+        if(!IsNull(oElement.parametername))
+        {
+            aControls.push(oElement);
+            if(oElement.type != "hidden")
+            {
+                iControlCount++;
+                if(IsNull(_firstControl))
+                    _firstControl = oElement
+            }
+        }
+    }
+}
+function getNumControls()
+{
+    return iControlCount
+}
+function setFilterTextParameterValue(sValue)
+{
+    setParameterValue("CRM_FilterText",sValue)
+}
+function setDrillThroughUrlParameterValue(sValue)
+{
+    setParameterValue("CRM_URL",sValue)
+}
+function setParameterValue(sName,sValue)
+{
+    var oControl = getParameterControl(sName);
+    if(!IsNull(oControl))
+        oControl.DataValue = sValue
+}
+function getParameterControl(sName)
+{
+    for(var i = 0; i < aControls.length; i++)
+    {
+        var oControl = aControls[i];
+        if(oControl.parametername == sName)
+            return oControl
+    }
+    return null
+}
+function buildXml()
+{
+    var aXml = [];
+    aXml.push('<ArrayOfCrmParameterValue xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">');
+    for(var iParametersChanged = 0,
+        i = 0; i < aControls.length; i++)
+    {
+        var oControl = aControls[i],
+            sControlClass = oControl.className;
+        if(sControlClass != "ms-crm-Hidden" && !_bReturnOnlyDirtyParameters || oControl.IsDirty())
+        {
+            var sParameterName = oControl.parametername,
+                sParameterValue = oControl.DataValue;
+            aXml.push("<CrmParameterValue>");
+            aXml.push("<Name>");
+            aXml.push(CrmEncodeDecode.CrmXmlEncode(sParameterName));
+            aXml.push("</Name>");
+            if(!IsNull(sParameterValue))
+            {
+                sParameterValue = sControlClass == "ms-crm-DateTime" ? FormatUtcDate(sParameterValue) : sParameterValue.toString();
+                aXml.push("<Value>");
+                aXml.push(CrmEncodeDecode.CrmXmlEncode(Trim(sParameterValue)));
+                aXml.push("</Value>")
+            }
+            aXml.push("</CrmParameterValue>");
+            iParametersChanged++
+        }
+    }
+    aXml.push("</ArrayOfCrmParameterValue>");
+    return iParametersChanged == 0 ? "" : aXml.join("")
+}
+function isValid()
+{
+    for(var i = 0; i < aControls.length; i++)
+    {
+        var oControl = aControls[i];
+        if(oControl.RequiredLevel == FIELD_REQUIRED && IsNull(oControl.DataValue))
+        {
+            alert(formatString(LOCID_MISSING_PARAMETER,oControl.prompt));
+            oControl.SetFocus();
+            return false
+        }
+    }
+    return true
+}
+function setFocus()
+{
+    iControlCount > 0 && 
+        _firstControl.SetFocus()
+}
+
+</script>
+</public:component>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<script type="text/javascript">
+	//<![CDATA[
+	var __pageStartDate = Date.now();
+	var shouldIgnoreMSPointerEvents = true;
+
+		// polyfill window.performance APIs needed for performance markers
+	if (!window.performance) { window.performance = {}; }
+	if (!window.performance.now) {
+		window.performance.now = function () {
+			return Date.now() - __pageStartDate;
+		}
+	}
+
+		// save page start time
+	var PageLoadStartTime = (window.performance.timing && window.performance.timing.navigationStart) || __pageStartDate;
+	//]]>
+	</script>
+	<title>Microsoft Dynamics CRM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+	<!-- css -->
+	<link href="resources/styles/Reset.css?v=9100380010" rel="stylesheet" type="text/css" />
+	<link href="resources/styles/LoadingStyles.css?v=9100380010" rel="stylesheet" type="text/css" />
+	<link href="resources/styles/MailApp.css?v=9100380010" rel="stylesheet" type="text/css" />
+	<link href="resources/styles/MailAppOutlookMobile.css?v=9100380010" rel="stylesheet" type="text/css" />
+</head>
+<body class="mailApplication">
+	<script type="text/javascript">var JsLoadStartTime = window.performance.now();</script>
+
+	<!-- Entry point -->
+	<!-- Script libraries -->
+	<script type="text/javascript" src="scripts/jquery-2.1.1.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/pep.min.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/jquery.cookie.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/MicrosoftAjax.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/jquery.tmpl.min.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/jquery.ui.1.10.4.custom.min.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/jquery.ui.datepicker.min.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/EncodeDecode.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/highcharts.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/funnel.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/bluebird.js?v=9100380010"></script>
+
+	<!-- CRM Libraries -->
+	<script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Imported.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Framework.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/AuthTokenHeaderAttacher.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Models.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Storage.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Messages.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.OWAViewModels.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.ViewModels.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/Microsoft.Crm.Client.Application.App.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/react.js?v=9100380010"></script>
+	<script type="text/javascript" src="scripts/Tel.min.js?v=9100380010"></script>
+	<script type="text/javascript">    	var JsLoadEndTime = window.performance.now();</script>
+	
+	<!-- !! Must be kept consistent with the MailAppUserEducation component !! -->
+	<div id="UserEducation" class="userEducation" style="display: none;">
+		<div id="UserEducationHeader" class="userEducationHeader">
+			<label id="UserEducationTitle" class="userEducationTitle"></label>
+		</div>
+		<div id="UserEducationTips" class="userEducationTips">
+			<label id="HelpTip1" class="helpTip1"></label>
+			<label id="HelpTip2" class="helpTip2"></label>
+			<label id="HelpTip3" class="helpTip3"></label>
+		</div>
+		<div class="gifSection">
+			<img id="userEducationImage" />
+		</div>
+		<div class="feedbackSection">
+			<div id="LoadingSection" class="loadingSection">
+				<label id="WaitLabel" class="waitLabel"></label>
+				<label id="MultipleServerCallProgressIndicator" class="multipleServerCallProgressIndicator"></label>
+				<div id="CRMUILoading" class="indeterminateProgressRing">
+					<div class="progressDot"></div>
+					<div class="progressDot"></div>
+					<div class="progressDot"></div>
+					<div class="progressDot"></div>
+					<div class="progressDot"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Generic Confirm dialog for when the UI framework is not available. Do not use directly, instead use ConfirmDialog.ShowJQueryDialog - this is styled to reflect ConfirmDialog rendered in client context -->
+	<!-- !! Must be kept consistent with the ConfirmDialog component and all other htm or aspx files !! -->
+	<div id="ConfirmDialog" tabindex="-1" class="popupShadow conductorContent messageDialog-popup-OkCancel information"
+		 role="dialog" style="z-index: 1002; display:none;" data-id="messageDialog">
+		<div class="messageDialog-popupContent">
+			<div class="messageDialog-contentContainer">
+				<span class="messageDialog-message">
+					<span id="ConfirmDialogTitle" class="messageDialog-Title" data-id="messageDialogTitle"></span>
+					<div id="ConfirmDialogMessage" class="messageDialog-Message messageDialog-MessageBody" data-id="messageDialogMessage"></div>
+				</span>
+			</div>
+			<div class="messageDialog-actionContainer">
+				<span class="messageDialog-buttons">
+					<span class="messageDialog-buttonContainer">
+						<button id="ConfirmDialogYes" tabindex="-1" class="button dynamicsButton messageDialog_OK_Button" role="button" aria-labelledby="ConfirmDialogYesLabel" data-id="Ok">
+							<div class="button-container">
+								<span class="button-commandRing"></span>
+								<span class="button-label" id="ConfirmDialogYesLabel"></span>
+							</div>
+						</button>
+						<button id="ConfirmDialogNo" tabindex="-1" class="button dynamicsButton messageDialog_Cancel_Button" role="button" aria-labelledby="ConfirmDialogNoLabel" data-id="Cancel">
+							<div class="button-container">
+								<span class="button-commandRing"></span>
+								<span class="button-label" id="ConfirmDialogNoLabel"></span>
+							</div>
+						</button>
+					</span>
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- Begin MoCA AuthenticationManager Section -->
+	<script type="text/javascript">
+		function authenticatedPageLoaded() {
+			Microsoft.Crm.Client.Core.Framework.AuthenticationManager.get_defaultInstance().onCookieAvailable();
+		}
+	</script>
+	
+	<!-- !! Auth elements must be kept consistent with the AuthenticationManager component and all other htm or aspx files !! -->
+	<form method="POST" id="authForm" target="authFrame">
+		<input type="hidden" name="wa" value="wsignin1.0" />
+		<input type="hidden" id="authToken" name="wresult" value="" />
+		<input type="hidden" id="wctx" name="wctx" value="" />
+	</form>
+
+	<iframe id="authFrame" name="authFrame" src="" style="display:none"></iframe>
+	<!-- End MoCA AuthenticationManager Section -->
+	<script type="text/javascript">
+		var VERSION_NUMERIC_VALUE = "9100380010";
+		var require = {
+			urlArgs: "v=" + VERSION_NUMERIC_VALUE
+		};
+	</script>
+	<script type="text/javascript">var RequireJsLoadStartTime = window.performance.now();</script>
+	<script type="text/javascript" src="scripts/require.js?v=9100380010" data-main="scripts/main"></script>
+</body>
+</html>

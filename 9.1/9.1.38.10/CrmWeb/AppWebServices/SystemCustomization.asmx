@@ -1,0 +1,1 @@
+<%@ WebService Language="c#" Codebehind="Microsoft.Crm.Application.Components.WebServices.SystemCustomization.dll" Class="Microsoft.Crm.Application.WebServices.SystemCustomization.SystemCustomization" %>

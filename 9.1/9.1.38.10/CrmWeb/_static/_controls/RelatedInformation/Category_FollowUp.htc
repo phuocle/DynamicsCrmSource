@@ -1,0 +1,205 @@
+<public:component lightweight="true">
+<public:method name="OnTypeChanged"/>
+<public:method name="SaveAndOpenFollowUp"/>
+<public:method name="SaveFollowUp"/>
+<public:attach event="ondocumentready" onevent="initialize()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _minutesInDuration = 30,
+    _millisecondsPerMinute = 6e4;
+function initialize()
+{
+    this.element.document.all.crmFollowUpForm.detachCloseAlert();
+    this.element.document.all.crmFollowUpForm._bSaving = true;
+    SetDefaultValues()
+}
+function SetHandlers()
+{
+    if(this.element.all.crmFollowUpForm.all.scheduledend != null && this.element.all.crmFollowUpForm.all.scheduledstart != null)
+    {
+        $addHandler(this.element.all.crmFollowUpForm.all.scheduledstart,"change",StartTimeChanged);
+        $addHandler(this.element.all.crmFollowUpForm.all.scheduledend,"change",EndTimeChanged)
+    }
+}
+function StartTimeChanged()
+{
+    window.document.all.crmFollowUpForm.all.scheduledend.DataValue = new Date(window.document.all.crmFollowUpForm.all.scheduledstart.DataValue.valueOf() + _minutesInDuration * _millisecondsPerMinute)
+}
+function EndTimeChanged()
+{
+    var oStartTime = window.document.all.crmFollowUpForm.all.scheduledstart,
+        oEndTime = window.document.all.crmFollowUpForm.all.scheduledend;
+    if(!IsNull(oStartTime) && !IsNull(oEndTime))
+        if(oStartTime.DataValue > oEndTime.DataValue)
+        {
+            alert(LOCID_RELATEDINFO_ENDSTARTERR);
+            oEndTime.DataValue = new Date(oStartTime.DataValue.valueOf() + _minutesInDuration * _millisecondsPerMinute)
+        }
+        else
+            _minutesInDuration = (oEndTime.DataValue - oStartTime.DataValue) / 60 / 1e3 - (oEndTime.DataValue.getTimezoneOffset() - oStartTime.DataValue.getTimezoneOffset())
+}
+function SetDefaultValues()
+{
+    var oForm = window.document.all.crmForm,
+        iType = oForm.ObjectTypeCode,
+        dueDate = null;
+    if(iType == Incident)
+        dueDate = oForm.all.followupby;
+    else
+        dueDate = oForm.all.scheduledend;
+    if(dueDate != null)
+        this.element.all.crmFollowUpForm.all.scheduledend.DataValue = dueDate.DataValue;
+    else
+        this.element.all.crmFollowUpForm.all.scheduledend.DataValue = null
+}
+function saveKeyValues()
+{
+    SetCachedSetting("FU_Subject",this.element.all.crmFollowUpForm.all.subject.value);
+    SetCachedSetting("FU_AssignTo",this.element.all.crmFollowUpForm.all.ownerid.DataValue);
+    SetCachedSetting("FU_DueDate",this.element.all.crmFollowUpForm.all.scheduledend.DataValue)
+}
+function restoreKeyValues()
+{
+    this.element.all.crmFollowUpForm.all.subject.value = GetCachedSetting("FU_Subject",this.element.all.crmFollowUpForm.all.subject.value);
+    this.element.all.crmFollowUpForm.all.ownerid.DataValue = GetCachedSetting("FU_AssignTo",this.element.all.crmFollowUpForm.all.ownerid.DataValue);
+    this.element.all.crmFollowUpForm.all.scheduledend.DataValue = GetCachedSetting("FU_DueDate",this.element.all.crmFollowUpForm.all.scheduledend.DataValue);
+    if(!IsNull(this.element.all.crmFollowUpForm.all.scheduledstart))
+        this.element.all.crmFollowUpForm.all.scheduledstart.DataValue = this.element.all.crmFollowUpForm.all.scheduledend.DataValue
+}
+function UpdateForm(iType)
+{
+    var oCommand = new RemoteCommand("ActivitiesWebService","RenderFollowupActivityFormData");
+    oCommand.SetParameter("objectTypeCode",iType);
+    var oResult = oCommand.Execute();
+    if(oResult.Success == ERROR_NONE)
+    {
+        this.element.document.all.followupFormDiv.innerHTML = oResult.ReturnValue;
+        this.element.document.all.crmFollowUpForm._bSaving = true
+    }
+}
+function OnTypeChanged(oTypeSelect)
+{
+    if(!IsNull(oTypeSelect))
+    {
+        saveKeyValues();
+        UpdateForm(oTypeSelect.DataValue);
+        restoreKeyValues();
+        SetHandlers()
+    }
+}
+function ValidateData(oForm)
+{
+    var oStartTime = oForm.GetControl("scheduledstart"),
+        oEndTime = oForm.GetControl("scheduledend");
+    if(!IsNull(oStartTime) && !IsNull(oEndTime))
+        if(oStartTime.DataValue > oEndTime.DataValue)
+        {
+            alert(LOCID_RELATEDINFO_ENDSTARTERR);
+            return false
+        }
+    var oCrmForm = $find("crmForm"),
+        oRegardingObject = oCrmForm.GetControl("regardingobjectid"),
+        iRegardingObjectTypeCode;
+    if(!IsNull(oRegardingObject) && !IsNull(oRegardingObject.DataValue) && oRegardingObject.DataValue.length > 0)
+    {
+        var oRegardingObjectData = oRegardingObject.DataValue[0];
+        iRegardingObjectTypeCode = oRegardingObjectData.type
+    }
+    var iParentObjectTypeCode = oForm.ObjectTypeCode;
+    if(iRegardingObjectTypeCode == 4406 && iParentObjectTypeCode == 4212)
+    {
+        alert(LOCID_RELATEDINFO_TASKNOTREGOBJ);
+        return false
+    }
+    return true
+}
+function SaveFollowUp(iType,sType,oForm)
+{
+    crmFollowUpForm.GetControl("scheduledend").refreshTimeValue();
+    var iBuildStatus = oForm.BuildXml(true,true,true);
+    if(ValidateData(oForm) && (iBuildStatus == 1 || iBuildStatus == 3))
+    {
+        DisableSaveButtons(true);
+        var oCrmForm = $find("crmForm"),
+            iParentId = oCrmForm.get_objectId(),
+            iParentObjectTypeCode = oCrmForm.get_objectTypeCode(),
+            oFollowUpRegardingObject = crmFollowUpForm.GetControl("regardingobjectid");
+        if(IsActivityTypeCode(iParentObjectTypeCode) && oFollowUpRegardingObject == null)
+        {
+            var oRegardingObject = oCrmForm.GetControl("regardingobjectid");
+            if(!IsNull(oRegardingObject) && !IsNull(oRegardingObject.DataValue) && oRegardingObject.DataValue.length > 0)
+            {
+                var oParentObject = oRegardingObject.DataValue[0];
+                iParentObjectTypeCode = oParentObject.type;
+                iParentId = oParentObject.id
+            }
+            else
+            {
+                iParentObjectTypeCode = null;
+                iParentId = null
+            }
+        }
+        var activityXml = crmFollowUpFormSubmit.crmFormSubmitXml.value,
+            customerElem = crmFollowUpForm.GetControl("customer"),
+            customerStartTag,
+            customerEndTag,
+            rootElementEndNode = "</" + oForm.crmFormRootElem.value + ">";
+        if(iType == 4401)
+        {
+            customerStartTag = "<customer>";
+            customerEndTag = "</customer>";
+            if(iParentObjectTypeCode == 1 || iParentObjectTypeCode == 2 || iParentObjectTypeCode == 4)
+                activityXml = activityXml.replace(rootElementEndNode,customerStartTag + '<activityparty><partyid  type="' + iParentObjectTypeCode + '">' + iParentId + "</partyid></activityparty>" + customerEndTag + rootElementEndNode)
+        }
+        else
+            if(iType == 4214)
+            {
+                customerStartTag = "<customers>";
+                customerEndTag = "</customers>";
+                if(iParentObjectTypeCode == 1 || iParentObjectTypeCode == 2)
+                    activityXml = activityXml.replace(rootElementEndNode,customerStartTag + '<activityparty><partyid  type="' + iParentObjectTypeCode + '">' + iParentId + "</partyid></activityparty>" + customerEndTag + rootElementEndNode)
+            }
+        if(!IsNull(iParentObjectTypeCode) && !IsNull(iParentId) && oFollowUpRegardingObject == null)
+        {
+            var rootElementEndNode = "</" + oForm.crmFormRootElem.value + ">";
+            if(activityXml.length == 0)
+                activityXml = "<" + oForm.crmFormRootElem.value + ">" + rootElementEndNode;
+            activityXml = activityXml.replace(rootElementEndNode,'<regardingobjectid type="' + iParentObjectTypeCode + '">' + iParentId + "</regardingobjectid>" + rootElementEndNode)
+        }
+        var oCreateFollowupActivity = new RemoteCommand("ActivitiesWebService","CreateFollowupActivity");
+        oCreateFollowupActivity.SetParameter("objectTypeCode",iType);
+        oCreateFollowupActivity.SetParameter("xml",activityXml);
+        oCreateFollowupActivity.SetParameter("sourceObjectTypeCode",oCrmForm.get_objectTypeCode());
+        oCreateFollowupActivity.SetParameter("sourceObjectId",oCrmForm.get_ObjectId());
+        var oResult = oCreateFollowupActivity.Execute();
+        if(oResult.Success == ERROR_NONE)
+        {
+            var sSubject = oForm.subject.value;
+            UpdateForm(iType);
+            var oaNot = new Array($find("savemessage").CreateNotification("GoodSave",3,"Status",formatString(LOCID_RELATEDINFO_FLWUP_OK,sSubject,sType)));
+            find("savemessage").SetNotifications(oaNot);
+            SetDefaultValues();
+            DisableSaveButtons(false);
+            return oResult.ReturnValue
+        }
+        DisableSaveButtons(false);
+        return null
+    }
+}
+function SaveAndOpenFollowUp(iType,sType,oForm)
+{
+    var sActivityId = SaveFollowUp(iType,sType,oForm);
+    if(sActivityId != null)
+    {
+        auto(iType);
+        openObj(iType,sActivityId,null)
+    }
+}
+function DisableSaveButtons(bDisable)
+{
+    this.element.all.savefollowup.disabled = bDisable;
+    this.element.all.saveandopenfollowup.disabled = bDisable
+}
+
+</script>
+</public:component>

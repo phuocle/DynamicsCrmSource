@@ -1,0 +1,185 @@
+/* The file is AUTO generated on Thu, 10 Jul 2025 23:49:19 UTC */
+/* Do NOT manually modify this file! */
+
+.processControlContainer {
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Tahoma, "Microsoft Sans Serif", Verdana, sans-serif;
+  /* _locID_css@font-family="processControlContainer" _locComment="Font Family" */
+
+}
+.processControlContainer .completedStage div.stageLabelMask {
+  background: rgba(85, 85, 85, 0.15);
+  background: -moz-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  background: -webkit-gradient(linear, left, right, color-stop(rgba(85, 85, 85, 0.15)), color-stop(#555555));
+  background: -webkit-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  background: -o-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  background: -ms-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26555555', endColorstr='#ff555555', GradientType=1);
+  background: linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+}
+.processControlContainer.rtl .completedStage div.stageLabelMask {
+  background: rgba(85, 85, 85, 0.15);
+  background: -moz-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  background: -webkit-gradient(linear, right, left, color-stop(rgba(85, 85, 85, 0.15)), color-stop(#555555));
+  background: -webkit-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  background: -o-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  background: -ms-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26555555', endColorstr='#ff555555', GradientType=1);
+  background: linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+}
+.processControlContainer div.hasPrevious.processStageContainer.unselectedStage .processStageTailContainer {
+  background-position: left -42px;
+}
+.processControlContainer .unselectedStage.hasNext div.processStageHeadContainer {
+  background-position: right -63px;
+}
+.processControlContainer .unselectedStage div.stageLabelMask {
+  background-color: transparent;
+}
+.processControlContainer.rtl .unselectedStage div.stageLabelMask {
+  background-color: transparent;
+}
+.processControlContainer div.stageContentArea {
+  background: #555555;
+}
+.processControlContainer .scrollButton.left .scrollArrow,
+.processControlContainer .scrollButton.left .scrollArrow .scrollArrowInner,
+.processControlContainer .scrollButton.right .scrollArrow .scrollArrowInner,
+.processControlContainer .scrollButton.right .scrollArrow {
+  border-color: #555555 !important;
+}
+.processControlContainer div.collapsibleArea {
+  border-style: solid;
+  padding-top: 19px;
+}
+.processControlContainer .unselectedStage.completedStage div.stageContentArea {
+  background-color: #555555;
+}
+.processControlContainer .processStageContainer.unselectedStage div.stageIconHolder {
+  color: #555555;
+}
+.processControlContainer .processStageContainer .processStageTailContainer div.stageContentArea:before {
+  border-top-style: solid;
+  border-top-width: 14px;
+  border-top-color: #555555;
+  border-bottom-style: solid;
+  border-bottom-width: 14px;
+  border-bottom-color: #555555;
+  border-left: 11px solid transparent;
+}
+.processControlContainer .processStageContainer .processStageTailContainer div.stageContentArea:after {
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 11px solid #555555;
+}
+.processControlContainer .processStageContainer .processStageTailContainer div.stageContentArea .stageNameContent {
+  color: #ffffff;
+}
+.processControlContainer .processStageContainer .processStageTailContainer div.stageContentArea:hover .stageContent span.stageNameContent {
+  color: #ffffff;
+}
+.processControlContainer .processStageContainer .processStageTailContainer div.stageContentArea:hover div.stageIconHolder {
+  color: #ffffff;
+}
+.processControlContainer .processStageContainer.selectedStage .processStageTailContainer div.stageContentArea .stageNameContent {
+  color: #ffffff;
+}
+.processControlContainer .processStageContainer.selectedStage div.stageIconHolder {
+  color: #ffffff;
+}
+.processControlContainer .processStageContainer.completedStage .processStageTailContainer div.stageContentArea {
+  background-color: #555555;
+}
+.processControlContainer .processStageContainer.completedStage .processStageTailContainer div.stageContentArea:before {
+  border-top: 14px solid #555555;
+  border-bottom: 14px solid #555555;
+}
+.processControlContainer .processStageContainer.completedStage .processStageTailContainer div.stageContentArea:after {
+  border-left: 11px solid #555555;
+}
+.processControlContainer .processStageContainer.completedStage .processStageTailContainer div.stageContentArea:hover:before {
+  border-top-width: 14px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-bottom-width: 14px;
+}
+.processControlContainer .processStageContainer.completedStage .processStageTailContainer div.stageContentArea:hover:after {
+  border-left-style: solid;
+  border-left-width: 11px;
+}
+.processControlContainer .processStageContainer.completedStage:focus .processStageTailContainer div.stageContentArea:before {
+  border-top-width: 14px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-bottom-width: 14px;
+}
+.processControlContainer .processStageContainer.completedStage:focus .processStageTailContainer div.stageContentArea:after {
+  border-left-style: solid;
+  border-left-width: 11px;
+}
+.processControlContainer .processStageContainer.selectedStage.completedStage .processStageTailContainer div.stageContentArea:before {
+  border-top-width: 14px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-bottom-width: 14px;
+}
+.processControlContainer .processStageContainer.selectedStage.completedStage .processStageTailContainer div.stageContentArea:after {
+  border-left-style: solid;
+  border-left-width: 11px;
+}
+.processControlContainer .processStageContainer .processStageTailContainer div.stageContentArea:hover:before {
+  border-top-width: 14px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-bottom-width: 14px;
+}
+.processControlContainer .processStageContainer .processStageTailContainer div.stageContentArea:hover:after {
+  border-left-style: solid;
+  border-left-width: 11px;
+}
+.processControlContainer .processStageContainer:focus .processStageTailContainer div.stageContentArea:before {
+  border-top-width: 14px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-bottom-width: 14px;
+}
+.processControlContainer .processStageContainer:focus .processStageTailContainer div.stageContentArea:after {
+  border-left-style: solid;
+  border-left-width: 11px;
+}
+.processControlContainer .processStageContainer.selectedStage .processStageTailContainer div.stageContentArea:before {
+  border-top-width: 14px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-bottom-width: 14px;
+}
+.processControlContainer .processStageContainer.selectedStage .processStageTailContainer div.stageContentArea:after {
+  border-left-style: solid;
+  border-left-width: 11px;
+}
+.processControlContainer .processStageContainer.unselectedStage.disabled:not(.abandonedStage):not(.completedStage) div.stageIconHolder {
+  color: #ffffff;
+}
+.processControlContainer .unselectedStage.activeStage div.stageIconHolder {
+  color: #ffffff;
+}
+.processControlContainer .processStageContainer:first-child div.stageContentArea {
+  border-left-color: #555555;
+}
+.processControlContainer .processStageContainer:first-child div.stageContentArea {
+  border-left-color: #555555;
+}
+.processControlContainer .processStageContainer.selectedStage:last-child div.stageContentArea {
+  border-right-color: #555555;
+}
+.processControlContainer .processStageContainer.completedStage:first-child div.stageContentArea {
+  border-left-color: #555555;
+}
+.processControlContainer .processControlContainer .collapsibleView .collapsibleFloatContainer .processActionsContainer .processName .processNameText {
+  color: #555555;
+}
+.processControlContainer .processStageContainer div.stageIconHolder {
+  color: #555555;
+}
+.processControlContainer .processStageContainer.unselectedStage:not(.completedStage.abandonedStage) div.processStageTailContainer .stageContentArea .stageContent span.stageNameContent {
+  color: #ffffff;
+}

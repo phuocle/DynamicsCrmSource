@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Create_Major_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm create major for article</value>
+  </data>
+  <data name="Create_Minor_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm create minor for article</value>
+  </data>
+  <data name="KnowledgeArticle_Approve_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to approve this version of the article?</value>
+  </data>
+  <data name="KnowledgeArticle_Approve_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm approve article</value>
+  </data>
+  <data name="KnowledgeArticle_Archive_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to archive this version of the article?</value>
+  </data>
+  <data name="KnowledgeArticle_Archive_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm archive article</value>
+  </data>
+  <data name="KnowledgeArticle_AssociateArticleArticle_DialogText" xml:space="preserve">
+    <value>You must select an article.</value>
+  </data>
+  <data name="KnowledgeArticle_AssociateArticleCategory_DialogText" xml:space="preserve">
+    <value>You must select a Category.</value>
+  </data>
+  <data name="KnowledgeArticle_BulkApprove_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to approve this version of the article?</value>
+  </data>
+  <data name="KnowledgeArticle_BulkApprove_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm approve articles</value>
+  </data>
+  <data name="KnowledgeArticle_BulkArchive_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to archive this version of the article?</value>
+  </data>
+  <data name="KnowledgeArticle_BulkArchive_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm archive articles</value>
+  </data>
+  <data name="KnowledgeArticle_BulkDiscard_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to send this version of the article to the trash?</value>
+  </data>
+  <data name="KnowledgeArticle_BulkDiscard_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm trash articles</value>
+  </data>
+  <data name="KnowledgeArticle_BulkMajor_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to create a new major version of this article?</value>
+  </data>
+  <data name="KnowledgeArticle_BulkMajor_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm major articles</value>
+  </data>
+  <data name="KnowledgeArticle_BulkMarkExternal_Confirmation_DialogText" xml:space="preserve">
+    <value>One or more selected articles will be marked as external. Are your sure you want to proceed?​</value>
+  </data>
+  <data name="KnowledgeArticle_BulkMarkExternal_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm mark external</value>
+  </data>
+  <data name="KnowledgeArticle_BulkMarkInternal_Confirmation_DialogText" xml:space="preserve">
+    <value>One or more selected articles will be marked as internal. Are your sure you want to proceed?​</value>
+  </data>
+  <data name="KnowledgeArticle_BulkMarkInternal_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm mark internal</value>
+  </data>
+  <data name="KnowledgeArticle_BulkMinor_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to create a new minor version of this article?</value>
+  </data>
+  <data name="KnowledgeArticle_BulkMinor_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm minor articles</value>
+  </data>
+  <data name="KnowledgeArticle_BulkRevertToDraft_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to revert this version of the article back to being a draft?</value>
+  </data>
+  <data name="KnowledgeArticle_BulkRevertToDraft_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm revert to draft articles</value>
+  </data>
+  <data name="KnowledgeArticle_ChkPublish_Confirmation_DialogText" xml:space="preserve">
+    <value>You're publishing an earlier version of the currently published article. Do you want to continue?</value>
+  </data>
+  <data name="KnowledgeArticle_ChkPublish_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm publish article</value>
+  </data>
+  <data name="KnowledgeArticle_CreateMajor_Confirmation_DialogText" xml:space="preserve">
+    <value>This will create a new major version of the Article (v{0}.0) with content from the version you are currently on (v{1}.{2}). Do you want to proceed?</value>
+  </data>
+  <data name="KnowledgeArticle_CreateMinor_Confirmation_DialogText" xml:space="preserve">
+    <value>This will create a new minor version of the Article (v{0}.{1}) with content from the version you are currently on (v{2}.{3}). Do you want to proceed?</value>
+  </data>
+  <data name="KnowledgeArticle_Discard_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to send this version of the article to the trash?</value>
+  </data>
+  <data name="KnowledgeArticle_Discard_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm trash article</value>
+  </data>
+  <data name="KnowledgeArticle_ExpireOn_DialogText" xml:space="preserve">
+    <value>An article’s expiration date must be set at some point in the future after the publishing date.</value>
+  </data>
+  <data name="KnowledgeArticle_Notify_Readonly" xml:space="preserve">
+    <value>This knowledge article can't be edited here. You can edit the article in the Customer Service Hub.</value>
+  </data>
+  <data name="KnowledgeArticle_PublishDialog_PublishingDateTimeMessage" xml:space="preserve">
+    <value>Please select a different date. The publishing date must be a date between today and the expiration date for the article.</value>
+  </data>
+  <data name="KnowledgeArticle_PublishDialog_SaveBlockMessage" xml:space="preserve">
+    <value>The save is blocked. Please press the "Update" ribbon action to update articles scheduled or published</value>
+  </data>
+  <data name="KnowledgeArticle_Publish_ExpirationStateText" xml:space="preserve">
+    <value>You must provide a value for Expiration State</value>
+  </data>
+  <data name="KnowledgeArticle_Publish_ExpirationStatusText" xml:space="preserve">
+    <value>You must provide a value for Expiration Status.</value>
+  </data>
+  <data name="KnowledgeArticle_Publish_PublishingDate" xml:space="preserve">
+    <value>You must provide a value for Publishing Date and Time.</value>
+  </data>
+  <data name="KnowledgeArticle_Reject_Note_Title" xml:space="preserve">
+    <value>Article Review Rejected - Please Update</value>
+  </data>
+  <data name="KnowledgeArticle_Restore_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to restore the article? It will be in the Draft state again.</value>
+  </data>
+  <data name="KnowledgeArticle_Restore_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm restore article</value>
+  </data>
+  <data name="KnowledgeArticle_RevertToDraft_Confirmation_DialogText" xml:space="preserve">
+    <value>Are you sure you want to revert this version of the article back to being a draft?</value>
+  </data>
+  <data name="KnowledgeArticle_RevertToDraft_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm revert to draft article</value>
+  </data>
+  <data name="KnowledgeArticle_ReviewRejectReason_DialogText" xml:space="preserve">
+    <value>You must provide a reason for rejecting the knowledge article.</value>
+  </data>
+  <data name="KnowledgeArticle_Save_PublishedStatus_Notification_DialogText" xml:space="preserve">
+    <value>This article is published or is scheduled to be published. To save and publish your changes, use the Update action.</value>
+  </data>
+  <data name="KnowledgeArticle_TranslateDialog_LatestVersion" xml:space="preserve">
+    <value>Latest Version</value>
+  </data>
+  <data name="KnowledgeArticle_TranslateDialog_MajorVersion" xml:space="preserve">
+    <value>Major version number:</value>
+  </data>
+  <data name="KnowledgeArticle_TranslateDialog_MinorVersion" xml:space="preserve">
+    <value>Minor version number:</value>
+  </data>
+  <data name="KnowledgeArticle_TranslateDialog_NoTranslations" xml:space="preserve">
+    <value>No translations exist for this language</value>
+  </data>
+  <data name="KnowledgeArticle_TranslateDialog_TranslateLanguageMessage" xml:space="preserve">
+    <value>Select a language to use for the translation.</value>
+  </data>
+  <data name="KnowledgeArticle_Update_Confirmation_DialogText" xml:space="preserve">
+    <value>Do you want to save the updates made to this article? The updates will take effect immediately, even if the article is already published.</value>
+  </data>
+  <data name="KnowledgeArticle_Update_Confirmation_DialogTitle" xml:space="preserve">
+    <value>Confirm updates</value>
+  </data>
+  <data name="Msg_Progress_MOCA_Dialog" xml:space="preserve">
+    <value>Processing...</value>
+  </data>
+</root>

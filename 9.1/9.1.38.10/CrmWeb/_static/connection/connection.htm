@@ -1,0 +1,68 @@
+<HTML>
+	<HEAD>
+		<style type="text/css">
+			body
+			{
+				margin:0px;
+				border:0px;
+			}
+
+			.leftBracket
+			{
+				background: #d6dbe7;
+			}
+
+			.rightBracket
+			{
+				background: #d6dbe7;
+			}
+
+			.arrowBody
+			{
+				background-image: url(/_imgs/connection/arrowbody.gif); 
+				background-repeat: repeat;
+
+			}
+
+			.leftArrow
+			{
+				background-image: url(/_imgs/connection/ltarrow.gif); 
+				background-repeat: no-repeat;
+			}
+
+			.rightArrow
+			{
+				background-image: url(/_imgs/connection/rtarrow.gif); 
+				background-repeat: no-repeat;
+			}
+		</style>
+		<script type="text/javascript">
+			function setToolTip()
+			{
+				var toolTip = window.parent.LOCID_CONNECTION_ARROW_TOOLTIP;
+				if( typeof (toolTip) != "undefined" && toolTip != null )
+				{
+					divArrowBody.title = toolTip;
+				}
+			}
+		</script>
+	</HEAD>
+	<BODY onload="setToolTip();">	
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<colgroup>
+				<col width="3px"/>
+				<col align="middle" valign="center" width="18px"/>
+				<col align="middle" valign="center"/>
+				<col align="middle" valign="center" width="18px"/>
+				<col width="3px"/>
+			</colgroup>
+			<tr>
+				<td class="leftBracket">&nbsp;</td>
+				<td><div class="leftArrow">&nbsp;</div></td>
+				<td><div id="divArrowBody" class="arrowBody">&nbsp;</div></td>
+				<td><div class="rightArrow">&nbsp;</div></td>
+				<td class="rightBracket">&nbsp;</td>
+			</tr>
+		</table>
+	</BODY>
+</HTML>

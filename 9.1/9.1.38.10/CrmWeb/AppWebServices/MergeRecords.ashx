@@ -1,0 +1,1 @@
+<%@ WebHandler Language="C#" Class="Microsoft.Crm.Core.Application.WebServices.MergeRecordsHandler" %>

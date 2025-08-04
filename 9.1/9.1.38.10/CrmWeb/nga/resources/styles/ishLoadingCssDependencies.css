@@ -1,0 +1,1985 @@
+body,
+button,
+input,
+select,
+table,
+textarea {
+/* TODO: Switch to use this syntax once relatvive font sizes(e.g. 200%, larger)
+are removed or set thier own line height, since they don't work well with the default line height */
+/* font: @DefaultFont; */
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+font-size: 14px;
+font-family: 'SegoeUI', 'Segoe UI';
+}
+body {
+background: #ffffff;
+color: #666666;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+display: block;
+}
+a,
+address,
+article,
+aside,
+audio,
+b,
+blockquote,
+body,
+canvas,
+caption,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+dialog,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+hr,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+meter,
+nav,
+object,
+ol,
+optgroup,
+option,
+output,
+p,
+pre,
+progress,
+q,
+section,
+small,
+span,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+textarea,
+tfoot,
+th,
+thead,
+time,
+tr,
+u,
+ul,
+var,
+video {
+border: 0;
+margin: 0;
+padding: 0;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+th,
+td,
+caption {
+font-weight: normal;
+text-align: left;
+vertical-align: top;
+}
+/* Remove the focus outline for Safari */
+input:focus {
+outline: 0;
+}
+button::-moz-focus-inner {
+border: 0;
+padding: 0;
+}
+.editModeSectionControlIcon {
+position: absolute;
+top: 0;
+right: 100%;
+margin-top: 6px;
+margin-bottom: 0px;
+margin-left: 0px;
+}
+/* makes sure that line-height will be as min as posible for the provided
+font size, and will not cut off text vertically */
+.text-ellipsis {
+white-space: nowrap;
+overflow: hidden;
+-ms-text-overflow: ellipsis;
+text-overflow: ellipsis;
+}
+/* This file is to be used for defining the CSS classes used for symbols as part of ImageBinder system. */
+/* Define the sizing, positioning and other properties needed for symbols shown for buttons and tabs displayed on the AppBar.*/
+.appBarTab-commandRing:before,
+.appBarSection > .button .button-commandRing:before,
+.appBarSection > .flyoutContainer > .button .button-commandRing:before,
+.quickCreateForm_actionDiv > .button .button-commandRing:before {
+display: inline-block;
+font-size: 18px;
+height: 40px;
+letter-spacing: 0px;
+line-height: 40px;
+margin: -2px;
+vertical-align: middle;
+width: 40px;
+}
+/* Define a utility class to turn off any borders when the ImageBinder isn't using a symbol */
+.removeBorders {
+border: none;
+border-radius: 0px;
+}
+.symbolFont {
+font-family: 'Dyn CRM Symbol', 'Segoe MDL2 Assets';
+}
+/* Define a class for default Expand/Collapse icons */
+.Expanded-symbol:before {
+content: '\E0A1';
+}
+.UpArrowHead-symbol:before {
+content: '\E0A1';
+display: inline-block;
+-webkit-transform: rotate(180deg);
+-moz-transform: rotate(180deg);
+-o-transform: rotate(180deg);
+-ms-transform: rotate(180deg);
+transform: rotate(180deg);
+}
+.LeftArrowHead-symbol:before {
+content: '\E085';
+}
+.Collapsed-symbol:before {
+content: '\E09F';
+}
+/*Help Resource Centre*/
+.entity-symbol.help:before {
+content: "\E11B";
+}
+/* Define classes for symbols. These should be named in the form of "<SymbolName>-symbol",
+where <SymbolName> is the name of the symbol your want to specify in the dev tools. This
+suffix is defined in the Microsoft.Crm.Client.Core.Controls.ImageBinder class In
+addition to any content you want to specify, symbols can also override other defaults or
+styles. */
+.Edit-symbol:before {
+content: '\E104';
+}
+.Save-symbol:before {
+content: '\E105';
+}
+.Delete-symbol:before {
+content: '\E107';
+}
+.Remove-symbol:before {
+content: '\E107';
+}
+.Add-symbol:before,
+.New-symbol:before {
+content: '\E109';
+}
+.Merge-symbol:before {
+content: '\EA32';
+}
+.Cancel-symbol:before {
+content: '\E10A';
+}
+.HandClick-symbol:before {
+content: '\EC33';
+}
+.Accept-symbol:before {
+content: '\E10B';
+}
+.Pause-symbol:before {
+content: '\E214';
+}
+.Secured-symbol:before {
+content: '\E192';
+}
+.More-symbol:before {
+content: '\E10C';
+}
+.Forward-symbol:before {
+content: '\E111';
+}
+.Favorite-symbol:before {
+content: '\E113';
+}
+.Placeholder-symbol:before {
+content: '\E18A';
+}
+.RatingFull-symbol:before {
+content: '\E113';
+}
+.RatingEmpty-symbol:before {
+content: '\EA09';
+}
+.Options-symbol:before {
+content: '\E182';
+}
+.Manage-symbol:before {
+content: '\E178';
+}
+.Settings-symbol:before {
+content: '\E115';
+}
+.OpenReportInPowerBI-symbol:before {
+content: '\EAE7';
+}
+.OpenInPowerBI-symbol:before {
+content: '\EA1E';
+}
+.WORKSPACE.PowerBIDashboard:before {
+content: '\EA1E';
+}
+.entity-symbol.POWERBIFULLSCREENPAGE:before {
+content: '\EA1E';
+}
+.entity-symbol.PowerBIDashboard:before {
+content: '\EA1E';
+}
+.Find-symbol:before {
+content: '\E11A';
+}
+.Help-symbol:before {
+content: '\E11B';
+}
+.ViewNotifications-symbol:before {
+content: '\E129';
+}
+.StageAdvance-symbol:before {
+content: '\E095';
+}
+.StagePrevious-symbol:before {
+content: '\E0BA';
+}
+.processFinishedLabel:before {
+content: '\E10B';
+}
+.CheckMark-symbol:before {
+content: '\E10B';
+}
+.Locked-symbol:before {
+content: '\EA6B';
+}
+.Lock-symbol:before {
+content: '\EA6B';
+}
+.MoreOptions-symbol:before {
+content: '\E133';
+}
+.ContactInfo-symbol:before {
+content: '\E136';
+}
+.Pin-symbol:before {
+content: '\E141';
+}
+.Unpin-symbol:before {
+content: '\E196';
+}
+.Refresh-symbol:before {
+content: '\E149';
+}
+.Details-symbol:before {
+content: '\E14C';
+}
+.VisualFilter-symbol:before {
+content: '\EA70';
+}
+.GlobalFilter-symbol:before {
+content: '\E16E';
+}
+.Diamond-symbol:before {
+content: '\E18A';
+}
+.ApplyFilter-symbol:before {
+content: '\E10B';
+}
+.CancelFilter-symbol:before {
+content: '\E10A';
+}
+.StreamView-symbol:before {
+content: '\E161';
+}
+.TileView-symbol:before {
+content: '\EA80';
+}
+.Import-symbol:before {
+content: '\E150';
+}
+.Tools-symbol:before {
+content: '\E15E';
+}
+.Attach-symbol:before {
+content: '\E16C';
+}
+.Filter-symbol:before {
+content: '\E16E';
+}
+.Copy-symbol:before {
+content: '\E16F';
+}
+.HighPriority-symbol:before {
+content: '\E171';
+}
+.ReduceTile-symbol:before {
+content: '\E13F';
+}
+.ExpandTile-symbol:before {
+content: '\E140';
+}
+.SuggestDocuments-symbol:before {
+content: '\EB07';
+}
+.SuggestProducts-symbol:before {
+content: '\EB07';
+}
+.GlobalFilterExpand-symbol:before {
+content: '\25E2';
+}
+.GlobalFilterCollapse-symbol:before {
+content: '\25B7';
+}
+.Clear-symbol:before {
+content: '\E0D9';
+}
+.Post-symbol:before {
+content: '\E134';
+}
+.OneNote-symbol:before {
+content: '\EC34';
+}
+.Home-symbol:before {
+content: '\E10F';
+}
+.SetAsHome-symbol:before {
+content: '\EC2E';
+}
+.BackButton-symbol:before {
+content: '\E0BA';
+}
+.BackButtonWithoutBorder-symbol:before {
+content: '\E112';
+}
+.UpArrow-symbol:before {
+content: '\E110';
+}
+.DownArrow-symbol:before {
+content: '\E1FD';
+}
+.SetActiveButton-symbol:before {
+content: '\E129';
+}
+.SearchButton-symbol:before {
+content: '\E094';
+}
+.BarcodeScanButton-symbol:before {
+content: '\E141';
+}
+.ForwardButton-symbol:before {
+content: '\E095';
+}
+.Mail-symbol:before {
+content: '\E119';
+}
+.CheckedMail-symbol:before {
+content: '\EC32';
+}
+.FailedMail-symbol:before {
+content: '\EC35';
+}
+.Phone-symbol:before {
+content: '\E13A';
+}
+.Chat-symbol:before {
+content: '\E15F';
+}
+.OpenPane-symbol:before {
+content: '\E126';
+}
+.ClosePane-symbol:before {
+content: '\E127';
+}
+.AddFriend-symbol:before {
+content: '\E1E2';
+}
+.Arrow-symbol:before {
+content: '\E09F';
+}
+.DropdownArrow-symbol:before {
+content: '\E0A1';
+}
+.FlsLocked-symbol:before {
+content: '\EA6B';
+}
+.LinkArticle-symbol:before {
+content: '\EA4A';
+}
+.UnlinkArticle-symbol:before {
+content: '\E06F';
+}
+.CopyLink-symbol:before {
+content: '\E16F';
+}
+.EmailLink-symbol:before {
+content: '\E166';
+}
+.Share-symbol:before {
+content: '\EA0C';
+}
+.Assign-symbol:before {
+content: '\EA14';
+}
+.Connect-symbol:before {
+content: '\EA51';
+}
+.Opportunity-symbol:before {
+content: '\EA3B';
+}
+.Appointment-symbol:before {
+content: '\EA01';
+}
+.Task-symbol:before {
+content: '\EA7C';
+}
+.Case-symbol:before {
+content: '\EA83';
+}
+.PhoneCallIncoming-symbol:before {
+content: '\EA31';
+}
+.PhoneCallOutgoing-symbol:before {
+content: '\EC78';
+}
+.EmailIncoming-symbol:before {
+content: '\EB13';
+}
+.EmailOutgoing-symbol:before {
+content: '\EB14';
+}
+.SendEmail-symbol:before {
+content: '\EC1A';
+}
+.ApplyTemplate-symbol:before {
+content: '\EA37';
+}
+.InsertKbArticle-symbol:before {
+content: '\EB11';
+}
+.SendSelected-symbol:before {
+content: '\EA2C';
+}
+.SaveAndClose-symbol:before {
+content: '\EA76';
+}
+.ReplyEmail-symbol:before {
+content: '\E111';
+}
+.ReplyAllEmail-symbol:before {
+content: '\EA1E';
+}
+.ForwardEmail-symbol:before {
+content: '\EA04';
+}
+.Close-symbol:before {
+content: '\E10A';
+}
+.Activate-symbol:before {
+content: '\EA0B';
+}
+.DeActivate-symbol:before {
+content: '\EA0A';
+}
+.DeleteBulk-symbol:before {
+content: '\EA26';
+}
+.SocialActivityIncoming-symbol:before {
+content: '\E042';
+}
+.CaseResolve-symbol:before {
+content: '\EB1E';
+}
+.Resolve-symbol:before {
+content: '\EC12';
+}
+.SocialActivityOutgoing-symbol:before {
+content: '\E042';
+}
+.CustomActivity-symbol:before {
+content: '\EB16';
+}
+.SystemPost-symbol:before {
+content: '\EA79';
+}
+.Convert-symbol:before {
+content: '\EA36';
+}
+.MarkAsWon-symbol:before {
+content: '\EA18';
+}
+.MarkAsLost-symbol:before {
+content: '\EA19';
+}
+.SetRegarding-symbol:before {
+content: '\EA1A';
+}
+.SaveAsComplete-symbol:before {
+content: '\E10B';
+}
+.SwitchProcess-symbol:before {
+content: '\EA16';
+}
+.AbandonProcess-symbol:before {
+content: '\EA16';
+}
+.ReactivateProcess-symbol:before {
+content: '\EA16';
+}
+.FinishProcess-symbol:before {
+content: '\EA16';
+}
+.Recalculate-symbol:before {
+content: '\E1D0';
+}
+.SendDirectEmail-symbol:before {
+content: '\EA12';
+}
+.OpenMailbox-symbol:before {
+content: '\EC27';
+}
+.ReOpenOpportunity-symbol:before {
+content: '\EA21';
+}
+.ReactivateLead-symbol:before {
+content: '\EA31';
+}
+.Disqualify-symbol:before {
+content: '\EC28';
+}
+.Qualify-symbol:before {
+content: '\EC29';
+}
+.SelectView-symbol:before {
+content: '\EA6A';
+}
+.SelectChart-symbol:before {
+content: '\EA6E';
+}
+.OpenInBrowser-symbol:before {
+content: '\E12B';
+}
+.NewAppointment-symbol:before {
+content: '\EA7E';
+}
+.NewRecurringAppointment-symbol:before {
+content: '\EA03';
+}
+.NewPhoneCall-symbol:before {
+content: '\E13A';
+}
+.NewTask-symbol:before {
+content: '\EB07';
+}
+.NewEmail-symbol:before {
+content: '\E119';
+}
+.AddExisting-symbol:before {
+content: '\EA46';
+}
+.SaveAndEdit-symbol:before {
+content: '\EA61';
+}
+.Default-symbol:before {
+content: '\EA89';
+}
+.ScrollRight-symbol:before {
+content: '\00BB';
+}
+.ScrollLeft-symbol:before {
+content: '\00AB';
+}
+.SaveAndRunRoutingRule-symbol:before {
+content: '\EA04';
+}
+.RunRoutingRule-symbol:before {
+content: '\EA04';
+}
+.ResolveCase-symbol:before {
+content: '\EA0B';
+}
+.CancelCase-symbol:before {
+content: '\EA26';
+}
+.ReactivateCase-symbol:before {
+content: '\EA1A';
+}
+.AddToQueue-symbol:before {
+content: '\EC2C';
+}
+.CreateChildCase-symbol:before {
+content: '\EC2B';
+}
+.QueueItemRoute-symbol:before {
+content: '\EA04';
+}
+.QueueItemRelease-symbol:before {
+content: '\EA2C';
+}
+.QueueItemRemove-symbol:before {
+content: '\EA15';
+}
+.QueueItemPick-symbol:before {
+content: '\EC2A';
+}
+.Drilldown-symbol:before {
+content: '\EC31';
+}
+.PopOverButton-symbol:before {
+content: '\EA75';
+}
+.ExitButton-symbol:before {
+content: '\E10A';
+}
+.ExportToExcel-symbol:before {
+content: '\EC37';
+}
+.WordTemplates-symbol:before {
+content: '\EC38';
+}
+.DocumentTemplates-symbol:before {
+content: '\EC39';
+}
+.OpenDelve-symbol:before {
+content: '\EC6E';
+}
+.ArticleLink-symbol:before {
+content: '\EA4A';
+}
+.ArchiveArticle-symbol:before {
+content: '\EC83';
+}
+.ApproveArticle-symbol:before {
+content: '\E10B';
+}
+.DiscardArticle-symbol:before {
+content: '\E107';
+}
+.Minor-symbol:before {
+content: '\EC7F';
+}
+.Major-symbol:before {
+content: '\EC7E';
+}
+.PublishKnowledgeArticle-symbol:before {
+content: '\EC7B';
+}
+.RelateArticle-symbol:before {
+content: '\EC7C';
+}
+.RelateProduct-symbol:before {
+content: '\EA1B';
+}
+.RestoreArticle-symbol:before {
+content: '\E10E';
+}
+.RevertToDraftArticle-symbol:before {
+content: '\EC81';
+}
+.AssociateCategory-symbol:before {
+content: '\EC31';
+}
+.Translate-symbol:before {
+content: '\EC84';
+}
+.UpdateArticle-symbol:before {
+content: '\E149';
+}
+/* Spacing is required as we are trying to combine two symbols into one and making them appear to be a single symbol. */
+.RemoveFilter-symbol:before {
+content: '\E0D9';
+}
+.Article-symbol:before {
+content: '\EA41';
+}
+.Graph-symbol:before {
+content: '\EA70';
+}
+.CSR-symbol:before {
+content: '\EA3A';
+}
+.MembersIcon-symbol:before {
+content: '\EB0A';
+}
+.QueueIcon-symbol:before {
+content: '\EA9C';
+}
+.SiteMap-symbol:before {
+content: '\EA69';
+}
+.NormalPriority-symbol:before {
+content: '\EC1C';
+}
+.LowPriority-symbol:before {
+content: '\E182';
+}
+.ViewIcon-symbol:before {
+content: '\EC08';
+}
+.RecentCases-symbol:before {
+content: '\EA3D';
+}
+.KBRecords-symbol:before {
+content: '\EA7B';
+}
+.NumberOfViews-symbol:before {
+content: '\E052';
+}
+.ResizeHandle-symbol:before {
+content: '\EA67';
+}
+.TaskBasedFlow-symbol:before {
+content: '\EC75';
+}
+.PencilIcon-symbol:before {
+content: '\EA77';
+}
+.EmailArticleContent-symbol:before {
+content: '\EC89';
+}
+.Yes-symbol:before {
+content: '\2714';
+}
+.No-symbol:before {
+content: '\2716';
+}
+.OpenEmail-symbol:before {
+content: '\2709';
+}
+.NewMeeting-symbol:before {
+content: '\E787';
+}
+.OpenRecord-symbol:before {
+content: '\E8DA';
+}
+.SwitchProcessDialogList-symbol:before {
+content: '\EA98';
+}
+.DistributionList-symbol:before {
+content: '\E125';
+}
+.FieldChangeIndicator-symbol:before {
+content: '\E8C9';
+}
+/*-------------------------------------
+Fonts
+--------------------------------------*/
+/* Segoe UI should be available in IE, so only add for Non-IE browsers */
+/* Use url calls to get segoe fonts loaded from local resources in Android */
+@font-face {
+font-family: 'SegoeUI';
+src: local('Segoe UI'), url("crmfont:segoeui-regular_s_u") format("truetype");
+}
+@font-face {
+font-family: 'SegoeUI-Bold';
+src: local('Segoe UI Bold'), url("crmfont:segoeui-bold_s_u") format("truetype");
+}
+@font-face {
+font-family: 'SegoeUI-Semibold';
+src: local('Segoe UI Semibold'), url("crmfont:segoeui-semibold_s_u") format("truetype");
+}
+@font-face {
+font-family: 'SegoeUI-Light';
+src: local('Segoe UI Light'), url("crmfont:segoeui-light_s_u") format("truetype");
+}
+@font-face {
+font-family: 'Android Hindi';
+src: local('DroidSansDevanagari-Regular'), url("sysfont:hindi") format("truetype");
+}
+@font-face {
+font-family: 'Android Thai';
+src: local('DroidSansThai'), url("sysfont:thai") format("truetype");
+}
+/*Font-face with dummy url call to send the system CJK font in the Android Shim.*/
+@font-face {
+font-family: 'Android CJK';
+src: local('Droid Sans Fallback'), url("sysfont:cjk") format("truetype");
+}
+/*-------------------------------------
+icon font
+--------------------------------------*/
+.icon-alone {
+display: inline-block;
+}
+.clearFloat {
+clear: both;
+}
+.screen-reader-text {
+position: absolute;
+top: -9999px;
+left: -9999px;
+}
+.userEducation {
+position: absolute;
+top: 0;
+left: 0;
+z-index: 999;
+width: 100%;
+height: 100%;
+background-color: #1D1E1E;
+touch-action:  none;
+}
+.userEducationHeader {
+margin-top: 7%;
+margin-left: 16.35%;
+font: normal normal normal 40px / 74px 'SegoeUI-Light', 'Segoe UI light';
+display: inline-block;
+}
+.userEducationHeader label {
+font: normal normal normal 40px / 74px 'SegoeUI-Light', 'Segoe UI light';
+color: #666666;
+display: inline-block;
+}
+.userEducationTips {
+margin-top: 5%;
+margin-left: 16.6%;
+}
+.userEducationTips label {
+display: inline-block;
+font: normal normal normal 14px / 20px 'SegoeUI', 'Segoe UI';
+color: #cccccc;
+height: 78px;
+width: 22.5%;
+vertical-align: top;
+word-wrap: break-word;
+}
+.userEducationTips label:first-child {
+margin-right: 7%;
+}
+.userEducationTips label:nth-child(2) {
+margin-right: 7.6%;
+}
+#userEducationImage {
+margin-top: 30px;
+width: 70%;
+display: inline-block;
+margin-left: 3%;
+margin-right: auto;
+}
+.gifSection {
+text-align: center;
+width: 100%;
+display: inline-block;
+}
+.userEducationGif {
+background-image: url(/nga/resources/images/user_education.png);
+background-repeat: no-repeat;
+background-position: center;
+height: 100%;
+width: 100%;
+display: inline-block;
+}
+.userEducationGif label {
+float: left;
+margin-left: 20px;
+vertical-align: top;
+margin-top: 410px;
+color: #000000;
+}
+.feedbackSection {
+bottom: 20px;
+position: absolute;
+width: 100%;
+padding-bottom: 8px;
+}
+.dontShowCheckBox {
+margin-right: 10px;
+display: inline-block;
+}
+.dontShowAgain {
+color: #ffffff;
+margin-left: 1.5%;
+margin-top: 1.96%;
+display: inline-block;
+}
+.loadingSection {
+float: right;
+display: inline-block;
+overflow: hidden;
+margin-right: 30px;
+}
+.loadingSection .indeterminateProgressRing {
+height: 25px;
+width: 25px;
+display: inline-block;
+}
+.loadingSection .indeterminateProgressRing .progressDot:after {
+background-color: #a9ff51;
+}
+.waitLabel {
+color: #ffffff;
+display: inline-block;
+text-align: right;
+margin-top: 0px;
+margin-left: 10px;
+}
+.syncProgressIndicatorSection {
+text-align: right;
+margin-right: 30px;
+color: #ffffff;
+}
+.tablet .syncProgressIndicator {
+padding-right: 3px;
+}
+.phone .userEducationHeader {
+margin-top: 11.5%;
+margin-left: 9.3%;
+font: normal normal normal 24px / 32px 'SegoeUI-Light', 'Segoe UI light';
+line-height: normal;
+font-size: inherit;
+}
+.phone .userEducationHeader label {
+font: normal normal normal 24px / 32px 'SegoeUI-Light', 'Segoe UI light';
+font-size: 29px;
+line-height: normal;
+color: #AAAAAA;
+}
+.phone .userEducationTips {
+margin-left: 9.3%;
+margin-top: 0px;
+}
+.phone .userEducationTips label {
+font: normal normal normal 24px / 32px 'SegoeUI-Light', 'Segoe UI light';
+width: auto;
+color: #AAAAAA;
+height: auto;
+font-size: 29px;
+line-height: normal;
+margin-right: 9.3%;
+}
+.phone #userEducationImage {
+margin-top: 16%;
+width: auto;
+height: auto;
+max-width: 70%;
+margin-left: auto;
+}
+.phone .feedbackSection {
+bottom: 5.5%;
+padding-bottom: 0px;
+}
+.phone .waitLabel {
+text-align: center;
+font-size: 15px;
+display: block;
+margin-right: 9%;
+margin-left: 9%;
+-webkit-box-ordinal-group: 3;
+-moz-box-ordinal-group: 3;
+-ms-flex-order: 3;
+-webkit-order: 3;
+order: 3;
+}
+.phone .syncProgressIndicatorSection {
+width: 100%;
+text-align: center;
+margin-right: 0px;
+float: none;
+-webkit-box-ordinal-group: 2;
+-moz-box-ordinal-group: 2;
+-ms-flex-order: 2;
+-webkit-order: 2;
+order: 2;
+}
+.phone .syncProgressIndicator {
+color: #ffffff;
+font-size: 15px;
+display: inline-block;
+}
+.phone .syncProgressIndicatorText {
+color: #ffffff;
+font-size: 12px;
+display: inline-block;
+padding-left: 10px;
+}
+.phone .stepProgressIndicator {
+color: #ffffff;
+font-size: 12px;
+display: inline-block;
+}
+.phone .loadingSection {
+margin-right: 0px;
+float: none;
+width: 100%;
+text-align: center;
+height: 100%;
+display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+-webkit-box-orient: vertical;
+/** For Gauntlet compat */
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+}
+.phone .loadingSection .indeterminateProgressRing {
+height: 30px;
+width: 30px;
+display: block;
+margin-left: 49%;
+-webkit-box-ordinal-group: 1;
+-moz-box-ordinal-group: 1;
+-ms-flex-order: 1;
+-webkit-order: 1;
+order: 1;
+}
+/*-------------------------------------
+IndeterminateProgressBar styles
+--------------------------------------*/
+.indeterminateProgressBar {
+padding-top: 6px;
+height: 4px;
+padding-bottom: 8px;
+width: 100%;
+position: relative;
+overflow: hidden;
+}
+.lookup-bar .indeterminateProgressBar {
+position: absolute;
+top: 0;
+left: 0;
+}
+.app-bar .indeterminateProgressBar {
+position: absolute;
+top: 0;
+left: 0;
+}
+.fieldsPanoramaItem .indeterminateProgressBar {
+position: absolute;
+margin-top: 2px;
+padding: 0;
+}
+.tablet .fieldsPanoramaItem .indeterminateProgressBar {
+width: 310px;
+margin-left: 30px;
+}
+.phone .fieldsPanoramaItem .indeterminateProgressBar {
+width: 100%;
+}
+.indeterminateProgressBar .progressDot {
+position: absolute;
+width: 100%;
+font-size: 4px;
+line-height: 4px;
+display: block;
+opacity: 0.0;
+-webkit-animation-name: moveProgressDot;
+-moz-animation-name: moveProgressDot;
+animation-name: moveProgressDot;
+-webkit-animation-play-state: running;
+animation-play-state: running;
+-webkit-animation-duration: 4s;
+animation-duration: 4s;
+-webkit-animation-iteration-count: infinite;
+animation-iteration-count: infinite;
+}
+.indeterminateProgressBar .progressDot div {
+width: 4px;
+height: 4px;
+border-radius: 50%;
+background-color: #0072c6;
+display: block;
+}
+.indeterminateProgressBar .progressDot:nth-child(2) {
+-webkit-animation-delay: 200ms;
+animation-delay: 200ms;
+}
+.indeterminateProgressBar .progressDot:nth-child(3) {
+-webkit-animation-delay: 400ms;
+animation-delay: 400ms;
+}
+.indeterminateProgressBar .progressDot:nth-child(4) {
+-webkit-animation-delay: 600ms;
+animation-delay: 600ms;
+}
+.indeterminateProgressBar .progressDot:nth-child(5) {
+-webkit-animation-delay: 800ms;
+animation-delay: 800ms;
+}
+.android .indeterminateProgressBar .progressDot {
+-webkit-animation-play-state: paused;
+animation-play-state: paused;
+-webkit-animation-name: none;
+-moz-animation-name: none;
+animation-name: none;
+}
+.indeterminateProgressBar.hideProgressBar {
+display: none;
+}
+.indeterminateProgressBarDotKeyframeSteps 0% {
+opacity: 1.0;
+-webkit-transform: translateX(-5%);
+-moz-transform: translateX(-5%);
+-o-transform: translateX(-5%);
+-ms-transform: translateX(-5%);
+transform: translateX(-5%);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+.indeterminateProgressBarDotKeyframeSteps 12.5% {
+opacity: 1.0;
+-webkit-transform: translateX(33%);
+-moz-transform: translateX(33%);
+-o-transform: translateX(33%);
+-ms-transform: translateX(33%);
+transform: translateX(33%);
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+}
+.indeterminateProgressBarDotKeyframeSteps 50% {
+opacity: 1.0;
+-webkit-transform: translateX(66%);
+-moz-transform: translateX(66%);
+-o-transform: translateX(66%);
+-ms-transform: translateX(66%);
+transform: translateX(66%);
+-webkit-animation-timing-function: ease-in;
+animation-timing-function: ease-in;
+}
+.indeterminateProgressBarDotKeyframeSteps 62.5% {
+opacity: 1.0;
+-webkit-transform: translateX(100%);
+-moz-transform: translateX(100%);
+-o-transform: translateX(100%);
+-ms-transform: translateX(100%);
+transform: translateX(100%);
+}
+.indeterminateProgressBarDotKeyframeSteps 80% {
+opacity: 0.0;
+-webkit-transform: translateX(100%);
+-moz-transform: translateX(100%);
+-o-transform: translateX(100%);
+-ms-transform: translateX(100%);
+transform: translateX(100%);
+}
+.indeterminateProgressBarDotKeyframeSteps 100% {
+opacity: 0.0;
+-webkit-transform: translateX(-5%);
+-moz-transform: translateX(-5%);
+-o-transform: translateX(-5%);
+-ms-transform: translateX(-5%);
+transform: translateX(-5%);
+}
+@-webkit-keyframes moveProgressDot {
+0% {
+opacity: 1.0;
+-webkit-transform: translateX(-5%);
+-moz-transform: translateX(-5%);
+-o-transform: translateX(-5%);
+-ms-transform: translateX(-5%);
+transform: translateX(-5%);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+12.5% {
+opacity: 1.0;
+-webkit-transform: translateX(33%);
+-moz-transform: translateX(33%);
+-o-transform: translateX(33%);
+-ms-transform: translateX(33%);
+transform: translateX(33%);
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+}
+50% {
+opacity: 1.0;
+-webkit-transform: translateX(66%);
+-moz-transform: translateX(66%);
+-o-transform: translateX(66%);
+-ms-transform: translateX(66%);
+transform: translateX(66%);
+-webkit-animation-timing-function: ease-in;
+animation-timing-function: ease-in;
+}
+62.5% {
+opacity: 1.0;
+-webkit-transform: translateX(100%);
+-moz-transform: translateX(100%);
+-o-transform: translateX(100%);
+-ms-transform: translateX(100%);
+transform: translateX(100%);
+}
+80% {
+opacity: 0.0;
+-webkit-transform: translateX(100%);
+-moz-transform: translateX(100%);
+-o-transform: translateX(100%);
+-ms-transform: translateX(100%);
+transform: translateX(100%);
+}
+100% {
+opacity: 0.0;
+-webkit-transform: translateX(-5%);
+-moz-transform: translateX(-5%);
+-o-transform: translateX(-5%);
+-ms-transform: translateX(-5%);
+transform: translateX(-5%);
+}
+}
+@keyframes moveProgressDot {
+0% {
+opacity: 1.0;
+-webkit-transform: translateX(-5%);
+-moz-transform: translateX(-5%);
+-o-transform: translateX(-5%);
+-ms-transform: translateX(-5%);
+transform: translateX(-5%);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+12.5% {
+opacity: 1.0;
+-webkit-transform: translateX(33%);
+-moz-transform: translateX(33%);
+-o-transform: translateX(33%);
+-ms-transform: translateX(33%);
+transform: translateX(33%);
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+}
+50% {
+opacity: 1.0;
+-webkit-transform: translateX(66%);
+-moz-transform: translateX(66%);
+-o-transform: translateX(66%);
+-ms-transform: translateX(66%);
+transform: translateX(66%);
+-webkit-animation-timing-function: ease-in;
+animation-timing-function: ease-in;
+}
+62.5% {
+opacity: 1.0;
+-webkit-transform: translateX(100%);
+-moz-transform: translateX(100%);
+-o-transform: translateX(100%);
+-ms-transform: translateX(100%);
+transform: translateX(100%);
+}
+80% {
+opacity: 0.0;
+-webkit-transform: translateX(100%);
+-moz-transform: translateX(100%);
+-o-transform: translateX(100%);
+-ms-transform: translateX(100%);
+transform: translateX(100%);
+}
+100% {
+opacity: 0.0;
+-webkit-transform: translateX(-5%);
+-moz-transform: translateX(-5%);
+-o-transform: translateX(-5%);
+-ms-transform: translateX(-5%);
+transform: translateX(-5%);
+}
+}
+/*-------------------------------------
+IndeterminateProgressRing styles
+--------------------------------------*/
+.indeterminateProgressRing {
+position: relative;
+}
+.indeterminateProgressRing .progressDot {
+position: absolute;
+width: 70%;
+height: 70%;
+left: 15%;
+top: 15%;
+opacity: 0;
+-webkit-transform: rotate(225deg);
+-moz-transform: rotate(225deg);
+-o-transform: rotate(225deg);
+-ms-transform: rotate(225deg);
+transform: rotate(225deg);
+-webkit-animation-name: moveIndetermineProgressRingDot;
+-moz-animation-name: moveIndetermineProgressRingDot;
+animation-name: moveIndetermineProgressRingDot;
+-webkit-animation-duration: 5s;
+animation-duration: 5s;
+-webkit-animation-iteration-count: infinite;
+animation-iteration-count: infinite;
+-webkit-animation-play-state: running;
+animation-play-state: running;
+}
+.indeterminateProgressRing .progressDot:after {
+content: '';
+position: absolute;
+width: 17.5%;
+height: 17.5%;
+background-color: #0072c6;
+border-radius: 100%;
+}
+.indeterminateProgressRing .progressDot:nth-child(2) {
+-webkit-animation-delay: 240ms;
+animation-delay: 240ms;
+}
+.indeterminateProgressRing .progressDot:nth-child(3) {
+-webkit-animation-delay: 480ms;
+animation-delay: 480ms;
+}
+.indeterminateProgressRing .progressDot:nth-child(4) {
+-webkit-animation-delay: 720ms;
+animation-delay: 720ms;
+}
+.indeterminateProgressRing .progressDot:nth-child(5) {
+-webkit-animation-delay: 960ms;
+animation-delay: 960ms;
+}
+.indeterminateProgressRing.hideProgressBar {
+display: none;
+}
+.android .indeterminateProgressRing .progressDot {
+-webkit-animation-play-state: paused;
+animation-play-state: paused;
+-webkit-animation-name: none;
+-moz-animation-name: none;
+animation-name: none;
+}
+.indeterminateProgressRingKeyframeSteps 0% {
+opacity: 1;
+-webkit-transform: rotate(225deg);
+-moz-transform: rotate(225deg);
+-o-transform: rotate(225deg);
+-ms-transform: rotate(225deg);
+transform: rotate(225deg);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+.indeterminateProgressRingKeyframeSteps 7% {
+opacity: 1;
+-webkit-transform: rotate(345deg);
+-moz-transform: rotate(345deg);
+-o-transform: rotate(345deg);
+-ms-transform: rotate(345deg);
+transform: rotate(345deg);
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+}
+.indeterminateProgressRingKeyframeSteps 30% {
+opacity: 1;
+-webkit-transform: rotate(455deg);
+-moz-transform: rotate(455deg);
+-o-transform: rotate(455deg);
+-ms-transform: rotate(455deg);
+transform: rotate(455deg);
+-webkit-animation-timing-function: ease-in-out;
+animation-timing-function: ease-in-out;
+}
+.indeterminateProgressRingKeyframeSteps 39% {
+opacity: 1;
+-webkit-transform: rotate(690deg);
+-moz-transform: rotate(690deg);
+-o-transform: rotate(690deg);
+-ms-transform: rotate(690deg);
+transform: rotate(690deg);
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+}
+.indeterminateProgressRingKeyframeSteps 70% {
+opacity: 1;
+-webkit-transform: rotate(815deg);
+-moz-transform: rotate(815deg);
+-o-transform: rotate(815deg);
+-ms-transform: rotate(815deg);
+transform: rotate(815deg);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+.indeterminateProgressRingKeyframeSteps 75% {
+opacity: 1;
+-webkit-transform: rotate(945deg);
+-moz-transform: rotate(945deg);
+-o-transform: rotate(945deg);
+-ms-transform: rotate(945deg);
+transform: rotate(945deg);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+.indeterminateProgressRingKeyframeSteps 76% {
+opacity: 0;
+-webkit-transform: rotate(945deg);
+-moz-transform: rotate(945deg);
+-o-transform: rotate(945deg);
+-ms-transform: rotate(945deg);
+transform: rotate(945deg);
+}
+.indeterminateProgressRingKeyframeSteps 100% {
+opacity: 0;
+-webkit-transform: rotate(945deg);
+-moz-transform: rotate(945deg);
+-o-transform: rotate(945deg);
+-ms-transform: rotate(945deg);
+transform: rotate(945deg);
+}
+@-webkit-keyframes moveIndetermineProgressRingDot {
+0% {
+opacity: 1;
+-webkit-transform: rotate(225deg);
+-moz-transform: rotate(225deg);
+-o-transform: rotate(225deg);
+-ms-transform: rotate(225deg);
+transform: rotate(225deg);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+7% {
+opacity: 1;
+-webkit-transform: rotate(345deg);
+-moz-transform: rotate(345deg);
+-o-transform: rotate(345deg);
+-ms-transform: rotate(345deg);
+transform: rotate(345deg);
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+}
+30% {
+opacity: 1;
+-webkit-transform: rotate(455deg);
+-moz-transform: rotate(455deg);
+-o-transform: rotate(455deg);
+-ms-transform: rotate(455deg);
+transform: rotate(455deg);
+-webkit-animation-timing-function: ease-in-out;
+animation-timing-function: ease-in-out;
+}
+39% {
+opacity: 1;
+-webkit-transform: rotate(690deg);
+-moz-transform: rotate(690deg);
+-o-transform: rotate(690deg);
+-ms-transform: rotate(690deg);
+transform: rotate(690deg);
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+}
+70% {
+opacity: 1;
+-webkit-transform: rotate(815deg);
+-moz-transform: rotate(815deg);
+-o-transform: rotate(815deg);
+-ms-transform: rotate(815deg);
+transform: rotate(815deg);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+75% {
+opacity: 1;
+-webkit-transform: rotate(945deg);
+-moz-transform: rotate(945deg);
+-o-transform: rotate(945deg);
+-ms-transform: rotate(945deg);
+transform: rotate(945deg);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+76% {
+opacity: 0;
+-webkit-transform: rotate(945deg);
+-moz-transform: rotate(945deg);
+-o-transform: rotate(945deg);
+-ms-transform: rotate(945deg);
+transform: rotate(945deg);
+}
+100% {
+opacity: 0;
+-webkit-transform: rotate(945deg);
+-moz-transform: rotate(945deg);
+-o-transform: rotate(945deg);
+-ms-transform: rotate(945deg);
+transform: rotate(945deg);
+}
+}
+@keyframes moveIndetermineProgressRingDot {
+0% {
+opacity: 1;
+-webkit-transform: rotate(225deg);
+-moz-transform: rotate(225deg);
+-o-transform: rotate(225deg);
+-ms-transform: rotate(225deg);
+transform: rotate(225deg);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+7% {
+opacity: 1;
+-webkit-transform: rotate(345deg);
+-moz-transform: rotate(345deg);
+-o-transform: rotate(345deg);
+-ms-transform: rotate(345deg);
+transform: rotate(345deg);
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+}
+30% {
+opacity: 1;
+-webkit-transform: rotate(455deg);
+-moz-transform: rotate(455deg);
+-o-transform: rotate(455deg);
+-ms-transform: rotate(455deg);
+transform: rotate(455deg);
+-webkit-animation-timing-function: ease-in-out;
+animation-timing-function: ease-in-out;
+}
+39% {
+opacity: 1;
+-webkit-transform: rotate(690deg);
+-moz-transform: rotate(690deg);
+-o-transform: rotate(690deg);
+-ms-transform: rotate(690deg);
+transform: rotate(690deg);
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+}
+70% {
+opacity: 1;
+-webkit-transform: rotate(815deg);
+-moz-transform: rotate(815deg);
+-o-transform: rotate(815deg);
+-ms-transform: rotate(815deg);
+transform: rotate(815deg);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+75% {
+opacity: 1;
+-webkit-transform: rotate(945deg);
+-moz-transform: rotate(945deg);
+-o-transform: rotate(945deg);
+-ms-transform: rotate(945deg);
+transform: rotate(945deg);
+-webkit-animation-timing-function: ease-out;
+animation-timing-function: ease-out;
+}
+76% {
+opacity: 0;
+-webkit-transform: rotate(945deg);
+-moz-transform: rotate(945deg);
+-o-transform: rotate(945deg);
+-ms-transform: rotate(945deg);
+transform: rotate(945deg);
+}
+100% {
+opacity: 0;
+-webkit-transform: rotate(945deg);
+-moz-transform: rotate(945deg);
+-o-transform: rotate(945deg);
+-ms-transform: rotate(945deg);
+transform: rotate(945deg);
+}
+}
+.rootViewControlLoadingRing {
+width: 60px;
+height: 60px;
+}
+/*-------------------------------------
+Application shell styles
+--------------------------------------*/
+html,
+body {
+width: 100%;
+height: 100%;
+}
+/*-------------------------------------
+Confirm dialog styles
+--------------------------------------*/
+.conductorContent {
+height: 100%;
+}
+/*-------------------------------------
+Message Dialog styles
+--------------------------------------*/
+.messageDialog-popupContent {
+color: #ffffff;
+background-color: #152351;
+overflow: hidden;
+display: block;
+position: absolute;
+top: 25%;
+left: 0;
+right: 0;
+padding: 35px 25% 40px 25%;
+}
+.messageDialog-contentContainer {
+display: table;
+width: 100%;
+}
+.tablet .messageDialog-contentContainer {
+display: block;
+}
+.messageDialog-contentContainer .messageDialog-message {
+display: block;
+vertical-align: bottom;
+width: 100%;
+}
+.messageDialog-actionContainer {
+display: inherit;
+width: 100%;
+}
+.messageDialog-actionContainer .messageDialog-buttons {
+display: inherit;
+vertical-align: bottom;
+}
+.messageDialog-Title {
+display: block;
+font: normal normal normal 20px / 27px 'SegoeUI', 'Segoe UI';
+line-height: 32px;
+max-height: 60px;
+overflow: hidden;
+text-overflow: ellipsis;
+width: inherit;
+}
+.tablet .messageDialog-Title {
+white-space: nowrap;
+}
+.messageDialog-Subtitle {
+display: block;
+font: normal normal normal 18px / 1.4em 'SegoeUI', 'Segoe UI';
+padding-top: 20px;
+line-height: 24px;
+max-height: 50px;
+overflow: hidden;
+text-overflow: ellipsis;
+width: inherit;
+}
+.tablet .messageDialog-Subtitle {
+white-space: nowrap;
+}
+.messageDialog-Message {
+display: block;
+font: normal normal normal 13px / 20px 'SegoeUI', 'Segoe UI';
+line-height: 20px;
+max-height: 200px;
+overflow-y: auto;
+-moz-user-select: text;
+-khtml-user-select: text;
+-webkit-user-select: text;
+-ms-user-select: text;
+user-select: text;
+}
+.messageDialog-MessageBody {
+word-break: break-word;
+overflow-wrap: break-word;
+}
+.messageDialog-popupContent {
+-moz-user-select: text;
+-khtml-user-select: text;
+-webkit-user-select: text;
+-ms-user-select: text;
+user-select: text;
+}
+.messageDialog-buttonContainer span.button-label {
+overflow: hidden;
+text-overflow: ellipsis;
+display: block;
+}
+.messageDialog-popupContent div.messageDialog-Message.messageDialog-MessageBody {
+word-wrap: break-word;
+margin-top: 15px;
+width: inherit;
+}
+.messageDialog-popupContent ::selection {
+background-color: #ffffff;
+color: #152351;
+}
+.phone .messageDialog-popupContent {
+position: relative;
+top: 0px;
+padding: 5%;
+}
+.phone .messageDialog-buttonContainer,
+.phone .messageDialog-buttons {
+width: 100%;
+}
+.phone .messageDialog_OK_Button {
+background-color: transparent !important;
+/* Buttons width should be spread across the dialog only if we've got 2 buttons
+TODO: single button should be autosized */
+width: 48%;
+max-width: none;
+float: left;
+border: 3px solid;
+margin: 0;
+min-width: 47% !important;
+}
+.phone .messageDialog_Cancel_Button {
+background-color: transparent !important;
+/* Buttons width should be spread across the dialog only if we've got 2 buttons
+TODO: single button should be autosized */
+width: 48%;
+max-width: none;
+float: right;
+border: 3px solid;
+margin: 0;
+min-width: 47% !important;
+}
+.phone .messageDialog-contentContainer {
+display: inherit;
+}
+.aboutDialogPopup {
+overflow: scroll;
+}
+.selectable {
+-moz-user-select: text;
+-khtml-user-select: text;
+-webkit-user-select: text;
+-ms-user-select: text;
+user-select: text;
+}
+.messageDialog-ActionLink {
+display: block;
+font: normal normal normal 13px / 20px 'SegoeUI', 'Segoe UI';
+line-height: 20px;
+text-decoration: underline;
+cursor: pointer;
+}
+.messageDialog-ActionLinkText {
+display: block;
+font: normal normal normal 13px / 20px 'SegoeUI', 'Segoe UI';
+line-height: 20px;
+text-decoration: line-through;
+}
+.messageDialog-buttonContainer {
+white-space: nowrap;
+float: right;
+margin-top: 40px;
+}
+.messageDialog_OK_Button,
+.messageDialog_Cancel_Button {
+background-color: #429bbd !important;
+border: none;
+color: #ffffff;
+margin-bottom: 0px;
+max-width: 180px;
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+word-break: break-all;
+/*--break all text -- even mid-word */
+-webkit-line-clamp: 1;
+/*--to make text appear in one line in safari*/
+-webkit-box-orient: vertical;
+/*--to make text appear in one line in safari*/
+}
+.hoverable .messageDialog_OK_Button:hover,
+.hoverable .messageDialog_Cancel_Button:hover {
+background-color: #004c59 !important;
+color: #ffffff;
+}
+.messageDialog_OK_Button:active,
+.messageDialog_Cancel_Button:active {
+background-color: #ffffff !important;
+color: #000000;
+}
+.messageDialog_OK_Button[disabled],
+.messageDialog_Cancel_Button[disabled] {
+opacity: .3;
+}
+.messageDialog_Cancel_Button {
+margin-left: 20px;
+}
+.messageDialog_OK_Button .button-container,
+.messageDialog_Cancel_Button .button-container {
+padding-left: 13px;
+padding-right: 13px;
+padding-bottom: 5px;
+padding-top: 5px;
+}
+.messageDialog-popup-Ok .messageDialog_Cancel_Button {
+display: none;
+}
+.editModeSectionControlIcon {
+position: absolute;
+top: 0;
+right: 100%;
+margin-top: 6px;
+margin-bottom: 0px;
+margin-left: 0px;
+}
+/* makes sure that line-height will be as min as posible for the provided
+font size, and will not cut off text vertically */
+.text-ellipsis {
+white-space: nowrap;
+overflow: hidden;
+-ms-text-overflow: ellipsis;
+text-overflow: ellipsis;
+}
+.interactionCentricUserEducation {
+position: absolute;
+z-index: 999;
+width: 100%;
+height: 100%;
+background-color: #efefef;
+overflow: auto;
+}
+.interactionCentricUserEducation #userEducationWrapper {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: 945px;
+/* This is width of the interaction centric education screen image */
+/*
+* Opera Mini and pre kitkat Android browsers don't support vh and vw units.
+* IE 10, 11, Chrome 40, Firefox, iOS 8, Androind 4.4+, Safari, Opera support vh units.
+* Unsupported browsers will fallback to px.
+*/
+}
+.interactionCentricUserEducation #userEducationWrapper .interactionCentricUserEducationHeader {
+margin-top: 100px;
+margin-top: 10vh;
+}
+.interactionCentricUserEducation #userEducationWrapper .interactionCentricUserEducationHeader label {
+font: normal normal normal 32px / 20px 'SegoeUI', 'Segoe UI';
+font-weight: lighter;
+color: #444444;
+display: inline-block;
+line-height: 1.2em;
+margin-bottom: 0;
+font-family: 'SegoeUI', 'Segoe UI', Tahoma, sans-serif;
+}
+.interactionCentricUserEducation #userEducationWrapper .interactionCentricUserEducationTips {
+margin-top: 128px;
+margin-top: 11vh;
+}
+.interactionCentricUserEducation #userEducationWrapper .interactionCentricUserEducationTips .helpTip {
+display: inline-block;
+font: normal normal normal 16px / 24px 'SegoeUI', 'Segoe UI';
+color: #666666;
+width: 283px;
+vertical-align: top;
+word-wrap: break-word;
+margin-right: 43px;
+line-height: 1.2em;
+}
+.interactionCentricUserEducation #userEducationWrapper .interactionCentricUserEducationTips .helpTip .helpTipHeading {
+color: #000000;
+font-weight: normal;
+display: inline;
+font-family: 'SegoeUI', 'Segoe UI', Tahoma, sans-serif;
+}
+.interactionCentricUserEducation #userEducationWrapper .interactionCentricUserEducationTips .helpTip .helpTipDescription {
+font-weight: normal;
+display: inline;
+font-family: 'SegoeUI', 'Segoe UI', Tahoma, sans-serif;
+}
+.interactionCentricUserEducation #userEducationWrapper .interactionCentricUserEducationTips .helpTip.helpTipLast {
+margin-right: 0;
+font-family: 'SegoeUI', 'Segoe UI', Tahoma, sans-serif;
+}
+.interactionCentricUserEducation #userEducationWrapper #interactionCentricUserEducationImage {
+position: relative;
+margin-top: 30px;
+margin-top: 2vh;
+}
+.interactionCentricUserEducation #userEducationWrapper #ieSafariSpecificMsgWrapper {
+display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+position: relative;
+color: #666666;
+font-size: 14px;
+margin-top: 70px;
+margin-top: 7vh;
+font-family: 'SegoeUI', 'Segoe UI', Tahoma, sans-serif;
+}
+.interactionCentricUserEducation #userEducationWrapper .iconInfo-symbol:before {
+content: '\E171';
+border: 1px solid #0072c6;
+border-radius: 50%;
+background-color: #0072c6;
+color: #ffffff;
+margin-right: 10px;
+font-size: 12px;
+-webkit-box-flex: 0 1 16px;
+-moz-box-flex: 0 1 16px;
+-webkit-flex: 0 1 16px;
+-ms-flex: 0 1 16px;
+flex: 0 1 16px;
+}
+.interactionCentricUserEducation #userEducationWrapper #ieSafariSpecificMsg {
+width: 100%;
+display: block;
+}
+.interactionCentricUserEducation .interactionCentricUserEducationFeedbackSection {
+bottom: 20px;
+position: fixed;
+width: 100%;
+padding-bottom: 8px;
+}
+.interactionCentricUserEducation .interactionCentricUserEducationFeedbackSection .loadingSection .interactionCentricSyncProgressIndicatorSection {
+color: #000000;
+text-align: right;
+margin-right: 30px;
+}
+.interactionCentricUserEducation .interactionCentricUserEducationFeedbackSection .loadingSection .interactionCentricSyncProgressIndicatorSection .interactionCentricSyncProgressIndicatorText {
+font-size: 12px;
+display: inline-block;
+padding-left: 10px;
+font-family: 'SegoeUI', 'Segoe UI', Tahoma, sans-serif;
+}
+.interactionCentricUserEducation .interactionCentricUserEducationFeedbackSection .loadingSection .interactionCentricWaitLabel {
+color: #000000;
+display: inline-block;
+text-align: right;
+margin-top: 0px;
+margin-left: 10px;
+font-family: 'SegoeUI', 'Segoe UI', Tahoma, sans-serif;
+}
+.interactionCentricUserEducation .interactionCentricUserEducationFeedbackSection .loadingSection .indeterminateProgressRing .progressDot:after {
+background-color: #0072c6;
+}
+.syncProgressIndicator {
+font-size: 15px;
+display: inline-block;
+font-family: 'SegoeUI', 'Segoe UI', Tahoma, sans-serif;
+}
+.messageDialog-Message {
+display: block;
+font: normal normal normal 16px / 24px 'SegoeUI', 'Segoe UI';
+}

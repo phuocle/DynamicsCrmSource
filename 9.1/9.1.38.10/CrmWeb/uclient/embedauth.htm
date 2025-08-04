@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script type="text/javascript">
+			const messages = {
+				cookieExchangeRequest: "exchangeCookieRequest",
+				cookieExchangeResponse: "exchangeCookieResponse",
+			};
+
+			window.addEventListener("message", function(e) {
+				handleRequest(e.data, e.origin);
+			});
+
+			function handleRequest(data, origin) {
+				if (!data || !data.message || !data.payload) {
+					return;
+				}
+
+				switch (data.message) {
+					case messages.cookieExchangeRequest:
+						handleCookieExchangeRequestAsync(data.payload, origin);
+						break;
+					default:
+						break;
+				}
+			}
+
+			function postResponse(origin, message, payload) {
+				parent.postMessage(
+					{
+						message: message,
+						payload: payload,
+					},
+					origin
+				);
+			}
+
+			function handleCookieExchangeRequestAsync(request, requestOrigin) {
+				if (!isValidCookieExchangeRequest(request)) {
+					handleAuthFailure({
+						message: "Invalid access token",
+					});
+					return;
+				}
+
+				const token = request.token;
+
+				//Optimistically attempt to renew the current CRMNativeAuth cookie.
+				sendRequestAsync("POST", "/nativewebsession/renew", token, function(renewError) {
+					if (renewError) {
+						//Renewal could fail if a CRMNativeAuth cookie doesn't exist.
+						//Attempt to recover by requesting for a new CRMNativeAuth cookie.
+						sendRequestAsync("POST", "/nativewebsession/new", token, function(newError) {
+							if (newError) {
+								handleAuthFailure({
+									renewError: renewError,
+									newError: newError,
+								});
+							} else {
+								handleAuthSuccess();
+							}
+						});
+					} else {
+						handleAuthSuccess();
+					}
+				});
+
+				function handleAuthSuccess() {
+					postResponse(requestOrigin, messages.cookieExchangeResponse, {
+						success: true,
+					});
+				}
+
+				function handleAuthFailure(error) {
+					//Clear any CRMNativeAuth cookies if the exchange fails for any reason
+					sendRequestAsync("POST", "/nativewebsession/end", undefined, function(endError) {
+						if (endError) {
+							error.endError = endError;
+						}
+						error = JSON.stringify(error);
+						postResponse(requestOrigin, messages.cookieExchangeResponse, {
+							success: false,
+							error: error,
+						});
+					});
+				}
+			}
+
+			function isValidCookieExchangeRequest(request) {
+				if (!request || !request.expiration || !request.token) {
+					return false;
+				}
+				return request.expiration > new Date().getTime();
+			}
+
+			function sendRequestAsync(method, url, token, callback) {
+				try {
+					const xhr = new XMLHttpRequest();
+					xhr.open(method, url);
+					if (token) {
+						xhr.setRequestHeader("Authorization", "Bearer " + token);
+					}
+					xhr.onload = function() {
+						if (this.status >= 200 && this.status < 300) {
+							callback();
+						} else {
+							callback({
+								status: xhr.status,
+								statusText: xhr.statusText,
+								method: method,
+								url: url,
+							});
+						}
+					};
+					xhr.onerror = xhr.ontimeout = function() {
+						callback({
+							status: xhr.status,
+							statusText: xhr.statusText,
+							method: method,
+							url: url,
+						});
+					};
+					xhr.send();
+				} catch (error) {
+					callback(error);
+				}
+			}
+		</script>
+	</head>
+</html>

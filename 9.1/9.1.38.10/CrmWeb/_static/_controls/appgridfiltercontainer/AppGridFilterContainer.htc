@@ -1,0 +1,56 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Initialize()"/>
+<public:method name="RefreshGridView"/>
+<script language="javascript"></script><script type="text/javascript">
+
+var _oGrid = null;
+function Initialize()
+{
+    if(window.document.media == "print")
+        return;
+    _oGrid = ownerDocument.all[GridId];
+    autorefresh == "1" && 
+        IterateControls(SetEventHandler)
+}
+function SetEventHandler(oCtrl)
+{
+    oCtrl.attachEvent("onchange",RefreshGridView)
+}
+function RefreshGridView()
+{
+    IterateControls(SetGridParameters);
+    _oGrid.ResetPageNumber();
+    _oGrid.Refresh()
+}
+function SetGridParameters(oCtrl)
+{
+    switch(oCtrl.className)
+    {
+        case "AppGridFilterSelector":
+            var oKeyValuePairs = oCtrl.DataValue;
+            if(!IsNull(oKeyValuePairs))
+                for(var oKey in oKeyValuePairs)
+                    _oGrid.SetParameter(oKey,oKeyValuePairs[oKey]);
+            break;
+        default:
+            !IsNull(oCtrl.DataValue) && 
+                _oGrid.SetParameter(oCtrl.id,oCtrl.DataValue)
+    }
+}
+function IterateControls(oCallback)
+{
+    for(var oCtrl = null,
+        iLen = element.all.length,
+        i = 0; i < iLen; i++)
+    {
+        oCtrl = element.all[i];
+        if(!IsNull(oCtrl.DataValue) && !IsNull(oCtrl.GridFilterControl))
+        {
+            oCallback(oCtrl);
+            i += oCtrl.all.length + 1
+        }
+    }
+}
+
+</script>
+</public:component>

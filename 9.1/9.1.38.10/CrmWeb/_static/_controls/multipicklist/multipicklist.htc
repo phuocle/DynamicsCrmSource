@@ -1,0 +1,183 @@
+<public:component lightweight="true" tagName="AdvFindPickList">
+<public:attach event="oncontentready" onevent="Init()"/>
+<public:attach event="onfocus" onevent="SetFocus()"/>
+<public:attach event="onblur" onevent="Blur()"/>
+<public:event name="onchange" id="onChangeHandler"/>
+<public:property name="DataXml" get="getDataXml"/>
+<public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+<public:property name="DataText" get="getDataText"/>
+<public:property name="SortDataOnLoad" get="getSortDataOnLoad" put="putSortDataOnLoad"/>
+<public:method name="LoadOptionsXml"/>
+<public:method name="SetFocus"/>
+<public:method name="FireOnChange" />
+<script language="Javascript"></script><script type="text/javascript">
+
+var _oXmlOptions = null,
+    _oInput = null,
+    _bInitialized = false,
+    _bSortDataOnLoad = false;
+function LoadOptionsXml(sOptionsXml)
+{
+    if(IsNull(sOptionsXml) || sOptionsXml.length == 0)
+        return false;
+    OptionsXml = sOptionsXml;
+    if(!_bInitialized)
+        return true;
+    _oXmlOptions = XUI.Xml.LoadXml(sOptionsXml);
+    if(handleXMLErr(_oXmlOptions) != ERROR_NONE)
+    {
+        _oXmlOptions = null;
+        return false
+    }
+    return true
+}
+function getDataXml()
+{
+    for(var asSelItems = _oInput.Data.split(";"),
+        sDataXml = "",
+        iLen = asSelItems.length,
+        i = 0; i < iLen; i++)
+        sDataXml += "<value>" + asSelItems[i] + "</value>";
+    return "<values>" + sDataXml + "</values>"
+}
+function putDataValue(sDataValue)
+{
+    _oInput.Data = IsNull(sDataValue) ? "" : sDataValue;
+    _bInitialized && 
+        SetDataText()
+}
+function getDataValue()
+{
+    return _oInput.Data
+}
+function getDataText()
+{
+    return _oInput.value
+}
+function getSortDataOnLoad()
+{
+    return _bSortDataOnLoad
+}
+function putSortDataOnLoad(sValue)
+{
+    _bSortDataOnLoad = sValue
+}
+function Init()
+{
+    _oInput = element.firstChild.rows[0].cells[0].firstChild;
+    var oBtn = element.firstChild.rows[0].cells[2].firstChild;
+    oBtn.onclick = _oInput.ondblclick = ShowSelectValuesDlg;
+    _oInput.onfocus = Focus;
+    oBtn.onblur = _oInput.onblur = Blur;
+    _oInput.onkeyup = HandleKeyUp;
+    _bInitialized = true;
+    LoadOptionsXml(OptionsXml);
+    SetDataText()
+}
+function HandleKeyUp()
+{
+    switch(event.keyCode)
+    {
+        case KEY_DELETE:
+            _oInput.value = "";
+            _oInput.Data = "";
+            SetDataText();
+            onChangeHandler.fire(createEventObject());
+            break;
+        case KEY_ENTER:
+        case KEY_SPACE:
+            ShowSelectValuesDlg();
+            break
+    }
+}
+function SetFocus()
+{
+    _oInput.focus();
+    Focus()
+}
+function Focus()
+{
+    _oInput.className = "multiPickLstSel"
+}
+function Blur()
+{
+    _oInput.className = ""
+}
+function ShowSelectValuesDlg()
+{
+    if(!IsNull(_oXmlOptions))
+    {
+        var oArgs = {};
+        oArgs.valuesXml = _oXmlOptions;
+        oArgs.sSelectedValues = _oInput.Data;
+        var asSelItems = openStdDlg(Mscrm.CrmUri.create("/Tools/ViewEditor/Dialogs/SelectValues.aspx"),oArgs,517,325);
+        Focus();
+        if(asSelItems != null)
+        {
+            var oNode,
+                sOld = _oInput.Data;
+            _oInput.value = "";
+            _oInput.Data = "";
+            for(var iLen = asSelItems.length,
+                i = 0; i < iLen; i++)
+            {
+                oNode = _oXmlOptions.selectSingleNode("/select/option[@value='" + asSelItems[i] + "']");
+                if(!IsNull(oNode))
+                    if(i != 0)
+                    {
+                        _oInput.value += ";" + oNode.text;
+                        _oInput.Data += ";" + oNode.getAttribute("value")
+                    }
+                    else
+                    {
+                        _oInput.value = oNode.text;
+                        _oInput.Data = oNode.getAttribute("value")
+                    }
+            }
+            sOld != _oInput.Data && 
+                onChangeHandler.fire(createEventObject())
+        }
+    }
+}
+function SetDataText()
+{
+    if(!IsNull(_oXmlOptions))
+    {
+        var asSelItems = _oInput.Data.split(";");
+        _oInput.value = "";
+        var oNode,
+            iLen = asSelItems.length,
+            asValuesAry = new Array(2);
+        asValuesAry[0] = new Array(iLen);
+        asValuesAry[1] = new Array(iLen);
+        for(var iValuesLen = 0,
+            i = 0; i < iLen; i++)
+        {
+            oNode = _oXmlOptions.selectSingleNode("/select/option[@value='" + asSelItems[i] + "']");
+            if(oNode != null)
+            {
+                asValuesAry[0][iValuesLen] = asSelItems[i];
+                asValuesAry[1][iValuesLen] = oNode.text;
+                iValuesLen++
+            }
+        }
+        _bSortDataOnLoad && 
+            Quicksort(asValuesAry[1],0,iValuesLen - 1,asValuesAry[0]);
+        for(var sValue = "",
+            sData = "",
+            i = 0; i < iValuesLen; i++)
+        {
+            sValue += (i != 0 ? ";" : "") + asValuesAry[1][i];
+            sData += (i != 0 ? ";" : "") + asValuesAry[0][i]
+        }
+        _oInput.value = sValue;
+        _oInput.Data = sData
+    }
+}
+function FireOnChange()
+{
+    onChangeHandler.fire(createEventObject())
+}
+
+</script>
+</public:component>

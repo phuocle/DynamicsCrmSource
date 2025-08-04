@@ -1,0 +1,51 @@
+<public:component lightweight="true">
+<public:property name="DataValue" put="setDataValue"/>
+<public:property name="value" put="setValue"/>
+<public:property name="ContextControlId"/>
+<public:property name="FocusControlIds"/>
+<public:method name="focus"/>
+<public:event id="OnChangeEvent" name="onchange"/>
+<public:attach event="ondocumentready" onevent="initialize()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oContextControl,
+    _oRelatedInformationControl,
+    _oContextSelect;
+function initialize()
+{
+    for(var asFocusIds = FocusControlIds.split(","),
+        iLength = asFocusIds.length,
+        i = 0; i < iLength; i++)
+    {
+        var oFocusControl = window.document.getElementById(asFocusIds[i]);
+        oFocusControl.attachEvent("onfocus",LoadContextData)
+    }
+    _oContextSelect = window.document.getElementById("ContextSelect");
+    _oContextControl = window.document.getElementById(ContextControlId);
+    _oRelatedInformationControl = window.document.getElementById("RelatedInformationPane");
+    _oContextControl.attachEvent("onfocus",LoadContextData)
+}
+function LoadContextData()
+{
+    _oContextSelect.value != this.id && 
+        _oRelatedInformationControl.LoadContext(null,this.id)
+}
+function focus()
+{
+    _oContextControl.focus()
+}
+function setValue(value)
+{
+    var oEvent = createEventObject();
+    oEvent.Value = value;
+    OnChangeEvent.fire(oEvent)
+}
+function setDataValue(value)
+{
+    var oEvent = createEventObject();
+    oEvent.Value = value;
+    OnChangeEvent.fire(oEvent)
+}
+
+</script>
+</public:component>

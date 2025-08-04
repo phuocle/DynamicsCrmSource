@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[RoleBaseIds] (
+    [RoleId] UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT [PK_RoleBaseIds] PRIMARY KEY CLUSTERED ([RoleId] ASC)
+);
+
+
+GO
+ALTER TABLE [dbo].[RoleBaseIds] SET (LOCK_ESCALATION = DISABLE);
+

@@ -1,0 +1,207 @@
+﻿
+
+
+--
+-- base view for BulkOperation
+--
+create view dbo.[BulkOperation]
+ (
+    -- logical attributes
+    [CreatedOnBehalfByYomiName],
+    [CreatedOnBehalfByName],
+    [ModifiedOnBehalfByName],
+    [ModifiedOnBehalfByYomiName],
+    [SLAInvokedIdName],
+    [CreatedByName],
+    [CreatedByYomiName],
+    [TransactionCurrencyIdName],
+    [SLAName],
+    [SenderMailboxIdName],
+    [ModifiedByYomiName],
+    [ModifiedByName],
+
+    -- ownership entries
+    OwnerId,
+    OwnerIdName,
+    OwnerIdYomiName,
+    OwnerIdDsc,
+    OwnerIdType,
+    OwningUser,
+    OwningTeam,
+
+    -- physical attributes
+    [OwningBusinessUnit],
+    [ActualEnd],
+    [VersionNumber],
+    [ActivityId],
+    [IsBilled],
+    [CreatedBy],
+    [Description],
+    [ModifiedOn],
+    [ActivityTypeCode],
+    [StateCode],
+    [ScheduledEnd],
+    [ScheduledDurationMinutes],
+    [ActualDurationMinutes],
+    [StatusCode],
+    [ActualStart],
+    [CreatedOn],
+    [PriorityCode],
+    [RegardingObjectId],
+    [Subject],
+    [IsWorkflowCreated],
+    [ScheduledStart],
+    [ModifiedBy],
+    [TimeZoneRuleVersionNumber],
+    [UTCConversionTimeZoneCode],
+    [InstanceTypeCode],
+    [SeriesId],
+    [IsRegularActivity],
+    [ModifiedOnBehalfBy],
+    [CreatedOnBehalfBy],
+    [TransactionCurrencyId],
+    [ExchangeRate],
+    [LeftVoiceMail],
+    [Community],
+    [TraversedPath],
+    [IsMapiPrivate],
+    [ExchangeWebLink],
+    [ExchangeItemId],
+    [DeliveryPriorityCode],
+    [SentOn],
+    [DeliveryLastAttemptedOn],
+    [SenderMailboxId],
+    [PostponeActivityProcessingUntil],
+    [ProcessId],
+    [StageId],
+    [ActivityAdditionalParams],
+    [SLAId],
+    [SLAInvokedId],
+    [OnHoldTime],
+    [LastOnHoldTime],
+    [SortDate],
+    [RegardingObjectTypeCode],
+    [RegardingObjectIdName],
+    [RegardingObjectIdYomiName],
+    [ImportSequenceNumber],
+    [OverriddenCreatedOn],
+    [BulkOperationNumber],
+    [CreatedRecordTypeCode],
+    [ErrorNumber],
+    [FailureCount],
+    [OperationTypeCode],
+    [WorkflowInfo],
+    [Parameters],
+    [SuccessCount],
+    [TargetedRecordTypeCode],
+    [TargetMembersCount],
+    [ServiceId]
+) with view_metadata as
+select
+    -- logical attributes
+    [lk_BulkOperation_createdonbehalfby].[YomiFullName],
+    [lk_BulkOperation_createdonbehalfby].[FullName],
+    [lk_BulkOperation_modifiedonbehalfby].[FullName],
+    [lk_BulkOperation_modifiedonbehalfby].[YomiFullName],
+    [bulkoperation_sla_slainvokedid].[Name],
+    [lk_BulkOperation_createdby].[FullName],
+    [lk_BulkOperation_createdby].[YomiFullName],
+    [bulkoperation_transactioncurrency_transactioncurrencyid].[CurrencyName],
+    [bulkoperation_sla_slaid].[Name],
+    [bulkoperation_mailbox_sendermailboxid].[Name],
+    [lk_BulkOperation_modifiedby].[YomiFullName],
+    [lk_BulkOperation_modifiedby].[FullName],
+
+    -- ownership entries
+    OwnerId = [ActivityPointerBase].OwnerId,
+    OwnerName = XXowner.Name,
+    OwnerYomiName =  XXowner.YomiName,
+    OwnerDsc = 0, -- DSC is removed, stub it to 0
+    OwnerIdType = XXowner.OwnerIdType,
+    OwningUser = case 
+ 		when XXowner.OwnerIdType= 8 then XXowner.OwnerId
+		else null
+		end,
+    OwningTeam = case 
+ 		when XXowner.OwnerIdType= 9 then XXowner.OwnerId
+		else null
+		end,
+
+    -- physical attribute
+    [ActivityPointerBase].[OwningBusinessUnit],
+    [ActivityPointerBase].[ActualEnd],
+    [ActivityPointerBase].[VersionNumber],
+    [ActivityPointerBase].[ActivityId],
+    [ActivityPointerBase].[IsBilled],
+    [ActivityPointerBase].[CreatedBy],
+    [ActivityPointerBase].[Description],
+    [ActivityPointerBase].[ModifiedOn],
+    [ActivityPointerBase].[ActivityTypeCode],
+    [ActivityPointerBase].[StateCode],
+    [ActivityPointerBase].[ScheduledEnd],
+    [ActivityPointerBase].[ScheduledDurationMinutes],
+    [ActivityPointerBase].[ActualDurationMinutes],
+    [ActivityPointerBase].[StatusCode],
+    [ActivityPointerBase].[ActualStart],
+    [ActivityPointerBase].[CreatedOn],
+    [ActivityPointerBase].[PriorityCode],
+    [ActivityPointerBase].[RegardingObjectId],
+    [ActivityPointerBase].[Subject],
+    [ActivityPointerBase].[IsWorkflowCreated],
+    [ActivityPointerBase].[ScheduledStart],
+    [ActivityPointerBase].[ModifiedBy],
+    [ActivityPointerBase].[TimeZoneRuleVersionNumber],
+    [ActivityPointerBase].[UTCConversionTimeZoneCode],
+    [ActivityPointerBase].[InstanceTypeCode],
+    [ActivityPointerBase].[SeriesId],
+    [ActivityPointerBase].[IsRegularActivity],
+    [ActivityPointerBase].[ModifiedOnBehalfBy],
+    [ActivityPointerBase].[CreatedOnBehalfBy],
+    [ActivityPointerBase].[TransactionCurrencyId],
+    [ActivityPointerBase].[ExchangeRate],
+    [ActivityPointerBase].[LeftVoiceMail],
+    [ActivityPointerBase].[Community],
+    [ActivityPointerBase].[TraversedPath],
+    [ActivityPointerBase].[IsMapiPrivate],
+    [ActivityPointerBase].[ExchangeWebLink],
+    [ActivityPointerBase].[ExchangeItemId],
+    [ActivityPointerBase].[DeliveryPriorityCode],
+    [ActivityPointerBase].[SentOn],
+    [ActivityPointerBase].[DeliveryLastAttemptedOn],
+    [ActivityPointerBase].[SenderMailboxId],
+    [ActivityPointerBase].[PostponeActivityProcessingUntil],
+    [ActivityPointerBase].[ProcessId],
+    [ActivityPointerBase].[StageId],
+    [ActivityPointerBase].[ActivityAdditionalParams],
+    [ActivityPointerBase].[SLAId],
+    [ActivityPointerBase].[SLAInvokedId],
+    [ActivityPointerBase].[OnHoldTime],
+    [ActivityPointerBase].[LastOnHoldTime],
+    [ActivityPointerBase].[SortDate],
+    [ActivityPointerBase].[RegardingObjectTypeCode],
+    [ActivityPointerBase].[RegardingObjectIdName],
+    [ActivityPointerBase].[RegardingObjectIdYomiName],
+    [ActivityPointerBase].[ImportSequenceNumber_4406],
+    [ActivityPointerBase].[OverriddenCreatedOn_4406],
+    [ActivityPointerBase].[BulkOperationNumber],
+    [ActivityPointerBase].[CreatedRecordTypeCode],
+    [ActivityPointerBase].[ErrorNumber],
+    [ActivityPointerBase].[FailureCount],
+    [ActivityPointerBase].[OperationTypeCode],
+    [ActivityPointerBase].[WorkflowInfo],
+    [ActivityPointerBase].[Parameters],
+    [ActivityPointerBase].[SuccessCount],
+    [ActivityPointerBase].[TargetedRecordTypeCode],
+    [ActivityPointerBase].[TargetMembersCount],
+    [ActivityPointerBase].[ServiceId]
+from [ActivityPointerBase] 
+    left join [MailboxBase] [bulkoperation_mailbox_sendermailboxid] on ([ActivityPointerBase].[SenderMailboxId] = [bulkoperation_mailbox_sendermailboxid].[MailboxId])
+    left join [SLABase] [bulkoperation_sla_slaid] on ([ActivityPointerBase].[SLAId] = [bulkoperation_sla_slaid].[SLAId] and [bulkoperation_sla_slaid].OverwriteTime = 0 and [bulkoperation_sla_slaid].ComponentState = 0)
+    left join [SLABase] [bulkoperation_sla_slainvokedid] on ([ActivityPointerBase].[SLAInvokedId] = [bulkoperation_sla_slainvokedid].[SLAId] and [bulkoperation_sla_slainvokedid].OverwriteTime = 0 and [bulkoperation_sla_slainvokedid].ComponentState = 0)
+    left join [TransactionCurrencyBase] [bulkoperation_transactioncurrency_transactioncurrencyid] on ([ActivityPointerBase].[TransactionCurrencyId] = [bulkoperation_transactioncurrency_transactioncurrencyid].[TransactionCurrencyId])
+    left join [SystemUserBase] [lk_BulkOperation_createdby] on ([ActivityPointerBase].[CreatedBy] = [lk_BulkOperation_createdby].[SystemUserId])
+    left join [SystemUserBase] [lk_BulkOperation_createdonbehalfby] on ([ActivityPointerBase].[CreatedOnBehalfBy] = [lk_BulkOperation_createdonbehalfby].[SystemUserId])
+    left join [SystemUserBase] [lk_BulkOperation_modifiedby] on ([ActivityPointerBase].[ModifiedBy] = [lk_BulkOperation_modifiedby].[SystemUserId])
+    left join [SystemUserBase] [lk_BulkOperation_modifiedonbehalfby] on ([ActivityPointerBase].[ModifiedOnBehalfBy] = [lk_BulkOperation_modifiedonbehalfby].[SystemUserId])
+    left join OwnerBase XXowner on ([ActivityPointerBase].OwnerId = XXowner.OwnerId)
+where [ActivityPointerBase].[ActivityTypeCode] = 4406

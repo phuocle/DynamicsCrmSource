@@ -1,6 +1,9 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+﻿# Visual Studio
+.vs/
 
-/.vs
-/v.8.2.0.0749/CrmWeb/.vs
+# SQL Server Database Project generated files
+obj/
+bin/
+Import Schema Logs/
+*.user
+*.dacpac

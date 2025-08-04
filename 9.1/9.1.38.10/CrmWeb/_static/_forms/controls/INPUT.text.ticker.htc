@@ -1,0 +1,108 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Parse()"/>
+<public:attach event="onchange" onevent="Parse()"/>
+<public:attach event="ondblclick" onevent="Launch()"/>
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataXml" get="dataXml"/>
+<public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:property name="RequiredLevel" get="getRequiredLevel" />
+<public:property name="MaxLength" get="getMaxLength" />
+<public:property name="DataChangeHandler" />
+<public:method name="SetFocus" internalname="setFocus"/>
+<public:method name="FireOnChange" internalname="fireOnChange"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+function isDirty()
+{
+    return this.defaultValue != this.value
+}
+function dataXml()
+{
+    var sID = this.id;
+    return "<" + sID + ">" + CrmEncodeDecode.CrmXmlEncode(Trim(this.value)) + "</" + sID + ">"
+}
+function Parse()
+{
+    value = Trim(value);
+    if(value.length > 0)
+    {
+        value = value.toUpperCase();
+        title = formatString(LOCID_OPEN_TICKER_MASK,value)
+    }
+}
+function Launch()
+{
+    if(value.length > 0)
+    {
+        Parse();
+        safeWindowOpen(Mscrm.CrmUri.create("http://go.microsoft.com/fwlink?linkid=8506&clcid=" + CrmEncodeDecode.CrmUrlEncode(USER_LANGUAGE_CODE.toString(16)) + "&Symbol=" + CrmEncodeDecode.CrmUrlEncode(value)),"","height=" + screen.availHeight * .75 + ",width=" + screen.availWidth * .75 + ",scrollbars=1,resizable=1,status=1,toolbar=1,menubar=1,location=1",false,true)
+    }
+}
+function getDataValue()
+{
+    var sVal = Trim(this.value);
+    return "" == sVal ? null : sVal
+}
+function putDataValue(sVal)
+{
+    var sDisplayValue = sVal || "";
+    if("string" == typeof sDisplayValue)
+    {
+        value = sDisplayValue;
+        Parse();
+        var fDataChangeHandler = this.DataChangeHandler;
+        fDataChangeHandler && 
+            fDataChangeHandler()
+    }
+    else
+        alert(LOCID_DEVERROR_BADTYPE_STRING)
+}
+function getDisabled()
+{
+    return this.contentEditable == "false"
+}
+function setDisabled(bValue)
+{
+    this.className = bValue ? "ms-crm-Ticker ms-crm-ReadOnly" : "ms-crm-Ticker";
+    this.contentEditable = bValue ? "false" : "true"
+}
+function setFocus()
+{
+    !IsNull(this.form) && this.form.className == "ms-crm-Form" && 
+        this.form.GetTab(element,true);
+    element.focus();
+    element.select()
+}
+function getMaxLength()
+{
+    try
+    {
+        return parseInt(this.maxLength,10)
+    }
+    catch(e)
+    {
+        return 2e3
+    }
+}
+function fireOnChange()
+{
+    this.fireEvent("onchange")
+}
+function getRequiredLevel()
+{
+    try
+    {
+        if(IsNull(this.req))
+            return FIELD_NOT_REQUIRED;
+        else
+            return parseInt(this.req,10)
+    }
+    catch(e)
+    {
+        return FIELD_NOT_REQUIRED
+    }
+}
+
+</script>
+</public:component>

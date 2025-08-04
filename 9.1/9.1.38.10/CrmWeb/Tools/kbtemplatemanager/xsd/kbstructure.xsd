@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="kbarticle" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+			This will verify a KB Article Template structurexml field
+		</xs:documentation>
+	</xs:annotation>
+	<xs:element name="kbarticle" >
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="sections">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="section" minOccurs="3" maxOccurs="unbounded">
+								<xs:complexType mixed="true">
+									<xs:sequence>
+										<xs:element name="instructions" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+									</xs:sequence>
+									<xs:attribute name="type">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="docprop" />
+												<xs:enumeration value="edit" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="name">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="title" />
+												<xs:enumeration value="number" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="id" type="xs:integer" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="stylesheet">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="article" type="styleCollection" />
+							<xs:element name="title" type="styleCollection" />
+							<xs:element name="number" type="styleCollection" />
+							<xs:element name="heading" type="styleCollection" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="styleCollection">
+		<xs:sequence>
+			<xs:element name="style" minOccurs="0" maxOccurs="unbounded" block="substitution">
+				<xs:complexType>
+					<xs:attribute name="name" type="xs:string" />
+					<xs:attribute name="value" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

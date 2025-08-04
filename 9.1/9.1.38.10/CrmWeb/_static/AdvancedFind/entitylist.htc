@@ -1,0 +1,92 @@
+<public:component lightweight="true" tagName=EntityList>
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:event name="onchange" id="OnChangeHandler"/>
+<public:property name="ParentControl"/>
+<public:property name="EntityName"/>
+<public:property name="Container"/>
+<public:property name="DataValue" get="GetDataValue" put="SetDataValue"/>
+<public:method name="GetEntityList"/>
+<public:method name="SetMode"/>
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oAutoShow = null,
+    _sDataValue = null,
+    _bInitialized = false;
+Sys.Application.add_load(SysInit);
+function SysInit()
+{
+    Init()
+}
+function InitOnDocReady()
+{
+    Sys.Application.get_isInitialized() && !_bInitialized && 
+        Init()
+}
+function Init()
+{
+    element.innerHTML = "<Crm:AutoShow id='" + element.id + "'/>";
+    _bInitialized = true;
+    _oAutoShow = element.firstChild;
+    _oAutoShow.Container = element.Container;
+    var innerControlId = _oAutoShow.id + "_select";
+    with(_oAutoShow)
+    {
+        InnerControlHtml = "<select id='" + innerControlId + "' class='ms-crm-SelectBox'>" + (element.EntityName == None || IsNull(EntityName) ? "" : RetrieveLinkedEntityList(element.EntityName)) + "</select>";
+        Width = 300;
+        attachEvent("onchange",EntityChanged);
+        Value = _sDataValue
+    }
+    SetMode(Container.Mode)
+}
+function GetEntityList()
+{
+    return _oAutoShow.InnerControl
+}
+function RetrieveLinkedEntityList(sEntity)
+{
+    var sRelEntityList = "",
+        oRetVal,
+        fnCallback = Container.BeforePopulateRelatedEntityList_Handler;
+    if(!IsNull(fnCallback) && "function" == typeof fnCallback)
+    {
+        oRetVal = fnCallback(sEntity);
+        sRelEntityList = oRetVal.data;
+        if(oRetVal.bCancel)
+            return sRelEntityList
+    }
+    var sTmpRelEntityList = Container.ClientCache.GetElement("Entity",sEntity);
+    if(!IsNull(sTmpRelEntityList))
+        sRelEntityList += sTmpRelEntityList;
+    var fnCallback = Container.BeforePopulateRelatedEntityList_Handler;
+    if(!IsNull(fnCallback) && "function" == typeof fnCallback)
+    {
+        oRetVal = fnCallback(sEntity,sRelEntityList);
+        sRelEntityList += oRetVal.data
+    }
+    return sRelEntityList
+}
+function EntityChanged()
+{
+    _sDataValue = event.srcElement.Value;
+    OnChangeHandler.fire(this.createEventObject())
+}
+function GetDataValue()
+{
+    return _sDataValue
+}
+function SetDataValue(sValue)
+{
+    _sDataValue = sValue;
+    if(_bInitialized)
+        _oAutoShow.Value = sValue
+}
+function SetMode(iMode)
+{
+    _oAutoShow.Disabled = iMode == Container.ModesEnum.Simple;
+    _oAutoShow.SetMode(iMode)
+}
+
+</script>
+</html>
+</public:component>

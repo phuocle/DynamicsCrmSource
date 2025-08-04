@@ -1,0 +1,692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Msg_Progress_MOCA_Dialog">
+    <value>Processing...</value>
+    <comment>Message which is displayed on processing window for Moca dialogs.</comment>
+  </data>
+  <data name="Brand_CRM">
+    <value>Microsoft Dynamics 365</value>
+    <comment>Branding for CRM.</comment>
+  </data>
+  <data name="Error_Message_Action_NoItemSelected">
+    <value>You must select one or more records before you can perform this action.</value>
+  </data>
+  <data name="Web.Reports.NonSRSReportFilterSchedule">
+    <value>Only SQL Server Reporting Services reports can be filtered or scheduled.</value>
+  </data>
+  <data name="Web.Reports.UnsupportedReportType">
+    <value>This report type is not supported.</value>
+  </data>
+  <data name="Error_Message_Action_MultipleErrorsFound">
+    <value>An error has occurred. The selected action was not completed for one or more records.</value>
+    <comment></comment>
+  </data>
+  <data name="Delete_Customer_Dialog_Delete_Instruction">
+    <value>To continue deleting the {0}, click Delete.</value>
+    <comment>{NumberedPlaceholder="{0}"} Placeholder 0 will be replaced with either Account or Contact.  Located in the account delete dialog, Delete is a button label.</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_delete_account.aspx_54" xml:space="preserve">
+    <value>Deleting the {0} will delete all records under the {0} as well (for example, Social profiles, opportunities, activities, and contacts). Sub-{0} will be removed from the {0}, but not deleted.</value>
+    <comment>{NumberedPlaceholder="{0}"} Placeholder 0 will be replaced with either Account or Accounts.</comment>
+  </data>
+  <data name="Delete_Account_Dialog_RelatedDocumentsWarning" xml:space="preserve">
+    <value>SharePoint documents will not be deleted, but may not be accessible through Microsoft Dynamics 365.</value>
+    <comment>Warning message shown when collaboration is enabled in the account delete dialog.[Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_delete_contact.aspx_26" xml:space="preserve">
+    <value>Select Delete or Deactivate</value>
+  </data>
+  <data name="Web._grid.cmds.dlg_delete_contact.aspx_54" xml:space="preserve">
+    <value>Deleting the {0} will delete all records under the {0} as well (for example, Social profiles, opportunities, activities, and cases).</value>
+    <comment>{NumberedPlaceholder="{0}"} Placeholder 0 will be replaced with Contact or Contacts.</comment>
+  </data>
+  <data name="Delete_Customer_Dialog_Account_Instruction" xml:space="preserve">
+    <value>To keep the records under the {0} available for further use or for reporting, click Cancel and then select Deactivate from the command bar.</value>
+    <comment>{NumberedPlaceholder="{0}"} Placeholder 0 will be replaced with Account or Contact.</comment>
+  </data>
+  <data name="Button_Label_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Button_Label_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Dialog_DeleteContactConfirm_Title" xml:space="preserve">
+    <value>{0} Delete Confirmation</value>
+    <comment>Dialog page title for delete contact confirmation dialog page. {NumberedPlaceholder="{0}"}. Placeholder 0 is the entity name Contact.</comment>
+  </data>
+  <data name="Dialog_DeleteContactConfirm_Description" xml:space="preserve">
+    <value>You have selected {0} {1} for deletion.</value>
+    <comment>Dialog page description for delete contact confirmation dialog page. {NumberedPlaceholder="{0}","{1}"}. Placeholder 0 is a number representing the number of contacts selected and Placeholder 1 is a singular or plural contact entity name (Contact/Contacts) depending upon whether one or more contacts are selected.</comment>
+  </data>
+  <data name="Dialog_DeleteAccountConfirm_Title" xml:space="preserve">
+    <value>{0} Delete Confirmation</value>
+    <comment>Dialog page title for delete account confirmation dialog page. {NumberedPlaceholder="{0}"}. Placeholder 0 is the entity name Account.</comment>
+  </data>
+  <data name="Dialog_DeleteAccountConfirm_Description" xml:space="preserve">
+    <value>Are you sure you want to delete {0} {1}? You can't undo this action.</value>
+    <comment>Dialog page description for delete account confirmation dialog page. {NumberedPlaceholder="{0}","{1}"}. Placeholder 0 is a number representing the number of accounts selected and Placeholder 1 is a singular or plural account entity name (Account/Accounts) depending upon whether one or more accounts are selected.[Category="Orion AIR"]</comment>
+  </data>
+  <data name="Delete_KnowledgeArticle_Dialog_RelatedInformationWarning" xml:space="preserve">
+    <value>Deleting these knowledge articles will also delete any related knowledge article views, translations, and any other knowledge article associations. To keep any of these records, click Cancel and archive them before deleting the knowledge articles.</value>
+    <comment>Warning message shown when in the knowledge article delete dialog.[Category="KnowledgeArticle"]</comment>
+  </data>
+  <data name="Dialog_DeleteKnowledgeArticleConfirm_Title" xml:space="preserve">
+    <value>Delete Confirmation</value>
+    <comment>Dialog page title for delete Knowledge Article confirmation dialog page. [Category="KnowledgeArticle"]</comment>
+  </data>
+  <data name="Dialog_DeleteKnowledgeArticleConfirm_Description" xml:space="preserve">
+    <value>Are you sure you want to delete {0} Articles? You can't undo this action.</value>
+    <comment>Dialog page description for delete knowledge article confirmation dialog page. {NumberedPlaceholder="{0}"}. Placeholder 0 is a number representing the number of Knowledge Articles selected [Category="KnowledgeArticle"]</comment>
+  </data>
+  <data name="Dialog_Delete_DeleteAll" xml:space="preserve">
+    <value>The system will delete this record.  This action cannot be undone.  To continue, click Delete.</value>
+    <comment>Message shown when a record is deleted. [Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_delete.aspx_26" xml:space="preserve">
+    <value>Confirm Deletion</value>
+  </data>
+  <data name="Dialog_Delete_Description" xml:space="preserve">
+    <value>Do you want to delete this {0}? You can't undo this action.</value>
+    <comment>Dialog page description for delete confirmation dialog page. Eg: Deleting a product. {NumberedPlaceholder="{0}"}. Placeholder 0 is a text representing an entity name Eg: Product[Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Dialog_DeleteQueue_Description" xml:space="preserve">
+    <value>Are you sure you want to remove the selected {0} {1}? You can't undo this action.</value>
+    <comment>{NumberedPlaceholder="{0}", "{1}"}. Placeholder 0 is number of objects, Placeholder 1 is plural version of object name being deleted.[Category="Orion AIR"]</comment>
+  </data>
+  <data name="Dialog_DeleteQueueEmpty_Title" xml:space="preserve">
+    <value>Confirm {0} Deletion</value>
+    <comment>{NumberedPlaceholder="{0}"}. Placeholder 0 is plural version of object name being deleted.[Category="Orion AIR"]</comment>
+  </data>
+  <data name="Dialog_Delete_Topicmodel_Description" xml:space="preserve">
+    <value>Delete the topic model and its configurations. This will also delete the associated execution history. Any topics generated with previous runs for the records will be retained.</value>
+    <comment>Description for Delete Model dialog for Topic Model.[Category="Analytics"]</comment>
+  </data>
+  <data name="Dialog_Delete_Topicmodel_Title" xml:space="preserve">
+    <value>Confirm Deletion</value>
+    <comment>Title for Delete dialog for Topic Model.[Category="Analytics"]</comment>
+  </data>
+  <data name="Dialog_Delete_AzureServiceConnection_Description" xml:space="preserve">
+    <value>All models and configurations must be deleted before deleting the connection. Do you want to delete the connection?</value>
+    <comment>Description for Delete dialog for AzureServiceConnection.[Category="Analytics"]</comment>
+  </data>
+  <data name="Dialog_Delete_AzureServiceConnection_Title" xml:space="preserve">
+    <value>Confirm Deletion</value>
+    <comment>Title for Delete dialog for AzureServiceConnection.[Category="Analytics"]</comment>
+  </data>
+  <data name="Flows_CreateFlow">
+    <value>Create a flow</value>
+    <comment>Creates a Flow.[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Flows_ManageFlows">
+    <value>See your flows</value>
+    <comment>Accesses user's flows.[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Flows_LoginFlow">
+    <value>Login to flow</value>
+    <comment>Login to Flow site.[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Flows_ManageFlowMenuSection">
+    <value>Manage</value>
+    <comment>Login to Flow site.[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Flows_RunFlowMenuSection">
+    <value>Run</value>
+    <comment>Login to Flow site.[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Flows_LoginTryAgain">
+    <value>Try Again</value>
+    <comment>Login to Flow site.[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Menu_Label_CreateExcelTemplate">
+    <value>Create Excel Template</value>
+    <comment>Menu group item label for create excel template in the context-sensitive excel templates menu. [Category="Document Template"]</comment>
+  </data>
+  <data name="Menu_Label_Group_ExcelTemplates">
+    <value>Excel Templates</value>
+    <comment>Menu group item label for excel templates in the context-sensitive excel templates menu. [Category="Document Template"]</comment>
+  </data>
+  <data name="Menu_Label_Group_PersonalExcelTemplates">
+    <value>Personal Excel Templates</value>
+    <comment>Menu group item label for personal excel templates in the context-sensitive excel templates menu. [Category="Document Template"]</comment>
+  </data>
+  <data name="Menu_Label_CreateWordTemplate">
+    <value>Create Word Template</value>
+    <comment>Menu group item label for create word template in the context-sensitive word templates menu. [Category="Document Template"]</comment>
+  </data>
+  <data name="Menu_Label_Group_WordTemplates">
+    <value>Word Templates</value>
+    <comment>Menu group item label for word templates in the context-sensitive word templates menu. [Category="Document Template"]</comment>
+  </data>
+  <data name="Menu_Label_Group_PersonalWordTemplates">
+    <value>Personal Word Templates</value>
+    <comment>Menu group item label for personal word templates in the context-sensitive word templates menu. [Category="Document Template"]</comment>
+  </data>
+  <data name="View_Personal_Document_Template">
+    <value>View Template</value>
+    <comment>Toast notification link to view created personal document template. [Category="Document Template"]</comment>
+  </data>
+  <data name="DocTemplate_Successfully_Uploaded">
+    <value>Personal Template Created</value>
+    <comment>Notification on successful upload of document template. [Category="Document Template"]</comment>
+  </data>
+  <data name="ExportToXlsx_Error_Entity_Metadata_Not_Found">
+    <value>Entity metadata not found</value>
+    <comment>Error message fetching entity metadata failure. [Category="Export to Excel"]</comment>
+  </data>
+  <data name="ExportToXlsx_ProgressDialog_Header">
+    <value>Exporting to Excel</value>
+    <comment>Progress dialog title. [Category="Export to Excel"]</comment>
+  </data>
+  <data name="ExportToDocx_ProgressDialog_Header">
+    <value>Exporting to Word</value>
+    <comment>Progress dialog title. [Category="Document Template"]</comment>
+  </data>
+  <data name="Dialog_Delete_Description_Category">
+    <value>All associations and any child categories will be deleted as well. Do you want to continue?</value>
+    <comment>Dialog page description for Category delete confirmation dialog page.</comment>
+  </data>
+  <data name="Dialog_Assign_Title">
+    <value>Assign {0}</value>
+    <comment>Dialog page title for assign dialog page. {NumberedPlaceholder="{0}"}. Placeholder 1 is a text representing a singular or plural entity name depending upon whether one or more records are selected Eg: Opportunity</comment>
+  </data>
+  <data name="Dialog_Assign_DescriptionSingular">
+    <value>You have selected {0} {1}.  To whom would you like to assign it?</value>
+    <comment>Dialog page description for assign dialog page. {NumberedPlaceholder="{0}", "{1}"}. Placeholder 0 is a number representing the number of records selected and Placeholder 1 is a text representing a singular entity name Eg: Contact</comment>
+  </data>
+  <data name="Dialog_Assign_DescriptionPlural">
+    <value>You have selected {0} {1}.  To whom would you like to assign them?</value>
+    <comment>Dialog page description for assign dialog page. {NumberedPlaceholder="{0}", "{1}"}. Placeholder 0 is a number representing the number of records selected and Placeholder 1 is a text representing a plural entity name Eg: Contacts</comment>
+  </data>
+  <data name="Dialog_EntityImage_NewEntityImage">
+    <value>Current Image</value>
+    <comment>Label for new entity image</comment>
+  </data>
+  <data name="Dialog_EntityImage_CurrentEntityImage">
+    <value>Current Image</value>
+    <comment>Label for current entity image</comment>
+  </data>
+  <data name="Dialog_EntityImage_ChangeImage">
+    <value>Choose Image</value>
+    <comment>Label for changing entity image</comment>
+  </data>
+  <data name="Dialog_EntityImage_UpdateImage">
+    <value>Change Image?</value>
+    <comment>Label for updating entity image</comment>
+  </data>
+  <data name="Dialog_EntityImage_ChangeImage_Description">
+    <value>Upload an image from your device, or use the default image</value>
+    <comment>Description for changing entity image</comment>
+  </data>
+  <data name="Dialog_EntityImage_UpdateImage_Description">
+    <value>Do you want to change the existing image to this image?</value>
+    <comment>Description for updating entity image</comment>
+  </data>
+  <data name="Grid_Action_Too_Many_Custom_Messages_Selected_Alert">
+    <value>You must select only one record before performing this action.</value>
+    <comment></comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_assignallrecords.aspx_60">
+    <value>You currently do not have anyone selected to reassign this user's records to.  Select someone for the assignment and try again.</value>
+    <comment></comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_deactivate.aspx_200_Activate_warning_Title">
+    <value>Warning</value>
+    <comment>Warning Popup Title</comment>
+  </data>
+  <data name="Button_Label_OK">
+    <value>OK</value>
+  </data>
+  <data name="Web._grid.cmds.dlg_deactivate.aspx_200_Activate_warning">
+    <value>You can't activate this record because of the status transition rules. Contact your system administrator.</value>
+    <comment>Warning message to be displayed when allowed status transitions defined</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_deactivate.aspx_200_Deactivate_warning">
+    <value>You can't deactivate this record because of the status transition rules. Contact your system administrator.</value>
+    <comment>Warning message to be displayed when allowed status transitions defined</comment>
+  </data>
+  <data name="Dialog_Deactivate_Description">
+    <value>Do you want to deactivate the selected {0} {1}? You can reactivate it later, if you wish.</value>
+    <comment>Dialog page description for deactivate dialog page. Eg: You have selected 5 products to deactivate. {NumberedPlaceholder="{0}","{1}"}. Placeholder 0 is a number representing the number of records selected and Placeholder 1 is a text representing a singular or plural entity name depending upon whether one or more records are selected Eg: Product[Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="View_All_My_Templates">
+    <value>View All My Templates</value>
+    <comment>View All My Personal Document Templates</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_deactivate.aspx_102_Title">
+    <value>This action will set the {0} as inactive. There may be records in the system that continue to reference these inactive records.</value>
+    <comment>
+            {NumberedPlaceholder="{0}"} Placeholder 0 will be replaced with a proper noun, plural or singular, indicating an entity name
+            Example : This action will set the accounts as inactive.
+        </comment>
+  </data>
+  <data name="Button_Label_Deactivate">
+    <value>Deactivate</value>
+  </data>
+  <data name="Dialog_Close_Activity_Title">
+    <value>Close {0}</value>
+    <comment>Dialog page title for close activity confirmation dialog page. Eg: Close Task. {NumberedPlaceholder="{0}"}. Placeholder 0 is a text representing an entity name Eg: Task</comment>
+  </data>
+  <data name="Dialog_Close_Activity_Description">
+    <value>Do you want to close the selected {0} {1}?</value>
+    <comment>Dialog page description for close activity dialog page. Eg: You have selected 5 Tasks to close. {NumberedPlaceholder="{0}","{1}"}. Placeholder 0 is a number representing the number of records selected and Placeholder 1 is a text representing a singular or plural entity name depending upon whether one or more records are selected Eg: Tasks.[Category="Orion AIR"]</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_deactivate.aspx_85">
+    <value>Select the status of the closing {0}.</value>
+    <comment>
+            {NumberedPlaceholder="{0}"} Placeholder 0 will be replaced with a proper noun indicating an entity name.
+            Example : Select the status of the closing Task.
+        </comment>
+  </data>
+  <data name="Button_Label_Close">
+    <value>Close</value>
+    <comment>Label for the Close button.[Category="Analytics"]</comment>
+  </data>
+  <data name="Button_Label_CloseActivity">
+    <value>Close Activity</value>
+    <comment>Label for the Close Activity button.[Category="Analytics"]</comment>
+  </data>
+  <data name="Dialog_Grid_Deactivate_Title">
+    <value>Confirm Deactivation</value>
+    <comment>Dialog page title for deactivate confirmation dialog page on grid action. Eg: Confirm Product Deactivation.[Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_deactivate.aspx_55_Routingrule">
+    <value>This will set the status of the {0} to Draft.</value>
+    <comment>{NumberedPlaceholder="{0}"} Placeholder 0 will be replaced with a proper noun, singular or plural, indicating an entity name.  Example : This action will change the status of the selected Contact to Inactive.  To continue, click OK.[Category="Servicing"]</comment>
+  </data>
+  <data name="Dialog_Label_Active">
+    <value>Active</value>
+    <comment>This is used as a parameter in other resource strings.  Such as "This operation will set the selected Account as Active".</comment>
+  </data>
+  <data name="Dialog_Activate_Title">
+    <value>Confirm {0} Activation</value>
+    <comment>Dialog page title for the activate/deactivate dialog page. {NumberedPlaceholder="{0}"}. Placeholder 0 is a text representing an entity name.</comment>
+  </data>
+  <data name="Dialog_Activate_Description_Activate">
+    <value>Are you sure you want to activate the selected {0} {1}?</value>
+    <comment>Dialog page description for the activate record dialog page. {NumberedPlaceholder="{0}", "{1}"}. Placeholder 0 is a number representing number of records selected, Placeholder 1 is a text representing a singular or plural entity name depending upon whether one or more records are selected. [Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Dialog_Activate_RoutingRule_Description">
+    <value>Only one routing rule set can be active at a time. If you activate this routing rule set, the previously activated rule for this entity will be deactivated. Do you want to continue?</value>
+    <comment>Dialog page description for the activate record dialog page.[Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Dialog_Activate_ConvertRule_Title">
+    <value>Activate this rule?</value>
+    <comment>Dialog page title for the activate dialog page.[Category="Servicing"]</comment>
+    <ObjectReferences>
+      <ObjectType Singular="Record Creation Rule" Plural="Record Creation Rules">9300</ObjectType>
+    </ObjectReferences>
+  </data>
+  <data name="Dialog_Activate_Single_ConvertRule_Description">
+    <value>Only one rule per queue and activity type can be active. This means if you activate this rule, the previously activated rule will be deactivated.</value>
+    <comment>Dialog page description for the activate record dialog page.[Category="Servicing"]</comment>
+    <ObjectReferences>
+      <ObjectType Singular="Record Creation Rule" Plural="Record Creation Rules">9300</ObjectType>
+    </ObjectReferences>
+  </data>
+  <data name="Button_Label_Activate">
+    <value>Activate</value>
+    <comment>Label for the Activate button[Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Grid_Apply_Rule_Heterogenous_Activity_Type_Records_Selected">
+    <value>You can only perform this action for activities of the same type.</value>
+    <comment>Error message for bulk management of activities. [Category="CSA and Comm Svc"]</comment>
+  </data>
+  <data name="Grid_Apply_Rule_Social_Activity_Type_Records_Selected_For_Invalid_Action">
+    <value>You can not perform this action for social activities.</value>
+    <comment>Error message for invalid social activity action. [Category="Servicing"]</comment>
+  </data>
+  <data name="Grid_Apply_Rule_Selected_Emails">
+    <value>You cannot perform this action for email activities.</value>
+    <comment>Error message for bulk management of email activities. [Category="CSA and Comm Svc"]</comment>
+  </data>
+  <data name="Grid_Apply_Rule_Selected_Records">
+    <value>You cannot perform this action for campaign activities.</value>
+    <comment>Error message for bulk management of campaign activities. [Category="CSA and Comm Svc"]</comment>
+  </data>
+  <data name="Error_Max_Shortcut_Record_Reached">
+    <value>The maximum number of records that can be selected for this action is 10.</value>
+    <comment>The maximum number of records that can be supported for copy/send shortcut action.</comment>
+  </data>
+  <data name="Dialog_SetRegarding_Description">
+    <value>Choose a record that the selected {0} {1} will be in regard to.</value>
+    <comment>Dialog page description for set regarding confirmation dialog page.[Category="Orion AIR"]. {NumberedPlaceholder="{0}","{1}"}. Placeholder 0 is a number representing the number of records selected and placeholder 1 is a text representing a singular or plural entity name depending upon whether one or more records are selected Eg: Product</comment>
+  </data>
+  <data name="Error_Message_Generic_Mobile_Client_Offline">
+    <value>Cannot process this request as this client is offline.</value>
+    <comment>Error message if mobile client is offline. [Category="Metadata Driven Dialog"]</comment>
+  </data>
+  <data name="Dlg_RouteCase_AddRequiredConfirmForSingleCase_Body" xml:space="preserve">
+    <value>Do you want to route this case based on the active routing rule set?</value>
+    <comment>Confirmation Message for Routing Single case. [Category="Servicing"]</comment>
+  </data>
+  <data name="Dlg_RouteCase_AddRequiredConfirm_Title" xml:space="preserve">
+    <value>Route Case</value>
+    <comment>Apply Route to Case Confirmation Dialog Title. [Category="Servicing"]</comment>
+  </data>
+  <data name="Button_Label_Route">
+    <value>Route</value>
+    <comment>Label for the Route button[Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Case_Reactivate_Dlg_Title">
+    <value>Reactivate Case</value>
+    <comment>Title for Reactivate Case Dialog.[Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Web.CS.cases.dlg_reactivate.aspx_50">
+    <value>This action reactivates a resolved or canceled case. Do you want to continue?</value>
+    <comment></comment>
+  </data>
+  <data name="Button_Label_Reactivate">
+    <value>Reactivate</value>
+    <comment>Label for the Reactivate button[Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Web._cs.Cases.dlg_ConfirmResolve.aspx_1">
+    <value>Resolve Case</value>
+    <comment>This is the title that will appear on the ConfirmResolve Dialog Screen [Category="Servicing"]</comment>
+  </data>
+  <data name="Web._cs.Cases.dlg_ConfirmResolve.aspx_3">
+    <value>There are open activities associated with this case. The open activities will be canceled if you resolve this case. Do you want to resolve the case?</value>
+    <comment>This is the text that will appear on the ConfirmResolve Dialog Screen [Category="Servicing"]</comment>
+  </data>
+  <data name="Button_Label_Confirm">
+    <value>Confirm</value>
+    <comment>Button text for the Confirm button [Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Web.Record.NoValidStatusReasonTransition.Window_Title01">
+    <value>Case Error</value>
+    <comment>Transition to none of the Status Reasons of the new State is allowed</comment>
+  </data>
+  <data name="Web.Record.NoValidStatusReasonTransition01">
+    <value>Because of the status transition rules, you cannot resolve a case in the current status. Change the case status, and then try resolving it, or contact your system administrator.</value>
+    <comment>Because of the status transition rules, you cannot resolve a case in the current status. Change the case status, and then try resolving it, or contact your system administrator.</comment>
+  </data>
+  <data name="Web._cs.Cases.dlg_ConfirmResolve.aspx_4">
+    <value>There are open activities associated with this case. The open activities will be canceled if you cancel this case. Do you want to cancel the case?</value>
+    <comment>This is the text that will appear the on the ConfirmResolve Dialog Screen [Category="Servicing"]</comment>
+  </data>
+  <data name="Web._cs.Cases.dlg_ConfirmCancel.aspx_2">
+    <value>Cancel Case</value>
+    <comment>This is the text that will appear the on the ConfirmCancel Dialog Screen [Category="Servicing"]</comment>
+  </data>
+  <data name="Web._cs.ApplyEmailTemplate.dlg_ConfirmResolveText">
+    <value>Do you want to replace the subject line in the email message with subject line in template ? </value>
+    <comment>This is the Text that will appear on the Confirm Replace Subject with Template Dialog Screen [Category="KnowledgeArticle"]</comment>
+  </data>
+  <data name="Web._cs.ApplyEmailTemplate.dlg_ConfirmResolveTitle">
+    <value>Apply Template</value>
+    <comment>This is the Text that will appear on the Confirm Replace Subject with Template Dialog Screen [Category="KnowledgeArticle"]</comment>
+  </data>
+  <data name="AddTemplateWithoutAttachment">
+    <value>This template contains attachments. If you want attachments as a part of your email, click Cancel, save the email, and then re-apply the template. To continue without the attachments, click OK.</value>
+    <comment>Message shown on confirm dialog when user attempts to add a template containing attachments to email without saving the email.[Category="Business Modules"]</comment>
+  </data>
+  <data name="Dialog_Delete_Connection_Description">
+    <value>Are you sure you want to remove {0} from {1} grid?</value>
+    <comment>Delete confirmation dialog text for connection subgrids</comment>
+  </data>
+  <data name="Dialog_Delete_Bulk_Connection_Description">
+    <value>Are you sure you want to remove the selected records from {0} grid?</value>
+    <comment>Bulk Delete confirmation dialog text for connection subgrids</comment>
+  </data>
+  <data name="Dialog_Delete_Connection_Title">
+    <value>Deletion confirmation</value>
+    <comment>Delete confirmation for connection subgrids</comment>
+  </data>
+  <data name="Error_Message_Delete_Multiple_Offline">
+    <value>Deleting multiple records at once isn't supported while you're offline. Delete one record at a time.</value>
+    <comment>Error message if mobile client is offline and user tries to delete multiple records from grid. [Category="Metadata Driven Dialog"]</comment>
+  </data>
+  <data name="Button_Label_Yes">
+    <value>Yes</value>
+  </data>
+  <data name="Button_Label_No">
+    <value>No</value>
+  </data>
+  <data name="Web._grid.cmds.dlg_activate.aspx_55">
+    <value>This will set the {0} to the {1} state.</value>
+    <comment>
+        {NumberedPlaceholder="{0}", "{1}"} Placeholder 0 will be replaced with a proper noun indicating which entity is being activated.
+        Placeholder 1 will be replaced with 'active' or 'inactive'.  Example : This operation will set the selected Account as active.
+    </comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_deactivate.aspx_55">
+    <value>This action will change the status of the selected {0} to Inactive.</value>
+    <comment>{NumberedPlaceholder="{0}"} Placeholder 0 will be replaced with a proper noun, singular or plural, indicating an entity name.  Example : This action will change the status of the selected Contact to Inactive.  To continue, click OK.[Category="Orion AIR"]</comment>
+  </data>
+  <data name="Dialog_UploadImage_ErrorMsg">
+    <value>Select a file that is a jpg, jpeg, gif, tif, tiff, bmp, or png format.</value>
+    <comment>Select a file that is a jpg, jpeg, gif, tif, tiff, bmp, or png format.</comment>
+  </data>
+  <data name="EmailLink_WebLinkText">
+    <value>Web Link</value>
+    <comment>The text that represents the web link part of the "email link".</comment>
+  </data>
+  <data name="Error_Parent_Record_AlreadyExists">
+    <value>This record cannot be added because it already has a parent record.</value>
+    <comment>Error message if record cannot be associated since it is already associated with some other parent record.</comment>
+  </data>
+  <data name="ReadOnlyEntity" xml:space="preserve">
+    <value>Selected entity is read-only for this client.</value>
+    <comment>Alert shown when user tries to perform action on entity which is Read-only in Mobile</comment>
+  </data>
+  <data name="Menu_Label_Group_DownloadTemplate">
+    <value>Download Template</value>
+    <comment>Menu Group Item Label for DownloadTemplate Menu for ExcelTemplate Feature in UCI</comment>
+  </data>
+  <data name="Menu_Label_Group_UploadTemplate">
+    <value>Upload Template</value>
+    <comment>Menu Group Item Label for Upload Template Menu for ExcelTemplate Feature in UCI</comment>
+  </data>
+  <data name="Menu_Label_Group_SucessfullyDownloaded">
+    <value>Successfully Downloaded. You can edit and upload them back again</value>
+    <comment>Toast Notification for Successful Download.</comment>
+  </data>
+  <data name="Menu_Label_Group_Word_SucessfullyDownloaded">
+    <value>Successfully Downloaded.</value>
+    <comment>Toast Notification for Word Template Successful Download.</comment>
+  </data>
+  <data name="Menu_Label_CreateTemplate">
+    <value>Create New Template</value>
+    <comment>Menu group item label for create excel or word template in the context-sensitive excel or word templates menu. [Category="Document Templates"]</comment>
+  </data>
+  <data name="Menu_Label_Group_SystemTemplates">
+    <value>System Templates</value>
+    <comment>Menu group item label for System templates in the context-sensitive excel or word templates menu. [Category="Document Templates"]</comment>
+  </data>
+  <data name="Menu_Label_Group_PersonalTemplates">
+    <value>My Templates</value>
+    <comment>Menu group item label for Personnel templates in the context-sensitive excel or word templates menu. [Category="Document Templates"]</comment>
+  </data>
+  <data name="Menu_Label_OpenExcelOnline">
+    <value>Open in Excel Online</value>
+    <comment>Open the Template in Excel Online [Category="Document Templates"]</comment>
+  </data>
+  <data name="Menu_Label_Download">
+    <value>Download</value>
+    <comment>Download the Template file[Category="Document Templates"]</comment>
+  </data>
+  <data name="Menu_Label_Run_Workflow" xml:space="preserve">
+    <value>Run Workflow</value>
+    <comment>Run on demand workflow menu[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Dialog_RunWorkflow_Body" xml:space="preserve">
+    <value>You can monitor workflow jobs by opening each {0} and clicking Workflows.</value>
+    <comment>workflow explaination information, {NumberedPlaceholder="{0}"}. Placeholder 0 a text representing a singular entity name depending upon whether one or more records are selected.[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Dialog_RunWorkflow_Body_Confirm" xml:space="preserve">
+    <value>Are you sure that you want to continue?</value>
+    <comment>Confirm execute workflow text[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Dialog_RunWorkflow_Description" xml:space="preserve">
+    <value>This workflow will be applied to {0} {1}.</value>
+    <comment>Dialog page description for the runworkflow dialog page. {NumberedPlaceholder="{0}", "{1}"}. Placeholder 0 is a number representing number of records selected, Placeholder 1 is a text representing a singular or plural entity name depending upon whether one or more records are selected[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Dialog_Runworkflow_Title" xml:space="preserve">
+    <value>Confirm Application of Workflow</value>
+    <comment>Dialog page title for the runworkflow dialog page.[Category="Microsoft Flows"]</comment>
+  </data>
+  <data name="Menu_Label_Group_ParameterizedReports">
+    <value>Run on Selected Records</value>
+    <comment>Menu group item label for reports in the context-sensitive reports menu which are filterable with the current grid context.</comment>
+  </data>
+  <data name="Menu_Label_Group_ParameterizedReportsForm">
+    <value>Run on Current Record</value>
+    <comment>Menu group item label for reports in the context-sensitive reports menu which are filterable with the current form context.</comment>
+  </data>
+  <data name="uci_ConnectionRole_Step1_Section_Name">
+    <value>Description</value>
+    <comment>Section label for the ConnectionRole</comment>
+  </data>
+  <data name="uci_ConnectionRole_Step3_Section_Name">
+    <value>List matching connection roles (optional)</value>
+    <comment>Section label for the ConnectionRole</comment>
+  </data>
+  <data name="Menu_Label_Group_GlobalReports">
+    <value>Run on All Records</value>
+    <comment>Menu group item label for reports in the context-sensitive reports menu which are not filterable with the current grid or form context.</comment>
+    <ObjectReferences>
+      <ObjectType Singular="Report" Plural="Reports">9100</ObjectType>
+    </ObjectReferences>
+  </data>
+  <data name="Ribbon.ReportMenu.NoReportsAvailable">
+    <value>No reports are available</value>
+    <comment>Both the form and the grid ribbons have a "Reports" menu on them, which when clicked displays a list of reports pertaining to the current entity.	When no reports exist that apply to the current entity, the dropdown menu shows this message instead. [Category="Application Infrastructure"]</comment>
+    <ObjectReferences>
+      <ObjectType>9100</ObjectType>
+    </ObjectReferences>
+  </data>
+  <data name="uci_ConnectionRole_Deactivate_Message" xml:space="preserve">
+    <value>The record is deactivated</value>
+    <comment>Section label for the ConnectionRole</comment>
+  </data>
+  <data name="Multi_Associate_Parent_Record_AlreadyExists">
+    <value>Completed adding {0} of {1} record(s) but {2} not added because they already have a parent.</value>
+    <comment>Notification message shown when there are no critical errors on multi-associate in a grid with one or more parent issues</comment>
+  </data>
+  <data name="Web.Connections.ConnectionRoles.rolelookup_filtered_view_name">
+    <value>Applicable Connection Roles</value>
+    <comment>Name of the filtered view used to show connection roles based on the connection values selected</comment>
+    <ObjectReferences>
+      <ObjectType Singular="Connection Role" Plural="Connection Roles">3231</ObjectType>
+    </ObjectReferences>
+    <DoesNotReference>
+      <ObjectType Singular="Connection" Plural="Connections">3234</ObjectType>
+    </DoesNotReference>
+  </data>
+</root>
