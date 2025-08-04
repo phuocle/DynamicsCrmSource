@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[CustomAPIBaseIds] (
+    [CustomAPIId] UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT [PK_CustomAPIBaseIds] PRIMARY KEY CLUSTERED ([CustomAPIId] ASC)
+);
+

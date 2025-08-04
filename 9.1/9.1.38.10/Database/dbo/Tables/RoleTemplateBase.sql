@@ -1,0 +1,33 @@
+﻿CREATE TABLE [dbo].[RoleTemplateBase] (
+    [Upgrading]      BIT              CONSTRAINT [DF_RoleTemplateBase_Upgrading] DEFAULT ((0)) NOT NULL,
+    [RoleTemplateId] UNIQUEIDENTIFIER NOT NULL,
+    [Name]           NVARCHAR (100)   NOT NULL,
+    CONSTRAINT [cndx_PrimaryKey_RoleTemplate] PRIMARY KEY CLUSTERED ([RoleTemplateId] ASC) WITH (FILLFACTOR = 80)
+);
+
+
+GO
+ALTER TABLE [dbo].[RoleTemplateBase] SET (LOCK_ESCALATION = DISABLE);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ndx_QF_Seek_9ECC2D8E9768DD11B1B000155D869F00]
+    ON [dbo].[RoleTemplateBase]([RoleTemplateId] ASC)
+    INCLUDE([Name]) WITH (FILLFACTOR = 100, DATA_COMPRESSION = ROW);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ndx_QF_Name]
+    ON [dbo].[RoleTemplateBase]([Name] ASC) WITH (FILLFACTOR = 100, DATA_COMPRESSION = ROW);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ndx_QF_Scan_9ECC2D8E9768DD11B1B000155D869F00]
+    ON [dbo].[RoleTemplateBase]([RoleTemplateId] ASC)
+    INCLUDE([Name]) WITH (FILLFACTOR = 100, DATA_COMPRESSION = ROW);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ndx_QF_SortedScan_9ECC2D8E9768DD11B1B000155D869F00]
+    ON [dbo].[RoleTemplateBase]([Name] ASC, [RoleTemplateId] ASC) WITH (FILLFACTOR = 100, DATA_COMPRESSION = ROW);
+

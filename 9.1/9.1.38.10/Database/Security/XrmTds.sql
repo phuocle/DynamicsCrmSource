@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [XrmTds]
+    AUTHORIZATION [dbo];
+

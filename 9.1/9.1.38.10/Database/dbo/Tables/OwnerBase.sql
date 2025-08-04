@@ -1,0 +1,41 @@
+﻿CREATE TABLE [dbo].[OwnerBase] (
+    [OwnerId]       UNIQUEIDENTIFIER NOT NULL,
+    [OwnerIdType]   INT              CONSTRAINT [DF_OwnerBase_OwnerIdType] DEFAULT ((8)) NOT NULL,
+    [Name]          NVARCHAR (160)   NULL,
+    [VersionNumber] ROWVERSION       NULL,
+    [YomiName]      NVARCHAR (160)   NULL,
+    CONSTRAINT [cndx_PrimaryKey_Owner] PRIMARY KEY CLUSTERED ([OwnerId] ASC) WITH (FILLFACTOR = 80)
+);
+
+
+GO
+ALTER TABLE [dbo].[OwnerBase] SET (LOCK_ESCALATION = DISABLE);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [fndx_Sync_VersionNumber]
+    ON [dbo].[OwnerBase]([VersionNumber] ASC) WITH (FILLFACTOR = 100);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ndx_QF_Name]
+    ON [dbo].[OwnerBase]([Name] ASC) WITH (FILLFACTOR = 100, DATA_COMPRESSION = ROW);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ndx_QF_Scan_C1E851BD6FEA485DB491808FB5E6A60D]
+    ON [dbo].[OwnerBase]([OwnerId] ASC)
+    INCLUDE([Name]) WITH (FILLFACTOR = 100, DATA_COMPRESSION = ROW);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ndx_QF_Seek_C1E851BD6FEA485DB491808FB5E6A60D]
+    ON [dbo].[OwnerBase]([OwnerId] ASC)
+    INCLUDE([Name], [VersionNumber]) WITH (FILLFACTOR = 100, DATA_COMPRESSION = ROW);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ndx_QF_SortedScan_C1E851BD6FEA485DB491808FB5E6A60D]
+    ON [dbo].[OwnerBase]([Name] ASC, [OwnerId] ASC)
+    INCLUDE([VersionNumber]) WITH (FILLFACTOR = 100, DATA_COMPRESSION = ROW);
+

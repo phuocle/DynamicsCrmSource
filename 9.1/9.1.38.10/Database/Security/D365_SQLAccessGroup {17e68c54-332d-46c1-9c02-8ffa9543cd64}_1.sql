@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [D365\SQLAccessGroup {17e68c54-332d-46c1-9c02-8ffa9543cd64}]
+    FROM WINDOWS WITH DEFAULT_LANGUAGE = [us_english];
+

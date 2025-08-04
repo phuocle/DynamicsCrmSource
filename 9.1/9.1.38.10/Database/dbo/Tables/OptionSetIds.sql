@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[OptionSetIds] (
+    [OptionSetId] UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT [XPKOptionSetIds] PRIMARY KEY CLUSTERED ([OptionSetId] ASC)
+);
+
+
+GO
+ALTER TABLE [dbo].[OptionSetIds] SET (LOCK_ESCALATION = DISABLE);
+

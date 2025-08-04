@@ -1,0 +1,220 @@
+﻿
+
+
+--
+-- base view for IncidentResolution
+--
+create view dbo.[IncidentResolution]
+ (
+    -- logical attributes
+    [CreatedOnBehalfByYomiName],
+    [CreatedOnBehalfByName],
+    [ModifiedOnBehalfByName],
+    [ModifiedOnBehalfByYomiName],
+    [SLAInvokedIdName],
+    [CreatedByName],
+    [CreatedByYomiName],
+    [TransactionCurrencyIdName],
+    [SLAName],
+    [SenderMailboxIdName],
+    [ModifiedByYomiName],
+    [ModifiedByName],
+    [ServiceIdName],
+    [ModifiedByExternalPartyName],
+    [ModifiedByExternalPartyYomiName],
+    [CreatedByExternalPartyName],
+    [CreatedByExternalPartyYomiName],
+
+    -- ownership entries
+    OwnerId,
+    OwnerIdName,
+    OwnerIdYomiName,
+    OwnerIdDsc,
+    OwnerIdType,
+    OwningUser,
+    OwningTeam,
+
+    -- physical attributes
+    [ActivityAdditionalParams],
+    [ActivityId],
+    [ActivityTypeCode],
+    [ActualDurationMinutes],
+    [ActualEnd],
+    [ActualStart],
+    [Community],
+    [CreatedBy],
+    [CreatedOn],
+    [CreatedOnBehalfBy],
+    [DeliveryLastAttemptedOn],
+    [DeliveryPriorityCode],
+    [Description],
+    [ExchangeItemId],
+    [ExchangeRate],
+    [ExchangeWebLink],
+    [InstanceTypeCode],
+    [IsBilled],
+    [IsMapiPrivate],
+    [IsRegularActivity],
+    [IsWorkflowCreated],
+    [LastOnHoldTime],
+    [LeftVoiceMail],
+    [ModifiedBy],
+    [ModifiedOn],
+    [ModifiedOnBehalfBy],
+    [OnHoldTime],
+    [OwningBusinessUnit],
+    [PostponeActivityProcessingUntil],
+    [PriorityCode],
+    [ProcessId],
+    [RegardingObjectId],
+    [ScheduledDurationMinutes],
+    [ScheduledEnd],
+    [ScheduledStart],
+    [SenderMailboxId],
+    [SentOn],
+    [SeriesId],
+    [ServiceId],
+    [SLAId],
+    [SLAInvokedId],
+    [SortDate],
+    [StageId],
+    [StateCode],
+    [StatusCode],
+    [Subject],
+    [TimeZoneRuleVersionNumber],
+    [TransactionCurrencyId],
+    [TraversedPath],
+    [UTCConversionTimeZoneCode],
+    [VersionNumber],
+    [RegardingObjectIdName],
+    [RegardingObjectIdYomiName],
+    [RegardingObjectTypeCode],
+    [ImportSequenceNumber],
+    [OverriddenCreatedOn],
+    [Category],
+    [IncidentId],
+    [Subcategory],
+    [TimeSpent],
+    [IncidentIdName],
+    [IncidentIdType],
+    [CreatedByExternalParty],
+    [ModifiedByExternalParty],
+    [TotalTimeSpent],
+    [ResolutionTypeCode]
+) with view_metadata as
+select
+    -- logical attributes
+    [lk_incidentresolution_createdonbehalfby].[YomiFullName],
+    [lk_incidentresolution_createdonbehalfby].[FullName],
+    [lk_incidentresolution_modifiedonbehalfby].[FullName],
+    [lk_incidentresolution_modifiedonbehalfby].[YomiFullName],
+    [incidentresolution_sla_slainvokedid].[Name],
+    [lk_incidentresolution_createdby].[FullName],
+    [lk_incidentresolution_createdby].[YomiFullName],
+    [incidentresolution_transactioncurrency_transactioncurrencyid].[CurrencyName],
+    [incidentresolution_sla_slaid].[Name],
+    [incidentresolution_mailbox_sendermailboxid].[Name],
+    [lk_incidentresolution_modifiedby].[YomiFullName],
+    [lk_incidentresolution_modifiedby].[FullName],
+    [service_incidentresolutions].[Name],
+    [lk_externalparty_incidentresolution_modifiedby].[FullName],
+    [lk_externalparty_incidentresolution_modifiedby].[YomiFullName],
+    [lk_externalparty_incidentresolution_createdby].[FullName],
+    [lk_externalparty_incidentresolution_createdby].[YomiFullName],
+
+    -- ownership entries
+    OwnerId = [ActivityPointerBase].OwnerId,
+    OwnerName = XXowner.Name,
+    OwnerYomiName =  XXowner.YomiName,
+    OwnerDsc = 0, -- DSC is removed, stub it to 0
+    OwnerIdType = XXowner.OwnerIdType,
+    OwningUser = case 
+ 		when XXowner.OwnerIdType= 8 then XXowner.OwnerId
+		else null
+		end,
+    OwningTeam = case 
+ 		when XXowner.OwnerIdType= 9 then XXowner.OwnerId
+		else null
+		end,
+
+    -- physical attribute
+    [ActivityPointerBase].[ActivityAdditionalParams],
+    [ActivityPointerBase].[ActivityId],
+    [ActivityPointerBase].[ActivityTypeCode],
+    [ActivityPointerBase].[ActualDurationMinutes],
+    [ActivityPointerBase].[ActualEnd],
+    [ActivityPointerBase].[ActualStart],
+    [ActivityPointerBase].[Community],
+    [ActivityPointerBase].[CreatedBy],
+    [ActivityPointerBase].[CreatedOn],
+    [ActivityPointerBase].[CreatedOnBehalfBy],
+    [ActivityPointerBase].[DeliveryLastAttemptedOn],
+    [ActivityPointerBase].[DeliveryPriorityCode],
+    [ActivityPointerBase].[Description],
+    [ActivityPointerBase].[ExchangeItemId],
+    [ActivityPointerBase].[ExchangeRate],
+    [ActivityPointerBase].[ExchangeWebLink],
+    [ActivityPointerBase].[InstanceTypeCode],
+    [ActivityPointerBase].[IsBilled],
+    [ActivityPointerBase].[IsMapiPrivate],
+    [ActivityPointerBase].[IsRegularActivity],
+    [ActivityPointerBase].[IsWorkflowCreated],
+    [ActivityPointerBase].[LastOnHoldTime],
+    [ActivityPointerBase].[LeftVoiceMail],
+    [ActivityPointerBase].[ModifiedBy],
+    [ActivityPointerBase].[ModifiedOn],
+    [ActivityPointerBase].[ModifiedOnBehalfBy],
+    [ActivityPointerBase].[OnHoldTime],
+    [ActivityPointerBase].[OwningBusinessUnit],
+    [ActivityPointerBase].[PostponeActivityProcessingUntil],
+    [ActivityPointerBase].[PriorityCode],
+    [ActivityPointerBase].[ProcessId],
+    [ActivityPointerBase].[RegardingObjectId],
+    [ActivityPointerBase].[ScheduledDurationMinutes],
+    [ActivityPointerBase].[ScheduledEnd],
+    [ActivityPointerBase].[ScheduledStart],
+    [ActivityPointerBase].[SenderMailboxId],
+    [ActivityPointerBase].[SentOn],
+    [ActivityPointerBase].[SeriesId],
+    [ActivityPointerBase].[ServiceId],
+    [ActivityPointerBase].[SLAId],
+    [ActivityPointerBase].[SLAInvokedId],
+    [ActivityPointerBase].[SortDate],
+    [ActivityPointerBase].[StageId],
+    [ActivityPointerBase].[StateCode],
+    [ActivityPointerBase].[StatusCode],
+    [ActivityPointerBase].[Subject],
+    [ActivityPointerBase].[TimeZoneRuleVersionNumber],
+    [ActivityPointerBase].[TransactionCurrencyId],
+    [ActivityPointerBase].[TraversedPath],
+    [ActivityPointerBase].[UTCConversionTimeZoneCode],
+    [ActivityPointerBase].[VersionNumber],
+    [ActivityPointerBase].[RegardingObjectIdName],
+    [ActivityPointerBase].[RegardingObjectIdYomiName],
+    [ActivityPointerBase].[RegardingObjectTypeCode],
+    [ActivityPointerBase].[IncResImportSequenceNumber],
+    [ActivityPointerBase].[IncResOverriddenCreatedOn],
+    [ActivityPointerBase].[IncResCategory],
+    [ActivityPointerBase].[RegardingObjectId],
+    [ActivityPointerBase].[IncResSubcategory],
+    [ActivityPointerBase].[TimeSpent],
+    [ActivityPointerBase].[RegardingObjectIdName],
+    [ActivityPointerBase].[RegardingObjectTypeCode],
+    [ActivityPointerBase].[CreatedByExternalParty],
+    [ActivityPointerBase].[ModifiedByExternalParty],
+    [ActivityPointerBase].[TotalTimeSpent],
+    [ActivityPointerBase].[ResolutionTypeCode]
+from [ActivityPointerBase] 
+    left join [MailboxBase] [incidentresolution_mailbox_sendermailboxid] on ([ActivityPointerBase].[SenderMailboxId] = [incidentresolution_mailbox_sendermailboxid].[MailboxId])
+    left join [SLABase] [incidentresolution_sla_slaid] on ([ActivityPointerBase].[SLAId] = [incidentresolution_sla_slaid].[SLAId] and [incidentresolution_sla_slaid].OverwriteTime = 0 and [incidentresolution_sla_slaid].ComponentState = 0)
+    left join [SLABase] [incidentresolution_sla_slainvokedid] on ([ActivityPointerBase].[SLAInvokedId] = [incidentresolution_sla_slainvokedid].[SLAId] and [incidentresolution_sla_slainvokedid].OverwriteTime = 0 and [incidentresolution_sla_slainvokedid].ComponentState = 0)
+    left join [TransactionCurrencyBase] [incidentresolution_transactioncurrency_transactioncurrencyid] on ([ActivityPointerBase].[TransactionCurrencyId] = [incidentresolution_transactioncurrency_transactioncurrencyid].[TransactionCurrencyId])
+    left join [ExternalPartyBase] [lk_externalparty_incidentresolution_createdby] on ([ActivityPointerBase].[CreatedByExternalParty] = [lk_externalparty_incidentresolution_createdby].[ExternalPartyId])
+    left join [ExternalPartyBase] [lk_externalparty_incidentresolution_modifiedby] on ([ActivityPointerBase].[ModifiedByExternalParty] = [lk_externalparty_incidentresolution_modifiedby].[ExternalPartyId])
+    left join [SystemUserBase] [lk_incidentresolution_createdby] on ([ActivityPointerBase].[CreatedBy] = [lk_incidentresolution_createdby].[SystemUserId])
+    left join [SystemUserBase] [lk_incidentresolution_createdonbehalfby] on ([ActivityPointerBase].[CreatedOnBehalfBy] = [lk_incidentresolution_createdonbehalfby].[SystemUserId])
+    left join [SystemUserBase] [lk_incidentresolution_modifiedby] on ([ActivityPointerBase].[ModifiedBy] = [lk_incidentresolution_modifiedby].[SystemUserId])
+    left join [SystemUserBase] [lk_incidentresolution_modifiedonbehalfby] on ([ActivityPointerBase].[ModifiedOnBehalfBy] = [lk_incidentresolution_modifiedonbehalfby].[SystemUserId])
+    left join [ServiceBase] [service_incidentresolutions] on ([ActivityPointerBase].[ServiceId] = [service_incidentresolutions].[ServiceId])
+    left join OwnerBase XXowner on ([ActivityPointerBase].OwnerId = XXowner.OwnerId)
+where [ActivityPointerBase].[ActivityTypeCode] = 4206

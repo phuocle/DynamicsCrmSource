@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[botBaseIds] (
+    [botId] UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT [PK_botBaseIds] PRIMARY KEY CLUSTERED ([botId] ASC)
+);
+

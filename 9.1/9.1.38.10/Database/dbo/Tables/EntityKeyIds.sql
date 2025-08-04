@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[EntityKeyIds] (
+    [EntityKeyId] UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT [XPKEntityKeyIds] PRIMARY KEY CLUSTERED ([EntityKeyId] ASC)
+);
+
+
+GO
+ALTER TABLE [dbo].[EntityKeyIds] SET (LOCK_ESCALATION = DISABLE);
+
