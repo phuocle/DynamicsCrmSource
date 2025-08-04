@@ -1,0 +1,48 @@
+<public:component lightweight="true">
+<public:attach event="oncontentready"	onevent="NotifyTextChanged()"/>
+<public:attach event="onkey"	onevent="NotifyTextChanged()"/>
+<public:attach event="onchange"	onevent="NotifyTextChanged()"/>
+<public:attach event="onfocus"	onevent="NotifyFocus()"/>
+<public:attach event="onfocusout"	onevent="setFocusOut()"/>
+<public:method name="NotifyTextChanged"/>
+<public:method name="NotifyFocus"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var assocLabel,
+    isFocused = false;
+function NotifyTextChanged()
+{
+    if(window.document.media != "print")
+    {
+        if(IsNull(assocLabel))
+        {
+            assocLabel = element.previousSibling;
+            if(!IsNull(assocLabel))
+                if(assocLabel.tagName != "LABEL")
+                    assocLabel = null
+        }
+        if(IsNull(assocLabel))
+            return;
+        if(typeof element.document.activeElement != "undefined")
+            isFocused = isFocused && element.document.activeElement === element;
+        if(element.value.length > 0 || isFocused)
+            assocLabel.style.display = "none";
+        else
+            assocLabel.style.display = "inline"
+    }
+}
+function NotifyFocus()
+{
+    if(IsNull(assocLabel))
+        return;
+    assocLabel.style.display = "none";
+    isFocused = true
+}
+function setFocusOut()
+{
+    isFocused = false;
+    NotifyTextChanged()
+}
+
+</script>
+</public:component>

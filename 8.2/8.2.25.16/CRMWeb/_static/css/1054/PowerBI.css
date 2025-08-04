@@ -1,0 +1,154 @@
+/* The file is AUTO generated on Mon, 17 Apr 2017 21:28:59 UTC */
+/* Do NOT manually modify this file! */
+
+span.ms-crm-powerbi-toolbar-buttons {
+  margin-right: 10px;
+  margin-left: 10px;
+  display: inline;
+}
+.ms-crm-powerbi-toolbar {
+  display: table-row;
+  visibility: hidden;
+  width: 100%;
+  height: 25px;
+  background-color: #FFFFFF;
+  z-index: 1;
+}
+.ms-crm-powerbi-toolbar[dir=rtl] {
+  text-align: left;
+}
+.ms-crm-powerbi-toolbar[dir=ltr] {
+  text-align: right;
+}
+.ms-crm-powerbi-toolbar.ms-crm-powerbi-toolbar-focus {
+  visibility: visible;
+}
+.ms-crm-powerbi:hover .ms-crm-powerbi-toolbar {
+  visibility: visible;
+}
+.ms-crm-powerbi-outlook-offline {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.ms-crm-powerbi {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+.ms-crm-powerbi .ms-crm-powerbi-iframe {
+  width: 100%;
+  height: 100%;
+}
+.ms-crm-powerbi .ms-crm-powerbi-iframe-container {
+  display: table-row;
+  width: 100%;
+  height: 100%;
+}
+.ms-crm-powerbi .ms-crm-powerbi-disabled {
+  display: table-cell;
+  font-family: 'Segoe UI';
+  font-weight: 600;
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  vertical-align: middle;
+}
+div.error-container {
+  width: 100%;
+  padding: 4px;
+  background-color: #FFF19D;
+  border: 1px solid #EC6363;
+}
+div.warning-container {
+  width: 100%;
+  padding: 4px;
+  background-color: #FFFCB5;
+  border: 1px solid #E9C55E;
+}
+div.info-container {
+  width: 100%;
+  padding: 4px;
+  background-color: #E6F2F9;
+  border: 1px solid #75B9DA;
+}
+div.error-container div.error-badge,
+div.warning-container div.error-badge,
+div.info-container div.error-badge {
+  display: table-cell;
+  vertical-align: top;
+}
+div.error-container div.error-badge[dir=rtl],
+div.warning-container div.error-badge[dir=rtl],
+div.info-container div.error-badge[dir=rtl] {
+  padding-left: 8px;
+}
+div.error-container div.error-badge[dir=ltr],
+div.warning-container div.error-badge[dir=ltr],
+div.info-container div.error-badge[dir=ltr] {
+  padding-right: 8px;
+}
+div.error-container div.error-message,
+div.warning-container div.error-message,
+div.info-container div.error-message {
+  display: table-cell;
+}
+.powerbireport-container {
+  display: table;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.powerbireport-container .powerbireport-table-row {
+  display: table-row;
+}
+.powerbireport-container .powerbireport-table-row-fill {
+  height: 100%;
+}
+.powerbireport-container .powerbireport-header {
+  display: table;
+  width: 100%;
+  padding: 10px 0;
+  background: #EEEEEE;
+}
+.powerbireport-container .powerbireport-button-container {
+  display: table-cell;
+}
+.powerbireport-container .powerbireport-button-container[dir=rtl] {
+  text-align: left;
+  padding-left: 10px;
+}
+.powerbireport-container .powerbireport-button-container[dir=ltr] {
+  text-align: right;
+  padding-right: 10px;
+}
+.powerbireport-container .powerbireport-button-container[dir=rtl] a {
+  margin-right: 15px;
+}
+.powerbireport-container .powerbireport-button-container[dir=ltr] a {
+  margin-left: 15px;
+}
+.powerbireport-container .powerbireport-button-container img {
+  height: 16px;
+  width: 16px;
+}
+.powerbireport-container .powerbireport-title {
+  display: table-cell;
+  font-weight: bold;
+  font-size: 12px;
+  color: #444444;
+}
+.powerbireport-container .powerbireport-title[dir=rtl] {
+  text-align: right;
+  padding-right: 10px;
+}
+.powerbireport-container .powerbireport-title[dir=ltr] {
+  text-align: left;
+  padding-left: 10px;
+}
+.powerbireport-container .powerbireport-tileiframe {
+  width: 100%;
+  height: 100%;
+}

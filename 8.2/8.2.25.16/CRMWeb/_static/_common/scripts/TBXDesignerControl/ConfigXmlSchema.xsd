@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="GenericDesigner">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Library">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LibraryGroup" maxOccurs="unbounded" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>
+                    This group will contain only Library Tiles and reference to its properties.
+                    For propertyPageType="html" PropertyPageId is mandatory attribute and for MDD type it will be optional. Even if user has added propertyPageType="html"
+                    we will be adding MDDProperties as it will be very easy to switch from html to MDD and vice-versa.
+                  </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="LibraryTile" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="MDDProperties">
+                            <xs:complexType mixed="true">
+                              <xs:sequence>
+                                <xs:element name="Property" maxOccurs="unbounded" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:simpleContent>
+                                      <xs:extension base="xs:string">
+                                        <xs:attribute type="xs:byte" name="propertyId" use="optional"/>
+                                      </xs:extension>
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute type="xs:string" name="title" use="optional"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="propertyPageType" use="optional"/>
+                        <xs:attribute type="xs:byte" name="PropertyPageId" use="optional"/>
+                        <xs:attribute type="xs:string" name="name" use="optional"/>
+                        <xs:attribute type="xs:string" name="imageRenderType" use="optional"/>
+                        <xs:attribute type="xs:string" name="activitytypeid" use="optional"/>
+                        <xs:attribute type="xs:string" name="icon" use="optional"/>
+                        <xs:attribute type="xs:string" name="altText" use="optional"/>
+                        <xs:attribute type="xs:string" name="tooltip" use="optional"/>
+                        <xs:attribute type="xs:string" name="tileClass" use="optional"/>
+                        <xs:attribute type="xs:string" name="propertyPageUrl" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="PropertyPageGroup">
+                <xs:annotation>
+                  <xs:documentation>This group will contain all html page URLs.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="PropertyPage" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:byte" name="propertyPageId" use="optional"/>
+                            <xs:attribute type="xs:string" name="URL" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="MDDPropertyGroup">
+                <xs:annotation>
+                  <xs:documentation>This group will contain all MDD properties.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Property" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:byte" name="propertyId" use="optional"/>
+                            <xs:attribute type="xs:string" name="name" use="optional"/>
+                            <xs:attribute type="xs:string" name="description" use="optional"/>
+                            <xs:attribute type="xs:string" name="datatype" use="optional"/>
+                            <xs:attribute type="xs:string" name="id" use="optional"/>
+                            <xs:attribute type="xs:string" name="editable" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ZoomIcons">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ZoomIconItem" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="itemId" use="optional"/>
+                      <xs:attribute type="xs:string" name="title" use="optional"/>
+                      <xs:attribute type="xs:string" name="fontIconSymbol" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Toolbar">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ToolBarItem" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="itemId" use="optional"/>
+                      <xs:attribute type="xs:string" name="title" use="optional"/>
+                      <xs:attribute type="xs:string" name="fontIconSymbol" use="optional"/>
+                      <xs:attribute type="xs:string" name="section" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

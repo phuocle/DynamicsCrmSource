@@ -1,0 +1,105 @@
+<public:component lightweight="true">
+<public:attach event="oncontentready"	onevent="tlInit()"/>
+<public:attach event="onclick"			onevent="tlDown()"/>
+<public:attach event="onmouseover"		onevent="tlOver()"/>
+<public:attach event="onmouseout"		onevent="tlOut()"/>
+<public:attach event="onkeydown"		onevent="keyDown()"/>
+<public:method name="GetSelectedId" />
+<script language="javascript"></script><script type="text/javascript">
+
+var oLastNode,
+    oSelNode;
+function tlInit()
+{
+    if(defaultnode != "")
+    {
+        var oNode = firstChild.all(defaultnode);
+        if(oNode.length != undefined)
+            oNode = oNode[0];
+        oNode.className = "treeNode treeNodeOn";
+        oSelNode = oNode
+    }
+}
+function tlDown()
+{
+    var o = getNormalizedItem(event.srcElement),
+        tnOn = false;
+    if(!isValidSelection(o))
+    {
+        event.returnValue = false;
+        return false
+    }
+    if(oSelNode)
+        oSelNode.className = "treeNode";
+    oSelNode = o;
+    try
+    {
+        nodeSelect(o.id,o.data,o.value)
+    }
+    catch(e)
+    {
+    }
+    o.className = "treeNode treeNodeOn"
+}
+function tlOver()
+{
+    var o = getNormalizedItem(event.srcElement);
+    if(isValidSelection(o) && o != oSelNode)
+    {
+        o.className = "treeNode treeNodeGlow";
+        oLastNode = o
+    }
+}
+function tlOut()
+{
+    if(oLastNode && oLastNode != oSelNode)
+    {
+        oLastNode.className = "treeNode";
+        oLastNode = null
+    }
+}
+function keyDown()
+{
+    switch(event.keyCode)
+    {
+        case KEY_ENTER:
+        case KEY_SPACE:
+            tlDown();
+            break
+    }
+}
+function getNormalizedItem(o)
+{
+    if(IsNull(o))
+        return null;
+    while(o.tagName != "LI")
+    {
+        if(o.tagName == "DIV")
+            return null;
+        if(o.tagName == "TABLE")
+            return null;
+        o = o.parentElement;
+        if(IsNull(o))
+            return null
+    }
+    return o
+}
+function isValidSelection(o)
+{
+    if(IsNull(o))
+        return false;
+    if(o.disabled)
+        return false;
+    if(o.className.indexOf("treeNodeHdr") >= 0)
+        return false;
+    if(o.className.indexOf("treeNode") < 0)
+        return false;
+    return true
+}
+function GetSelectedId()
+{
+    return oSelNode.id
+}
+
+</script>
+</public:component>

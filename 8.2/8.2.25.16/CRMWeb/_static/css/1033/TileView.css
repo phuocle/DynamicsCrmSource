@@ -1,0 +1,310 @@
+/* The file is AUTO generated on Fri, 20 Nov 2020 20:21:30 UTC */
+/* Do NOT manually modify this file! */
+
+.tileView {
+  /* this hides the outline drawn on the scroller element and still allows accepting of keyboard inputs */
+
+  /* use the custom icons to represent moreParent and moreChildren */
+
+  /* the below animations should come into effect after the DOM is loaded */
+
+  /* this is to enable the transition animation on root node of topTree. Note that root node is positioned relative, hence this doesn't change its initial position */
+
+  /* animation to prune a tree */
+
+  /* animation to slide a tree into position */
+
+  /* transition animations */
+
+  /* the pre-calculated values are derived from the tile rendering, so these need to be in sync with tile styles */
+
+}
+.tileView .scroller {
+  outline-color: transparent;
+}
+.tileView .moreParentIconContainer,
+.tileView .moreChildrenIconContainer {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  /* zero the height so that this container doesn't affect the tile's real estate */
+
+  height: 0;
+}
+.tileView .moreParentIconContainer img,
+.tileView .moreChildrenIconContainer img {
+  /* IE adds default borders to images, avoiding those */
+
+  border: 0;
+  position: relative;
+  cursor: pointer;
+}
+.tileView .moreChildren .node,
+.tileView .moreParent .node {
+  position: relative;
+}
+.tileView .moreParentIconContainer {
+  cursor: pointer;
+}
+.tileView .moreParentIconContainer img {
+  top: -16px;
+  vertical-align: top;
+}
+.tileView .scrollButton {
+  position: absolute;
+  z-index: 1;
+  text-decoration: none;
+  color: #000000;
+  font-family: "Segoe UI";
+  font-size: 18px;
+  line-height: 0;
+  /* width value is pre-calculated to allow 3 digits of scrollNumber which also includes '+' sign for the above font */
+
+  width: 75px;
+}
+.tileView .scrollButton .scrollNumber {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.tileView .scrollButton img {
+  /* IE adds default borders to images, avoiding those */
+
+  border: 0;
+}
+.tileView .scrollButton.hideButton {
+  visibility: hidden;
+}
+.tileView .scrollButton * {
+  vertical-align: middle;
+}
+.tileView[rtl=true] .scrollButton.previous,
+.tileView[rtl=false] .scrollButton.next {
+  text-align: left;
+}
+.tileView[rtl=true] .scrollButton.next,
+.tileView[rtl=false] .scrollButton.previous {
+  text-align: right;
+}
+.tileView[animation~="beforeLoad"] {
+  /* for loading animation, start with initial opacity of 0 (transparent) */
+
+  /* for loading animation, start with hidden tileView */
+
+  opacity: 0;
+  /* show the bottomTree root node, we'll hide this later after the animation is done */
+
+}
+.tileView[animation~="beforeLoad"] .root > .node .nodeWidgetContainer,
+.tileView[animation~="beforeLoad"] .root > .node .moreParentIconContainer,
+.tileView[animation~="beforeLoad"] .scroller,
+.tileView[animation~="beforeLoad"] .scrollButton {
+  opacity: 0;
+}
+.tileView[animation~="beforeLoad"] .bottomTreeContainer .root > .node {
+  visibility: visible;
+}
+.tileView[animation~="loaded"] {
+  /* display the tileView and animate the individual nodes inside it */
+
+  opacity: 1;
+  /* loading animation */
+
+}
+.tileView[animation~="loaded"] .root > .node .nodeWidgetContainer,
+.tileView[animation~="loaded"] .root > .node .moreParentIconContainer,
+.tileView[animation~="loaded"] .scroller,
+.tileView[animation~="loaded"] .scrollButton {
+  opacity: 1;
+}
+.tileView[animation~="loaded"] .root > .node .nodeWidgetContainer,
+.tileView[animation~="loaded"] .root > .node .moreParentIconContainer,
+.tileView[animation~="loaded"] .scroller,
+.tileView[animation~="loaded"] .scrollButton {
+  transition-property: opacity;
+  transition-duration: 1s;
+  transition-timing-function: ease;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-timing-function: ease;
+}
+.tileView[animation~="loaded"].nonEmptyTopTree .bottomTreeContainer .root > .node {
+  /* bottomTree root node is hidden after the load animation is complete, so that the overlap is clean and smooth */
+
+  /* however, when topTree is empty, bottomTree root node is NOT hidden since it would form the root */
+
+  visibility: hidden;
+  transition-property: opacity, visibility;
+  transition-delay: 0s, 1.5s;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-property: opacity, visibility;
+  -webkit-transition-delay: 0s, 1.5s;
+}
+.tileView[animation~="loaded"] .bottomTreeContainer .scroller,
+.tileView[animation~="loaded"] .bottomTreeContainer .scrollButton {
+  transition-delay: 0.5s;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-delay: 0.5s;
+}
+.tileView[animation~="loaded"] .topTreeContainer .root > .node .nodeWidgetContainer,
+.tileView[animation~="loaded"] .topTreeContainer .root > .node .moreParentIconContainer {
+  transition-delay: 1s;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-delay: 1s;
+}
+.tileView[animation~="loaded"] .topTreeContainer .scroller,
+.tileView[animation~="loaded"] .topTreeContainer .scrollButton {
+  transition-delay: 1.5s;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-delay: 1.5s;
+}
+.tileView[animation~="scroll"] {
+  /* scroll animations */
+
+  /* bottomTree hide animation */
+
+}
+.tileView[animation~="scroll"] .root > .node,
+.tileView[animation~="scroll"] .scroller > ul,
+.tileView[animation~="scroll"] .moreParent::before,
+.tileView[animation~="scroll"] .scroller > ul::before {
+  transition-property: left, right;
+  transition-duration: 1s, 1s;
+  transition-timing-function: ease;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-property: left, right;
+  -webkit-transition-duration: 1s, 1s;
+  -webkit-transition-timing-function: ease;
+}
+.tileView[animation~="scroll"] .scroller li {
+  transition-property: opacity, visibility;
+  transition-duration: 1s, 1s;
+  transition-timing-function: ease;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-property: opacity, visibility;
+  -webkit-transition-duration: 1s, 1s;
+  -webkit-transition-timing-function: ease;
+}
+.tileView[animation~="scroll"] .hideScrollerItem {
+  /* in addition to changing the visibility, we change the opacity and animate both these properties */
+
+  opacity: 0;
+}
+.tileView[animation~="scroll"] .bottomTreeContainer {
+  transition-property: opacity, visibility;
+  transition-duration: 1s, 1s;
+  transition-timing-function: ease;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-property: opacity, visibility;
+  -webkit-transition-duration: 1s, 1s;
+  -webkit-transition-timing-function: ease;
+}
+.tileView[animation~="scroll"] .hideTree {
+  /* in addition to changing the visibility, we change the opacity and animate both these properties */
+
+  opacity: 0;
+}
+.tileView .topTreeContainer .root > .node {
+  left: 0;
+}
+.tileView[animation~="transition"] {
+  /* hide the scrollButtons during transition animation */
+
+  /* hide scrollBars during transition animation */
+
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.tileView[animation~="transition"] .scrollButton {
+  visibility: hidden;
+}
+.tileView[animation~="downTransition"] {
+  /* bug 313578 : we need to set overflow visible during down transition. Current no of children can be less than siblings of new hero node */
+
+  /* this causes hiding of new hero node during transition */
+
+}
+.tileView[animation~="downTransition"] .bottomTreeContainer {
+  transition-property: top, opacity;
+  transition-duration: 1s, 0.5s;
+  transition-timing-function: ease;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-property: top, opacity;
+  -webkit-transition-duration: 1s, 0.5s;
+  -webkit-transition-timing-function: ease;
+}
+.tileView[animation~="downTransition"] .topTreeContainer {
+  transition-property: top;
+  transition-duration: 1s;
+  transition-timing-function: ease;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-property: top;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-timing-function: ease;
+}
+.tileView[animation~="downTransition"].showOverflow {
+  overflow: visible !important;
+}
+.tileView[animation~="upTransition"] .topTreeContainer {
+  transition-property: top, opacity;
+  transition-duration: 1s, 0.5s;
+  transition-timing-function: ease;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-property: top, opacity;
+  -webkit-transition-duration: 1s, 0.5s;
+  -webkit-transition-timing-function: ease;
+}
+.tileView[animation~="upTransition"] .bottomTreeContainer {
+  transition-property: top;
+  transition-duration: 1s;
+  transition-timing-function: ease;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-property: top;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-timing-function: ease;
+}
+.tileView[animation~="noVertialTransition"] .bottomTreeContainer {
+  transition-property: top, opacity;
+  transition-duration: 1s, 0.5s;
+  transition-timing-function: ease;
+  /* required for safari version <= 6.0 */
+
+  -webkit-transition-property: top, opacity;
+  -webkit-transition-duration: 1s, 0.5s;
+  -webkit-transition-timing-function: ease;
+}
+.tileView .inFocusHighContrast {
+  /* 5px border helps distinguish hero node in high contrast mode of rendering */
+
+  border-top: 5px solid #989898;
+  /* position the border to overlap with the entire top edge of the corresponding tile */
+
+  position: absolute;
+  width: 307px;
+  top: 0;
+  z-index: 1;
+  /* the tile uses a 2px reserved margin on either side to show selection border
+           and a 1px border in unselected state. We offset here by (2px + 1px) so that 
+           the border is rendered within the inner edges of the unselected border and 
+           hence remains uniform in both selected and unselected states of the tile */
+
+  left: 3px;
+}
+.tileView .node.inFocus {
+  /* required so that the high contrast marker (thick top border) is aligned correctly */
+
+  position: relative;
+}

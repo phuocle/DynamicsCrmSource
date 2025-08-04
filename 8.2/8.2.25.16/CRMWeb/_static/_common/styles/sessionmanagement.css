@@ -1,0 +1,123 @@
+.ms-crm-sm-container {
+font-family: Segoe\000020UI,Tahoma,Arial;
+font-size: 11px;
+padding: 0px;
+border: 0px;
+margin: 0px;
+display: block;
+width: 100%;
+height: 100%;
+}
+
+.ms-crm-sm-container .ms-crm-sm-background
+{
+position: absolute;
+top: 0px;
+left: 0px;
+width: 100%;
+height: 300%;
+overflow: hidden;
+cursor: wait;
+background-color: #666666;
+opacity: 75;
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog
+{
+position: absolute;
+overflow: hidden;
+cursor: wait;
+background-color: #e9edf1;
+margin: 0 auto;
+border: 1px #008BBE solid;
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog table {
+cursor: default;
+color: #444444;
+width: 100%;
+height: 100%;
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog .ms-crm-sm-dialog-header {
+height: 65px;
+vertical-align: middle;
+border-bottom: 0px none rgb(164, 171, 178);
+top: auto;
+position: static;
+width: 100%;
+background-color: #FFFFFF;
+}
+
+
+.ms-crm-sm-container .ms-crm-sm-dialog .ms-crm-sm-dialog-header.ms-crm-sm-dialog-header-row2 {
+height: 66px;
+vertical-align: baseline;
+border-bottom: 1px solid rgb(164, 171, 178);
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog .ms-crm-sm-dialog-header .ms-crm-sm-dialog-header-desc {
+color: #444444;
+height: 100%;
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog .ms-crm-sm-dialog-footer {
+height: 42px;
+vertical-align: middle;
+text-align: center;
+border-top: 0px none rgb(164, 171, 178);
+border-bottom: 0px none rgb(164, 171, 178);
+top: auto;
+bottom: auto;
+position: static;
+width: 100%;
+min-width: 0px;
+background-color: #F8F8F8;
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog .ms-crm-sm-dialog-footer td:first-child {
+width: 70%;
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog .ms-crm-sm-dialog-footer td:last-child {
+padding-right: 10px;
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog .ms-crm-sm-dialog-footer .ms-crm-sm-dialog-buttons {
+vertical-align: middle;
+text-align: center;
+padding-left: 5px;
+padding-right: 5px;
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog .ms-crm-sm-dialog-footer .ms-crm-sm-dialog-buttons button {
+overflow: visible;
+min-width: 84px;
+width: auto;
+white-space: nowrap;
+border-color: #666666;
+background-image: url(/_imgs/theme/Outlook15White/ButtonNormalGradient.png);
+line-height: 16px;
+height: 20px;
+text-align: center;
+cursor: pointer;
+border-width: 1px;
+border-style: solid;
+background-repeat: repeat-x;
+padding-left: 5px;
+padding-right: 5px;
+font-size: 11px;
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog .ms-crm-sm-image {
+width: 50px;
+vertical-align: middle;
+text-align: center;
+}
+
+.ms-crm-sm-container .ms-crm-sm-dialog .ms-crm-sm-message {
+vertical-align: middle;
+text-align: left;
+padding-left: 7px;
+padding-right: 7px;
+}

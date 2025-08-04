@@ -1,0 +1,10 @@
+<div class="mscrm-propertyConatiner">
+	<div class="mscrm-propertiesLabelContainer">
+		<label for="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" title="{{PropertyDirective.nodeDisplayName}}" class=" itemlabel">{{PropertyDirective.nodeDisplayName}}</label>
+	</div>
+	<div class="mscrm-propertiesControlContainer">
+		<select id="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" ng-model="PropertyDirective.nodeValue[PropertyDirective.nodeLabel]" title="{{PropertyDirective.nodeTooltip}}">
+			<option ng-repeat="icon in propertyPaneController.iconList" title="{{icon.DisplayName}}" value="{{icon.Name}}">{{icon.DisplayName}}</option>
+		</select>
+    </div>
+</div>

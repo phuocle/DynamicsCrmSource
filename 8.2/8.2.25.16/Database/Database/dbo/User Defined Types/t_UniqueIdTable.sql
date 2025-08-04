@@ -1,0 +1,4 @@
+﻿CREATE TYPE [dbo].[t_UniqueIdTable] AS TABLE (
+    [id] UNIQUEIDENTIFIER NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC));
+

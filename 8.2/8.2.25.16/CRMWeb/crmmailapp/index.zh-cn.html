@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="x-ua-compatible" content="IE=edge">
+	<meta charset="utf-8" />
+	<script type="text/javascript">var ShimPageLoadStartTime = Date.now();</script>
+	<title>Dynamics CRM</title>
+	<link rel="stylesheet" href="app.css" type="text/css" />
+</head>
+<body>
+	<script type="text/javascript">var ShimJsLoadStartTime = Date.now();</script>
+	<div id="loadingContainer">
+		<div class="mailApp">
+			<div class="mainContainer">
+				<div class="containerCentered">
+					<div class="logo"></div>
+					<div class="progressContainer">
+						<div class="indeterminateProgressRing progressRing">
+							<div class="progressDot"></div>
+							<div class="progressDot"></div>
+							<div class="progressDot"></div>
+							<div class="progressDot"></div>
+							<div class="progressDot"></div>
+						</div>
+					</div>
+					<div class="textContainer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="content"></div>
+	<iframe id="authFrame" src=""></iframe>
+	<div id="errorDialog">
+		<div class="errorContainer">
+			<div class="errorTitle"></div>
+			<div class="errorMessage"></div>
+			<div class="helpLink"><a target="_blank" href="#"></a></div>
+			<div class="correlationInfo"></div>
+		</div>
+	</div>
+
+	<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
+	<script src="//appsforoffice.microsoft.com/lib/1.1/hosted/office.js" type="text/javascript"></script>
+	<script src="adal.js"></script>
+	<script src="Resources/zh-CN/resources.js"></script>
+	<script src="shim.js"></script>
+	<script type="text/javascript">var ShimJsLoadEndTime = Date.now();</script>
+</body>
+</html>

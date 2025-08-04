@@ -1,0 +1,21 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:attach event="onclick" onevent="SetValue()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _iSubStringLength = 7,
+    _oInput;
+function Init()
+{
+    _oInput = element.document.all[name.substr(_iSubStringLength)];
+    if(value == _oInput.value)
+        checked = true
+}
+function SetValue()
+{
+    _oInput.value = value;
+    _oInput.fireEvent("onchange")
+}
+
+</script>
+</public:component>

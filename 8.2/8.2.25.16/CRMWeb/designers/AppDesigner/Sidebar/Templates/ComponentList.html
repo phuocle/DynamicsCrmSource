@@ -1,0 +1,26 @@
+<ul class="mscrm-ComponentList" mscrm-arrow-key-navigation data-arrow-direction="vertical" role="application">
+	<li class="mscrm-ComponentListItem" ng-repeat="component in componentListController.ComponentMetadata | orderBy : 'displayName' | filter: componentListController.FilterComponentList as result">
+		<div role="group" class="mscrm-ComponentListItemContainer" ng-class="{ selected: component.isAddedToApp }" aria-label="{{component.displayName}} {{component.description}}">
+			<div class="mscrm-ComponentListItem-selector">
+				<input class="mscrm-ComponentListItem-checkBox" tabindex="-1" id="AppDesigner.ComponentPane.ComponentListItem.{{componentType}}.{{component.id}}.Checkbox" type="checkbox"
+					ng-model="component.isAddedToApp" value="{{component.id}}"
+					ng-click="componentListController.HandleComponentListSelection(component)" mscrm-action-on-select/>
+			</div>
+			<label for="AppDesigner.ComponentPane.ComponentListItem.{{componentType}}.{{component.id}}.Checkbox"
+					class="mscrm-ComponentListItem-details">
+				<div id="AppDesigner.ComponentPane.ComponentListItem.{{componentType}}.{{component.id}}.Title" class="mscrm-ComponentListItem-Title" ng-model="component.displayName" ng-attr-title="{{component.displayName}}">{{component.displayName}}</div>
+				<div id="AppDesigner.ComponentPane.ComponentListItem.{{componentType}}.{{component.id}}.SubTitle" class="mscrm-ComponentListItem-SubTitle" ng-model="component.description" ng-attr-title="{{component.description}}">{{component.description}}</div>
+			</label>
+			<mscrm-add-extra-options ng-if="componentListController.HasExtraOptions() && component.isAddedToApp"
+									component="component"
+									addextraoptionsclick="componentListController.HandleAddExtraOptionsClick(extraOptionsModel, $event)"
+									handleitemclick="componentListController.HandleExtraOptionSelection(component)"
+									extraoptionsbuttontooltip="{{componentListController.ExtraOptionsButtonTooltip()}}">
+			</mscrm-add-extra-options>
+		</div>
+	</li>
+	<li class="mscrm-ComponentError">
+		<div class="mscrm-ComponentErrorSeperator"></div>
+		<div ng-if="!result.length" class="mscrm-ComponentErrorTitle" tabindex="-1" aria-live="assertive" mscrm-locale mscrm-resource-key="Grid_NoRecordsInView_ForUnknownEntity" mscrm-target-attr="aria-label"><mscrm-locale mscrm-resource-key="Grid_NoRecordsInView_ForUnknownEntity" /></div>
+	</li>
+</ul>

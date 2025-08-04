@@ -1,0 +1,4 @@
+<div class="mscrm-propertyConatiner mscrm-LabelCheckBoxContainer" ng-show="isGeneralSectionOpen">
+    <input id="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" class="mscrm-LabelCheckBox-Checkbox" type="checkbox" ng-model="PropertyDirective.nodeValue[PropertyDirective.nodeLabel]" ng-checked="{{PropertyDirective.nodeValue[PropertyDirective.nodeLabel]}}" ng-true-value="'true'" ng-false-value="'false'" tabindex="-1" value="{{PropertyDirective.nodeValue[PropertyDirective.nodeLabel]}}" title="{{PropertyDirective.nodeTooltip}}" mscrm-action-on-select />
+    <label for="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}" class="mscrm-LabelCheckBox-Label" ng-attr-title="{{PropertyDirective.nodeTooltip}}">{{PropertyDirective.nodeDisplayName}}</label>
+</div>

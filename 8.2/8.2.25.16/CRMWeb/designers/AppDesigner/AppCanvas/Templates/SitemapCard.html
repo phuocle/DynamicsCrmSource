@@ -1,0 +1,39 @@
+<div class="mscrm-Canvas-Card-Wrapper">
+	<div ng-if="appArtifacts.AppContext.isAppLoadComplete && contextModel.siteMaps.selectedList.length === 0" 
+		 ng-class="[ 'mscrm-sitemap-ErrorContainer', { 'mscrm-WarningContainerHidden': (contextModel.siteMaps.selectedList.length > 0 ) }]">
+		<div class="mscrm-card-Warning" aria-live="assertive">
+			<span id="AppDesigner.CanvasPane.Sitemap.WarningIcon" class="mscrm-WarningIcon mscrm-glyph-WarningIcon"></span>
+			<span id="AppDesigner.CanvasPane.Sitemap.ErrorText" class="mscrm-WarningText" name="title-Error"><mscrm-locale mscrm-resource-key="AppDesigner.SiteMapConfigMissing" /></span>
+		</div>
+	</div>
+	<div ng-if="appArtifacts.GetDependencyCount(contextModel.siteMaps, null) != 0"
+		 ng-class="[ 'mscrm-WarningContainer', { 'mscrm-WarningContainerHidden': (appArtifacts.GetDependencyCount(contextModel.siteMaps, null) == 0) }]">
+		<div class="mscrm-card-Warning">
+			<span id="AppDesigner.CanvasPane.WarningContainer.{{contextModel.siteMaps.displayName}}.WarningIcon" class="mscrm-WarningIcon mscrm-glyph-WarningIcon"></span>
+			<span id="AppDesigner.CanvasPane.WarningContainer.{{contextModel.siteMaps.displayName}}.dependencyCount" class="mscrm-WarningText" name="title-Warning">{{appArtifacts.getDependencyWarning(contextModel.siteMaps, null)}}</span>
+		</div>
+	</div>
+	<div id="AppDesigner.CanvasPane.Sitemap" class="mscrm-Sitemap-Card mscrm-Canvas-Card"
+		 role="group"
+		 tabindex="-1"
+		 aria-labelledby="AppDesigner.CanvasPane.SitemapCard.Title AppDesigner.CanvasPane.SitemapCard.ConfigurationStatus"
+		 mscrm-action-on-select>
+		<div class="mscrm-Sitemap-CardHeader">
+			<div id="AppDesigner.CanvasPane.SitemapCard.Icon" class="mscrm-Sitemap-CardIcon mscrm-glyph-SitemapIcon"></div>
+			<div id="AppDesigner.CanvasPane.SitemapCard.Title" class="mscrm-Sitemap-CardTitle"
+				 mscrm-locale mscrm-resource-key="AppDesigner.SiteMap"
+				 mscrm-target-attr="title">
+				<mscrm-locale mscrm-resource-key="AppDesigner.SiteMap" />
+			</div>
+		</div>
+		<div class="mscrm-Sitemap-CardDetails">
+			<div id="AppDesigner.CanvasPane.SitemapCard.ConfigurationStatus" class="mscrm-Sitemap-CardStatus" ng-attr-title="{{appArtifacts.SitemapConfigurationStatus}}">{{appArtifacts.SitemapConfigurationStatus}}</div>
+			<div id="AppDesigner.CanvasPane.SitemapCard.ItemEditor" tabindex="-1" class="mscrm-Sitemap-Launch mscrm-glyph-LaunchIcon"
+				 ng-disabled="!appArtifacts.IsSiteMapDesignerEnabled"
+				 ng-attr-title="{{appArtifacts.SiteMapDesignerToolTip}}"
+				 ng-click="appArtifacts.OpenArtifactItemEditor(null, contextModel.siteMaps.displayName)"
+				 mscrm-action-on-select>
+			</div>
+		</div>
+	</div>
+</div>

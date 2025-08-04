@@ -1,0 +1,122 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="Init()" />
+<public:attach event="ondetach" onevent="CleanUp()" />
+<public:event id="readyStateCompleteEvent" name="readystatecomplete"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _isLoaded = false,
+    _isDocumentReady = false,
+    _isContentReady = false;
+function Init()
+{
+    _isDocumentReady = true;
+    element.document.attachEvent("onreadystatechange",FrameLoaded);
+    FrameLoaded()
+}
+function FrameLoaded()
+{
+    _isContentReady = element.document.readyState == "complete";
+    _isContentReady && 
+        InitInternal()
+}
+function InitInternal()
+{
+    if(!_isDocumentReady || !_isContentReady)
+        return;
+    _isDocumentReady = false;
+    if(window.document.media != "print")
+    {
+        SetHeightForPrintMode();
+        var form = $find("crmForm");
+        if(form)
+        {
+            var tab = form.GetTab(this.element);
+            if(!IsNull(tab))
+                Mscrm.FormUITab.addTabStateChangeHandler(tab,Function.createDelegate(this.element,tabChangedEventHandler));
+            else
+                Navigate()
+        }
+        else
+        {
+            var oTabBar = GetTabBar();
+            if(IsNull(oTabBar) || IsActive(oTabBar.CurrentTabContent) || element.preload == "1")
+                Navigate();
+            else
+                oTabBar.add_change(OnTabSwitched)
+        }
+        this.attachEvent("onreadystatechange",fireReadyStateComplete)
+    }
+}
+function CleanUp()
+{
+    try
+    {
+        var oTabBar = GetTabBar();
+        typeof oTabBar != "undefined" && !IsNull(oTabBar) && 
+            oTabBar.remove_change(OnTabSwitched)
+    }
+    catch(e)
+    {
+    }
+}
+function OnTabSwitched()
+{
+    !_isLoaded && IsActive(event.get_tabContent) && 
+        Navigate()
+}
+function Navigate()
+{
+    _isLoaded = true;
+    if(typeof this.src != "undefined" && (this.src.toLowerCase() == "/_static/blank.htm" || this.src.toLowerCase() == Mscrm.CrmUri.create("/_static/blank.htm").toString().toLowerCase()))
+        this.src = this.url
+}
+function fireReadyStateComplete()
+{
+    if(this.readyState == "complete")
+    {
+        var oEvent = createEventObject();
+        readyStateCompleteEvent.fire(oEvent)
+    }
+}
+function IsActive(oTabContent)
+{
+    var o = element;
+    while(!IsNull(o) && o != oTabContent)
+        o = o.parentElement;
+    return !IsNull(o)
+}
+function tabChangedEventHandler(src,oEvent)
+{
+    oEvent.get_displayState() === Xrm.TabDisplayState.expanded && 
+        Navigate()
+}
+function GetTabBar()
+{
+    var oTabBar = null,
+        oForm = $get("crmForm");
+    if(typeof oForm != "undefined" && !IsNull(oForm))
+        oTabBar = $find("crmTabBar");
+    return oTabBar
+}
+function SetHeightForPrintMode()
+{
+    var containerElement = this.element.parentElement.parentElement;
+    if(IsNull(containerElement))
+        return;
+    if(this.element.id + "_d" != containerElement.id)
+    {
+        containerElement = containerElement.parentElement;
+        if(IsNull(containerElement) || this.element.id + "_d" != containerElement.id)
+            return
+    }
+    if(containerElement.className.indexOf("ms-crm-Field-Data-Print") == -1)
+        return;
+    var rowHeight = 25,
+        rowspan = containerElement.rowspan;
+    if(IsNull(rowspan) || rowspan < 1)
+        rowspan = 1;
+    this.element.style.height = rowHeight * rowspan
+}
+
+</script>
+</public:component>

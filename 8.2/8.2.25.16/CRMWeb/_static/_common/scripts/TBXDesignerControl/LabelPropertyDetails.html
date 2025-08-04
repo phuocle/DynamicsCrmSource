@@ -1,0 +1,190 @@
+﻿<link href="../../../_static/_common/scripts/processcontrol/propertyStyle.css" rel="stylesheet" type="text/css">
+<div id="properties">
+	<div class="header">
+		<span class="headline1" id="StepPropertyDetails_Header"></span>
+	</div>
+	<div id="contentDivStageProp">
+		<div>
+			<span class="headline2" role="label" id="StepPropertyDetails_StepName"></span>
+			<input class="fieldStage field" type="text" id="descriptionTextbox" aria-labelledby="StepPropertyDetails_StepName">
+		</div>
+		<div>
+			<span class="headline2" role="label" id="StepPropertyDetails_Sequence" ></span>
+			<select class="field" id="sequenceDropDown" aria-labelledby="StepPropertyDetails_Sequence" role="combobox"></select>
+		</div>
+	</div>
+</div>
+<div class="buttons align-self">
+	<span>
+		<input id="stepSave" type="button" value="" class="ellipsis" role="button"/>
+		<input id="stepDiscard" type="button" value="" class="ellipsis" role="button"/>
+	</span>
+</div>
+<script>
+        var propertyViewCurrentModel;
+        var propertyViewCurrentModelClone;
+
+		$(function () {
+			debugger;
+			document.getElementById("stepSave").addEventListener('click', sendSaveMessage);
+			document.getElementById("stepDiscard").addEventListener('click', discardCallBack);
+			document.getElementById("descriptionTextbox").addEventListener('change', valueChanged);
+			document.getElementById("sequenceDropDown").addEventListener('change', setChangedTooltip);
+			setToolTips();
+			setTabindex();
+			updateHtmlElements();
+			setLocalizedHTMLStrings();
+			propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+			propertyViewCurrentModelClone = propertyViewCurrentModel.getPropertyPageClone();
+			MscrmControls.ProcessDesigner.Validation.Errors.registerPropertyViewCurrentModelClone(propertyViewCurrentModelClone);
+			renderErrors();
+			GenericWorkflowDesigner.BasePropertyView.updateHtmlElements = updateHtmlElements;
+			MscrmControls.ProcessDesigner.Validation.Errors.refreshErrorMessages = renderErrors;
+		});
+
+		function valueChanged() {
+			propertyViewCurrentModelClone._stepName = $("#descriptionTextbox").val();
+			propertyViewCurrentModelClone._description = $("#descriptionTextbox").val();
+			$("#descriptionTextbox").attr("title", $("#descriptionTextbox").val());
+		    propertyViewCurrentModelClone.validateOnChange();
+		    renderErrors();
+		}
+		
+		function setChangedTooltip() {
+		    $('#sequenceDropDown').attr("title", $('#sequenceDropDown :selected').text());
+		}
+
+		function renderErrors() {
+			// see if any errors exists in clone model
+			if (propertyViewCurrentModelClone.getErrorCount() > 0) {
+				MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(propertyViewCurrentModelClone, $('#properties'), propertyViewCurrentModelClone.getErrorMessages());
+			}
+			// see if any errors exists in activity model
+			else {
+			    var model = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+			    if (!CommonTypes.Types.Object.isNullOrUndefined(model) && !CommonTypes.Types.String.isNullOrEmpty(model) && model.getErrorCount() > 0 && !propertyViewCurrentModelClone.isValid) {
+			        MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel(), $('#properties'), GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel().getErrorMessages());
+			    }
+			    else {
+			        MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(propertyViewCurrentModelClone, $('#properties'), propertyViewCurrentModelClone.getErrorMessages());
+			    }
+			}
+		}
+
+		//Set HTML Text
+		function setLocalizedHTMLStrings() {
+			if (GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel()._description == MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_SectionLabelName")) {
+				$("#StepPropertyDetails_Header").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_LibraryTileName_sectionlabel"));
+				$("#StepPropertyDetails_StepName").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_SectionLabelPropertyDetails_SectionLabelName"));
+				$("#StepPropertyDetails_StepName").attr("title", MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_SectionLabelNameTooltip"));
+			}
+			else {
+				$("#StepPropertyDetails_Header").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_LibraryTileName_label"));
+				$("#StepPropertyDetails_StepName").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_LabelPropertyDetails_LabelName"));
+				$("#StepPropertyDetails_StepName").attr("title", MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_LabelNameTooltip"));
+			}
+			
+			$("#StepPropertyDetails_Sequence").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_Sequence"));
+			$("#stepSave").val(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Apply'));
+			$("#stepDiscard").val(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Discard'));
+		}
+
+		/* Set the tool tips for the HTML elements*/
+		function setToolTips() {
+			$("#StepPropertyDetails_Sequence").attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_SequenceTooltip"));
+			$('#stepDiscard').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_DiscardChangesTooltip"));
+			if ($('#stepSave').attr("disabled") == undefined) {
+				$('#stepSave').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Available"));
+			}
+			else {
+				$('#stepSave').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Unavailable"));
+			}
+		}
+
+		/* Set the tabindex for the HTML elements*/
+		function setTabindex() {
+			$('#descriptionTextbox').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#sequenceDropDown').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#stepDiscard').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#stepSave').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+		}
+
+		/* Update the Html elements based on the available model properties */
+		function updateHtmlElements() {
+			var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+			// Description
+			// Added current name as description
+			$('#descriptionTextbox').val(propertyViewCurrentModel._description);
+			$('#descriptionTextbox').attr("title", $('#descriptionTextbox').val());
+
+			//Update the sequence dropdown
+			updateSequenceDropdown();
+		}
+
+		// populates previously saved values in all the data fields.
+		function discardCallBack() {
+			var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+			// Description or step name
+
+			$('#descriptionTextbox').val(propertyViewCurrentModel._description);
+			$('#descriptionTextbox').attr("title", $('#descriptionTextbox').val());
+
+			// Is Required Check-box
+			var parentStageModel = propertyViewCurrentModel._parentStage;
+			var currentSequence = parentStageModel.getStepSequence(propertyViewCurrentModel._stepId);
+			$('#sequenceDropDown').val(currentSequence);
+			$('#sequenceDropDown').attr("title", $('#sequenceDropDown :selected').text());
+		}
+
+		function updateSequenceDropdown() {
+			//Populate the dropdown options
+			var sequenceDropdownElement = $('#sequenceDropDown');
+			var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+			var parentStageModel = propertyViewCurrentModel._parentStage;
+			var stepsCount = parentStageModel.steps.length;
+			for (var i = 1; i <= stepsCount; i++) {
+				sequenceDropdownElement.append('<option value="' + i + '">' + i + '</option>');
+			}
+
+			//Update the value of this dropdown to the sequence no. of current selected step
+			//TODO : <11May2016> : <depati> : <Use the _sequence attribute once the code for it is complete>
+			//sequenceDropdownElement.val(propertyViewCurrentModel._sequence);
+			var currentSequence = parentStageModel.getStepSequence(propertyViewCurrentModel._stepId);
+			sequenceDropdownElement.val(currentSequence);
+			$('#sequenceDropDown').attr("title", currentSequence);
+		}
+
+		/* Retrieve the updated values from Html elements and return them back to the parent using post message */
+		function sendSaveMessage() {
+
+			// Indicate to Telemetry that Property Page was saved
+			MscrmControls.ProcessDesigner.isPropertyPageSaved = true;
+
+		    var validProperties = propertyViewCurrentModelClone.validateOnAction(MscrmControls.ProcessDesigner.Validation.Level.Apply);
+		    if (validProperties) {
+				var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+				var parentStageModel = propertyViewCurrentModel._parentStage;
+				var currentPosition = parentStageModel.getStepSequence(propertyViewCurrentModel._stepId);
+				var newPosition = $("#sequenceDropDown :selected").val();
+				var stageId = parentStageModel.stageId;
+                				
+				var editItems = {
+					_stepName: $("#descriptionTextbox").val(),
+					_description: $("#descriptionTextbox").val(),
+					_sequence: $('#sequenceDropDown :selected').val()
+				};
+				// FIXME : find why "GenericWorkflowDesigner.currentModel" is getting over written with StageActivity.
+				GenericWorkflowDesigner.currentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+				GenericWorkflowDesigner.eventManager.trigger(GenericWorkflowDesigner.FrameworkEvents.updateProperty, editItems);
+			}
+		    renderErrors();
+		}
+
+		dialogMessageTypes = {
+			Information: 0,
+			Warning: 1,
+			Error: 2
+		}
+</script>

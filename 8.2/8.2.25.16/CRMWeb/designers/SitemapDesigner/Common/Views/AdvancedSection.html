@@ -1,0 +1,15 @@
+<div class="mscrm-sitemapNode">
+    <div class="mscrm-sitemapNodeTitle" ng-click="propertyPaneController.ToggleAdvancedSection($event)" mscrm-action-on-select tabindex="-1" aria-expanded="true">
+        <span ng-class="['mscrm-collapsibleIcon',
+					{'mscrm-glyph-NextArrowIcon': !isAdvancedSectionOpen,
+					'mscrm-glyph-DownArrowIcon': isAdvancedSectionOpen}]"></span>
+        <span>
+            <mscrm-locale mscrm-resource-key="SitemapDesigner.Advanced" />
+        </span>
+    </div>
+    <div class="mscrm-sitemapNodeContent">
+        <div ng-repeat="PropertyDirective in AdvancedPropertyDirectives">
+            <div render="PropertyDirective"></div>
+        </div>
+    </div>
+</div>

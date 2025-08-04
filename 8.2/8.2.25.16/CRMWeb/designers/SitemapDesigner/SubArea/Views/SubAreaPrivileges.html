@@ -1,0 +1,150 @@
+<div class="mscrm-sitemapNode" ng-show="isAdvancedSectionOpen">
+	<div class="mscrm-sitemapSubNodeTitle" ng-click="subAreaController.toggleAdditionalPrivileges($event); subAreaController.GetExistingEntityList(); subAreaController.ShowMiscPrivilegesforSubArea();"
+		 aria-expanded="false" mscrm-action-on-select tabindex="-1">
+		<span ng-class="['mscrm-collapsibleIcon',
+						{'mscrm-glyph-NextArrowIcon': !isAdditionalPrivilegesOpen,
+						'mscrm-glyph-DownArrowIcon': isAdditionalPrivilegesOpen}]"></span>
+		<span><mscrm-locale mscrm-resource-key="SitemapDesigner.Privilege.Key" /></span>
+	</div>
+	<div class="mscrm-sitemapNodeContent" ng-show="isAdditionalPrivilegesOpen">
+		<div class="mscrm-sitemapNodeContentHeader">
+			<div class="mscrm-sitemapNodeContentHeaderRow">
+				<label for="privilegeEntityDropDownId" class="mscrm-sitemapNodeContentRowPriviledgeEntityKey">
+					<mscrm-locale mscrm-resource-key="SitemapDesigner.Entity.Key" />
+				</label>
+				<div class="mscrm-sitemapNodeContentRowPriviledgeAddDropdownButton">
+					<div class="mscrm-sitemapNodeContentRowPriviledgeEntityDropdown" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+						<div class="mscrm-sitemapNodeContentHeaderContentControl">
+							<mscrm-error-validation-message ng-show="subAreaController.flyoutService.privilegeEntityHasInvalidText" errormessage="{{propertiesPaneEntityErrorMessage}}" />
+							<mscrm-error-validation-message ng-if="IsPresent" errormessage="{{showLabel}}" />
+							<div class="mscrm-TypeaheadSearchContainer" ng-class="{propertyIdRed: subAreaController.flyoutService.privilegeEntityHasInvalidText}">
+								<input id="privilegeEntityDropDownId" type="text" class="textTypeWidth" ng-model="subAreaController.selectedEntityDisplayName"
+									   mscrm-locale mscrm-resource-key="SitemapDesigner.SubAreaEntity.Tooltip" mscrm-target-attr="title" tabindex="-1" mscrm-flyout-accessible-close data-isflyout-src="true"
+									   ng-change="subAreaController.ShowFlyout($event, 'privilegeEntityDropDownId')"
+									   ng-keydown="subAreaController.HandleTypeAheadTextBoxKeyDown($event, 'privilegeEntityDropDownId')" autocomplete="off"
+									   ng-focus="subAreaController.onFocusHandlerForEntityTextbox($event, 'privilegeEntityDropDownId')"
+									   ng-keyup="subAreaController.onKeyUpHandlerForEntityTextbox()"
+									   ng-blur="subAreaController.onBlurHandlerForEntityTextbox()"
+									   placeholder="{{subAreaController.localization.getResourceString('SitemapDesigner.Properties.SelectEntity')}}" />
+								<div id="{{PropertyDirective.nodeValue.Id}}_{{PropertyDirective.nodeLabel}}"
+									 ng-class="['mscrm-TypeAheadIcon', {'mscrm-glyph-DownArrowIcon': !subAreaController.sitemapTypeAheadModel.isFlyoutOpen, 'mscrm-glyph-UpArrowIcon': subAreaController.sitemapTypeAheadModel.isFlyoutOpen}]"
+									 ng-click="subAreaController.HandleDropDownClick($event, 'privilegeEntityDropDownId')"
+									 mscrm-action-on-select
+									 data-isflyout-src="true"></div>
+							</div>
+							<div class="align-typeahead" ng-show="subAreaController.sitemapTypeAheadModel.isFlyoutOpen" mscrm-flyout-accessible-close data-flyoutsrc-id="privilegeEntityDropDownId">
+								<div ng-class="['textTypeWidth', {'highlight-selection': ($index == 0)}]" id="privilegeEntityItem_{{$index}}"
+									 ng-repeat="entity in subAreaController.privilegeEntityList  | orderBy : 'DisplayName' | filter: {'DisplayName' : subAreaController.selectedEntityDisplayName}"
+									 ng-click="subAreaController.AddSelectedEntity(entity)" mscrm-action-on-select
+									 ng-blur="subAreaController.disableHighlightStyle('privilegeEntityItem_' + $index, $index)"
+									 ng-focus="subAreaController.applyHighlightStyle('privilegeEntityItem_' + $index)"
+									 ng-keydown="subAreaController.keydownHanlderForFlyoutItem($event, 'privilegeEntityItem_' + $index, entity, PropertyDirective.nodeLabel, $index)"
+									 tabindex="-1">
+									{{entity.DisplayName}}
+								</div>
+								<div ng-class="['textTypeWidth', 'highlight-selection']" ng-init="isDisabled=true" ng-show="subAreaController.showNoResultMessage" ng-disabled="isDisabled" tabindex="-1">
+									{{noResultFoundMessage}}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="mscrm-sitemapNodeContentRowPriviledgeAddButton" mscrm-locale mscrm-resource-key="SitemapDesigner.Add" mscrm-target-attr="title">
+						<button class="mscrm-sitemapNodeContentAddButton mscrm-headerCommandAddButton" ng-disabled="subAreaController.IsEntitySelected();"
+								ng-click="subAreaController.AddEntity()" mscrm-locale mscrm-resource-key="SitemapDesigner.Add" mscrm-target-attr="value" mscrm-action-on-select tabindex="-1">
+							<div id="addFlyoutIcon" class="mscrm-SitemapCommandBarButtonIcon mscrm-glyph-AddIcon"></div>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mscrm-sitemapNodeContentBody">
+			<div ng-if="selectedDisplayPrivilegeEntityList !=null" ng-repeat="item in selectedDisplayPrivilegeEntityList track by $index" class="mscrm-sitemapNodeContentPrivilegeEntityRow">
+				<div class="mscrm-sitemapNodeContentPrivilegeEntity" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+					<div ng-click="isEntityOpen = !isEntityOpen; subAreaController.GetExistingEntityList();" mscrm-action-on-select tabindex="-1"
+						 ng-init="isEntityOpen = false" class="mscrm-sitemapNodeContentPrivilegeEntityName">
+						<div ng-class="['mscrm-collapsibleIcon',
+						{'mscrm-glyph-NextArrowIcon': !isEntityOpen,
+						'mscrm-glyph-DownArrowIcon': isEntityOpen}]"></div>
+						<div class="mscrm-EntityNameText">{{subAreaController.GetEntityDisplayName(item.Entity)}}</div>
+					</div>
+					<div class="mscrm-sitemapNodeContentPrivilegeEntityDelete">
+						<span class="mscrm-glyph-RemoveIcon" ng-click="subAreaController.RemovePrivilegeEntity(item.Entity)"
+							  id="SubareaDelete" mscrm-action-on-select tabindex="-1" mscrm-locale mscrm-resource-key="SitemapDesigner.Delete" mscrm-target-attr="title"></span>
+					</div>
+				</div>
+				<div class="mscrm-CheckBoxList" id="subareaPrevilege" ng-show="isEntityOpen" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+					<div class="mscrm-SKUCheckBox" ng-repeat="privilege in item.Privilege  track by $index" mscrm-locale mscrm-resource-key="SitemapDesigner.SubAreaPrivileges.Tooltip"
+						 mscrm-target-attr="title">
+						<div class="mscrm-CheckBoxAllCol" ng-if="$index == 0">
+							<div class="mscrm-CheckBoxRowCol-ItemSelector">
+								<input type="checkbox" id="{{privilege.id}}" value="{{privilege.value}}" ng-checked="privilege.value"
+									   ng-click="subAreaController.IsItemChecked(item.Entity,privilege)" mscrm-action-on-select aria-label="{{privilege.label}}" tabindex="-1" />
+							</div>
+							<div class="mscrm-CheckBoxRowCol-ItemDetails">
+								<label for="{{privilege.id}}">{{privilege.label}}</label>
+							</div>
+						</div>
+						<div class="mscrm-CheckBox" ng-if="$odd && $index != 0">
+							<div class="mscrm-CheckBoxRowCol">
+								<div class="mscrm-CheckBoxRowCol-ItemSelector">
+									<input type="checkbox" id="{{item.Privilege[$index].id}}" value="{{item.Privilege[$index].value}}" ng-checked="item.Privilege[$index].value"
+										   ng-click="subAreaController.IsItemChecked(item.Entity,item.Privilege[$index])" mscrm-action-on-select aria-label="{{item.Privilege[$index].label}}" tabindex="-1" />
+								</div>
+								<div class="mscrm-CheckBoxRowCol-ItemDetails">
+									<label for="{{privilege.id}}">{{item.Privilege[$index].label}}</label>
+								</div>
+							</div>
+							<div class="mscrm-CheckBoxRowCol" ng-if="($index + 1) <  item.Privilege.length">
+								<div class="mscrm-CheckBoxRowCol-ItemSelector">
+									<input type="checkbox" id="{{item.Privilege[$index+1].id}}" value="{{item.Privilege[$index+1].value}}" ng-checked="item.Privilege[$index+1].value"
+										   ng-click="subAreaController.IsItemChecked(item.Entity,item.Privilege[$index+1])" mscrm-action-on-select aria-label="{{item.Privilege[$index+1].label}}" tabindex="-1" />
+								</div>
+								<div class="mscrm-CheckBoxRowCol-ItemDetails">
+									<label for="{{privilege.id}}">{{item.Privilege[$index+1].label}}</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mscrm-sitemapNodeContentHeader">
+			<div class="mscrm-sitemapNodeContentHeaderRow">
+				<label for="MiscprivilegeEntityDropDownId" class="mscrm-sitemapNodeContentRowPriviledgeEntityKey">
+					<mscrm-locale mscrm-resource-key="SitemapDesigner.Miscellaneous.Key" />
+				</label>
+				<div class="mscrm-sitemapNodeContentRowPriviledgeAddDropdownButton">
+					<div class="mscrm-sitemapNodeContentRowPriviledgeEntityDropdown" >
+						<div class="mscrm-sitemapNodeContentHeaderContentControl">
+							<mscrm-error-validation-message ng-if="isPrivilegeAlreadyAdded" errormessage="{{showLabel}}" />
+                            <select class="selectItem" ng-model="subAreaController.selectedMiscPrevilege" tabindex="-1"
+									ng-options="key for key in subAreaController.miscPrevilegeTypes.keys"
+									ng-selected="{{privilege.Selected}}">
+                                    <option value="">{{subAreaController.localization.getResourceString('SitemapDesigner.Properties.MiscellaneousPrevilege')}}</option>
+                            </select>
+						</div>
+					</div>
+					<div class="mscrm-sitemapNodeContentRowPriviledgeAddButton" mscrm-locale mscrm-resource-key="SitemapDesigner.Add" mscrm-target-attr="title">
+						<button class="mscrm-sitemapNodeContentAddButton mscrm-headerCommandAddButton" ng-disabled="subAreaController.IsMiscPrevilegeSelected();"
+								ng-click="subAreaController.AddMiscPrevilege()" mscrm-locale mscrm-resource-key="SitemapDesigner.Add" mscrm-target-attr="value" mscrm-action-on-select tabindex="-1">
+							<div id="addMiscPrivilgeIcon" class="mscrm-SitemapCommandBarButtonIcon mscrm-glyph-AddIcon"></div>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mscrm-sitemapNodeContentBody">
+			<div ng-if="miscPrivilegeLabelsforSubArea !=null" ng-repeat="item in miscPrivilegeLabelsforSubArea track by $index" class="mscrm-sitemapNodeContentPrivilegeEntityRow">
+				<div class="mscrm-sitemapNodeContentPrivilegeEntity" mscrm-arrow-key-navigation data-arrow-direction="vertical">
+					<div mscrm-action-on-select tabindex="-1" class="mscrm-sitemapNodeContentPrivilegeEntityName" aria-label="{{item}}">
+						<div class="mscrm-EntityNameText">{{item}}</div>
+					</div>
+						<div class="mscrm-sitemapNodeContentPrivilegeEntityDelete">
+							<span class="mscrm-glyph-RemoveIcon" ng-click="subAreaController.RemoveNonEntityPrivilege(item)"
+								  mscrm-action-on-select tabindex="-1" mscrm-locale mscrm-resource-key="SitemapDesigner.Delete" mscrm-target-attr="title"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

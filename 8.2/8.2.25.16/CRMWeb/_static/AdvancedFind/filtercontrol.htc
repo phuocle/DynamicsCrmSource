@@ -1,0 +1,339 @@
+<public:component lightweight="true" tagName=FilterControl>
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:property name="ParentControl"/>
+<public:property name="Container"/>
+<public:property name="EntityName"/>
+<public:property name="FetchXml" put="SetFetchXml"/>
+<public:property name="Children" get="GetChildren"/>
+<public:method name="DeleteControl" />
+<public:method name="ClearControls" />
+<public:method name="AddControl"/>
+<public:method name="AddNewFilterEntity" />
+<public:method name="SetMode"/>
+<public:method name="FindChildControl" />
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _aoControls = [],
+    _bInitComplete = false,
+    _oDivFilters = null,
+    _oDivEmptyField = null,
+    _oDivEntities = null,
+    _oFetchXmlNode;
+Sys.Application.add_load(SysInit);
+function SysInit()
+{
+    Init()
+}
+function InitOnDocReady()
+{
+    Sys.Application.get_isInitialized() && !_bInitComplete && 
+        Init()
+}
+function Init()
+{
+    element.innerHTML = "<div class='ms-crm-AdvFind-Filter' style='display:none'></div><div class='ms-crm-AdvFind-EmptyField'><span class='ms-crm-AdvFind-EmptyField'></span></div><div class='afEntityControls' style='display:none'></div>";
+    _oDivFilters = element.firstChild;
+    _oDivEmptyField = element.children[1];
+    _oDivEntities = element.children[2];
+    _bInitComplete = true;
+    SetFetchXml(_oFetchXmlNode);
+    _oFetchXmlNode = null;
+    var o = window.document.createElement(FIELDLIST_CTRL);
+    o.attachEvent("onchange",FieldChanged);
+    o.ParentControl = element;
+    o.Container = element.Container;
+    o.EntityName = EntityName;
+    o.Width = 300;
+    _oDivEmptyField.firstChild.appendChild(o);
+    if(!IsNull(Container))
+        o.RelatedEntitiesVisible = Container.RelatedEntitiesVisible
+}
+function SetMode(iMode)
+{
+    var bVisibleInSimple = false,
+        i = _oDivFilters.children.length - 1;
+    while(i >= 0)
+    {
+        if(GetFilterCtrl(i).style.display != "none")
+        {
+            bVisibleInSimple = true;
+            break
+        }
+        i--
+    }
+    i = _oDivEntities.children.length - 1;
+    while(i >= 0 && !bVisibleInSimple)
+    {
+        if(GetEntityCtrl(i).style.display != "none")
+            bVisibleInSimple = true;
+        i--
+    }
+    with(_oDivEmptyField)
+        if(iMode == Container.ModesEnum.Simple)
+            style.display = "none";
+        else
+        {
+            style.display = "inline";
+            firstChild.firstChild.SetMode(iMode)
+        }
+    ShowIfDetailedOrNotHidden(element,bVisibleInSimple,iMode)
+}
+function GetFilterCtrl(iIndex)
+{
+    return _oDivFilters.children[iIndex]
+}
+function GetEntityCtrl(iIndex)
+{
+    return _oDivEntities.children[iIndex]
+}
+function AddNewFilterFieldGroup(iWhere,oCtrl)
+{
+    var oNewFilterFieldGroup = window.document.createElement(FILTERFIELDGRP_CTRL);
+    oNewFilterFieldGroup.id = element.id + "FGRP";
+    return AddControl(oNewFilterFieldGroup,iWhere,oCtrl)
+}
+function AddNewFilterField(iWhere,oCtrl)
+{
+    var oNewFilterField = window.document.createElement(FILTERFIELD_CTRL);
+    return AddControl(oNewFilterField,iWhere,oCtrl)
+}
+function FieldChanged()
+{
+    with(event.oArgs)
+    {
+        var o = oFieldList;
+        o = o.options[o.selectedIndex];
+        if(sGrpType == FIELD_GROUP)
+        {
+            var oFltrFld,
+                oGrp = _oDivFilters.lastChild;
+            if(IsNull(oGrp))
+            {
+                oGrp = AddNewFilterFieldGroup(AT_END);
+                oGrp.GroupClause = "and"
+            }
+            if(oGrp.GroupClause != "and")
+            {
+                var oNewGrp = AddNewFilterFieldGroup(AT_END);
+                oNewGrp.GroupClause = "and";
+                oGrp = _oDivFilters.removeChild(oGrp);
+                oNewGrp.AddControl(oGrp,AT_BEGIN);
+                oGrp = oNewGrp
+            }
+            oFltrFld = oGrp.AddNewFilterField(AT_END,null,false);
+            oFltrFld.HideInSimple = false;
+            oFltrFld.Field = $find(oFieldList.id).get_dataValue();
+            oFltrFld.SetFocus()
+        }
+        else
+            AddReuseFilterEntity(o.value,AT_END)
+    }
+    Container.IsDirty = true;
+    event.returnValue = false
+}
+function FindChildControl(sControlType,sValue)
+{
+    for(var oDiv = sControlType == "FilterEntity" ? _oDivEntities : _oDivFilters,
+        i = 0; i < oDiv.children.length; i++)
+        if(oDiv.children[i].Value == sValue)
+            return oDiv.children[i];
+    return null
+}
+function AddReuseFilterEntity(sValue,iWhere)
+{
+    var oFltrEnt = FindChildControl("FilterEntity",sValue);
+    if(oFltrEnt == null)
+    {
+        oFltrEnt = AddNewFilterEntity(iWhere);
+        oFltrEnt.Value = sValue
+    }
+    else
+        if(oFltrEnt.Visible)
+            alert(LOCID_AF_RELENTITYEXISTSINQUERY);
+        else
+        {
+            oFltrEnt.Visible = true;
+            oFltrEnt.LinkType = null
+        }
+    return oFltrEnt
+}
+function AddNewFilterEntity(iWhere,oCtrl)
+{
+    var oNewFilterEntity = window.document.createElement(FILTERENTITY_CTRL);
+    oNewFilterEntity.id = element.id + "FE" + GetNumControls();
+    return AddControl(oNewFilterEntity,iWhere,oCtrl)
+}
+function GetNumControls()
+{
+    return _bInitComplete ? _oDivFilters.children.length : _aoControls.length
+}
+function AddUngroupedField(oControl,oWhichControl)
+{
+    var oPrevGrp = oWhichControl.previousSibling;
+    if(oPrevGrp && oPrevGrp.GroupClause == "and")
+        return oPrevGrp.AddControl(oControl,AT_END);
+    var oNextGrp = oWhichControl.nextSibling;
+    if(oNextGrp && oNextGrp.GroupClause == "and")
+        return oNextGrp.AddControl(oControl,AT_BEGIN);
+    var oGrp = AddNewFilterFieldGroup(AT_AFTER,oWhichControl);
+    oGrp.GroupClause = "and";
+    return oGrp.AddControl(oControl,AT_END)
+}
+function AddControl(oControl,iWhere,oWhichControl,iPos,bUngrouping)
+{
+    oControl.ParentControl = element;
+    oControl.Container = Container;
+    oControl.EntityName = EntityName;
+    if(_bInitComplete)
+    {
+        var sTagName = oControl.tagName,
+            oDiv = sTagName == "FilterEntity" ? _oDivEntities : _oDivFilters;
+        if(sTagName == "FilterField" && bUngrouping)
+            return AddUngroupedField(oControl,oWhichControl);
+        if(IsNull(iPos))
+        {
+            if((iWhere == AT_AFTER || iWhere == AT_BEFORE) && (IsNull(oWhichControl) || oWhichControl.parentElement !== oDiv))
+                return null;
+            oDiv.style.display = "inline";
+            switch(iWhere)
+            {
+                case AT_BEGIN:
+                    if(oDiv.hasChildNodes())
+                        oDiv.insertBefore(oControl,oDiv.children[0]);
+                    else
+                        oDiv.appendChild(oControl);
+                    break;
+                case AT_AFTER:
+                    var bFound = false,
+                        i = oDiv.children.length - 2;
+                    while(i >= 0)
+                    {
+                        if(oDiv.children[i] === oWhichControl)
+                        {
+                            oDiv.insertBefore(oControl,oDiv.children[i + 1]);
+                            bFound = true;
+                            break
+                        }
+                        i--
+                    }
+                    !bFound && 
+                        oDiv.appendChild(oControl);
+                    break;
+                case AT_BEFORE:
+                    var i = oDiv.children.length - 1;
+                    while(i >= 0)
+                    {
+                        if(oDiv.children[i] === oWhichControl)
+                        {
+                            oDiv.insertBefore(oControl,oDiv.children[i]);
+                            break
+                        }
+                        i--
+                    }
+                    break;
+                case AT_END:
+                default:
+                    oDiv.appendChild(oControl);
+                    break
+            }
+        }
+        else
+        {
+            if(iPos >= oDiv.children.length || iPos < 0)
+                return null;
+            oDiv.insertBefore(oControl,oDiv.children[iPos])
+        }
+    }
+    else
+    {
+        if(iWhere != AT_END)
+            return null;
+        _aoControls.push(oControl)
+    }
+    return oControl
+}
+function DeleteControl(oControl)
+{
+    var oDiv = oControl.tagName == "FilterEntity" ? _oDivEntities : _oDivFilters;
+    oDiv.removeChild(oControl);
+    if(oDiv.children.length == 0)
+        oDiv.style.display = "none";
+    Container.IsDirty = true
+}
+function ClearControls()
+{
+    for(var aChildren = GetChildren(),
+        i = 0; i < aChildren.length; ++i)
+        if(aChildren[i].tagName == "FilterEntity")
+            aChildren[i].DeleteRelEntity(false);
+        else
+            DeleteControl(aChildren[i])
+}
+function GetChildren()
+{
+    var aoChildren = [],
+        iLen = _oDivFilters.children.length,
+        i = 0;
+    while(i < iLen)
+    {
+        aoChildren.push(GetFilterCtrl(i));
+        i++
+    }
+    iLen = _oDivEntities.children.length;
+    i = 0;
+    while(i < iLen)
+    {
+        aoChildren.push(GetEntityCtrl(i));
+        i++
+    }
+    return aoChildren
+}
+function SetFetchXml(oNode)
+{
+    _oFetchXmlNode = oNode;
+    if(!_bInitComplete || IsNull(oNode))
+        return;
+    if(Container.Mode == Container.ModesEnum.Simple)
+    {
+        var bNotHidden = oNode != null && oNode.selectSingleNode(XPATH_SHOWNINSIMPLE) != null;
+        ShowIfDetailedOrNotHidden(element,bNotHidden,Container.Mode);
+        _oDivEmptyField.style.display = "none"
+    }
+    var oFilters = oNode.selectNodes("filter"),
+        i = 0,
+        iLen = oFilters.length,
+        oGrp,
+        sFilterType = "";
+    if(iLen == 1)
+    {
+        sFilterType = oFilters[0].getAttribute("type");
+        sFilterType = IsNull(sFilterType) ? "and" : sFilterType.toLowerCase()
+    }
+    if(sFilterType == "or" || iLen > 1)
+    {
+        var o = oNode.ownerDocument.createElement("filter");
+        o.setAttribute("type","and");
+        for(i = 0; i < iLen; i++)
+            o.appendChild(oFilters[i]);
+        oGrp = AddNewFilterFieldGroup(AT_END);
+        oGrp.FetchXml = o
+    }
+    else
+        if(iLen == 1)
+        {
+            oGrp = AddNewFilterFieldGroup(AT_END);
+            oGrp.FetchXml = oFilters[0]
+        }
+    var oLinkEntities = oNode.selectNodes("link-entity");
+    iLen = oLinkEntities.length;
+    for(i = 0; i < iLen; i++)
+    {
+        var oNewFilterEntity = AddNewFilterEntity(AT_END);
+        oNewFilterEntity.FetchXml = oLinkEntities[i]
+    }
+}
+
+</script>
+</html>
+</public:component>

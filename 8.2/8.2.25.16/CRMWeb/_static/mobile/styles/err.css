@@ -1,0 +1,36 @@
+div.errBanner
+{
+border-top: solid 1px #0F2E61;
+border-bottom: solid 1px #8FB6DC;
+color: #B0D3FF;
+font-size: 11px;
+font-weight: bold;
+text-align: center;
+vertical-align: middle;
+background-color: #15428B;
+height: 20px;
+}
+
+td.imgCell
+{
+vertical-align: top;
+width: 32px;
+}
+
+div.errTtl
+{
+font-weight: bold;
+}
+
+div.errContent
+{
+padding: 8px 8px 8px 8px;
+background-color: #e3efff;
+overflow: auto;
+}
+
+input.errButton
+{
+min-width: 80px;
+width: auto;
+}

@@ -1,0 +1,14 @@
+<div class="mscrm-propertyConatiner" ng-show="isAdvancedSectionOpen">
+	<div class="mscrm-propertiesLabelContainer">
+		<label for="areaURL" class="itemLabel" title="{{PropertyDirective.nodeDisplayName}}">{{PropertyDirective.nodeDisplayName}}</label>
+	</div>
+	<div class="mscrm-propertiesControlContainer">
+		<input id="areaURL"
+			   class="textTypeWidth"
+			   type="text"
+			   ng-model="PropertyDirective.nodeValue[PropertyDirective.nodeLabel]"
+			   value="{{PropertyDirective.nodeValue[PropertyDirective.nodeLabel]}}"
+			   title="{{PropertyDirective.nodeTooltip}}"
+			   tabindex="-1" />
+	</div>
+</div>

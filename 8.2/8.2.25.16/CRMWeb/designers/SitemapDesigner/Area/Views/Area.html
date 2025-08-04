@@ -1,0 +1,9 @@
+<div class="mscrm-areaNodeContainer">
+	<div class="mscrm-areaNodeContainerInternal navActionButtonContainer navActionButton navModuleButton area-title"
+		 ng-class="[getCustomStyle(area), {'selected':isSelectedArea(area)}]" ng-attr-title="{{GetResourceString(area.ResourceId, area.Id)}}">
+		<div class="mscrm-areaNodeLabel">{{GetResourceString(area.ResourceId, area.Id)}}</div>
+		<div class="mscrm-areaNodeIconContainer">
+			<img class="mscrm-areaNodeIcon" ng-src="{{area.Icon}}" alt="{{GetResourceString(area.ResourceId, area.Id)}}" title="{{GetResourceString(area.ResourceId, area.Id)}}" />
+		</div>
+	</div>
+</div>

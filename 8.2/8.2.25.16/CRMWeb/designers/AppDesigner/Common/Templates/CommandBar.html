@@ -1,0 +1,17 @@
+<div class="mscrm-CommandBar" mscrm-major-component data-ctabindex="7" tabindex="-1" data-mcgroupname="primary" data-islastmc="1">
+	<div class="mscrm-CommandList">
+		<mscrm-command-bar-add-fly-out flyoutmodels="commandBarController.commandBarAddFlyoutModel"
+									   handlecategoryclick="commandBarController.HandleCategoryClick($event)"
+									   handlenodeclick="commandBarController.HandleAddFlyoutMenuItemClick(flyoutnode)"
+									   toggleaddflyout="commandBarController.ToggleAddFlyout($event)"
+									   isitemenabled="commandBarController.IsAddMenuItemEnabled(flyoutnode)" />
+		<button tabindex="-1" id="AppDesigner.Commandbar.Edit" type="button" class="mscrm-CommandButton" ng-disabled="appArtifacts.IsEditDisabled()" ng-click="appArtifacts.OpenEditWindow()" mscrm-action-on-select mscrm-locale mscrm-resource-key="AppDesigner.Edit.Tooltip" mscrm-target-attr="title">
+			<div id="AppDesigner.Commandbar.Edit.Icon" class="mscrm-CommandBarButtonIcon mscrm-glyph-EditIcon"></div>
+			<div id="AppDesigner.Commandbar.Edit.Text" class="mscrm-CommandBarButtonText"><mscrm-locale mscrm-resource-key="AppDesigner.Edit" /></div>
+		</button>
+		<button tabindex="-1" id="AppDesigner.Commandbar.Remove" type="button" class="mscrm-CommandButton" ng-disabled="appArtifacts.IsRemoveDisabled()" ng-click="appArtifacts.componentService.RemoveWithConfirmCheck()" mscrm-action-on-select mscrm-locale mscrm-resource-key="AppDesigner.Remove.Tooltip" mscrm-target-attr="title">
+			<div id="AppDesigner.Commandbar.Remove.Icon" class="mscrm-CommandBarButtonIcon mscrm-glyph-RemoveIcon"></div>
+			<div id="AppDesigner.Commandbar.Remove.Text" class="mscrm-CommandBarButtonText"><mscrm-locale mscrm-resource-key="AppDesigner.Remove" /></div>
+		</button>
+	</div>
+</div>

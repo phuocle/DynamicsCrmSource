@@ -1,0 +1,47 @@
+﻿CREATE TABLE [dbo].[InternalAddressBase] (
+    [ParentId]           UNIQUEIDENTIFIER NOT NULL,
+    [InternalAddressId]  UNIQUEIDENTIFIER NOT NULL,
+    [AddressNumber]      INT              NULL,
+    [ObjectTypeCode]     INT              NOT NULL,
+    [AddressTypeCode]    INT              NULL,
+    [Name]               NVARCHAR (200)   NULL,
+    [Line1]              NVARCHAR (4000)  NULL,
+    [Line2]              NVARCHAR (4000)  NULL,
+    [Line3]              NVARCHAR (4000)  NULL,
+    [City]               NVARCHAR (4000)  NULL,
+    [StateOrProvince]    NVARCHAR (4000)  NULL,
+    [County]             NVARCHAR (4000)  NULL,
+    [Country]            NVARCHAR (4000)  NULL,
+    [PostOfficeBox]      NVARCHAR (4000)  NULL,
+    [PostalCode]         NVARCHAR (4000)  NULL,
+    [UTCOffset]          INT              NULL,
+    [UPSZone]            NVARCHAR (4)     NULL,
+    [Latitude]           FLOAT (53)       NULL,
+    [Telephone1]         NVARCHAR (64)    NULL,
+    [Longitude]          FLOAT (53)       NULL,
+    [ShippingMethodCode] INT              NULL,
+    [Telephone2]         NVARCHAR (50)    NULL,
+    [Telephone3]         NVARCHAR (50)    NULL,
+    [VersionNumber]      ROWVERSION       NULL,
+    [Fax]                NVARCHAR (64)    NULL,
+    [CreatedBy]          UNIQUEIDENTIFIER NULL,
+    [CreatedOn]          DATETIME         NULL,
+    [ModifiedBy]         UNIQUEIDENTIFIER NULL,
+    [ModifiedOn]         DATETIME         NULL,
+    [ModifiedOnBehalfBy] UNIQUEIDENTIFIER NULL,
+    [CreatedOnBehalfBy]  UNIQUEIDENTIFIER NULL,
+    [Composite]          NVARCHAR (MAX)   NULL,
+    CONSTRAINT [cndx_PrimaryKey_InternalAddress] PRIMARY KEY CLUSTERED ([InternalAddressId] ASC) WITH (FILLFACTOR = 80),
+    CONSTRAINT [AK1_InternalAddressBase] UNIQUE NONCLUSTERED ([ParentId] ASC, [AddressNumber] ASC)
+);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [fndx_Sync_VersionNumber]
+    ON [dbo].[InternalAddressBase]([VersionNumber] ASC) WHERE ([VersionNumber] IS NOT NULL) WITH (FILLFACTOR = 80);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ndx_for_cascaderelationship_site_internal_addresses]
+    ON [dbo].[InternalAddressBase]([ParentId] ASC, [ObjectTypeCode] ASC) WITH (FILLFACTOR = 80);
+

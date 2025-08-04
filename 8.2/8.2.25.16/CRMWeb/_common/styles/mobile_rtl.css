@@ -1,0 +1,358 @@
+
+
+
+.processControlContainer div.hasPrevious.processStageContainer .processStageTailContainer
+{
+padding-right: 14px;
+margin-right: 0px;
+}
+
+.processControlContainer div.hasPrevious.processStageContainer.unselectedStage .processStageTailContainer,
+.processControlContainer div.hasPrevious.processStageContainer.unselectedStage.activeStage .processStageTailContainer
+{
+background-position: right -58px;
+}
+
+.processControlContainer .hasNext div.processStageTailContainer .processStageHeadContainer
+{
+padding-left: 14px;
+}
+
+.processControlContainer .selectedStage.hasNext div.processStageTailContainer .processStageHeadContainer
+{
+background-position: left -29px;
+}
+
+.processControlContainer .unselectedStage.hasNext div.processStageTailContainer .processStageHeadContainer
+{
+background-position: left -87px;
+}
+
+.processControlContainer div.processStep.emptyValue
+{
+margin-right: 23px;
+}
+
+.processControlContainer .hasNext div.stageLabelMask
+{
+left: 14px;
+}
+
+.processControlContainer div.hasPrevious.processStageContainer
+{
+margin-right: -1px;
+}
+
+.processControlContainer .selectedStage.hasNext div.selectedStageExtensionUpper
+{
+margin-left: 15px;
+}
+
+.processControlContainer .selectedStage.hasPrevious div.selectedStageExtensionUpper
+{
+margin-right: -9px;
+}
+
+.processControlContainer .selectedStage.hasNext div.selectedStageExtensionLower
+{
+margin-left: 16px;
+}
+
+.processControlContainer .selectedStage.hasPrevious div.selectedStageExtensionLower
+{
+margin-right: -10px;
+}
+
+
+a.ms-crm-List-Sortable > nobr.ms-crm-DataCell
+{
+padding-right: 9px;
+padding-left: 0px;
+}
+
+.ms-crm-DataCell
+{
+padding-right: 14px;
+padding-left: 0px;
+}
+
+.ms-crm-List-Title
+{
+padding-right: 0px;
+padding-left: 2px;
+}
+
+.ms-crm-Grid-Control-Bar td:first-child
+{
+padding-right:0px;
+padding-left: 0px;
+}
+
+.inner-grid-cellPadding
+{
+padding-right: 14px;
+padding-left: 1px;
+}
+
+.ms-crm-List-DataArea,
+.ms-crm-List-DataAreaEx,
+.ms-crm-List-DataAreaEx-Lite
+{
+-webkit-overflow-scrolling: auto;
+}
+
+
+.ms-crm-CC-grid-All-0-LR
+{
+right:0px;
+left:34px;
+}
+
+.ms-crm-CC-pane-All-2-LR
+{
+right:34px;
+left:0px;
+}
+
+
+.tablet-stage
+{
+margin-right: 5px;
+margin-left: 10px;
+}
+
+span.ms-crm-Viz-Name,
+span.ms-crm-Viz-Name-hover,
+span.ms-crm-Viz-Name-select,
+span.ms-crm-View-Name,
+span.ms-crm-View-Name-hover,
+span.ms-crm-View-Name-select
+{
+padding-right: 20px;
+padding-left: 2px;
+}
+
+td.ms-crm-Checkbox
+{
+padding-left: 0px;
+padding-right: 10px;
+}
+
+
+span.ms-crm-NavBar-Title-Icon
+{
+margin-right: 0px;
+margin-left: 10px;
+}
+
+LI.ms-crm-NavBar-Title-Icon
+{
+float: left;
+}
+
+A.ms-crm-NavBar-Group-Heading,
+A.ms-crm-NavBar-Group-Heading:link,
+A.ms-crm-NavBar-Group-Heading:visited,
+A.ms-crm-NavBar-Group-Heading:active,
+A.ms-crm-NavBar-Group-Heading:hover
+{
+padding-right: 7px;
+padding-left: 0px;
+}
+
+A.ms-crm-NavBar-Subarea-Link,
+A.ms-crm-NavBar-Subarea-Link:link,
+A.ms-crm-NavBar-Subarea-Link:visited,
+A.ms-crm-NavBar-Subarea-Link:active,
+A.ms-crm-NavBar-Subarea-Link:hover
+{
+padding-right: 7px;
+padding-left: 0px;
+}
+
+LI.ms-crm-NavBar-Subarea-Selected[vs=true] A.ms-crm-NavBar-Subarea-Link,
+LI.ms-crm-NavBar-Subarea-Selected[vs=true] A.ms-crm-NavBar-Subarea-Link:link,
+LI.ms-crm-NavBar-Subarea-Selected[vs=true] A.ms-crm-NavBar-Subarea-Link:visited,
+LI.ms-crm-NavBar-Subarea-Selected[vs=true] A.ms-crm-NavBar-Subarea-Link:active,
+LI.ms-crm-NavBar-Subarea-Selected[vs=true] A.ms-crm-NavBar-Subarea-Link:hover
+{
+padding-right: 7px;
+padding-left: 30px;
+}
+
+LI.ms-crm-NavBar-Subarea-Selected[vs=true] A.ms-crm-subarea-vs
+{
+border-right: 1px solid #F3F3F3;
+border-left: none;
+}
+
+LI.ms-crm-NavBar-Subarea
+{
+margin-right: 3px;
+margin-left: 0px;
+}
+
+img.ms-crm-subarea-vs,
+img.ms-crm-subarea-vsIE10
+{
+padding-right:7px;
+padding-left:0px;
+}
+
+img.ms-crm-subarea-tabletNewRecord
+{
+padding-left: 0px;
+padding-right: 8px;
+}
+
+
+DIV.ms-crm-Form-Area
+{
+
+-webkit-transform: translate3d(0,0,0);
+}
+
+
+DIV.ms-crm-Form-AreaContainer
+{
+
+-webkit-overflow-scrolling: auto;
+}
+
+
+div.crmContentPanel
+{
+
+-webkit-overflow-scrolling:auto;
+}
+
+
+/* Workaround for Mobile Safari's buggy implementation of scrolling in RTL.  When using tablet experience
+* and in RTL, set scrolling container to LTR and all child elements to RTL. */
+.ms-crm-WebResourceHost div
+{
+direction: ltr;
+}
+.ms-crm-iFrameHost div
+{
+direction: ltr;
+}
+.ms-crm-WebResourceHost div *
+{
+direction: rtl;
+}
+.ms-crm-iFrameHost div *
+{
+direction: rtl;
+}
+
+/**
+** START - These are the styles for the Context Menu/MenuItems for the Tablet Experience
+*/
+UL.ms-crm-CM-Tab-Menu
+{
+padding-right: 1px;
+padding-left : 0px;
+}
+
+SPAN.ms-crm-CM-Tab-MenuItem-Title
+{
+margin-right: 14px;
+margin-left : 0px;
+}
+
+NOBR.ms-crm-CM-Tab-MenuItem-Title-Rest
+{
+padding-right: 0px;
+padding-left: 1px;
+}
+
+NOBR.ms-crm-CM-Tab-MenuItem-Title-Hover
+{
+padding-right: 0px;
+padding-left: 1px;
+}
+
+SPAN.ms-crm-in-CM-Tab-MenuItem-Icon-Rest
+{
+padding-right: 1px;
+padding-left: 0px;
+}
+
+SPAN.ms-crm-in-CM-Tab-MenuItem-Icon-Hover
+{
+padding-right: 1px;
+padding-left: 0px;
+}
+
+SPAN.ms-crm-in-CM-Tab-MenuItem-Title
+{
+margin-right : 14px;
+margin-left : 0px;
+}
+
+NOBR.ms-crm-in-CM-Tab-MenuItem-Title-Rest
+{
+padding-right: 0px;
+padding-left: 1px;
+}
+
+NOBR.ms-crm-in-CM-Tab-MenuItem-Title-Hover
+{
+padding-right: 0px;
+padding-left: 1px;
+}
+
+SPAN.ms-crm-CM-Tab-header-MenuItem-Title
+{
+margin-right : 14px;
+margin-left : 0px;
+}
+
+SPAN.ms-crm-CM-Tabsub-MenuItem-Title
+{
+margin-right : 14px;
+margin-left : 0px;
+}
+
+IMG.ms-crm-CM-Tabsub-MenuItem-Aux
+{
+margin-right: 5px;
+margin-left: 0px;
+}
+
+
+IMG.ms-crm-Masthead-go
+{
+margin-left : 6px;
+margin-right: 0px;
+}
+
+div.crmUserInfo
+{
+margin-left:8px;
+}
+
+span.ms-crm-MastHead-SignIn-User,
+span.ms-crm-MastHead-SignIn-Org
+{
+padding-left: 40px;
+padding-right: 0px;
+}
+
+span.ms-crm-MastHead-UserInfo-SignOut
+{
+padding-left: 29px;
+padding-right: 0px;
+}
+img.ms-crm-MastHead-UserInfo-SignOut
+{
+margin-right: 4px;
+margin-left: 0px;
+}
+
+IMG.ms-crm-InlineLookupEdit
+{
+-webkit-transform: translateZ(1px);
+}
+

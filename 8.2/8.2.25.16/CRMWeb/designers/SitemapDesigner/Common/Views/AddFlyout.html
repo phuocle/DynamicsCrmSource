@@ -1,0 +1,17 @@
+<div class="mscrm-FlyoutFloatingcontainer" role="menu" ng-if="commandBarController.siteMapAddFlyoutMenuModel.isFlyoutOpen" mscrm-flyout-accessible-close data-flyoutsrc-id="addFlyoutButton">
+	<div class="mscrm-FlyoutContainer">
+		<div class="mscrm-FlyoutTriangleContainer">
+			<div class="mscrm-FlyoutTriangle"></div>
+			<div class="mscrm-FlyoutTriangle"></div>
+		</div>
+		<div class="mscrm-FlyoutMenu"
+			 role="menu"
+			 ng-if="commandBarController.siteMapAddFlyoutMenuModel.isFlyoutOpen"
+			 mscrm-arrow-key-navigation data-arrow-direction="vertical"
+			 mscrm-flyout-accessible-close data-flyoutsrc-id="SitemapDesigner.Commandbar.Add">
+			<div id="AddArea" class="mscrm-FlyoutMenuItems" role="menuitem" ng-click="commandBarController.addComponent('Area')" mscrm-action-on-select mscrm-locale mscrm-resource-key="SitemapDesigner.AddAreaTooltip" mscrm-target-attr="title" tabindex="-1"><mscrm-locale mscrm-resource-key="SitemapDesigner.Area" /></div>
+			<div id="AddGroup" class="mscrm-FlyoutMenuItems" role="menuitem" ng-disabled="!commandBarController.IsAddGroupEnabled()" ng-click="commandBarController.addComponent('Group')" mscrm-action-on-select mscrm-locale mscrm-resource-key="SitemapDesigner.AddGroupTooltip" mscrm-target-attr="title" tabindex="-1"><mscrm-locale mscrm-resource-key="SitemapDesigner.Group" /></div>
+			<div id="AddSubArea" class="mscrm-FlyoutMenuItems" role="menuitem" ng-disabled="!commandBarController.IsAddSubAreaEnabled()" ng-click="commandBarController.addComponent('Sub-Area')" mscrm-action-on-select mscrm-locale mscrm-resource-key="SitemapDesigner.AddSubAreaTooltip" mscrm-target-attr="title" tabindex="-1"><mscrm-locale mscrm-resource-key="SitemapDesigner.SubareaLabelAddMenu" /></div>
+		</div>
+	</div>
+</div>

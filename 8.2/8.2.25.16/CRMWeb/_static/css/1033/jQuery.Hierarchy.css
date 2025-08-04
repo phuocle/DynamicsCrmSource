@@ -1,0 +1,28 @@
+/* The file is AUTO generated on Fri, 20 Nov 2020 20:21:34 UTC */
+/* Do NOT manually modify this file! */
+
+.topTreeContainer,
+.bottomTreeContainer {
+  position: absolute;
+  top: 0;
+}
+.topTreeContainer {
+  /* ensures the topTree is on top of bottomTree */
+
+  z-index: 1;
+}
+.nonEmptyTopTree .bottomTreeContainer {
+  /* hide the overlapping rootNode and moreParent connector of bottomTree, so that the overlap is clean */
+
+  /* however, when topTree is empty, bottomTree root node is NOT hidden since it would form the root */
+
+}
+.nonEmptyTopTree .bottomTreeContainer .root > .node,
+.nonEmptyTopTree .bottomTreeContainer .root::before {
+  visibility: hidden;
+}
+/* default hideTree definition, we are using visibility: hidden to ensure that the layout calculation still hold good when the tree is hidden */
+.hideTree {
+  visibility: hidden;
+  opacity: 0;
+}

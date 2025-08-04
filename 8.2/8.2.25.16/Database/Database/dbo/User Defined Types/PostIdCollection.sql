@@ -1,0 +1,3 @@
+﻿CREATE TYPE [dbo].[PostIdCollection] AS TABLE (
+    [Id] UNIQUEIDENTIFIER NOT NULL);
+

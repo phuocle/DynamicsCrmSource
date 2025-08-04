@@ -1,0 +1,609 @@
+/* The file is AUTO generated on Mon, 17 Apr 2017 21:28:59 UTC */
+/* Do NOT manually modify this file! */
+
+body {
+  font-size: 12px;
+  
+
+  font-family: Malgun Gothic, Gulim, Arial, Sans-Serif;
+  
+
+}
+.line {
+  background: #eeeeee;
+}
+.selectLine {
+  border: 1px dotted #ce7200;
+}
+.slot {
+  cursor: default;
+  width: 230px;
+  height: 60px;
+  position: absolute;
+  /* Direct all pointer events to JavaScript code. This is needed for handling touch events on IE browsers */
+
+  -ms-touch-action: none;
+}
+.slot.dragInProgress {
+  opacity: 0.5;
+}
+.ie8 .slot.dragInProgress .tile > div {
+  background-color: #cccccc;
+}
+.zoomOut .slot {
+  width: 60px;
+  background: none;
+  margin-top: -2px;
+  margin-left: -2px;
+}
+.zoomOut div.emptyTile {
+  background: #eeeeee;
+}
+.ie8 .line,
+.zoomOut .line {
+  z-index: -1;
+}
+.helper {
+  z-index: 3;
+}
+.canvas {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  float: left;
+  overflow: auto;
+  -ms-touch-action: none;
+}
+.loader {
+  position: absolute;
+  z-index: 10000000;
+}
+.spinner {
+  background-image: url("../../../_imgs/ProcessDesigner/ajax-loader.gif"), url("/_imgs/ProcessDesigner/ajax-loader.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.slot.ui-state-disabled,
+.slotIconHolder.ui-state-disabled,
+.graphicElement.ui-draggable-disabled {
+  opacity: 1 !important;
+  filter: none !important;
+  background-image: inherit !important;
+}
+.workspaceWrapper {
+  position: relative;
+}
+.workspaceButton {
+  float: right;
+  position: relative;
+}
+#toolpane {
+  float: left;
+  border-left-color: #eeeeee;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  padding-top: 0;
+  width: 340px;
+  height: 600px;
+}
+/* Insertion slots */
+.slotInsertHorizontal,
+.slotInsertVertical {
+  background-color: white;
+  position: absolute;
+  z-index: -2;
+}
+.slotInsertHorizontal.hoverOverDroppable,
+.slotInsertVertical.hoverOverDroppable {
+  background-color: gray;
+  z-index: 2;
+}
+.slotInsertHorizontal {
+  height: 60px;
+  width: 26px;
+}
+.zoomOut .slotInsertVertical {
+  width: 60px;
+}
+.slotInsertVertical {
+  height: 24px;
+  width: 230px;
+}
+.slotIconHolder,
+.slotIconHolder .iconContainer {
+  width: 44px;
+  height: 60px;
+}
+.slotIconHolder {
+  position: absolute;
+  z-index: 1;
+}
+.slotIconHolder .iconContainer {
+  display: table-cell;
+  vertical-align: middle;
+}
+.slotIconHolder .iconContainer img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+#toolpane .ui-tabs-nav {
+  padding-left: 20px;
+}
+#toolpane .ui-tabs-nav a {
+  color: #888888;
+  font-size: 15pt;
+  line-height: 20pt;
+  font-weight: normal;
+  padding: 0 14px 15px 0;
+}
+#toolpane .ui-tabs-active a {
+  color: #000000;
+}
+#toolpane .ui-tabs-selected a {
+  color: #000000;
+}
+#toolpane .ui-tabs-panel {
+  padding-top: 0;
+}
+.workspaceButton:hover .zoomImageWrapper {
+  background-image: url('/_imgs/ProcessDesigner/Zoom_Hover.png');
+}
+#zoomItem.zoomInImage .commandImageWrapper {
+  background-position: -16px 0;
+}
+#zoomItem.zoomOutImage .commandImageWrapper {
+  background-position: 0 0;
+}
+.workspaceButton:hover .multiSelectImageWrapper {
+  background-image: url('/_imgs/ProcessDesigner/MultiSelect_Hover16.png');
+}
+.workspaceButton.selected .multiSelectImageWrapper {
+  background-image: url('/_imgs/ProcessDesigner/MultiSelect_Selected16.png');
+}
+#workflowSwitch .deactivate {
+  background-position: -16px 0;
+}
+#workflowSwitch .activate {
+  background-position: 0 0;
+}
+.canvasGrab {
+  cursor: url('../../../_imgs/ProcessDesigner/PanningControl_16.png'), url('/_imgs/ProcessDesigner/PanningControl_16.png'), pointer !important;
+}
+.canvasGrabbing {
+  cursor: url('../../../_imgs/ProcessDesigner/PanningControl_16.png'), url('/_imgs/ProcessDesigner/PanningControl_16.png'), pointer !important;
+}
+/*Tile Element*/
+.tile,
+.tile > div,
+.zoomOut .tileItemsMenu .tile,
+.zoomOut .tileItemsMenu .tile > div {
+  width: 230px;
+  height: 60px;
+  position: relative;
+}
+.zoomOut .tileItemsMenu .tile,
+.zoomOut .tileItemsMenu .tile > div {
+  padding: 0;
+}
+.tile > div {
+  background-color: #eeeeee;
+}
+.zoomOut .tile,
+.zoomOut .tile > div {
+  width: 60px;
+}
+.tileItemsMenu {
+  position: absolute;
+  z-index: 999;
+}
+.tileItemsMenu .content {
+  position: relative;
+  background-color: #ffffff;
+  max-height: 308px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 8px;
+  padding-right: 2px;
+  border: 2px solid #cccccc;
+  width: 230px;
+}
+.ie8 .tileItemsMenu .content {
+  margin-top: 4px;
+}
+.tileItemsMenu .tile:first-child,
+.tileItemsMenu .tile:first-child span.tileImageWrapper,
+.zoomOut .tileItemsMenu .tile:first-child,
+.zoomOut .tileItemsMenu .tile:first-child span.tileImageWrapper {
+  margin: 0;
+  border: none;
+}
+.tileItemsMenu .tile,
+.zoomOut .tileItemsMenu .tile {
+  margin-top: 1px;
+  border-top: 1px #cccccc;
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+.tileItemsMenu .tile > div,
+.zoomOut .tileItemsMenu .tile > div {
+  background-color: #ffffff;
+  border: none;
+}
+.tileItemsMenu .tile:hover > div,
+.zoomOut .tileItemsMenu .tile:hover > div,
+.ie8 .tileItemsMenu .tile:hover > div,
+.ie8 .zoomOut .tileItemsMenu .tile:hover > div {
+  background-color: #eeeeee;
+  border: none !important;
+  outline: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.tileItemsMenu .tile span.tileImageWrapper {
+  background-color: #cccccc;
+}
+span.tileImageWrapper {
+  display: block;
+  height: 60px;
+  width: 60px;
+  float: left;
+}
+.hoverOverDroppable div.emptyTile {
+  -webkit-box-shadow: inset 0 0 0 2px #888888;
+  -moz-box-shadow: inset 0 0 0 2px #888888;
+  box-shadow: inset 0 0 0 2px #888888;
+}
+.zoomOut .hoverOverDroppable div.emptyTile {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.ie8 .hoverOverDroppable div.emptyTile {
+  border: 2px solid #888888;
+  padding: 0;
+}
+.tileError {
+  position: absolute;
+  left: -4px;
+  bottom: -4px;
+}
+.tileErrorImg {
+  width: 18px;
+  height: 18px;
+}
+.ie8 div.selected,
+.ie8 .slot:hover {
+  margin-top: -2px;
+  margin-left: -2px;
+}
+.ie8 div.selected > div.tile > div.segmentTile {
+  border: 2px solid #3e7239;
+  padding: 0;
+}
+.ie8 div.tile:hover > div.segmentTile,
+.ie8 .hoverOverDroppable div.tile > div.segmentTile {
+  border: 2px solid #a8bfa6;
+  padding: 0;
+}
+.ie8 div.multipleItems > div.tile {
+  width: 235px;
+  height: 65px;
+}
+.ie8 .zoomOut div.multipleItems > div.tile {
+  height: 65px;
+  width: 65px;
+}
+.ie8 div.multipleItems > div.tile:after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 4px;
+  left: 4px;
+  right: 0;
+  bottom: 0;
+  border-right: 2px solid #eeeeee;
+  border-bottom: 2px solid #eeeeee;
+}
+.ie8 div.multipleItems > div.tile:before {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 4px;
+  left: 4px;
+  right: 2px;
+  bottom: 2px;
+  border-right: 4px solid #ffffff;
+  border-bottom: 4px solid #ffffff;
+}
+.ie8 div.multipleItems > div.tile:hover,
+.ie8 div.multipleItems.selected > div.tile {
+  width: 238px;
+  height: 68px;
+}
+.ie8 .zoomOut div.multipleItems > div.tile:hover,
+.ie8 .zoomOut div.multipleItems.selected > div.tile {
+  height: 65px;
+  width: 65px;
+}
+.ie8 div.multipleItems > div.tile:hover:after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 4px;
+  left: 4px;
+  right: 0;
+  bottom: 0;
+  border-right: 2px solid #a8bfa6;
+  border-bottom: 2px solid #a8bfa6;
+}
+.ie8 div.multipleItems > div.tile:hover:before {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 4px;
+  left: 4px;
+  right: 2px;
+  bottom: 2px;
+  border-right: 4px solid #ffffff;
+  border-bottom: 4px solid #ffffff;
+}
+.canvas,
+.canvas * {
+  -webkit-user-select: none;
+  /* Webkit */
+
+  -moz-user-select: none;
+  /* Firefox */
+
+  -ms-user-select: none;
+  /* IE 10  */
+}
+.zoomOut .tile {
+  padding: 2px;
+}
+.zoomOut .tile > div:hover,
+.zoomOut .hoverOverDroppable .tile > div,
+.zoomOut div.selected .tile > div {
+  padding: 0;
+  border: 2px solid #fff !important;
+  margin-left: -2px;
+  margin-top: -2px;
+}
+.zoomOut .tileItemsMenu .tile > div:hover,
+.zoomOut div.selected .tileItemsMenu .tile > div {
+  padding: 0;
+  border: none !important;
+  margin: 0;
+}
+.zoomOut div.emptyTile:hover,
+.zoomOut div.selected div.emptyTile {
+  border: none;
+  padding: 2px;
+}
+/** The outline shadow for the segment stacking looks ugly on Firefox, this due a browser bug. Removing it only on Firefox.*/
+@-moz-document url-prefix() {
+  .zoomOut div.multipleItems div.tile > div.segmentTile:hover,
+  .zoomOut div.multipleItems .hoverOverDroppable div.tile > div.segmentTile,
+  .zoomOut div.multipleItems.selected > div.tile > div.segmentTile {
+    outline: 0px;
+  }
+}
+.zoomOut div.tile > div.segmentTile:hover,
+.zoomOut .hoverOverDroppable div.tile > div.segmentTile {
+  outline: 2px solid #a8bfa6;
+}
+.zoomOut div.selected > div.tile > div.segmentTile {
+  outline: 2px solid #3e7239;
+}
+.zoomOut div.emailTile:hover,
+.zoomOut div.landingPageTile:hover,
+.zoomOut div.taskTile:hover,
+.zoomOut div.leadScoringTile:hover,
+.zoomOut div.socialMediaTile:hover,
+.zoomOut div.printedMailTile:hover,
+.zoomOut div.listTile:hover,
+.zoomOut div.eventTile:hover,
+.zoomOut .hoverOverDroppable div.emailTile,
+.zoomOut .hoverOverDroppable div.landingPageTile,
+.zoomOut .hoverOverDroppable div.taskTile,
+.zoomOut .hoverOverDroppable div.leadScoringTile,
+.zoomOut .hoverOverDroppable div.socialMediaTile,
+.zoomOut .hoverOverDroppable div.listTile,
+.zoomOut .hoverOverDroppable div.printedMailTile,
+.zoomOut .hoverOverDroppable div.eventTile {
+  outline: 2px solid #8cbfe5;
+}
+.zoomOut div.selected div.emailTile,
+.zoomOut div.selected div.landingPageTile,
+.zoomOut div.selected div.taskTile,
+.zoomOut div.selected div.leadScoringTile,
+.zoomOut div.selected div.socialMediaTile,
+.zoomOut div.selected div.listTile,
+.zoomOut div.selected div.printedMailTile,
+.zoomOut div.selected div.eventTile {
+  outline: 2px solid #0072c6;
+}
+.zoomOut div.responseTile:hover,
+.zoomOut div.schedulerTile:hover,
+.zoomOut .hoverOverDroppable div.responseTile,
+.zoomOut .hoverOverDroppable div.schedulerTile {
+  outline: 2px solid #e9bf8c;
+}
+.zoomOut div.selected div.responseTile,
+.zoomOut div.selected div.schedulerTile {
+  outline: 2px solid #ce7200;
+}
+.zoomOut .hoverOverDroppable div.tile > div.emptyTile {
+  outline: 2px solid #888888;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  white-space: nowrap;
+}
+.tileImage {
+  width: 32px;
+  height: 32px;
+  margin-left: 14px;
+  margin-top: 14px;
+}
+.tileTitle {
+  float: left;
+  margin: 8px 0 0 8px;
+  width: 134px;
+  font-size: 9pt;
+  font-weight: bold;
+  color: #000000;
+}
+.emptyTileTitle {
+  float: left;
+  margin: 0 0 0 8px;
+  width: 154px;
+  font-size: 9pt;
+  line-height: 60px;
+  text-align: center;
+  color: #666666;
+}
+.slotTile {
+  float: left;
+  width: 230px;
+  font-size: 9pt;
+  line-height: 60px;
+  text-align: center;
+  color: #666666;
+}
+.subItems {
+  list-style-type: none;
+  display: block;
+  margin: 8px 0 6px 8px !important;
+  position: absolute;
+  bottom: 0;
+  left: 60px;
+}
+.subItems li {
+  display: inline-block;
+  padding-right: 1px;
+}
+span.subItemImage {
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+li.openedItem span.subItemImage {
+  background-image: url('../../../_imgs/ProcessDesigner/Open_16.png'), url('/_imgs/ProcessDesigner/Open_16.png');
+}
+/*Library Elements*/
+.hitarea {
+  background-image: url('../../../_imgs/ProcessDesigner/ExtrasToggle.png'), url('/_imgs/ProcessDesigner/ExtrasToggle.png');
+  background-repeat: no-repeat;
+  width: 11px;
+  height: 11px;
+  display: block;
+  background-position: 0 -11px;
+  float: left;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+.folder {
+  font-weight: bold;
+  display: inline-block;
+  width: 100px;
+}
+ul.list {
+  margin: 20px 0 0 20px;
+  list-style-type: none;
+}
+.listitems {
+  list-style-type: none;
+  margin: 10px 0 0 21px !important;
+}
+li.listitem {
+  /* Direct all pointer events to JavaScript code. This is needed for handling touch events on IE browsers */
+
+  -ms-touch-action: none;
+  padding-top: 18px;
+}
+li.listitem:first-child {
+  padding-top: 0;
+}
+li.subitem {
+  margin-top: 8px;
+  width: 160px;
+}
+li.subitem:hover {
+  background-color: #eeeeee;
+}
+.lib-img-cont-float img {
+  border: medium none;
+  position: absolute;
+}
+.lib-img-cont-float {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+}
+.lib-img-content {
+  height: 24px;
+  width: 24px;
+}
+.lib-img-content img {
+  height: 16px;
+  width: 16px;
+  margin: 4px 0 0 4px;
+}
+.lib-iconContainer {
+  display: inline-block;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+.lib-rowLabel {
+  display: inline-block;
+  vertical-align: middle;
+  color: black;
+  width: 115px;
+  overflow: hidden;
+}
+.helper {
+  z-index: 900;
+}
+.critical_line {
+  background: #eeeeee;
+  background-color: #9acd32;
+  z-index: 100;
+}
+.slotIconHolder {
+  z-index: 200;
+}
+.contextmenu {
+  position: absolute !important;
+  z-index: 1000;
+  height: auto;
+}
+.contextmenu .contextmenuitems {
+  background: none repeat scroll 0 0 #FFF;
+  border: 2px solid #999;
+  padding: 1px;
+  width: 150px;
+}
+.contextmenuitems ul li {
+  background: none repeat scroll 0 0 transparent;
+  border: 1px solid #FFF;
+  color: #000;
+  cursor: default;
+  display: block;
+  padding: 8px;
+}
+.contextmenuitems ul li:hover {
+  border: 1px solid #eee;
+  background-color: #eee;
+}

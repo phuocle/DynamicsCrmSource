@@ -1,0 +1,441 @@
+.action-prop-container {
+font-family: 'Tahoma';
+overflow: auto;
+}
+
+#properties {
+position: absolute;
+height: calc(100% - 108px);
+width: calc(100%) !important;
+padding-left: 13px;
+padding-right: 13px;
+margin-top: 20px;
+}
+
+
+
+@media(max-width: 800px) {
+#properties {
+height: calc(100% - 90px);
+margin-top: 0px;
+}
+}
+
+
+
+.header {
+margin-bottom: 15px;
+}
+
+.section{
+background-color: #DDDDDD;
+padding-top: 10px;
+padding-left: 14px;
+margin-top: 5px;
+margin-bottom: 15px;
+width: calc(100% - 13px) !important;
+}
+
+.headline1{
+font-family: 'Segoe UI Semibold';
+font-size: 14px;
+color: #525252;
+height: 15px;
+line-height: 20px;
+}
+
+.headline2{
+font-family: 'Segoe UI';
+font-size: 14px;
+color: #525252;
+font-weight: normal;
+line-height: 18px;
+display: block;
+}
+
+#contentDivProp {
+height: 100%;
+width: calc(100% - 13px) !important;
+position: absolute;
+}
+
+.field {
+height: 28px;
+width: calc(100% - 13px);
+margin-top: 5px;
+margin-bottom: 15px;
+padding-left: 8px
+}
+
+.fieldFormula {
+height: 28px;
+width: calc(100% - 5px);
+margin-top: 5px;
+margin-bottom: 15px;
+padding-left: 8px
+}
+
+.fieldFormula:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+.fieldText {
+padding-left: 10px;
+}
+
+.nonEditable{
+background-color:#F5F5F5
+}
+
+.fieldRadio {
+margin-bottom: 11px;
+}
+
+.field:focus {
+border: 2px solid #8f8f8f;
+}
+
+#pblprop-dropdownValue:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+.buttons {
+height: 60px;
+padding : 14px 13px 14px 13px;
+border-top: 1px solid #BBBBBB;
+bottom: 0;
+position: absolute;
+width: 100%;
+}
+
+.align-self{
+align-self: flex-end
+}
+
+.ellipsis {
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+#actionprop-discard {
+background-color: #FFFFFF;
+border: 1px #BBBBBB;
+color: #666666;
+}
+
+#actionprop-discard:focus {
+color: #FFFFFF;
+}
+
+#actionprop-save {
+background-color: #0074D9;
+border: 1px #BBBBBB;
+color: #FFFFFF;
+}
+#actionprop-discard:hover, #actionprop-discard:focus {
+background-color: #E7E7E7;
+color: #666666 !important;
+}
+
+#actionprop-discard:active {
+background-color: #D7D7D7;
+}
+
+#actionprop-save:hover, #actionprop-save:focus {
+background-color: #1b8ae8;
+}
+#actionprop-save:active {
+background-color: #04569C;
+}
+
+#actionprop-save, #actionprop-discard {
+margin-right: 10px;
+height: 30px;
+width: 82px;
+max-width: calc(50% - 12px);
+font-family: 'Segoe UI';
+font-size: 14px;
+font-weight: normal;
+outline: 1px solid #CCCCCC;
+}
+
+#actionprop-save:hover, #actionprop-discard:hover {
+font-family: 'Segoe UI Semibold';
+font-size: 14px;
+color: #FFFFFF;
+}
+
+.action-prop-container .actionprop-section-label {
+padding: 7px 2px 7px 2px;
+display: block;
+}
+
+.action-prop-container .actionprop-button {
+padding: 2px 6px 2px 6px;
+width: 65px;
+}
+
+.action-prop-container .actionprop-section .actionprop-input {
+height: 25px;
+font-size: 10pt;
+}
+
+.action-prop-container .actionprop-textarea {
+height: 60px !important;
+overflow: auto;
+resize: none;
+border: 1px solid #AFAFAF;
+width: calc(100% - 13px);
+margin-top: 5px;
+margin-bottom: 15px;
+padding: 6px 0px 0px 12px
+}
+
+.action-prop-container .actionprop-textarea:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+.customJSprop-textarea {
+height: 120px !important;
+overflow: auto;
+resize: none;
+border: 1px solid #AFAFAF;
+width: calc(100% - 13px);
+margin-top: 5px;
+margin-bottom: 15px;
+padding: 6px 0px 0px 12px
+}
+
+.action-prop-container input {
+padding-left: 10px;
+}
+
+.action-prop-container .actionprop-expression {
+padding: 20px 15px 10px 15px;
+background-color: #EBEBEB;
+display: inline-block;
+position: relative;
+}
+
+
+.action-prop-container .actionprop-section {
+margin-bottom: 13px;
+}
+
+.action-prop-container .actionprop-sub-section {
+background-color: #DDDDDD;
+margin-bottom: 3px;
+padding: 0px 0px 6px 0px;
+width: 100%;
+}
+
+.action-prop-container .actionprop-sub-section .actionprop-input {
+min-width: 150px !important;
+max-width: 150px !important;
+height: 25px;
+font-size: 10pt;
+}
+
+.action-prop-container .actionprop-exp-column {
+padding: 3px;
+display: inline-block;
+min-width: 70px;
+min-height: 25px;
+}
+
+.action-prop-container .bpfprop-addnew {
+float:right;
+display:inline;
+cursor: pointer;
+font-weight: 900;
+font-size: 11pt;
+font-family: 'Arial'
+}
+
+.action-prop-container .actionprop-exp-column .actionprop-input {
+min-width: 209px;
+max-width: 209px;
+height: 25px
+}
+
+.action-prop-container .prop-calendarSymbol::before {
+content: "\E787";
+}
+
+.action-prop-container .pblprop-calendar-fontIcons-size {
+font-size: 17px;
+}
+
+.prop-exp-input_type_value {
+display: flex;
+width:calc(100% - 13px);
+padding-bottom:15px;
+}
+
+.action-prop-container .prop-calendar-button {
+border: none;
+padding-left: 0px;
+width: 22px;
+height: 25px;
+padding:0px;
+margin: 0px 10px 0px 10px;
+background-color:#DDDDDD;
+}
+
+.action-prop-container .prop-calendar-button:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+.action-prop-container .pblprop-datepicker-datetime-input-height-width {
+height: 28px;
+width:calc(60% - 22px);
+}
+
+.action-prop-container .pblprop-datepicker-datetime-input-height-width:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+.action-prop-container .pblprop-timeDropDown-height-width {
+height: 28px;
+width:40%;
+padding-left:0px;
+}
+
+.action-prop-container .pblprop-timeDropDown-height-width:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+.action-prop-container .pblprop-datepicker-dateOnly-input-height-width {
+height: 25px;
+width:186px;
+}
+
+
+.ms-crm-DateTime-Container-Input:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+#DateInput:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+img.ms-crm-InlineDateTime-Icon:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+.ms-crm-SelectBox:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+img.ms-crm-InlineDuration-Icon:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+td#tdPrv:focus , td#tdCaption:focus , td#tdNxt:focus , table.ms-crm-MiniCal td:focus{
+background-color: #B1D6F0 !important;
+}
+.ms-crm-Input-Container{
+padding:0px !important;
+}
+td.ms-crm-InlineDateTime-IconCell , td.ms-crm-InlineDuration-IconCell{
+vertical-align:middle !important;
+}
+
+.ms-crm-DateTime-Container-Input{
+padding-left:0px !important;
+}
+input#DateInput{
+padding-left:8px !important;
+}
+
+TD.ms-crm-MiniCal-TodayBar, TD.ms-crm-MiniCal-TodayBar-Hovered{
+vertical-align:middle !important;
+}
+
+
+.action-prop-container .prop-findSymbol::before {
+content: "\E721";
+}
+
+.action-prop-container .prop-find-fontIcons-size {
+font-size: 14px;
+position: absolute;
+right: 33px;
+margin-top: 7px;
+}
+
+.action-prop-container  .prop-lookup-textbox {
+width: 190px;
+}
+
+.action-prop-container .prop-CCFSymbolFont {
+font-family: 'CRMMDL2';
+}
+
+.prop-find {
+padding:2px 0px 0px 5px;
+}
+
+.prop-find:focus{
+border: 2px solid #8f8f8f !important;
+}
+
+.action-prop-lookup-textbox {
+width: calc(100% - 13px) !important;
+}
+
+.action-prop-lookup-header {
+display: flex;
+}
+
+.action-prop-lookup-textbox:focus {
+border: 2px solid #8f8f8f !important;
+}
+
+.action-disabled-buttons {
+pointer-events: none;
+background-color: transparent !important;
+color: gray !important;
+}
+
+.action-disabled-text {
+border: solid 1px #BBB;
+background-color: #F5F5F5;
+}
+
+.actionprop-lablegroup-head {
+display: block;
+}
+
+.actionprop-controlgroup-head {
+display: block;
+}
+
+.actionprop-controlgroup-head-formula {
+display: block;
+}
+
+.actionprop-lablegroup-left {
+width: 40%;
+margin-right: 15px;
+}
+
+.actionprop-lablegroup-left {
+width: 40%;
+margin-right: 15px;
+}
+
+
+
+html.rtl .section {
+padding-right: 12px;
+}
+
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+.fieldText {
+padding: 3px 0px 9px 10px !important;
+}
+}
+

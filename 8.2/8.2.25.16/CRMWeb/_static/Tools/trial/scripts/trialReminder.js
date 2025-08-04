@@ -1,0 +1,5 @@
+
+function applychanges()
+{
+    closeWindow()
+}

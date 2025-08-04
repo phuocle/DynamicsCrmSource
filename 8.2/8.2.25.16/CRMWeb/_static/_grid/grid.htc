@@ -1,0 +1,1145 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="initializeGrid()"/>
+<public:attach event="onresize" onevent="positionRefreshButton();handleScroll();handleStatusBar();"/>
+<public:attach event="ondetach" onevent="dispose()" />
+<public:method name="handleResize"/>
+<public:method name="handleResizeCleanup"/>
+<public:method name="handleResizeStartup"/>
+<public:method name="handleAutoResize"/>
+<public:method name="positionRefreshButton"/>
+<public:property name="gridXml" get="buildGridXml"/>
+<public:property name = "layoutXml" get="buildLayoutXml"/>
+<public:property name = "refreshAsynchronous" put="setRefreshAsynchronous" get="getRefreshAsynchronous"/>
+<public:property	name="InnerGrid"/>
+<public:property	name="PageNumber" put="setPageNumber" get="getPageNumber"/>
+<public:property	name="MaximumSelectableRecords" get="getMaxSelectable"/>
+<public:property	name="Version" value="3.0"/>
+<public:property	name="AutoHideHScroll" put="setAutoHideHScroll" get="getAutoHideHScroll"/>
+<public:property	name="GridRefreshTime" get="getGridRefreshTime"/>
+<public:property	name="GridRefreshSourceElement" put="setGridRefreshSourceElement" get="getGridRefreshSourceElement"/>
+<public:property	name="IsRefreshing" get="getIsRefreshing"/>
+<public:property	name="RequirementLevelEnum" get="getRequirementLevelEnum" />
+<public:property	name="HasFocus" put="setHasFocus" get="getHasFocus" />
+<public:method		name="Init"/>
+<public:method		name="GetProperty"/>
+<public:method		name="GetParameter"/>
+<public:method		name="SetParameter"/>
+<public:method		name="Refresh"/>
+<public:method		name="ResetPageNumber"/>
+<public:method		name="CancelRefresh"/>
+<public:method		name="ClearPagingCookie"/>
+<public:method		name="DisablePaging"/>
+<public:method		name="ShowLoadingMessage"/>
+<public:method		name="SortColumn"/>
+<public:event		name="onrefresh" id="OnRefresh" />
+<public:event		name="onchangepage" id="OnChangePage" />
+<public:event		name="onbeforerefresh" id="OnBeforeRefresh" />
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oLast,
+    _oLastOver,
+    _currentDragCol = null,
+    _currentDragDataCol = null,
+    _bPagingEnabled = true,
+    _bSelectionEnabled = true,
+    _bRefreshAsynchronous = false,
+    _bAutoHideHScroll = true,
+    _sMessageHtml = "<TABLE class='ms-crm-List-Message' morerecords='0'><TR><TD ID='GridMessage'>{0}</TD></TR></TABLE>",
+    _sLoadingMessageHtml = "<TABLE class='ms-crm-List-Message' morerecords='0'><TR><TD ID='GridLoadingMessage'><IMG alt='' src='/_imgs/AdvFind/progress.gif'><br>{0}</TD></TR></TABLE>",
+    _dtLastRefreshTime = null,
+    _bRefreshing = false,
+    _commandRefreshGrid = null,
+    _oSelectInfoCutoffWidth = 0,
+    _oItemsSelectedInfoCutoffWidth = 0,
+    _gridRefreshSourceElement = null,
+    _returnTotalRecordCount = true,
+    _bGridEnabled = true,
+    _hasFocus = false;
+function IsNull(o)
+{
+    return "undefined" == typeof o || "unknown" == typeof o || null == o
+}
+function GetProperty(sName)
+{
+    var oTmp = this.all.divGridProps.children[sName];
+    return !IsNull(oTmp) ? oTmp.value : null
+}
+function setHasFocus(value)
+{
+    _hasFocus = value
+}
+function getHasFocus()
+{
+    return _hasFocus
+}
+function GetParameter(sName)
+{
+    var oTmp,
+        oDivParams = element.all.divGridParams;
+    if(!IsNull(oDivParams))
+        oTmp = oDivParams.children[sName];
+    return !IsNull(oTmp) ? oTmp.value : null
+}
+function SetParameter(sName,sValue)
+{
+    var o = this.all.divGridParams.children[sName];
+    if(IsNull(o))
+    {
+        o = element.document.createElement('<div id="' + CrmEncodeDecode.CrmHtmlAttributeEncode(sName) + '">');
+        o.value = sValue;
+        this.all.divGridParams.appendChild(o)
+    }
+    else
+        o.value = sValue
+}
+function CancelRefresh()
+{
+    _commandRefreshGrid.abort();
+    FinishShowLoadingMessage();
+    setGridData(formatString(_sMessageHtml,LOCID_REFRESH_GRID_CANCELLED));
+    _bRefreshing = false
+}
+function Refresh(calledFromPaging)
+{
+    if(IsNull(calledFromPaging))
+        calledFromPaging = false;
+    _bRefreshing = true;
+    var oEvent = createEventObject();
+    OnBeforeRefresh.fire(oEvent);
+    if(!IsNull(oEvent.returnValue) && !oEvent.returnValue)
+    {
+        _bRefreshing = false;
+        return
+    }
+    _bPagingEnabled && 
+        DisablePaging();
+    if(_commandRefreshGrid == null)
+        _commandRefreshGrid = new Mscrm.RemoteCommandXml("AppGridWebService","Refresh");
+    _commandRefreshGrid.setContent(buildGridXml(calledFromPaging));
+    if(_bRefreshAsynchronous)
+    {
+        _commandRefreshGrid.execute(onRefreshComplete);
+        ShowLoadingMessage()
+    }
+    else
+    {
+        ShowLoadingMessage();
+        window.setTimeout(refreshInternal,1)
+    }
+}
+function refreshInternal()
+{
+    var result = _commandRefreshGrid.execute();
+    onRefreshComplete(result)
+}
+function onRefreshComplete(result)
+{
+    FinishShowLoadingMessage();
+    if(result.get_success() && result.get_returnValue() != "")
+    {
+        var oXmlDoc = XUI.Xml.LoadXml(result.get_returnValue());
+        element.all.divGridProps.children.pagingCookie.value = oXmlDoc.selectSingleNode("gridXml/pagingCookie").text;
+        setGridData(oXmlDoc.selectSingleNode("gridXml/gridHtml").text);
+        var i,
+            params = [];
+        params.push("effectiveFetchXml");
+        params.push("isFetchXmlNotFinal");
+        params.push("fetchXmlForFilters");
+        for(i = 0; i < params.length; i++)
+        {
+            var oNode = oXmlDoc.selectSingleNode(formatString("gridXml/gridParams/div[@id='{0}']",params[i]));
+            oNode != null && 
+                element.SetParameter(oNode.getAttribute("id"),oNode.text)
+        }
+    }
+    else
+        setGridData(formatString(_sMessageHtml,LOCID_LOADING_GRID_FAILED));
+    OnRefresh.fire();
+    if(!IsNull(typeof Mscrm.PageManager) && !IsNull(Mscrm.PageManager.get_instance()) && Mscrm.PageManager.isFlatUIPage())
+    {
+        var gridControl = $find(this.id);
+        if(!IsNull(gridControl))
+        {
+            var parameters = {};
+            parameters["gridRefreshSourceElement"] = GridRefreshSourceElement;
+            GridRefreshSourceElement = null;
+            gridControl.raiseEvent(Mscrm.ScriptEvents.OnGridRefresh,parameters)
+        }
+    }
+    handleScroll();
+    _dtLastRefreshTime = new Date;
+    _bRefreshing = false
+}
+var _oldGridOverflowY;
+function ShowLoadingMessage()
+{
+    var sLoadingMessage = window["LOCID_LOADING_GRID_DATA"];
+    if(IsNull(sLoadingMessage))
+        sLoadingMessage = window["LOCID_LOADING_" + this.id.toUpperCase()];
+    if(IsNull(_oldGridOverflowY))
+    {
+        var dataArea = element.all[this.id + "_divDataArea"];
+        _oldGridOverflowY = dataArea.style.overflowY;
+        dataArea.style.overflowY = "visible"
+    }
+    setGridData(formatString(_sLoadingMessageHtml,sLoadingMessage),false)
+}
+function FinishShowLoadingMessage()
+{
+    if(!IsNull(_oldGridOverflowY))
+    {
+        var dataArea = element.all[this.id + "_divDataArea"];
+        if(!IsNull(dataArea))
+        {
+            dataArea.style.overflowY = _oldGridOverflowY;
+            _oldGridOverflowY = null
+        }
+    }
+}
+function setGridData(sHtml,bUpdatePaging)
+{
+    var isExpandable = GetParameter("expandable"),
+        maxRowsBeforeScroll = GetParameter("maxrowsbeforescroll");
+    if(isExpandable == "1" && maxRowsBeforeScroll == 0)
+        sHtml = sHtml + '<div style="height: 16px;"></div>';
+    releaseInnerGrid();
+    element.all[this.id + "_divDataArea"].innerHTML = sHtml;
+    initializeData(bUpdatePaging)
+}
+function setAutoHideHScroll(bAutoHide)
+{
+    _bAutoHideHScroll = bAutoHide;
+    var oDataArea = element.all[this.id + "_divDataArea"];
+    if(!_bAutoHideHScroll)
+        oDataArea.style.overflowX = "scroll";
+    else
+        oDataArea.style.overflowX = "auto"
+}
+function getAutoHideHScroll()
+{
+    return _bAutoHideHScroll
+}
+function ClearPagingCookie()
+{
+    element.all.divGridProps.children.pagingCookie.value = ""
+}
+function getGridRefreshTime()
+{
+    return _dtLastRefreshTime
+}
+function getGridRefreshSourceElement()
+{
+    return _gridRefreshSourceElement
+}
+function setGridRefreshSourceElement(srcElement)
+{
+    _gridRefreshSourceElement = srcElement
+}
+function getIsRefreshing()
+{
+    return _bRefreshing
+}
+function Init()
+{
+    this.all.divGridProps.all.pageNum.value = 1;
+    initializeGrid()
+}
+function initializeGrid()
+{
+    if(window.document.media == "print")
+        return;
+    _bPagingEnabled = typeof this.all["_prevPageImg"] != "undefined";
+    if(element.all["gridStatusBar"])
+        _bSelectionEnabled = element.all["gridStatusBar"].rows[0].cells[0].innerText != "";
+    else
+        _bSelectionEnabled = false;
+    _bRefreshAsynchronous = this.all.divGridProps.all.refreshAsync.value == "True";
+    _bGridEnabled = this.GetParameter("InnerGridDisabled") != "1" ? true : false;
+    if(GetParameter("LoadOnDemand") == "1" && (IsNull(GetParameter("LoadOnDemand_GridEmptyMessage")) || GetParameter("LoadOnDemand_GridEmptyMessage") == ""))
+    {
+        var form = $get("crmForm");
+        if(!IsNull(form))
+        {
+            var tab = form.GetTab(this.element);
+            !IsNull(tab) && 
+                Mscrm.FormUITab.addTabStateChangeHandler(tab,Function.createDelegate(this.element,tabChangedEventHandler))
+        }
+    }
+    if(_bPagingEnabled)
+        if(_bGridEnabled)
+        {
+            this.all._prevPageImg.attachEvent("onclick",previousPage);
+            this.all._nextPageImg.attachEvent("onclick",nextPage);
+            this.all.fastRewind.attachEvent("onclick",firstPage)
+        }
+        else
+            DisablePaging();
+    var divDataArea = element.all[this.id + "_divDataArea"];
+    !IsNull(divDataArea) && 
+        divDataArea.attachEvent("onscroll",handleScroll);
+    var findCriteria = element.all[this.id + "_findCriteria"];
+    if(!IsNull(findCriteria))
+        findCriteria.disabled = !_bGridEnabled;
+    initializeColumns(true);
+    initializeData();
+    _dtLastRefreshTime = new Date
+}
+function positionRefreshButton()
+{
+    if(window.document.media == "print")
+        return;
+    var oFixedRow = element.all["fixedrow"],
+        oRefresh = element.all["refreshButton"];
+    if(!IsNull(oFixedRow) && oFixedRow.offsetWidth < 16)
+        return;
+    if(!IsNull(oRefresh))
+    {
+        if(window.document.media != "print" && LOCID_UI_DIR == "RTL")
+            oRefresh.style.right = oFixedRow.offsetWidth - 16;
+        else
+            oRefresh.style.left = oFixedRow.offsetWidth - 16;
+        if(oRefresh.style.display != "inline")
+            oRefresh.style.display = "inline"
+    }
+}
+function handleStatusBar()
+{
+    var oStatusBar = element.all["gridStatusBar"],
+        oPageInfo = element.all[this.id + "_PageInfo"],
+        oNextPage = element.all["page_R0"],
+        oSelectInfo = element.all[this.id + "_RecordSelectInfo"],
+        oSelectInfoMarker = element.all[this.id + "_RecordSelectEndMarker"];
+    if(IsNull(oStatusBar) || IsNull(oSelectInfo) || IsNull(oPageInfo) || IsNull(oNextPage))
+        return;
+    var oStatusBarWidth = oStatusBar.offsetWidth,
+        oItemsSelectedInfo = element.all[this.id + "_ItemsSelectedInfo"];
+    if(oSelectInfo.style.display != "none" && _oSelectInfoCutoffWidth == 0)
+    {
+        _oSelectInfoCutoffWidth = 2 * oSelectInfoMarker.offsetLeft;
+        _oItemsSelectedInfoCutoffWidth = 2 * oItemsSelectedInfo.offsetLeft
+    }
+    if(oStatusBarWidth <= _oSelectInfoCutoffWidth)
+    {
+        if(oStatusBarWidth <= _oItemsSelectedInfoCutoffWidth)
+        {
+            if(oItemsSelectedInfo.style.display == "none")
+                oItemsSelectedInfo.style.display = "inline";
+            if(oSelectInfo.style.display != "none")
+                oSelectInfo.style.display = "none"
+        }
+        else
+        {
+            if(oItemsSelectedInfo.style.display != "none")
+                oItemsSelectedInfo.style.display = "none";
+            if(oSelectInfo.style.display == "none")
+                oSelectInfo.style.display = "inline"
+        }
+        return
+    }
+    if(oNextPage.offsetLeft + oNextPage.offsetWidth >= oPageInfo.offsetWidth)
+    {
+        oSelectInfo.style.display = "none";
+        _oSelectInfoCutoffWidth = oStatusBarWidth;
+        return
+    }
+    if(oSelectInfo.style.display == "none")
+        oSelectInfo.style.display = "inline";
+    if(oItemsSelectedInfo.style.display == "none")
+        oItemsSelectedInfo.style.display = "inline"
+}
+function syncColumnHeaderToTableData()
+{
+    var oFixedRow = element.all["fixedrow"],
+        oDivDataArea = element.all[this.id + "_divDataArea"];
+    if(!IsNull(oFixedRow) && !IsNull(oDivDataArea))
+    {
+        var marginAdjustment = oFixedRow.scrollLeft - oDivDataArea.scrollLeft;
+        if(window.document.media != "print" && LOCID_UI_DIR == "RTL")
+        {
+            var bVScrollVisible = oDivDataArea.scrollHeight > parseInt(oDivDataArea.clientHeight,10),
+                BidiPadding = 2;
+            marginAdjustment = oFixedRow.scrollLeft - oDivDataArea.scrollLeft - BidiPadding;
+            if(bVScrollVisible)
+            {
+                var scrollWidth = oDivDataArea.clientLeft;
+                marginAdjustment = oFixedRow.scrollLeft - oDivDataArea.scrollLeft + (scrollWidth - BidiPadding)
+            }
+        }
+        if(IsNull(marginAdjustment))
+            return;
+        marginAdjustment = parseInt(marginAdjustment,10);
+        if(marginAdjustment != parseInt(oFixedRow.style.marginLeft,10))
+            oFixedRow.style.marginLeft = marginAdjustment;
+        if(window.document.media != "print" && LOCID_UI_DIR == "RTL")
+            if(oDivDataArea.firstChild.firstChild.firstChild.tagName != "COLGROUP")
+                oFixedRow.scrollLeft = oFixedRow.scrollWidth
+    }
+}
+function initializeColumns(bResetSortColumns)
+{
+    if(bResetSortColumns)
+        _oSortColumns = null;
+    var gridBarId = this.id + "_gridBar",
+        oGridBar = element.all[gridBarId];
+    if(oGridBar != null)
+    {
+        var oTmp = element.all[gridBarId].rows[0];
+        oTmp.attachEvent("onkeydown",handleKeyDown);
+        oTmp.attachEvent("onclick",handleColumnClick);
+        oTmp.attachEvent("onmouseover",handleColumnMouseOver);
+        oTmp.attachEvent("onmouseout",handleColumnMouseOut)
+    }
+}
+function initializeData(bUpdatePaging)
+{
+    InnerGrid = element.all["gridBodyTable"];
+    if(typeof bUpdatePaging == "undefined")
+        bUpdatePaging = true;
+    _bGridEnabled && bUpdatePaging && 
+        updatePagingUI();
+    if(InnerGrid == null)
+        return;
+    InnerGrid.ParentGridControl = this;
+    InnerGrid.ParentGridControlDataArea = element.all["tdDataArea"];
+    _bSelectionEnabled && 
+        InnerGrid.attachEvent("onselectionchange",updateUIOnSelectionChange)
+}
+function releaseInnerGrid()
+{
+    if(this.InnerGrid == null)
+        try
+        {
+            this.InnerGrid = element.all["gridBodyTable"]
+        }
+        catch(e)
+        {
+        }
+    if(this.InnerGrid != null)
+    {
+        try
+        {
+            _bSelectionEnabled && 
+                this.InnerGrid.detachEvent("onselectionchange",updateUIOnSelectionChange);
+            $clearHandlers(this.InnerGrid)
+        }
+        catch(e)
+        {
+        }
+        this.InnerGrid.ParentGridControl = null;
+        this.InnerGrid.ParentGridControlDataArea = null;
+        this.InnerGrid = null
+    }
+}
+function dispose()
+{
+    releaseInnerGrid()
+}
+function updateUIOnSelectionChange()
+{
+    updateSelectedItemsUI(InnerGrid.SelectedRecords.length,InnerGrid.NumberOfRecords,InnerGrid.MoreRecords,InnerGrid.TotalRecordCount,InnerGrid.AllRecordsCounted)
+}
+function updateSelectedItemsUI(iNum,sTotal,bMoreRecords,sTotalRecordCount,bAllRecordsCounted)
+{
+    var firstItem = 0,
+        lastItem = 0,
+        iTotalRecordCount = parseInt(sTotalRecordCount,10),
+        iTotal = parseInt(sTotal,10);
+    if(iTotal != 0)
+    {
+        var pageNumber = getPageNumber();
+        if(IsNull(pageNumber) || pageNumber == -1)
+            pageNumber = 1;
+        var recordsPerPage = getRecordsPerPage();
+        firstItem = (pageNumber - 1) * recordsPerPage + 1;
+        lastItem = (pageNumber - 1) * recordsPerPage + iTotal
+    }
+    if(iTotalRecordCount >= 0)
+        if(lastItem > iTotalRecordCount || iTotal < recordsPerPage)
+        {
+            iTotalRecordCount = lastItem;
+            bAllRecordsCounted = !bMoreRecords
+        }
+    var oFirstItem = element.all[element.id + "_FirstItem"];
+    if(!IsNull(oFirstItem))
+        oFirstItem.innerText = firstItem;
+    var oLastItem = element.all[element.id + "_LastItem"];
+    if(!IsNull(oLastItem))
+        oLastItem.innerText = lastItem;
+    var oTotal = element.all[element.id + "_ItemsTotal"];
+    if(!IsNull(oTotal))
+        oTotal.innerText = getTotalRecordCountText(iTotalRecordCount,bAllRecordsCounted);
+    var oTotalInfo = element.all[element.id + "_TotalCountInfo"];
+    if(!IsNull(oTotalInfo))
+        if(iTotalRecordCount < 0)
+            oTotalInfo.style.display = "none";
+        else
+            oTotalInfo.style.display = "inline";
+    var oItemsSelected = element.all[element.id + "_ItemsSelected"];
+    if(!IsNull(oItemsSelected))
+        oItemsSelected.innerText = iNum;
+    var oChkAll = element.all.chkAll;
+    if(!IsNull(oChkAll))
+    {
+        oChkAll.checked = iNum == iTotal && iTotal > 0;
+        oChkAll.disabled = iTotal == 0
+    }
+}
+function getTotalRecordCountText(iTotalRecordCount,bAllRecordsCounted)
+{
+    if(bAllRecordsCounted)
+        return String.format(LOCID_GRID_EXACTTOTALCOUNT,iTotalRecordCount);
+    else
+        return String.format(LOCID_GRID_APPROXTOTALCOUNT,iTotalRecordCount)
+}
+function handleScroll()
+{
+    var oFixedRow = element.all["fixedrow"],
+        oDivDataArea = element.all[this.id + "_divDataArea"];
+    if(!IsNull(oFixedRow) && !IsNull(oDivDataArea))
+    {
+        oFixedRow.scrollLeft = oDivDataArea.scrollLeft;
+        syncColumnHeaderToTableData()
+    }
+}
+function buildGridXml(calledFromPaging)
+{
+    if(IsNull(calledFromPaging))
+        calledFromPaging = false;
+    for(var s = "<grid>",
+        i = 0,
+        oCol = this.all.divGridProps.children,
+        iLen = oCol.length,
+        i = 0; i < iLen; i++)
+        if(oCol[i].value == "")
+            s += "<" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + "/>";
+        else
+            s += "<" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + ">" + CrmEncodeDecode.CrmXmlEncode(oCol[i].value) + "</" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + ">";
+    if(IsNull(calledFromPaging) || !calledFromPaging)
+        s += "<refreshCalledFromRefreshButton>1</refreshCalledFromRefreshButton>";
+    if(!IsNull(InnerGrid))
+    {
+        s += "<totalrecordcount>" + CrmEncodeDecode.CrmXmlEncode(InnerGrid.TotalRecordCount) + "</totalrecordcount>";
+        s += "<allrecordscounted>" + (InnerGrid.AllRecordsCounted ? "true" : "false") + "</allrecordscounted>"
+    }
+    s += "<returntotalrecordcount>" + (_returnTotalRecordCount ? "true" : "false") + "</returntotalrecordcount>";
+    s += "<getParameters>";
+    var gridType = GetParameter("GridType"),
+        fetchXmlForFilters = GetParameter("fetchXmlForFilters");
+    if(!IsNull(gridType) && gridType == "SubGrid" && IsNull(fetchXmlForFilters))
+        s += "getFetchXmlForFilters";
+    s += "</getParameters>";
+    s += "<parameters>";
+    oCol = this.all.divGridParams.children;
+    iLen = oCol.length;
+    for(i = 0; i < iLen; i++)
+        if(IsNull(oCol[i].requiredMask) || !IsNull(oCol[i].requiredMask) && oCol[i].requiredMask != RequirementLevelEnum.ServerOnly)
+            if(oCol[i].value == "")
+                s += "<" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + "/>";
+            else
+                s += "<" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + ">" + CrmEncodeDecode.CrmXmlEncode(oCol[i].value) + "</" + CrmEncodeDecode.CrmXmlEncode(oCol[i].id) + ">";
+    s += "</parameters>";
+    s += buildLayoutXml();
+    s += "</grid>";
+    return s
+}
+function buildLayoutXml()
+{
+    var s = "",
+        i = 0,
+        gridBarId = this.id + "_gridBar";
+    s += "<columns>";
+    var oGridBar = this.all[gridBarId];
+    if(oGridBar != null)
+    {
+        oCol = this.all[gridBarId].rows[0].cells;
+        iLen = oCol.length;
+        for(i = 0; i < iLen; i++)
+            if(oCol[i].field)
+            {
+                s += "<column width=";
+                if(oCol[i].isHidden)
+                    s += '"0" isHidden="true"';
+                else
+                {
+                    var iWidth = oCol[i].scrollWidth;
+                    if(iWidth == 0)
+                        iWidth = parseInt(oCol[i].currentStyle.width,10);
+                    s += '"' + iWidth + '" isHidden="false"'
+                }
+                if(oCol[i].metadataDisabled)
+                    s += ' isMetadataBound="false"';
+                else
+                    s += ' isMetadataBound="true"';
+                if(oCol[i].className == "ms-crm-List-Sortable")
+                    s += ' isSortable="true"';
+                else
+                    s += ' isSortable="false"';
+                s += ' label="' + CrmEncodeDecode.CrmXmlAttributeEncode(oCol[i].displayLabel) + '"';
+                s += ' fieldname="' + CrmEncodeDecode.CrmXmlAttributeEncode(oCol[i].fieldname) + '"';
+                s += ' entityname="' + CrmEncodeDecode.CrmXmlAttributeEncode(oCol[i].entityname) + '"';
+                if(oCol[i].renderertype)
+                    s += ' renderertype="' + CrmEncodeDecode.CrmXmlAttributeEncode(oCol[i].renderertype) + '"';
+                if(oCol[i].relationshipname)
+                    s += ' relationshipname="' + CrmEncodeDecode.CrmXmlAttributeEncode(oCol[i].relationshipname) + '"';
+                s += ">" + CrmEncodeDecode.CrmXmlEncode(oCol[i].field) + "</column>"
+            }
+    }
+    s += "</columns>";
+    return s
+}
+function findColumn(sName)
+{
+    var i = 0,
+        oCells = this.all[this.id + "_gridBar"].rows[0].cells,
+        iLen = oCells.length;
+    while(i < iLen)
+    {
+        if(oCells[i].field && oCells[i].field == sName)
+            return oCells[i];
+        i++
+    }
+    return null
+}
+function setPageNumber(iPage)
+{
+    if(_bRefreshing)
+        return;
+    if(iPage < 1)
+        return;
+    var oEvent = createEventObject();
+    oEvent.NewPageNumber = iPage;
+    oEvent.CurrentPageNumber = getPageNumber();
+    OnChangePage.fire(oEvent);
+    this.all.divGridProps.all.pageNum.value = iPage;
+    if(!IsNull(oEvent.returnValue) && !oEvent.returnValue)
+        return;
+    Refresh(true)
+}
+function ResetPageNumber()
+{
+    this.all.divGridProps.all.pageNum.value = 1
+}
+function getPageNumber()
+{
+    return _bPagingEnabled ? parseInt(this.all.divGridProps.all.pageNum.value,10) : -1
+}
+function getRecordsPerPage()
+{
+    return parseInt(this.all.divGridProps.all.recsPerPage.value,10)
+}
+function getMaxSelectable()
+{
+    return parseInt(this.all.divGridProps.all.max.value,10)
+}
+function DisablePaging()
+{
+    with(this.all._prevPageImg)
+    {
+        style.cursor = "auto";
+        var prevDisabledImg = Mscrm.ImageStrip.getImageInfo(Mscrm.CrmUri.create("/_imgs/grid/page_L0.gif"));
+        firstChild.src = prevDisabledImg.source;
+        firstChild.className = prevDisabledImg.cssClass;
+        if(window.document.media != "print" && LOCID_UI_DIR == "RTL")
+            firstChild.style.filter = "FlipH()";
+        firstChild.disabled = true;
+        disabled = true;
+        SetToolTip(this.all._prevPageImg,true)
+    }
+    with(this.all.fastRewind)
+    {
+        style.cursor = "auto";
+        var firstDisabledImg = Mscrm.ImageStrip.getImageInfo(Mscrm.CrmUri.create("/_imgs/grid/page_FL0.gif"));
+        firstChild.src = firstDisabledImg.source;
+        firstChild.className = firstDisabledImg.cssClass;
+        if(window.document.media != "print" && LOCID_UI_DIR == "RTL")
+            firstChild.style.filter = "FlipH()";
+        firstChild.disabled = true;
+        disabled = true;
+        SetToolTip(this.all.fastRewind,true)
+    }
+    with(this.all._nextPageImg)
+    {
+        style.cursor = "auto";
+        var nextDisabledImg = Mscrm.ImageStrip.getImageInfo(Mscrm.CrmUri.create("/_imgs/grid/page_R0.gif"));
+        firstChild.src = nextDisabledImg.source;
+        firstChild.className = nextDisabledImg.cssClass;
+        if(window.document.media != "print" && LOCID_UI_DIR == "RTL")
+            firstChild.style.filter = "FlipH()";
+        firstChild.disabled = true;
+        disabled = true;
+        SetToolTip(this.all._nextPageImg,true)
+    }
+}
+function updatePagingUI()
+{
+    if(_bPagingEnabled)
+    {
+        var bAreMore;
+        if(InnerGrid == null)
+            bAreMore = false;
+        else
+            if(InnerGrid.MoreRecords == null)
+                bAreMore = InnerGrid.morerecords == "1";
+            else
+                bAreMore = InnerGrid.MoreRecords;
+        var bRDisable = false,
+            bLDisable = false,
+            sL = "0",
+            sR = bAreMore ? "1" : "0",
+            sLCursor = "hand",
+            sRCursor = "hand",
+            curPage = this.all.divGridProps.all.pageNum.value;
+        this.all["_PageNum"].innerText = curPage;
+        if(curPage > 1)
+            sL = "1";
+        else
+        {
+            sLCursor = "auto";
+            bLDisable = true
+        }
+        if(!bAreMore)
+        {
+            sRCursor = "auto";
+            bRDisable = true
+        }
+        with(this.all._prevPageImg)
+        {
+            style.cursor = sLCursor;
+            var prevImg = Mscrm.ImageStrip.getImageInfo(Mscrm.CrmUri.create("/_imgs/grid/page_L" + sL + ".gif"));
+            firstChild.src = prevImg.source;
+            firstChild.className = prevImg.cssClass;
+            firstChild.disabled = bLDisable;
+            disabled = bLDisable;
+            SetLinkAttributes(this.all._prevPageImg,disabled);
+            SetToolTip(this.all._prevPageImg,disabled)
+        }
+        with(this.all.fastRewind)
+        {
+            style.cursor = sLCursor;
+            var firstImg = Mscrm.ImageStrip.getImageInfo(Mscrm.CrmUri.create("/_imgs/grid/page_FL" + sL + ".gif"));
+            firstChild.src = firstImg.source;
+            firstChild.className = firstImg.cssClass;
+            firstChild.disabled = bLDisable;
+            disabled = bLDisable;
+            SetLinkAttributes(this.all.fastRewind,disabled);
+            SetToolTip(this.all.fastRewind,disabled)
+        }
+        with(this.all._nextPageImg)
+        {
+            style.cursor = sRCursor;
+            var nextImg = Mscrm.ImageStrip.getImageInfo(Mscrm.CrmUri.create("/_imgs/grid/page_R" + sR + ".gif"));
+            firstChild.src = nextImg.source;
+            firstChild.className = nextImg.cssClass;
+            firstChild.disabled = bRDisable;
+            disabled = bRDisable;
+            SetLinkAttributes(this.all._nextPageImg,disabled);
+            SetToolTip(this.all._nextPageImg,disabled)
+        }
+    }
+}
+function pageImgOnClickNoOpHandler()
+{
+    return false
+}
+function SetLinkAttributes(pageImg,isDisabled)
+{
+    if(isDisabled)
+    {
+        pageImg.removeAttribute("href");
+        pageImg.onclick = null
+    }
+    else
+    {
+        pageImg.onclick = pageImgOnClickNoOpHandler;
+        pageImg.href = "javascript:onclick();"
+    }
+}
+function nextPage()
+{
+    !this.all._nextPageImg.disabled && 
+        NavigateToPage(parseInt(this.all.divGridProps.all.pageNum.value,10) + 1)
+}
+function previousPage()
+{
+    !this.all._prevPageImg.disabled && 
+        NavigateToPage(parseInt(this.all.divGridProps.all.pageNum.value,10) - 1)
+}
+function firstPage()
+{
+    !this.all.fastRewind.disabled && 
+        NavigateToPage(1)
+}
+function NavigateToPage(iPage)
+{
+    try
+    {
+        if(iPage > 1)
+            _returnTotalRecordCount = false;
+        setPageNumber(iPage)
+    }
+    finally
+    {
+        _returnTotalRecordCount = true
+    }
+}
+function SetToolTip(pageImg,isDisabled)
+{
+    with(pageImg)
+        if(!IsNull(firstChild))
+            if(isDisabled)
+                firstChild.alt = "";
+            else
+                if(firstChild.alt == "" && !IsNull(firstChild.attributes["tempToolTip"]))
+                    firstChild.alt = firstChild.attributes["tempToolTip"].value
+}
+function handleColumnMouseOver()
+{
+    var o = event.srcElement;
+    switch(o.tagName)
+    {
+        case "IMG":
+            if(o.className == "ms-crm-List-Sortable")
+            {
+                o = o.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+                break
+            }
+            else
+                return;
+        case "LABEL":
+            o = o.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+            break;
+        case "NOBR":
+            o = o.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+            break;
+        case "A":
+            o = o.parentElement.parentElement.parentElement.parentElement.parentElement;
+        case "TD":
+            o = o.parentElement.parentElement.parentElement.parentElement;
+            break
+    }
+    if(o.className == "ms-crm-List-Sortable" && o.runtimeStyle.backgroundImage != "url(/_imgs/theme/" + CURRENT_THEME_TYPE + "/GridColumnGradientHover.png)")
+    {
+        o.runtimeStyle.backgroundImage = "url(/_imgs/theme/" + CURRENT_THEME_TYPE + "/GridColumnGradientHover.png)";
+        _oLastOver = o
+    }
+}
+function handleColumnMouseOut()
+{
+    var o = event.toElement;
+    if(!IsNull(_oLastOver) && !(!IsNull(o) && (o == _oLastOver || o.parentElement == _oLastOver || o.parentElement.parentElement == _oLastOver)))
+    {
+        _oLastOver.runtimeStyle.backgroundImage = "";
+        _oLastOver = null
+    }
+}
+function SortColumnInfo()
+{
+    this.sName = "";
+    this.fAscend = true;
+    this.Deserialize = _deserialize;
+    this.Serialize = _serialize;
+    function _deserialize(sColumn)
+    {
+        var asParams = sColumn.split(":");
+        if(asParams.length == 2)
+        {
+            this.sName = asParams[0];
+            this.fAscend = asParams[1] == _ascend
+        }
+    }
+    function _serialize()
+    {
+        return this.sName + ":" + (this.fAscend ? _ascend : _descend)
+    }
+    var _ascend = "1",
+        _descend = "0"
+}
+function SortColumnCollection()
+{
+    this.aSortColumns = [];
+    this.Deserialize = _deserialize;
+    this.IndexOf = _indexOf;
+    this.Serialize = _serialize;
+    this.Toggle = _toggle;
+    this.Sort = _sort;
+    this.MultipleSort = _multipleSort;
+    function _toggle(sColumnName,fAppend)
+    {
+        var oSortInfo = new SortColumnInfo;
+        oSortInfo.sName = sColumnName;
+        var nIndex = this.IndexOf(sColumnName);
+        if(nIndex != -1)
+        {
+            oSortInfo.fAscend = !this.aSortColumns[nIndex].fAscend;
+            if(fAppend)
+            {
+                this.aSortColumns[nIndex] = oSortInfo;
+                return
+            }
+        }
+        if(!fAppend)
+            this.aSortColumns = [];
+        this.aSortColumns.push(oSortInfo)
+    }
+    function _sort(sColumnName,sortOrder)
+    {
+        this.MultipleSort(sColumnName,sortOrder,false)
+    }
+    function _multipleSort(sColumnName,sortOrder,fAppend)
+    {
+        var oSortInfo = new SortColumnInfo;
+        oSortInfo.sName = sColumnName;
+        oSortInfo.fAscend = sortOrder;
+        if(fAppend)
+        {
+            var nIndex = this.IndexOf(sColumnName);
+            if(nIndex != -1)
+            {
+                this.aSortColumns[nIndex] = oSortInfo;
+                return
+            }
+        }
+        else
+            this.aSortColumns = [];
+        this.aSortColumns.push(oSortInfo)
+    }
+    function _indexOf(sColumnName)
+    {
+        for(var nLength = this.aSortColumns.length,
+            i = 0; i < nLength; i++)
+            if(this.aSortColumns[i].sName == sColumnName)
+                return i;
+        return -1
+    }
+    function _deserialize(sGridParameter)
+    {
+        for(var asColumns = sGridParameter.split(";"),
+            nLength = asColumns.length,
+            i = 0; i < nLength; i++)
+        {
+            var oSortInfo = new SortColumnInfo;
+            oSortInfo.Deserialize(asColumns[i]);
+            this.aSortColumns.push(oSortInfo)
+        }
+    }
+    function _serialize()
+    {
+        for(var sParameter = "",
+            nLength = this.aSortColumns.length,
+            i = 0; i < nLength; i++)
+        {
+            if(i > 0)
+                sParameter += ";";
+            sParameter += this.aSortColumns[i].Serialize()
+        }
+        return sParameter
+    }
+}
+var _oSortColumns = null;
+function SortColumn(domElement,sortOrder,append)
+{
+    domElement = domElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+    if(IsNull(domElement.field) || domElement.className != "ms-crm-List-Sortable")
+        return;
+    clearImagesAndStyles(domElement);
+    var fMultiSort = this.all.divGridProps.all.enableMultiSort.value == "true";
+    _oSortColumns.MultipleSort(domElement.field,sortOrder,fMultiSort && append);
+    setImagesStylesAndRefresh()
+}
+function clearImagesAndStyles(elem)
+{
+    elem.runtimeStyle.backgroundImage = "";
+    if(IsNull(_oSortColumns))
+    {
+        _oSortColumns = new SortColumnCollection;
+        _oSortColumns.Deserialize(this.all.divGridProps.all.sortColumns.value)
+    }
+    for(var nLength = _oSortColumns.aSortColumns.length,
+        i = 0; i < nLength; i++)
+    {
+        var oColumn = findColumn(_oSortColumns.aSortColumns[i].sName);
+        if(!IsNull(oColumn))
+        {
+            oImg = getSortableImageHandler(oColumn);
+            oImg.style.visibility = "hidden"
+        }
+    }
+}
+function setImagesStylesAndRefresh()
+{
+    nLength = _oSortColumns.aSortColumns.length;
+    for(var i = 0; i < nLength; i++)
+    {
+        var oColumn = findColumn(_oSortColumns.aSortColumns[i].sName),
+            oImg = null;
+        if(!IsNull(oColumn))
+            oImg = getSortableImageHandler(oColumn);
+        if(oImg == null)
+            return;
+        with(oImg.style)
+        {
+            visibility = "visible";
+            filter = _oSortColumns.aSortColumns[i].fAscend ? "" : "flipv()";
+            oImg.alt = _oSortColumns.aSortColumns[i].fAscend ? LOCID_ALT_COLUMNSORTORDER_UP : LOCID_ALT_COLUMNSORTORDER_DOWN
+        }
+        if(window.document.media != "print" && LOCID_UI_DIR == "RTL")
+            if(oImg.style.filter == "")
+                oImg.style.filter = "fliph()";
+            else
+                oImg.style.filter += " fliph()"
+    }
+    this.all.divGridProps.all.sortColumns.value = _oSortColumns.Serialize();
+    ClearPagingCookie();
+    setPageNumber(1)
+}
+function handleKeyDown()
+{
+    switch(event.keyCode)
+    {
+        case KEY_ENTER:
+            event.srcElement.tagName == "TH" && 
+                handleColumnClick();
+            break;
+        default:
+            return
+    }
+}
+function handleColumnClick()
+{
+    var o = event.srcElement;
+    switch(o.tagName)
+    {
+        case "IMG":
+            if(o.className == "ms-crm-List-Sortable")
+                o = o.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+            break;
+        case "LABEL":
+            o = o.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+            break;
+        case "NOBR":
+            o = o.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+            break;
+        case "A":
+            o = o.parentElement.parentElement.parentElement.parentElement.parentElement;
+            break;
+        case "TD":
+            o = o.parentElement.parentElement.parentElement.parentElement;
+            break;
+        case "INPUT":
+            if(IsNull(InnerGrid))
+                return;
+            if(o.checked)
+                InnerGrid.SelectRecords();
+            else
+                InnerGrid.UnselectRecords();
+            return
+    }
+    if(IsNull(o.field) || o.className != "ms-crm-List-Sortable")
+        return;
+    clearImagesAndStyles(o);
+    var fMultiSort = this.all.divGridProps.all.enableMultiSort.value == "true";
+    _oSortColumns.Toggle(o.field,fMultiSort && event.shiftKey);
+    setImagesStylesAndRefresh();
+    return false
+}
+function handleResize(o,iWidth)
+{
+    if(_currentDragCol == null)
+        _currentDragCol = window.document.getElementById(element.id + "_gridBarCols").children[o.parentElement.previousSibling.cellIndex];
+    if(!IsNull(iWidth) && iWidth > 0)
+    {
+        _currentDragCol.width = iWidth;
+        !IsNull(InnerGrid) && 
+            InnerGrid.ResizeColumn(o.parentElement.previousSibling.field,iWidth)
+    }
+    else
+    {
+        if(window.document.media != "print" && LOCID_UI_DIR == "RTL")
+            var iDelta = -event.offsetX;
+        else
+            var iDelta = event.offsetX;
+        if(iDelta > 5 || iDelta < -5 && _currentDragCol.offsetWidth + iDelta >= 1)
+        {
+            var i = _currentDragCol.offsetWidth + iDelta;
+            _currentDragCol.width = i;
+            !IsNull(InnerGrid) && 
+                InnerGrid.ResizeColumn(o.parentElement.previousSibling.field,i)
+        }
+    }
+}
+function handleResizeCleanup()
+{
+    Mscrm.GlobalEvents.set_globalAllowDrag(false);
+    _currentDragCol = null;
+    _currentDragDataCol = null;
+    initializeColumns()
+}
+function getRequirementLevelEnum()
+{
+    var o = {};
+    o.ClientOnly = 0;
+    o.ServerOnly = 1;
+    o.Both = 2;
+    return o
+}
+function handleResizeStartup()
+{
+    Mscrm.GlobalEvents.set_globalAllowDrag(true);
+    var oTmp = element.all[this.id + "_gridBar"].rows[0];
+    oTmp.detachEvent("onkeydown",handleKeyDown);
+    oTmp.detachEvent("onclick",handleColumnClick);
+    oTmp.detachEvent("onmouseover",handleColumnMouseOver);
+    oTmp.detachEvent("onmouseout",handleColumnMouseOut)
+}
+function handleAutoResize(o)
+{
+    if(IsNull(InnerGrid))
+        return;
+    var nResizeTo = InnerGrid.AutoResizeColumn(o.parentElement.previousSibling.field);
+    if(nResizeTo == -1)
+        nResizeTo = 10;
+    handleResize(o,nResizeTo);
+    handleResizeCleanup()
+}
+function getSortableImageHandler(oColumn)
+{
+    var count = 0,
+        oImg = null,
+        images = oColumn.getElementsByTagName("IMG");
+    while(count < images.length)
+    {
+        if(!IsNull(images[count].className))
+        {
+            for(var classNames = images[count].className.split(" "),
+                classCtr = 0; classCtr < classNames.length; classCtr++)
+                if(classNames[classCtr] == "ms-crm-List-Sortable")
+                {
+                    oImg = images[count];
+                    break
+                }
+            if(!IsNull(oImg))
+                break
+        }
+        count++
+    }
+    return oImg
+}
+function getRefreshAsynchronous()
+{
+    return _bRefreshAsynchronous
+}
+function setRefreshAsynchronous(value)
+{
+    _bRefreshAsynchronous = value
+}
+function tabChangedEventHandler(src,oEvent)
+{
+    if(oEvent.get_displayState() === Xrm.TabDisplayState.expanded && GetParameter("LoadOnDemand") == "1")
+    {
+        SetParameter("LoadOnDemand","0");
+        Refresh()
+    }
+}
+
+</script>
+</public:component>

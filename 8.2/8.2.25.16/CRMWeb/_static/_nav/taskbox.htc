@@ -1,0 +1,56 @@
+<public:component lightweight="true">
+<public:attach event="onmouseover"	onevent="on()"/>
+<public:attach event="onmouseout"	onevent="off()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+function on()
+{
+    var o = event.srcElement;
+    switch(o.tagName)
+    {
+        case "TD":
+            o = o.parentElement;
+            break;
+        case "A":
+            o = o.parentElement.parentElement;
+            break;
+        case "NOBR":
+        case "IMG":
+            o = o.parentElement.parentElement
+    }
+    if(o.className == "wizItem")
+    {
+        if(!o.title && o.lastChild.firstChild.innerText != "")
+            o.title = o.lastChild.firstChild.innerText;
+        with(o.runtimeStyle)
+        {
+            color = "#000000";
+            backgroundColor = "#E2E8F7"
+        }
+    }
+}
+function off()
+{
+    var o = event.srcElement;
+    switch(o.tagName)
+    {
+        case "TD":
+            o = o.parentElement;
+            break;
+        case "A":
+            o = o.parentElement.parentElement;
+            break;
+        case "NOBR":
+        case "IMG":
+            o = o.parentElement.parentElement
+    }
+    if(o.className == "wizItem")
+        with(o.runtimeStyle)
+        {
+            color = "";
+            backgroundColor = ""
+        }
+}
+
+</script>
+</public:component>

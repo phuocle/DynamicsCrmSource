@@ -1,0 +1,236 @@
+﻿/*blue 0054A6*/
+
+body {
+    font-family:"Segoe UI",Verdana,Arial,sans-serif;
+    max-width:920px;
+}
+
+h1.heading1, h1.bHeading1 {
+    font-family:"Segoe UI Semilight","Segoe UI",Verdana,Arial,sans-serif;
+    font-size:30px;
+    font-weight:normal;
+    margin:0 0 12px 0;
+    padding:0 0 6px 0;
+    line-height:1.1em;
+}
+
+h2.heading2, h2.bHeading2 {
+    font-family: "Segoe UI Semibold","Segoe UI",Verdana,Arial,sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0 0 9px 0;
+    padding-top: 9px;
+    line-height: 1em;
+}
+
+.hanging {
+    text-indent: -16px;
+    padding-left: 16px;
+}
+
+h3.heading3, h3.bHeading3 {
+    font-family: "Segoe UI Semibold","Segoe UI",Verdana,Arial,sans-serif;
+    font-size:15px;
+    font-weight:normal;
+    margin:0 0 9px 0;
+    padding:9px 0 0px 0;
+    line-height:0.9em;
+}
+
+h4.heading4, h4.bHeading4 {
+    font-family: "Segoe UI Semibold","Segoe UI",Verdana,Arial,sans-serif;
+    font-size:13px;
+    font-weight:normal;
+    margin:0 0 9px 0;
+    padding:9px 0 0px 0;
+    line-height:0.9em;
+}
+
+div.l2 {
+    margin-left:18px;
+}
+
+
+p {
+    font-size:13px;
+    color:#333333;
+    line-height:16px;
+    margin:0 0 9px 0;
+}
+
+    p.relatedheading, p.notehead-end, p.importanthead {
+        border-bottom:1px solid #dddddd;
+        margin:24px 0 10px 0;
+        width:100%;
+    }
+
+    p.relateditemlink, div.alertContent p.bodyText {
+        font-size:.8em;
+        margin:3px 0 0 6px;
+    }
+
+div.alertContent {
+    padding:0 0 12px 0;
+}
+
+div.feedbackDiv {
+    margin:24px 0 0 0;
+    font-size:.8em;
+}
+div.feedbackText {
+    font-size:.8em;
+    padding-top:6px;
+}
+ul.bulletedlist {
+    /*margin:0 0 0 24px;
+    padding: 10px 0 0 0;*/
+}
+ol.numberedlist {
+    list-style-type:decimal;
+    /*margin:0 0 0 auto;
+    padding: 10px 0 0 0;*/
+}
+ol.numberedlist2 {
+    list-style-type:lower-roman;
+}
+li.bulletedlistitem {
+    /*margin:0 0 10px 0;*/
+}
+li.numberedlistitem {
+    font-size:.8em;
+}
+
+    li.numberedlistitem li.numberedlistitem, li.bnumberedlistitem li.bnumberedlistitem {
+        font-size:1em;
+    }
+    li.numberedlistitem p.tiphead-end,li.numberedlistitem p.notehead-end, li.numberedlistitem p.importanthead {
+        font-size:1em;
+    }
+        li.bnumberedlistitem p.tiphead-end,li.bnumberedlistitem p.notehead-end, li.bnumberedlistitem p.importanthead {
+        font-size:1em;
+    }
+
+
+li.numberedlistitem p.bodyText, li.bnumberedlistitem p.bodyText {
+    font-size:1em;
+}
+div#help_head {
+    background-color:#002050;
+    padding:15px 12px 9px 12px;
+    height:40px;
+    position:absolute;
+    left:0;
+    top:-20px;
+    width:100%;
+    
+
+}
+    div#help_head img {
+        border: 0;
+    }
+table#tbl_help_head {
+    width:100%;
+}
+td#far_help_head {
+    text-align:right;
+    padding-right:34px;
+}
+td#near_help_head {
+    text-align:left;
+    width:39px;
+}
+td#mid_help_head {
+    text-align:left;
+}
+.topHead {
+        font-family:"Segoe UI",Verdana,Arial,sans-serif;
+        color:#ffffff;
+        font-size:12px;
+        line-height:80%;
+        margin:0;
+        padding:0;
+}
+.lowHead {
+        font-family:"Segoe UI",Verdana,Arial,sans-serif;
+        color:#ffffff;
+        font-size:20px;
+        line-height:100%;
+        margin:0;
+        padding:0;
+}
+div#helpContent {
+    margin-top:66px;
+}
+
+a#headLink {
+    text-decoration:none;
+}
+
+div.gsDiv, div.lowerDiv {
+    margin:24px 0 0 0;
+}
+
+a.expand, a.expand:hover, a.expand:visited {
+    cursor:pointer;
+    color:black;
+    text-decoration:none;
+    border:none;
+    
+}
+    a.expand img {
+        padding:0 6px 0 0;
+        border:none;
+    }
+
+p.procHeading {
+    font-size:1em;
+}
+
+div.feedbackContainerDiv {
+    background-color:#dddddd;
+    padding:6px;
+}
+
+div.feedbackContainerDiv p {
+    line-height:110%;
+    padding-top:6px;
+}
+
+#fbResponseText {
+    width:97%;
+     font-family:"Segoe UI",Verdana,Arial,sans-serif;
+   margin-top:6px;
+}
+
+#fbButton {
+    font-size:90%;
+}
+#help_head {
+    margin-top:18px;
+    margin-bottom:18px;
+}
+p p {
+    font-size:1em;
+}
+ul.bbulletedlist {
+    margin:0 0 0 0;
+    padding:0 0 0 0;
+}
+li.bbulletedlistitem{
+    margin-left:14px;
+}
+ol.bnumberedlist {
+    list-style-type:decimal;
+    margin:16px 0 16px 0;
+    padding: 0 0 0 0;
+}
+ol.bnumberedlist2 {
+    list-style-type:lower-roman;
+}
+li.bnumberedlistitem{
+    font-size:.8em;
+    margin-left:18px;
+}
+#debugInfo{
+    display:none;
+}

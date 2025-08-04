@@ -1,0 +1,18 @@
+<div class="mscrm-CreateNewContainer">
+	<button tabindex="-1" id="AppDesigner.ComponentPane.CreateNewMenu.CreateNew" class="mscrm-CreateNewButton" ng-click="handlebuttonclick({$event})" mscrm-action-on-select data-isflyout-src="true">
+		<span id="AppDesigner.CreateNewButton" ng-attr-title="{{tooltip}}"><mscrm-locale mscrm-resource-key="AppDesigner.CreateNew"></span>
+	</button>
+	<div class="mscrm-FlyoutFloatingcontainer" ng-if="createnewmodel.isFlyoutOpen" mscrm-arrow-key-navigation data-arrow-direction="vertical" mscrm-flyout-accessible-close data-flyoutsrc-id="AppDesigner.ComponentPane.CreateNewMenu.CreateNew">
+		<div class="mscrm-FlyoutContainer">
+			<div class="mscrm-FlyoutTriangleContainer">
+				<div class="mscrm-FlyoutTriangle"></div>
+				<div class="mscrm-FlyoutTriangle"></div>
+			</div>
+			<div class="mscrm-FlyoutMenu">
+				<div tabindex="-1" id="AppDesigner.Commandbar.CreateNewMenuItems.{{node.id}}" class="mscrm-FlyoutMenuItems" ng-repeat="node in createnewmodel.flyoutMenuItems" ng-click="handlenodeclick({nodename:node})" mscrm-action-on-select>
+					<div id="AppDesigner.Commandbar.CreateNewMenuItems.{{node.id}}.Text" class="mscrm-FlyoutMenuNames" ng-attr-title="{{node.text}}">{{node.text}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

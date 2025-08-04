@@ -1,0 +1,496 @@
+<public:component lightweight="true" tagName=Value>
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:attach event="onclick" onevent="OnClickEvent()"/>
+<public:event name="onchange" id="OnChangeHandler"/>
+<public:property name="ParentControl"/>
+<public:property name="ColumnData"/>
+<public:property name="Container"/>
+<public:property name="DataValue" get="GetDataValue" put="SetDataValue"/>
+<public:property name="Attribute" get="GetAttribute" put="SetAttribute"/>
+<public:property name="Width"/>
+<public:property name="Operator" get="GetOperator" put="SetOperator"/>
+<public:property name="Entity" get="GetEntity" put="SetEntity"/>
+<public:property name="Index"/>
+<public:method name="GetInnerControl"/>
+<public:method name="GetXml"/>
+<public:method name="ParseXml"/>
+<public:method name="SetDataSlugs"/>
+<public:method name="AttachDataSlugEvents"/>
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oAutoShow = null,
+    _sDataValue = null,
+    _attribute = null,
+    _entity = null,
+    _operator = null,
+    _dataSlugValues = null,
+    _dataSlugs = null,
+    _dataSlugText = null,
+    KEY_S = 83,
+    _bInitialized = false;
+Sys.Application.add_load(SysInit);
+function SysInit()
+{
+    Init()
+}
+function InitOnDocReady()
+{
+    Sys.Application.get_isInitialized() && !_bInitialized && 
+        Init()
+}
+function Init()
+{
+    element.innerHTML = "<Crm:AutoShow id='" + element.id + "VALUE'/>";
+    _oAutoShow = element.firstChild;
+    _oAutoShow.Container = element.Container;
+    with(_oAutoShow)
+    {
+        DefaultText = LOCID_AF_SELECTFIELDENTITY;
+        onchange = FieldChanged;
+        oninitcomplete = OnAutoShowInitComplete;
+        onkeydown = KeyDown
+    }
+    BuildInnerControl();
+    _oAutoShow.Width = Width;
+    _oAutoShow.Value = _sDataValue
+}
+function OnAutoShowInitComplete()
+{
+    _bInitialized = true;
+    SetEntity(_entity);
+    SetAttribute(_attribute);
+    SetOperator(_operator);
+    SetDataValue(_sDataValue);
+    !IsNull(_dataSlugs) && 
+        window.setTimeout(SetDataSlugValues,1);
+    AttachDataSlugEvents()
+}
+function GetInnerControl()
+{
+    return _oAutoShow.InnerControl
+}
+function AttachDataSlugEvents()
+{
+    var slugComponent = Mscrm.FormUtility.getSlugBehavior(_oAutoShow.GetSlugControl());
+    if(!IsNull(slugComponent))
+    {
+        slugComponent.add_deleteSlugBody(onDeleteDataSlug);
+        slugComponent.add_changeDataSlug(FieldChanged)
+    }
+}
+function GetAttribute()
+{
+    return _attribute
+}
+function SetAttribute(o)
+{
+    _attribute = o;
+    if(!_bInitialized || IsNull(_oAutoShow))
+        return;
+    BuildInnerControl();
+    !IsNull(_attribute) && 
+        Container.LoadDynamicValues(this,_attribute)
+}
+function GetOperator()
+{
+    return _operator
+}
+function SetOperator(o)
+{
+    if(!IsNull(_operator) && _operator != o)
+        _sDataValue = null;
+    _operator = o;
+    if(!_bInitialized || IsNull(_oAutoShow))
+        return;
+    BuildInnerControl()
+}
+function GetEntity()
+{
+    return _entity
+}
+function SetEntity(o)
+{
+    _entity = o;
+    if(!_bInitialized || IsNull(_oAutoShow))
+        return;
+    BuildInnerControl()
+}
+function BuildInnerControl()
+{
+    if(IsNull(_attribute) || IsNull(_entity) || IsNull(_operator))
+    {
+        var innerControlId = _oAutoShow.id + "_select";
+        _oAutoShow.InnerControlHtml = "<select id='" + innerControlId + "' class='ms-crm-SelectBox'></select>";
+        return
+    }
+    RenderControl(_attribute,_operator)
+}
+function RenderControl(oFieldProperties,sOperator)
+{
+    _oAutoShow.DefaultText = LOCID_AF_ENTERVALUE;
+    _oAutoShow.ToolTip = null;
+    _oAutoShow.Width = 150;
+    switch(oFieldProperties.datatype)
+    {
+        case "nvarchar":
+        case "text":
+        case "ntext":
+        case "memo":
+            _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","string").outerHTML;
+            _oAutoShow.InnerControl.maxLength = oFieldProperties.maxlength;
+            break;
+        case "language":
+        case "bit":
+        case "boolean":
+        case "state":
+        case "status":
+        case "picklist":
+            if(IsNameOperator(sOperator))
+            {
+                _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","string").outerHTML;
+                _oAutoShow.InnerControl.maxLength = oFieldProperties.namemaxlength
+            }
+            else
+            {
+                var oPicklistControl = Container.ClientCache.GetElement("ValueControl","picklist");
+                _oAutoShow.InnerControlHtml = oPicklistControl.outerHTML;
+                $find(_oAutoShow.InnerControl.id).LoadOptionsXml(oFieldProperties.optionsXML)
+            }
+            break;
+        case "primarykey":
+        case "partylist":
+        case "uniqueidentifier":
+        case "lookup":
+        case "customer":
+        case "owner":
+            if(IsNameOperator(sOperator) && oFieldProperties.datatype != "partylist")
+            {
+                _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","string").outerHTML;
+                _oAutoShow.InnerControl.maxLength = oFieldProperties.namemaxlength
+            }
+            else
+            {
+                var oLookupControl = Container.ClientCache.GetElement("ValueControl","lookup"),
+                    oLUImg = oLookupControl.rows[0].cells[1].firstChild;
+                oLUImg.lookuptypes = oFieldProperties.lookuptypes;
+                oLUImg.lookuptypenames = oFieldProperties.lookuptypenames;
+                var aiLookupTypes = oFieldProperties.lookuptypes.split(",");
+                oLUImg.lookuptypeIcons = Container.ClientCache.LookupIcons[parseInt(aiLookupTypes[0],10)];
+                for(var i = 1; i < aiLookupTypes.length; i++)
+                    oLUImg.lookuptypeIcons += ":" + Container.ClientCache.LookupIcons[aiLookupTypes[i]];
+                if(oFieldProperties.lookuptypes == Subject.toString())
+                    oLUImg.lookupstyle = "subject";
+                else
+                    oLUImg.lookupstyle = "multi";
+                _oAutoShow.InnerControlHtml = oLookupControl.outerHTML
+            }
+            break;
+        case "decimal":
+        case "int":
+        case "float":
+        case "integer":
+        case "money":
+            _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","number").outerHTML;
+            var numberControl = Mscrm.FormControlInputBehavior.GetElementBehavior(XUI.Html.DomUtils.GetFirstChild(_oAutoShow.InnerControl));
+            numberControl.set_dataType(oFieldProperties.datatype == "integer" ? "int" : oFieldProperties.datatype);
+            numberControl.set_precision(parseInt(oFieldProperties.acc,10));
+            numberControl.set_min(oFieldProperties.min);
+            numberControl.set_max(oFieldProperties.max);
+            if(oFieldProperties.format == "duration")
+                _oAutoShow.DefaultText = _oAutoShow.ToolTip = LOCID_AF_ENTERVALINMINS;
+            break;
+        case "datetime":
+        case "date":
+        case "time":
+            var minVal = [],
+                maxVal = [],
+                dateUnit = "";
+            switch(sOperator)
+            {
+                case "last-x-hours":
+                case "next-x-hours":
+                    minVal["hours"] = 1;
+                    maxVal["hours"] = 2e3;
+                    dateUnit = "hours";
+                    break;
+                case "last-x-days":
+                case "next-x-days":
+                    minVal["days"] = 1;
+                    maxVal["days"] = 500;
+                    dateUnit = "days";
+                    break;
+                case "last-x-weeks":
+                case "next-x-weeks":
+                    minVal["weeks"] = 1;
+                    maxVal["weeks"] = 100;
+                    dateUnit = "weeks";
+                    break;
+                case "last-x-months":
+                case "next-x-months":
+                case "olderthan-x-months":
+                    minVal["months"] = 1;
+                    maxVal["months"] = 100;
+                    dateUnit = "months";
+                    break;
+                case "last-x-years":
+                case "next-x-years":
+                    minVal["years"] = 1;
+                    maxVal["years"] = 100;
+                    dateUnit = "years";
+                    break;
+                case "last-x-fiscal-years":
+                case "next-x-fiscal-years":
+                    minVal["fiscalyears"] = 1;
+                    maxVal["fiscalyears"] = 100;
+                    dateUnit = "fiscalyears";
+                    break;
+                case "last-x-fiscal-periods":
+                case "next-x-fiscal-periods":
+                    minVal["fiscalperiods"] = 1;
+                    maxVal["fiscalperiods"] = 100;
+                    dateUnit = "fiscalperiods";
+                    break;
+                case "in-fiscal-year":
+                    _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","fiscalperiodandyear").outerHTML;
+                    _oAutoShow.InnerControl.Period = false;
+                    _oAutoShow.InnerControl.ShowYear = true;
+                    break;
+                case "in-fiscal-period":
+                    _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","fiscalperiodandyear").outerHTML;
+                    _oAutoShow.InnerControl.ShowYear = false;
+                    _oAutoShow.InnerControl.ShowPeriod = true;
+                    break;
+                case "in-fiscal-period-and-year":
+                case "in-or-before-fiscal-period-and-year":
+                case "in-or-after-fiscal-period-and-year":
+                    _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","fiscalperiodandyear").outerHTML;
+                    _oAutoShow.InnerControl.ShowPeriod = true;
+                    _oAutoShow.InnerControl.ShowYear = true;
+                    break;
+                case "eq":
+                case "ne":
+                case "gt":
+                case "ge":
+                case "lt":
+                case "le":
+                    _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","datetime").outerHTML;
+                    _oAutoShow.Width = 200;
+                    break;
+                default:
+                    _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","date").outerHTML;
+                    break
+            }
+            if(dateUnit != "")
+            {
+                _oAutoShow.InnerControlHtml = Container.ClientCache.GetElement("ValueControl","number").outerHTML;
+                _oAutoShow.InnerControl.min = minVal[dateUnit];
+                _oAutoShow.InnerControl.max = maxVal[dateUnit];
+                _oAutoShow.InnerControl.Precision = 0
+            }
+            break;
+        default:
+            break
+    }
+}
+function GetDataValue()
+{
+    if(IsDataSlugPresent())
+        return Mscrm.FormUtility.getSlugBehavior(_oAutoShow.GetSlugControl()).get_firstSlugValue();
+    return _sDataValue
+}
+function SetDataValue(sValue)
+{
+    if(_bInitialized)
+    {
+        var oValue = sValue;
+        if(_attribute != null && sValue != null)
+        {
+            var sDataType = Container.ClientCache.AbstractDataType(_attribute);
+            if(sDataType == "date")
+                oValue = new Date(sValue.valueOf())
+        }
+        _oAutoShow.Value = oValue
+    }
+    else
+        if(IsLookupExpression(sValue))
+        {
+            _sDataValue = sValue;
+            for(var oXml = XUI.Xml.LoadXml(sValue),
+                oNodes = oXml.selectNodes("/lookup/value"),
+                arrayItems = [],
+                index = 0; index < oNodes.length; index++)
+            {
+                var oNode = oNodes.item(index),
+                    groupId = oNode.getAttribute("value"),
+                    item = new LookupControlItem;
+                item.id = oNode.text;
+                item.typename = oNode.getAttribute("uitype");
+                item.name = oNode.getAttribute("uiname");
+                arrayItems.push(item)
+            }
+            _sDataValue = arrayItems
+        }
+        else
+            if(sValue != null)
+            {
+                _sDataValue = sValue;
+                for(var valueSet = 1,
+                    entries = sValue.split(";"),
+                    numEntries = entries.length,
+                    arrayItems = [],
+                    index = 0; index < numEntries; index++)
+                {
+                    var info = entries[index].split("#");
+                    if(info.length != 3)
+                    {
+                        valueSet = 0;
+                        break
+                    }
+                    var item = new LookupControlItem;
+                    item.id = info[0];
+                    item.typename = info[1];
+                    item.name = info[2];
+                    arrayItems.push(item)
+                }
+                if(valueSet == 1)
+                    _sDataValue = arrayItems
+            }
+            else
+                _sDataValue = sValue
+}
+function IsLookupExpression(value)
+{
+    if(IsNull(value))
+        return false;
+    return value.indexOf("<lookup>") == 0 && value.indexOf("</lookup>") > 0
+}
+function IsDataSlugPresent()
+{
+    if(!IsNull(_oAutoShow) && typeof _oAutoShow.GetSlugControl() != "undefined" && !IsNull(Mscrm.FormUtility.getSlugBehavior(_oAutoShow.GetSlugControl())) && Mscrm.FormUtility.getSlugBehavior(_oAutoShow.GetSlugControl()).get_isDataSlug())
+        return true;
+    return false
+}
+function ParseXml()
+{
+    if(IsNull(_sDataValue) || _sDataValue.toString() == "")
+        if(!IsNull(_attribute) && _attribute.title != "" && !IsDataSlugPresent())
+        {
+            alert(formatString(LOCID_AF_VALUEMISSINGFOR_MSG,_attribute.title.toString()));
+            return false
+        }
+    return true
+}
+function GetXml()
+{
+    var isDataSlug = false,
+        sValue = "";
+    if(IsDataSlugPresent())
+    {
+        isDataSlug = true;
+        sValue = Mscrm.FormUtility.getSlugBehavior(_oAutoShow.GetSlugControl()).get_firstSlugValue()
+    }
+    else
+        if((IsNull(_sDataValue) || _sDataValue.toString() == "") && !isDataSlug)
+            return null;
+        else
+        {
+            var sDataType = Container.ClientCache.AbstractDataType(_attribute);
+            switch(sDataType)
+            {
+                case "owner":
+                case "lookup":
+                case "lookupwithuser":
+                case "lookupwithbusinessunit":
+                    for(var aoItems = _sDataValue,
+                        iLen = aoItems.length,
+                        i = 0; i < iLen; i++)
+                    {
+                        var item = "";
+                        item = "<value uiname = '" + CrmEncodeDecode.CrmXmlAttributeEncode(aoItems[i].name) + "'";
+                        item = item + " uitype = '" + CrmEncodeDecode.CrmXmlAttributeEncode(aoItems[i].typename) + "'";
+                        item = item + " >" + CrmEncodeDecode.CrmXmlEncode(aoItems[i].id) + "</value>";
+                        sValue = sValue + item
+                    }
+                    if(sValue.length > 0)
+                        sValue = "<lookup>" + sValue + "</lookup>";
+                    break;
+                case "picklist":
+                    sValue = _sDataValue;
+                    break;
+                case "date":
+                    sValue = FormatUtcDate(new Date(_sDataValue));
+                    break;
+                default:
+                    sValue = _oAutoShow.Value;
+                    break
+            }
+        }
+    return '<column id="' + CrmEncodeDecode.CrmXmlAttributeEncode(ColumnData.id) + '" value="' + CrmEncodeDecode.CrmXmlAttributeEncode(sValue) + '" dataslugs="' + (isDataSlug ? "0" : "") + '" />'
+}
+function SetDataSlugs(dataSlugValues,slugIndexes,slugText)
+{
+    if(!IsNull(slugIndexes))
+    {
+        _dataSlugValues = dataSlugValues;
+        _dataSlugs = slugIndexes;
+        _dataSlugText = slugText;
+        _bInitialized && 
+            SetDataSlugValues()
+    }
+}
+function SetDataSlugValues()
+{
+    if(!IsNull(_dataSlugs))
+    {
+        var dataControl = Mscrm.FormUtility.getSlugBehavior(_oAutoShow.GetSlugControl());
+        dataControl.set_isDataSlug(true);
+        dataControl.set_isMultiSlug(false);
+        dataControl.set_isReadOnly(true);
+        dataControl.InsertSlugControl(_dataSlugValues,_dataSlugText,false);
+        FieldChanged();
+        _oAutoShow.Text = _dataSlugText;
+        _oAutoShow.DefaultText = _dataSlugText
+    }
+}
+function onDeleteDataSlug()
+{
+    _oAutoShow.Text = "";
+    _oAutoShow.DefaultText = LOCID_AF_ENTERVALUE
+}
+function KeyDown()
+{
+    if(window.event.keyCode == KEY_S && window.event.altKey)
+    {
+        if(typeof event.srcElement.IsValid != "undefined")
+            if(!event.srcElement.IsValid())
+            {
+                event.cancelBubble = true;
+                return false
+            }
+        _sDataValue = _oAutoShow.Value;
+        RaiseFieldChangedEvent(true);
+        return true
+    }
+}
+function OnClickEvent()
+{
+    !IsNull(_attribute) && 
+        Container.LoadDynamicValues(this,_attribute)
+}
+function FieldChanged()
+{
+    var sOldValue = _sDataValue;
+    if(!IsNull(event) && !IsNull(event.srcElement))
+        _sDataValue = event.srcElement.Value;
+    RaiseFieldChangedEvent(false)
+}
+function RaiseFieldChangedEvent(bRaisedByCode)
+{
+    ParentControl.FieldChanged();
+    ParentControl.HideAffectedControls(Index)
+}
+
+</script>
+</html>
+</public:component>

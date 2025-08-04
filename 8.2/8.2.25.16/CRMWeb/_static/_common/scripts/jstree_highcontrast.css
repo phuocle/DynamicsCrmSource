@@ -1,0 +1,37 @@
+/*
+* high contrast theme 1.0
+* we will not show any icons, instead we would show unicode arrow
+* characters for depicting the open, close states
+* Supported features: dots/no-dots, icons/no-icons, focused
+* Supported plugins: ui (hovered, clicked)
+*/
+
+.jstree-default .jstree-hovered {
+padding-left:2px;
+padding-right:2px;
+padding-top:0px;
+padding-bottom:0px;;
+}
+
+.jstree-default.jstree-focused {
+background:#ffffff;
+padding-left:0px;
+padding-right:0px;
+padding-top:8px;
+padding-bottom:8px;
+}
+
+.jstree-default .jstree-no-icons a .jstree-icon {
+display:none;
+}
+
+.jstree a {
+padding-left:2px;
+padding-right:2px;
+padding-top:0px !important;
+padding-bottom:0px !important;}
+
+.subjecttree-Dialog {
+min-width: 210px;
+overflow: auto;
+}

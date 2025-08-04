@@ -1,0 +1,73 @@
+<public:component lightweight="true">
+<public:method name="SetSteps"/>
+<public:method name="SetPercentage"/>
+<public:method name="IncrementSteps"/>
+<public:method name="DecrementSteps"/>
+<public:attach event="oncontentready" onevent="Init()"/>
+<public:property name="CurrentStep" get="currentStep"/>
+<public:property name="MaxSteps" get="maxSteps"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _iCurrentStep = 0,
+    PB_LEFT = 1,
+    PB_MID = 2,
+    PB_RIGHT = 3;
+function setStepsRange(iStart,iEnd,bIsOn)
+{
+    var bSetRight = false,
+        j = this.children.length,
+        i = iStart;
+    if(i == 0)
+    {
+        this.children[0].src = bIsOn ? this.leftOnPict : this.leftOffPict;
+        ++i
+    }
+    if(iEnd >= j - 1)
+    {
+        bSetRight = true;
+        j -= 2
+    }
+    else
+        j = iEnd;
+    for(; i <= j; i++)
+        this.children[i].src = bIsOn ? this.midOnPict : this.midOffPict;
+    if(bSetRight)
+        this.children[j + 1].src = bIsOn ? this.rightOnPict : this.rightOffPict
+}
+function Init()
+{
+}
+function SetSteps(iSteps)
+{
+    if(iSteps == _iCurrentStep)
+        return;
+    else
+        if(iSteps > _iCurrentStep)
+            setStepsRange(_iCurrentStep,iSteps - 1,true);
+        else
+            setStepsRange(iSteps,_iCurrentStep - 1,false);
+    _iCurrentStep = iSteps
+}
+function SetPercentage(iPercentage)
+{
+    SetSteps(Math.floor(parseInt(maxSteps,10) * iPercentage / 100))
+}
+function IncrementSteps(iSteps)
+{
+    SetSteps(_iCurrentStep + iSteps)
+}
+function DecrementSteps(iSteps)
+{
+    SetSteps(_iCurrentStep - iSteps)
+}
+function currentStep()
+{
+    return _iCurrentStep
+}
+function maxSteps()
+{
+    return this.maxSteps
+}
+
+</script>
+</public:component>

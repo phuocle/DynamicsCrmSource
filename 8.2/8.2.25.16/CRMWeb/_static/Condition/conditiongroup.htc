@@ -1,0 +1,465 @@
+<public:component lightweight="true" tagName=ConditionGroup>
+<public:attach event="ondocumentready" onevent="Init()"/>
+<public:attach event="onclick" onevent="handleClick()"/>
+<public:property name="GroupClause" get="GetGroupClause" put="SetGroupClause"/>
+<public:property name="Selected" get="GetSelected" put="SetSelected"/>
+<public:property name="Xml" put="SetXml"/>
+<public:property name="Container"/>
+<public:property name="ParentControl" />
+<public:property name="Children" get="GetChildren"/>
+<public:method name="GetNumControls" />
+<public:method name="GetControl" />
+<public:method name="GetControlsTable" />
+<public:method name="DeleteControl" />
+<public:method name="AddControl"/>
+<public:method name="AddNewField"/>
+<public:method name="Group" />
+<public:method name="GetStartElement"/>
+<public:method name="GetEndElement"/>
+<public:method name="GetXml"/>
+<public:method name="ParseXml"/>
+<public:method name="FieldChanged"/>
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oMenuBtn = null,
+    _oGrpTxtSpn = null,
+    _oGrpControls = null,
+    _oPopupMenu = null,
+    _sGroupClause = "and",
+    _bSelected = false,
+    _oXmlNode,
+    _aoControls = [],
+    _bInitComplete = false,
+    _bPrimaryEntityUsedForAttribute = false,
+    _bPrimaryEntityUsedForValue = false;
+function Init()
+{
+    var oButtonImg = Mscrm.ImageStrip.getImageInfo(Mscrm.CrmUri.create("/_imgs/AdvFind/button.gif"));
+    element.innerHTML = "<table class='cndConditionGroup' cellspacing=0 cellpadding=0 style='display:none'><tr><td class='ms-crm-AdvFind-GroupName'><span tabindex=0 class='ms-crm-AdvFind-GroupMenu'><img alt='' src='" + oButtonImg.source + "' class = '" + oButtonImg.cssClass + "'/><a contentEditable='false' tabindex='-1' onclick='return false;' href='#' target='_self' title=\"" + CrmEncodeDecode.CrmHtmlAttributeEncode(LOCID_AF_OPT_ATCONDITIONGROUP) + "\" class='atLink'></a></span><span class='ms-crm-AdvFind-GroupLabel'></span></td><td class='ms-crm-AdvFind-GroupPadding'></td><td><span class='ms-crm-AdvFind-ControlsGroup'></span></td></tr></table>";
+    _bInitComplete = true;
+    _oMenuBtn = element.firstChild.rows[0].cells[0].firstChild;
+    _oGrpTxtSpn = element.firstChild.rows[0].cells[0].children[1];
+    _oGrpControls = element.firstChild.rows[0].cells[2].firstChild;
+    SetGroupClause(_sGroupClause);
+    SetXml(_oXmlNode);
+    var iLen = _aoControls.length,
+        i = 0;
+    while(i < iLen)
+    {
+        AddControl(_aoControls[i],AT_END);
+        delete _aoControls[i];
+        i++
+    }
+    with(_oMenuBtn)
+    {
+        onclick = ShowPopupMenu;
+        onmouseenter = OnMouseEnter;
+        onmouseleave = OnMouseLeave;
+        onkeyup = onMnuKeyUp;
+        id = element.id + "MNU";
+        lastChild.id = "at" + id
+    }
+    ShowGroupBox(!IsImplicitANDGroup())
+}
+function onMnuKeyUp()
+{
+    (event.keyCode == KEY_SPACE || event.keyCode == KEY_ENTER) && 
+        ShowPopupMenu()
+}
+function OnMouseEnter()
+{
+    _oMenuBtn.className = "ms-crm-AdvFind-SelectedGroupMenu"
+}
+function OnMouseLeave()
+{
+    _oMenuBtn.className = "ms-crm-AdvFind-GroupMenu"
+}
+function GetGroupTD()
+{
+    return element.firstChild.rows[0].cells[0]
+}
+function GetGroupPad()
+{
+    return element.firstChild.rows[0].cells[1]
+}
+function GetNumControls()
+{
+    return _bInitComplete ? _oGrpControls.children.length : _aoControls.length
+}
+function IsImplicitANDGroup()
+{
+    return ParentControl.tagName == "ConditionControl" && _sGroupClause == "and"
+}
+function ShowGroupBox(bShow)
+{
+    GetGroupPad().style.display = GetGroupTD().style.display = bShow ? "inline" : "none"
+}
+function Group(sGroupClause)
+{
+    var iLen = GetNumControls(),
+        iInsertPos = -1,
+        i = 0,
+        iNumGrouped = 0;
+    while(i < iLen)
+    {
+        if(GetControl(i).Selected)
+            if(iInsertPos == -1)
+            {
+                iInsertPos = i;
+                iNumGrouped++
+            }
+            else
+            {
+                var ct = 0;
+                while(ct < iLen)
+                {
+                    if(!GetControl(ct).Selected)
+                        break;
+                    ct++
+                }
+                if(ct == iLen && !IsImplicitANDGroup())
+                {
+                    if(_sGroupClause != sGroupClause)
+                    {
+                        GroupClause = sGroupClause;
+                        Container.IsDirty = true
+                    }
+                    ct = 0;
+                    while(ct < iLen)
+                        GetControl(ct++).Selected = false;
+                    return ct
+                }
+                i = iInsertPos;
+                break
+            }
+        i++
+    }
+    if(i != iLen)
+    {
+        var oNewConditionGroup = window.document.createElement(CONDITIONGRP_CTRL);
+        oNewConditionGroup.id = element.id + "FGRP";
+        var oCtrl,
+            iIndex;
+        while(i < iLen)
+        {
+            oCtrl = GetControl(i);
+            if(oCtrl.Selected)
+            {
+                oCtrl = RemoveControl(oCtrl);
+                oCtrl.Selected = false;
+                oNewConditionGroup.AddControl(oCtrl,AT_END);
+                iLen--;
+                iNumGrouped++
+            }
+            else
+                i++
+        }
+        AddControl(oNewConditionGroup,null,null,iInsertPos);
+        oNewConditionGroup.GroupClause = sGroupClause
+    }
+    return iNumGrouped
+}
+function ShowPopupMenu()
+{
+    var bIsATLink = false;
+    if(!IsNull(event) && !IsNull(event.srcElement))
+        if(event.srcElement.className == "atLink")
+            bIsATLink = true;
+    HideVisibleControl(element.Container);
+    _oPopupMenu = new PopupMenu;
+    with(_oPopupMenu)
+    {
+        AddMenuItem(_bSelected ? LOCID_AF_UNSELECTGROUP : LOCID_AF_SELECTGROUP,ToggleSelected);
+        AddMenuItem(LOCID_AF_UNGROUP,Ungroup);
+        AddMenuItem(formatString(LOCID_AF_CHANGEGRP,_sGroupClause == "or" ? LOCID_AF_TXTAND : LOCID_AF_TXTOR),ChangeGroupClause);
+        AddMenuItem(LOCID_AF_ADDROWTOGRP,AddClause);
+        AddMenuItem(LOCID_AF_MNUITMDELETE,Delete);
+        Show(0,event.srcElement.offsetHeight,null,null,event.srcElement,bIsATLink)
+    }
+}
+function Delete()
+{
+    confirm(LOCID_AF_DELETEGROUP) && 
+        ParentControl.DeleteControl(element)
+}
+function DeleteControl(oControl)
+{
+    RemoveControl(oControl,true);
+    if(ParentControl != null && ParentControl.tagName.toLowerCase() == "conditiongroup")
+        switch(GetNumControls())
+        {
+            case 1:
+                Ungroup();
+                break;
+            case 0:
+                ParentControl.DeleteControl(element);
+                break
+        }
+    else
+        GetNumControls() == 0 && 
+            AddClause();
+    Container.IsDirty = true
+}
+function RemoveControl(oControl)
+{
+    return _oGrpControls.removeChild(oControl)
+}
+function Ungroup()
+{
+    !IsNull(_oPopupMenu) && 
+        _oPopupMenu.Hide();
+    var i = GetNumControls();
+    while(i > 0)
+    {
+        oControl = RemoveControl(GetControl(0));
+        i--;
+        if(oControl.tagName == "ConditionField" && !oControl.Defined)
+            continue;
+        ParentControl.AddControl(oControl,AT_BEFORE,element,null,true)
+    }
+    ParentControl.DeleteControl(element)
+}
+function AddClause()
+{
+    !IsNull(_oPopupMenu) && 
+        _oPopupMenu.Hide();
+    if(IsWaitTimeoutExpression())
+        return;
+    var oField = AddNewConditionField(AT_END);
+    oField != null && 
+        oField.SetFocus()
+}
+function IsWaitTimeoutExpression()
+{
+    if(GetNumControls() > 0)
+    {
+        var cdnCtrl = GetControl(0);
+        if(!IsNull(cdnCtrl))
+            return IsTimeoutCondition(cdnCtrl)
+    }
+    return false
+}
+function ChangeGroupClause()
+{
+    IsNull(_oPopupMenu) ? false : _oPopupMenu.Hide();
+    GroupClause = _sGroupClause == "and" ? "or" : "and";
+    Container.IsDirty = true
+}
+function GetGroupClause()
+{
+    return _sGroupClause
+}
+function SetGroupClause(sClause)
+{
+    _sGroupClause = sClause;
+    if(_bInitComplete)
+    {
+        _oGrpTxtSpn.innerText = _sGroupClause == "and" ? LOCID_AF_TXTAND : LOCID_AF_TXTOR;
+        ShowGroupBox(!IsImplicitANDGroup())
+    }
+}
+function SetSelected(bSelect)
+{
+    _bSelected = bSelect;
+    GetGroupTD().className = Selected ? "ms-crm-AdvFind-SelectedGroup" : "ms-crm-AdvFind-GroupName"
+}
+function GetSelected()
+{
+    return _bSelected
+}
+function ToggleSelected()
+{
+    !IsNull(_oPopupMenu) && 
+        _oPopupMenu.Hide();
+    SetSelected(!_bSelected)
+}
+function handleClick()
+{
+    if(event.ctrlKey)
+    {
+        ToggleSelected();
+        event.cancelBubble = true
+    }
+}
+function GetStartElement()
+{
+    return "<and>"
+}
+function GetEndElement()
+{
+    return "</and>"
+}
+function GetChildren()
+{
+    var aoChildren = [],
+        iLen = GetNumControls(),
+        i = 0;
+    while(i < iLen)
+    {
+        aoChildren.push(GetControl(i));
+        i++
+    }
+    return aoChildren
+}
+function SetXml(oNode)
+{
+    _oXmlNode = oNode;
+    _sGroupClause = "and";
+    SetGroupClause(_sGroupClause);
+    if(_bInitComplete)
+    {
+        ClearControl();
+        ShowXml(oNode);
+        AddNewConditionField(AT_END)
+    }
+    return
+}
+function ClearControl()
+{
+    while(GetNumControls() > 0)
+        RemoveControl(GetControl(0))
+}
+function ShowXml(oNode)
+{
+    if(IsNull(oNode))
+        return;
+    var oConditionNodes = oNode.selectNodes("/and/condition");
+    if(oConditionNodes == null)
+        return;
+    for(var oNewConditionField,
+        iLen = oConditionNodes.length,
+        i = 0; i < iLen; i++)
+    {
+        oNewConditionField = AddNewConditionField(AT_END);
+        oNewConditionField.Xml = oConditionNodes[i]
+    }
+}
+function AddControl(oControl,iWhere,oWhichControl,iPos)
+{
+    var i,
+        iLen;
+    oControl.ParentControl = element;
+    oControl.Container = Container;
+    if(_bInitComplete)
+    {
+        if(IsNull(iPos))
+        {
+            if((iWhere == AT_AFTER || iWhere == AT_BEFORE) && (IsNull(oWhichControl) || oWhichControl.parentElement !== _oGrpControls))
+                return null;
+            switch(iWhere)
+            {
+                case AT_BEGIN:
+                    if(_oGrpControls.hasChildNodes())
+                        _oGrpControls.insertBefore(oControl,_oGrpControls.children[0]);
+                    else
+                        _oGrpControls.appendChild(oControl);
+                    break;
+                case AT_AFTER:
+                    var bFound = false,
+                        iLen = _oGrpControls.children.length - 1;
+                    for(i = 0; i < iLen; i++)
+                        if(_oGrpControls.children[i] === oWhichControl)
+                        {
+                            _oGrpControls.insertBefore(oControl,_oGrpControls.children[i + 1]);
+                            bFound = true;
+                            break
+                        }
+                    !bFound && 
+                        _oGrpControls.appendChild(oControl);
+                    break;
+                case AT_BEFORE:
+                    iLen = _oGrpControls.children.length;
+                    for(i = 0; i < iLen; i++)
+                        if(_oGrpControls.children[i] === oWhichControl)
+                        {
+                            _oGrpControls.insertBefore(oControl,_oGrpControls.children[i]);
+                            break
+                        }
+                    break;
+                case AT_END:
+                default:
+                    _oGrpControls.appendChild(oControl);
+                    break
+            }
+        }
+        else
+        {
+            if(iPos > _oGrpControls.children.length || iPos < 0)
+                return null;
+            if(iPos == _oGrpControls.children.length)
+                _oGrpControls.appendChild(oControl);
+            else
+                _oGrpControls.insertBefore(oControl,_oGrpControls.children[iPos])
+        }
+        element.firstChild.style.display = "inline"
+    }
+    else
+        switch(iWhere)
+        {
+            case AT_END:
+                _aoControls.push(oControl);
+                break;
+            case AT_BEGIN:
+                _aoControls.unshift(oControl);
+                break;
+            default:
+                return null
+        }
+    return oControl
+}
+function AddNewConditionGroup(iWhere,oCtrl)
+{
+    var oNewConditionGroup = window.document.createElement(CONDITIONGRP_CTRL);
+    oNewConditionGroup.id = element.id + "FGRP";
+    return AddControl(oNewConditionGroup,iWhere,oCtrl)
+}
+function AddNewConditionField(iWhere,oCtrl)
+{
+    var oNewField = window.document.createElement(CONDITIONFLD_CTRL);
+    oNewField.id = element.id + "CF" + GetNumControls().toString();
+    return AddControl(oNewField,iWhere,oCtrl)
+}
+function FieldChanged()
+{
+    GetControl(GetNumControls() - 1).FirstFieldDefined && 
+        AddClause()
+}
+function GetControl(iIndex)
+{
+    return _bInitComplete ? _oGrpControls.children[iIndex] : _aoControls[iIndex]
+}
+function ParseXml()
+{
+    var iLen = GetNumControls(),
+        i = 0;
+    while(i < iLen)
+    {
+        var currentControl = GetControl(i);
+        if(!currentControl.ParseXml())
+            return false;
+        i++
+    }
+    return true
+}
+function GetXml()
+{
+    var iLen = GetNumControls(),
+        i = 0,
+        sInnerXml = "";
+    while(i < iLen)
+    {
+        var sXml = GetControl(i).GetXml();
+        if(!IsNull(sXml))
+            sInnerXml += sXml;
+        i++
+    }
+    if(sInnerXml == "")
+        return null;
+    else
+        return GetStartElement() + sInnerXml + GetEndElement()
+}
+
+</script>
+</html>
+</public:component>

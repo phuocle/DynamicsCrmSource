@@ -1,0 +1,1 @@
+<%@ Page Language="C#" Inherits="Microsoft.Crm.Application.Pages.Common.FormScriptPage" %>

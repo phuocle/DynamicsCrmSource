@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <POLICY name="CRM_p3p1.1"
+   discuri="http://go.microsoft.com/fwlink/?LinkID=511353"
+   opturi="https://accountservices.passport.net"
+   xml:lang="en">
+    <ENTITY>
+      <DATA-GROUP>
+       <DATA ref="#business.name">Microsoft Dynamics CRM</DATA>
+       <DATA ref="#business.contact-info.postal.street">One Microsoft Way</DATA>
+       <DATA ref="#business.contact-info.postal.city">Redmond</DATA>
+       <DATA ref="#business.contact-info.postal.stateprov">WA</DATA>
+       <DATA ref="#business.contact-info.postal.postalcode">98052</DATA>
+       <DATA ref="#business.contact-info.postal.country">USA</DATA>
+       <DATA ref="#business.contact-info.online.email">privcrm@microsoft.com</DATA>
+       <DATA ref="#business.contact-info.online.uri">http://crm.dynamics.com</DATA>
+       <DATA ref="#business.contact-info.telecom.telephone.intcode">1</DATA>
+       <DATA ref="#business.contact-info.telecom.telephone.loccode">425</DATA>
+       <DATA ref="#business.contact-info.telecom.telephone.number">882-8080</DATA>
+      </DATA-GROUP>
+    </ENTITY>
+    <ACCESS><contact-and-other/></ACCESS>
+    <DISPUTES-GROUP>
+      <DISPUTES 
+        resolution-type="service" 
+        service="http://go.microsoft.com/?linkid=4320005" 
+        short-description="Privacy Response Center">
+        <REMEDIES>
+          <correct/>
+        </REMEDIES>
+      </DISPUTES>
+    </DISPUTES-GROUP>
+ <STATEMENT>
+<PURPOSE>
+<individual-analysis/><pseudo-decision/><pseudo-analysis/><admin/><current/><develop/><contact required="opt-out" />
+</PURPOSE>
+  <RECIPIENT><same/><ours/></RECIPIENT>
+  <RETENTION><indefinitely/></RETENTION>
+   <DATA-GROUP>
+    <DATA ref="#user.name.prefix"/>
+    <DATA ref="#user.name.given"/>
+    <DATA ref="#user.name.middle"/>
+    <DATA ref="#user.name.family"/>
+    <DATA ref="#user.name.suffix"/>
+    <DATA ref="#user.jobtitle"/>
+    <DATA ref="#user.home-info.postal"/>
+    <DATA ref="#user.home-info.telecom.telephone.intcode"/>
+    <DATA ref="#user.home-info.telecom.telephone.loccode"/>
+    <DATA ref="#user.home-info.telecom.telephone.number"/>
+    <DATA ref="#user.home-info.telecom.telephone.ext"/>
+    <DATA ref="#user.home-info.telecom.fax.intcode"/>
+    <DATA ref="#user.home-info.telecom.fax.loccode"/>
+    <DATA ref="#user.home-info.telecom.fax.number"/>
+    <DATA ref="#user.home-info.telecom.fax.ext"/>
+    <DATA ref="#user.home-info.telecom.mobile.intcode"/>
+    <DATA ref="#user.home-info.telecom.mobile.loccode"/>
+    <DATA ref="#user.home-info.telecom.mobile.number"/>
+    <DATA ref="#user.home-info.telecom.mobile.ext"/>
+    <DATA ref="#user.home-info.telecom.pager.intcode"/>
+    <DATA ref="#user.home-info.telecom.pager.loccode"/>
+    <DATA ref="#user.home-info.telecom.pager.number"/>
+    <DATA ref="#user.home-info.telecom.pager.ext"/>
+    <DATA ref="#user.home-info.online"/>
+    <DATA ref="#user.home-info.online.email"/>
+    <DATA ref="#user.home-info.online.uri"/>
+    <DATA ref="#user.business-info.postal"/>
+    <DATA ref="#user.business-info.telecom.telephone.intcode"/>
+    <DATA ref="#user.business-info.telecom.telephone.loccode"/>
+    <DATA ref="#user.business-info.telecom.telephone.number"/>
+    <DATA ref="#user.business-info.telecom.telephone.ext"/>
+    <DATA ref="#user.business-info.telecom.fax.intcode"/>
+    <DATA ref="#user.business-info.telecom.fax.loccode"/>
+    <DATA ref="#user.business-info.telecom.fax.number"/>
+    <DATA ref="#user.business-info.telecom.fax.ext"/>
+    <DATA ref="#user.business-info.telecom.mobile.intcode"/>
+    <DATA ref="#user.business-info.telecom.mobile.loccode"/>
+    <DATA ref="#user.business-info.telecom.mobile.number"/>
+    <DATA ref="#user.business-info.telecom.mobile.ext"/>
+    <DATA ref="#user.business-info.telecom.pager.intcode"/>
+    <DATA ref="#user.business-info.telecom.pager.loccode"/>
+    <DATA ref="#user.business-info.telecom.pager.number"/>
+    <DATA ref="#user.business-info.telecom.pager.ext"/>
+    <DATA ref="#user.business-info.online"/>
+    <DATA ref="#user.business-info.online.email"/>
+    <DATA ref="#user.business-info.online.uri"/>
+    <DATA ref="#user.employer"/>
+    <DATA ref="#user.department"/>
+    <DATA ref="#dynamic.clickstream"/>
+    <DATA ref="#dynamic.http"/>
+    <DATA ref="#dynamic.http.useragent"/>
+    <DATA ref="#dynamic.miscdata">
+	<CATEGORIES><physical/></CATEGORIES>
+    </DATA>
+    <DATA ref="#dynamic.miscdata">
+	<CATEGORIES><online/></CATEGORIES>
+    </DATA>
+    <DATA ref="#dynamic.miscdata">
+	<CATEGORIES><uniqueid/></CATEGORIES>
+    </DATA>
+    <DATA ref="#dynamic.miscdata">
+	<CATEGORIES><purchase/></CATEGORIES>
+    </DATA>
+    <DATA ref="#dynamic.miscdata">
+	<CATEGORIES><computer/></CATEGORIES>
+    </DATA>
+    <DATA ref="#dynamic.miscdata">
+	<CATEGORIES><navigation/></CATEGORIES>
+    </DATA>
+    <DATA ref="#dynamic.miscdata">
+	<CATEGORIES><interactive/></CATEGORIES>
+    </DATA>
+    <DATA ref="#dynamic.miscdata">
+	<CATEGORIES><content/></CATEGORIES>
+    </DATA>
+    <DATA ref="#dynamic.miscdata">
+	<CATEGORIES><state/></CATEGORIES>
+    </DATA>
+    <DATA ref="#dynamic.miscdata">
+	<CATEGORIES><preference/></CATEGORIES>
+    </DATA>
+    <DATA ref="#dynamic.cookies">
+	<CATEGORIES><uniqueid/></CATEGORIES>
+    </DATA>
+    <DATA ref="#business.name"/>
+    <DATA ref="#business.department"/>
+    <DATA ref="#business.contact-info.postal"/>
+    <DATA ref="#business.contact-info.postal.street"/>
+    <DATA ref="#business.contact-info.postal.city"/>
+    <DATA ref="#business.contact-info.postal.stateprov"/>
+    <DATA ref="#business.contact-info.postal.postalcode"/>
+    <DATA ref="#business.contact-info.postal.country"/>
+    <DATA ref="#business.contact-info.postal.organization"/>
+    <DATA ref="#business.contact-info.telecom.telephone.intcode"/>
+    <DATA ref="#business.contact-info.telecom.telephone.loccode"/>
+    <DATA ref="#business.contact-info.telecom.telephone.number"/>
+    <DATA ref="#business.contact-info.telecom.telephone.ext"/>
+    <DATA ref="#business.contact-info.telecom.fax.intcode"/>
+    <DATA ref="#business.contact-info.telecom.fax.loccode"/>
+    <DATA ref="#business.contact-info.telecom.fax.number"/>
+    <DATA ref="#business.contact-info.telecom.fax.ext"/>
+    <DATA ref="#business.contact-info.telecom.mobile.intcode"/>
+    <DATA ref="#business.contact-info.telecom.mobile.loccode"/>
+    <DATA ref="#business.contact-info.telecom.mobile.number"/>
+    <DATA ref="#business.contact-info.telecom.mobile.ext"/>
+    <DATA ref="#business.contact-info.telecom.pager.intcode"/>
+    <DATA ref="#business.contact-info.telecom.pager.loccode"/>
+    <DATA ref="#business.contact-info.telecom.pager.number"/>
+    <DATA ref="#business.contact-info.telecom.pager.ext"/>
+    <DATA ref="#business.contact-info.online"/>
+    <DATA ref="#business.contact-info.online.email"/>
+    <DATA ref="#business.contact-info.online.uri"/>
+   </DATA-GROUP>
+ </STATEMENT>
+  </POLICY>

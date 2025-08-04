@@ -1,0 +1,245 @@
+/* The file is AUTO generated on Mon, 17 Apr 2017 21:29:00 UTC */
+/* Do NOT manually modify this file! */
+
+.hierarchyContainer {
+  display: inline-block;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  top: 71px;
+  background-color: white;
+}
+.stage > div {
+  background-color: White;
+}
+.ms-crm-hierarchyheader-content[rtl=false] {
+  margin-left: 20px;
+}
+.ms-crm-hierarchyheader-content[rtl=true] {
+  margin-right: 20px;
+}
+.hierarchyContainer[rtl=false] {
+  float: left;
+}
+.hierarchyContainer[rtl=true] {
+  float: right;
+}
+.hierarchyContainer[rtl=false] div.tileView {
+  margin-left: auto;
+  margin-right: auto;
+}
+.hierarchyContainer[rtl=false] div.folderView {
+  margin-left: 11px;
+  padding-left: 11px;
+}
+.hierarchyContainer[rtl=true] div.tileView {
+  margin-left: auto;
+  margin-right: auto;
+}
+.hierarchyContainer[rtl=true] div.folderView {
+  margin-right: 11px;
+  padding-right: 11px;
+}
+.hierarchyContainer > div {
+  position: absolute;
+}
+.ms-crm-hierarchyheader-title {
+  line-height: 45px;
+  font-size: 36px;
+  color: #262626;
+  font-weight: lighter;
+  font-family: Segoe UI, Arial, sans-serif;
+}
+.ms-crm-hierarchyheader-title[rtl=false] {
+  margin-left: 4px;
+}
+.ms-crm-hierarchyheader-title[rtl=true] {
+  margin-right: 4px;
+}
+.ms-crm-hierarchyheader-label {
+  height: 20px;
+  line-height: 20px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  width: 60px;
+  color: #111111;
+  font-family: Segoe\000020UI,Tahoma, Arial;
+  font-size: 13px;
+}
+.ms-crm-hierarchyheader-label[rtl=false] {
+  padding-left: 4px;
+  margin-left: 4px;
+}
+.ms-crm-hierarchyheader-label[rtl=true] {
+  padding-right: 4px;
+  margin-right: 4px;
+}
+.ms-crm-hierarchyheader-content td.ms-crm-hierarchyheader-icon {
+  vertical-align: top;
+}
+SPAN.ms-crm-hierarchyheader-Breadcrumb {
+  line-height: 20px;
+  vertical-align: baseline;
+  margin-top: 3px;
+}
+.ms-crm-hierarchyheader-TextAutoEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ms-crm-hierarchyheader-Title-Data {
+  font-size: 36px;
+  font-weight: lighter;
+}
+.ms-crm-hierarchyheader-autoellipsis {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ms-crm-hierarchyheader-Title-Label {
+  font-size: 13px;
+  font-weight: 100;
+}
+DIV.ms-crm-hierarchyheader-Breadcrumb {
+  padding-bottom: 5px;
+}
+img.ms-crm-hierarchyheader-pic-image {
+  height: 62px;
+  width: 62px;
+  border: 1px solid gray;
+}
+div.layout-folderview {
+  height: 100%;
+  width: 14%;
+  overflow: auto;
+}
+div.layout-tileview {
+  height: 100%;
+  width: 85%;
+  overflow: auto;
+}
+div.layout-tileview[rtl=false] {
+  left: 15%;
+}
+div.layout-tileview[rtl=true] {
+  right: 15%;
+}
+div.layout-splitter {
+  height: 100%;
+  width: 1px;
+  cursor: col-resize;
+}
+div.layout-splitter[rtl=false] {
+  left: 15%;
+}
+div.layout-splitter[rtl=false] div.ms-crm-hierarchySplitter {
+  margin-left: -6px;
+  padding-left: 3px;
+}
+div.layout-splitter[rtl=true] {
+  right: 15%;
+}
+div.layout-splitter[rtl=true] div.ms-crm-hierarchySplitter {
+  margin-right: -4px;
+  padding-right: 3px;
+}
+div.ms-crm-hierarchySplitter {
+  height: 100%;
+  width: 10px;
+  cursor: col-resize;
+}
+div.HierarchySplitter {
+  display: inline-block;
+  position: absolute;
+  top: 40%;
+}
+div.ms-crm-Splitter-Fixed {
+  border-left: 1px solid #c7c7c7;
+  width: 1px;
+}
+div.ms-crm-SplitterMotion {
+  bottom: 0px;
+}
+IMG.ms-crm-HierarchySplitter {
+  height: 26px !important;
+  width: 5px !important;
+  vertical-align: middle;
+  cursor: col-resize;
+}
+div.ms-crm-overlay {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 100%;
+  z-index: 2000;
+  display: none;
+}
+div.hierarchyOverlay {
+  z-index: 997;
+  position: fixed;
+  background-color: transparent;
+  background-image: url('../../../_imgs/NavBar/Invisible.gif'), url('/_imgs/NavBar/Invisible.gif');
+  opacity: 0.0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+}
+div.formSwitcherOverlayDiv {
+  z-index: 997;
+}
+div.dataLoadingOverlay {
+  z-index: 999;
+}
+#tileFormSelector_hierarchyContainer {
+  position: absolute;
+  width: 16px;
+  z-index: 9000;
+}
+#tileFormSelector_hierarchyContainer div.formSelectorListHolder.show {
+  max-height: 380px;
+  overflow-y: auto;
+  display: block !important;
+  border: 2px solid #002050;
+  color: #444;
+  position: absolute;
+  background: white;
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  z-index: 9999;
+}
+#tileFormSelector_hierarchyContainer div.formSelectorImageHolder {
+  display: inline;
+  font-family: 'Segoe UI';
+  font-size: 24px;
+  line-height: 0px;
+  vertical-align: top;
+  color: black;
+}
+#tileFormSelector_hierarchyContainer div.formSelectorListHolder {
+  display: none;
+}
+#tileFormSelector_hierarchyContainer a.tileFormAnchor {
+  text-decoration: none;
+  text-transform: none;
+  display: block;
+  white-space: nowrap;
+  padding: 9px 18px 9px 18px;
+}
+#tileFormSelector_hierarchyContainer a.selected {
+  border-width: 2px;
+}
+.ios6tablet {
+  background-color: #f3f3f3;
+}
+/* We need to reserve the width that will be occupied by right/left scrollButton. The width value of scrollbutton 
+ * is pre-calculated to allow 3 digits of scrollNumber which also includes '+' sign as per the font
+ */
+.padding-on-tileview {
+  height: 100%;
+  padding-left: 75px;
+  padding-right: 75px;
+}

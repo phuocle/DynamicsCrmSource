@@ -1,0 +1,439 @@
+<public:component lightweight="true">
+<public:method name="LoadContextData"/>
+<public:method name="LoadContext"/>
+<public:method name="Expand"/>
+<public:method name="Collapse"/>
+<public:method name="PopulateFormControl"/>
+<public:method name="ToggleInformationPane"/>
+<public:method name="focus"/>
+<public:event id="OnContextChangedEvent" name="OnContextChanged"/>
+<public:event id="OnExpandEvent" name="OnExpanded"/>
+<public:event id="OnCollapseEvent" name="OnCollapsed"/>
+<public:attach event="ondocumentready" onevent="initialize()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _sContextLoading = null,
+    _sContextWaiting = null,
+    _sContextFailed = null,
+    _oRemoteCommand = null,
+    _oContextSelect = null,
+    _bErrorMessageSet = false,
+    _iTimeoutToken = null,
+    _iContextChangeDelay = 500;
+function initialize()
+{
+    var oXmlHttp;
+    oXmlHttp = new XMLHttpRequest;
+    oXmlHttp.open("Get",Mscrm.CrmUri.create("/_static/_controls/RelatedInformation/Category_Lookup.htc").toString(),true);
+    oXmlHttp.send(null);
+    _oRemoteCommand = new RemoteCommand("RelatedInformation","GetContextHtml");
+    _oRemoteCommand.ErrorHandler = ErrorHandler;
+    this.all.ShowHideImage.attachEvent("onclick",ToggleInformationPane);
+    _oContextSelect = this.all.ContextSelect;
+    for(var sControlId,
+        iOptionCount = _oContextSelect.options.length,
+        oControl = null,
+        i = 0; i < iOptionCount; i++)
+    {
+        sControlId = _oContextSelect.options[i].controlId;
+        oControl = crmForm.all[sControlId];
+        oControl && 
+            oControl.attachEvent("onfocus",LoadContext)
+    }
+}
+function focus()
+{
+    !IsCollapsed() && 
+        _oContextSelect.SetFocus()
+}
+function IsCollapsed()
+{
+    return this.all.ShowHideImage.src.indexOf("/_imgs/theme/" + CURRENT_THEME_TYPE + "/collapse_left.gif") >= 0
+}
+function ToggleInformationPane()
+{
+    if(IsCollapsed())
+    {
+        Expand();
+        focus()
+    }
+    else
+        Collapse()
+}
+function Expand()
+{
+    _oContextSelect.style.display = "inline";
+    InformationContents.style.display = "block";
+    InformationAreaTitle.style.display = "block";
+    this.all.ShowHideImage.src = "/_imgs/theme/" + CURRENT_THEME_TYPE + "/collapse_right.gif";
+    this.all.ShowHideImage.imgBase = "/_imgs/theme/" + CURRENT_THEME_TYPE + "/collapse_right";
+    this.all.ShowHideImage.alt = LOCID_RELATEDINFO_COLLAPSE;
+    if(LOCID_UI_DIR == "RTL")
+        this.all.ShowHideImage.style.filter = "FlipH()";
+    element.className = "RelatedInformationPane";
+    var oParentTd = GetParentTd();
+    if(!IsNull(oParentTd))
+        oParentTd.className = "RelatedInformationPane";
+    _oContextSelect.value != element.CurrentContext && 
+        LoadContextData(element.CurrentContext);
+    var oEvent = createEventObject();
+    OnExpandEvent.fire(oEvent)
+}
+function Collapse()
+{
+    _oContextSelect.style.display = "none";
+    InformationContents.style.display = "none";
+    InformationAreaTitle.style.display = "none";
+    this.all.ShowHideImage.src = "/_imgs/theme/" + CURRENT_THEME_TYPE + "/collapse_left.gif";
+    this.all.ShowHideImage.imgBase = "/_imgs/theme/" + CURRENT_THEME_TYPE + "/collapse_left";
+    this.all.ShowHideImage.alt = LOCID_RELATEDINFO_EXPAND;
+    if(LOCID_UI_DIR == "RTL")
+        this.all.ShowHideImage.style.filter = "FlipH()";
+    element.className = "RelatedInformationPane RelatedInformationPaneCollapsed";
+    var oParentTd = GetParentTd();
+    if(!IsNull(oParentTd))
+        oParentTd.className = "RelatedInformationPane RelatedInformationPaneCollapsed";
+    var oEvent = createEventObject();
+    OnCollapseEvent.fire(oEvent)
+}
+function GetParentTd()
+{
+    var oParentTd = this.element.parentElement;
+    while(!IsNull(oParentTd) && oParentTd.tagName != "TD")
+        oParentTd = oParentTd.parentElement;
+    if(IsNull(oParentTd) || oParentTd.id != "tdRelatedInformationPane")
+        return null;
+    return oParentTd
+}
+function abortLoadInProgress()
+{
+    if(!IsNull(_sContextLoading))
+        if(!IsNull(_oRemoteCommand))
+        {
+            _oRemoteCommand.Abort();
+            _sContextLoading = null
+        }
+}
+function LoadContext(oEvent,sContextId)
+{
+    if(sContextId == null)
+    {
+        if(oEvent == null)
+            oEvent = event;
+        sContextId = oEvent.srcElement.id
+    }
+    if(IsCollapsed())
+    {
+        if(sContextId == element.CurrentContext)
+            return;
+        if(sContextId == _oContextSelect.value && element.CurrentContext == null)
+            return;
+        element.CurrentContext = sContextId;
+        return
+    }
+    sContextId !== element.CurrentContext && sContextId !== _sContextFailed && 
+        StartLoadContextData(sContextId)
+}
+function StartLoadContextData(sContextId)
+{
+    _iTimeoutToken != null && 
+        window.clearTimeout(_iTimeoutToken);
+    if(sContextId != null)
+        _sContextWaiting = sContextId;
+    _iTimeoutToken = window.setTimeout(LoadContextData,_iContextChangeDelay)
+}
+function LoadContextData(sContextId)
+{
+    _bErrorMessageSet = false;
+    if(_iTimeoutToken != null)
+    {
+        window.clearTimeout(_iTimeoutToken);
+        if(_sContextWaiting != null)
+            sContextId = _sContextWaiting;
+        _sContextWaiting = null
+    }
+    abortLoadInProgress();
+    if(!IsNull(sContextId))
+    {
+        var sOldContextValue = _oContextSelect.value;
+        _oContextSelect.value = sContextId;
+        if(_oContextSelect.value !== sContextId)
+            for(var i = 0; i < _oContextSelect.options.length; i++)
+            {
+                var oOption = _oContextSelect.options[i];
+                if(oOption.controlId === sContextId)
+                {
+                    oOption.selected = true;
+                    break
+                }
+            }
+        if(_oContextSelect.value === "")
+        {
+            _sContextFailed = sContextId;
+            _oContextSelect.value = sOldContextValue;
+            return
+        }
+    }
+    setMessageLoading(CategoryList);
+    _sContextFailed = null;
+    if(element.CurrentContext != _oContextSelect.value)
+    {
+        element.CurrentContext = _oContextSelect.value;
+        if(event != null && _oContextSelect == event.srcElement)
+        {
+            var oContextControl = crmForm.all[element.CurrentContext];
+            oContextControl != null && 
+                setControlFocus(oContextControl)
+        }
+        var oEvent = createEventObject();
+        oEvent.Context = element.CurrentContext;
+        OnContextChangedEvent.fire(oEvent)
+    }
+    for(var sContextXml = null,
+        i = 0; i < _oContextSelect.options.length; i++)
+        if(_oContextSelect.options[i].selected)
+        {
+            sContextXml = _oContextSelect.options[i].ContextXml;
+            break
+        }
+    $find("crmForm").BuildXml(false,false,true);
+    var sFormXml = crmFormSubmit.crmFormSubmitXml.value;
+    if(sFormXml.length == 0)
+        sFormXml = "<" + crmForm.crmFormRootElem.value + "/>";
+    _oRemoteCommand.SetXmlParameter("context",sContextXml);
+    _oRemoteCommand.SetParameter("formXml",sFormXml);
+    _oRemoteCommand.SetParameter("formSubmitId",crmFormSubmit.crmFormSubmitId.value);
+    _sContextLoading = element.CurrentContext;
+    _oRemoteCommand.Execute(gotContextResult)
+}
+function setControlFocus(oControl)
+{
+    if(!oControl.Disabled)
+    {
+        var oCrmForm = $get("crmForm");
+        if(oCrmForm)
+        {
+            oCrmForm.setAttribute("setinitialfocus","false");
+            $find("crmForm").GetTab(oControl,true)
+        }
+        oControl.focus()
+    }
+}
+function setMessageLoading(oDataArea)
+{
+    oDataArea.innerHTML = '<DIV id="LoadingInfo" class="InformationLoading">' + CrmEncodeDecode.CrmHtmlEncode(LOCID_RELATEDINFO_DATALOADING) + "</DIV>"
+}
+function updatePageHeader(aClientVars,aScriptIncludes,aStyleIncludes,aWrpcTokens,sWrpcTimestamp)
+{
+    for(var j,
+        bFound,
+        i = 0; i < aClientVars.length; i++)
+    {
+        var item = aClientVars[i];
+        try
+        {
+            eval(item.Key)
+        }
+        catch(e)
+        {
+            defineVar(item.Key,item.Value)
+        }
+    }
+    for(i = 0; i < aScriptIncludes.length; i++)
+        Mscrm.CrmHeader.setScriptFile(Mscrm.CrmUri.create(aScriptIncludes[i]));
+    for(i = 0; i < aStyleIncludes.length; i++)
+        Mscrm.CrmHeader.setStyleSheet(Mscrm.CrmUri.create(aStyleIncludes[i]));
+    if(aWrpcTokens.length > 0)
+    {
+        var oUrl;
+        for(i = 0; i < aWrpcTokens.length; i++)
+        {
+            var item = aWrpcTokens[i];
+            oUrl = Mscrm.CrmUri.create(item.Key);
+            var oToken = GetCrmWrpcToken(oUrl);
+            oToken === null && 
+                SetCrmWrpcToken(oUrl,item.Value,sWrpcTimestamp)
+        }
+    }
+}
+function defineVar(key,value)
+{
+    if(typeof value === "string")
+        eval("window." + key + ' = "' + value + '"');
+    else
+        eval("window." + key + " = " + value)
+}
+function gotContextResult(result)
+{
+    _sContextLoading = null;
+    if(!result.Success)
+        if(_bErrorMessageSet)
+            _bErrorMessageSet = false;
+        else
+            displayResults(CategoryList,"");
+    else
+    {
+        var aClientVars = fixEmptyObjectValueItem(result.ReturnValue.ClientVariables.NameValuePair),
+            aScriptIncludes = result.ReturnValue.ScriptIncludes.string,
+            aStyleIncludes = result.ReturnValue.StyleIncludes.string,
+            aWrpcTokens = result.ReturnValue.WrpcTokens.NameValuePair,
+            sWrpcTimestamp = result.ReturnValue.TokenTimestamp,
+            sContextHtml = result.ReturnValue.ContextHtml;
+        updatePageHeader(aClientVars,aScriptIncludes,aStyleIncludes,aWrpcTokens,sWrpcTimestamp);
+        displayResults(CategoryList,sContextHtml)
+    }
+}
+function fixEmptyObjectValueItem(nameValuePairCollections)
+{
+    for(var i = 0; i < nameValuePairCollections.length; i++)
+    {
+        var item = nameValuePairCollections[i];
+        if(isEmptyObject(item.Value))
+            item.Value = ""
+    }
+    return nameValuePairCollections
+}
+function isEmptyObject(obj)
+{
+    if(typeof obj !== "object")
+        return false;
+    if(obj.constructor !== Object)
+        return false;
+    for(var property in obj)
+        return false;
+    return true
+}
+function displayResults(oDataArea,sHtml)
+{
+    if(sHtml == "" || IsNull(sHtml))
+        sHtml = '<DIV id="NoInfoResults" class="InformationMessage">' + CrmEncodeDecode.CrmHtmlEncode(LOCID_RELATEDINFO_NORESULTS) + "</DIV>";
+    oDataArea.innerHTML = sHtml;
+    window.setTimeout(nudge,50)
+}
+function nudge()
+{
+    var r = readyState
+}
+function PopulateFormControl()
+{
+    var bFireChangeEvent = false,
+        bRaiseChangeEvent = false,
+        oEvent = event,
+        oChangeEvent = null,
+        oContextControl = crmForm.all[oEvent.Context],
+        sControlClass = Trim(oContextControl.className.toLowerCase().replace("ms-crm-field-required",""));
+    if(Sys.UI.DomElement.containsCssClass(oContextControl,"ms-crm-Lookup"))
+        sControlClass = "ms-crm-lookup";
+    if(Sys.UI.DomElement.containsCssClass(oContextControl,"ms-crm-Lookup-Party"))
+        sControlClass = "ms-crm-lookup-party";
+    switch(sControlClass)
+    {
+        case "ms-crm-lookup":
+        case "ms-crm-lookup-transactioncurrency":
+        case "ms-crm-lookup-party":
+            var oLookupItem;
+            switch(oContextControl.lookupstyle.toLowerCase())
+            {
+                case "subject":
+                case "single":
+                    oLookupItem = new LookupControlItem(oEvent.Value,oEvent.ObjectType,oEvent.DisplayName);
+                    if(!IsInLookup(oContextControl,oLookupItem))
+                    {
+                        oLookupItem.keyValues = oEvent.keyValues;
+                        oChangeEvent = createEventObject();
+                        oChangeEvent.result = {};
+                        oChangeEvent.result.items = [];
+                        oChangeEvent.result.items.push(oLookupItem);
+                        var aoItems = [];
+                        aoItems.push(oLookupItem);
+                        oContextControl.Clear();
+                        oContextControl.AddItems(aoItems);
+                        bRaiseChangeEvent = true
+                    }
+                    break;
+                case "multi":
+                    oLookupItem = new LookupControlItem(oEvent.Value,oEvent.ObjectType,oEvent.DisplayName);
+                    oLookupItem.resourceSpecId = oEvent.ResourceSpecId;
+                    oLookupItem.effort = oEvent.Effort;
+                    var iIsMatch = IsInLookup(oContextControl,oLookupItem);
+                    if(iIsMatch == 0 || iIsMatch == 2)
+                    {
+                        var aoItems = [];
+                        aoItems.push(oLookupItem);
+                        iIsMatch == 2 && 
+                            oContextControl.RemoveItem(oLookupItem.id);
+                        oContextControl.AddItems(aoItems);
+                        bRaiseChangeEvent = true
+                    }
+                    break;
+                default:
+                    break
+            }
+            break;
+        case "ms-crm-selectbox":
+        case "ms-crm-selectbox-relationshiprole":
+            if(oContextControl.DataValue != oEvent.Value)
+            {
+                oContextControl.DataValue = oEvent.Value;
+                bFireChangeEvent = true
+            }
+            break;
+        case "ms-crm-text":
+            var ctrl = $find(oContextControl.id);
+            if(ctrl.get_dataValue() != oEvent.Value)
+            {
+                ctrl.set_dataValue(oEvent.Value);
+                bFireChangeEvent = true
+            }
+            break;
+        case "contexthelper":
+            oContextControl.DataValue = oEvent.Value;
+            break;
+        default:
+            if(oContextControl.DataValue != oEvent.Value)
+            {
+                oContextControl.DataValue = oEvent.Value;
+                bFireChangeEvent = true
+            }
+            break
+    }
+    setControlFocus(oContextControl);
+    bRaiseChangeEvent && 
+        oContextControl.RaiseOnChangeEvent(oChangeEvent);
+    bFireChangeEvent && 
+        oContextControl.fireEvent("onchange")
+}
+function IsInLookup(oLookup,oLookupItem)
+{
+    for(var oItem,
+        aoItems = oLookup.Items(),
+        iItemCount = aoItems.length,
+        i = 0; i < iItemCount; i++)
+    {
+        oItem = aoItems[i];
+        if(oItem.id == oLookupItem.id && oItem.type == oLookupItem.type)
+        {
+            if(oItem.resourceSpecId == oLookupItem.resourceSpecId)
+                return 1;
+            return 2
+        }
+    }
+    return 0
+}
+function ErrorHandler(sHResult,oXmlNode)
+{
+    if(!IsNull(oXmlNode))
+    {
+        var oTextNode = oXmlNode.selectSingleNode("error/displaytext");
+        !IsNull(oTextNode) && 
+            setMessage(oTextNode.text)
+    }
+}
+function setMessage(sMessage)
+{
+    _bErrorMessageSet = true;
+    CategoryList.innerHTML = '<DIV class="InformationMessage">' + CrmEncodeDecode.CrmHtmlEncode(sMessage) + "</DIV>"
+}
+
+</script>
+</public:component>

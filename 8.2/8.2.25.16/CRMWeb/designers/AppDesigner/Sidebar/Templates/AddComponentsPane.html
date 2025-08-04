@@ -1,0 +1,72 @@
+<div class="mscrm-ComponentListContainer">
+	<div id="AppDesigner.ComponentPane.ArtifactsList" ng-click="hideArtifactsList=!hideArtifactsList"
+		 title="{{componentPaneController.GetArtifactExpandCollapseTitle(!hideArtifactsList)}}"
+		 mscrm-action-on-select class="mscrm-ComponentListDropdown">
+		<div id="AppDesigner.ComponentPane.ArtifactsList.Icon" ng-class="['mscrm-collapsibleIcon',
+						{'mscrm-glyph-collapsedIcon': hideArtifactsList,
+						'mscrm-glyph-expandedIcon': !hideArtifactsList}]"></div>
+			<div id="AppDesigner.ComponentPane.ArtifactsList.Text" tabindex="-1" ng-click="hideArtifactsList=!hideArtifactsList" class="mscrm-collapsibleText"><mscrm-locale mscrm-resource-key="AppDesigner.Artifacts"></mscrm-locale></div>
+	</div>
+	<div ng-show="!hideArtifactsList" mscrm-arrow-key-navigation data-arrow-direction="vertical" role="application">
+		<mscrm-Component-Tile label="AppDesigner.AddEntity"
+							  description="AppDesigner.EntitySelectionText"
+							  icon="mscrm-EntityIcon mscrm-glyph-EntityIcon"
+							  componenttype="Entity"
+							  clickhandler="componentPaneController.DisplayComponentList(type)"
+							  isenabled="componentPaneController.IsAddComponentTypeEnabled(type)"
+							  tooltip="AppDesigner.Components.Entities.Tooltip">
+
+		</mscrm-Component-Tile>
+		<mscrm-Component-Tile label="AppDesigner.AddDashboard"
+							  description="AppDesigner.DashboardSelectionText"
+							  icon="mscrm-DashboardIcon mscrm-glyph-DashboardIcon"
+							  componenttype="Dashboard"
+							  clickhandler="componentPaneController.DisplayComponentList(type)"
+							  isenabled="componentPaneController.IsAddComponentTypeEnabled(type)"
+							  tooltip="AppDesigner.Components.Dashboards.Tooltip">
+		</mscrm-Component-Tile>
+		<mscrm-Component-Tile label="AppDesigner.AddBPF"
+							  description="AppDesigner.BPFSelectionText"
+							  icon="mscrm-BPFIcon mscrm-glyph-BPFIcon"
+							  componenttype="BPC"
+							  clickhandler="componentPaneController.DisplayComponentList(type)"
+							  isenabled="componentPaneController.IsAddComponentTypeEnabled(type)"
+							  tooltip="AppDesigner.Components.BusinessProcessFlows.Tooltip">
+		</mscrm-Component-Tile>
+	</div>
+	<div id="AppDesigner.ComponentPane.EntityAssetsList" ng-click="hideEntityAssets=!hideEntityAssets" mscrm-action-on-select
+		 class="mscrm-ComponentListDropdown"
+		 title="{{componentPaneController.GetEntityAssetsExpandCollapseTitle(!hideEntityAssets)}}">
+		<div id="AppDesigner.ComponentPane.EntityAssetsList.Icon" ng-class="['mscrm-collapsibleIcon',
+						{'mscrm-glyph-collapsedIcon': hideEntityAssets,
+						'mscrm-glyph-expandedIcon': !hideEntityAssets}]"></div>
+		<div id="AppDesigner.ComponentPane.EntityAssetsList.Text" tabindex="-1" ng-click="hideEntityAssets=!hideEntityAssets" class="mscrm-collapsibleText"><mscrm-locale mscrm-resource-key="AppDesigner.EntityAssets"></div>
+	</div>
+	<div ng-show="!hideEntityAssets" mscrm-arrow-key-navigation data-arrow-direction="vertical" role="application">
+		<mscrm-Component-Tile label="AppDesigner.AddForm"
+							  description="AppDesigner.FormSelectionText"
+							  icon="mscrm-EntityAssetIcon mscrm-glyph-SystemFormIcon"
+							  componenttype="Form"
+							  clickhandler="componentPaneController.DisplayComponentList(type)"
+							  isenabled="componentPaneController.IsAddComponentTypeEnabled(type)"
+							  tooltip="AppDesigner.Components.Forms.Tooltip">
+		</mscrm-Component-Tile>
+		<mscrm-Component-Tile label="AppDesigner.AddView"
+							  description="AppDesigner.ViewSelectionText"
+							  icon="mscrm-EntityAssetIcon mscrm-glyph-SavedQueryIcon"
+							  componenttype="View"
+							  clickhandler="componentPaneController.DisplayComponentList(type)"
+							  isenabled="componentPaneController.IsAddComponentTypeEnabled(type)"
+							  tooltip="AppDesigner.Components.Views.Tooltip">
+
+		</mscrm-Component-Tile>
+		<mscrm-Component-Tile label="AppDesigner.AddChart"
+							  description="AppDesigner.ChartSelectionText"
+							  icon="mscrm-EntityAssetIcon mscrm-glyph-SavedQueryVisualizationIcon"
+							  componenttype="Chart"
+							  clickhandler="componentPaneController.DisplayComponentList(type)"
+							  isenabled="componentPaneController.IsAddComponentTypeEnabled(type)"
+							  tooltip="AppDesigner.Components.Charts.Tooltip">
+		</mscrm-Component-Tile>
+	</div>
+</div>

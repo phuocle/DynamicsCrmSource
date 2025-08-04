@@ -1,0 +1,9 @@
+<div class="mscrm-subareaNodeContainer" ng-click="onSubAreaSelection(subArea, $event)" ng-class="{'selectedDiv':isSelectedSubArea(subArea)}" mscrm-action-on-select data-actiononfocusmode id="{{subArea.Id}}" dnd-type="'subAreaType'" tabindex="-1">
+	<span class="mscrm-subareaIconContainer {{subArea.Id}}" ng-style="{'background-color': subArea.EntityColor}">
+		<img class="mscrm-subareaIcon {{subArea.EntityIconClass}}" ng-src="{{subArea.Icon}}" alt="{{GetResourceString(subArea)}}" title="{{GetResourceString(subArea)}}">
+	</span>
+	<div class="mscrm-subareaIconSeparator"></div>
+	<span class="mscrm-subareaLabelContainer" title="{{GetResourceString(subArea)}}">
+		<label class="mscrm-subareaLabel">{{GetResourceString(subArea)}}</label>
+	</span>
+</div>

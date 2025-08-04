@@ -1,0 +1,56 @@
+<public:component lightweight="true">
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataXml" get="dataXml"/>
+<public:property name="DataValue" get="getDataValue"/>
+<public:property name="RequiredLevel" get="getRequiredLevel" />
+<public:method name="SetFocus" internalname="setFocus"/>
+<public:property name="IsValid" get="isValid"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+function getDisabled()
+{
+    var control = $find(this.id);
+    return control.getDisabled()
+}
+function setDisabled(bValue)
+{
+    var control = $find(this.id);
+    control.setDisabled(bValue)
+}
+function setFocus()
+{
+    var control = $find(this.id);
+    control.setFocus()
+}
+function getDataValue()
+{
+    var control = $find(this.id);
+    return control != null ? control.getDataValue() : null
+}
+function dataXml()
+{
+    var control = $find(this.id);
+    return control.dataXml()
+}
+function isDirty()
+{
+    var control = $find(this.id);
+    return control.isDirty()
+}
+function isValid()
+{
+    var control = $find(this.id);
+    return control.isValid()
+}
+function getRequiredLevel()
+{
+    var control = $find(this.id);
+    return control.getRequiredLevel()
+}
+function fireOnChange()
+{
+    this.fireEvent("onchange")
+}
+
+</script>
+</public:component>
