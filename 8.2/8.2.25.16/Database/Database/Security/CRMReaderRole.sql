@@ -1,0 +1,11 @@
+﻿CREATE ROLE [CRMReaderRole]
+    AUTHORIZATION [dbo];
+
+
+GO
+ALTER ROLE [CRMReaderRole] ADD MEMBER [CRM\PrivReportingGroup {a63a05a4-7923-45ba-a9a3-f0eea9c6a849}];
+
+
+GO
+ALTER ROLE [CRMReaderRole] ADD MEMBER [NT AUTHORITY\NETWORK SERVICE];
+

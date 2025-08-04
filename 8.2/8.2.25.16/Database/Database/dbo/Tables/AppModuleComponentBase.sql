@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[AppModuleComponentBase] (
+    [IsDefault]                  BIT              CONSTRAINT [DF_AppModuleComponentBase_IsDefault] DEFAULT ((0)) NULL,
+    [ExchangeRate]               DECIMAL (23, 10) NULL,
+    [AppModuleComponentIdUnique] UNIQUEIDENTIFIER CONSTRAINT [DF_AppModuleComponentBase_AppModuleComponentIdUnique] DEFAULT (newid()) ROWGUIDCOL NOT NULL,
+    [TimeZoneRuleVersionNumber]  INT              NULL,
+    [ModifiedOnBehalfBy]         UNIQUEIDENTIFIER NULL,
+    [CreatedOnBehalfBy]          UNIQUEIDENTIFIER NULL,
+    [ModifiedBy]                 UNIQUEIDENTIFIER NULL,
+    [CreatedOn]                  DATETIME         NULL,
+    [IntroducedVersion]          NVARCHAR (48)    NULL,
+    [RootAppModuleComponentId]   UNIQUEIDENTIFIER NULL,
+    [RootComponentBehavior]      INT              NULL,
+    [ComponentType]              INT              CONSTRAINT [DF_AppModuleComponentBase_ComponentType] DEFAULT ((0)) NULL,
+    [ModifiedOn]                 DATETIME         NULL,
+    [CreatedBy]                  UNIQUEIDENTIFIER NULL,
+    [AppModuleIdUnique]          UNIQUEIDENTIFIER NULL,
+    [VersionNumber]              ROWVERSION       NULL,
+    [UTCConversionTimeZoneCode]  INT              NULL,
+    [ObjectId]                   UNIQUEIDENTIFIER NULL,
+    [IsMetadata]                 BIT              NULL,
+    [OverwriteTime]              DATETIME         CONSTRAINT [DF_AppModuleComponentBase_OverwriteTime] DEFAULT ((0)) NOT NULL,
+    [AppModuleComponentId]       UNIQUEIDENTIFIER CONSTRAINT [DF_AppModuleComponentBase_AppModuleComponentId] DEFAULT (newid()) NOT NULL,
+    CONSTRAINT [cndx_PrimaryKey_AppModuleComponent] PRIMARY KEY CLUSTERED ([AppModuleComponentId] ASC, [OverwriteTime] ASC) WITH (FILLFACTOR = 80)
+);
+

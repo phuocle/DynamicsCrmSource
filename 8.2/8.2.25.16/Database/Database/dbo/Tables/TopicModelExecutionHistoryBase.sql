@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[TopicModelExecutionHistoryBase] (
+    [StartTime]                    DATETIME         NULL,
+    [TopicModelId]                 UNIQUEIDENTIFIER NULL,
+    [NumberOfTopicsFound]          INT              NULL,
+    [IsTestExecution]              BIT              NULL,
+    [MaxTopics]                    INT              NULL,
+    [TopicModelConfigurationId]    UNIQUEIDENTIFIER NULL,
+    [Status]                       INT              NULL,
+    [StatusReason]                 INT              NULL,
+    [RecordsProcessed]             INT              NULL,
+    [OrganizationId]               UNIQUEIDENTIFIER NULL,
+    [TopicModelExecutionHistoryId] UNIQUEIDENTIFIER NOT NULL,
+    [FetchXmlList]                 NVARCHAR (MAX)   NULL,
+    [TotalTime]                    INT              NULL,
+    [CreatedOn]                    DATETIME         NULL,
+    [RecordCorrelationId]          NVARCHAR (100)   NULL,
+    [ModifiedOnBehalfBy]           UNIQUEIDENTIFIER NULL,
+    [ModifiedOn]                   DATETIME         NULL,
+    [CreatedOnBehalfBy]            UNIQUEIDENTIFIER NULL,
+    [ErrorDetails]                 NVARCHAR (MAX)   NULL,
+    [CreatedBy]                    UNIQUEIDENTIFIER NULL,
+    [ModifiedBy]                   UNIQUEIDENTIFIER NULL,
+    CONSTRAINT [PK_TopicModelExecutionHistoryBase] PRIMARY KEY CLUSTERED ([TopicModelExecutionHistoryId] ASC) WITH (FILLFACTOR = 80),
+    CONSTRAINT [topicmodel_topicmodelexecutionhistory] FOREIGN KEY ([TopicModelId]) REFERENCES [dbo].[TopicModelBase] ([TopicModelId]),
+    CONSTRAINT [topicmodelconfiguration_topicmodelexecutionhistory] FOREIGN KEY ([TopicModelConfigurationId]) REFERENCES [dbo].[TopicModelConfigurationBaseIds] ([TopicModelConfigurationId])
+);
+

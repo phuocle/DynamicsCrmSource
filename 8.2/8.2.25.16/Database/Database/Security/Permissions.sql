@@ -1,0 +1,14 @@
+﻿GRANT CONNECT TO [CRM\SQLAccessGroup {a63a05a4-7923-45ba-a9a3-f0eea9c6a849}];
+
+
+GO
+GRANT CONNECT TO [CRM\ReportingGroup {a63a05a4-7923-45ba-a9a3-f0eea9c6a849}];
+
+
+GO
+GRANT CONNECT TO [CRM\PrivReportingGroup {a63a05a4-7923-45ba-a9a3-f0eea9c6a849}];
+
+
+GO
+GRANT CONNECT TO [NT AUTHORITY\NETWORK SERVICE];
+

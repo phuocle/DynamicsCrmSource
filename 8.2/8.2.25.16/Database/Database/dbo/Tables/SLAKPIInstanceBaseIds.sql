@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[SLAKPIInstanceBaseIds] (
+    [SLAKPIInstanceId] UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT [PK_SLAKPIInstanceBaseIds] PRIMARY KEY CLUSTERED ([SLAKPIInstanceId] ASC)
+);
+
