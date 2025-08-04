@@ -1,0 +1,30 @@
+﻿/*-------------------------------------
+    ImageView styles
+--------------------------------------*/
+
+.font_list_sectionlabel
+{
+    font-size: 150%;
+}
+
+.font_list_controllabel
+{
+    text-decoration: underline;
+    font-size: 70%;
+}
+
+.font_list_controlvalue
+{
+    font-style:italic;
+}
+
+.font_test_controllabel
+{
+    font-size: 100%;
+}
+
+.font_test_controlvalue
+{
+    font-size: 120%;
+    font-weight: bold;
+}

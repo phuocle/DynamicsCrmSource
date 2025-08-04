@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>レポートにデータが表示されないトラブルシューティング問題</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">レポートにデータが表示されないトラブルシューティング問題</h1>
+			<p class="bodyText">レポートに予期するデータが表示されない場合、いくつかの原因が考えられます。</p>
+			<ul class="bulletedlist">
+				<li class="bulletedlistitem">
+					<p class="bodyText">
+						<b>セキュリティのアクセス許可が十分ではありません</b>。Microsoft Dynamics CRM でレコードを表示する権限がない場合、レコードはレポートに表示されません。</p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">
+						<b>データが入力されていません。</b>データの入力者がフィールドを空のままにした可能性があります。</p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">
+						<b>データがレポートの条件と一致していない</b>多くのレポートに、アクティブなレコードのみを表示する既定のフィルターが設定されています。または、レコードと一致しない条件を選択した可能性があります。レポートのフィルターの変更を試みてください。詳細 :<b> </b> <a href="ug_rpt_Overview.htm">レポートの既定のフィルターの編集</a></p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">
+						<b>レポートのキャッシュされたコピーを表示している。</b>既定では、Microsoft Dynamics CRM レポートのデータは、レポートを実行するたびにデータベースから取得されます。ただし、システム管理者がレポートをキャッシュから実行するように変更している場合があります。最近入力したデータがレポートに表示されない場合は、キャッシュからの古いバージョンのレポートが表示されている可能性があります。レポートを最新の状態に更新するには、[レポート] ツール バーで、<b>[最新の情報に更新]</b> ボタン <img src="htmlviewer_grid_refresh.gif" title="htmlviewer_grid_refresh" /> をクリックまたはタップします。</p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">
+						<b>サブレポート内のレコードを読み取るアクセス許可がない。</b>サブレポートに含まれるレコードの種類を読み取るアクセス許可がない場合は、サブレポートを表示できないという内容のエラー メッセージが表示されます。</p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">
+						<b>Microsoft Internet Explorer のプライバシーの設定により、必要な Cookie がブロックされている。</b>グラフ レポートで、グラフの代わりに赤い X の文字が表示される場合は、グラフ コントロールに必要な Cookie がプライバシーの設定によってブロックされている可能性があります。この問題を解決するには、ブラウザーで、Reporting Services を実行しているサーバーの Cookie を有効にします。</p>
+				</li>
+				<li class="bulletedlistitem">
+					<p class="bodyText">
+						<b>ローカル データ グループにすべてのデータが含まれていない (オフラインの場合)。</b>Microsoft Office Outlook 用 Microsoft Dynamics CRM からのレポートをオフラインの状態で使用している場合は、レポート内のすべてのデータを含むローカル データ グループが必要です。詳細 :<b> </b> <a href="localdatagroup.htm">オフライン アクセス対応 Outlook 用 Microsoft Dynamics CRM を使用する</a></p>
+				</li>
+			</ul>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

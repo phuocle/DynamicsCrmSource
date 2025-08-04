@@ -1,0 +1,16 @@
+<public:component lightweight="true">
+<public:method name="Save"/>
+<public:method name="SaveAndClose"/>
+<public:method name="CloseRecord"/>
+<public:property name="IsDirty" get="isDirty" />
+<public:property name="FormType" get="getFormType" />
+<public:property name="ObjectTypeCode" get="getOTC" />
+<public:property name="ObjectTypeName" get="getOTName" />
+<public:property name="ObjectId" get="getID" put="putID"/>
+<public:property name="IsHtc" get="isHtc" />
+<public:method name="fireSaveEvent" />
+<public:event name="onsave" id="onSaveEvent"/>
+<script language="JavaScript"></script><script type="text/javascript">
+var crmFormAjaxObject=null;function FindCrmForm(){if(IsNull(crmFormAjaxObject))crmFormAjaxObject=$find(element.id);return crmFormAjaxObject}function CloseRecord(iEventCode){FindCrmForm().CloseRecord(iEventCode)}function Save(){FindCrmForm().Save()}function SaveAndClose(){FindCrmForm().SaveAndClose()}function isDirty(){return FindCrmForm().get_isDirty()}function getOTC(){return FindCrmForm().get_objectTypeCode()}function getOTName(){return FindCrmForm().get_objectTypeName()}function getID(){return FindCrmForm().get_objectId()}function putID(val){FindCrmForm().set_objectId(val)}function getFormType(){return FindCrmForm().get_formType()}function fireSaveEvent(iMode){var oArg=createEventObject();oArg.Mode=iMode;onSaveEvent.fire(oArg);return IsNull(oArg.returnValue)?true:oArg.returnValue}function isHtc(){return true}
+</script>
+</public:component>

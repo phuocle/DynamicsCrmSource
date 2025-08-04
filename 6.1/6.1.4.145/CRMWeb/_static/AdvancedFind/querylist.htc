@@ -1,0 +1,20 @@
+<public:component lightweight="true" tagName="QueryList">
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:event name="onquerychange" id="onQueryChangeHandler"/>
+<public:property name="ClientCache"/>
+<public:property name="EntityName" put="setEntityName" get="getEntityName"/>
+<public:property name="ValidQueryType"/>
+<public:property name="IncludeAPIQuery"/>
+<public:property name="IncludeSystemQuery"/>
+<public:property name="IncludeUserQuery"/>
+<public:property name="QueryId" put="SetQueryId" get="GetQueryId"/>
+<public:property name="QueryObjectType" get="GetQueryObjectType"/>
+<public:property name="FetchXml" get="GetFetchXml"/>
+<public:property name="QueryName" get="GetQueryName"/>
+<public:property name="QueryList" get="getQueryList"/>
+<public:property name="ParentControl"/>
+<public:method name="Refresh"/>
+<script></script><script type="text/javascript">
+var _oSelect=null,_sEntityName=null,_sQueryId=null,_bInitComplete=false;Sys.Application.add_load(SysInit);function SysInit(){ConfigureQuerySelect()}function InitOnDocReady(){Sys.Application.get_isInitialized()&&!_bInitComplete&&ConfigureQuerySelect()}function SetQueryId(sQueryId){if(!IsNull(sQueryId))sQueryId=sQueryId.toUpperCase();if(_sQueryId!=sQueryId){_sQueryId=sQueryId;!IsNull(_oSelect)&&SelectQuery()}}function GetQueryId(){return _sQueryId}function setEntityName(sEntityName){if(_sEntityName!=sEntityName){_sEntityName=sEntityName;Initialize()}}function getEntityName(){return _sEntityName}function GetQueryObjectType(){return IsNull(_oSelect)||_oSelect.selectedIndex<0?null:_oSelect.options[_oSelect.selectedIndex].Type}function GetQueryName(){return _oSelect.selectedIndex>0?_oSelect.SelectedText:null}function GetFetchXml(){if(!IsNull(_sQueryId))switch(parseInt(_oSelect.options[_oSelect.selectedIndex].ObjectTypeCode,10)){case SavedQuery:return ClientCache.GetElement("SystemQuery",_sQueryId,null);case UserQuery:return ClientCache.GetElement("UserQuery",_sQueryId,null)}return null}function getQueryList(){return _oSelect}function HandleQueryChange(){var sOldQuery=_sQueryId;_sQueryId=$find(_oSelect.id).get_dataValue().toUpperCase();var oEvent=createEventObject();onQueryChangeHandler.fire(oEvent);if(oEvent.returnValue==false){_sQueryId=sOldQuery;SelectQuery()}}function ConfigureQuerySelect(){_oSelect=element.childNodes[0];SelectQuery();_oSelect.onchange=HandleQueryChange}function Initialize(){if(!IsNull(ClientCache)){var oaParam=[];oaParam["includeSystemQuery"]=IncludeSystemQuery.toString();oaParam["includeUserQuery"]=IncludeUserQuery.toString();oaParam["includeAPIQuery"]=IncludeAPIQuery.toString();oaParam["queryType"]=ValidQueryType;var sSelectHTML=ClientCache.GetElement("Query",_sEntityName,oaParam);if(!IsNull(sSelectHTML)&&sSelectHTML.length>0){element.innerHTML=sSelectHTML;var queryListId=GetUniqueId(element.firstChild.id);element.firstChild.id=queryListId;$create(Mscrm.OptionSetUIControl,{},null,null,$get(queryListId));ConfigureQuerySelect();return true}return false}}function GetUniqueId(id){if(!IsNull(this.ParentControl))return this.ParentControl.id+id;return id}function SelectQuery(){_oSelect.selectedIndex=-1;if(!IsNull(_sQueryId))_oSelect.value=_sQueryId.toUpperCase();if(_oSelect.selectedIndex==-1){_oSelect.selectedIndex=0;_sQueryId=_oSelect.value}}function Refresh(){ClientCache.ClearCache("Query");ClientCache.ClearCache("UserQuery");ClientCache.ClearCache("SystemQuery");return Initialize()}
+</script>
+</public:component>

@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html manifest="app.manifest">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <script type="text/javascript">    	var PageLoadStartTime = Date.now();</script>
+    <title>Microsoft Dynamics CRM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- css -->
+    <link href="resources/styles/DailyView.css" rel="stylesheet" type="text/css" />
+    <link href="resources/styles/EditorStyles.css" rel="stylesheet" type="text/css" />
+    <link href="resources/styles/csssprites.css" rel="stylesheet" type="text/css" />
+    <link href="resources/styles/Font.css" rel="stylesheet" type="text/css" />
+    
+    <!-- TODO - Build dynamic page to load correct theme resources based on user preference -->
+    <link href="resources/themes/Base/0/CrmStyles.css" rel="stylesheet" type="text/css" />
+    <link href="resources/themes/Base/styles/DynamicsSprite.css" rel="stylesheet" type="text/css" />
+    <!-- TODO: Update build to add loose images to DynamicsSprite.css vs Sprite1.css-->
+    <link href="resources/themes/Base/styles/Sprite1.css" rel="stylesheet" type="text/css" /> 
+    <link href="resources/themes/Base/0/DynamicsStyles.css" rel="stylesheet" type="text/css" />
+    <link href="resources/themes/Base/0/templates.Microsoft.Exchange.Clients.Owa2.Client.Core.Controls.css" type="text/css" rel="stylesheet" />
+    <link href="resources/themes/Base/0/templates.Microsoft.Exchange.Clients.Owa2.Client.Core.Views.css" type="text/css" rel="stylesheet" />
+    <link href="resources/themes/Base/0/templates.Microsoft.Exchange.Clients.Owa2.Client.Mobile.Controls.css" rel="stylesheet" type="text/css" />
+    <link href="resources/styles/jquery.ui.theme.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <script type="text/javascript">    	var JsLoadStartTime = Date.now();</script>
+<!--TODO going fwd we will remove all unnecessary OWA script references when we remove OWA project references from CRM projects and directly refer 
+     required OWA files instead.-->
+
+    <!-- Entry point -->
+        <!-- Script libraries -->
+        <script type="text/javascript" src="scripts/jquery-1.7.1.js"></script>
+        <script type="text/javascript" src="scripts/jquery.owa.touch.js"></script>
+        <script type="text/javascript" src="scripts/jquery.cookie.js"></script>
+        <script type="text/javascript" src="scripts/MicrosoftAjax.js"></script>
+        <script type="text/javascript" src="scripts/jquery.ui.core-1.8.17.js"></script>
+        <script type="text/javascript" src="scripts/jquery.ui.widget-1.8.17.js"></script>
+        <script type="text/javascript" src="scripts/jquery.ui.mouse-1.8.17.js"></script>
+        <script type="text/javascript" src="scripts/jquery.ui.draggable-1.8.17.js"></script>
+        <script type="text/javascript" src="scripts/jquery.ui.sortable-1.8.17.js"></script>
+        <script type="text/javascript" src="scripts/jquery.tmpl.min.js"></script>
+        <script type="text/javascript" src="scripts/EncodeDecode.js"></script>
+        <script type="text/javascript" src="scripts/highcharts.js"></script>
+        <script type="text/javascript" src="scripts/funnel.js"></script>
+        <script type="text/javascript" src="scripts/highchartsfix.js"></script>
+
+        <!-- OWA Libraries -->
+        <script type="text/javascript" src="scripts/Microsoft.Exchange.Clients.Owa2.Client.Core.Framework.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Exchange.Clients.Owa2.Client.Core.Storage.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Exchange.Clients.Owa2.Client.Core.Models.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Exchange.Clients.Owa2.Client.Core.ViewModels.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Exchange.Clients.Owa2.Client.Core.Controls.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Exchange.Clients.Owa2.Client.Core.Views.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Exchange.Clients.Owa2.Client.Desktop.Controls.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Exchange.Clients.Owa2.Client.Mobile.Controls.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Exchange.Clients.Owa2.Client.Application.App.js"></script>
+
+        <!-- Dynamics Libraries -->
+        <script type="text/javascript" src="scripts/Microsoft.Dynamics.Client.Core.Imported.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Dynamics.Client.Core.Framework.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Dynamics.Client.Core.Models.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Dynamics.Client.Core.ViewModels.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Dynamics.Client.Core.Controls.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Dynamics.Client.Application.ViewModels.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Dynamics.Client.Application.App.js"></script>
+        
+        <!-- CRM Libraries -->
+        <script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Imported.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Framework.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Models.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Storage.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.ViewModels.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Controls.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Crm.Client.Core.Views.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Crm.Client.Application.ViewModels.js"></script>
+        <script type="text/javascript" src="scripts/Microsoft.Crm.Client.Application.App.js"></script>
+
+    <script type="text/javascript">    	var JsLoadEndTime = Date.now();</script>
+    <div id="UserEducation" class="userEducation">
+        <div id="UserEducationHeader" class="userEducationHeader">
+            <label id="UserEducationTitle" class="userEducationTitle">
+                Here are some tips to help you get around</label>
+        </div>
+        <div id="UserEducationTips" class="userEducationTips">
+            <label id="HelpTip1" class="helpTip1">
+                Swipe up from the bottom edge to see commands related to what you're doing.</label>
+            <label id="HelpTip2" class="helpTip2">
+                Press and hold anywhere on a field to enter data.</label>
+            <label id="HelpTip3" class="helpTip3">
+                Press and hold to see more options (the same as right-click with a mouse).</label>
+        </div>
+        <div class="gifSection">
+            <img src="/nga/resources/images/user_education.png" id="userEducationImage" />
+        </div>
+        <div class="feedbackSection">
+            <div class="dontShowAgain" style="display:none;">
+                <input id="DontShowUserEducation" class="dontShowCheckBox" type="checkbox" />
+                <label id="DontShowUserEducationLabel">Don't show again.</label>
+            </div>
+            <div id="LoadingSection" class="loadingSection">
+                <div id="CRMUILoading" class="indeterminateProgressRing">
+                    <div class="progressDot"></div>
+                    <div class="progressDot"></div>
+                    <div class="progressDot"></div>
+                    <div class="progressDot"></div>
+                    <div class="progressDot"></div>
+                </div>
+                <label id="WaitLabel" class="waitLabel">
+                    Please wait here while we get things ready for you...</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generic Confirm dialog for when the UI framework is not available. Do not use directly, instead use ConfirmDialog.ShowJQueryDialog - this is styled to reflect ConfirmDialog rendered in client context -->
+    <div id="ConfirmDialog" tabindex="-1" class="popupShadow conductorContent messageDialog-popup-OkCancel information"
+        role="dialog" style="z-index: 1002; display:none;" data-id="messageDialog">
+        <div class="messageDialog-popupContent">
+            <div class="messageDialog-contentContainer">
+                <span class="messageDialog-message">
+                    <span id="ConfirmDialogTitle" class="messageDialog-Title" data-id="messageDialogTitle"></span>
+                    <div id="ConfirmDialogMessage" class="messageDialog-Message messageDialog-MessageBody" data-id="messageDialogMessage"></div>
+                </span>
+            </div>
+            <div class="messageDialog-actionContainer">
+                <span class="messageDialog-buttons">
+                    <span class="messageDialog-buttonContainer">
+                        <button id="ConfirmDialogYes" tabindex="-1" class="button dynamicsButton messageDialog_OK_Button" role="button"aria-labelledby="ConfirmDialogYesLabel" data-id="Ok">
+                            <div class="button-container">
+                                <span class="button-commandRing"></span>
+                                <span class="button-label" id="ConfirmDialogYesLabel"></span>
+                            </div>
+                        </button>
+                        <button id="ConfirmDialogNo" tabindex="-1" class="button dynamicsButton messageDialog_Cancel_Button" role="button" aria-labelledby="ConfirmDialogNoLabel" data-id="Cancel">
+                            <div class="button-container">
+                                <span class="button-commandRing"></span>
+                                <span class="button-label" id="ConfirmDialogNoLabel"></span>
+                            </div>
+                        </button>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    	Microsoft.Crm.Client.Application.App.StartPage.start(window.location.href);
+    </script>
+    
+    <!-- Begin MoCA AuthenticationManager Section -->
+    <script type="text/javascript">
+    	function authenticatedPageLoaded() {
+    		Microsoft.Crm.Client.Core.Framework.AuthenticationManager.get_defaultInstance().onCookieAvailable();
+    	}
+    </script>
+    <form method="POST" id="authForm" target="authFrame">
+        <input type="hidden" name="wa" value="wsignin1.0" />
+        <input type="hidden" id = "authToken" name="wresult" value="" />
+        <input type="hidden" id="wctx" name="wctx" value="" />
+    </form>
+
+    <iframe id="authFrame" name="authFrame" src="" style="display:none"></iframe>
+    <!-- End MoCA AuthenticationManager Section -->
+
+</body>
+</html>

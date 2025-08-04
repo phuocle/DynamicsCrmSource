@@ -1,0 +1,223 @@
+/* Css for TemplateId: ApplicationBarView */
+._isHidden_ApplicationBarView_2 {
+  display:none;
+}
+
+._isTouched_ApplicationBarView_3 {
+  -webkit-transform:scale(1.2);
+  -ms-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+}
+
+._isFaded_ApplicationBarView_4 {
+  opacity:0.2;
+}
+
+._appBarSubMenuPanel_ApplicationBarView_5 {
+  background-color:#5C6953;
+  position:absolute;
+  bottom:0px;
+  right:0px;
+  width:300px;
+  z-index:1001;
+}
+
+._appBarSubMenuPanel_ApplicationBarView_5._composeMode_ApplicationBarView_6 {
+  background-color:#82A87D;
+  bottom:auto;
+  top:0px;
+}
+
+._appBarMainPanelAnchor_ApplicationBarView_7 {
+  position:absolute;
+  bottom:0px;
+  width:100%;
+}
+
+._appBarMainPanelAnchor_ApplicationBarView_7._composeMode_ApplicationBarView_6 {
+  top:0px;
+  bottom:auto;
+}
+
+._appBarMainPanel_ApplicationBarView_8 {
+  background-color:#5C6953;
+  position:absolute;
+  top:-48px;
+  width:100%;
+  z-index:1000;
+}
+
+._appBarMainPanelAnchor_ApplicationBarView_7._composeMode_ApplicationBarView_6 ._appBarMainPanel_ApplicationBarView_8 {
+  background-color:#82A87D;
+  top:auto;
+  bottom:-48px;
+}
+
+._appBarStandardButtonsPanel_ApplicationBarView_9 {
+  padding-left:5px;
+  position:absolute;
+  top:0px;
+  left:0px;
+  z-index:1001;
+}
+
+._appBarMainPanelAnchor_ApplicationBarView_7._composeMode_ApplicationBarView_6 ._appBarStandardButtonsPanel_ApplicationBarView_9 {
+  top:auto;
+  bottom:0px;
+}
+
+._appBarCustomActionsPanel_ApplicationBarView_a {
+  float:right;
+  width:300px;
+  min-height:48px;
+  background-color:inherit;
+  position:relative;
+}
+
+._appBarCustomButtonsPanel_ApplicationBarView_b {
+  position:absolute;
+  top:0px;
+  right:8px;
+  left:0px;
+}
+
+._appBarMainPanelAnchor_ApplicationBarView_7._composeMode_ApplicationBarView_6 ._appBarCustomButtonsPanel_ApplicationBarView_b {
+  top:auto;
+  bottom:0px;
+}
+
+._appBarMenuPanel_ApplicationBarView_c {
+  margin-top:55px;
+}
+
+._appBarMainPanelAnchor_ApplicationBarView_7._composeMode_ApplicationBarView_6 ._appBarMenuPanel_ApplicationBarView_c {
+  margin-top:auto;
+  margin-bottom:85px;
+}
+
+._appBarButtonItem_ApplicationBarView_d {
+  display:table-cell;
+  padding:0px;
+  margin:0px;
+}
+
+._appBarButton_ApplicationBarView_e {
+  width:46px;
+  position:relative;
+  height:76px;
+}
+
+._appBarButtonItemIcon_ApplicationBarView_f {
+  margin:10px 6px 3px 11px;
+}
+
+._composeMode_ApplicationBarView_6 ._appBarButtonItemIcon_ApplicationBarView_f {
+  margin:6px 6px 10px 11px;
+}
+
+._appBarButtonLabel_ApplicationBarView_g {
+  text-align:center;
+  font:11px 'Segoe UI WPC','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+  color:#FFFFFF;
+  overflow:hidden;
+  max-height:30px;
+  word-wrap:break-word;
+}
+
+._buttonLabelForRegularTaskbar_ApplicationBarView_h {
+  display:block;
+}
+
+._buttonLabelForComposeTaskbar_ApplicationBarView_i {
+  height:30px;
+  position:relative;
+}
+
+._buttonLabelForComposeTaskbar_ApplicationBarView_i ._appBarButtonLabel_ApplicationBarView_g {
+  position:absolute;
+  bottom:0px;
+  width:100%;
+}
+
+._composeMode_ApplicationBarView_6 ._appBarOpenMenuButtonItem_ApplicationBarView_j {
+  margin:36px 1px 10px 8px;
+}
+
+._appBarOpenMenuButtonItem_ApplicationBarView_j {
+  margin:10px 1px 10px 8px;
+}
+
+._appBarMenuContainer_ApplicationBarView_k {
+  padding-top:12px;
+  padding-bottom:15px;
+  display:inline-block;
+  color:#FFFFFF;
+}
+
+._menuItem_ApplicationBarView_l {
+  padding:13px 16px;
+}
+
+.mouse ._menuItem_ApplicationBarView_l {
+  font:16px 'Segoe UI WPC Semilight','Segoe UI Semilight','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+  line-height:16px !important;
+}
+
+.twide ._menuItem_ApplicationBarView_l {
+  font:21px 'Segoe UI WPC Semilight','Segoe UI Semilight','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+  line-height:21px !important;
+}
+
+.tnarrow ._menuItem_ApplicationBarView_l {
+  font:21px 'Segoe UI WPC Semilight','Segoe UI Semilight','Segoe UI',Tahoma,'Microsoft Sans Serif',Verdana,sans-serif;
+  line-height:21px !important;
+}
+
+._overlay_ApplicationBarView_m {
+  opacity:0;
+  position:absolute;
+  top:0;
+  height:100%;
+  width:100%;
+  z-index:999;
+}
+
+._clearBoth_ApplicationBarView_n {
+  clear:both;
+}
+
+._floatright_ApplicationBarView_o {
+  float:right;
+}
+
+._menuScrollRegion_ApplicationBarView_p {
+  text-align:right;
+  overflow-x:hidden;
+  overflow-y:auto;
+  max-height:224px;
+}
+
+.tnarrow ._appBarSubMenuPanel_ApplicationBarView_5 {
+  width:100%;
+}
+
+.tnarrow ._appBarCustomActionsPanel_ApplicationBarView_a {
+  width:100%;
+}
+
+/* Css for TemplateId: OwaShellView */
+._primaryConductor_OwaShellView_q {
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+
+._errorHandlerScrollRegion_OwaShellView_r {
+  height:200px;
+  width:400px;
+}
+
+.tnarrow ._errorHandlerScrollRegion_OwaShellView_r {
+  width:100%;
+}
+

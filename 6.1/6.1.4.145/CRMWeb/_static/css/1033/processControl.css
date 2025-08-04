@@ -1,0 +1,1016 @@
+/* The file is AUTO generated on Mon, 8 Feb 2016 19:24:47 UTC */
+/* Do NOT manually modify this file! */
+
+.processControlContainer {
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Tahoma, "Microsoft Sans Serif", Verdana, sans-serif;
+  /* _locID_css@font-family="processControlContainer" _locComment="Font Family" */
+
+}
+.processControlContainer.noScroll {
+  overflow: visible;
+}
+.processControlContainer .hidden {
+  display: none;
+}
+.processControlContainer div.processHeaderArea {
+  position: relative;
+  border-bottom-color: #557b26;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+}
+.processControlContainer.Firefox div.processHeaderArea {
+  height: 43px;
+}
+.processControlContainer .processStagesContainer {
+  font-size: 12px;
+  /* _locID_css@font-family="processStagesContainer" _locComment="Font Size" */
+
+  display: inline-block;
+  float: left;
+  padding-bottom: 2px;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 41px;
+}
+.processControlContainer.IE .processStagesContainer {
+  padding-bottom: 1px;
+}
+.processControlContainer .scrollButton {
+  display: none;
+  width: 27px;
+  height: 23px;
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+}
+.processControlContainer .scrollButton .globalActiveStageFlag {
+  opacity: 0.85;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(85));
+  filter: alpha(opacity = 85);
+  visibility: hidden;
+  margin-bottom: -10px;
+  cursor: pointer;
+  outline: none;
+}
+.processControlContainer .scrollButton .globalActiveStageFlag:hover {
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(100));
+  filter: alpha(opacity = 100);
+}
+.processControlContainer .scrollButton .scrollArrowOuter {
+  height: 23px;
+  background: white;
+}
+.processControlContainer .scrollButton .scrollArrow {
+  position: absolute;
+  height: 23px;
+  background-color: white;
+  cursor: pointer;
+  opacity: 0.85;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(85));
+  filter: alpha(opacity = 85);
+  outline: none;
+}
+.processControlContainer .scrollButton .scrollArrow:hover {
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(100));
+  filter: alpha(opacity = 100);
+}
+.processControlContainer .scrollButton .scrollArrow .scrollArrowInner {
+  height: 21px;
+}
+.processControlContainer .scrollButton .scrollArrow .scrollArrowInner img {
+  padding-top: 6px;
+  padding-right: 7px;
+  padding-left: 7px;
+}
+.processControlContainer .scrollButton.left {
+  left: 0px;
+}
+.processControlContainer .scrollButton.left .scrollArrow {
+  border-left: 1px solid #376400;
+}
+.processControlContainer .scrollButton.left .scrollArrow .scrollArrowInner {
+  border-right: 1px solid #376400;
+}
+.processControlContainer .scrollButton.right {
+  right: -3px;
+}
+.processControlContainer .scrollButton.right .scrollArrow {
+  border-right: 1px solid #376400;
+}
+.processControlContainer .scrollButton.right .scrollArrow .scrollArrowInner {
+  border-left: 1px solid #376400;
+}
+.processControlContainer .scrollButton.disabled .scrollArrow {
+  opacity: 0.35;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(35));
+  filter: alpha(opacity = 35);
+}
+.processControlContainer.highContrast .scrollButton .scrollArrow:hover,
+.processControlContainer.highContrast .scrollButton .scrollArrow:focus {
+  outline: 1px dashed #ff0000;
+}
+.processControlContainer div.processStageContainer {
+  padding-left: 0px;
+  background-image: none;
+  background-repeat: no-repeat;
+  height: 41px;
+  display: inline-block;
+  outline: none;
+  opacity: 0.85;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(85));
+  filter: alpha(opacity = 85);
+}
+.processControlContainer div.processStageContainer > div {
+  cursor: pointer;
+}
+.processControlContainer div.processStageContainer:focus,
+.processControlContainer div.processStageContainer:hover {
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(100));
+  filter: alpha(opacity = 100);
+}
+.processControlContainer div.hasPrevious.processStageContainer {
+  margin-left: -5px;
+}
+.processControlContainer div.hasPrevious.processStageContainer .processStageTailContainer {
+  padding-left: 11px;
+  background-image: url('/_imgs/ProcessControl/processControlArrows.png');
+  background-repeat: no-repeat;
+}
+.processControlContainer.rtl div.hasPrevious.processStageContainer .processStageTailContainer {
+  background-image: url('/_imgs/ProcessControl/processControlArrowsRtl.png');
+}
+.processControlContainer.Firefox div.hasPrevious.processStageContainer {
+  margin-left: -5px;
+}
+.processControlContainer div.hasPrevious.processStageContainer.selectedStage .processStageTailContainer {
+  background-position: left 0px;
+}
+.processControlContainer div.hasPrevious.processStageContainer.unselectedStage .processStageTailContainer {
+  background-position: left -42px;
+}
+.processControlContainer div.processStageHeadContainer {
+  background-image: none;
+  padding-right: 0px;
+  height: 21px;
+}
+.processControlContainer .hasNext div.processStageHeadContainer {
+  padding-right: 11px;
+  background-image: url('/_imgs/ProcessControl/processControlArrows.png');
+  background-repeat: no-repeat;
+}
+.processControlContainer.rtl .hasNext div.processStageHeadContainer {
+  background-image: url('/_imgs/ProcessControl/processControlArrowsRtl.png');
+}
+.processControlContainer .selectedStage.hasNext div.processStageHeadContainer {
+  background-position: right -21px;
+}
+.processControlContainer .unselectedStage.hasNext div.processStageHeadContainer {
+  background-position: right -63px;
+}
+.processControlContainer div.stageContentArea {
+  background: #555555;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.processControlContainer .selectedStage div.stageContentArea {
+  background: #376400;
+}
+.processControlContainer .processStageContainer div.selectedStageExtensionUpper,
+.processControlContainer .processStageContainer div.selectedStageExtensionLower {
+  display: none;
+  height: 1px;
+  background-color: #376400;
+}
+.processControlContainer .processStageContainer div.globalActiveStageFlag {
+  visibility: hidden;
+  margin-bottom: -10px;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+.processControlContainer .processStageContainer div.globalActiveStageFlag img {
+  padding-left: 6px;
+}
+.processControlContainer.IE .processStageContainer div.globalActiveStageFlag {
+  height: 29px;
+}
+.processControlContainer .selectedStage div.selectedStageExtensionUpper,
+.processControlContainer .selectedStage div.selectedStageExtensionLower {
+  display: block;
+  position: relative;
+}
+.processControlContainer .selectedStage.hasPrevious div.selectedStageExtensionUpper {
+  margin-left: -1px;
+}
+.processControlContainer .selectedStage.hasPrevious div.selectedStageExtensionLower {
+  margin-left: -2px;
+}
+.processControlContainer .selectedStage.hasNext div.selectedStageExtensionUpper {
+  margin-right: 11px;
+}
+.processControlContainer .selectedStage.hasNext div.selectedStageExtensionLower {
+  margin-right: 12px;
+}
+.processControlContainer .activeStage div.globalActiveStageFlag {
+  visibility: visible;
+}
+.processControlContainer .activeStage.unselectedStage div.stageContentArea {
+  background: #555555;
+}
+.processControlContainer.highContrast .selectedStage div.stageContentArea {
+  outline: 2px solid #ff0000;
+}
+.processControlContainer.highContrast .unselectedStage:focus div.stageContentArea,
+.processControlContainer.highContrast .unselectedStage:hover div.stageContentArea {
+  outline: 1px dashed #ff0000;
+}
+.processControlContainer div.stageContent {
+  background-image: none;
+  margin-left: 4px;
+  overflow: hidden;
+  word-wrap: normal;
+  padding-left: 11px;
+}
+.processControlContainer .hasPrevious div.stageContent {
+  padding-left: 0px;
+}
+.processControlContainer .processStageContainer div.stageIconHolder {
+  height: 15px;
+  width: 20px;
+  float: left;
+  padding-top: 1px;
+}
+.processControlContainer .processStageContainer div.stageIconHolder img.stageIcon {
+  vertical-align: middle;
+}
+.processControlContainer .processStageContainer.disabled div.stageIconHolder {
+  padding-top: 2px;
+}
+.processControlContainer.IE:not(.ie8) .processStageContainer.disabled div.stageIconHolder {
+  padding-top: 1px;
+}
+.processControlContainer span.stageNameContent {
+  line-height: 21px;
+  white-space: nowrap;
+  word-wrap: normal;
+  display: block;
+  overflow: hidden;
+  text-transform: capitalize;
+  color: #ffffff;
+}
+.processControlContainer.ie8 span.stageNameContent {
+  display: inline;
+}
+.processControlContainer.ie8 div.stageContent {
+  text-overflow: ellipsis;
+  color: #ffffff;
+}
+.processControlContainer div.layer0 {
+  z-index: 1000;
+}
+.processControlContainer div.layer1 {
+  z-index: 999;
+}
+.processControlContainer div.layer2 {
+  z-index: 998;
+}
+.processControlContainer div.layer3 {
+  z-index: 997;
+}
+.processControlContainer div.layer4 {
+  z-index: 996;
+}
+.processControlContainer div.layer5 {
+  z-index: 995;
+}
+.processControlContainer div.layer6 {
+  z-index: 994;
+}
+.processControlContainer div.layer7 {
+  z-index: 993;
+}
+.processControlContainer div.processActionsContainer {
+  display: inline-block;
+  float: right;
+  margin-top: 20px;
+  margin-left: 2px;
+  color: #ffffff;
+  text-align: center;
+}
+.processControlContainer.IE div.processActionsContainer {
+  margin-top: 19px;
+}
+.processControlContainer div.processActionsContainer.hidden {
+  display: none;
+}
+.processControlContainer div.stageBackActionContainer {
+  cursor: pointer;
+  float: left;
+  padding-top: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-bottom: 1px;
+  outline: none;
+  opacity: 0.85;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(85));
+  filter: alpha(opacity = 85);
+  background: #376400;
+  color: #ffffff;
+}
+.processControlContainer div.stageBackActionContainer.multipleActions {
+  border-right: 1px solid white;
+}
+.processControlContainer div.stageBackActionContainer.disabled {
+  background: #555555;
+  color: #c1c1c1;
+  cursor: default;
+}
+.processControlContainer.IE div.stageBackActionContainer,
+.processControlContainer.IE div.stageAdvanceActionContainer,
+.processControlContainer.IE div.stageNavigateActionContainer {
+  padding-top: 3px;
+  padding-bottom: 0px;
+}
+.processControlContainer img.stageActionIcon {
+  margin-bottom: 3px;
+  vertical-align: middle;
+  background-origin: content-box;
+  min-height: 15px;
+}
+.processControlContainer.mac img.stageActionIcon {
+  padding-bottom: 0px;
+}
+.processControlContainer.IE img.stageActionIcon {
+  padding-bottom: 2px;
+}
+.processControlContainer div.stageAdvanceActionContainer,
+.processControlContainer div.stageNavigateActionContainer {
+  cursor: pointer;
+  float: left;
+  padding-right: 10px;
+  padding-top: 4px;
+  padding-bottom: 1px;
+  outline: none;
+  opacity: 0.85;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(85));
+  filter: alpha(opacity = 85);
+  background: #376400;
+  color: #ffffff;
+}
+.processControlContainer div.stageAdvanceActionContainer.disabled,
+.processControlContainer div.stageNavigateActionContainer.disabled {
+  cursor: default;
+  background: #376400;
+  color: #c1c1c1;
+}
+.processControlContainer.highContrast div.stageAdvanceActionContainer:hover,
+.processControlContainer.highContrast div.stageBackActionContainer:hover,
+.processControlContainer.highContrast div.stageNavigateActionContainer:hover,
+.processControlContainer.highContrast div.stageAdvanceActionContainer:focus,
+.processControlContainer.highContrast div.stageBackActionContainer:focus,
+.processControlContainer.highContrast div.stageNavigateActionContainer:focus {
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(100));
+  filter: alpha(opacity = 100);
+  outline: 1px dashed #ff0000;
+}
+.processControlContainer div.stageAdvanceActionContainer:focus,
+.processControlContainer div.stageNavigateActionContainer:focus,
+.processControlContainer div.stageBackActionContainer:focus,
+.processControlContainer div.stageBackActionContainer:focus,
+.processControlContainer div.stageAdvanceActionContainer:hover,
+.processControlContainer div.stageNavigateActionContainer:hover,
+.processControlContainer div.stageBackActionContainer:hover,
+.processControlContainer div.stageBackActionContainer:hover {
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(100));
+  filter: alpha(opacity = 100);
+}
+.processControlContainer div.stageActionText {
+  margin-left: 4px;
+  text-transform: capitalize;
+  word-wrap: normal;
+  width: 77px;
+  max-width: 77px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-height: 18px;
+}
+.processControlContainer div.stageActionEmptyText {
+  max-height: 18px;
+}
+.processControlContainer.IE div.stageActionText,
+.processControlContainer.IE div.stageActionEmptyText {
+  max-height: 20px;
+}
+.processControlContainer.ie7 div.stageActionText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100px;
+  text-align: center;
+  margin-top: -4px;
+}
+.processControlContainer.ie7 div.stageActionText img {
+  margin-top: 4px;
+}
+.processControlContainer .processHeaderSeparator {
+  position: absolute;
+  top: 20px;
+  width: 1000px;
+}
+.processControlContainer.ie7 .processHeaderSeparator,
+.processControlContainer.highContrast .processHeaderSeparator {
+  display: none;
+}
+.processControlContainer div.processHeaderFooter {
+  clear: both;
+}
+.processControlContainer div.collapsibleArea {
+  padding-top: 5px;
+  border-color: #557b26;
+  border-style: solid;
+  border-bottom-width: 2px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  overflow: visible;
+  position: relative;
+}
+.processControlContainer div.scrollPane {
+  overflow: hidden;
+  padding-bottom: 5px;
+}
+.processControlContainer div.scrollPane.noScroll {
+  overflow: visible;
+}
+.processControlContainer div.collapsibleArea.noScroll {
+  overflow: visible;
+}
+.processControlContainer div.processStepsContent.hidden {
+  display: none;
+}
+.processControlContainer div.processStepSeparator {
+  height: 56px;
+  float: right;
+  position: relative;
+  margin-top: 5px;
+  right: 5px;
+  border-left-width: 1px;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  border-color: #376400;
+  border-style: dotted;
+}
+.processControlContainer div.processStepColumn {
+  display: inline-block;
+  vertical-align: top;
+}
+.processControlContainer.ie7 div.processStepColumn {
+  width: 385px;
+  zoom: 1;
+  *display: inline;
+}
+.processControlContainer div.processStep {
+  margin-right: 5px;
+}
+.processControlContainer.ie7 div.processStep {
+  width: 350px;
+  font-size: 11px;
+}
+.processControlContainer div.processStep.emptyValue,
+.processControlContainer .stageGatesHidden div.processStep.emptyValue.processRequiredStep {
+  margin-left: 22px;
+}
+.processControlContainer div.processStep.emptyValue.processRequiredStep {
+  margin-left: 0px;
+}
+.processControlContainer .processStep img.completedStep,
+.processControlContainer .processStep img.requiredStepWarning {
+  vertical-align: middle;
+  width: 16px;
+  margin-right: 3px;
+  height: auto;
+}
+.processControlContainer .processStep.emptyValue img.completedStep,
+.processControlContainer .processStep img.completedStep.ms-crm-Hidden,
+.processControlContainer .processStep img.emptyStep {
+  display: none;
+}
+.processControlContainer div.processStepLabel {
+  margin-top: 2px;
+  width: 130px;
+}
+.processControlContainer div.processStepLabel span {
+  max-width: 120px;
+}
+.processControlContainer .processStep div.processStepValue div.linkControlLabel {
+  margin-top: 2px;
+  margin-left: 35px;
+  margin-right: 0px;
+  font-style: italic;
+  color: #b96b08;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.processControlContainer .processStep div.processStepValue div.linkControlDisabled {
+  color: #b1b1b1;
+}
+.processControlContainer div.processStepValue {
+  margin-top: -2px;
+  margin-right: 5px;
+  width: 160px;
+}
+.processControlContainer.ie7 div.processStepValue {
+  position: relative;
+  z-index: 1;
+}
+.processControlContainer div.processStepValue.inEdit {
+  width: 223px;
+}
+.processControlContainer.ie7 div.processStepValue.inEdit {
+  width: 160px;
+  z-index: 10;
+}
+.processControlContainer.ie7 .inlineTextAreaContainer div.ms-crm-Inline-Value {
+  height: 16px;
+}
+.processControlContainer div.processStepLabel,
+.processControlContainer div.processStepValue,
+.processControlContainer div.processStepLabelMask {
+  height: 20px;
+}
+.processControlContainer div.processStepLabel,
+.processControlContainer div.processStepValue,
+.processControlContainer div.processStepLabelMask,
+.processControlContainer div.ms-crm-Inline-GradientMask {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  word-wrap: normal;
+  vertical-align: middle;
+}
+.processControlContainer div.processStepValue {
+  overflow: visible;
+}
+.processControlContainer.ie7 div.processStepLabel,
+.processControlContainer.ie7 div.processStepValue,
+.processControlContainer.ie7 div.processStepLabelMask {
+  zoom: 1;
+  *display: inline;
+}
+.processControlContainer div.processStepLabel {
+  font-family: "Segoe UI", "Helvetica Neue", Tahoma, "Microsoft Sans Serif", Verdana, sans-serif;
+  /* _locID_css@font-family="processControlContainer_div_processStepLabel" _locComment="Font Family" */
+
+}
+.processControlContainer div.processStepLabelMask {
+  position: relative;
+  margin-left: -25px;
+  width: 15px;
+  z-index: 1;
+}
+.processControlContainer div.ms-crm-Inline-GradientMask {
+  position: absolute;
+  width: 40px;
+  z-index: 1;
+  top: 0;
+  right: 1px;
+  height: 18px;
+  margin-top: 1px;
+}
+.processControlContainer div.processScrollbarMask {
+  position: relative;
+  float: right;
+  right: 0;
+  z-index: 1;
+  width: 60px;
+  height: 66px;
+  top: -66px;
+  margin-bottom: -66px;
+  pointer-events: none;
+}
+.processControlContainer div.processStepLabelMask,
+.processControlContainer div.ms-crm-Inline-GradientMask,
+.processControlContainer div.processScrollbarMask {
+  background: rgba(255, 255, 255, 0.15);
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0.15), #ffffff);
+  background: -webkit-gradient(linear, left, right, color-stop(rgba(255, 255, 255, 0.15)), color-stop(#ffffff));
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.15), #ffffff);
+  background: -o-linear-gradient(left, rgba(255, 255, 255, 0.15), #ffffff);
+  background: -ms-linear-gradient(left, rgba(255, 255, 255, 0.15), #ffffff);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26ffffff', endColorstr='#ffffffff', GradientType=1);
+  background: linear-gradient(left, rgba(255, 255, 255, 0.15), #ffffff);
+}
+.processControlContainer.outlook div.processStepLabelMask,
+.processControlContainer.outlook div.ms-crm-Inline-GradientMask,
+.processControlContainer.outlook div.processScrollbarMask {
+  background: rgba(247, 251, 255, 0.05);
+  background: -moz-linear-gradient(left, rgba(247, 251, 255, 0.05), #f7fbff);
+  background: -webkit-gradient(linear, left, right, color-stop(rgba(247, 251, 255, 0.05)), color-stop(#f7fbff));
+  background: -webkit-linear-gradient(left, rgba(247, 251, 255, 0.05), #f7fbff);
+  background: -o-linear-gradient(left, rgba(247, 251, 255, 0.05), #f7fbff);
+  background: -ms-linear-gradient(left, rgba(247, 251, 255, 0.05), #f7fbff);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0df7fbff', endColorstr='#fff7fbff', GradientType=1);
+  background: linear-gradient(left, rgba(247, 251, 255, 0.05), #f7fbff);
+}
+.processControlContainer.rtl div.processStepLabelMask,
+.processControlContainer.rtl div.ms-crm-Inline-GradientMask,
+.processControlContainer.rtl div.processScrollbarMask {
+  background: rgba(255, 255, 255, 0.15);
+  background: -moz-linear-gradient(right, rgba(255, 255, 255, 0.15), #ffffff);
+  background: -webkit-gradient(linear, right, left, color-stop(rgba(255, 255, 255, 0.15)), color-stop(#ffffff));
+  background: -webkit-linear-gradient(right, rgba(255, 255, 255, 0.15), #ffffff);
+  background: -o-linear-gradient(right, rgba(255, 255, 255, 0.15), #ffffff);
+  background: -ms-linear-gradient(right, rgba(255, 255, 255, 0.15), #ffffff);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26ffffff', endColorstr='#ffffffff', GradientType=1);
+  background: linear-gradient(right, rgba(255, 255, 255, 0.15), #ffffff);
+}
+.processControlContainer.ie8.rtl div.processStepLabelMask,
+.processControlContainer.ie8.rtl div.ms-crm-Inline-GradientMask,
+.processControlContainer.ie8.rtl div.processScrollbarMask {
+  background: rgba(255, 255, 255, 0.15);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#26ffffff', GradientType=1);
+}
+.processControlContainer.ie8.rtl div.processStepLabelMask,
+.processControlContainer.ie8.rtl div.ms-crm-Inline-GradientMask,
+.processControlContainer.ie8.rtl div.processScrollbarMask {
+  background: rgba(255, 255, 255, 0.15);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#26ffffff', GradientType=1);
+}
+.processControlContainer.rtl.outlook div.processStepLabelMask,
+.processControlContainer.rtl.outlook div.ms-crm-Inline-GradientMask,
+.processControlContainer.rtl.outlook div.processScrollbarMask {
+  background: rgba(247, 251, 255, 0.05);
+  background: -moz-linear-gradient(right, rgba(247, 251, 255, 0.05), #f7fbff);
+  background: -webkit-gradient(linear, right, left, color-stop(rgba(247, 251, 255, 0.05)), color-stop(#f7fbff));
+  background: -webkit-linear-gradient(right, rgba(247, 251, 255, 0.05), #f7fbff);
+  background: -o-linear-gradient(right, rgba(247, 251, 255, 0.05), #f7fbff);
+  background: -ms-linear-gradient(right, rgba(247, 251, 255, 0.05), #f7fbff);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0df7fbff', endColorstr='#fff7fbff', GradientType=1);
+  background: linear-gradient(right, rgba(247, 251, 255, 0.05), #f7fbff);
+}
+.processControlContainer.ie8.rtl.outlook div.processStepLabelMask,
+.processControlContainer.ie8.rtl.outlook div.ms-crm-Inline-GradientMask,
+.processControlContainer.ie8.rtl.outlook div.processScrollbarMask {
+  background: rgba(247, 251, 255, 0.05);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff7fbff', endColorstr='#0df7fbff', GradientType=1);
+}
+.processControlContainer.ie8.rtl.outlook div.processStepLabelMask,
+.processControlContainer.ie8.rtl.outlook div.ms-crm-Inline-GradientMask,
+.processControlContainer.ie8.rtl.outlook div.processScrollbarMask {
+  background: rgba(247, 251, 255, 0.05);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff7fbff', endColorstr='#0df7fbff', GradientType=1);
+}
+.processControlContainer div.stageLabelMask {
+  height: 21px;
+  width: 30px;
+  position: relative;
+  float: right;
+  top: -21px;
+  right: 0;
+}
+.processControlContainer .hasNext div.stageLabelMask {
+  right: 10px;
+}
+.processControlContainer .selectedStage div.stageLabelMask {
+  background: rgba(55, 100, 0, 0.15);
+  background: -moz-linear-gradient(left, rgba(55, 100, 0, 0.15), #376400);
+  background: -webkit-gradient(linear, left, right, color-stop(rgba(55, 100, 0, 0.15)), color-stop(#376400));
+  background: -webkit-linear-gradient(left, rgba(55, 100, 0, 0.15), #376400);
+  background: -o-linear-gradient(left, rgba(55, 100, 0, 0.15), #376400);
+  background: -ms-linear-gradient(left, rgba(55, 100, 0, 0.15), #376400);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26376400', endColorstr='#ff376400', GradientType=1);
+  background: linear-gradient(left, rgba(55, 100, 0, 0.15), #376400);
+}
+.processControlContainer.rtl .selectedStage div.stageLabelMask {
+  background: rgba(55, 100, 0, 0.15);
+  background: -moz-linear-gradient(right, rgba(55, 100, 0, 0.15), #376400);
+  background: -webkit-gradient(linear, right, left, color-stop(rgba(55, 100, 0, 0.15)), color-stop(#376400));
+  background: -webkit-linear-gradient(right, rgba(55, 100, 0, 0.15), #376400);
+  background: -o-linear-gradient(right, rgba(55, 100, 0, 0.15), #376400);
+  background: -ms-linear-gradient(right, rgba(55, 100, 0, 0.15), #376400);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26376400', endColorstr='#ff376400', GradientType=1);
+  background: linear-gradient(right, rgba(55, 100, 0, 0.15), #376400);
+}
+.processControlContainer.ie8 .selectedStage div.stageLabelMask {
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.processControlContainer.ie8.rtl .selectedStage div.stageLabelMask {
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.processControlContainer.ie8 .selectedStage div.selectedStageExtensionLower,
+.processControlContainer.ie8 .selectedStage div.selectedStageExtensionUpper {
+  background-color: #557b26;
+}
+.processControlContainer.ie8 .selectedStage:hover div.selectedStageExtensionLower,
+.processControlContainer.ie8 .selectedStage:hover div.selectedStageExtensionUpper,
+.processControlContainer.ie8 .selectedStage:focus div.selectedStageExtensionLower,
+.processControlContainer.ie8 .selectedStage:focus div.selectedStageExtensionUpper {
+  background-color: #376400;
+}
+.processControlContainer .unselectedStage div.stageLabelMask {
+  background: rgba(85, 85, 85, 0.15);
+  background: -moz-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  background: -webkit-gradient(linear, left, right, color-stop(rgba(85, 85, 85, 0.15)), color-stop(#555555));
+  background: -webkit-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  background: -o-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  background: -ms-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26555555', endColorstr='#ff555555', GradientType=1);
+  background: linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+}
+.processControlContainer.rtl .unselectedStage div.stageLabelMask {
+  background: rgba(85, 85, 85, 0.15);
+  background: -moz-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  background: -webkit-gradient(linear, right, left, color-stop(rgba(85, 85, 85, 0.15)), color-stop(#555555));
+  background: -webkit-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  background: -o-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  background: -ms-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26555555', endColorstr='#ff555555', GradientType=1);
+  background: linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+}
+.processControlContainer.ie8 .unselectedStage div.stageLabelMask {
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.processControlContainer.ie8.rtl .unselectedStage div.stageLabelMask {
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.processControlContainer .unselectedStage.activeStage div.stageLabelMask {
+  background: rgba(85, 85, 85, 0.15);
+  background: -moz-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  background: -webkit-gradient(linear, left, right, color-stop(rgba(85, 85, 85, 0.15)), color-stop(#555555));
+  background: -webkit-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  background: -o-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  background: -ms-linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26555555', endColorstr='#ff555555', GradientType=1);
+  background: linear-gradient(left, rgba(85, 85, 85, 0.15), #555555);
+}
+.processControlContainer.rtl .unselectedStage.activeStage div.stageLabelMask {
+  background: rgba(85, 85, 85, 0.15);
+  background: -moz-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  background: -webkit-gradient(linear, right, left, color-stop(rgba(85, 85, 85, 0.15)), color-stop(#555555));
+  background: -webkit-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  background: -o-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  background: -ms-linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26555555', endColorstr='#ff555555', GradientType=1);
+  background: linear-gradient(right, rgba(85, 85, 85, 0.15), #555555);
+}
+.processControlContainer.ie8 .unselectedStage.activeStage div.stageLabelMask {
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.processControlContainer.ie8.rtl .unselectedStage.activeStage div.stageLabelMask {
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.processControlContainer.highContrast div.processStepLabelMask,
+.processControlContainer.highContrast div.ms-crm-Inline-GradientMask,
+.processControlContainer.highContrast div.processScrollbarMask,
+.processControlContainer.highContrast div.stageLabelMask,
+.processControlContainer.ie7 div.processStepLabelMask,
+.processControlContainer.ie7 div.processScrollbarMask,
+.processControlContainer.ie7 div.stageLabelMask {
+  display: none;
+}
+.processControlContainer div.scrollBarContainer {
+  clear: both;
+}
+.processControlContainer.ie7 div.scrollBar {
+  display: block;
+}
+.processControlContainer .ui-slider {
+  margin-top: 2px;
+  height: 8px;
+  position: relative;
+}
+.processControlContainer .ui-slider-handle {
+  height: 4px;
+  background: #d1d1d1;
+  display: inline-block;
+  position: absolute;
+}
+.processControlContainer .ui-slider-handle.ui-state-hover:hover {
+  background-color: #376400;
+}
+.processControlContainer.ie7 .ui-slider-handle {
+  display: block;
+}
+.processControlContainer.highContrast .ui-slider-handle {
+  border: 1px;
+  border-color: #ff0000;
+  border-style: solid;
+}
+.processControlContainer.highContrast .collapsibleView .collapsibleFloatContainer .processName:focus,
+.processControlContainer.highContrast .collapsibleView .collapsibleFloatContainer .processName:hover {
+  outline: 1px;
+  outline-color: #ff0000;
+  outline-style: dashed;
+}
+.processControlContainer.highContrast .collapsibleView .collapsibleFloatContainer .collapseButtonContainer:focus,
+.processControlContainer.highContrast .collapsibleView .collapsibleFloatContainer .collapseButtonContainer:hover {
+  outline: 1px dashed #ff0000;
+}
+.processControlContainer .collapsibleView {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.processControlContainer .collapsibleView .collapsibleFloatContainer {
+  float: right;
+}
+.processControlContainer .collapsibleView .collapsibleFloatContainer .processName:hover,
+.processControlContainer .collapsibleView .collapsibleFloatContainer .processName:focus {
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(100));
+  filter: alpha(opacity = 100);
+}
+.processControlContainer .collapsibleView .collapsibleFloatContainer .processName {
+  position: relative;
+  z-index: 1;
+  height: 14px;
+  float: left;
+  padding-right: 1px;
+  outline: none;
+  background-color: #376400;
+  opacity: 0.85;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(85));
+  filter: alpha(opacity = 85);
+}
+.processControlContainer .collapsibleView .collapsibleFloatContainer .processName .infoWrapper {
+  padding: 4px 3px 3px 3px;
+  display: inline-block;
+}
+.processControlContainer .collapsibleView .collapsibleFloatContainer .processName .infoWrapper img {
+  display: inline-block;
+  vertical-align: top;
+}
+.processControlContainer .collapsibleView .collapsibleFloatContainer .processName .processNameText {
+  display: inline-block;
+  color: white;
+  overflow: hidden;
+  height: 14px;
+  padding-left: 10px;
+  padding-right: 12px;
+  margin-right: -3px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  line-height: 15px;
+  vertical-align: top;
+}
+.processControlContainer .collapsibleView .collapsibleFloatContainer div.collapseButtonContainer {
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 14px;
+  outline: none;
+  background-color: #376400;
+  opacity: 0.85;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(85));
+  filter: alpha(opacity = 85);
+  float: right;
+}
+.processControlContainer .collapsibleView .collapsibleFloatContainer div.collapseButtonContainer:hover,
+.processControlContainer .collapsibleView .collapsibleFloatContainer div.collapseButtonContainer:focus {
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(100));
+  filter: alpha(opacity = 100);
+}
+.processControlContainer .collapsibleView .collapsibleFloatContainer a.collapseButton {
+  display: inline-block;
+  zoom: 1;
+  margin-left: 8px;
+  width: 16px;
+  height: 9px;
+  margin-top: 5px;
+}
+.processControlContainer .collapsibleView .collapsibleFloatContainer img.collapseButtonIcon {
+  vertical-align: top;
+}
+.processControlContainer .processFooterSeparator hr {
+  border: 0;
+  height: 2px;
+  background-color: #376400;
+  margin-top: 0px;
+}
+.processControlContainer .processWarningBar {
+  position: relative;
+  z-index: 9;
+  left: 0;
+  clear: right;
+}
+.processControlContainer .stageGatesHidden .processRequiredBar {
+  display: none;
+}
+.processControlContainer img.requiredStepWarning {
+  display: none;
+}
+.processControlContainer .processStep.emptyValue img.requiredStepWarning {
+  display: inline;
+}
+.processControlContainer .stageGatesHidden .processStep.emptyValue img.requiredStepWarning {
+  display: none;
+}
+.processWarningBar {
+  height: 30px;
+  background-color: #FFF19D;
+  font-size: 11px;
+  font-family: Segoe UI;
+  color: #333333;
+  border: 1px solid #DDDDDD;
+}
+.processWarningBar .processWarningBar-Text {
+  padding-top: 8px;
+  margin: 0 32px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+.processWarningBar .processBarIcon {
+  margin: 8px;
+  float: left;
+}
+.processWarningBar .processWarningBar-Close {
+  float: right;
+  margin: 8px 8px 8px 8px;
+  width: 16px;
+}
+.ui-flyout-dialog.processNavigateMenu {
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Tahoma, "Microsoft Sans Serif", Verdana, sans-serif;
+  /* _locID_css@font-family="processNavigateFlyout" _locComment="Font Family" */
+
+  font-size: 12px;
+  color: black;
+  padding: 0px;
+  border: 2px solid #557b26;
+}
+.ui-flyout-dialog.processNavigateMenu .ui-dialog-content {
+  padding: 0px;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateHeaderSection {
+  border-bottom: 1px solid #557b26;
+  text-transform: capitalize;
+  padding: 5px 30px 5px 18px;
+  font-size: 14px;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateMenuSection {
+  max-height: 175px;
+  overflow: auto;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateMenuItem {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 10px 30px 10px 18px;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateMenuItem.enabled:hover {
+  background-color: #c07e03;
+  color: white;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateMenuItem.disabled {
+  color: gray;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateMenuItem.emptyDisplayName {
+  font-style: italic;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateFooterSection {
+  border-top: 1px solid #557b26;
+  padding: 5px 0px 5px 0px;
+  padding-right: 0px;
+  max-height: 15px;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateFooterSection .navigateAvailableCount {
+  display: inline-block;
+  padding-left: 18px;
+  max-width: 82px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateFooterSection .navigateMenuCreate {
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+  max-height: 16px;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateFooterSection .navigateMenuCreate .createText {
+  display: inline-block;
+  max-width: 69px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ui-flyout-dialog.processNavigateMenu .navigateFooterSection .navigateMenuCreate .createImage {
+  display: inline-block;
+  padding-left: 8px;
+  padding-right: 10px;
+  padding-top: 1px;
+  vertical-align: top;
+}

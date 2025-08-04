@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>重複データを検出するシステム ジョブの実行</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">重複データを検出するシステム ジョブの実行</h1>
+			<p class="bodyText">システム データの整合性を維持するには、定期的に重複データを確認し、ユーザーが不注意に重複した、取引先担当者、取引先企業、潜在顧客、または他の種類のレコードを作成していないことを確かめる必要があります。</p>
+			<p class="bodyText">重複データの確認ウィザードは、重複レコードを探して除去する "ジョブ" を設定するのに役立ちます。ジョブを毎日実行するようにスケジュールし、ジョブの終了時に確認の電子メールを受け取ることができます。</p>
+			<div class="alertContent">
+				<p class="notehead-end">メモ</p>
+				<p class="bodyText">重複データ検出は、レコードの種類のルールを作成済みであり、重複データ検出が有効になっているときだけ使用できます。</p>
+			</div>
+			<div class="alertContent">
+				<p class="importanthead">重要</p>
+				<p class="bodyText">重複データ検出は、ユーザーが Microsoft Dynamics CRM 2013 で作業するために更新されたレコードの種類を作成または編集するときはサポートされません。これらのレコードの種類の一覧については、「 <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=317910">Developer Toolkit</a>」を参照してください。これらのレコードの種類に対する重複データ検出ルールを作成し、定期的にジョブを実行して、システム データを消去する必要があります。重複データ検出は、データ インポート時にサポートされます。詳細 : <a href="ui_dd_duprules_list.htm">重複データ検出ルールの設定</a></p>
+			</div>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>
+						<a class="expand" id="tID0ECAMAAABAA" href="." onclick="expandCollapse('ID0ECAMAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECAMAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />CRM Web アプリケーションを使用する場合</p>
+						</a>
+						<div id="dID0ECAMAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b>、<b>[設定]</b> の順にクリックまたはタップします。</p>
+									<p class="bodyText">ナビゲーション バーに <b>[設定]</b> と表示されます。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">
+										<b>[設定]</b>、<b>[データ管理]</b> の順にクリックまたはタップします。<b>[重複データ検出ジョブ]</b> をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBAMAAABAA" href="." onclick="expandCollapse('ID0EBAMAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAMAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p>
+						</a>
+						<div id="dID0EBAMAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション ウィンドウで、<b>[設定]</b> &gt; <b>[システム]</b> &gt; <b>[データ管理]</b> &gt; <b> &gt;[重複データ検出ジョブ]</b> をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[新規]</b> をクリックまたはタップし、実行する重複データ検出ジョブの名前をクリックまたはタップします。</p>
+						<p class="bodyText">重複データの確認ウィザードが表示され、これにより重複データをチェックするジョブを作成できます。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[次へ]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[検索]</b> ドロップダウン リストで、重複データをチェックするレコードの種類を選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[使用した保存ビュー]</b> ドロップダウン リストで、検索に一致するレコードの種類を選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[状態]</b> ドロップダウン リストで、重複情報をチェックするフィールドを選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[次の値に等しい]</b> ドロップダウン リストで、ウィザードで重複データの有無を確認するために使用する条件を選択します。空のボックスに、検索対象のテキストを入力します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[アクティブ]</b> ドロップダウン リストで、アクティブまたは非アクティブなレコードから重複した情報を検索するかどうかを選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[次へ]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">ジョブの既定の名前を受け入れるか、または別の名前を入力します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">ジョブの開始時刻を入力し、ジョブを実行する頻度を日数で入力します。(毎日、ジョブを実行する場合は、<em class="emphasis">1</em> を入力します)。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">重複データ検出ジョブの終了時に電子メールの確認メッセージを受け取るには、チェック ボックスをオンにします。必要な場合、追加の電子メール アドレスを入力します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[次へ]</b> をクリックまたはタップし、次に、<b>[送信]</b> をクリックまたはタップします。</p>
+					</li>
+				</ol>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ui_dd_duprules_list.htm">重複データ検出ルールの設定</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_dd_global.htm">重複データ検出の開始または停止</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

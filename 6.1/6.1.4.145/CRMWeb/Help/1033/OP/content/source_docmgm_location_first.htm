@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Create or add a location for the first time</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Create or add a location for the first time</h1>
+			<p class="bodyText">Before you can manage documents for a record from Microsoft Dynamics CRM, you must create a location record in Microsoft Dynamics CRM that points to libraries and folders on SharePoint where the documents will be stored.</p>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Open the Microsoft Dynamics CRM record that has the documents you want to manage. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Under <b>Related</b>, click or tap<b>Documents</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">If a location isn't associated, CRM displays the <b>Add Document Location</b> dialog box or <b>Create SharePoint Location</b> dialog box. The following table shows the possible scenarios. Depending upon what you see, perform the steps in the “Next steps” column.  </p>
+					</li>
+				</ol>
+				<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">Scenario</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">What appears </p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">Next steps</p>
+						</td>
+					</tr>
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">There is at least one site record in Microsoft Dynamics CRM that points to a site collection in SharePoint, and the site record has the <b>List component is installed</b> check box selected.</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">
+								<b>Add Document Location</b> opens with an option to specify either an absolute URL or a relative URL.</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<ol class="numberlist">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the <b>Name</b> box, verify or type the name. The document location record is created in Microsoft Dynamics CRM with this name. </p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">In the <b>Document Location</b> box, enter the URL of the SharePoint folder to which the location record points. This location is associated with the Microsoft Dynamics CRM record to store the documents.</p>
+									<p class="bodyText">-  OR -</p>
+									<p class="bodyText">Click or tap<b>Create a new folder</b>. In the <b>Parent Site or Location</b> box, click or tap the <b>Lookup</b> button <img src="lookup_v4.gif" title="lookup_v4" /> to select an existing document location record under which the folder will be created on SharePoint. In the <b>Folder Name</b> box, verify or change the name, and click or tap<b>OK</b>. A folder with this name is created in SharePoint.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap<b>Save</b>.</p>
+								</li>
+							</ol>
+						</td>
+					</tr>
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">There is one site record in Microsoft Dynamics CRM but the <b>List component is installed</b> check box is not selected.</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">
+								<b>Add Document Location</b> appears with only the absolute URL option.</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<ol class="numberlist">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the <b>Name</b> box, verify or type a name. The document location record is created in Microsoft Dynamics CRM with this name. </p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">In the <b>Document Location</b> box, enter the URL of the SharePoint folder to which the location record points. This location record is associated with the Microsoft Dynamics CRM record to store the documents.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap<b>Save</b>.</p>
+								</li>
+							</ol>
+						</td>
+					</tr>
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">There is no existing location associated with the record, the URL specified in the <b>Document Management Settings</b> wizard is for a site collection on SharePoint Server 2010 or SharePoint Server 2013, and this site record has the <b>List component is installed</b> check box selected.</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">
+								<b>Create SharePoint Location</b> appears.</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">Microsoft Dynamics CRM tries to automatically create a folder in SharePoint. If the folder is created successfully, Microsoft Dynamics CRM opens <b>Create SharePoint Location</b> with the URL of the new folder. Microsoft Dynamics CRM creates a document location record that contains the URL of this new folder and associates the document location record with the Microsoft Dynamics CRM record.</p>
+							<p class="bodyText">Click or tap<b>OK</b>.</p>
+						</td>
+					</tr>
+				</table>
+				<p class="bodyText">A new document location record is created in Microsoft Dynamics CRM that contains the links to the folders in SharePoint. The location that you just associated is added to the <b>Document Locations</b> list.</p>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ug_docmgm_mng_doc_in_crm.htm">Manage SharePoint documents from within Microsoft Dynamics CRM</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_docmgm_mng_locations.htm">Create or edit document location records</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

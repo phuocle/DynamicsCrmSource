@@ -1,0 +1,1 @@
+Type.registerNamespace("Mscrm");Mscrm.Form_onload=function(){Mscrm.Team.onLoad()};Mscrm.teamtype_onchange=function(context){Mscrm.Team.setTeamType()}

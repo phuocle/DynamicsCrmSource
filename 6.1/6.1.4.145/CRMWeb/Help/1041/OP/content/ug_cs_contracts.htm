@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>契約を使用した顧客のサポート条件の定義</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">契約を使用した顧客のサポート条件の定義</h1>
+			<p class="bodyText">Microsoft Dynamics CRM の契約を使用して、サービス レベル契約 (SLA) と顧客にサービスを提供する契約条件を維持します。契約を使用して、契約の期間、サービスを受けられるサポート案件数や時間数、利用可能な曜日と時間帯、およびサービスの権利などの情報を定義します。</p>
+			<p class="bodyText" />
+			<h2 class="heading2">契約の作成</h2>
+			<div class="l2">
+				<p class="bodyText">新規の契約は契約テンプレートに基づいて作成できます。これらは、契約を実際に記述する前に、サービス単位などの一部の情報を定義します。契約は既存の取引先企業および取引先担当者に対してのみ作成できます。</p>
+				<p class="bodyText">請求が行われるまで、契約は <em class="emphasis">"下書き"</em> の状態になります。新規契約にはそれぞれ一意の ID が割り当てられ、契約が更新される場合を除いて別の契約にその ID を使用することはできません。契約を更新すると、元の契約に対応する ID が付いた下書きとして保存されます。</p>
+				<p class="bodyText" />
+			</div>
+			<h2 class="heading2">契約の請求およびアクティブ化</h2>
+			<div class="l2">
+				<p class="bodyText">契約に少なくとも 1 つの契約品目と請求先住所が登録されたら、契約の状態に請求済みのマークを付けることができます。契約の状態を変更することは、その契約を承認したことを意味します。</p>
+				<p class="bodyText">Microsoft Dynamics CRM が Microsoft BackOffice 製品と統合されていない限り、Microsoft Dynamics CRM で自動的に請求書が顧客に送信されたり、請求書レコードが作成されたりすることはありません。</p>
+				<p class="bodyText">開始日が経過するまで、契約状態は <em class="emphasis">"請求済み"</em> です。その後、<em class="emphasis">アクティブ</em>に変わります。状態が "請求済み" または "アクティブ" な契約を削除することはできません。</p>
+				<p class="bodyText" />
+			</div>
+			<h2 class="heading2">契約の更新</h2>
+			<div class="l2">
+				<p class="bodyText">契約の終了日が過ぎたら、その契約は期限切れになり、その契約に関するサポート案件をオープンできなくなります。契約に関する新しいサポート案件をオープンするには、契約を更新します。</p>
+				<p class="bodyText">契約を更新すると、期限切れになった元の契約と同じ ID 番号で契約の下書きが作成されます。新しい "下書き" の契約に対し、契約品目の追加や修正などの変更を行うことができます。元の契約でキャンセルされた契約品目を含めることができます。元の契約が期限切れになったときには、更新された契約の請求を行い、アクティブにすることができます。</p>
+				<p class="bodyText">更新された契約には元の契約と同じ ID 番号が割り当てられ、契約の履歴に更新処理が反映されます。開始日は、既存の契約の期限が切れる日の翌日に自動的に設定されます。Microsoft Dynamics CRM では、更新された契約に元の契約と同じ期間が自動的に与えられますが、その期間は手動で変更できます。</p>
+				<p class="bodyText" />
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="source_cs_contract_Create.htm">契約の作成または編集</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="source_set_ContractTemp_create.htm">契約テンプレートの作成または編集</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ug_cs_Overview.htm">Microsoft Dynamics CRM による顧客サービスのサポート</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,837 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<books>
+  <section>What's new</section>
+  <page topic="whats-new-for-users">What's new in Microsoft Dynamics CRM 2013?</page>
+  <page topic="how_rec_apply_wrkflow">After you update to CRM 2013 -- next steps to success</page>
+  <page topic="source_sec_commontasks">Training &amp; Adoption Kit for Microsoft Dynamics CRM 2013</page>
+  <volume name="New mobile apps for phones and tablets">
+    <page topic="GS_CRM_mobility">CRM for phones: Set up and use</page>
+    <page topic="ui_mobile_cust">Customize CRM for phones</page>
+    <page topic="crm-admin-get-started-checklist">Introducing CRM for tablets</page>
+    <page topic="ui_set_Home">CRM for tablets: Set up and use</page>
+  </volume>
+  <volume name="Business processes">
+    <page topic="crm-create-new-process">Create a new business process</page>
+    <page topic="crm-activate-process">Activate a business process</page>
+    <page topic="crm-process-add-steps">Add ready-to-use business processes</page>
+    <page topic="assign-security-role-to-a-process">Assign a security role to a business process</page>
+    <page topic="source_sf_edit_new_sales_process">Business process solutions available for download</page>
+    <page topic="ui_wrk_processes_list">Guide staff through common tasks with processes</page>
+    <page topic="source_sf_work_with_new_sales_forms">Import a business process solution from the Microsoft Dynamics Marketplace</page>
+  </volume>
+  <section>Get started</section>
+  <volume name="Top tasks">
+    <page topic="ui_sf_Contact_list">Import contacts</page>
+    <page topic="ui_imp_wiz_finish">Import accounts, leads, or other data</page>
+    <page topic="crm-quick-create">Quick create--Enter new contacts (or other data)--fast!</page>
+    <page topic="source_act_CreateActivity">Keep track of notes, tasks, calls, or email with activities</page>
+    <page topic="how_dd_findandmerge">Check for duplicates</page>
+    <page topic="ug_wel_ResourceCenter">Check out these online help resources</page>
+  </volume>
+  <volume name="CRM for Outlook">
+    <page topic="how_ol_createinoutlook">Set up CRM for Microsoft Outlook</page>
+    <page topic="addcontactwizard">Add Outlook contacts (CRM for Outlook users only)</page>
+    <page topic="ug_ol_Overview">Do your CRM work in Outlook</page>
+    <page topic="how_ol_synchronize">Synchronize Microsoft Dynamics CRM data in Outlook</page>
+    <page topic="ui_ol_offlineconfiguration_form">Work offline with CRM for Outlook</page>
+  </volume>
+  <section>Sales</section>
+  <volume name="Get started with sales">
+    <page topic="ui_sf_Contact_list">Import contacts</page>
+    <page topic="ui_imp_wiz_finish">Import accounts, leads, or other data</page>
+    <page topic="crm-quick-create">Quick create--Enter new contacts (or other data)--fast!</page>
+    <page topic="source_act_CreateActivity">Keep track of notes, tasks, calls, or email with activities</page>
+    <page topic="ui_find_AdvancedFind_form">Create, edit, or save an Advanced Find search</page>
+    <page topic="how_dd_findandmerge">Check for duplicates</page>
+    <page topic="ug_wel_ResourceCenter">Check out these online help resources</page>
+  </volume>
+  <volume name="Help topics for sales">
+    <chapter name="CRM for Outlook">
+      <page topic="how_ol_createinoutlook">Set up CRM for Microsoft Outlook</page>
+      <page topic="addcontactwizard">Add Outlook contacts (CRM for Outlook users only)</page>
+      <page topic="ug_ol_Overview">Do your CRM work in Outlook</page>
+      <page topic="how_ol_synchronize">Synchronize Microsoft Dynamics CRM data in Outlook</page>
+      <page topic="ui_ol_offlineconfiguration_form">Work offline with CRM for Outlook</page>
+    </chapter>
+    <page topic="source_sf_create_lead">Create or edit a lead</page>
+    <page topic="source_sf_create_contact">Create or edit a contact</page>
+    <page topic="source_sf_create_account">Create or edit an account</page>
+    <page topic="source_sf_account_activate">Deactivate or activate an account or contact</page>
+    <page topic="source_sf_create_opp">Create or edit an opportunity</page>
+    <page topic="ui_sf_Comp_list">Create or edit a competitor record</page>
+    <page topic="source_prodcat_create_Product">Create or edit a product</page>
+    <page topic="source_prodcat_create_PriceList">Create a price list</page>
+    <page topic="source_sf_create_quote">Create or edit a quote</page>
+    <page topic="source_sf_create_order">Create or edit an order</page>
+    <page topic="source_sf_create_invoice">Create or edit an invoice</page>
+    <page topic="source_sf_create_goal">Create or edit a goal</page>
+    <page topic="ui_sf_rollup_query_list">Create or edit a rollup query</page>
+    <page topic="source_viz_analyze_drill_down">Drill down in a chart</page>
+    <page topic="ui_find_AdvancedFind_form">Create, edit, or save an Advanced Find search</page>
+    <page topic="quickcampoverview">Reach your customers with a quick campaign</page>
+    <page topic="source_sf_bing_sales_forms">View or turn off Bing Maps</page>
+    <page topic="how_persopt_ViewProfile">View your user profile</page>
+    <page topic="source_sf_follow_with_activity_Feeds">Stay up-to-date with customer news with the activity feed</page>
+    <page topic="source_sf_history_tab_general">Display your picture on the activity feed</page>
+    <page topic="how_rec_email">Send bulk email to customers</page>
+  </volume>
+  <section>Service</section>
+  <volume name="Get started with service">
+    <page topic="10stepstoCS">Key steps to get started with customer service</page>
+    <page topic="10stepstoservice">Basics of service and service scheduling</page>
+    <page topic="ui_sf_Contact_list">Import contacts</page>
+    <page topic="ui_imp_wiz_finish">Import accounts, leads, or other data</page>
+    <page topic="crm-quick-create">Quick create--Enter new contacts (or other data)--fast!</page>
+    <page topic="source_act_CreateActivity">Keep track of notes, tasks, calls, or email with activities</page>
+    <page topic="ui_find_AdvancedFind_form">Create, edit, or save an Advanced Find search</page>
+    <page topic="how_dd_findandmerge">Check for duplicates</page>
+    <page topic="ug_wel_ResourceCenter">Check out these online help resources</page>
+  </volume>
+  <volume name="Help topics for service">
+    <chapter name="CRM for Outlook">
+      <page topic="how_ol_createinoutlook">Set up CRM for Microsoft Outlook</page>
+      <page topic="addcontactwizard">Add Outlook contacts (CRM for Outlook users only)</page>
+      <page topic="ug_ol_Overview">Do your CRM work in Outlook</page>
+      <page topic="how_ol_synchronize">Synchronize Microsoft Dynamics CRM data in Outlook</page>
+      <page topic="ui_ol_offlineconfiguration_form">Work offline with CRM for Outlook</page>
+    </chapter>
+    <page topic="ug_cs_Overview">Support customer service with Microsoft Dynamics CRM</page>
+    <page topic="source_org_que_Create">Create or edit a queue</page>
+    <page topic="source_cs_case_modify">Manage cases</page>
+    <page topic="source_sr_identify_customer_and_case">Track customer and case details</page>
+    <page topic="source_sr_find_solution">Find a solution from other similar cases</page>
+    <page topic="source_sr_assign_case_to_others">Assign a case to others</page>
+    <page topic="source_cs_assign_queue">Add a case to a queue</page>
+    <page topic="aboutqueues">Find what's assigned to you by using queues</page>
+    <page topic="aboutarticles">Use articles in the knowledge base</page>
+    <page topic="source_sr_resolve_case">Resolve or cancel a case</page>
+    <page topic="ug_cs_contracts">Define support terms for customers using contracts</page>
+    <page topic="source_cs_contract_Create">Create or edit a contract</page>
+    <page topic="source_ss_sa_CreateService">Create or edit a service</page>
+    <page topic="source_ss_ws_FE_workinghours">Set work hours of a resource</page>
+    <page topic="ug_ss_navigating_Service_Calendar">Navigate the service calendar</page>
+    <page topic="ui_ss_ScheduleSvcAppt_form">Schedule a service activity</page>
+    <page topic="source_ss_ws_set_capacityofservice">Set the capacity required for a service or resource</page>
+    <page topic="source_ss_ss_force_SvcAppt">Create a service activity without checking for conflicts</page>
+    <page topic="source_ss_ss_ScheduleSvcAppt">Find the next available time before creating a service activity</page>
+    <page topic="source_ss_ws_BusinessClosures">Set when your business is closed</page>
+    <page topic="source_viz_analyze_drill_down">Drill down in a chart</page>
+    <page topic="how_persopt_ViewProfile">View your user profile</page>
+    <page topic="how_sr_skype_integration">Place calls with Skype or Lync</page>
+    <page topic="crm_help9">Collaborate and communicate with Yammer</page>
+    <page topic="source_sr_edit_service_process">Configure the process flow for customer service</page>
+    <page topic="how_cs_how_inline_lookup_works">How inline lookup works</page>
+    <page topic="completecampaigns">Set the relationship between a parent and its child cases</page>
+  </volume>
+  <section>Service management</section>
+  <volume name="Get started with service management">
+    <page topic="10stepstoCS">Key steps to get started with customer service</page>
+    <page topic="10stepstoservice">Basics of service and service scheduling</page>
+    <page topic="ui_sf_Contact_list">Import contacts</page>
+    <page topic="ui_imp_wiz_finish">Import accounts, leads, or other data</page>
+    <page topic="crm-quick-create">Quick create--Enter new contacts (or other data)--fast!</page>
+    <page topic="source_act_CreateActivity">Keep track of notes, tasks, calls, or email with activities</page>
+    <page topic="ui_find_AdvancedFind_form">Create, edit, or save an Advanced Find search</page>
+    <page topic="how_dd_findandmerge">Check for duplicates</page>
+    <page topic="ug_wel_ResourceCenter">Check out these online help resources</page>
+  </volume>
+  <volume name="Help topics for service management">
+    <page topic="aboutproduct">Service management best bets</page>
+    <page topic="source_org_que_Create">Create or edit a queue</page>
+    <page topic="commonContent_CRM_Cust_loc1">Define settings for parent and child cases</page>
+    <page topic="how_act_CreateActivity">Create rules to automatically route cases</page>
+    <page topic="ui_set_SubjMgr">Define subjects to categorize cases, products, and articles</page>
+    <page topic="how_rec_properties">Define service level agreements</page>
+    <page topic="howrecExport">Define entitlements to assign the right level of service to customers</page>
+    <page topic="faq">Set up a holiday schedule</page>
+    <page topic="ug_ss_navigating_Service_Calendar">Navigate the service calendar</page>
+    <page topic="how_rec_mailmerge">Define schedules for customer service</page>
+    <page topic="source_ss_ws_BusinessClosures">Set when your business is closed</page>
+    <page topic="source_ss_sa_CreateService">Create or edit a service</page>
+    <page topic="ui_set_FacilitiesEquipment">Add facilities and equipment for service scheduling</page>
+    <page topic="source_ss_ws_create_resourcegroups">Create or edit a resource group</page>
+    <page topic="ui_docmgm_mng_sites">Create or edit site records</page>
+    <page topic="how_sec_email">Add a timer control to a form to track how much time is spent on a case</page>
+    <page topic="how_mobile_use">Automatically create cases from email or social monitoring</page>
+    <page topic="source_viz_analyze_apply_filter">Set up entitlements quickly with templates</page>
+  </volume>
+  <section>Marketing</section>
+  <volume name="Get started with marketing">
+    <page topic="10stepstomarketing">Key steps to get started with marketing</page>
+    <page topic="ui_sf_Contact_list">Import contacts</page>
+    <page topic="ui_imp_wiz_finish">Import accounts, leads, or other data</page>
+    <page topic="crm-quick-create">Quick create--Enter new contacts (or other data)--fast!</page>
+    <page topic="source_act_CreateActivity">Keep track of notes, tasks, calls, or email with activities</page>
+    <page topic="ui_find_AdvancedFind_form">Create, edit, or save an Advanced Find search</page>
+    <page topic="how_dd_findandmerge">Check for duplicates</page>
+    <page topic="ug_wel_ResourceCenter">Check out these online help resources</page>
+  </volume>
+  <volume name="Help topics for marketing">
+    <chapter name="CRM for Outlook">
+      <page topic="how_ol_createinoutlook">Set up CRM for Microsoft Outlook</page>
+      <page topic="addcontactwizard">Add Outlook contacts (CRM for Outlook users only)</page>
+      <page topic="ug_ol_Overview">Do your CRM work in Outlook</page>
+      <page topic="how_ol_synchronize">Synchronize Microsoft Dynamics CRM data in Outlook</page>
+      <page topic="ui_ol_offlineconfiguration_form">Work offline with CRM for Outlook</page>
+    </chapter>
+    <page topic="ug_mkt_list_Overview">Target the right customers with marketing lists</page>
+    <page topic="source_ma_list_CreateList">Create a marketing list and add members to it</page>
+    <page topic="quickcampoverview">Reach your customers with a quick campaign</page>
+    <page topic="campquickcampdiagram">Campaigns vs. quick campaigns: What's the difference</page>
+    <page topic="ug_mkt_camp_Plan">Plan campaigns</page>
+    <page topic="source_ma_camp_CreateTemplate">Create or edit a campaign template</page>
+    <page topic="source_ma_camp_CreateNew">Create or edit a campaign</page>
+    <page topic="source_ma_list_AddListLitProd">Add a marketing list, sales literature, or product to a campaign</page>
+    <page topic="source_ma_list_QuickCampaign">Create a quick campaign</page>
+    <page topic="source_ma_camp_create_response">Track a campaign response</page>
+    <page topic="ug_ma_camp_activities">Track marketing activities through planning and campaign activities</page>
+    <page topic="source_ma_camp_activity">Add a campaign or planning activity to a campaign</page>
+    <page topic="source_viz_analyze_drill_down">Drill down in a chart</page>
+    <page topic="how_persopt_ViewProfile">View your user profile</page>
+    <page topic="crm_help9">Collaborate and communicate with Yammer</page>
+  </volume>
+  <section>CRM administration</section>
+  <volume name="Get started with CRM administration">
+    <page topic="how_rec_apply_wrkflow">After you update to CRM 2013 -- next steps to success</page>
+    <page topic="ui_set_multiple_users">Add users to Microsoft Dynamics CRM</page>
+    <page topic="ui_imp_wiz_finish">Import accounts, leads, or other data</page>
+    <page topic="ui_cust_mng_dashboards">Manage system dashboards</page>
+    <page topic="crm-update-forms">Merge customized forms into the new style and layouts</page>
+    <page topic="ug_wel_ResourceCenter">Check out these online help resources</page>
+    <page topic="source_sec_commontasks">Training &amp; Adoption Kit for Microsoft Dynamics CRM 2013</page>
+  </volume>
+  <volume name="Help topics for CRM administration">
+    <chapter name="Top tasks">
+      <page topic="source_rec_Assign">Assign a record to a user or team</page>
+      <page topic="ui_mobile_cust">Customize CRM for phones</page>
+      <page topic="crm_help10">Known issues for CRM for tablets and phones</page>
+      <page topic="source_sf_use_activity_Feeds">Administer the activity feed</page>
+      <page topic="ui_sj_systemjobs_list">Monitor and manage system jobs</page>
+      <page topic="ui_set_Language_Settings_dlg">Enable or disable languages</page>
+      <page topic="ug_com_Email">Create a team template and add to an entity form</page>
+      <page topic="source_set_storage_add">Add storage</page>
+      <page topic="crm_help2">Import a solution</page>
+      <page topic="crm_help7">Connect Microsoft Dynamics CRM to Yammer</page>
+      <page topic="ui_cust_downloadWSDL">View or download developer resources</page>
+      <page topic="ug_wel_DocOverview">Set up Microsoft Dynamics CRM to make calls with Skype or Lync</page>
+      <page topic="ug_troubleshoot_overview">Contact Technical Support</page>
+    </chapter>
+    <chapter name="Mobile apps">
+      <page topic="crm_help4">Set up Microsoft Dynamics CRM for tablets and phones (for admins)</page>
+      <page topic="crm_help10">Known issues for CRM for tablets and phones</page>
+      <page topic="ug_connect_connection_roles">Enable tracing in CRM for tablets</page>
+    </chapter>
+    <chapter name="Server-side synchronization for email">
+      <page topic="ui_sss_email_processing">Email processing through server-side synchronization</page>
+      <page topic="ui_sss_migrate_from_emailrouter_to_server_side_sync">Migrate settings from the Email Router to server-side synchronization</page>
+      <page topic="ui_sss_set_up_server_side_synchronization">Set up email through server-side synchronization</page>
+      <page topic="ui_sss_create_email_server_profiles">Create email server profiles and add mailboxes</page>
+      <page topic="ui_sss_create_forward_mailboxes">Create forward mailboxes or edit mailboxes</page>
+      <page topic="ui_sss_email_error_tracking">Monitor email processing errors</page>
+    </chapter>
+    <chapter name="System security">
+      <page topic="ui_addsecuritytofield_fs">Add or remove security from a field</page>
+      <page topic="crm_help3">Assign a security role to a user</page>
+      <page topic="ui_create_fs_profile">Create a field security profile</page>
+      <page topic="ui_set_SecurityRoles_list">Understand security roles</page>
+    </chapter>
+    <chapter name="Data management and duplicate detection">
+      <page topic="source_samp_addremove">Add or remove sample data</page>
+      <page topic="ui_bd_job_list">Delete bulk records</page>
+      <page topic="ui_audit_area">Audit data changes</page>
+      <page topic="ui_dd_global">Turn duplicate detection on or off</page>
+      <page topic="ui_dd_duprules_list">Set up duplicate detection rules</page>
+      <page topic="ui_dd_systemwide">Run system jobs to detect duplicates</page>
+      <page topic="source_bd_jobstatus">View and take action on bulk deletion jobs</page>
+    </chapter>
+    <chapter name="Business processes">
+      <page topic="ui_wrk_processes_list">Guide staff through common tasks with processes</page>
+      <page topic="crm-process-add-steps">Add ready-to-use business processes</page>
+      <page topic="crm-create-new-process">Create a new business process</page>
+      <page topic="crm-activate-process">Activate a business process</page>
+      <page topic="assign-security-role-to-a-process">Assign a security role to a business process</page>
+    </chapter>
+    <chapter name="System settings">
+      <page topic="ui_set_SystemSet_dlg_Outlook">System Settings dialog box - Outlook tab</page>
+      <page topic="source_set_org_general">System Settings dialog box - General tab</page>
+      <page topic="ui_set_SystemSet_dlg_marketing">System Settings dialog box - Marketing tab</page>
+      <page topic="ui_set_SystemSet_dlg_Regional">System Settings dialog box - Formats tab</page>
+      <page topic="ui_set_SystemSet_dlg_Report">System Settings dialog box - Reporting tab</page>
+      <page topic="ui_set_systemset_dlg_auditing">System Settings dialog box - Auditing tab</page>
+      <page topic="ui_set_systemset_dlg_goal">System Settings dialog box - Goals tab</page>
+      <page topic="ui_set_SystemSet_dlg_customization">System Settings dialog box - Customization tab</page>
+      <page topic="ui_set_SystemSet_dlg_email">System Settings dialog box - Email tab</page>
+      <page topic="crm_help1">System Settings dialog box - Calendar tab</page>
+      <page topic="ui_set_Customize_Regional_Options_dlg">Customize regional options - system settings</page>
+      <page topic="ui_persopt_Customize_Regional_Options_dlg">Customize regional options - personal options</page>
+    </chapter>
+    <chapter name="Document management">
+      <page topic="ui_docmgm_mng_sites">Create or edit site records</page>
+      <page topic="ui_docmgm_mng_locations">Create or edit document location records</page>
+      <page topic="source_docmgm_location_first">Create or add a location for the first time</page>
+      <page topic="ug_docmgm_mng_doc_in_crm">Manage SharePoint documents from within Microsoft Dynamics CRM</page>
+    </chapter>
+  </volume>
+  <section>Reports</section>
+  <volume name="Help topics for reports">
+    <page topic="how_rpt_Generate">Run a report</page>
+    <page topic="ui_rpt_wizard">Create, edit, or copy a report using the Report Wizard</page>
+    <page topic="source_rpt_Organize_Add">Add a report</page>
+    <page topic="ug_rpt_Overview">Edit the default filter of a report</page>
+    <page topic="source_rpt_wizard_59077">Organize and lay out your data</page>
+    <page topic="source_rpt_share_report">Share a report with other users or teams</page>
+    <page topic="source_rpt_determine_who_uses_report">Determine who can use a report</page>
+    <page topic="source_rpt_download_rpt">Download a report</page>
+    <page topic="source_rpt_reasons_for_missing_data">Troubleshoot problems with data not displaying in a report</page>
+  </volume>
+  <volume name="Available reports">
+    <page topic="source_rpt_cs_CaseSummary">Case Summary Table</page>
+    <page topic="source_rpt_cs_NeglectedCases">Neglected Cases</page>
+    <page topic="source_rpt_cs_TopKBArticles">Top knowledge base articles</page>
+    <page topic="source_rpt_mkt_CampaignActivityStatus">Campaign Activity Status</page>
+    <page topic="source_rpt_mkt_CampaignComparison">Campaign Comparison</page>
+    <page topic="source_rpt_mkt_CampaignPerformance">Campaign Performance</page>
+    <page topic="source_rpt_sf_Activities">Activities</page>
+    <page topic="source_rpt_sf_CompetitorWinLoss">Competitor Win Loss</page>
+    <page topic="source_rpt_sf_ContactProductView">Products by Contact</page>
+    <page topic="source_rpt_sf_invoices">Invoices</page>
+    <page topic="source_rpt_sf_InvoiceStatus">Invoice Status</page>
+    <page topic="source_rpt_sf_LeadSourceEffectiveness">Lead Source Effectiveness</page>
+    <page topic="source_rpt_sf_NeglectedLeads">Neglected Leads</page>
+    <page topic="source_rpt_sf_orders">Orders</page>
+    <page topic="source_rpt_sf_progressagainstgoals">Progress Against Goals</page>
+    <page topic="source_rpt_sf_quotes">Quotes</page>
+    <page topic="source_rpt_sf_SalesHistory">Sales History</page>
+    <page topic="source_rpt_ss_ServiceActivityVolume">Service Activity Volume</page>
+    <page topic="source_rpt_sf_AccountDistribution">Account Distribution</page>
+    <page topic="source_rpt_sf_AccountOverview">Account Overview</page>
+    <page topic="source_rpt_sf_AccountProductView">Products by Account</page>
+    <page topic="source_rpt_sf_AccountSummary">Account Summary</page>
+    <page topic="source_rpt_sf_NeglectedAccounts">Neglected Accounts</page>
+    <page topic="source_rpt_sf_Pipeline">Sales Pipeline</page>
+    <page topic="source_rpt_admin_UserSummary">User Summary</page>
+  </volume>
+  <section>Accessibility</section>
+  <volume name="Help topics for accessibility">
+    <page topic="ug_wel_Accessibility">Accessibility for people with disabilities</page>
+    <page topic="how_rec_KeyboardShortcuts">Keyboard shortcuts</page>
+  </volume>
+  <volume code="csh" name="" hidden="true">
+    <chapter code="ui" name="User Interface" hidden="true">
+      <page procedure="true" topic="ui_dd_duprules_list" filename="/tools/datamanagement/datamanagement.aspx?pid=02" />
+      <page procedure="true" topic="ui_dd_duprules_list" filename="/tools/duplicatedetection/duplicatedetectionrules/edit.aspx" />
+      <page procedure="true" topic="how_rec_properties" filename="/userdefined/edit.aspx?etc=9750" />
+      <page procedure="true" topic="crm_help6" filename="/tools/systemcustomization/businessrules/businessruleslist.aspx?solutiontype=unmanaged" />
+      <page procedure="true" topic="task_cust_managed_solution_create" filename="/tools/systemcustomization/displaystrings/displaystringlist.aspx?solutiontype=managed" />
+      <page procedure="true" topic="ui_set_storage_errors" filename="/tools/admin/addon/errorpage.aspx" />
+      <page procedure="true" topic="ui_set_storage_errors" filename="/tools/admin/addon/processing.aspx" />
+      <page procedure="true" topic="ui_sf_CloseOrder_form" filename="/sfa/salesorder/cancelorder.aspx" />
+      <page procedure="true" topic="source_cust_entity_NN_relationship" filename="/tools/systemcustomization/relationships/relationshiplist.aspx?relationshiprole=2&amp;solutiontype=default" />
+      <page procedure="true" topic="source_cust_entity_NN_relationship" filename="/tools/systemcustomization/relationships/relationshiplist.aspx?relationshiprole=2&amp;solutiontype=managed" />
+      <page procedure="true" topic="source_cust_entity_NN_relationship" filename="/tools/systemcustomization/relationships/relationshiplist.aspx?relationshiprole=2&amp;solutiontype=unmanaged" />
+      <page procedure="true" topic="source_cust_entity_NN_relationship" filename="/tools/systemcustomization/relationships/managerelationship.aspx?entityrole=many" />
+      <page procedure="true" topic="ui_sf_ConvertLead_dlg" filename="/sfa/leads/dialogs/conv_lead.aspx" />
+      <page procedure="true" topic="how_mobile_use" filename="/userdefined/edit.aspx?etc=9300" />
+      <page procedure="true" topic="ui_connect_connection_roles_list" filename="/tools/business/business.aspx?pid=12" />
+      <page procedure="true" topic="ui_connect_connection_roles_list" filename="/connections/connectionroles/edit.aspx" />
+      <page procedure="true" topic="ui_connect_connection_roles_list" filename="/userdefined/edit.aspx?etc=3234" />
+      <page procedure="true" topic="ui_set_systemset_dlg_auditing" filename="/tools/systemsettings/dialogs/systemsettings.aspx#tab8" />
+      <page procedure="true" topic="source_sf_create_account" filename="/userdefined/edit.aspx?etc=1" />
+      <page procedure="true" topic="source_sf_create_account" filename="/sfa/home_accts.aspx" />
+      <page procedure="true" topic="source_sf_create_account" filename="/_root/homepage.aspx?etc=1" />
+      <page procedure="true" topic="source_sf_create_account" filename="/sfa/home_csaccts.aspx" />
+      <page procedure="true" topic="how_sec_sales" filename="/tools/documentmanagement/s2supgardesettingswizard/s2supgradesettingpage.aspx" />
+      <page procedure="true" topic="ug_wel_ResourceCenter" filename="/resourcecenter/overview.aspx" />
+      <page procedure="true" topic="ug_wel_ResourceCenter" filename="/resourcecenter/customization.aspx" />
+      <page procedure="true" topic="source_ss_sa_CreateService" filename="/userdefined/edit.aspx?etc=4001" />
+      <page procedure="true" topic="source_ss_sa_CreateService" filename="/tools/home_tools.aspx?pid=07" />
+      <page procedure="true" topic="source_ss_sa_CreateService" filename="/tools/business/business.aspx?pid=08" />
+      <page procedure="true" topic="source_ss_sa_CreateService" filename="/_root/homepage.aspx?etc=4001" />
+      <page procedure="true" topic="ui_cust_form_web_resource_add_edit" filename="/tools/systemcustomization/configuration/webresources.aspx?solutiontype=unmanaged" />
+      <page procedure="true" topic="ui_cust_form_web_resource_add_edit" filename="/tools/systemcustomization/configuration/webresources.aspx?solutiontype=managed" />
+      <page procedure="true" topic="ui_cust_form_web_resource_add_edit" filename="/tools/systemcustomization/configuration/webresources.aspx?solutiontype=default" />
+      <page procedure="true" topic="ui_cust_form_web_resource_add_edit" filename="/_grid/cmds/dlg_additem.aspx?helpid=addtextitem" />
+      <page procedure="true" topic="ui_cust_form_web_resource_add_edit" filename="/tools/webresourceeditor/edit.aspx" />
+      <page procedure="true" topic="ui_cust_form_web_resource_add_edit" filename="/tools/formeditor/dialogs/webresource.aspx" />
+      <page procedure="true" topic="source_viz_create_charts" filename="tools/visualizationdesigner/visualizationdesigner.aspx" />
+      <page procedure="true" topic="ui_sf_OppRelationship_dlg" filename="/sfa/customeropportunityrole/edit.aspx" />
+      <page procedure="true" topic="source_cust_edit_image_web_resource" filename="/_grid/cmds/dlg_additem.aspx?helpid=addimageitem" />
+      <page procedure="true" topic="crm_help2" filename="/tools/solution/import/solutionimportwizard.aspx" />
+      <page procedure="true" topic="ui_sf_InvoiceProduct_form" filename="/userdefined/edit.aspx?etc=1091" />
+      <page procedure="true" topic="ui_dd_systemwide" filename="/tools/duplicatedetection/duplicatedetectionjobwizard/welcomepage.aspx" />
+      <page procedure="true" topic="ui_dd_systemwide" filename="/tools/duplicatedetection/systemwideduplicatedetection/home_duplicatedetectionjobs.aspx" />
+      <page procedure="true" topic="ui_dd_systemwide" filename="/tools/duplicatedetection/systemwideduplicatedetection/systemwideduplicatedetection.aspx" />
+      <page procedure="true" topic="ui_dd_systemwide" filename="/tools/duplicatedetection/duplicatedetectionjobwizard/searchcriteriacontainerpage.aspx" />
+      <page procedure="true" topic="ui_dd_systemwide" filename="/tools/duplicatedetection/duplicatedetectionjobwizard/additionaloptionspage.aspx" />
+      <page procedure="true" topic="ui_dd_systemwide" filename="/tools/duplicatedetection/duplicatedetectionjobwizard/summarypage.aspx" />
+      <page procedure="true" topic="ui_dd_systemwide" filename="/tools/datamanagement/datamanagement.aspx?pid=03" />
+      <page procedure="true" topic="source_ss_ws_BusinessClosures" filename="/sm/workplans/dialogs/holiday.aspx" />
+      <page procedure="true" topic="source_ss_ws_BusinessClosures" filename="/tools/business/business.aspx?pid=02" />
+      <page procedure="true" topic="source_ss_ws_BusinessClosures" filename="/tools/home_tools.aspx?pid=11" />
+      <page procedure="true" topic="ui_ol_offlineconfiguration_form" filename="/tools/offlinedata/dialogs/offlinedata.aspx" />
+      <page procedure="true" topic="ui_mobile_cust" filename="/tools/systemcustomization/systemcustomization.aspx?pid=08" />
+      <page procedure="true" topic="ui_mobile_cust" filename="/m/console/entityconfig.aspx" />
+      <page procedure="true" topic="source_imp_download_import_template" filename="/tools/importwizard/landingpage.aspx" />
+      <page procedure="true" topic="crm_help1" filename="/tools/systemsettings/dialogs/systemsettings.aspx#tab1" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/biz/users/addusers/businessunitpage.aspx" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/biz/users/addusers/securityrolespage.aspx" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/biz/users/addusers/licensingpage.aspx" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/biz/users/addusers/domainsandgroupspage.aspx" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/userdefined/edit.aspx?etc=8" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/biz/users/addusers/selectuserspage.aspx" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/biz/users/addusers/invitationpage.aspx" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/biz/users/addusers/finishpage.aspx" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/biz/users/addusers/progresspage.aspx" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/biz/users/addusers/userinputpage.aspx" />
+      <page procedure="true" topic="ui_set_multiple_users" filename="/biz/users/addusers/addmicrosoftonlineuserpage.aspx" />
+      <page procedure="true" topic="ui_cust_ImportTranslation" filename="/tools/systemcustomization/systemcustomization.aspx?pid=07" />
+      <page procedure="true" topic="ug_cust_entity_mapping" filename="/tools/systemcustomization/relationships/mappings/createmapping.aspx" />
+      <page procedure="true" topic="ug_com_Email" filename="/tools/admin/admin.aspx?pid=92" />
+      <page procedure="true" topic="ug_com_Email" filename="/userdefined/edit.aspx?etc=9" />
+      <page procedure="true" topic="ug_com_Email" filename="/tools/admin/admin.aspx?pid=06" />
+      <page procedure="true" topic="ug_com_Email" filename="/tools/business/home_team.aspx" />
+      <page procedure="true" topic="ui_cs_KBTemplate_list" filename="/tools/kbtemplateeditor/kbtemplateeditor.aspx" />
+      <page procedure="true" topic="ui_cs_KBTemplate_list" filename="/tools/templates/templates.aspx?pid=01" />
+      <page procedure="true" topic="ui_cs_KBTemplate_list" filename="/tools/kbtemplatemanager/home.aspx" />
+      <page procedure="true" topic="ui_cs_KBTemplate_list" filename="/tools/home_tools.aspx?pid=044" />
+      <page procedure="true" topic="ui_set_SystemSet_dlg_Report" filename="/tools/systemsettings/dialogs/systemsettings.aspx#tab6" />
+      <page procedure="true" topic="source_sf_create_order" filename="/userdefined/edit.aspx?etc=1088" />
+      <page procedure="true" topic="source_sf_create_order" filename="/_root/homepage.aspx?etc=1088" />
+      <page procedure="true" topic="ui_ss_SelectionRule_form" filename="/sm/resourcespecs/resourcerule.aspx" />
+      <page procedure="true" topic="source_rpt_sf_SalesHistory" filename="/crmreports/viewer/viewer.aspx?helpid=sales history.rdl" />
+      <page procedure="true" topic="source_rpt_sf_SalesHistory" filename="/crmreports/viewer/viewer.aspx?helpid=sales history detail.rdl" />
+      <page procedure="true" topic="source_set_ContractTemp_create" filename="/cs/home_contracts.aspx" />
+      <page procedure="true" topic="source_set_ContractTemp_create" filename="/tools/contracttypemanager/edit.aspx" />
+      <page procedure="true" topic="source_set_ContractTemp_create" filename="/tools/templates/templates.aspx?pid=02" />
+      <page procedure="true" topic="source_set_ContractTemp_create" filename="/userdefined/edit.aspx?etc=1010" />
+      <page procedure="true" topic="source_set_ContractTemp_create" filename="/userdefined/edit.aspx?etc=1011" />
+      <page procedure="true" topic="source_set_ContractTemp_create" filename="/_root/homepage.aspx?etc=1010" />
+      <page procedure="true" topic="ui_audit_logs" filename="/tools/audit/audit_partitions.aspx" />
+      <page procedure="true" topic="ui_set_Users_list" filename="defined/edit.aspx?etc=8" />
+      <page procedure="true" topic="ui_set_Users_list" filename="/tools/admin/admin.aspx?pid=07" />
+      <page procedure="true" topic="ui_set_Users_list" filename="/tools/business/home_user.aspx" />
+      <page procedure="true" topic="source_act_convert_activity_opp" filename="/socialinsight/configurationwizard/choosetopictypepage.aspx" />
+      <page procedure="true" topic="source_ma_list_QuickCampaign" filename="/_root/homepage.aspx?etc=4406" />
+      <page procedure="true" topic="source_ma_list_QuickCampaign" filename="/ma/home_minicamps.aspx" />
+      <page procedure="true" topic="source_ma_list_QuickCampaign" filename="/userdefined/edit.aspx?etc=4406" />
+      <page procedure="true" topic="ui_docmgm_mng_locations" filename="_root/homepage.aspx?etc=9508" />
+      <page procedure="true" topic="ui_docmgm_mng_locations" filename="/userdefined/edit.aspx?etc=9508" />
+      <page procedure="true" topic="source_rpt_sf_LeadSourceEffectiveness" filename="/crmreports/viewer/viewer.aspx?helpid=lead source effectiveness.rdl" />
+      <page procedure="true" topic="ui_set_BusinessUnits" filename="/biz/business/edit.aspx" />
+      <page procedure="true" topic="ui_set_BusinessUnits" filename="/tools/admin/admin.aspx?pid=03" />
+      <page procedure="true" topic="ui_set_BusinessUnits" filename="/tools/home_tools.aspx?pid=021" />
+      <page procedure="true" topic="ui_imp_wiz_mapsummary" filename="/tools/importwizard/mapsummarypage.aspx" />
+      <page procedure="true" topic="assign-security-role-to-a-process" filename="/tools/dialogs/roleassignment.aspx" />
+      <page procedure="true" topic="source_rpt_sf_invoices" filename="crmreports/viewer/viewer.aspx?helpid=invoice.rdl" />
+      <page procedure="true" topic="source_rpt_sf_invoices" filename="/crmreports/viewer/viewer.aspx?helpid=invoice sub-report.rdl" />
+      <page procedure="true" topic="ui_gen_Properties_dlg" filename="/_forms/properties/properties.aspx" />
+      <page procedure="true" topic="source_viz_analyze_apply_filter" filename="/userdefined/edit.aspx?etc=9702" />
+      <page procedure="true" topic="source_ma_list_CreateList" filename="/ma/lists/listqualificationdlg/dlg_query_build.aspx" />
+      <page procedure="true" topic="source_ma_list_CreateList" filename="/userdefined/edit.aspx?etc=4300" />
+      <page procedure="true" topic="source_ma_list_CreateList" filename="/_root/homepage.aspx?etc=4300" />
+      <page procedure="true" topic="ui_sss_email_error_tracking" filename="/_root/tracewall.aspx" />
+      <page procedure="true" topic="ui_set_SystemSet_dlg_Outlook" filename="/tools/systemsettings/dialogs/systemsettings.aspx#tab5" />
+      <page procedure="true" topic="ui_set_systemset_dlg_goal" filename="/tools/systemsettings/dialogs/systemsettings.aspx#tab9" />
+      <page procedure="true" topic="ui_set_BusinessUnitSettings" filename="/tools/business/business.aspx" />
+      <page procedure="true" topic="source_rpt_sf_CompetitorWinLoss" filename="/crmreports/viewer/viewer.aspx?helpid=competitor win loss.rdl" />
+      <page procedure="true" topic="source_rpt_sf_CompetitorWinLoss" filename="/crmreports/viewer/viewer.aspx?helpid=competitor win loss detail.rdl" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/_forms/read/page.aspx" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/_grid/cmds/dlg_listfax.aspx" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/userdefined/edit.aspx?etc=4204" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/_grid/cmds/dlg_listletter.aspx" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/userdefined/edit.aspx?etc=4207" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/_grid/cmds/dlg_listphone.aspx" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/userdefined/edit.aspx?etc=4210" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/userdefined/edit.aspx?etc=4212" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/_grid/cmds/dlg_listappointment.aspx" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/notes/edit.aspx" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/workplace/homepage.aspx?etc=4200" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/activities/dlg_create.aspx" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/_root/homepage.aspx?etc=4200" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/_grid/cmds/dlg_listemail.aspx" />
+      <page procedure="true" topic="source_act_CreateActivity" filename="/userdefined/edit.aspx?etc=4202" />
+      <page procedure="true" topic="source_rpt_sf_AccountDistribution" filename="/crmreports/viewer/viewer.aspx?helpid=account distribution.rdl" />
+      <page procedure="true" topic="source_rpt_sf_AccountDistribution" filename="/crmreports/viewer/viewer.aspx?helpid=account distribution detail.rdl" />
+      <page procedure="true" topic="ui_imp_wiz_preview" filename="/tools/importwizard/uploadpreviewpage.aspx" />
+      <page procedure="true" topic="ui_set_SecurityRoles_list" filename="/_grid/cmds/dlg_clonerole.aspx" />
+      <page procedure="true" topic="ui_set_SecurityRoles_list" filename="/biz/roles/edit.aspx" />
+      <page procedure="true" topic="ui_set_SecurityRoles_list" filename="/tools/admin/admin.aspx?pid=04" />
+      <page procedure="true" topic="ui_set_SecurityRoles_list" filename="/tools/business/home_role.aspx" />
+      <page procedure="true" topic="ui_cust_SelectIcons" filename="/tools/systemcustomization/entities/updateicons.aspx" />
+      <page procedure="true" topic="source_cs_case_modify" filename="/userdefined/edit.aspx?etc=112" />
+      <page procedure="true" topic="source_cust_edit_managed_properties" filename="/tools/solution/managedproperty/managedpropertyeditor.aspx" />
+      <page procedure="true" topic="source_cust_edit_managed_properties" filename="/tools/solution/manageproperty/managepropertyeditor.aspx" />
+      <page procedure="true" topic="ui_sss_create_forward_mailboxes" filename="/tools/social/social_area.aspx?pid=02" />
+      <page procedure="true" topic="ui_sss_create_forward_mailboxes" filename="/userdefined/edit.aspx?etc=9606" />
+      <page procedure="true" topic="source_rpt_cs_NeglectedCases" filename="/crmreports/viewer/viewer.aspx?helpid=neglected cases.rdl" />
+      <page procedure="true" topic="source_rpt_cs_NeglectedCases" filename="/crmreports/viewer/viewer.aspx?helpid=neglected cases detail.rdl" />
+      <page procedure="true" topic="ug_ss_navigating_Service_Calendar" filename="/sm/home_apptbook.aspx" />
+      <page procedure="true" topic="ui_ss_ScheduleSvcAppt_form" filename="/sm/activityscheduling/schedulingdialog.aspx" />
+      <page procedure="true" topic="ui_sss_migrate_from_emailrouter_to_server_side_sync" filename="/tools/emailroutermigrationwizard/mainwizardpage.aspx" />
+      <page procedure="true" topic="ui_set_FiscalSettings_dlg" filename="/tools/fiscalsettings/dialogs/fiscalsettings.aspx" />
+      <page procedure="true" topic="ui_cust_default_solution_forms_list" filename="/tools/systemcustomization/uielements/forms.aspx?solutiontype=default" />
+      <page procedure="true" topic="ui_cust_default_solution_forms_list" filename="/tools/systemcustomization/uielements/forms.aspx?solutiontype=unmanaged" />
+      <page procedure="true" topic="source_rpt_sf_InvoiceStatus" filename="/crmreports/viewer/viewer.aspx?helpid=invoice status.rdl" />
+      <page procedure="true" topic="source_rpt_sf_InvoiceStatus" filename="/crmreports/viewer/viewer.aspx?helpid=invoice status detail.rdl" />
+      <page procedure="true" topic="source_cust_entity_Forms" filename="/tools/formeditor/formeditor.aspx?formtype=main" />
+      <page procedure="true" topic="source_cust_entity_Forms" filename="/tools/formeditor/formeditor.aspx" />
+      <page procedure="true" topic="source_cust_entity_Forms" filename="/tools/systemcustomization/uielements/forms.aspx" />
+      <page procedure="true" topic="source_cust_entity_new" filename="/tools/systemcustomization/entities/manageentity.aspx" />
+      <page procedure="true" topic="source_cust_entity_new" filename="/tools/systemcustomization/entities/manageentity.aspx?solutiontype=managed" />
+      <page procedure="true" topic="source_cust_entity_new" filename="/tools/systemcustomization/entities/manageentity.aspx?solutiontype=unmanaged" />
+      <page procedure="true" topic="source_cust_entity_new" filename="/tools/formeditor/formeditor.aspx?formtype=preview" />
+      <page procedure="true" topic="source_sf_create_quote" filename="/sfa/quotes/dlg_create.aspx" />
+      <page procedure="true" topic="source_sf_create_quote" filename="/userdefined/edit.aspx?etc=1084" />
+      <page procedure="true" topic="source_sf_create_quote" filename="/_root/homepage.aspx?etc=1084" />
+      <page procedure="true" topic="ui_set_Customize_Regional_Options_dlg" filename="/tools/regionaloptions/dialogs/regionaloptions.aspx?context=sys" />
+      <page procedure="true" topic="ui_set_templates_mailmerge_list" filename="/tools/templates/templates.aspx?pid=04" />
+      <page procedure="true" topic="ui_set_templates_mailmerge_list" filename="/tools/templates/edit.aspx" />
+      <page procedure="true" topic="ui_set_templates_mailmerge_list" filename="tools/mailmerge/home_mailmergetemplate.aspx" />
+      <page procedure="true" topic="ui_set_templates_mailmerge_list" filename="/tools/mailmerge/edit.aspx" />
+      <page procedure="true" topic="ui_dasboard_comp_properties" filename="/tools/formeditor/dialogs/subgrid.aspx" />
+      <page procedure="true" topic="ui_persopt_dlg" filename="/tools/personalsettings/dialogs/personalsettings.aspx" />
+      <page procedure="true" topic="ui_ss_ServiceRestriction_dlg" filename="/sm/workplans/dialogs/serviceavailablity.aspx" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignComparison" filename="/crmreports/viewer/viewer.aspx?helpid=campaign comparison.rdl" />
+      <page procedure="true" topic="ui_sf_Comp_list" filename="/userdefined/edit.aspx?etc=123" />
+      <page procedure="true" topic="ui_sf_Comp_list" filename="/_root/homepage.aspx?etc=123" />
+      <page procedure="true" topic="ui_set_FacilitiesEquipment" filename="/tools/business/home_resource.aspx" />
+      <page procedure="true" topic="ui_set_FacilitiesEquipment" filename="/tools/business/business.aspx?pid=03" />
+      <page procedure="true" topic="ui_set_FacilitiesEquipment" filename="/sm/resources/edit.aspx" />
+      <page procedure="true" topic="ui_imp_wiz_entitymap" filename="/tools/importwizard/entitymappage.aspx" />
+      <page procedure="true" topic="ui_set_SystemSet_dlg_email" filename="/tools/systemsettings/dialogs/systemsettings.aspx#tab2" />
+      <page procedure="true" topic="source_rpt_ss_ServiceActivityVolume" filename="/crmreports/viewer/viewer.aspx?helpid=service activity volume.rdl" />
+      <page procedure="true" topic="source_rpt_ss_ServiceActivityVolume" filename="/crmreports/viewer/viewer.aspx?helpid=service activity volume detail.rdl" />
+      <page procedure="true" topic="source_rpt_sf_AccountOverview" filename="/crmreports/viewer/viewer.aspx?helpid=account overview.rdl" />
+      <page procedure="true" topic="source_rpt_sf_AccountOverview" filename="/crmreports/viewer/viewer.aspx?helpid=account overview sub-report.rdl" />
+      <page procedure="true" topic="ui_wrk_dialogs_list" filename="/cs/dialog/rundialog.aspx" />
+      <page procedure="true" topic="ui_set_SPwQ" filename="/tools/business/business.aspx?pid=06" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignActivityStatus" filename="/crmreports/viewer/viewer.aspx?helpid=campaign activity status.rdl" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignActivityStatus" filename="/crmreports/viewer/viewer.aspx?helpid=campaign activity status detail.rdl" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignActivityStatus" filename="/crmreports/viewer/viewer.aspx?helpid=campaign activity status sub-report.rdl" />
+      <page procedure="true" topic="source_ol_reading_pane_personalize" filename="/outlook/readingpane/personalization.aspx" />
+      <page procedure="true" topic="source_cust_entity_1N_relationship" filename="/tools/systemcustomization/relationships/relationshiplist.aspx?relationshiprole=0&amp;solutiontype=default" />
+      <page procedure="true" topic="source_cust_entity_1N_relationship" filename="/tools/systemcustomization/relationships/relationshiplist.aspx?relationshiprole=0&amp;solutiontype=managed" />
+      <page procedure="true" topic="source_cust_entity_1N_relationship" filename="/tools/systemcustomization/relationships/relationshiplist.aspx?relationshiprole=0&amp;solutiontype=unmanaged" />
+      <page procedure="true" topic="source_cust_entity_1N_relationship" filename="/tools/systemcustomization/relationships/managerelationship.aspx?entityrole=referenced" />
+      <page procedure="true" topic="source_cust_entity_1N_relationship" filename="/tools/systemcustomization/relationships/managerelationship.aspx" />
+      <page procedure="true" topic="ui_cust_default_solution_views_list" filename="/tools/systemcustomization/uielements/uielements.aspx?solutiontype=managed" />
+      <page procedure="true" topic="ui_cust_default_solution_views_list" filename="/tools/systemcustomization/uielements/uielements.aspx?solutiontype=default" />
+      <page procedure="true" topic="ui_cust_default_solution_views_list" filename="/tools/vieweditor/viewmanager.aspx" />
+      <page procedure="true" topic="source_ma_camp_create_response" filename="/userdefined/edit.aspx?etc=4401" />
+      <page procedure="true" topic="source_set_storage_add" filename="/tools/admin/addon/addstorage.aspx" />
+      <page procedure="true" topic="source_set_storage_add" filename="/tools/admin/addon/addstoragecomplete.aspx" />
+      <page procedure="true" topic="ui_ss_WorkingHours_dlg" filename="/biz/users/monthlycalendar.aspx" />
+      <page procedure="true" topic="ui_ss_WorkingHours_dlg" filename="/sm/workplans/edit.aspx" />
+      <page procedure="true" topic="ui_ss_WorkingHours_dlg" filename="/sm/workplans/dialogs/workinghours.aspx" />
+      <page procedure="true" topic="ui_ss_WorkingHours_dlg" filename="/sm/workplans/dialogs/timesheet.aspx" />
+      <page procedure="true" topic="ui_ss_WorkingHours_dlg" filename="/sm/workplans/dialogs/changeschedule.aspx" />
+      <page procedure="true" topic="source_ma_camp_CreateTemplate" filename="/tools/home_tools.aspx?pid=04" />
+      <page procedure="true" topic="crm-create-new-process" filename="/tools/processcontrol/bpfconfigurator.aspx" />
+      <page procedure="true" topic="ui_wrk_processes_list" filename="/_root/homepage.aspx?etc=4703" />
+      <page procedure="true" topic="ui_wrk_processes_list" filename="/sfa/workflowsession/edit.aspx" />
+      <page procedure="true" topic="ui_wrk_processes_list" filename="/sfa/workflow/edit.aspx" />
+      <page procedure="true" topic="ui_wrk_processes_list" filename="/sfa/workflow/assignactivityform.aspx" />
+      <page procedure="true" topic="ui_wrk_processes_list" filename="/sfa/workflow/entityform.aspx" />
+      <page procedure="true" topic="ui_wrk_processes_list" filename="/condition/condition.aspx" />
+      <page procedure="true" topic="ui_wrk_processes_list" filename="/sfa/workflow/dlg_insert_variable.aspx" />
+      <page procedure="true" topic="ui_wrk_processes_list" filename="/sfa/workflow/assignvalue.aspx" />
+      <page procedure="true" topic="ui_wrk_processes_list" filename="/sfa/workflow/mapchildarguments.aspx" />
+      <page procedure="true" topic="ui_sj_systemjobs_list" filename="/tools/business/home_asyncoperation.aspx" />
+      <page procedure="true" topic="ui_sj_systemjobs_list" filename="/tools/asyncoperation/edit.aspx" />
+      <page procedure="true" topic="ui_sj_systemjobs_list" filename="/tools/workflowinstance/edit.aspx" />
+      <page procedure="true" topic="source_ma_list_AddListLitProd" filename="/userdefined/edit.aspx?etc=1038" />
+      <page procedure="true" topic="source_ma_list_AddListLitProd" filename="/_root/homepage.aspx?etc=1038" />
+      <page procedure="true" topic="source_ma_list_AddListLitProd" filename="/userdefined/edit.aspx?etc=4300" />
+      <page procedure="true" topic="source_ma_list_AddListLitProd" filename="/_root/homepage.aspx?etc=4300" />
+      <page procedure="true" topic="howrecExport" filename="/userdefined/edit.aspx?etc=9700" />
+      <page procedure="true" topic="ui_set_Autonumbering_dlg" filename="/tools/autonumbering/dialogs/autonumbering.aspx" />
+      <page procedure="true" topic="aboutproduct" filename="/tools/servicemanagement/servicemanagement.aspx" />
+      <page procedure="true" topic="ui_cust_system_charts_list" filename="/tools/systemcustomization/uielements/visualizations.aspx" />
+      <page procedure="true" topic="ui_cust_system_charts_list" filename="/tools/visualizationdesigner/visualizationdesigner.aspx" />
+      <page procedure="true" topic="ui_cust_system_charts_list" filename="/tools/systemcustomization/uielements/visualizations.aspx?solutiontype=default" />
+      <page procedure="true" topic="ui_imp_wiz_finish" filename="/workplace/home_import.aspx" />
+      <page procedure="true" topic="ui_imp_wiz_finish" filename="/_root/homepage.aspx?etc=4412" />
+      <page procedure="true" topic="ui_imp_wiz_finish" filename="/userdefined/edit.aspx?etc=4412" />
+      <page procedure="true" topic="ui_imp_wiz_finish" filename="/import/edit.aspx" />
+      <page procedure="true" topic="ui_imp_wiz_finish" filename="/tools/datamanagement/datamanagement.aspx?pid=06" />
+      <page procedure="true" topic="source_act_schedule_appt_24784" filename="/socialinsight/configurationwizard/selectsearchtopicpage.aspx" />
+      <page procedure="true" topic="ui_sf_OpportunityProduct_form" filename="/userdefined/edit.aspx?etc=1083" />
+      <page procedure="true" topic="source_cust_entity_N1_relationship" filename="/tools/systemcustomization/relationships/relationshiplist.aspx?relationshiprole=1&amp;solutiontype=default" />
+      <page procedure="true" topic="source_cust_entity_N1_relationship" filename="/tools/systemcustomization/relationships/relationshiplist.aspx?relationshiprole=1&amp;solutiontype=managed" />
+      <page procedure="true" topic="source_cust_entity_N1_relationship" filename="/tools/systemcustomization/relationships/relationshiplist.aspx?relationshiprole=1&amp;solutiontype=unmanaged" />
+      <page procedure="true" topic="source_cust_entity_N1_relationship" filename="/tools/systemcustomization/relationships/managerelationship.aspx?entityrole=referencing" />
+      <page procedure="true" topic="source_rpt_cs_TopKBArticles" filename="/crmreports/viewer/viewer.aspx?helpid=top knowledge base articles.rdl" />
+      <page procedure="true" topic="source_rpt_cs_TopKBArticles" filename="/crmreports/viewer/viewer.aspx?helpid=top knowledge base articles detail.rdl" />
+      <page procedure="true" topic="source_cust_add_new_solutioncomponent" filename="/tools/solution/areas.aspx?solutiontype=managed" />
+      <page procedure="true" topic="source_cust_add_new_solutioncomponent" filename="/tools/solution/areas.aspx?solutiontype=unmanaged" />
+      <page procedure="true" topic="source_cust_add_new_solutioncomponent" filename="/tools/solution/edit.aspx" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignPerformance" filename="/crmreports/viewer/viewer.aspx?helpid=campaign performance.rdl" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignPerformance" filename="/crmreports/viewer/viewer.aspx?helpid=campaign performance detail.rdl" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignPerformance" filename="/crmreports/viewer/viewer.aspx?helpid=campaign opportunity estimated revenue detail.rdl" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignPerformance" filename="/crmreports/viewer/viewer.aspx?helpid=campaign opportunity realized revenue detail.rdl" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignPerformance" filename="/crmreports/viewer/viewer.aspx?helpid=campaign placed order detail.rdl" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignPerformance" filename="/crmreports/viewer/viewer.aspx?helpid=campaign response detail.rdl" />
+      <page procedure="true" topic="source_rpt_mkt_CampaignPerformance" filename="/crmreports/viewer/viewer.aspx?helpid=campaign task detail.rdl" />
+      <page procedure="true" topic="crm-marketing-home" filename="/workplace/home_dashboards.aspx?sitemappath=ma|mywork|nav_dashboards" />
+      <page procedure="true" topic="ui_set_SubjMgr" filename="/tools/business/business.aspx?pid=10" />
+      <page procedure="true" topic="ui_set_SubjMgr" filename="/tools/subjectmanager/subjecteditor.aspx" />
+      <page procedure="true" topic="source_rpt_sf_progressagainstgoals" filename="/crmreports/viewer/viewer.aspx?helpid=goal.rdl" />
+      <page procedure="true" topic="source_rpt_sf_progressagainstgoals" filename="/crmreports/viewer/viewer.aspx?ahelpid=goal.rdl" />
+      <page procedure="true" topic="source_ma_camp_CreateNew" filename="/ma/home_camps.aspx" />
+      <page procedure="true" topic="source_ma_camp_CreateNew" filename="/_root/homepage.aspx?etc=4400" />
+      <page procedure="true" topic="source_ma_camp_CreateNew" filename="/userdefined/edit.aspx?etc=4400" />
+      <page procedure="true" topic="ui_create_fs_profile" filename="/tools/admin/admin.aspx?pid=14" />
+      <page procedure="true" topic="ui_create_fs_profile" filename="/biz/fieldsecurityprofiles/edit.aspx" />
+      <page procedure="true" topic="how_sec_email" filename="/tools/formeditor/dialogs/dlg_timercontrol.aspx" />
+      <page procedure="true" topic="source_rpt_cs_CaseSummary" filename="/crmreports/viewer/viewer.aspx?helpid=case summary table.rdl" />
+      <page procedure="true" topic="source_rpt_cs_CaseSummary" filename="/crmreports/viewer/viewer.aspx?helpid=case summary table detail.rdl" />
+      <page procedure="true" topic="source_sf_create_contact" filename="/_root/homepage.aspx?etc=2" />
+      <page procedure="true" topic="source_sf_create_contact" filename="/userdefined/edit.aspx?etc=2" />
+      <page procedure="true" topic="ui_bd_job_list" filename="/tools/bulkdelete/bulkdeletewizard/welcomepage.aspx" />
+      <page procedure="true" topic="ui_bd_job_list" filename="/tools/bulkdelete/edit.aspx" />
+      <page procedure="true" topic="ui_bd_job_list" filename="/tools/bulkdelete/bulkdeletewizard/searchcriteriacontainerpage.aspx" />
+      <page procedure="true" topic="ui_bd_job_list" filename="/tools/bulkdelete/bulkdeletewizard/additionaloptionspage.aspx" />
+      <page procedure="true" topic="ui_bd_job_list" filename="/tools/bulkdelete/bulkdeletewizard/summarypage.aspx" />
+      <page procedure="true" topic="ui_bd_job_list" filename="/tools/datamanagement/datamanagement.aspx?pid=05" />
+      <page procedure="true" topic="ui_bd_job_list" filename="tools/bulkdelete/edit.aspx?" />
+      <page procedure="true" topic="ui_cust_Attribute" filename="/tools/systemcustomization/attributes/attributelist.aspx?solutiontype=managed" />
+      <page procedure="true" topic="ui_cust_Attribute" filename="/tools/systemcustomization/attributes/attributelist.aspx?solutiontype=default" />
+      <page procedure="true" topic="ui_cust_Attribute" filename="/tools/systemcustomization/attributes/attributelist.aspx?solutiontype=unmanaged" />
+      <page procedure="true" topic="ui_cust_Attribute" filename="/tools/systemcustomization/attributes/manageattribute.aspx" />
+      <page procedure="true" topic="source_set_org_general" filename="/tools/systemsettings/dialogs/systemsettings.aspx#tab0" />
+      <page procedure="true" topic="source_ss_ws_FE_workinghours" filename="/sm/workplans/dialogs/serviceavailablity.aspx" />
+      <page procedure="true" topic="source_ss_ws_FE_workinghours" filename="/sm/workplans/edit.aspx" />
+      <page procedure="true" topic="source_ss_ws_FE_workinghours" filename="/sm/workplans/dialogs/changeschedule.aspx" />
+      <page procedure="true" topic="source_ss_ws_FE_workinghours" filename="/biz/users/monthlycalendar.aspx" />
+      <page procedure="true" topic="source_ss_ws_FE_workinghours" filename="/sm/workplans/dialogs/workinghours.aspx" />
+      <page procedure="true" topic="source_ss_ws_FE_workinghours" filename="/sm/workplans/dialogs/timesheet.aspx" />
+      <page procedure="true" topic="source_cust_add_form_securityrole" filename="/tools/formeditor/dialogs/formroleassignment.aspx" />
+      <page procedure="true" topic="ui_cust_Customization" filename="/tools/systemcustomization/systemcustomization.aspx" />
+      <page procedure="true" topic="crm-sales-home" filename="/workplace/home_dashboards.aspx?sitemappath=sfa|mywork|nav_dashboards" />
+      <page procedure="true" topic="crm-sales-home" filename="/tools/dashboardeditor/dialogs/componentgallery.aspx" />
+      <page procedure="true" topic="crm-sales-home" filename="/tools/dashboardeditor/dashboardeditor.aspx" />
+      <page procedure="true" topic="source_sf_create_goal" filename="/_root/homepage.aspx?etc=9600" />
+      <page procedure="true" topic="source_sf_create_goal" filename="/userdefined/edit.aspx?etc=9600" />
+      <page procedure="true" topic="source_sf_create_goal" filename="defined/edit.aspx?etc=9603" />
+      <page procedure="true" topic="source_sf_create_goal" filename="/_root/homepage.aspx?etc=9603" />
+      <page procedure="true" topic="source_sf_create_goal" filename="/tools/business/business.aspx?pid=14" />
+      <page procedure="true" topic="source_sf_create_goal" filename="/userdefined/edit.aspx?etc=9603" />
+      <page procedure="true" topic="ui_set_AnnctMgr" filename="/tools/newseditor/edit.aspx" />
+      <page procedure="true" topic="ui_set_AnnctMgr" filename="/home/homepage/home_news.aspx" />
+      <page procedure="true" topic="ui_set_AnnctMgr" filename="/tools/home_tools.aspx?pid=05" />
+      <page procedure="true" topic="ui_set_AnnctMgr" filename="/tools/admin/admin.aspx?pid=01" />
+      <page procedure="true" topic="source_cust_config_related_entity_form_navigation" filename="/tools/formeditor/dialogs/navlink.aspx" />
+      <page procedure="true" topic="ui_rec_Assign" filename="/_grid/cmds/dlg_addtoqueue.aspx" />
+      <page procedure="true" topic="ui_rec_Assign" filename="/_grid/cmds/dlg_queueitemworkon.aspx" />
+      <page procedure="true" topic="ui_sf_rollup_query_list" filename="/userdefined/edit.aspx?etc=9602" />
+      <page procedure="true" topic="ui_sf_rollup_query_list" filename="/_root/homepage.aspx?etc=9602" />
+      <page procedure="true" topic="source_sr_resolve_case" filename="/cs/cases/closecase.aspx" />
+      <page procedure="true" topic="ui_set_SystemSet_dlg_marketing" filename="/tools/systemsettings/dialogs/systemsettings.aspx#tab3" />
+      <page procedure="true" topic="source_prodcat_create_Product" filename="/tools/productcatalog/productcatalog.aspx?pid=04" />
+      <page procedure="true" topic="source_prodcat_create_Product" filename="/userdefined/edit.aspx?etc=1024" />
+      <page procedure="true" topic="source_prodcat_create_Product" filename="/_root/homepage.aspx?etc=1024" />
+      <page procedure="true" topic="source_prodcat_create_Product" filename="/sfa/home_products.aspx" />
+      <page procedure="true" topic="source_prodcat_create_Product" filename="/tools/productcatalog/home_product.aspx" />
+      <page procedure="true" topic="ui_persopt_Customize_Regional_Options_dlg" filename="/tools/regionaloptions/dialogs/regionaloptions.aspx?context=user" />
+      <page procedure="true" topic="ui_sf_SaleslitAttach_form" filename="/sfa/saleslit/attachment_edit.aspx" />
+      <page procedure="true" topic="how_ol_synchronize" filename="/outlook/synchronization/filters.aspx" />
+      <page procedure="true" topic="ui_set_SystemSet_dlg_Regional" filename="/tools/systemsettings/dialogs/systemsettings.aspx#tab7" />
+      <page procedure="true" topic="source_rec_Assign" filename="/_grid/cmds/dlg_assign.aspx" />
+      <page procedure="true" topic="source_rec_Assign" filename="/_grid/cmds/dlg_frmassign.aspx" />
+      <page procedure="true" topic="source_rec_Assign" filename="/_grid/cmds/dlg_share.aspx" />
+      <page procedure="true" topic="source_rec_Assign" filename="/_grid/cmds/dlg_assignqueue.aspx" />
+      <page procedure="true" topic="ui_ss_Calendar" filename="/workplace/home_calendar.aspx" />
+      <page procedure="true" topic="source_rpt_sf_AccountSummary" filename="/crmreports/viewer/viewer.aspx?helpid=account summary.rdl" />
+      <page procedure="true" topic="source_rpt_sf_AccountSummary" filename="/crmreports/viewer/viewer.aspx?helpid=account summary sub-report.rdl" />
+      <page procedure="true" topic="ui_cust_default_solution_view_edit_entity_information" filename="/tools/systemcustomization/entities/manageentity.aspx?solutiontype=default" />
+      <page procedure="true" topic="ui_cust_Export" filename="/tools/solution/exportwizard/welcomepage.aspx" />
+      <page procedure="true" topic="ui_cust_Export" filename="/tools/solution/exportwizard/additionalitemspage.aspx" />
+      <page procedure="true" topic="ui_cust_Export" filename="/tools/solution/exportwizard/packageselectionpage.aspx" />
+      <page procedure="true" topic="ui_cust_Export" filename="/tools/solution/exportwizard/targetversionselectionpage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/adhocwizard/chartformatpage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/adhocwizard/charttypepage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/adhocwizard/filterdatapage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/adhocwizard/modeandlanguagepage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/adhocwizard/reportformatpage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/adhocwizard/reportmetadatapage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/adhocwizard/successfailurepage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/adhocwizard/summarypage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/adhocwizard/tablelayoutpage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/adhocwizard/welcomepage.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/workplace/my work/reports" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/home_reports.aspx" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/_root/homepage.aspx?etc=9100" />
+      <page procedure="true" topic="ui_rpt_wizard" filename="/crmreports/reportproperty.aspx" />
+      <page procedure="true" topic="source_rpt_admin_UserSummary" filename="/crmreports/viewer/viewer.aspx?helpid=user summary.rdl" />
+      <page procedure="true" topic="ui_find_AdvancedFind_form" filename="/advancedfind/advfind.aspx" />
+      <page procedure="true" topic="ui_find_AdvancedFind_form" filename="/search/search.aspx" />
+      <page procedure="true" topic="source_rpt_sf_quotes" filename="crmreports/viewer/viewer.aspx?helpid=quote.rdl" />
+      <page procedure="true" topic="ui_set_Currencies_list" filename="/tools/business/business.aspx?pid=11" />
+      <page procedure="true" topic="ui_set_Currencies_list" filename="/biz/transactioncurrencies/edit.aspx" />
+      <page procedure="true" topic="source_samp_addremove" filename="/tools/importwizard/sampledata.aspx" />
+      <page procedure="true" topic="ui_imp_wiz_file" filename="/tools/importwizard/uploadfilepage.aspx" />
+      <page procedure="true" topic="source_org_que_Create" filename="/_root/homepage.aspx?etc=2029" />
+      <page procedure="true" topic="source_org_que_Create" filename="/tools/queuingmanager/edit.aspx" />
+      <page procedure="true" topic="source_org_que_Create" filename="/tools/home_tools.aspx?pid=025" />
+      <page procedure="true" topic="source_org_que_Create" filename="/workplace/home_workplace.aspx" />
+      <page procedure="true" topic="source_org_que_Create" filename="/userdefined/edit.aspx?etc=2029" />
+      <page procedure="true" topic="source_org_que_Create" filename="/tools/business/business.aspx?pid=04" />
+      <page procedure="true" topic="source_org_que_Create" filename="/_grid/cmds/dlg_addtoqueue.aspx" />
+      <page procedure="true" topic="source_org_que_Create" filename="/_grid/cmds/dlg_queuitemworkon.aspx" />
+      <page procedure="true" topic="source_org_que_Create" filename="/userdefined/edit.aspx?etc=2020" />
+      <page procedure="true" topic="source_cust_entity_charts_create" filename="/tools/systemcustomization/uielements/visualizations.aspx?solutiontype=managed" />
+      <page procedure="true" topic="source_cust_entity_charts_create" filename="/tools/systemcustomization/uielements/visualizations.aspx?solutiontype=unmanaged" />
+      <page procedure="true" topic="source_cust_entity_charts_create" filename="/tools/systemcustomization/uielements/visualizations.aspx" />
+      <page procedure="true" topic="source_cust_entity_charts_create" filename="/tools/visualizationdesigner/visualizationdesigner.aspx" />
+      <page procedure="true" topic="source_cust_entity_charts_create" filename="/tools/systemcustomization/uielements/visualizations.aspx?solutiontype=default" />
+      <page procedure="true" topic="ui_set_templates_e-mail" filename="/tools/emailtemplateeditor/emailtemplateeditor.aspx" />
+      <page procedure="true" topic="ui_set_templates_e-mail" filename="/tools/templates/templates.aspx?pid=03" />
+      <page procedure="true" topic="ui_set_templates_e-mail" filename="/tools/home_tools.aspx?pid=044" />
+      <page procedure="true" topic="crm-service-home" filename="/workplace/home_dashboards.aspx?sitemappath=cs|mywork|nav_dashboards" />
+      <page procedure="true" topic="crm-service-home" filename="/_root/homepage.aspx?etc=112" />
+      <page procedure="true" topic="source_rpt_sf_AccountProductView" filename="/crmreports/viewer/viewer.aspx?helpid=products by account.rdl" />
+      <page procedure="true" topic="source_rpt_sf_AccountProductView" filename="/crmreports/viewer/viewer.aspx?helpid=products by account detail.rdl" />
+      <page procedure="true" topic="source_sf_create_opp" filename="/sfa/opps/closeopp.aspx" />
+      <page procedure="true" topic="source_sf_create_opp" filename="/userdefined/edit.aspx?etc=3" />
+      <page procedure="true" topic="source_sf_create_opp" filename="/_root/homepage.aspx?etc=3" />
+      <page procedure="true" topic="ui_cust_downloadWSDL" filename="/tools/systemcustomization/systemcustomization.aspx?pid=05" />
+      <page procedure="true" topic="ui_cust_default_solution_information" filename="/tools/systemcustomization/displaystrings/displaystringlist.aspx?solutiontype=default" />
+      <page procedure="true" topic="ui_cust_default_solution_information" filename="/tools/systemcustomization/displaystrings/displaystringlist.aspx?solutiontype=unmanaged" />
+      <page procedure="true" topic="ui_cust_default_solution_information" filename="/tools/solution/edit.aspx?solutiontype=default" />
+      <page procedure="true" topic="ui_cust_default_solution_information" filename="/tools/solution/edit.aspx?solutiontype=managed" />
+      <page procedure="true" topic="ui_cust_default_solution_information" filename="/tools/solution/edit.aspx?solutiontype=unmanaged" />
+      <page procedure="true" topic="ui_gen_ReadOnly" filename="/_forms/readonly/readonly.aspx" />
+      <page procedure="true" topic="ui_gen_ReadOnly" filename="/sm/services/readonly.aspx" />
+      <page procedure="true" topic="ui_cust_FormPreview" filename="/tools/formeditor/preview.aspx" />
+      <page procedure="true" topic="ui_audit_view_audit_summary" filename="/tools/audit/audit_summary.aspx" />
+      <page procedure="true" topic="ui_audit_view_audit_summary" filename="/tools/audit/audit_details.aspx" />
+      <page procedure="true" topic="ui_sf_CustomerRelationship_dlg" filename="/sfa/customerrelationships/edit.aspx" />
+      <page procedure="true" topic="ui_sf_OrderProduct_form" filename="/userdefined/edit.aspx?etc=1089" />
+      <page procedure="true" topic="ui_sf_QuoteProduct_form" filename="/userdefined/edit.aspx?etc=1085" />
+      <page procedure="true" topic="ui_set_orgstatus" filename="/tools/admin/admin.aspx?pid=12" />
+      <page procedure="true" topic="ui_audit_area" filename="/tools/audit/audit_area.aspx" />
+      <page procedure="true" topic="source_wrk_dynamic_expressions" filename="/_root/homepage.aspx?etc=99" />
+      <page procedure="true" topic="source_wrk_dynamic_expressions" filename="/userdefined/edit.aspx?etc=99" />
+      <page procedure="true" topic="ui_sf_Address_form" filename="/userdefined/edit.aspx?etc=1071" />
+      <page procedure="true" topic="source_sf_follow_with_activity_Feeds" filename="&lt;no change&gt;" />
+      <page procedure="true" topic="source_sf_follow_with_activity_Feeds" filename="/webresources/msdyn_/personalwall.htm" />
+      <page procedure="true" topic="ui_gen_PrintGrid" filename="/_grid/print/print.aspx" />
+      <page procedure="true" topic="ui_gen_PrintGrid" filename="/_forms/print/print.aspx" />
+      <page procedure="true" topic="source_prodcat_create_PriceList" filename="/tools/productcatalog/productcatalog.aspx?pid=03" />
+      <page procedure="true" topic="source_prodcat_create_PriceList" filename="/userdefined/edit.aspx?etc=1022" />
+      <page procedure="true" topic="source_prodcat_create_PriceList" filename="/userdefined/edit.aspx?etc=1026" />
+      <page procedure="true" topic="ui_cust_use_global_optionsets" filename="/tools/systemcustomization/optionset/optionset.aspx" />
+      <page procedure="true" topic="crm-mobile-search-settings" filename="/tools/systemsettings/dialogs/quickfindconfiguration.aspx" />
+      <page procedure="true" topic="source_rpt_sf_NeglectedLeads" filename="/crmreports/viewer/viewer.aspx?helpid=neglected leads.rdl" />
+      <page procedure="true" topic="source_rpt_sf_NeglectedLeads" filename="/crmreports/viewer/viewer.aspx?helpid=neglected leads detail.rdl" />
+      <page procedure="true" topic="ui_set_SalesTerrMgr" filename="/biz/territories/edit.aspx" />
+      <page procedure="true" topic="ui_set_SalesTerrMgr" filename="/tools/business/business.aspx?pid=07" />
+      <page procedure="true" topic="ui_set_SalesTerrMgr" filename="/userdefined/edit.aspx?etc=2013" />
+      <page procedure="true" topic="ui_cust_form_field_properties_view_configure" filename="/tools/formeditor/dialogs/fieldprops.aspx" />
+      <page procedure="true" topic="ui_set_RelationshipRoles_list" filename="/tools/business/business.aspx?pid=13" />
+      <page procedure="true" topic="ui_set_RelationshipRoles_list" filename="/tools/relationshiproleeditor/edit.aspx" />
+      <page procedure="true" topic="ui_sss_create_email_server_profiles" filename="/tools/social/social_area.aspx?pid=01" />
+      <page procedure="true" topic="ui_sss_create_email_server_profiles" filename="/userdefined/edit.aspx?etc=9605" />
+      <page procedure="true" topic="ui_set_remove_storage" filename="/tools/admin/addon/removestorage.aspx" />
+      <page procedure="true" topic="ui_set_remove_storage" filename="/tools/admin/addon/removestoragecomplete.aspx" />
+      <page procedure="true" topic="ui_imp_wiz_attmap" filename="/tools/importwizard/attributemappage.aspx" />
+      <page procedure="true" topic="ui_imp_wiz_attmap" filename="/tools/datamanagement/datamanagement.aspx?pid=04" />
+      <page procedure="true" topic="ui_imp_wiz_attmap" filename="/tools/managemaps/edit.aspx" />
+      <page procedure="true" topic="crm_help7" filename="/tools/admin/admin.aspx?pid=16" />
+      <page procedure="true" topic="source_sf_create_lead" filename="/userdefined/edit.aspx?etc=4" />
+      <page procedure="true" topic="source_sf_create_lead" filename="/_root/homepage.aspx?etc=4" />
+      <page procedure="true" topic="source_rpt_sf_Pipeline" filename="/crmreports/viewer/viewer.aspx?helpid=sales pipeline.rdl" />
+      <page procedure="true" topic="source_rpt_sf_Pipeline" filename="/crmreports/viewer/viewer.aspx?helpid=sales pipeline detail.rdl" />
+      <page procedure="true" topic="ui_set_Language_Settings_dlg" filename="/tools/muiprovisioning/dialogs/langselection.aspx" />
+      <page procedure="true" topic="ui_ss_ScheduleTimeOff_dlg" filename="/sm/workplans/dialogs/timeoff.aspx" />
+      <page procedure="true" topic="ui_cust_add_edit_solution_publisher" filename="/tools/systemcustomization/solutionsmarketplace/solutionsmarketplace.aspx" />
+      <page procedure="true" topic="source_ss_ws_create_resourcegroups" filename="/sm/resourcegroups/edit.aspx" />
+      <page procedure="true" topic="source_ss_ws_create_resourcegroups" filename="/tools/home_tools.aspx?pid=0232" />
+      <page procedure="true" topic="source_ss_ws_create_resourcegroups" filename="/tools/business/business.aspx?pid=05" />
+      <page procedure="true" topic="source_ss_ws_create_resourcegroups" filename="tools/business/home_resource_groups.aspx" />
+      <page procedure="true" topic="aboutarticles" filename="/userdefined/edit.aspx?etc=127" />
+      <page procedure="true" topic="aboutarticles" filename="/cs/articles/edit_article.aspx" />
+      <page procedure="true" topic="aboutarticles" filename="/cs/home_managekb.aspx" />
+      <page procedure="true" topic="aboutarticles" filename="/_root/homepage.aspx?etc=127" />
+      <page procedure="true" topic="aboutarticles" filename="/workplace/home_answers.aspx" />
+      <page procedure="true" topic="aboutarticles" filename="/cs/articles/viewer/default.aspx" />
+      <page procedure="true" topic="source_rpt_sf_ContactProductView" filename="/crmreports/viewer/viewer.aspx?helpid=products by contact.rdl" />
+      <page procedure="true" topic="source_rpt_sf_ContactProductView" filename="/crmreports/viewer/viewer.aspx?helpid=products by contact detail.rdl" />
+      <page procedure="true" topic="ui_set_DiscountLists" filename="/tools/productcatalog/productcatalog.aspx?pid=01" />
+      <page procedure="true" topic="ui_set_DiscountLists" filename="main.aspx?etc=1013" />
+      <page procedure="true" topic="ui_set_DiscountLists" filename="/tools/productcatalog/home_discounttype.aspx" />
+      <page procedure="true" topic="ui_set_DiscountLists" filename="/userdefined/edit.aspx?etc=1080" />
+      <page procedure="true" topic="ui_set_DiscountLists" filename="/products/discounttypeitem/edit.aspx" />
+      <page procedure="true" topic="ui_set_ProdCat" filename="/tools/productcatalog/productcatalog.aspx" />
+      <page procedure="true" topic="how_dd_findandmerge" filename="/tools/duplicatedetection/viewduplicates/viewduplicates.aspx" />
+      <page procedure="true" topic="how_dd_findandmerge" filename="/tools/duplicatedetection/viewduplicates/viewduplicatesonline.aspx" />
+      <page procedure="true" topic="ui_sss_set_up_server_side_synchronization" filename="/tools/social/social_area.aspx" />
+      <page procedure="true" topic="ui_docmgm_settings_enable_docmgmt" filename="/tools/documentmanagement/documentmanagementsettingswizard/enabledocumentmanagementpage.aspx" />
+      <page procedure="true" topic="ui_docmgm_settings_enable_docmgmt" filename="_root/homepage.aspx" />
+      <page procedure="true" topic="ui_docmgm_settings_enable_docmgmt" filename="/tools/documentmanagement/documentmanagementsettingswizard/createdocumentlibrary.aspx" />
+      <page procedure="true" topic="ui_docmgm_settings_enable_docmgmt" filename="/tools/documentmanagement/documentmanagementsettingswizard/settingsfinalize.aspx" />
+      <page procedure="true" topic="ui_docmgm_mng_sites" filename="_root/homepage.aspx?etc=9502" />
+      <page procedure="true" topic="ui_docmgm_mng_sites" filename="/userdefined/edit.aspx?etc=9502" />
+      <page procedure="true" topic="ui_docmgm_mng_sites" filename="/_root/homepage.aspx?etc=10000" />
+      <page procedure="true" topic="ui_docmgm_mng_sites" filename="/userdefined/edit.aspx" />
+      <page procedure="true" topic="ui_docmgm_mng_sites" filename="/main.aspx" />
+      <page procedure="true" topic="ui_docmgm_mng_sites" filename="/tools/business/business.aspx?pid=09" />
+      <page procedure="true" topic="ui_docmgm_mng_sites" filename="/tools/home_tools.aspx?pid=09" />
+      <page procedure="true" topic="ui_docmgm_mng_sites" filename="/userdefined/edit.aspx?etc=4009" />
+      <page procedure="true" topic="ui_docmgm_mng_sites" filename="/sm/sites/edit.aspx" />
+      <page procedure="true" topic="ui_set_UnitGroups_list" filename="/userdefined/edit.aspx?etc=1056" />
+      <page procedure="true" topic="ui_set_UnitGroups_list" filename="/tools/productcatalog/productcatalog.aspx?pid=02" />
+      <page procedure="true" topic="ui_set_UnitGroups_list" filename="/userdefined/edit.aspx?etc=1055" />
+      <page procedure="true" topic="ui_mkt_CampActivity_form" filename="/userdefined/edit.aspx?etc=4402" />
+      <page procedure="true" topic="ui_dm_area" filename="/tools/datamanagement/datamanagement.aspx" />
+      <page procedure="true" topic="ui_imp_wiz_customize" filename="/tools/importwizard/customizeimportpage.aspx" />
+      <page procedure="true" topic="ui_imp_wiz_customize" filename="/tools/importwizard/finishpage.aspx" />
+      <page procedure="true" topic="ui_dd_global" filename="/tools/duplicatedetection/duplicatedetectionsettings/duplicatedetectionsettings.aspx" />
+      <page procedure="true" topic="source_sf_create_invoice" filename="/sfa/invoice/dlg_close.aspx" />
+      <page procedure="true" topic="source_sf_create_invoice" filename="/sfa/invoice/dlg_create.aspx" />
+      <page procedure="true" topic="source_sf_create_invoice" filename="/userdefined/edit.aspx?etc=1090" />
+      <page procedure="true" topic="source_sf_create_invoice" filename="/_root/homepage.aspx?etc=1090" />
+      <page procedure="true" topic="source_rpt_sf_NeglectedAccounts" filename="/crmreports/viewer/viewer.aspx?helpid=neglected accounts.rdl" />
+      <page procedure="true" topic="source_rpt_sf_NeglectedAccounts" filename="/crmreports/viewer/viewer.aspx?helpid=neglected accounts detail.rdl" />
+      <page procedure="true" topic="ui_cust_view_edit_solution_publishers" filename="/tools/systemcustomization/systemcustomization.aspx?pid=10" />
+      <page procedure="true" topic="crm-process-add-steps" filename="/tools/importwizard/sampledata.aspx?context=samplesolution" />
+      <page procedure="true" topic="ui_imp_wiz_template" filename="/tools/importwizard/datasourcepage.aspx" />
+      <page procedure="true" topic="source_rpt_sf_orders" filename="/crmreports/viewer/viewer.aspx?helpid=order.rdl" />
+      <page procedure="true" topic="source_rpt_sf_orders" filename="/crmreports/viewer/viewer.aspx?helpid=order sub-report.rdl" />
+      <page procedure="true" topic="how_rec_merge" filename="/_grid/cmds/dlg_merge.aspx" />
+      <page procedure="true" topic="ui_addsecuritytofield_fs" filename="/_grid/cmds/dlg_editfieldpermission.aspx" />
+      <page procedure="true" topic="crm_help5" filename="/tools/sqlencryption/sqlencryption.aspx" />
+      <page procedure="true" topic="source_cust_add_form_field" filename="/tools/systemcustomization/uielements/forms.aspx?solutiontype=managed" />
+      <page procedure="true" topic="ui_set_SystemSet_dlg_customization" filename="/tools/systemsettings/dialogs/systemsettings.aspx#tab4" />
+      <page procedure="true" topic="ug_ol_Overview" filename="/_root/stage.aspx" />
+      <page procedure="true" topic="ug_ol_Overview" filename="/outlook/info/server_only_view.aspx" />
+      <page procedure="true" topic="ug_ol_Overview" filename="/_root/sitemapnavpage.aspx" />
+      <page procedure="true" topic="ug_cs_que_manage" filename="/tools/admin/admin.aspx?pid=06" />
+      <page procedure="true" topic="ui_docmgm_set_up_docmgmt" filename="/tools/documentmanagement/documentmanagement.aspx" />
+      <page procedure="true" topic="source_rpt_sf_Activities" filename="/crmreports/viewer/viewer.aspx?helpid=activities.rdl" />
+      <page procedure="true" topic="source_ss_ss_force_SvcAppt" filename="/userdefined/edit.aspx?etc=4214" />
+      <page procedure="true" topic="source_act_schedule_appt" filename="/userdefined/edit.aspx?etc=4201" />
+      <page procedure="true" topic="source_act_schedule_appt" filename="/_grid/cmds/dlg_listappointment.aspx" />
+      <page procedure="true" topic="source_act_schedule_appt" filename="/userdefined/edit.aspx?etc=4251" />
+      <page procedure="true" topic="ui_cust_ExportTranslation" filename="/tools/systemcustomization/systemcustomization.aspx?pid=06" />
+      <page procedure="true" topic="leadroutingdiagram" filename="/tools/templates/templates.aspx" />
+      <page procedure="true" topic="ui_org_User_form" filename="/biz/users/edit.aspx" />
+      <page procedure="true" topic="ui_cust_default_solution_component_list" filename="/_grid/cmds/dlg_addsolutioncomponent.aspx" />
+      <page procedure="true" topic="ui_cust_default_solution_component_list" filename="/tools/systemcustomization/displaystrings/edit.aspx" />
+      <page procedure="true" topic="ui_cust_default_solution_component_list" filename="/tools/solution/areas.aspx?solutiontype=default" />
+      <page procedure="true" topic="source_cust_entity_Views" filename="/tools/systemcustomization/uielements/uielements.aspx?solutiontype=unmanaged" />
+      <page procedure="true" topic="ui_cust_solutions" filename="/tools/systemcustomization/systemcustomization.aspx?pid=11" />
+      <page procedure="true" topic="ui_cust_solutions" filename="/tools/solution/home_solution.aspx" />
+      <page procedure="true" topic="crm-admin-home" filename="/tools/admin/admin.aspx" />
+      <page procedure="true" topic="crm-admin-home" filename="/_root/homepage.aspx?etc=10000" />
+      <page procedure="true" topic="crm-admin-home" filename="/userdefined/edit.aspx" />
+      <page procedure="true" topic="crm-admin-home" filename="/main.aspx" />
+      <page procedure="true" topic="crm-admin-home" filename="/_root/homepage.aspx?etc=10001" />
+      <page procedure="true" topic="crm-admin-home" filename="/_root/homepage.aspx?etc=10002" />
+      <page procedure="true" topic="crm-admin-home" filename="/tools/organizationsqmsetting/dialogs/sqmsettings.aspx" />
+      <page procedure="true" topic="how_act_CreateActivity" filename="/userdefined/edit.aspx?etc=8181" />
+      <page procedure="true" topic="source_org_announcement_read" filename="/_grid/cmds/dlg_casehierarchy.aspx" />
+      <page procedure="true" topic="source_org_EditUserRecord" filename="/WebResources/msdyusd_/USDMain.htm" />
+    </chapter>
+  </volume>
+</books>

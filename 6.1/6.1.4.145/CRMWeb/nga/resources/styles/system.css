@@ -1,0 +1,36 @@
+body
+{
+    font-family: 'Helvetica';
+    background-color: White;
+    background-image: none;
+    padding:0px;
+    border:0px;
+    margin:0px;
+    -webkit-perspective: 500;
+}
+
+input
+{
+	/* $REVIEW(jdferre): Need to allow selection for input elements (or else you can't type!) */
+	-webkit-user-select: auto;
+}
+
+textarea
+{
+	/* $REVIEW(nankma): Need to allow selection for input elements (or else you can't type!) */
+	-webkit-user-select: auto;
+}
+
+.hidden
+{
+    display:none;
+}
+
+* 
+{
+    /* Prevent default browser behaviors */   
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-select: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;	
+}

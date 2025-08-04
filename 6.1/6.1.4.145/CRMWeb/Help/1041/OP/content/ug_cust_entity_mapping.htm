@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>エンティティのフィールドのマッピング</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">エンティティのフィールドのマッピング</h1>
+			<p class="bodyText">マッピングにより、別のレコードに関連付けられた新しいレコードを作成するときのデータ入力の効率が上がります。2 つのエンティティ間にエンティティ関係がある場合、主エンティティに表示される関連ビューから新しい関連エンティティ レコードを作成することが可能です。ユーザーが関連ビューから新しいレコードを作成するときに、主エンティティ レコードからマップされたデータが、新しい関連エンティティ レコードのフォームにコピーされます。コピーされるデータの種類は、2 つのエンティティ間の関連付けに新しいマッピングを追加して制御します。主エンティティの関連ビューから作成する以外の方法でレコードを作成した場合、データはマップされません。</p>
+			<p class="bodyText">マッピングは、関連ビューから新しいレコードが作成される直前に適用されます。ユーザーはレコードを保存する前にデータを変更することができます。保存後に主レコードのデータに加えられた変更は、関連レコードに適用されません。</p>
+			<p class="bodyText" />
+			<h2 class="heading2">候補リストのマッピング</h2>
+			<div class="l2">
+				<p class="bodyText">フィールドがオプション セット (候補リスト) の場合は、2 つのオプション セットの間でオプションの値が同一になるようにしてください。オプション セットに値を追加すると、追加した順序に基づいて値に整数が割り当てられます。値を同じ順序で追加しなかった場合は、ターゲット フィールドのオプションの値のラベルを編集し、有効なマッピングを表すようにします。ただし、これが既存のデータに影響を及ぼさない場合に限ります。後からいずれかのオプション セットを変更する場合は、もう一方のオプション セットも忘れずに変更し、同期が維持されるようにしてください。オプション セットのマッピングが無効な場合、ターゲット フィールドでは既定のオプション セット値が使用されます。</p>
+				<p class="bodyText" />
+			</div>
+			<h2 class="heading2">自動的なマッピングの生成</h2>
+			<div class="l2">
+				<p class="bodyText">関連付けに対して自動的にマッピングを作成できますが、<em class="emphasis">一般的にはお勧めしません。</em>このプロセスでは、データ型とフィールドの名前だけに基づいて、マップ可能なすべてのフィールドがマップされます。既存のマッピングは、すべて削除されます。</p>
+				<p class="bodyText" />
+			</div>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

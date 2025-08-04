@@ -1,0 +1,130 @@
+﻿.DailyView
+{
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+}
+
+.DailyView .HoursGrid
+{
+    list-style: none;
+    margin: 0 0 0 -40px;
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+.DailyView .HoursGrid li
+{
+    border: 1px solid #ccc;
+    height: 49px;
+    border-top: none;
+    border-left: none;
+}
+
+.DailyView .HoursGrid li .Header
+{
+    color: #696969;
+    font-size: 11pt;
+    text-align: right;
+    display: block;
+    width: 40px;
+}
+
+.DailyView .CalendarPanel
+{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: 100%;
+}
+
+.DailyView .CalendarItem
+{
+    position: absolute;
+    left: 70px;
+    list-style: none;
+    cursor: pointer;
+    display: block;
+    padding: 8px 4px 8px 8px;
+    width: 290px;
+    height: 32px;
+    background-color: #D7E3F3;
+    border: 1px solid #999999;
+    z-index: 2;
+}
+
+.DailyView .CalendarItem h4
+{
+    font-size: 10pt;
+    margin: 0 0 2px 0;
+    font-weight: normal;
+}
+
+.DailyView .CalendarItem .Details
+{
+    font-size: 7pt;
+    color: #696969;
+}
+
+.Controls
+{
+    position: absolute;
+    top: 620px;
+}
+
+.Popup
+{
+    display: block;
+    background-color: White;
+    border: solid 1px Black;
+    padding: 8px 12px;
+    width: 300px;
+    height: 240px;
+    margin: 12%;
+    z-index: 3;
+}
+
+.Popup ul
+{
+    margin: 0 0 0 -32px;
+}
+        
+.Popup li
+{
+    list-style: none;
+    padding: 0 0 36px 0;
+}
+
+.Popup label
+{
+    float: left;
+}
+        
+.Popup input
+{
+    float: right;
+}
+
+.Timeline
+{
+    color: #D2BFBF;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    padding: 0px;
+    width: 100%;
+}
+
+.TimelineItem
+{
+    cursor: pointer;
+    display: inline;
+    float: left;
+    margin: 5px 10px;
+    padding: 0;
+}

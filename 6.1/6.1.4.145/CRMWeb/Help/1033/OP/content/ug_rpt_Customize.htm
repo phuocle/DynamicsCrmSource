@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Customize and organize reports</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Customize and organize reports</h1>
+			<p class="bodyText">Analyze data in Microsoft Dynamics CRM by using reports. Microsoft Dynamics CRM includes default reports for many common business needs. However, most organizations customize the default reports and add custom reports for specific needs. </p>
+			<p class="bodyText" />
+			<a name="ownership" />
+			<a class="expand" id="tID0EGAA" href="." onclick="expandCollapse('ID0EGAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EGAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Ownership of reports</h2>
+			</a>
+			<div id="dID0EGAA" class="l2" style="display:none">
+				<p class="bodyText">System reports are available to all users. Individuals who own reports can share them with specific colleagues or teams, or can make the reports available to the organization, so that all users can use them.</p>
+				<p class="bodyText" />
+			</div>
+			<a name="types" />
+			<a class="expand" id="tID0EFAA" href="." onclick="expandCollapse('ID0EFAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EFAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Report types</h2>
+			</a>
+			<div id="dID0EFAA" class="l2" style="display:none">
+				<p class="bodyText">Microsoft Dynamics CRM supports two types of report:</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">
+							<b>Microsoft SQL Server Reporting Services report.</b> These reports use SQL queries and filtered views to retrieve report data. Filtered views restrict the data to what is available to the security role of the person running the report. All the default reports that ship with Microsoft Dynamics CRM are SQL-based reports.</p>
+						<p class="bodyText">You cannot access filtered views in Microsoft Dynamics CRM Online because access to the SQL database is not supported. Thus, if you have a Microsoft Dynamics CRM Online subscription, use Fetch-based reports for custom reporting.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">
+							<b>Fetch-based Reporting Services report.</b> These reports use FetchXML queries that are proprietary to Microsoft Dynamics CRM instead of filtered views to retrieve data for reports. Reports that you create by using the Report Wizard in Microsoft Dynamics CRM are Fetch-based reports. </p>
+					</li>
+				</ul>
+				<p class="bodyText">The other reports can be:</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">Links to webpages</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Static files</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Dynamic Microsoft Office Excel files that read data from the Microsoft Dynamics CRM database</p>
+					</li>
+				</ul>
+				<p class="bodyText">For each report, you can edit the following properties:</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">File name or URL</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Display name</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Description</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Information about where the report displays in the user interface </p>
+					</li>
+				</ul>
+				<p class="bodyText" />
+			</div>
+			<a name="security" />
+			<a class="expand" id="tID0EEAA" href="." onclick="expandCollapse('ID0EEAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EEAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Security of data in reports</h2>
+			</a>
+			<div id="dID0EEAA" class="l2" style="display:none">
+				<p class="bodyText">All reports read Microsoft Dynamics CRM data from filtered views, which filter the data based on the user's security role. Reports only display data that the person running the report has permission to view. </p>
+				<p class="bodyText" />
+			</div>
+			<a name="creating" />
+			<a class="expand" id="tID0EDAA" href="." onclick="expandCollapse('ID0EDAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EDAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Options for creating new reports</h2>
+			</a>
+			<div id="dID0EDAA" class="l2" style="display:none">
+				<p class="bodyText">To create a new report, users with appropriate permissions can:</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">Add a file or a link to a webpage as a report.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Run the Report Wizard to create a new Reporting Services report. The Report Wizard can create table and chart reports, including drill-through reports and top N reports.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Write a new Fetch-based Reporting Services report. To author custom fetch-based reports, you must install the Microsoft Dynamics CRM Report Authoring Extension. More information:  “Create a Custom Fetch-Based Reporting Services Report” in  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=317946">Report Writers Guide for Microsoft Dynamics CRM 2013 and Microsoft Dynamics CRM Online</a>.</p>
+					</li>
+				</ul>
+				<p class="bodyText" />
+			</div>
+			<a name="modifying" />
+			<a class="expand" id="tID0ECAA" href="." onclick="expandCollapse('ID0ECAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0ECAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Options for modifying existing reports</h2>
+			</a>
+			<div id="dID0ECAA" class="l2" style="display:none">
+				<p class="bodyText">For existing reports, users with appropriate permissions can:</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">Organize reports into categories to control which views in the Reports area display each report.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Determine where a report is visible in the user interface, and edit other properties of the report.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Edit a report created with the Report Wizard.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Edit a default report. For example, if you customize Microsoft Dynamics CRM, you might need to modify labels or add or remove fields in default reports. More information: “Edit a Default Report or create a SQL-based Reporting Services report” in  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=317946">Report Writers Guide for Microsoft Dynamics CRM 2013 and Microsoft Dynamics CRM Online</a>,  <a target="_blank" href="http://msdn.microsoft.com/en-us/library/gg328097.aspx">Create Reports for Microsoft Dynamics CRM Using SQL Server Reporting Services</a></p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Edit the default filter for a default report, a report created with the Report Wizard, or other Reporting Services reports.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Create a one-time snapshot for a Reporting Services report or schedule a Reporting Services report to run at set intervals.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Share a personal report with other users, or make it available to everyone in your organization.</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Publish a report so that it is available for use with external applications, such as Microsoft SharePoint or custom programs.</p>
+					</li>
+				</ul>
+				<p class="bodyText">More information: <b>Permissions required for reporting tasks</b></p>
+			</div>
+			<a name="solutions" />
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Reports in solutions</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<p class="bodyText">In Microsoft Dynamics CRM, reports are solution aware. Adding a report as a component to a solution makes it become a single unit of software that extends Microsoft Dynamics CRM functionality and the user interface. Only reports that are organization-owned or visible to the organization can be added to solutions. </p>
+				<div class="alertContent">
+					<p class="notehead-end">Note </p>
+					<p class="bodyText">To find if a report is viewable to the organization: In the list of reports, select a report, and click or tap <b>Edit</b>. Then, on the <b>Administration</b> tab, see if <b>Viewable By</b> is set to <b>Organization</b>.</p>
+				</div>
+				<p class="bodyText">You can add, import, or export snapshots of reports as part of a solution. In Microsoft Dynamics CRM, reports, sub reports, report category, report display area, and report-related record type are considered as components of a report set. When you import a solution update in a non-overwrite mode, any updates by the solution to a report will be ignored if any component of the report set has been customized.</p>
+				<p class="bodyText" />
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_rpt_wizard.htm">Create, edit, or copy a report using the Report Wizard</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test email configuration of mailboxes</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Test email configuration of mailboxes</h1>
+			<p class="bodyText">After you associate mailboxes to the email server profile, you must test if the email is correctly configured for the mailboxes, and then enable the mailboxes. The configuration test checks if the incoming and outgoing email messages are configured correctly and whether the appointments, contacts, and tasks are being correctly synchronized. When the test is run for an outgoing email, an actual test email is sent from the respective mailbox account to the email address of the mailbox itself. During the test, if an error occurs, the mailbox owner or email server profile owner is notified based on the nature of the error. Read how to  <a href="ui_sss_email_error_tracking.htm">Monitor email processing errors</a>.</p>
+			<h2 class="heading2">Test the configuration on mailboxes</h2>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure you have the administrator privileges. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the nav bar, click or tap <b>Settings</b> &gt; <b>Email Configuration</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Mailboxes</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Select the mailboxes you want to test, click or tap the <b>More Commands (...)</b> icon, and then click or tap <b>Test &amp; Enable Mailboxes</b>.</p>
+						<p class="bodyText">This tests the incoming and outgoing email configuration of the selected mailboxes and enables those for email processing. If an error occurs in a mailbox, an alert isTest shown on the Alerts wall of the mailbox and profile owner, and depending on the nature of the error, Microsoft Dynamics CRM tries to process email again after some time or disables the mailbox for email processing. If you click or tap <b>Test &amp; Enable Mailboxes</b> in the email server profile form, Microsoft Dynamics CRM tests the email configuration of all the mailboxes associated to the email server profile. For the mailboxes that are configured with server-side synchronization for synchronizing appointments, tasks, and contacts, it also checks if these are configured properly. </p>
+						<p class="bodyText">The result of the email configuration test is displayed in the <b>Incoming Email Status</b>, <b>Outgoing Email Status</b>, and <b>Appointments, Contacts, and Tasks Status</b> fields of a mailbox record. An alert is also generated when the configuration successfully completes for a mailbox. This alert is shown to the mailbox owner.</p>
+					</li>
+				</ol>
+			</div>
+			<h2 class="heading2">Test the email configuration for all mailboxes associated with an email server profile</h2>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure you have the administrator privileges.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the nav bar, click or tap <b>Settings</b> &gt; <b>Email Configuration</b> &gt; <b>Email Server Profiles</b>. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Open an email server profile record, and in the <b>Actions</b> group, click or tap <b>Test &amp; Enable Mailboxes</b>.</p>
+						<p class="bodyText">-OR-</p>
+						<p class="bodyText">Select an email server profile and click or tap the <b>More Commands (...)</b> icon, and then click or tap <b>Test &amp; Enable Mailboxes</b>.</p>
+					</li>
+				</ol>
+				<div class="alertContent">
+					<p class="notehead-end">Note </p>
+					<p class="bodyText">When you test the email configuration, an asynchronous job runs in the background. It may take a few minutes for the test to complete.</p>
+				</div>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_set_up_server_side_synchronization.htm">Set up email through server-side synchronization</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_create_email_server_profiles.htm">Create email server profiles and add mailboxes</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_create_forward_mailboxes.htm">Create forward mailboxes or edit mailboxes</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

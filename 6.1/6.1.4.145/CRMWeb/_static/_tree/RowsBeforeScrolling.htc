@@ -1,0 +1,6 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready"	onevent="Init()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+function Init(){var iMaxRows=parseInt(element.MaxRowsBeforeScroll,10);if(!isNaN(iMaxRows)&&iMaxRows>0){var iRowCount=0;if(this.firstChild!=null)iRowCount=this.firstChild.children(0).children.length;if(iRowCount>iMaxRows){var iRowHeight=this.firstChild.children(0).children(0).offsetHeight;element.style.overflowY="auto";element.style.height=iRowHeight*iMaxRows}else{element.style.height="auto";element.style.overflowY=""}}}
+</script>
+</public:component>

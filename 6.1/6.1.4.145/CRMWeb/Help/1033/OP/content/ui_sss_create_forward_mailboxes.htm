@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Create forward mailboxes or edit mailboxes</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Create forward mailboxes or edit mailboxes</h1>
+			<p class="bodyText">By default, when users and queues are created in Microsoft Dynamics CRM, their respective mailbox records are also created. These mailbox records contain information that is specific to an individual mailbox on the email server, like email address, mailbox credentials, and email synchronization method. To process email messages using server-side synchronization for users and queues, their respective mailbox records should be associated to an email server profile record in Microsoft Dynamics CRM.</p>
+			<p class="bodyText">If your organization wants to configure server-side synchronization using a forward mailbox, you can create a new forward mailbox record. A forward mailbox is used as a collection box for email messages that are transferred from each user's mailbox on the email system by a server-side rule. The forward mailbox must be dedicated to server-side synchronization, and must not be used as a working mailbox by an individual user. This can be used to process email messages for users and queues whose mailboxes have <b>Incoming Email Synchronization Method</b> set to <b>Forward Mailbox</b>. You must associate the forward mailbox record to an email server profile record to process email using server-side synchronization.  <a target="_blank" href="http://technet.microsoft.com/en-us/library/hh699793.aspx">Learn more about forward mailboxes</a>.</p>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure that you have the System Administrator or System Customizer security role or equivalent permissions.</p>
+						<a class="expand" id="tID0EBAEAAABAA" href="." onclick="expandCollapse('ID0EBAEAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAEAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Check your security role</p>
+						</a>
+						<div id="dID0EBAEAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Follow the steps in  <a href="how_persopt_ViewProfile.htm">View your user profile</a>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Don't have the correct permissions? Contact your system administrator.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Follow the steps for the app you're using.</p>
+						<a class="expand" id="tID0ECADAAABAA" href="." onclick="expandCollapse('ID0ECADAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECADAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using the CRM web application</p>
+						</a>
+						<div id="dID0ECADAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+									<p class="bodyText">
+										<b>Settings</b> appears on the nav bar.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Email Configuration</b> &gt; <b>Mailboxes</b>. </p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBADAAABAA" href="." onclick="expandCollapse('ID0EBADAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBADAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using CRM for Outlook</p>
+						</a>
+						<div id="dID0EBADAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the Navigation Pane, expand your organization if necessary, and then click or tap <b>Settings</b> &gt; <b>System</b> &gt; <b>Email Configuration</b> &gt; <b>Mailboxes</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>New Forward Mailbox</b>, or to edit an existing mailbox record, open the mailbox record.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the mailbox record, specify the following details.</p>
+						<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Fields</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Description</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>General</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Name</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Type a meaningful name for the mailbox.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Owner</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Shows the owner of the mailbox. For a user mailbox that is automatically populated, the owner of the mailbox is the user itself. For a queue mailbox that is automatically populated, the owner of the mailbox is the owner of the queue record.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Email address</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Type the email address for the forward mailbox, such as forwardmailbox@contoso.com.</p>
+									<p class="bodyText">For a user or a queue mailbox, the email address is the same as that specified in the corresponding user or queue record form. If you edit the email address here, the email address in the user or queue record is updated automatically. </p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Delete Emails After Processing</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Specify if you want to delete email from the mailbox after processing. This field is available and can be set to <b>Yes</b> only for a forward mailbox and a queue mailbox.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Regarding</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select the user or queue that the mailbox is associated with. This field is empty and cannot be set for a forward mailbox.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Is Forward Mailbox</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">This field indicates whether the mailbox record is a forward mailbox. When set to <b>No</b>, it indicates that the mailbox record is associated to an individual user or queue in Microsoft Dynamics CRM. </p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>Credentials</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Allow to Use Credentials for Email Processing</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Click or tap <b>Yes</b> if the email server profile associated to this mailbox has <b>Authenticate Using</b> set to <b>Credentials Specified by a User or Queue</b>. You must provide the username and password when this field is set to <b>Yes</b>. These credentials will be used to send and receive email from the mailbox on the email server. </p>
+									<div class="alertContent">
+										<p class="notehead-end">Note </p>
+										<p class="bodyText">To ensure the credentials are secured in CRM, SQL encryption is used to encrypt the credentials stored in the mailbox if you're processing email by using server-side synchronization.</p>
+									</div>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>Synchronization Method</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Server Profile</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select the email server profile that is used for email processing for this mailbox.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Incoming Email</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select the delivery method for incoming email. This will determine how incoming email will be accessed for this mailbox.</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">None. Email won't be received.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Forward Mailbox. Email will be received using a forward mailbox.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Microsoft Dynamics CRM for Outlook. Email is received by using CRM for Outlook.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Server-Side Synchronization or Email Router. Email is received by using server-side synchronization or the Email Router.</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Outgoing Email</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select the delivery method for outgoing email. This determines how outgoing email will be sent for this mailbox.</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">None. Email won't be sent.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Microsoft Dynamics CRM for Outlook. Email is received by using CRM for Outlook.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Server-Side Synchronization or Email Router. Email is sent by using server-side synchronization or Email Router.</p>
+										</li>
+									</ul>
+									<div class="alertContent">
+										<p class="notehead-end">Note </p>
+										<p class="bodyText">For a forward mailbox, only <b>None</b> is allowed.</p>
+									</div>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Appointments, Contacts, and Tasks</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Select whether you want to use CRM for Outlook or server-side synchronization to synchronize appointments, contacts, and tasks in CRM. </p>
+									<p class="bodyText">If you select <b>None</b>, appointments, contacts, and tasks won't be synchronized.</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>Configuration Test Results</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Incoming Email Status</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Show the result of the email configuration test for incoming email. The various statuses can be:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">Not Run. The email configuration test has not been run for this mailbox.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Success. The incoming email has been configured and email can be received for this mailbox.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Failure. The incoming email has been configured but it is not possible to pull email from the corresponding configured mailbox.</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Outgoing Email Status</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Show the result of the email configuration test for outgoing email. The various statuses can be:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">Not Run. The email configuration test hasn't been run for this mailbox.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Success. The outgoing email has been configured and email can be sent from this mailbox.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Failure. The outgoing email has been configured but it's not possible to send email from the corresponding configured mailbox.</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Appointments, Contacts, and Tasks Status</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Show the result of the synchronization of appointments, contacts, and tasks. The various statuses can be:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">Not Run. The synchronization has not been tested for this mailbox.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Success. Appointments, contacts, and tasks can be synchronized for this mailbox.</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Failure. Appointments, contacts, and tasks can't be synchronized for this mailbox.</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">Mailbox Test Completed On</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">This field shows the date and time when the email configuration was tested for this mailbox record.</p>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Save</b> or <b>Save &amp; Close</b>.</p>
+					</li>
+				</ol>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_set_up_server_side_synchronization.htm">Set up email through server-side synchronization</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_create_email_server_profiles.htm">Create email server profiles and add mailboxes</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_test_configuration_and_enable_mailboxes.htm">Test email configuration of mailboxes</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

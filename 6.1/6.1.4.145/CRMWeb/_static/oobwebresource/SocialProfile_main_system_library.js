@@ -1,0 +1,1 @@
+Type.registerNamespace("Mscrm");Mscrm.Form_onsave=function(context){if(Xrm.Page.ui.getFormType()==Xrm.FormType.create){context.getEventArgs().preventDefault();alert(LOCID_ERR_NO_CREATE_FOR_SOCIAL)}}

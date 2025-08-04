@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>翻訳済みエンティティおよびフィールド テキストのインポート</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">翻訳済みエンティティおよびフィールド テキストのインポート</h1>
+			<p class="bodyText">フィールドのラベルやドロップダウン リストの値などのエンティティまたは属性のテキストをカスタマイズした場合、自分の Microsoft Dynamics CRM に実装されているものとは異なる基本言語を使用している組織内のユーザーに対して、カスタマイズしたテキストをユーザーごとの言語で提供できます。そのためには、組織で使用する言語に翻訳できるように、すべてのカスタマイズのテキスト文字列をエクスポートします。</p>
+			<p class="bodyText">翻訳後、ユーザーが変更を利用できるようにするには、Microsoft Dynamics CRM 実装に翻訳済みのテキスト文字列をインポートする必要があります。</p>
+			<div class="alertContent">
+				<p class="importanthead">重要</p>
+				<p class="bodyText">インポートするファイルは、ルートの CrmTranslations.xml と [Content_Types].xml ファイルを含む圧縮ファイルである必要があります。</p>
+			</div>
+			<div class="alertContent">
+				<p class="importanthead">重要</p>
+				<p class="bodyText">Microsoft Dynamics CRM では、500 文字を超える長さの翻訳済みテキストをインポートすることはできません。翻訳ファイル内の任意のアイテムが 500 文字を超える長さの場合、インポート プロセスは失敗します。インポート プロセスが失敗した場合は、失敗の原因となったファイル中の行を確認し、文字数を減らしてから再度インポートを試みてください。翻訳済みのテキストのインポートが終了したら、カスタマイズを再公開する必要があることにも注意してください。</p>
+			</div>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">システム管理者またはシステム カスタマイザーのセキュリティ ロール、または同等のアクセス許可があることを確認してください。</p>
+						<a class="expand" id="tID0EBAEABABAA" href="." onclick="expandCollapse('ID0EBAEABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAEABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />セキュリティ ロールの確認</p>
+						</a>
+						<div id="dID0EBAEABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">「 <a href="how_persopt_ViewProfile.htm">ユーザー プロファイルの表示</a>」の手順を実行してください。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">適切なアクセス許可を持っていない場合は、システム管理者に問い合わせてください。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>
+						<a class="expand" id="tID0ECADABABAA" href="." onclick="expandCollapse('ID0ECADABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECADABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />CRM Web アプリケーションを使用する場合</p>
+						</a>
+						<div id="dID0ECADABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b>&gt; <b>[設定]</b> をクリックまたはタップします。</p>
+									<p class="bodyText">ナビゲーション バーに [<b>設定</b>] が表示されます。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">
+										<b>[設定]</b> &gt; <b>[カスタマイズ]</b> &gt; <b>[システムのカスタマイズ]</b> をクリックするか、またはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBADABABAA" href="." onclick="expandCollapse('ID0EBADABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBADABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p>
+						</a>
+						<div id="dID0EBADABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション ウィンドウで、必要に応じて組織を展開し、<b>[設定]</b> &gt; <b>[カスタマイズ]</b> &gt; <b>[カスタマイズ]</b> をクリックまたはタップし、次に <b>[システムのカスタマイズ]</b> をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">ソリューション エクスプローラーの [操作] ツール バーで、<b>[翻訳のインポート]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[翻訳されたテキストのインポート]</b> ダイアログ ボックスで、翻訳済みのテキストを含むファイルを指定し、<b>[インポート]</b> ボタンをクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">翻訳済みのテキストが Microsoft Dynamics CRM によってインポートされたら、<b>[閉じる]</b> をクリックまたはタップします。</p>
+					</li>
+				</ol>
+				<div class="alertContent">
+					<p class="notehead-end">メモ</p>
+					<p class="bodyText">ソリューションのインストールやカスタマイズの発行は、通常のシステム操作に影響を与える可能性があります。ソリューションのインポートは、ユーザーへの影響が最小限に留まるようにスケジューリングすることを推奨します。</p>
+				</div>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ui_cust_ExportTranslation.htm">カスタマイズされたエンティティとフィールド テキストの翻訳用のエクスポート</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

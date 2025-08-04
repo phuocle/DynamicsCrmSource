@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Set up duplicate detection rules</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Set up duplicate detection rules</h1>
+			<p class="bodyText">To maintain the integrity of your data, it's a good idea to have some rules in place to reduce any duplicate records in the system. </p>
+			<p class="bodyText">Microsoft Dynamics CRM includes default duplicate detection rules for accounts, contacts, and leads, but not for other types of records. If you want the system to detect duplicates for other record types, you'll need to create a new rule.</p>
+			<p class="bodyText">After you've created duplicate detection rules for your organization, you need to turn duplicate detection on.</p>
+			<p class="bodyText">Be sure to train staff to check for duplicates regularly. More information:<b> </b> <a href="how_dd_findandmerge.htm">Check for duplicates</a></p>
+			<div class="alertContent">
+				<p class="importanthead">Important </p>
+				<p class="bodyText">Duplicate detection is not supported when users create or edit record types that have been updated to work with Microsoft Dynamics CRM 2013. For a list of these record types, see the  <a target="_blank" href="http://go.microsoft.com/fwlink/p/?LinkID=317910">Developer Toolkit</a>. You should create duplicate detection rules for these record types, and run jobs regularly to clean up system data. Duplicate detection is supported on data import. More information:<b> </b> <a href="ui_dd_systemwide.htm">Run system jobs to detect duplicates</a></p>
+			</div>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure that you have the System Administrator, System Customizer, Sales Manager, Vice President of Sales, Vice President of Marketing, or CEO-Business Manager security role or equivalent permissions.</p>
+						<a class="expand" id="tID0EBAFABABAA" href="." onclick="expandCollapse('ID0EBAFABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAFABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Check your security role</p>
+						</a>
+						<div id="dID0EBAFABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Follow the steps in  <a href="how_persopt_ViewProfile.htm">View your user profile</a>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Don't have the correct permissions? Contact your system administrator.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Follow the steps for the app you're using.</p>
+						<a class="expand" id="tID0EBAEABABAA" href="." onclick="expandCollapse('ID0EBAEABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAEABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using the CRM web application</p>
+						</a>
+						<div id="dID0EBAEABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+									<p class="bodyText">
+										<b>Settings</b> appears on the nav bar.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap <b>Settings </b> &gt; <b>Data Management</b> &gt; <b>Duplicate Detection Rules</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EAAEABABAA" href="." onclick="expandCollapse('ID0EAAEABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EAAEABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using CRM for Outlook</p>
+						</a>
+						<div id="dID0EAAEABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the Navigation Pane, click or tap <b>Settings</b>&gt; <b>Data Management</b> &gt; <b>Duplicate Detection Rules</b>.</p>
+								</li>
+							</ol>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">To create a new duplicate detection rule, click or tap <b>New</b>. Type a name and description.</p>
+						<p class="bodyText">-  OR -</p>
+						<p class="bodyText">To edit an unpublished existing duplicate detection rule, click or tap the duplicate detection rule.</p>
+						<p class="bodyText">-  OR -</p>
+						<p class="bodyText">To edit a published duplicate detection rule, select the rule, on the <b>Actions</b> menu, click or tap <b>Unpublish</b>, and then click or tap the rule.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Select the criteria to be used to identify a record as a duplicate.</p>
+						<ol class="numberedlist2">
+							<li class="numberedlistitem">
+								<p class="bodyText">If you are creating a new rule:</p>
+								<ul class="bulletedlist">
+									<li class="bulletedlistitem">
+										<p class="bodyText">In the <b>Duplicate Detection Rule Criteria</b> section, in the <b>Base Record Type</b> list, click or tap the type of record that this rule applies to.</p>
+									</li>
+									<li class="bulletedlistitem">
+										<p class="bodyText">In the <b>Matching Record Type</b> box, click or tap the type of record that this rule applies to.</p>
+									</li>
+								</ul>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">If you want the rule to consider only active records while detecting duplicates, select the <b>Exclude inactive matching records</b> check box. You should also select this check box if your duplicate detection rule criteria are based on a status field. </p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">If you want the rule to be case-sensitive, select the <b>Case-sensitive</b> check box.</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">If you selected different record types for the base and matching record types, for each new criteria, in the <b>Base Record Field</b> column, click or tap <b>Select</b>, and then click or tap a field name. In the same row, in the <b>Matching Record Field</b> column, click or tap <b>Select</b>, and then click or tap a field name.</p>
+								<p class="bodyText">-  OR -</p>
+								<p class="bodyText">If you selected the same record types for the base and matching record types, for each new criteria, in the <b>Field</b> column, click or tap <b>Select</b>, and then click or tap a field.</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">In the same row, in the <b>Criteria</b> column, click or tap <b>Select</b>, and then click or tap an operator.</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">If you specified <b>Same First Characters</b> or <b>Same Last Characters</b>, in the <b>No. of Characters</b> column, click or tap <b>Enter Value</b>, and then enter the number of characters to compare.</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">If you don't want the rule to consider blank fields (null values) as equal while identifying duplicates, select the <b>Ignore Blank Values</b> check box. </p>
+								<p class="bodyText" />
+							</li>
+						</ol>
+						<div class="alertContent">
+							<p class="importanthead">Important </p>
+							<p class="bodyText">If the duplicate detection rule contains only one condition, blank values are ignored during duplicate detection job.</p>
+						</div>
+						<p class="bodyText">The number of criteria that you can select is limited by the number of characters that can be stored in the matchcode for the record. As you add criteria, watch the <b>Current matchcode length</b> value shown at the bottom-of the form.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Save and Close</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">To make the new or changed duplicate detection rule usable, select the rule, and then click or tap <b>Publish</b>.</p>
+						<p class="bodyText">When you publish a duplicate detection rule, a matchcode is created for every record in the matching record type for that rule.</p>
+					</li>
+				</ol>
+				<div class="alertContent">
+					<p class="notehead-end">Note </p>
+					<ul class="bulletedlist">
+						<li class="bulletedlistitem">
+							<p class="bodyText">We recommend that you set the duplicate detection criteria on a field that has unique values, for example, Email. </p>
+						</li>
+						<li class="bulletedlistitem">
+							<p class="bodyText">You can have more than one duplicate detection rule for each record type. </p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="how_dd_findandmerge.htm">Check for duplicates</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_dd_global.htm">Turn duplicate detection on or off</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_dd_systemwide.htm">Run system jobs to detect duplicates</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

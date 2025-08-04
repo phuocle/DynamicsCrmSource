@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Enable document management on entities</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script language="JavaScript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Enable document management on entities</h1>
+			<p class="bodyText">Store the documents related to Microsoft Dynamics CRM entity records in SharePoint and quickly access, share, and manage these documents from Microsoft Dynamics CRM by enabling document management on the specific entities.</p>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure you have the System Administrator security role or equivalent permissions in Microsoft Dynamics CRM. Or that you have Read and Write privileges on all record types that are customizable.</p>
+						<a class="expand" id="tID0EBAFAAABAA" href="." onclick="expandCollapse('ID0EBAFAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAFAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Check your security role</p>
+						</a>
+						<div id="dID0EBAFAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Follow the steps in  <a href="how_persopt_ViewProfile.htm">View your user profile</a>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Don't have the correct permissions? Contact your system administrator.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Follow the steps for the app you're using.</p>
+						<a class="expand" id="tID0EBAEAAABAA" href="." onclick="expandCollapse('ID0EBAEAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAEAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using the CRM web application</p>
+						</a>
+						<div id="dID0EBAEAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+									<p class="bodyText">
+										<b>Settings</b> appears on the nav bar.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Document Management</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EAAEAAABAA" href="." onclick="expandCollapse('ID0EAAEAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EAAEAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using CRM for Outlook</p>
+						</a>
+						<div id="dID0EAAEAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap your organization.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>System</b> &gt; <b>Document Management</b>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click <b>Document Management Settings</b>.</p>
+								</li>
+							</ol>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Select the entities for which you want to manage documents in SharePoint.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Specify the URL of the site where the document locations and folders for storing documents must be created, and click <b>Next</b>. </p>
+						<p class="bodyText">If you want the document libraries and folders to be automatically created, specify a valid SharePoint Server 2010 or SharePoint Server 2013 site URL, and make sure the site has the Microsoft Dynamics CRM List Component for SharePoint Server installed. Learn how are folders and document libraries created on in SharePoint in  <a href="ug_docmgm_mng_doc_in_crm.htm">Manage SharePoint documents from within Microsoft Dynamics CRM</a>.</p>
+						<div class="alertContent">
+							<p class="notehead-end">Note </p>
+							<p class="bodyText">The remaining steps are described assuming that the specified site is on SharePoint Server 2010 or SharePoint Server 2013 and the site collection for this site has the Microsoft Dynamics CRM List Component installed.</p>
+						</div>
+						<p class="bodyText">By default, a folder for each record is created under the corresponding document library for the entity. For example, for an opportunity record “100 bikes”, a document library “opportunity” is created, and in it, a folder “100 Bikes” is created. The path is ../opportunity/100 Bikes.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">To have the folders created under the parent account or contact, click the <b>Based on entity</b> check box. In the list next to the check box, click <b>Account</b> or <b>Contact</b>.</p>
+						<p class="bodyText">When you select this option, the folders are created under the related account or contact folder. </p>
+						<p class="bodyText">The structure is:../account/Margie's Travel/opportunity/100 bikes where “account” is the document library for referenced entity that you selected from the list, and “Margie's Travel” is the folder for the referenced record of the selected entity, in this case opportunity.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click <b>Next</b>.</p>
+						<p class="bodyText">Microsoft Dynamics CRM creates document libraries for the selected entities on SharePoint. Microsoft Dynamics CRM also creates the corresponding document location records that contain the links to these document libraries. The <b>Document Management Settings</b> wizard shows the creation status of the document libraries. </p>
+					</li>
+				</ol>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_docmgm_mng_sites.htm">Create or edit site records</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_docmgm_mng_locations.htm">Create or edit document location records</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

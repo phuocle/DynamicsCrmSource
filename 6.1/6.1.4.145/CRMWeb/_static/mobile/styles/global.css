@@ -1,0 +1,51 @@
+body, button, select, textarea, div, td, input
+{
+color: #000000;
+}
+
+body.main
+{
+background-color: #E3EFFF;
+margin: 0px;
+padding: 0px;
+}
+
+table.logo
+{
+background-image: url(/_imgs/mobile/crmme_bkgnd.gif);
+background-repeat: repeat-x;
+table-layout: fixed;
+width: 100%;
+}
+
+td.logo
+{
+text-align: center;
+vertical-align :middle;
+width: 100%;
+height: 28px;
+}
+
+input.button
+{
+width: 126px;
+min-height: 20px;
+vertical-align: middle;
+text-align: center;
+color: #15428B;
+margin-left: 1px;
+margin-right: 1px;
+background-color: #B0D3FF;
+text-decoration: bold;
+border-style: solid;
+border-color: #999999;
+border-width: 1px;
+overflow: auto;
+}
+
+div.error
+{
+margin-top: 5px;
+margin-bottom: 5px;
+color: #ff0000;
+}

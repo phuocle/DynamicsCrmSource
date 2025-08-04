@@ -1,0 +1,12 @@
+<public:component lightweight="true">
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataXml" get="dataXml"/>
+<public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:property name="RequiredLevel" get="getRequiredLevel" />
+<public:property name="DataChangeHandler" />
+<public:method name="FireOnChange" internalname="fireOnChange"/>
+<script language="JavaScript"></script><script type="text/javascript">
+function isDirty(){return this.defaultValue!=this.value}function dataXml(){var sID=this.id;return "<"+sID+">"+CrmEncodeDecode.CrmXmlEncode(Trim(this.value))+"</"+sID+">"}function getDataValue(){var vVal=Trim(this.value);return ""==vVal?null:vVal}function putDataValue(vVal){var bValidValue=true;if(null==vVal)value="";else if("string"==typeof vVal)value=vVal;else{alert(LOCID_DEVERROR_BADTYPE_STRING);bValidValue=false}if(bValidValue){var fDataChangeHandler=this.DataChangeHandler;fDataChangeHandler&&fDataChangeHandler()}}function getDisabled(){return this.disabled}function setDisabled(bValue){this.disabled=bValue}function fireOnChange(){this.fireEvent("onchange")}function getRequiredLevel(){try{if(IsNull(this.req))return FIELD_NOT_REQUIRED;else return parseInt(this.req,10)}catch(e){return FIELD_NOT_REQUIRED}}
+</script>
+</public:component>

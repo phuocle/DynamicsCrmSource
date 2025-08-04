@@ -1,0 +1,1 @@
+function letterWindowOnLoadHandler(){attachWindowOnUnload(RefreshParentCampaignResponseGrid)}window.onload=letterWindowOnLoadHandler

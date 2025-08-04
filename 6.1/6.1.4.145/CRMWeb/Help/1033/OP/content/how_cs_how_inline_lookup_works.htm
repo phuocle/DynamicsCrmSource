@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>How inline lookup works</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">How inline lookup works</h1>
+			<p class="bodyText">Quickly find the record you are looking for by using the inline lookup in Microsoft Dynamics CRM. By default, when you click or tap the Lookup button, you see the first 10 results for the specific record type. </p>
+			<p class="bodyText">You can use the inline lookup fields to search for records by using keywords. As you type, the inline lookup shows you the most recently used (recently searched, updated, or created) records in the list. The lookup resolves automatically if you enter partial text and tab out of the lookup field, and if a single matching record is found. If multiple matching records are found, you'll see a list of matching results you can select a record from. </p>
+			<div class="alertContent">
+				<p class="notehead-end">Note </p>
+				<p class="bodyText">The recently used records are shown only in the classic forms.</p>
+			</div>
+			<p class="bodyText">When you press <b>Enter</b> or click or tap the Lookup button, the search results that match your keyword are shown. Microsoft Dynamics CRM looks for matching records by searching for the keyword in columns defined in the quick find view of the entity or in the view that's set as the default view of the entity. Lookup search results show the first three columns that are defined in the lookup view of the entity or the view that's set as the default view of that lookup, including the primary field of that entity. More information:  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkId=316364">Creating and editing views</a></p>
+			<p class="bodyText">If a lookup field, such as <b>Find Customer</b>, points to two or more record types, the inline lookup results will include the results for accounts and contacts because a customer can be an account or a contact. You can click or tap <b>Look Up More Records</b> to open the standard <b>Look Up Records</b> dialog box to search for more records.</p>
+			<p class="bodyText">If you don't find a record, you can create a new record by clicking or tapping <b>New</b> in the inline lookup area. This lets you quickly create a new record.</p>
+			<div class="alertContent">
+				<p class="notehead-end">Note </p>
+				<p class="bodyText">The lookup fields on the classic forms don't have the option to create a new record.</p>
+			</div>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

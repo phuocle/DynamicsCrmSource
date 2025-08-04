@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Email processing through server-side synchronization</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Email processing through server-side synchronization</h1>
+			<p class="bodyText">Centrally manage mailboxes and profiles, configure email for users and queues, and track errors about email processing using server-side synchronization in Microsoft Dynamics CRM. If you've been using the Email Router, but now want to use server-side synchronization, you can use the migration wizard to quickly move the configuration settings into Microsoft Dynamics CRM. </p>
+			<div class="alertContent">
+				<p class="notehead-end">Note </p>
+				<p class="bodyText">Right now, you can use server-side synchronization only in the on-premises version of Microsoft Dynamics CRM. </p>
+			</div>
+			<p class="bodyText">In addition to setting up email, you can use server-side synchronization to synchronize appointments, contacts, and tasks from Microsoft Exchange Server.</p>
+			<p class="bodyText">Server-side synchronization connects Microsoft Dynamics CRM with one or more Exchange servers or POP3 servers to set up incoming email, and one or more SMTP or Exchange servers to set up outgoing email.  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkId=313224">See a list of supported email server types</a>.</p>
+			<p class="bodyText" />
+			<a class="expand" id="tID0ECAA" href="." onclick="expandCollapse('ID0ECAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0ECAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />What server-side synchronization provides</h2>
+			</a>
+			<div id="dID0ECAA" class="l2" style="display:none">
+				<p class="bodyText">If you're an administrator, you can use server-side synchronization to:</p>
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Enable incoming and outgoing email for users and queues (through personal mailboxes).</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Monitor and report errors regarding email to users and email server profile owners.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Enable contacts, tasks, and appointment synchronization from Exchange.</p>
+					</li>
+				</ol>
+			</div>
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />How server-side synchronization works</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<p class="bodyText">When Microsoft Dynamics CRM is set up, a mailbox record is created for each user and queue in the organization. These mailboxes are associated to an email server profile that defines the settings for connecting to the email server. Server-side synchronization uses this information to process email for all mailboxes for a specific email server profile. </p>
+				<div class="alertContent">
+					<p class="notehead-end">Note </p>
+					<p class="bodyText">If your organization has a large number of mailboxes to monitor, you can consider using a forward mailbox to reduce the administrative effort.  <a target="_blank" href="http://technet.microsoft.com/en-us/library/dd979451.aspx">Learn about the difference between forward mailboxes and individual mailboxes</a>.</p>
+				</div>
+				<p class="bodyText">After you create the email server profile and associate the mailboxes, you must test incoming and outgoing email, and appointment, task, and contact synchronization, and enable the mailboxes for email processing. With server-side synchronization, you can do all this from within Microsoft Dynamics CRM. Once configured, incoming email messages are tracked in Microsoft Dynamics CRM and stored as activity records, and email messages created in Microsoft Dynamics CRM are also sent. The email activity records in Microsoft Dynamics CRM include the contents of the email message, such as the text of the message and its subject line, and also relevant associations with other Microsoft Dynamics CRM records. For example, when a salesperson replies to a customer about a case, an email activity record is created that includes the text of the message, plus the information associating the email activity record with the correct case record.</p>
+				<div class="alertContent">
+					<p class="notehead-end">Note </p>
+					<p class="bodyText">Email sync using server-side synchronization works only when the <b>Process Email Using</b> has been set to <b>Server-Side Synchronization</b> in the <b>Email</b> tab of the <b>System Settings</b> dialog box. By default, the field is always set to <b>Server-Side Synchronization</b> for a new organization.</p>
+				</div>
+				<p class="bodyText" />
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_set_up_server_side_synchronization.htm">Set up email through server-side synchronization</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_migrate_from_emailrouter_to_server_side_sync.htm">Migrate settings from the Email Router to server-side synchronization</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_set_SystemSet_dlg_email.htm">System Settings dialog box - Email tab</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

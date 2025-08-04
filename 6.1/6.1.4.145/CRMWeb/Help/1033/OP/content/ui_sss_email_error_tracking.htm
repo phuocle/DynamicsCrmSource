@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Monitor email processing errors</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Monitor email processing errors</h1>
+			<p class="bodyText">Microsoft Dynamics CRM generates alerts if errors occur while email is being processed. An error can be classified based on the nature of the error and on whether the error is for an email, a mailbox, or an email server profile.</p>
+			<p class="bodyText">The following table lists the distinction between permanent and transient errors.</p>
+			<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">Permanent Errors</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">Transient Errors</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">These are of permanent nature and can occur when the transient errors aren't fixed after a few attempts.</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">These are of temporary nature and may get fixed automatically after a few attempts.</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">When these errors occur, email processing for the affected mailboxes is stopped. These require a corrective action by the mailbox owner or a CRM administrator.</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">These errors don't necessarily require a corrective action by a CRM user, but we recommend that you look at these.</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">The administrators and users are alerted on their alert walls to take action and start email processing.</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">The administrators and users are notified on the alerts wall about these errors but no action is required for these errors.</p>
+					</td>
+				</tr>
+			</table>
+			<p class="bodyText">The following table will help you distinguish between email-level, mailbox-level, and email server profile-level errors and whether a corrective action is needed.</p>
+			<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">Email-level errors</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">Mailbox-level errors</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">Email server profile-level errors</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">These are errors specific to an email message.</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">These are error specific to a mailbox.</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">These errors may occur for one or more mailboxes.</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">These don't have impact on the processing of other email.</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">The owner of the mailbox is notified on the alerts wall and the owner is required to take a corrective action.</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">The owner of the associated email server profile is notified on the alerts wall and the owner is required to take a corrective action.</p>
+					</td>
+				</tr>
+				<tr align="left" valign="top">
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">The alerts for these are displayed in the alerts section of the email form.</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">The alert is also displayed in the respective mailbox form.</p>
+					</td>
+					<td style="border: 1px solid #010101;">
+						<p class="bodyText">The owners of the mailbox that are affected are also notified on the alerts wall but no action is required by them.</p>
+					</td>
+				</tr>
+			</table>
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />View alerts</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<p class="bodyText">The alerts are shown on the Alerts wall or the Alerts section in the mailbox or email server profile records. The following table shows how to view the alerts and the actions you can take on these alerts.</p>
+				<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">To</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">Do this</p>
+						</td>
+					</tr>
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">View all alerts</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Sales</b> &gt; <b>Alerts</b>.</p>
+							<ul class="bulletedlist">
+								<li class="bulletedlistitem">
+									<p class="bodyText">To delete all alerts at once, click or tap the Delete all alerts icon on the alerts wall.</p>
+								</li>
+								<li class="bulletedlistitem">
+									<p class="bodyText">To view just errors, warnings, or information, click or tap <b>Errors</b>, <b>Warnings</b>, or <b>Information</b> respectively.</p>
+								</li>
+							</ul>
+							<p class="bodyText">If you are also synchronizing appointments, contacts, and tasks through server-side synchronization, you'll see alerts for the following:</p>
+							<ul class="bulletedlist">
+								<li class="bulletedlistitem">
+									<p class="bodyText">When one or more duplicate records are found in Microsoft Dynamics CRM when saving a record from Exchange to Microsoft Dynamics CRM.</p>
+								</li>
+								<li class="bulletedlistitem">
+									<p class="bodyText">When a scheduling conflict is found when saving an appointment from Exchange to Microsoft Dynamics CRM because a mailbox is unavailable at the time.</p>
+								</li>
+								<li class="bulletedlistitem">
+									<p class="bodyText">When previously linked items are found for a specific mailbox.</p>
+								</li>
+							</ul>
+							<p class="bodyText">You'll be prompted to take actions on the errors about the appointment, contacts, and tasks synchronization.</p>
+						</td>
+					</tr>
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">View alerts specific to mailbox</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<ol class="numberlist">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b> &gt; <b>Email Configuration</b> &gt; <b>Mailboxes</b>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Open a mailbox record, and on the left navigation bar, under <b>Common</b>, click or tap <b>Alerts</b>.</p>
+								</li>
+							</ol>
+						</td>
+					</tr>
+					<tr align="left" valign="top">
+						<td style="border: 1px solid #010101;">
+							<p class="bodyText">View alerts specific to an email server profile</p>
+						</td>
+						<td style="border: 1px solid #010101;">
+							<ol class="numberlist">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b> &gt; <b>Email Configuration</b> &gt; <b>Email Server Profiles</b>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Open an email server profile record, and on the left navigation bar, under <b>Common</b>, click or tap <b>Alerts</b>.</p>
+								</li>
+							</ol>
+						</td>
+					</tr>
+				</table>
+				<div class="alertContent">
+					<p class="notehead-end">Note </p>
+					<p class="bodyText">If you don't wish to get alerts, you can disable them from the  <a href="ui_set_SystemSet_dlg_email.htm">System Settings dialog box - Email tab</a> by clearing the check boxes for alerts.</p>
+				</div>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_test_configuration_and_enable_mailboxes.htm">Test email configuration of mailboxes</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_set_up_server_side_synchronization.htm">Set up email through server-side synchronization</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

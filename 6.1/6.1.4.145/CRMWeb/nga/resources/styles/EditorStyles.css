@@ -1,0 +1,763 @@
+/*----------------------------------------------------------------------------------------------------
+
+    Editor styles
+
+        fb       - formatbar
+        +Btn     - Button                         (fbBtn formatbar button)
+
+        +Grp     - Group                          (fbBtnGrp formatbar button group)
+
+----------------------------------------------------------------------------------------------------*/
+.editorBody
+{
+    width: 100%;
+}
+
+.editorDisabled
+{
+    filter:alpha(opacity=35);
+    opacity: 0.35;
+    -khtml-opacity: 0.35;
+}
+
+/* Format bar strip */
+
+.formatbar
+{
+    width: 100%;
+    float: left;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.rtl .editorFormatbar
+{
+    float: right;
+}
+
+.formatbar a, .pu a
+{
+    text-decoration: none; 
+    color:black; 
+}
+
+.fbBtn, .fbBiuBtn
+{
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid transparent;
+    height: 25px;
+    width: 25px;
+}
+
+.fbBtn, .fbBtnGrp > .fbBiuBtn
+{
+    cursor: pointer;
+}
+
+.rtl .fbBiuBtn, .rtl .fbBtn
+{
+    float: right;
+}
+
+.fbBtnHiLite
+{
+    background-color: #ddecfe;
+    border: 1px solid #4099ed;
+}
+
+.fbBtn:hover, .fbBtnGrp > .fbBiuBtn:hover
+{
+    background-color: #ddecfe;
+    border: 1px solid #8cc2f4;
+}
+
+.fbBtnMsDn
+{
+    background-color: #ddecfe;
+    border: 1px solid #4099ed;
+}
+
+/* Disabled format bar button */
+.fbBtnDa
+{
+    filter:alpha(opacity=35);
+    opacity: 0.35;
+    -khtml-opacity: 0.35;
+    cursor: default;
+}
+
+.fbBiu
+{
+    overflow:hidden;
+    font-family:Courier New; 
+    font-size:17px;
+    font-weight:bold;
+    text-align:center;
+    vertical-align: middle;
+    -moz-user-select: none;       /* Firefox */
+    -khtml-user-select: none;     /* Safari  */
+                                  /* IE uses the unselectable attribure */
+}
+
+.fbBtnGrp
+{
+    float: left;
+    border: 1px solid transparent;
+    padding: 0px 1px 0px 0px; 
+    border-right: #d6d6d6 solid 1px ;
+    white-space: nowrap;
+}
+
+.fbCustomBtnGrp
+{
+    width:102px;
+    cursor:default;
+}				
+
+.rtl .fbBtnGrp, .rtl .fbCustomBtnGrp > img
+{
+    float: right;
+}
+
+.fbPopup
+{
+    border: 1px solid #c6c6c6;
+    background-color: #f9f9f9;
+}
+
+.fbBtnGrpChk
+{
+    float: left;
+    vertical-align: top;
+}
+
+.rtl .fbBtnGrpChk
+{
+    float: right;
+}
+
+.mruFont
+{
+    background-color: #f3f8ff;
+}
+
+/* General font style styles */
+
+.bT { font-weight:bold; }
+.iT { font-style: italic; }
+.uT { text-decoration: underline; }
+
+/*----------------------------------------------------------------------------------------------------
+
+    Color picker styles
+
+-----------------------------------------------------------------------------------------------------*/
+
+/* Main color picker table */
+.colorPicker
+{
+    border:1px solid #c6c6c6;
+    background-color: #ffffff;
+    padding: 2px;
+}
+
+/* Color picker color cell */
+.colorPickerCell
+{
+    cursor: pointer;
+    border: solid 3px #ffffff;
+    background-color: #c6c6c6;	/* use outer div's background as border */
+    width: 12px;
+    height: 12px;
+    padding: 1px;
+}
+
+.colorPickerCell:hover
+{
+    border: solid 1px #4099ed;
+    width: 16px;
+    height: 16px;
+    margin: 0px;
+}
+
+.colorPickerCell > .colorCell
+{
+    width: 100%;
+    height: 100%;
+    border-width: 0px;
+}
+
+.colorPickerActions
+{
+    text-align: center;
+}
+
+/* Color picker button: None, More */
+.colorPickerButton
+{
+    color: #3165cd;
+    margin: 3px;
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+    vertical-align: middle;
+    border:solid 1px #c6c6c6;
+}
+
+.colorPickerButton:hover
+{
+    background-color: #cce9fe;
+}
+
+.clear { clear: both; }
+
+/*----------------------------------------------------------------------------------------------------
+
+    End Color picker styles
+
+-----------------------------------------------------------------------------------------------------*/
+
+
+/*----------------------------------------------------------------------------------------------------
+
+    Combo box styles
+
+-----------------------------------------------------------------------------------------------------*/
+
+.cmbVASp
+{
+    width: 0px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;	
+}
+
+.rtl .cmbVis
+{
+    left: 20px;
+    right: 0px;
+}
+
+.cmbCont
+{
+    width: 3000px;
+}
+
+.rtl .cmbSel
+{
+    left: 20px;
+    right: 0px;	
+}
+
+#divCmbDd
+{	
+    position: absolute;
+    top: 2px;
+    left: auto;
+    right: 2px;
+    filter:alpha(opacity=100);
+    opacity: 1;
+    -khtml-opacity: 1;
+}
+
+.rtl #divCmbDd
+{
+    top: 2px;
+    left: 2px;
+    right: auto;
+}
+
+#divRI > #divCmbDd, #divCDd > #divCmbDd, #divRcp > #divCmbDd
+{
+    top: 3px;
+}
+
+#divCmbList
+{
+    position: absolute;
+    border:1px solid #95c2ec;
+    background: #ffffff;
+    padding: 2px;
+    overflow:auto;
+    overflow-x: hidden;
+    cursor:default;	
+}
+
+#divCmbList > div
+{
+    padding: 1px;
+}
+
+#spanCmbSel
+{
+    padding: 0px 4px 0px 3px;
+    line-height: 12px;
+    white-space: nowrap;
+}
+
+.cmbSel
+{
+    background-color: #ddecfe;
+}
+
+.listItm
+{
+    vertical-align: baseline;
+    white-space:nowrap;
+}
+
+.cmb
+{
+    position: relative;
+    color: #000000;
+    background-color: #ffffff;
+    border:1px solid #95c2ec;
+    cursor: default;
+}
+
+/* The content font name combobox in the edit toolbars */
+#divFntNm
+{
+    float: left;
+    width: 166px;
+    height: 20px;
+    z-index: 10;		/* Level 1 Popup TODO: E14 BUG 83543 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* The content font name combobox in the edit toolbars */
+
+#divFntSz
+{
+    float: left;
+    width: 40px;
+    height: 20px;
+    z-index: 10;		/* Level 1 Popup TODO: E14 BUG 83543 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rtl #divFntNm, .rtl #divFntSz
+{
+    float: right;
+}
+
+.cmbDsbl
+{
+    color: #808080;
+}
+
+.cmbDsbl > #divCmbDd
+{
+    filter:alpha(opacity=50);
+    opacity: 0.5;
+    -khtml-opacity: 0.5;
+}
+
+a img, a .csimg
+{
+    border: 0px;
+}
+
+/*------------------------------------------------------------------------------
+
+  Context menu styles
+
+------------------------------------------------------------------------------*/
+
+/* Main context menu element */
+.ctxMnu
+{
+    position: absolute;
+    z-index: 100;
+    background-color: rgb(255, 255, 255); /* $ShadingBackgroundColor; */
+    border: 1px solid #c6c6c6; /* $BorderPrimaryColor; */
+}
+
+/* Context menu link */
+.cmLnk
+{
+    padding: 1px 9px;
+    color: #0066cc; /* $LinksPrimaryColor; */
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.cmLnk.cmHiLite .amEM
+{
+    color:  #0066cc; /* $LinksPrimaryColor; */
+}
+
+.cmLnk .amDN
+{
+    color: $TextPrimaryColor;
+}
+
+/* Highlighted context menu item */
+.cmLnk.cmHiLite, .cmHiLite /* TODO: Bug #117181: Remove the ".cmHiLite" rule */
+{
+    background-color: $HoverShadingColor;
+    color: $HoverTextColor;
+    border: 1px solid $HoverBorderColor;
+}
+
+/* Disabled recipient context menu item */
+.cmLnk.cmDsbld, .cmDsbld /* TODO: Bug #117181: Remove the ".cmDsbld" rule */
+{
+    color: $TextDisabledColor;
+    cursor: default;
+}
+/* Fade all icons in a disabled context menu */
+/* Fix E14:266509 A clear img is used for spacing, so just target the Icon */
+.cmDsbld img#imgI
+{
+    filter: alpha(opacity=35);
+    opacity: 0.35;
+    -khtml-opacity: 0.35;
+    background-color: rgb(232, 232, 232); /* $ShadingPrimaryColor; */ /* Fix IE issue with opacity in PNGs */
+}
+
+/* No fade if we want an exception*/
+.cmDsbld img.opacity100
+{
+    filter: alpha(opacity=100);
+    opacity: 1;
+    -khtml-opacity: 1;
+}
+
+/* Context menu link with block content */
+.cmLnk.blockContent
+{
+    position: relative;
+}
+
+#imgI
+{
+    vertical-align : text-top;
+}
+
+/* Overwriting the image style for presence contact menu to adjust it to the smaller presence icons */
+#divAVLBL > #spnImg > #imgI,
+#divBSY > #spnImg > #imgI,
+#divDND > #spnImg > #imgI,
+#divBRB > #spnImg > #imgI,
+#divAWAY > #spnImg > #imgI,
+#divOFFL > #spnImg > #imgI
+{
+    margin-left: 3px;
+    padding-bottom: 4px;
+    vertical-align: bottom;
+}
+
+/* Fix E14 bug 116235. Otherwise the "flag" image will fly to right-most on IE RTL */
+.blockContent > span > img#imgI
+{
+    position: relative;
+}
+
+/* Text within a context menu link */
+#spnT
+{
+    line-height: 19px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Context menu with icons */
+.ctxMnuIco
+{
+    background-color: rgb(255, 255, 255); /* $ShadingBackgroundColor; */
+}
+
+#cmpane
+{
+    display:none;
+}
+
+/* Context menu with icons */
+.ctxMnuIco > #cmpane
+{
+    display:block;
+    z-index: -1000;
+    background-color: #E8E8E8;
+    width: 23px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+}
+
+.rtl .ctxMnuIco > #cmpane
+{
+    left: auto;
+    right: 0px;
+}
+
+/* Context menu link (with icon) */
+.ctxMnuIco > .cmLnk
+{
+    padding: 1px 9px 1px 2px;
+}
+.rtl .ctxMnuIco > .cmLnk
+{
+    padding: 1px 2px 1px 9px;
+}
+.ctxMnuIco > .cmLnk.subMnu
+{
+    padding: 1px 2px;
+}
+
+/* Container for the context menu link icon */
+.cmIco
+{
+    line-height: 19px;
+    vertical-align: middle;
+}
+
+.cmIco .cstmMnuImg
+{
+    width: 16px;
+    height: 16px;
+}
+
+/* Context menu divider */
+.cmDvdr
+{
+    margin: 4px 4px 2px 8px;
+    line-height: 0px;
+    border: none 0px transparent;
+    border-top: solid 1px #d6d6d6; /* $BorderSecondaryColor; */
+}
+.rtl .cmDvdr
+{
+    margin: 4px 8px 2px 4px;
+}
+
+.cmDvdr > span
+{
+    line-height: 0px;
+}
+
+/* The divider needs different margins if there are icons */
+.ctxMnuIco > .cmDvdr
+{
+    margin: 4px 4px 2px 27px;
+}
+/* New Alertbar Context Menus Item Styles (e.g. Options and Help) */
+.rtl .ctxMnuIco > .cmDvdr
+{
+    margin: 4px 27px 2px 4px;
+}
+.mnuItmTxtHdr > #spnT
+{
+    line-height: 25px;
+}
+.mnuItmTxtHdr
+{
+    color: $TextSecondaryColor;
+    padding: 0px 10px;
+    cursor: default;
+}
+
+/*
+Due to the artifical top borders on context menus that use this, we need to bump the
+first item down 1px so that border highlights on hover aren't covered up by the absolutely
+positioned top borders
+*/
+.ctxMnu > div + div +div + .mnuItmTxtHdr,
+.ctxMnu > div + div +div + .mnuItmTxtItm
+{
+    margin-top: 1px;
+}
+.mnuItmTxtItmIndented
+{
+    text-indent: 20px;
+}
+.mnuItmTxtItm> #spnT,
+.mnuItmTxtItmIndented> #spnT
+{
+    line-height: 14px;
+}
+.mnuItmTxtItmSpaced
+{
+    margin-top: 6px;
+}
+
+/* E14:272783 In IE7 Flag context menu has block content in it (relative) that causes the layout
+   to get confused and as a result it thinks the height of the context menu is only one
+   item high.  For now I'm disabling these drop shadows because turning off block content
+   for the data picker would be a lot harder.
+*/
+#divFlgM > .dropshadow
+{
+    display: none;
+}
+
+/* Last minute issues are forcing us to turn off drop shadows for certain pieces, DRM is one of
+   those pieces.
+*/
+#divCmplM > .dropshadow
+{
+    display:none;
+}
+
+/* rszHd - static text for Resize Image context menu header */
+div.ctxMnu div.rszHd
+{
+	background-color: rgb(232, 232, 232); /* $ShadingPrimaryColor; */
+	cursor: default;
+	border: 1px solid #d6d6d6; /* $BorderSecondaryColor; */
+	padding: 3px;
+}
+/* Drop Shadows
+    NOTE: This assumes:
+        1) Container div has a border of 1px
+        2) Top right corner is 4x5
+        3) Right is 4 wide
+        4) Bottom corner is 4x5
+        5) Bottom is 5 high
+        6) Bottom left corner is 5x5
+*/
+.dropshadow
+{
+	position:absolute;
+}
+.tbf > .dropshadow
+{
+	display: none;
+}
+.tbf.tbfP > .dropshadow
+{
+	display: block;
+}
+.dropshadow-top-left
+{
+	top: 0px;
+	left: -5px;
+}
+.dropshadow-top-right
+{
+	top: 0px;
+	right: -5px;
+}
+.dropshadow-corner-bottom-left
+{
+	left: -5px;
+	bottom: -6px;
+}
+.dropshadow-corner-bottom-right
+{
+	right: -5px;
+	bottom: -6px;
+}
+.dropshadow-bottom-left
+{
+	bottom: -6px;
+	left: -1px;
+}
+.dropshadow-bottom-right
+{
+	bottom: -6px;
+	right: -1px;
+}
+.dropshadow-left, .dropshadow-left-forDialogWithButton
+{
+	/* GradientBuilder: 1 url("../resources/dropshadow-left-tile.png"); */
+	width: 4px;
+	top: 5px;
+	left: -5px;
+	bottom: -1px;
+}
+.dropshadow-left-forDialogWithButton
+{
+	top: 0px;
+}
+.dropshadow-right, .dropshadow-right-forDialogWithButton
+{
+	/* GradientBuilder: 1 url("../resources/dropshadow-right-tile.png"); */
+	width: 4px;
+	top: 5px;
+	right: -5px;
+	bottom: -1px;
+}
+.dropshadow-right-forDialogWithButton
+{
+	top: 0px;
+}
+.dropshadow-bottom
+{
+	/* GradientBuilder: 0 url("../resources/dropshadow-bottom-tile.png"); */
+	height: 5px;
+	right: -1px;
+	bottom: -6px;
+	left: 4px;
+}
+.rtl .dropshadow-bottom
+{
+	right: 4px;
+	left: -1px;
+}
+
+/*----------------------------------------------------------------------------------------------------
+
+    Misc styles
+
+-----------------------------------------------------------------------------------------------------*/
+.pu
+{
+    position: absolute;
+}
+
+.dropDownListMaxHeight
+{
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Misc styles */
+
+.fltSp1, .fltSp3, .fltSp5, .fltSp,
+.rtl .fltSp1O, .rtl .fltSp3O, .rtl .fltSp5O, .rtl .fltSp0
+{
+    float: left;
+}
+
+.fltSp1O, .fltSp3O, .fltSp5O, .fltSp0,
+.rtl .fltSp1, .rtl .fltSp3, .rtl .fltSp5, .rtl .fltSp
+{
+    float: right;
+}
+
+.fltSp1, .fltSp1O 
+{ 
+    width: 1px; 
+}
+
+.fltSp3, .fltSp3O 
+{ 
+    width: 3px; 
+}
+
+.fltSp5, .fltSp5O
+{ 
+    width: 5px; 
+}
+
+.tooltip
+{
+	position: absolute;
+	border: solid 1px;
+	padding: 1px;
+	background-color: #f9f9f9
+}
+
+.fltAfter { float: right; }
+.rtl .fltAfter { float: left; }
+
+.fltBefore { float: left; }
+.rtl .fltBefore { float: right; }

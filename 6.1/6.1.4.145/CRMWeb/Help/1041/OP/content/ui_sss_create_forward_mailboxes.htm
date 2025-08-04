@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>転送用メールボックスの作成またはメールボックスの編集</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">転送用メールボックスの作成またはメールボックスの編集</h1>
+			<p class="bodyText">既定では、ユーザーおよびキューが Microsoft Dynamics CRM で作成されると、それぞれのメールボックスのレコードも作成されます。それらのメールボックスのレコードには、電子メール アドレス、メールボックスの資格情報、および電子メール同期方法などの、電子メール サーバー上の個々のメールボックスに固有の情報が含まれます。ユーザーおよびキュー用のサーバー側の同期を使用して電子メール メッセージを処理するには、それぞれのメールボックスのレコードは Microsoft Dynamics CRM の電子メール サーバー プロファイルのレコードに関連付ける必要があります。</p>
+			<p class="bodyText">組織が転送用メールボックスを使用してサーバー側の同期を構成する場合、新しい転送用メールボックスのレコードを作成できます。転送用メールボックスは、電子メール システムの各ユーザーのメールボックスからサーバー側のルールに基づいて転送される電子メール メッセージを収集するボックスとして使用されます。転送用メールボックスは、サーバー側の同期専用にする必要があり、個人ユーザーの作業用メールボックスとして使用することはできません。メールボックスの <b>[受信電子メールの同期方法]</b> が <b>[転送用メールボックス]</b>に設定されているユーザーおよびキューに対する電子メール メッセージを処理するのに使用できます。サーバー側の同期を使用して電子メールを処理するには、転送用メールボックスのレコードを、電子メール サーバー プロファイルのレコードに関連付けられなければなりません。 <a target="_blank" href="http://technet.microsoft.com/en-us/library/hh699793.aspx">転送用メールボックスの詳細については、を参照してください</a>。</p>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">システム管理者またはシステム カスタマイザーのセキュリティ ロール、または同等のアクセス許可があることを確認してください。</p>
+						<a class="expand" id="tID0EBAEAAABAA" href="." onclick="expandCollapse('ID0EBAEAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAEAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />セキュリティ ロールの確認</p>
+						</a>
+						<div id="dID0EBAEAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">「 <a href="how_persopt_ViewProfile.htm">ユーザー プロファイルの表示</a>」の手順を実行してください。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">適切なアクセス許可を持っていない場合は、システム管理者に問い合わせてください。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>
+						<a class="expand" id="tID0ECADAAABAA" href="." onclick="expandCollapse('ID0ECADAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECADAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />CRM Web アプリケーションを使用する場合</p>
+						</a>
+						<div id="dID0ECADAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b>、<b>[設定]</b> の順にクリックまたはタップします。</p>
+									<p class="bodyText">ナビゲーション バーに <b>[設定]</b> と表示されます。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">
+										<b>[設定]</b> &gt; <b>[電子メール アクセス構成]</b> &gt; <b>[メールボックス]</b> をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBADAAABAA" href="." onclick="expandCollapse('ID0EBADAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBADAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p>
+						</a>
+						<div id="dID0EBADAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション ウィンドウで、必要に応じて組織を展開し、<b>[設定]</b> &gt; <b>[システム]</b> &gt; <b>[電子メール アクセス構成]</b> &gt; <b>[メールボックス]</b> をクリックまたはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[新しい転送用メールボックス]</b> をクリックまたはタップします。または、既存のメールボックスのレコードを編集するには、メールボックスのレコードを開きます。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">メールボックスのレコードで、以下の情報を指定します。</p>
+						<table class="tableintopic" cellpadding="2" cellspacing="0" border="0" style="border-collapse: collapse">
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">フィールド</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">説明</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>全般</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">名前</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">メールボックスに分かりやすい名前を入力します。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">所有者</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">メールボックスの所有者を表示します。自動的に事前設定されたユーザーのメールボックスに対しては、メールボックスの所有者はユーザー自身です。自動的に事前設定されたキューのメールボックスに対しては、メールボックスの所有者はキューのレコードの所有者です。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">電子メール アドレス</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">転送用メールボックスへの電子メール アドレスを、forwardmailbox@contoso.com のように入力します。</p>
+									<p class="bodyText">ユーザーまたはキューのメールボックスに対しては、対応するユーザーまたはキューのレコード フォームで指定された電子メール アドレスと同じです。電子メール アドレスをここで編集すると、ユーザーまたはキューのレコードの電子メール アドレスは、自動的に更新されます。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">処理が終わった電子メールの削除</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">処理後にメールボックスから電子メールを削除するかを指定します。このフィールドは、転送用メールボックスやキューのメールボックスに対してのみ使用可能で、<b>[可能]</b> に設定できます。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">関連</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">メールボックスが関連付けられたユーザーまたはキューを選択します。このフィールドは空で、転送用メールボックス用に設定することはできません。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">転送用メールボックス</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">このフィールドは、メールボックスのレコードが転送用メールボックスかどうかを示します。<b>[不可]</b>に設定すると、メールボックスのレコードが、Microsoft Dynamics CRMの個別のユーザーまたはキューに関連付けられていることを示します。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>資格情報</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">電子メール処理での資格情報の使用を許可する</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">このメールボックスに関連付けられた電子メール サーバーの <b>[認証方法]</b> が <b>[ユーザーまたはキューで指定した資格情報]</b> に設定されている場合、<b>[可能]</b> をクリックまたはタップします。このフィールドが <b>[可能]</b>に設定されている場合は、ユーザー名とパスワードを指定する必要があります。これらの資格情報は、電子メール サーバーのメールボックスから電子メールを送受信するのに使用されます。</p>
+									<div class="alertContent">
+										<p class="notehead-end">メモ</p>
+										<p class="bodyText">資格情報が CRM で保護されることを確実にするには、サーバー側の同期を使用して電子メールを処理する場合は、SQL の暗号化を使用して、メールボックスに保存されている資格情報を暗号化します。</p>
+									</div>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>同期方法</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">サーバー プロファイル</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">このメールボックスの電子メールの処理に使用する電子メール サーバー プロファイルを選択します。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">受信電子メール</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">受信電子メールの配信方法を選択します。これは、受信電子メールがこのメールボックスへアクセスする方法を決定します。</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">ありません。電子メールは受信されません。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">転送用メールボックス。電子メールは転送用メールボックスを使用して受信されます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Outlook 用 Microsoft Dynamics CRM.電子メールは Outlook 用 CRMを使用して受信されます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">サーバー側の同期または E-mail Router。電子メールはサーバー側の同期または E-mail Router を使用して受信されます。</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">送信電子メール</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">送信電子メールの配信方法を選択します。これは、送信電子メールがこのメールボックスへ送信される方法を決定します。</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">ありません。電子メールは送信されません。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">Outlook 用 Microsoft Dynamics CRM.電子メールは Outlook 用 CRMを使用して受信されます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">サーバー側の同期または Email Router。電子メールはサーバー側の同期または Email Router を使用して送信されます。</p>
+										</li>
+									</ul>
+									<div class="alertContent">
+										<p class="notehead-end">メモ</p>
+										<p class="bodyText">転送用メールボックスでは、<b>[なし]</b> だけが許可されます。</p>
+									</div>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">予定、取引先担当者、タスク</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">CRM の予定、連絡先、およびタスクを同期するのに、Outlook 用 CRM またはサーバー側の同期のどちらを使用するかを選択します。</p>
+									<p class="bodyText">
+										<b>[なし]</b> を選択すると、予定、連絡先、およびタスクは同期されません。</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">
+										<b>構成テストの結果</b>
+									</p>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">受信電子メールの状態</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">受信電子メール用の電子メール アクセス構成テストの結果を表示します。次のような状態があります:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">実行なし。電子メール アクセス構成テストは、このメールボックスには実行されていません。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">成功。受信電子メールは構成され、このメールボックスで電子メールは受信されます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">失敗。受信電子メールは構成されていますが、対応している構成済みメールボックスから電子メールを取得することはできません。</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">送信電子メールの状態</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">送信電子メール用の電子メール アクセス構成テストの結果を表示します。次のような状態があります:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">実行なし。電子メール アクセス構成テストは、このメールボックスには実行されていません。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">成功。送信電子メールは構成され、電子メールはこのメールボックスから送信されます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">失敗。送信電子メールは構成されていますが、対応している構成済みメールボックスから電子メールを送信することはできません。</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">予定、取引先担当者、およびタスクの状態</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">予定、取引先担当者、およびタスクの同期の結果を表示します。次のような状態があります:</p>
+									<ul class="bulletedlist">
+										<li class="bulletedlistitem">
+											<p class="bodyText">実行なし。同期は、このメールボックスについてはテストされていません。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">成功。このメールボックスについて、予定、連絡先、およびタスクを同期させることができます。</p>
+										</li>
+										<li class="bulletedlistitem">
+											<p class="bodyText">失敗。このメールボックスについて、予定、連絡先、およびタスクを同期させることができません。</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">メールボックスのテストの完了日時</p>
+								</td>
+								<td style="border: 1px solid #010101;">
+									<p class="bodyText">このフィールドには、電子メール構成がこのメールボックスのレコードに対してテストされた日付および時刻が表示されます。</p>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[保存]</b> または <b>[保存して&amp;閉じる]</b> をクリックまたはタップします。</p>
+					</li>
+				</ol>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_set_up_server_side_synchronization.htm">サーバー側の同期による電子メールの設定</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_create_email_server_profiles.htm">電子メール サーバー プロファイルの作成とメールボックスの追加</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_sss_test_configuration_and_enable_mailboxes.htm">メールボックスの電子メール構成をテスト</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

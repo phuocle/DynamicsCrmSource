@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test an event script</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Test an event script</h1>
+			<p class="bodyText">Before you publish any customizations, you should thoroughly test your scripts. You can perform customization tasks only while you're online.</p>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure you have the System Administrator security role or equivalent permissions in Microsoft Dynamics CRM.</p>
+						<a class="expand" id="tID0EBAFAAABAA" href="." onclick="expandCollapse('ID0EBAFAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAFAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Check your security role</p>
+						</a>
+						<div id="dID0EBAFAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Follow the steps in  <a href="how_persopt_ViewProfile.htm">View your user profile</a>..</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Don't have the correct permissions? Contact your system administrator.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Follow the steps for the app you're using.</p>
+						<a class="expand" id="tID0ECAEAAABAA" href="." onclick="expandCollapse('ID0ECAEAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECAEAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using the CRM web application</p>
+						</a>
+						<div id="dID0ECAEAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+									<p class="bodyText">
+										<b>Settings</b> appears on the nav bar.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Then click or tap <b>Customization</b> &gt; <b>Customize the System</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBAEAAABAA" href="." onclick="expandCollapse('ID0EBAEAAABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAEAAABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />If using CRM for Outlook</p>
+						</a>
+						<div id="dID0EBAEAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the Navigation Pane, click or tap <b>Setting</b> &gt; <b>Customization</b> &gt; <b>Customizations</b>. Then click or tap <b>Customize the System</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Components</b> &gt; <b>Entities</b>, and then expand the entity you want.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>Forms</b>. In the list, click or tap a form to edit if it has a <b>Form Type</b> of <b>Main</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the <b>Home</b> tab, click or tap <b>Preview</b>, and then select <b>Create Form</b>, <b>Update Form</b>, or <b>Read-Only Form</b>.</p>
+					</li>
+					<ol class="numberedlist2">
+						<li class="numberedlistitem">
+							<p class="bodyText">If you have added an <b>OnLoad</b> event for the form, open the form in each mode, and verify that your event executed as expected.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">If your code depends on data existing in the form when it loads, test your script in an <b>OnChange</b> or <b>OnSave</b> event to enter sample data into the form. The <b>Update Form</b> will open with no data.</p>
+						</li>
+						<ol class="numberlist">
+							<li class="numberedlistitem">
+								<p class="bodyText">If you have added an <b>OnChange</b> event for a field, for create and update modes, enter the data in the field and verify that your event executed as expected.</p>
+							</li>
+							<li class="numberedlistitem">
+								<p class="bodyText">If you have added an <b>OnSave</b> event for a field, for create and update modes, click or tap <b>Simulate Form Save</b> and verify that your event executed as expected.</p>
+							</li>
+						</ol>
+					</ol>
+					<li class="numberedlistitem">
+						<p class="bodyText">Click or tap <b>File</b> &gt; <b>Close</b>.</p>
+					</li>
+				</ol>
+			</div>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

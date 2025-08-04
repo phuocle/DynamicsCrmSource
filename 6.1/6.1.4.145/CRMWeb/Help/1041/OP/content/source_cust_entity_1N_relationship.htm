@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>エンティティ間の 1:N の関連付けの作成または編集</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">エンティティ間の 1:N の関連付けの作成または編集</h1>
+			<p class="bodyText" />
+			<p class="bodyText">1:N (1 対多数) の関連付けは、主エンティティから見た関係を表します。同じ関係は、関連エンティティからは N:1 (多数対 1) の関連付けとして見ることができます。詳細 : <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=317696">エンティティの関連付けの作成および編集</a></p>
+			<p class="bodyText">既定のソリューションまたはアンマネージド ソリューションで、カスタマイズ可能なすべてのエンティティに対し、新しい関連付けを作成したり、既存の関連付けを編集したりすることができます。</p>
+			<div class="l2">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">システム管理者またはシステム カスタマイザーのセキュリティ ロール、または同等のアクセス許可があることを確認してください。</p>
+						<a class="expand" id="tID0EBALABABAA" href="." onclick="expandCollapse('ID0EBALABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBALABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />セキュリティ ロールの確認</p>
+						</a>
+						<div id="dID0EBALABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">「 <a href="how_persopt_ViewProfile.htm">ユーザー プロファイルの表示</a>」の手順を実行してください。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">適切なアクセス許可を持っていない場合は、システム管理者に問い合わせてください。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">使用しているアプリケーションに対応した手順を実行してください。</p>
+						<a class="expand" id="tID0ECAKABABAA" href="." onclick="expandCollapse('ID0ECAKABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECAKABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />CRM Web アプリケーションを使用する場合</p>
+						</a>
+						<div id="dID0ECAKABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション バーで、<b>[Microsoft Dynamics CRM]</b>&gt; <b>[設定]</b> をクリックまたはタップします。</p>
+									<p class="bodyText">ナビゲーション バーに [<b>設定</b>] が表示されます。</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">
+										<b>[設定]</b> &gt; <b>[カスタマイズ]</b> &gt; <b>[システムのカスタマイズ]</b> をクリックするか、またはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBAKABABAA" href="." onclick="expandCollapse('ID0EBAKABABAA',1);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAKABABAA" src="Help-Collapse-Section-Microsoft-CRM.png" />Outlook 用 CRM を使用する場合</p>
+						</a>
+						<div id="dID0EBAKABABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">ナビゲーション ウィンドウで、必要に応じて組織を展開し、<b>[設定]</b> &gt; <b>[カスタマイズ]</b> &gt; <b>[カスタマイズ]</b> &gt; <b>[システムのカスタマイズ]</b> をクリックするか、またはタップします。</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[コンポーネント]</b> で <b>[エンティティ]</b> を展開し、作業するエンティティを展開します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[N:1 の関連付け]</b> をクリックまたはタップします。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">関連付けを編集したり、関連付けの詳細を表示するには、関連付けを選択し、[操作] ツール バーの <b>[その他の操作]</b> をクリックまたはタップして、<b>[編集]</b> をクリックまたはタップします。</p>
+						<p class="bodyText">- または -</p>
+						<p class="bodyText">新しい関連付けを追加するには、<b>[新しい 1 対多の関連付け]</b> をクリックまたはタップします。</p>
+						<div class="alertContent">
+							<p class="importanthead">重要</p>
+							<p class="bodyText">
+								<b>[新しい 1 対多の関連付け]</b> が[操作] ツール バーに表示されない場合は、そのエンティティに対する 1:N の関連付けを作成できません。</p>
+							<p class="bodyText" />
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">新しい関連付けの場合、<b>[関連付けの定義]</b> セクションの <b>[関連エンティティ]</b> の一覧で、関連付けるエンティティを選択します。</p>
+						<div class="alertContent">
+							<p class="notehead-end">メモ</p>
+							<p class="bodyText">関連エンティティの指定で、<b>[名前]</b> フィールドの既定値がセットされます。保存する前に [関連エンティティ] を変更する場合、<b>[名前]</b> の値もそれに応じて変更されます。</p>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[検索フィールド]</b> セクションで、<b>[表示名]</b> フィールドの値を指定します。</p>
+						<div class="alertContent">
+							<p class="importanthead">重要</p>
+							<p class="bodyText">
+								<b>表示名</b>の指定で、<b>[名前]</b> フィールドの既定値がセットされます。保存する前に検索フィールドの<b>表示名</b>を変更すると、<b>[名前]</b> フィールドの値は変更されません。その結果 <b>[名前]</b> を保存する前に適切であることを確認します。</p>
+						</div>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[フィールドの要件]</b> 一覧で、レコードを保存する前にフィールドのデータ要求を指定するオプションを選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[主エンティティのナビゲーション ウィンドウ項目]</b> セクションの <b>[表示オプション]</b> の一覧で、関連ビューまたはユーザー定義のラベルを表示するオプションを選択します。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>関連付け動作 </b> セクションの<b>関連付けの種類</b>リストで、次のいずれかのオプションを選択します。</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<b>上位下位</b>。2 つのエンティティの間に上位下位の関連付けがある場合は、親エンティティのレコードに対して実行されたアクションが、主 (親) エンティティ レコードに関連する子エンティティ レコードにも実行されます。</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<b>参照</b>。2 つのエンティティの間に参照の関連付けがある場合、関連する任意のレコードに移動できますが、一方のエンティティに対して実行したアクションが他方に影響することはありません。</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<b>参照、削除制限</b>。2 つのエンティティの間に参照、削除制限の関連付けがある場合、関連する任意のレコードに移動できます。親レコードに対して実行されたアクションは子レコードに適用されませんが、子レコードが存在している間は、親レコードを削除することはできません。関連レコードが存在する場合にレコードを削除することができないことに留意してください。</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<b>構成可能な伝播</b>。2 つのエンティティ間の構成可能な伝播する関連付けでは、一連の使用性のあるアクションのそれぞれに関連する動作を選択します。</p>
+								<p class="bodyText" />
+								<div class="alertContent">
+									<p class="importanthead">重要</p>
+									<p class="bodyText">別の<b>動作の種類</b>と関連付けられたアクションに対する動作と一致するように、アクションに対する動作を設定する場合、関連付けを保存すると、<b>動作の種類</b>が他の種類に自動的に設定されます。</p>
+								</div>
+							</li>
+						</ul>
+						<p class="bodyText">詳細 : <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=317696">エンティティの関連付けの作成および編集</a></p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">
+							<b>[保存して閉じる]</b> をクリックまたはタップして <b>"N:N の関連付け"</b> フォームを閉じます。</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">カスタマイズが完了したら、公開します。</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">現在編集中のコンポーネントのカスタマイズのみを公開するには、[操作] ツール バーで、[保存] グループの <b>[公開] </b>をクリックまたはタップします。</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">非公開のすべてのコンポーネントのカスタマイズを一度に公開するには、ナビゲーション バーまたはナビゲーション ウィンドウで、<b>[エンティティ]</b> をクリックまたはタップし、その後、[操作] ツール バーで、<b>[すべてのカスタマイズの公開]</b> をクリックまたはタップします。</p>
+							</li>
+						</ul>
+					</li>
+				</ol>
+				<div class="alertContent">
+					<p class="notehead-end">メモ</p>
+					<ul class="bulletedlist">
+						<li class="bulletedlistitem">
+							<p class="bodyText">伝播する関連システム エンティティとの関連付けにおいて、カスタム エンティティを主エンティティにすることはできません。つまり、主カスタム エンティティと関連システム エンティティの間の関連付けには、[すべてのレコードに伝播]、[アクティブ レコードのみに伝播]、または [同一所有者のレコードのみに伝播] のアクションを設定できません。</p>
+						</li>
+						<li class="bulletedlistitem">
+							<p class="bodyText">アクションが <b>[すべてのレコードに伝播]</b>、<b>[アクティブ レコードのみに伝播]</b>、または <b>[同一所有者のレコードのみに伝播]</b> に設定された別の関連付けの関連エンティティとして、新しい関連付けの関連エンティティが既に存在する場合、新しい関連付けのアクションを <b>[すべてのレコードに伝播]</b>、<b>[アクティブ レコードのみに伝播]</b>、または <b>[同一所有者のレコードのみに伝播]</b> に設定することはできません。これにより、複数の親関連付けを持つ関連付けの作成を防ぎます。</p>
+						</li>
+						<li class="bulletedlistitem">
+							<p class="bodyText">ユーザー インターフェイス要素に変更を加えた場合、またはエンティティに対してフォーム スクリプトを実装した場合は、変更を公開して適用する必要があります。ユーザー定義エンティティ、関連付け、フィールドなど、Microsoft Dynamics CRM のデータ スキーマを変更するカスタマイズは、直ちに適用されます。</p>
+						</li>
+						<li class="bulletedlistitem">
+							<p class="bodyText">関連付けがマネージド ソリューションの一部である場合、マネージド ソリューションの開発は関連付けのカスタマイズで制限できます。</p>
+						</li>
+						<li class="bulletedlistitem">
+							<p class="bodyText">ソリューションのインストールやカスタマイズの発行は、通常のシステム操作に影響を与える可能性があります。ソリューションのインポートは、ユーザーへの影響が最小限に留まるようにスケジューリングすることを推奨します。</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">Work with Entities</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

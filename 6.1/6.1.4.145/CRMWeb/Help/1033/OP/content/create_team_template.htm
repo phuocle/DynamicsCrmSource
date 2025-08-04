@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Create a team template and add to an entity form</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script language="JavaScript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Create a team template and add to an entity form</h1>
+			<p class="bodyText">A team template can be used for the entities that are enabled for automatically created access teams. In the team template, you have to specify the entity type and the access rights on the entity record. For example, you can create a team template for an account entity and specify the Read, Write, and Share access rights on the account record that the team members are granted when the team is automatically created. After you create a team template, you have to customize the entity main form to include the new team template. After you publish customizations, the access team template is added in all record forms for the specified entity in a form of a list.  For example, you created a team template called “Sales team” for the account entity. On all account record forms you'll see the list called “Sales team”. You can add or remove team members using this list.</p>
+			<a class="expand" id="tID0EDAA" href="." onclick="expandCollapse('ID0EDAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EDAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Enable an entity for access teams</h2>
+			</a>
+			<div id="dID0EDAA" class="l2" style="display:none">
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure you have the System Administrator security role or equivalent permissions in Microsoft Dynamics CRM.</p>
+						<a class="expand" id="tID0EBAFABADAA" href="." onclick="expandCollapse('ID0EBAFABADAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAFABADAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Check your security role</p>
+						</a>
+						<div id="dID0EBAFABADAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Follow the steps in  <a href="how_persopt_ViewProfile.htm">View your user profile</a>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Don't have the correct permissions? Contact your system administrator.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Follow the steps for the app you're using.</p>
+						<a class="expand" id="tID0ECAEABADAA" href="." onclick="expandCollapse('ID0ECAEABADAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECAEABADAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using the CRM web application</p>
+						</a>
+						<div id="dID0ECAEABADAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+									<p class="bodyText">
+										<b>Settings</b> appears on the nav bar.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Customizations</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBAEABADAA" href="." onclick="expandCollapse('ID0EBAEABADAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAEABADAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using CRM for Outlook</p>
+						</a>
+						<div id="dID0EBAEABADAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the navigation pane, expand your organization if necessary, and then select <b>Settings</b> &gt; <b>Customizations</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the Customization window, click or tap <b>Customize the System</b>. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the navigation pane, expand <b>Entities</b>, and then click or tap the entity you want to use in the team template. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the <b>Entity Definition</b> form, in the <b>Communication &amp; Collaboration</b> section, select the <b>Access Teams</b> checkbox.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the Actions toolbar, click or tap <b>Save</b>.</p>
+					</li>
+				</ol>
+				<p class="bodyText" />
+			</div>
+			<a class="expand" id="tID0ECAA" href="." onclick="expandCollapse('ID0ECAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0ECAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Create a team template</h2>
+			</a>
+			<div id="dID0ECAA" class="l2" style="display:none">
+				<a class="expand" id="tID0EAACAA" href="." onclick="expandCollapse('ID0EAACAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" /></p>
+				</a>
+				<div id="dID0EAACAA" style="display:none">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">Follow the steps for the app you're using.</p>If using the CRM web application<ol class="numberedlist2"><li class="numberedlistitem"><p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p><p class="bodyText"><b>Settings</b> appears on the nav bar.</p></li><li class="numberedlistitem"><p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Administration</b>.</p></li></ol><a class="expand" id="tID0EBACAAACAA" href="." onclick="expandCollapse('ID0EBACAAACAA',2);return false;"><p class="procHeading hanging"><img id="iID0EBACAAACAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using CRM for Outlook</p></a><div id="dID0EBACAAACAA" style="display:none"><ol class="numberedlist2"><li class="numberedlistitem"><p class="bodyText">In the navigation pane, expand your organization if necessary, and then click or tap <b>Settings</b> &gt; <b>System</b> &gt; <b>Administration</b>.</p></li></ol></div><p class="bodyText" /></li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>Access Team Templates</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">On the Actions toolbar, click or tap <b>New</b>, complete the required fields, and then click or tap <b>Save</b>.</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />Add a team template to the entity form</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<p class="bodyText" />
+				<ol class="numberlist">
+					<li class="numberedlistitem">
+						<p class="bodyText">Make sure you have the System Administrator security role or equivalent permissions in Microsoft Dynamics CRM.</p>
+						<a class="expand" id="tID0EBAMAAABAA" href="." onclick="expandCollapse('ID0EBAMAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBAMAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />Check your security role</p>
+						</a>
+						<div id="dID0EBAMAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">Follow the steps in  <a href="how_persopt_ViewProfile.htm">View your user profile</a>.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Don't have the correct permissions? Contact your system administrator.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">Follow the steps for the app you're using.</p>
+						<a class="expand" id="tID0ECALAAABAA" href="." onclick="expandCollapse('ID0ECALAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0ECALAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using the CRM web application</p>
+						</a>
+						<div id="dID0ECALAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+									<p class="bodyText">
+										<b>Settings</b> appears on the nav bar.</p>
+								</li>
+								<li class="numberedlistitem">
+									<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Customizations</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<a class="expand" id="tID0EBALAAABAA" href="." onclick="expandCollapse('ID0EBALAAABAA',2);return false;">
+							<p class="procHeading hanging">
+								<img id="iID0EBALAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using CRM for Outlook</p>
+						</a>
+						<div id="dID0EBALAAABAA" style="display:none">
+							<ol class="numberedlist2">
+								<li class="numberedlistitem">
+									<p class="bodyText">In the navigation pane, expand your organization if necessary, and then click or tap <b>Settings</b> &gt; <b>Customizations</b>.</p>
+								</li>
+							</ol>
+						</div>
+						<p class="bodyText" />
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the Customization window, click or tap <b>Customize the System</b>. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the navigation pane, expand <b>Entities</b>, expand the entity you want to use in the team template, and then click or tap <b>Forms</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In <b>System Forms</b>, select <b>Active Forms</b> &gt; <b>Main</b> form. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the <b>Main</b> form, open the <b>Insert</b> tab.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the ribbon, click or tap <b>Sub-Grid</b>.</p>
+						<p class="bodyText">The <b>Set Properties</b> dialog box appears.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In <b>Set Properties</b>, complete the required fields, and then select the <b>Display label on the Form</b> check box.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the <b>Records</b> drop-down list, select <b>All Record Types</b>. </p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the <b>Entity</b> drop-down list, select <b>Users</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the <b>Default View</b> drop-down list, select <b>Associated Record Team Members</b>.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">In the <b>Team Template</b> drop-down list, select the desired template and click or tap <b>Set</b>. </p>
+						<p class="bodyText">The team template you selected now appears on the Main form.</p>
+					</li>
+					<li class="numberedlistitem">
+						<p class="bodyText">On the Actions toolbar, click or tap <b>Save</b>, and then click or tap <b>Publish</b>.</p>
+					</li>
+				</ol>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="about_team_templates.htm">About team templates</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

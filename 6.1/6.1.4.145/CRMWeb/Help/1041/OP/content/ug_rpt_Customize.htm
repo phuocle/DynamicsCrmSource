@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>レポートのカスタマイズおよび整理</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">レポートのカスタマイズおよび整理</h1>
+			<p class="bodyText">レポートを使用して Microsoft Dynamics CRM のデータを分析します。Microsoft Dynamics CRM には、一般的な多くのビジネス ニーズに適合する既定のレポートが用意されています。しかし、ほとんどの組織では、特定のニーズに合わせて既定のレポートをカスタマイズしたり、カスタム レポートを追加したりしています。</p>
+			<p class="bodyText" />
+			<a name="ownership" />
+			<a class="expand" id="tID0EGAA" href="." onclick="expandCollapse('ID0EGAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EGAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />レポートの所有者</h2>
+			</a>
+			<div id="dID0EGAA" class="l2" style="display:none">
+				<p class="bodyText">システム レポートは、すべてのユーザーが使用できます。ユーザーが所有するレポートは、特定の同僚またはチームと共有することや、すべてのユーザーがレポートを使用できるように、組織に対してそのレポートを使用可能にすることができます。</p>
+				<p class="bodyText" />
+			</div>
+			<a name="types" />
+			<a class="expand" id="tID0EFAA" href="." onclick="expandCollapse('ID0EFAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EFAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />レポートの種類</h2>
+			</a>
+			<div id="dID0EFAA" class="l2" style="display:none">
+				<p class="bodyText">Microsoft Dynamics CRM は以下の 2 種類のレポートをサポートします。</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">
+							<b>Microsoft SQL Server Reporting Servicesレポート。</b>これらのレポートは SQL クエリとフィルター ビューを使用してレポート データを取得します。フィルター ビューは、レポートを実行しているユーザーのセキュリティ ロールで使用できるものにデータを制限します。Microsoft Dynamics CRM に付属する既定のレポートはすべて、SQL ベースのレポートです。</p>
+						<p class="bodyText">SQL データベースにアクセスする機能をサポートしていないため、Microsoft Dynamics CRM Online のフィルター ビューにアクセスすることはできません。したがって Microsoft Dynamics CRM Online サブスクリプションがある場合は、カスタム レポートにフェッチ ベースのレポートを使用します。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">
+							<b>フェッチベースの Reporting Services レポート。</b>これらのレポートは、フィルター ビューではなく Microsoft Dynamics CRM 特有の FetchXML クエリを使用し、レポート データを取得します。Microsoft Dynamics CRM のレポート ウィザードを使用して作成したレポートは、フェッチ ベースのレポートです。</p>
+					</li>
+				</ul>
+				<p class="bodyText">他のレポートは、次のようなものです。</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">Web ページへのリンク</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">静的ファイル</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Microsoft Dynamics CRM データベースからデータを読み込む動的な Microsoft Office Excel ファイル</p>
+					</li>
+				</ul>
+				<p class="bodyText">各レポートについて、以下のプロパティを編集できます。</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">ファイル名または URL</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">表示名</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">内容</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">ユーザー インターフェイスでレポートが表示される場所に関する情報</p>
+					</li>
+				</ul>
+				<p class="bodyText" />
+			</div>
+			<a name="security" />
+			<a class="expand" id="tID0EEAA" href="." onclick="expandCollapse('ID0EEAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EEAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />レポートのデータのセキュリティ</h2>
+			</a>
+			<div id="dID0EEAA" class="l2" style="display:none">
+				<p class="bodyText">すべてのレポートは、フィルタされたビューから Microsoft Dynamics CRM データを読み取ります。フィルタされたビューでは、ユーザーのセキュリティ ロールに基づいてデータがフィルタリングされます。レポートには、そのレポートを実行しているユーザーが表示のアクセス許可を持っているデータのみが表示されます。</p>
+				<p class="bodyText" />
+			</div>
+			<a name="creating" />
+			<a class="expand" id="tID0EDAA" href="." onclick="expandCollapse('ID0EDAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EDAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />新規レポートを作成するオプション</h2>
+			</a>
+			<div id="dID0EDAA" class="l2" style="display:none">
+				<p class="bodyText">適切なアクセス許可を持つユーザーは、新規レポートを作成するために、以下の操作を実行できます。</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">ファイルまたは Web ページへのリンクをレポートとして追加します。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">レポート ウィザードを実行して、新しい Reporting Services レポートを作成します。レポート ウィザードでは、テーブル レポートおよびグラフ レポートが作成されます。これには、ドリルスルー レポートおよび上位 N 件レポートが含まれます。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Fetch ベースの Reporting Services の新規レポートを作成します。カスタムのフェッチ ベースのレポートを作成するには、Microsoft Dynamics CRM Report Authoring 拡張をインストールする必要があります。詳細については、『 <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=317946">Microsoft Dynamics CRM 2013 および Microsoft Dynamics CRM Online のレポート作成ガイド</a>』の「フェッチ ベースの Reporting Services のカスタム レポートの作成」を参照してください。</p>
+					</li>
+				</ul>
+				<p class="bodyText" />
+			</div>
+			<a name="modifying" />
+			<a class="expand" id="tID0ECAA" href="." onclick="expandCollapse('ID0ECAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0ECAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />既存のレポートを変更するためのオプション</h2>
+			</a>
+			<div id="dID0ECAA" class="l2" style="display:none">
+				<p class="bodyText">既存のレポートに対して、適切なアクセス許可を持つユーザーは以下の操作を実行できます。</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">レポートをカテゴリに分類して、各レポートがレポート領域内で表示されるビューを制御する。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">レポートを表示するユーザー インターフェイス内の場所を決定し、レポートのその他のプロパティを編集する。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">レポート ウィザードで作成されたレポートを編集します。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">既定のレポートを編集する。たとえば、Microsoft Dynamics CRM をカスタマイズする場合は、既定のレポートのラベルの変更や、フィールドの追加または削除が必要になることがあります。詳細については、『 <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=317946">Microsoft Dynamics CRM 2013 および Microsoft Dynamics CRM Online のレポート作成ガイド</a>』、『 <a target="_blank" href="http://msdn.microsoft.com/en-us/library/gg328097.aspx">SQL Server Reporting Services を使用する Microsoft Dynamics CRM のレポートの作成</a>』の「既定のレポートの編集または SQL ベースの Reporting Services レポートの作成」を参照してください。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">既定のレポート、レポート ウィザードで作成されたレポート、またはその他の Reporting Services レポートの既定のフィルターを編集する。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Reporting Services レポートのワンタイム スナップショットを作成するか、または設定した間隔で実行されるように Reporting Services レポートのスケジュールを設定する。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">個人用レポートを他のユーザーと共有したり、組織内のすべての人が使用できるように設定する。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">レポートを公開して、Microsoft SharePoint やカスタム プログラムなどの外部アプリケーションで使用できるようにします。</p>
+					</li>
+				</ul>
+				<p class="bodyText">詳細: <b>Permissions required for reporting tasks</b></p>
+			</div>
+			<a name="solutions" />
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" />ソリューションでのレポート</h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<p class="bodyText">Microsoft Dynamics CRM では、レポートがソリューションに対応しています。コンポーネントとしてソリューションに追加されたレポートは、Microsoft Dynamics CRM の機能およびユーザー インターフェイスを拡張するソフトウェアの 1 つの単位になります。ソリューションに追加できるレポートは、組織所有のもの、または組織に表示できるものに限られます。</p>
+				<div class="alertContent">
+					<p class="notehead-end">メモ</p>
+					<p class="bodyText">レポートが組織に表示できるかどうかの確認するには、レポートの一覧からレポートを選択し、<b>[編集]</b> をクリックまたはタップします。次に、[<b>管理</b>] タブで ［<b>公開対象</b>] が [<b>組織</b>] に設定されているかどうかを確認します。</p>
+				</div>
+				<p class="bodyText">レポートのスナップショットは、ソリューションの一部として追加、インポート、エクスポートできます。Microsoft Dynamics CRM では、レポート、サブレポート、レポート カテゴリ、レポート表示領域、およびレポート関連のレコードの種類がレポート セットのコンポーネントと見なされます。ソリューションの更新を非上書きモードでインポートする際に、カスタマイズされたレポート セットのコンポーネントが存在した場合、そのソリューションによるレポートの更新はすべて無視されます。</p>
+				<p class="bodyText" />
+			</div>
+			<p class="relatedheading">関連項目</p>
+			<p class="relateditemlink">
+				<a href="ui_rpt_wizard.htm">レポート ウィザードを使用したレポートの作成、編集、またはコピー</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

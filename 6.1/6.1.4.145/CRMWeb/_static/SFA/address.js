@@ -1,0 +1,1 @@
+function AddRelatedAddress(iType,parentType,parentId){if(iType==Mscrm.InternalUtilities.EntityTypeCode.CustomerAddress)!IsNull(parentId)&&!IsNull(parentType)&&openFrmObj("?objecttypecode="+CrmEncodeDecode.CrmUrlEncode(parentType)+"&addressnumber=0&parentid="+CrmEncodeDecode.CrmUrlEncode(parentId),buildWinName(),iType);else openObjEx(iType,parentType,parentId)}

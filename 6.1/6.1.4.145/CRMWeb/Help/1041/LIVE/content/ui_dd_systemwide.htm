@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Run system jobs to detect duplicates</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script language="JavaScript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">Customer Center</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 Customer Center" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">Run system jobs to detect duplicates</h1>
+			<p class="bodyText">To maintain the integrity of system data, you should check for duplicates regularly to make sure that users don't inadvertently create duplicate contacts, accounts, leads, or other types of records. </p>
+			<p class="bodyText">The Check for Duplicates wizard helps you set up a “job” that finds and cleans up duplicate records. You can schedule the job to run daily, and you can receive an email confirmation when the job finishes.</p>
+			<div class="alertContent">
+				<p class="notehead-end">Note </p>
+				<p class="bodyText">Duplicate detection is available only when you have created a rule for the record type and duplicate detection is turned on.</p>
+			</div>
+			<div class="alertContent">
+				<p class="importanthead">Important </p>
+				<p class="bodyText">Duplicate detection is not supported when users create or edit record types that have been updated to work with Microsoft Dynamics CRM 2013. For a list of these record types, see the  <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkID=317910">Developer Toolkit</a>. You should create duplicate detection rules for these record types, and run jobs regularly to clean up system data. Duplicate detection is supported on data import. More information: <a href="ui_dd_systemwide.htm">Run system jobs to detect duplicates</a></p>
+			</div>
+			<a class="expand" id="tID0EBAA" href="." onclick="expandCollapse('ID0EBAA',1);return false;">
+				<h2 class="heading2 hanging">
+					<img id="iID0EBAA" class="expandicon" alt="" border="0" src="Help-Collapse-Section-Microsoft-CRM.png" /></h2>
+			</a>
+			<div id="dID0EBAA" class="l2" style="display:none">
+				<a class="expand" id="tID0EAABAA" href="." onclick="expandCollapse('ID0EAABAA',2);return false;">
+					<p class="procHeading hanging">
+						<img id="iID0EAABAA" src="Help-Chapter-Open-Microsoft-CRM.png" /></p>
+				</a>
+				<div id="dID0EAABAA" style="display:block">
+					<ol class="numberlist">
+						<li class="numberedlistitem">
+							<p class="bodyText">Follow the steps for the app you're using.</p>
+							<a class="expand" id="tID0ECAMAAABAA" href="." onclick="expandCollapse('ID0ECAMAAABAA',2);return false;">
+								<p class="procHeading hanging">
+									<img id="iID0ECAMAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using the CRM web application</p>
+							</a>
+							<div id="dID0ECAMAAABAA" style="display:none">
+								<ol class="numberedlist2">
+									<li class="numberedlistitem">
+										<p class="bodyText">On the nav bar, click or tap <b>Microsoft Dynamics CRM</b> &gt; <b>Settings</b>.</p>
+										<p class="bodyText">
+											<b>Settings</b> appears on the nav bar.</p>
+									</li>
+									<li class="numberedlistitem">
+										<p class="bodyText">Click or tap <b>Settings</b> &gt; <b>Data Management</b>. Click or tap <b>Duplicate Detection Jobs</b>.</p>
+									</li>
+								</ol>
+							</div>
+							<a class="expand" id="tID0EBAMAAABAA" href="." onclick="expandCollapse('ID0EBAMAAABAA',2);return false;">
+								<p class="procHeading hanging">
+									<img id="iID0EBAMAAABAA" src="Help-Chapter-Closed-Microsoft-CRM.png" />If using CRM for Outlook</p>
+							</a>
+							<div id="dID0EBAMAAABAA" style="display:none">
+								<ol class="numberedlist2">
+									<li class="numberedlistitem">
+										<p class="bodyText">In the Navigation Pane, click or tap <b>Settings</b> &gt; <b>System</b> &gt; <b>Data Management</b> &gt; <b>Duplicate Detection Jobs</b>.</p>
+									</li>
+								</ol>
+							</div>
+							<p class="bodyText" />
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>New</b>, or click or tap the name of the duplicate detection job you want to run.</p>
+							<p class="bodyText">You'll see the Check for Duplicates wizard, which helps you create a job to check for duplicates.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>Next</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">In the <b>Look for</b> drop-down list, select the record type to check for duplicates.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">In the <b>Used Save View</b> drop-down list, select the types of matching records to search for.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">In the <b>Status</b> drop-down list, select the field to check for duplicate information.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">In the <b>Equals</b> drop-down list, select the condition the wizard uses to check for duplicates. In the empty box, type any text to search for.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">In the <b>Active</b> drop-down list, select whether to search active or inactive records for duplicate information.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>Next</b>.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Accept the default name for the job, or type a different name.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Enter the start time for the job, and enter how often to run the job, in days. (Type <em class="emphasis">1</em> to run the job daily.)</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Select the check box to receive an email confirmation when the duplicate detection job completes. Enter an additional email address, if desired.</p>
+						</li>
+						<li class="numberedlistitem">
+							<p class="bodyText">Click or tap <b>Next</b>, and then click or tap <b>Submit</b>.</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<p class="relatedheading">See Also</p>
+			<p class="relateditemlink">
+				<a href="ui_dd_duprules_list.htm">Set up duplicate detection rules</a>
+			</p>
+			<p class="relateditemlink">
+				<a href="ui_dd_global.htm">Turn duplicate detection on or off</a>
+			</p>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>Did you find the information that you need?<br />Yes <input type="radio" value="Yes" name="fbRating" />                No <input type="radio" value="No" name="fbRating" /></p>
+				<p>If not, what information do you need? (optional)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="Please tell us whether you found the information that you need by selecting Yes or No at the bottom of the topic." /><textarea id="fbResponseText" rows="4">Please provide feedback in English</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="Send Feedback" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>

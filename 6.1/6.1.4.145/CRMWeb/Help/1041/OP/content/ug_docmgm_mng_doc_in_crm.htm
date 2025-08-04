@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="LTR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>SharePoint ドキュメントの Microsoft Dynamics CRM 内からの管理</title>
+		<link rel="stylesheet" type="text/css" href="crmhelp.css" />
+		<script type="text/javascript" src="dhtml_popup.js"> </script>
+		<script type="text/javascript" src="help2.js"> </script>
+		<script type="text/javascript" src="/help/common/help.js"> </script>
+	</head>
+	<body>
+		<div id="help_head">
+			<table cellpadding="0" cellspacing="0" id="tbl_help_head">
+				<tr>
+					<td id="near_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="z-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+					<td id="mid_help_head">
+						<div class="topHead">Microsoft Dynamics CRM</div>
+						<div class="lowHead">顧客センター</div>
+					</td>
+					<td id="far_help_head">
+						<a href="http://go.microsoft.com/fwlink/?LinkID=296269" id="headLink" target="_blank">
+							<img src="Home-button-Microsoft-CRM.png" alt="Microsoft Dynamics CRM 2013 カスタマー センター" />
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="helpContent">
+			<h1 class="heading1">SharePoint ドキュメントの Microsoft Dynamics CRM 内からの管理</h1>
+			<p class="bodyText">ドキュメントを Microsoft SharePoint に保存し、SharePoint のドキュメント管理機能を使用して Microsoft Dynamics CRM 内からそれらを管理します。</p>
+			<p class="bodyText">一層効果的にアクセス、共有、共同作業するため、Microsoft Dynamics CRM を SharePoint と統合します。SharePoint に保存されたドキュメントは、不正なアクセスや使用から保護することができます。詳細:  <a target="_blank" href="http://technet.microsoft.com/en-us/library/cc721640(v=office.14).aspx">リスト、ライブラリ、フォルダー、ドキュメント、またはリスト アイテムのアクセス許可の管理</a></p>
+			<p class="bodyText" />
+			<h2 class="heading2">エンティティに対するドキュメント管理の有効化</h2>
+			<div class="l2">
+				<p class="bodyText">エンティティのドキュメントを管理するには、該当するエンティティに対するドキュメント管理を有効にする必要があります。SharePointのすべてのエンティティについてドキュメントを管理できます。既定では、組織に対してドキュメント管理を有効にするとき、ドキュメント管理は次のエンティティに対して自動的に有効にされます。</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">取引先企業</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">記事</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">潜在顧客</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">営業案件</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">製品</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">見積もり</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">[営業資料]</p>
+					</li>
+				</ul>
+				<p class="bodyText">どのエンティティが <b>[ドキュメント管理設定]</b> ダイアログ ボックスの Microsoft Dynamics CRM のドキュメントを管理するか定義します。詳細 : <a href="ui_docmgm_settings_enable_docmgmt.htm">エンティティに対するドキュメント管理の有効化</a></p>
+				<p class="bodyText">ドキュメント管理を設定すると、SharePointにより、Microsoft Dynamics CRMエンティティとレコードのコンテキストに応じてドキュメント ライブラリ、およびフォルダーが作成されます。</p>
+				<p class="bodyText" />
+			</div>
+			<h2 class="heading2">ドキュメント管理の動作方法</h2>
+			<div class="l2">
+				<p class="bodyText">ドキュメント管理を設定するとき、ドキュメントが保存される SharePoint のサイト コレクションまたはサイト URL を指定します。詳細 : <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkId=200952">サービス拠点およびサイト コレクションの概要</a></p>
+				<p class="bodyText">Microsoft Dynamics CRMでは、指定されたサイト コレクション、またはサイトを使用してSharePoint上にエンティティ用のドキュメント ライブラリ、およびレコードのフォルダーを作成します。</p>
+				<p class="bodyText">SharePoint にドキュメント ライブラリおよびフォルダーを自動作成すると、新規作成されたフォルダーを指す該当ドキュメントの場所レコードが Microsoft Dynamics CRM 上に作成されます。</p>
+				<p class="bodyText">自動作成の機能を使用したくない場合は、SharePoint上にドキュメント ライブラリとフォルダーを手動で作成できます。次に、SharePoint上のドキュメント ライブラリおよびフォルダーを指すドキュメントの場所レコードをMicrosoft Dynamics CRMに作成してから、そのドキュメントの場所レコードとエンティティ レコードを関連付けます。</p>
+				<p class="bodyText">ドキュメントを保存するフォルダー構造を配置後、すべてのドキュメント管理機能の使用を開始できます。</p>
+				<p class="bodyText" />
+			</div>
+			<h2 class="heading2">ドキュメント ライブラリとフォルダーが自動的に作成される方法</h2>
+			<div class="l2">
+				<p class="bodyText">フォルダー構造を作成するには、次の 2 つの方法があります。</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">手動で、ドキュメント ライブラリとフォルダーを Microsoft Dynamics CRM エンティティとレコードのコンテキストに作成します。次に、Microsoft Dynamics CRM レコードと SharePoint フォルダーを関連付けます。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Microsoft Dynamics CRMにより、SharePointにドキュメント ライブラリとフォルダーが自動的に作成されます。</p>
+					</li>
+				</ul>
+				<p class="bodyText">指定した URL が次のいずれかの場合は、Microsoft Dynamics CRMにより、SharePoint にドキュメント ライブラリとフォルダーが自動的に作成されます。</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">Microsoft SharePoint Server 2010 または Microsoft SharePoint Server 2013にあり、Microsoft Dynamics CRM List コンポーネント がインストールされているサイト コレクション。</p>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">Microsoft SharePoint Server 2010 または Microsoft SharePoint Server 2013にあるサイト コレクションの下のサイトで、サイト コレクションには Microsoft Dynamics CRM List コンポーネント がインストールされています。</p>
+					</li>
+				</ul>
+				<p class="bodyText">Microsoft Dynamics CRM が自動的にフォルダー作成することを選択する場合、フォルダーが既定 (一般的) 構造に基づいて、あるいはエンティティに基づいて作成されるかを指定する必要があります。</p>
+				<ul class="bulletedlist">
+					<li class="bulletedlistitem">
+						<p class="bodyText">
+							<b>既定の構造</b>各レコード用のフォルダーが、エンティティの対応するドキュメント ライブラリの下に作成されます。これは既定のフォルダー構造です。</p>
+						<p class="bodyText">たとえば、<em class="emphasis">100 bikes</em>と<em class="emphasis">250 bikes</em>という営業案件レコードがあります。これらは <em class="emphasis">Margie's Travel</em>の営業案件です。Microsoft Dynamics CRM は次のようなフォルダー構造を作成します:</p>
+						<p class="bodyText">
+							<em class="emphasis">../opportunity/100 Bikes</em>.</p>
+						<p class="bodyText">この構造で:</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">opportunity</em> はドキュメント ライブラリです。</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">100 bikes</em> および <em class="emphasis">250 bikes</em> は営業案件のレコード フォルダーです。</p>
+							</li>
+						</ul>
+					</li>
+					<li class="bulletedlistitem">
+						<p class="bodyText">
+							<b>エンティティに基づく構造</b>フォルダーは、主エンティティ (ドキュメント管理の対象となる) のフォルダー、およびレコードが、選択した関連エンティティのドキュメント ライブラリの下に置かれるように作成されます。この構造を使用してフォルダーを作成する場合は、<b>エンティティに基づく</b>チェック ボックスを選択してから、一覧 (たとえば取引先企業または取引先担当者) からエンティティを選択します。</p>
+						<p class="bodyText">たとえば、<em class="emphasis">100 bikes</em>と<em class="emphasis">250 bikes</em>という営業案件レコードがあります。これらの営業案件は、所属取引先企業として<em class="emphasis">Margie's Travel</em> に関連付けられます。エンティティの取引先企業を選択します。これが、作成されたフォルダー構造です。</p>
+						<p class="bodyText">
+							<em class="emphasis">../account/Margie's Travel/opportunity/100 bikes</em>
+						</p>
+						<p class="bodyText">この構造で:</p>
+						<ul class="bulletedlist">
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">account</em> はドキュメント ライブラリです。</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">Margie's Travel</em> は、関連するレコードのフォルダーです。</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">opportunity</em> は、営業案件レコードのフォルダーです。</p>
+							</li>
+							<li class="bulletedlistitem">
+								<p class="bodyText">
+									<em class="emphasis">100 bikes</em> と <em class="emphasis">250 bikes</em> は、メイン エンティティの関連する営業案件レコード用のフォルダーです。</p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<p class="bodyText">ドキュメント管理を設定すると、Microsoft Dynamics CRMにより、ドキュメント ライブラリが作成されます。ただし、Microsoft Dynamics CRM がドキュメント ライブラリに各種フォルダーを作成するのは、レコードの <b>[ドキュメント]</b> 一覧を開くときのみです。</p>
+			</div>
+			<div class="feedbackSpacer"> </div>
+			<div class="feedbackContainerDiv">
+				<!--DOC FEEDBACK SECTION-->
+				<p>必要な情報は見つかりましたか?<br />はい <input type="radio" value="はい" name="fbRating" />                いいえ <input type="radio" value="いいえ" name="fbRating" /></p>
+				<p>見つからなかった場合、どのような情報が必要ですか? (任意)<br /><input type="hidden" id="Deliverable" value="Help" /><input type="hidden" id="ProdVersion" value="V6.0" /><input type="hidden" id="DocVersion" value="V6.0.0" /><input type="hidden" id="Sku" value="OP" /><input type="hidden" id="Language" value="ENU" /><input type="hidden" id="NoResponse" value="必要な情報を入手できたかどうかについて、このトピックの最後にある [はい] または [いいえ] を選択してご回答ください。" /><textarea id="fbResponseText" rows="4">フィードバックは英語でお送りください</textarea></p>
+				<p>
+					<input id="fbButton" type="button" onclick="submitFeedback();" value="フィードバックの送信" />
+				</p>
+				<!--END OF DOC FEEDBACK SECTION-->
+			</div>
+		</div>
+	</body>
+</html>
