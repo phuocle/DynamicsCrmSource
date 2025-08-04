@@ -1,0 +1,1 @@
+if(!Xrm.Internal.isUci()){Type.registerNamespace("Mscrm");Mscrm.MetricForm_onload=function(){Mscrm.Metric.defaultAmountDataType()};Mscrm.metrictype_onchange=function(){Mscrm.Metric.enableDisableGoalType()}}

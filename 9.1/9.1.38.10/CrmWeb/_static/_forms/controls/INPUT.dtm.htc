@@ -1,0 +1,205 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="init()"/>
+<public:attach event="onfocus" onevent="select();"/>
+<public:method name="SetTime"/>
+<public:method name="Set"/>
+<public:property name="TimeControl" get="getTimeControl"/>
+<public:property name="isInitialized" get="getInitialized"/>
+<public:property name="allowblankdate" internalname="_sAllowBlankDate"/>
+<public:event id="onReturnValueChangeEvent" name="onreturnvaluechange"/>
+<public:event id="eventOnInitComplete" name="oninitcomplete"/>
+<public:property name="IsDirty" get="isDirty"/>
+<public:property name="DataXml" get="dataXml"/>
+<public:property name="DataValue" get="getDataValue" put="putDataValue"/>
+<public:property name="Disabled" get="getDisabled" put="setDisabled"/>
+<public:property name="RequiredLevel" get="getRequiredLevel" />
+<public:method name="SetFocus" internalname="setFocus"/>
+<public:method name="FireOnChange" internalname="fireOnChange"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oTimeControl = null,
+    _bIsInitialized = false,
+    _sAllowBlankDate = "1";
+function getInitialized()
+{
+    return _bIsIntialized
+}
+function getTimeControl()
+{
+    return _oTimeControl
+}
+function init()
+{
+    if(parentElement.nextSibling.nextSibling)
+    {
+        _oTimeControl = parentElement.nextSibling.nextSibling.firstChild;
+        onTimeControlInitialized()
+    }
+    else
+    {
+        commonInit();
+        _bIsInitialized = true;
+        eventOnInitComplete.fire()
+    }
+}
+function onTimeControlInitialized()
+{
+    if(returnValue.length > 10)
+    {
+        oDateTime = ParseUtcDate(returnValue);
+        _oTimeControl.setTime(oDateTime)
+    }
+    commonInit();
+    _oTimeControl.attachEvent("onreturnvaluechange",onTimeChange);
+    _bIsInitialized = true;
+    eventOnInitComplete.fire()
+}
+function onTimeChange()
+{
+    returnValue = returnValue.substr(0,10) + "T" + event.value;
+    fireReturnValueChanged()
+}
+function updateTime()
+{
+    if(returnValue.length == 0)
+        return;
+    var sTime = _oTimeControl.returnValue;
+    if(sTime == null)
+    {
+        oTime = new Date(2e3,1,1,12,0,0,0);
+        _oTimeControl.setTime(oTime);
+        sTime = _oTimeControl.returnValue
+    }
+    returnValue = returnValue.substr(0,10) + "T" + sTime
+}
+function Parse(bFireEvent)
+{
+    var sOldReturnValue = returnValue;
+    if(SetDateValues(this))
+    {
+        if(returnValue != "")
+            if(_oTimeControl)
+            {
+                updateTime();
+                !disabled && 
+                    _oTimeControl.enable()
+            }
+            else
+                returnValue = returnValue.substr(0,10);
+        else
+            if(_sAllowBlankDate != "0")
+                _oTimeControl && 
+                    _oTimeControl.disable();
+            else
+            {
+                alert(LOCID_DTM_BLANK_DATE_ERROR);
+                returnValue = sOldReturnValue;
+                var oDate = ParseUtcDate(returnValue);
+                value = Mscrm.DateTimeUtility.formatDate(oDate)
+            }
+        bFireEvent && 
+            fireReturnValueChanged()
+    }
+    else
+        if(returnValue == "")
+            value = "";
+        else
+        {
+            returnValue = sOldReturnValue;
+            var oDate = ParseUtcDate(returnValue);
+            value = Mscrm.DateTimeUtility.formatDate(oDate)
+        }
+}
+function Set(oDate)
+{
+    sDate = FormatUtcDate(oDate);
+    sDate = sDate.substring(0,19);
+    if(_oTimeControl)
+    {
+        returnValue = sDate;
+        _oTimeControl.setTime(oDate)
+    }
+    else
+        returnValue = returnValue.substr(0,10);
+    value = Mscrm.DateTimeUtility.formatDate(oDate);
+    Parse(true);
+    fireReturnValueChanged()
+}
+function commonInit()
+{
+    Parse(false);
+    defaultValue = returnValue;
+    attachEvent("onbeforedeactivate",Parse);
+    attachEvent("onchange",Parse)
+}
+function fireReturnValueChanged()
+{
+    var oEvent = createEventObject();
+    oEvent.value = returnValue;
+    onReturnValueChangeEvent.fire(oEvent)
+}
+function isDirty()
+{
+    return defaultValue != returnValue
+}
+function dataXml()
+{
+    var sID = this.id;
+    return "<" + sID + ">" + returnValue + "</" + sID + ">"
+}
+function getDataValue()
+{
+    return 0 == returnValue.length ? null : returnValue
+}
+function putDataValue(dtVal)
+{
+    if(null == dtVal)
+    {
+        value = "";
+        Parse()
+    }
+    else
+        Set(dtVal)
+}
+function getDisabled()
+{
+    return contentEditable == "false"
+}
+function setDisabled(bValue)
+{
+    this.className = bValue ? "ms-crm-DateTime ms-crm-ReadOnly" : "ms-crm-DateTime";
+    this.contentEditable = bValue ? "false" : "true";
+    with(element.parentElement.nextSibling.firstChild)
+    {
+        src = bValue ? "/_imgs/btn_dis_cal.gif" : "/_imgs/btn_off_cal.gif";
+        disabled = bValue
+    }
+    this.disabled = bValue
+}
+function setFocus()
+{
+    !IsNull(this.form) && this.form.className == "ms-crm-Form" && 
+        this.form.GetTab(element,true);
+    element.focus()
+}
+function fireOnChange()
+{
+    this.fireEvent("onchange")
+}
+function getRequiredLevel()
+{
+    try
+    {
+        if(IsNull(this.req))
+            return FIELD_NOT_REQUIRED;
+        else
+            return parseInt(this.req,10)
+    }
+    catch(e)
+    {
+        return FIELD_NOT_REQUIRED
+    }
+}
+
+</script>
+</public:component>

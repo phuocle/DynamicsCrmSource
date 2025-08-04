@@ -1,0 +1,1 @@
+<%@ Page language="c#" Inherits="Microsoft.Crm.Common.Application.Pages.Tools.Common.XmlViewer"   %>

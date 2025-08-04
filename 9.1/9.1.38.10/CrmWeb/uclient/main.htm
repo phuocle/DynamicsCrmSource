@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html manifest="/uclient/app.manifest">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+	<script type="text/javascript" nomodule src="/uclient/scripts/es6-shim.min.js?v=1.4.9962-v91onpremise" crossorigin></script>
+	<script type="text/javascript" nomodule src="/uclient/scripts/es7-shim.min.js?v=1.4.9962-v91onpremise" crossorigin></script>
+	<script type="text/javascript" nomodule src="/uclient/scripts/bluebird.min.js?v=1.4.9962-v91onpremise" crossorigin></script>
+	<script type="text/javascript" nomodule src="/uclient/scripts/fetch.umd.js?v=1.4.9962-v91onpremise" crossorigin></script>
+
+	<script type="text/javascript">
+		var __public_path__ = "/uclient/";
+
+		// Load pointer polyfill if necessary
+		if (!window.PointerEvent)
+		{
+			var pep = document.createElement("script"); pep.async = false;
+			pep.src = "/uclient/scripts/pep.js?v=1.4.9962-v91onpremise";
+			pep.crossOrigin = "anonymous";
+			document.head.appendChild(pep);
+		}
+	</script>
+
+	<style id="stylesheet"></style>
+	<title>Microsoft Dynamics 365</title>
+	<meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, viewport-fit=cover">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<link rel="icon" type="image/x-icon" href="/uclient/resources/Images/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/uclient/resources/Images/76x76.png"/>
+	<link rel="apple-touch-icon" sizes="120x120" href="/uclient/resources/Images/120x120.png"/>
+	<link rel="apple-touch-icon" sizes="152x152" href="/uclient/resources/Images/152x152.png"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/uclient/resources/Images/180x180.png"/>
+
+	<script type="text/javascript">
+		/* Preload parameters injected at runtime */
+		//*preload*
+		/* Preload calls */
+		!function(){function e(e,t){var a=e.indexOf(t+"=");if(a>-1){var n=t.length+1,i=e.indexOf("&",a);return e.substring(a+n,i>-1?i:e.length)}return null}function t(){return window.location.hostname}function a(e){return new Promise((function(t,a){var n=new XMLHttpRequest;n.open("GET",e),window.__preload&&(window.__preload.aadObjectId&&n.setRequestHeader("x-ms-sw-objectid",window.__preload.aadObjectId),window.__preload.aadTenantId&&n.setRequestHeader("x-ms-sw-tenantid",window.__preload.aadTenantId),n.setRequestHeader("x-ms-correlation-id",window.__preload.initialActivityId)),n.onreadystatechange=function(){if(4===n.readyState){var a=function(){return Promise.resolve(JSON.parse(n.responseText))},i=200===n.status;t({ok:i,status:n.status,statusText:n.statusText,json:a,text:a,url:e})}},n.send()}))}
+/**
+ * @license Copyright (c) Microsoft Corporation. All rights reserved.
+ */
+window.ApplicationCodeExecuteStart=performance&&performance.now&&performance.now(),window.__preload.initialActivityId=function(){for(var e="",t=0;t<36;t++)if(14===t)e+="4";else if(8===t||13===t||18===t||23===t)e+="-";else if(19===t){var a=Math.floor(16*Math.random());e+="0123456789abcdef".substr(3&a|8,1)}else e+="0123456789abcdef".substr(Math.floor(16*Math.random()),1);return e}();var n=Promise.resolve;Promise.resolve=function(){return n.apply(Promise,arguments)},window.clientApiGlobalStoreManager=void 0;var i=window.location.href,o=e(i,"appid"),r=t().substr(t().indexOf(".")),d=new Date;if(d.setTime(d.getTime()-864e5),document.cookie="CrmNativeAuth=;domain="+r+";expires="+d+";path=/",o&&"null"!==o){var l=e(i,"org")||window.__preload&&window.__preload.org,s=(!!e(i,"liveid")||!(!window.__preload||!window.__preload.isLiveId)?function(e){var t=e.split("/");return t.length>=2?t[0]+"//"+t[2]:null}(i):"/"+l)+"/api/data/v9.0/",u=a(s+("GetClientMetadata(ClientMetadataQuery=@ClientMetadataQuery)?@ClientMetadataQuery={%22MetadataType%22:null,%22MetadataSubtype%22:null,%22EntityLogicalName%22:null,%22MetadataId%22:null,%22MetadataNames%22:[],%22GetDefault%22:false,%22DependencyDepth%22:%22UserContext%22,%22ChangedAfter%22:null,%22Exclude%22:[],%22AppId%22:%22"+o+"%22}")),c=a(s+"EntityDefinitions?$select=IsActivity,IsVisibleInMobileClient,ObjectTypeCode,LogicalName,DisplayName,DisplayCollectionName,ActivityTypeMask&$filter=IsActivity%20eq%20true");window.__uciServerPreload={userContext:u,activityFlags:c}}}();
+	</script>
+
+	<!-- css -->
+	<link href="/uclient/resources/styles/Styles.css?v=1.4.9962-v91onpremise" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="error-app-loading-indicator">
+		<div id="app-loading-indicator" class="indeterminateProgressRing">
+			<div class="progressDot"></div>
+			<div class="progressDot"></div>
+			<div class="progressDot"></div>
+			<div class="progressDot"></div>
+			<div class="progressDot"></div>
+		</div>
+		<div id="errorPopup-container"></div>
+	</div>
+
+	<script type="text/javascript" nomodule src="/uclient/scripts/es5/vendor.js?v=1.4.9962-v91onpremise" crossorigin></script>
+	<script type="module" src="/uclient/scripts/vendor.js?v=1.4.9962-v91onpremise" crossorigin></script>
+
+	<script id="errorPopup-template" type="text/template">
+		<div class="errorPopup-wrapper">
+			<div id="errorPopup-header"></div>
+			<a href="#" id="errorPopup-detailsLink"></a>
+			<div id="errorPopup-technicalDetails"></div>
+		</div>
+	</script>
+
+	<script id="waiting-message-template" type="text/template">
+		<div id="app-waiting-message"></div>
+	</script>
+
+
+	<script type="text/javascript">
+		(function () {
+				var errorsArray = [];
+				var timerId;
+				var errorContainer = document.getElementById("errorPopup-container");
+				window.onerror = basicErrorHandler;
+
+				function basicErrorHandler(message, url, line, col, error, incomingErrorArray) {
+					if (incomingErrorArray)
+					{
+						// We are at a later stage in app initialization when internal code is calling into this and is providing an error array of it's own
+						errorsArray = errorsArray.concat(incomingErrorArray);
+					}
+					if (error)
+					{
+						errorsArray.push(error);
+					}
+
+					// Put all errors information to global variable for following reporting.
+					window.__preloadErrors = errorsArray;
+
+					var localizedLabels = window.__preload && window.__preload.localizedStrings && window.__preload.localizedStrings.labels;
+					if (timerId) clearTimeout(timerId);
+					showWaitingMessage();
+					timerId = setTimeout(showFailedMessage, 60000);
+
+					function showWaitingMessage() {
+						var template = document.getElementById("waiting-message-template").innerHTML;
+						errorContainer.innerHTML = template;
+						var errorMessage = "We are experiencing some errors while trying to load the application…";
+						if(localizedLabels) errorMessage = localizedLabels.errorWaitingMessage;
+						document.getElementById("app-waiting-message").innerText = errorMessage;
+					}
+
+					function showFailedMessage() {
+						var errorMessage = "Application failed to load";
+						var errorDetailsLabel = "Technical Details";
+						if(localizedLabels)
+						{
+							errorMessage = localizedLabels.errorFailedMessage;
+							errorDetailsLabel = localizedLabels.errorDetailsLabel;
+						}
+						document.getElementById("app-loading-indicator").classList.add("hideProgressBar");
+						document.getElementById("error-app-loading-indicator").classList.add("centered");
+						insertPopupToPage(errorMessage, errorDetailsLabel, errorsArray);
+						var detailsLink = document.getElementById("errorPopup-detailsLink");
+						detailsLink.addEventListener("click", toggleDetails);
+
+						function toggleDetails(evt) {
+							evt.preventDefault();
+							var technicalDetails = evt.target.nextSibling.nextSibling;
+							technicalDetails.classList.toggle("hideErrorBlock");
+						}
+					}
+
+					function insertPopupToPage(errorMessage, errorDetailsLabel, errors) {
+						var template = document.getElementById("errorPopup-template").innerHTML;
+						var errorStack = document.createElement("div");
+						if(errors) {
+							errors.forEach(function (item) {
+								if (item) {
+									var errorStackItem = document.createElement("div");
+									errorStackItem.innerText = item.stack || item.stackTrace;
+									errorStack.appendChild(errorStackItem);
+								}
+							});
+						}
+						errorContainer.innerHTML = template;
+						var popupHeader = document.getElementById("errorPopup-header");
+						popupHeader.innerText = errorMessage;
+						var detailsLink = document.getElementById("errorPopup-detailsLink");
+						detailsLink.innerText = errorDetailsLabel;
+						var technicalDetails = document.getElementById("errorPopup-technicalDetails");
+						technicalDetails.innerHTML = errorStack.innerHTML;
+					}
+				}
+		})();
+	</script>
+
+	<script type="text/javascript" src="/uclient/scripts/MicrosoftAjax.js?v=1.4.9962-v91onpremise" crossorigin></script>
+
+	<div id="shell-container" style="display: flex; overflow: hidden"></div>
+
+	<!-- Begin OnPrem AuthenticationManager Section -->
+	<script type="text/javascript">
+		function authenticatedPageLoaded() {
+			onOnPremCookieAvailable();
+		}
+	</script>
+	
+	<!-- !! Auth elements must be kept consistent with the AuthenticationManager component and all other htm or aspx files !! -->
+	<form method="POST" id="authForm" target="authFrame">
+		<input type="hidden" name="wa" value="wsignin1.0" />
+		<input type="hidden" id="authToken" name="wresult" value="" />
+		<input type="hidden" id="wctx" name="wctx" value="" />
+	</form>
+	
+	<iframe id="authFrame" name="authFrame" src="" style="display:none"></iframe>
+	<!-- End OnPrem AuthenticationManager Section -->
+		
+	<script type="text/javascript">
+		var VERSION_NUMERIC_VALUE = "1.4.9962-v91onpremise";
+		var LAST_BUILD_TIME = "Thu, 20 Mar 2025 17:30:52 GMT";
+		var SERVER_VERSION_VALUE = "9100000000"
+		var CLIENT_VERSION_VALUE = "9000000000";
+	</script>
+
+	<script type="text/javascript" nomodule src="/uclient/scripts/es5/app.js?v=1.4.9962-v91onpremise" crossorigin></script>
+	<script type="module" src="/uclient/scripts/app.js?v=1.4.9962-v91onpremise" crossorigin></script>
+
+	<div id="PortalRoot"></div>
+</body>
+</html>

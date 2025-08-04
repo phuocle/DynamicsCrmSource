@@ -1,0 +1,138 @@
+<public:component lightweight="true">
+<public:attach event="onmouseover" onevent="GlowOn()"/>
+<public:attach event="onmouseout" onevent="GlowOff()"/>
+<public:attach event="onresize" onevent="resetTabBar()"/>
+<public:attach event="onclick" onevent="down()"/>
+<public:attach event="ondocumentready" onevent="load()"/>
+<public:attach event="onkeydown" onevent="Key()"/>
+<public:attach event="onkeyup" onevent="SwallowKey()"/>
+<public:event id="eventChange" name="onchange"/>
+<public:event id="eventAfterChange" name="onafterchange"/>
+<public:method name="down"/>
+<public:method name="recalculateSize" />
+<public:property name="CurrentTab" get="GetCurrentTab"/>
+<public:property name="CurrentTabContent" get="GetCurrentTabContent"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oTab,
+    _oLastGlow;
+function getTabElement(startElement)
+{
+    if("A" == startElement.tagName)
+        startElement = startElement.parentElement;
+    if("LI" == startElement.tagName)
+        return startElement;
+    return null
+}
+function load()
+{
+    for(var tab,
+        foundSelection = false,
+        i = 0; i < this.children.length; i++)
+    {
+        tab = this.children[i];
+        if(tab.className == "ms-crm-Tab ms-crm-Tab-Selected")
+        {
+            down(tab,true);
+            foundSelection = true
+        }
+    }
+    recalculateSize();
+    !foundSelection && 
+        down(this.firstChild,true)
+}
+function recalculateSize()
+{
+    for(var fullWidth = 2,
+        tab,
+        foundSelection = false,
+        lastChild = this.children.length - 1,
+        i = 0; i <= lastChild; i++)
+    {
+        tab = this.children[i];
+        fullWidth += tab.offsetWidth
+    }
+    if(fullWidth > 2)
+        this.style.width = fullWidth;
+    else
+        this.style.width = "100%";
+    if(this.children[0].offsetTop != this.children[lastChild].offsetTop)
+    {
+        fullWidth = fullWidth + fullWidth * 10 / 100;
+        this.style.width = fullWidth
+    }
+}
+function Key()
+{
+    if(event.keyCode == KEY_ENTER)
+    {
+        event.srcElement.click();
+        event.returnValue = false;
+        event.cancelBubble = true
+    }
+}
+function SwallowKey()
+{
+    if(event.keyCode == KEY_ENTER)
+    {
+        event.cancelBubble = true;
+        event.returnValue = false
+    }
+}
+function down(oTab,bForce)
+{
+    var o = getTabElement(oTab ? oTab : event.srcElement);
+    if(o == null)
+        return;
+    if(this.parentElement.document.readyState != "complete" && !bForce)
+        return;
+    if(o != _oTab)
+    {
+        var oEvent = createEventObject();
+        oEvent.tab = o;
+        oEvent.tabContent = window.document.all(o.tabID);
+        eventChange.fire(oEvent);
+        if(oEvent.allowSwitch == false)
+            return;
+        o.className = "ms-crm-Tab ms-crm-Tab-Selected";
+        window.document.all(o.tabID).style.display = "inline";
+        if(_oTab)
+        {
+            _oTab.className = "ms-crm-Tab";
+            window.document.all(_oTab.tabID).style.display = "none"
+        }
+        _oTab = o;
+        eventAfterChange.fire(oEvent)
+    }
+}
+function GlowOn()
+{
+    var o = getTabElement(event.srcElement);
+    if(o != null && o != _oTab)
+    {
+        o.className = "ms-crm-GlowOn ms-crm-Tab";
+        _oLastGlow = o
+    }
+}
+function GlowOff()
+{
+    if(_oLastGlow && _oLastGlow != _oTab)
+        _oLastGlow.className = "ms-crm-Tab";
+    _oLastGlow = null
+}
+function resetTabBar()
+{
+    var o = GetCurrentTab();
+    o.className = "ms-crm-Tab ms-crm-Tab-Selected"
+}
+function GetCurrentTab()
+{
+    return _oTab
+}
+function GetCurrentTabContent()
+{
+    return window.document.all(_oTab.tabID)
+}
+
+</script>
+</public:component>

@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Web._grid.cmds.dlg_discardcheckout.aspx_discardTitle" xml:space="preserve">
+    <value>Discard Check out.</value>
+    <comment>title for discard check out dialog [Category="SharePoint Document"]</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_discardcheckout.aspx_discardDescription" xml:space="preserve">
+    <value>You are about to discard any changes made to the selected checked out file.</value>
+    <comment>title for discard check out dialog [Category="SharePoint Document"]</comment>
+  </data>
+  <data name="Button_Label_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>Button text for the Confirm Setup button [Category="SharePoint Document"]</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_editdocumentproperties.CreationInformation" xml:space="preserve">
+    <value>Created on {0} by {1}</value>
+    <comment>Created on and Created by information in edit document poperties dialog.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_editdocumentproperties.ModificationInformation" xml:space="preserve">
+    <value>Last modified on {0} by {1}</value>
+    <comment>Modified on and Modified by information in edit document poperties dialog.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="EditLocationDialogHeader" xml:space="preserve">
+    <value>Create a new SharePoint folder or add an existing SharePoint folder as a document location in Microsoft Dynamics 365</value>
+    <comment>This text is used for header section in Edit location Dialog.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="EditLocationParentSiteLocation" xml:space="preserve">
+    <value>Specify the name of the existing SharePoint folder here to associate the folder with this Microsoft Dynamics 365 record</value>
+    <comment>This text is used for parent site in Edit location Dialog.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="DocumentManagement.DefaultLocationName.Text" xml:space="preserve">
+    <value>Location {0}</value>
+    <comment>Default value for location name in add location dialog.{NumberedPlaceholder="{0}"} Placeholder 0 is the index.[Category="Collaboration: Adding/Associating sharepoint locations to CRM records from UI"]</comment>
+  </data>
+  <data name="SharePointSiteError" xml:space="preserve">
+    <value>Site Not Found</value>
+    <comment>Create Folder Dialog[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="Error_Message_0x80048054" xml:space="preserve">
+    <value>The folder name contains invalid characters. Please use a different name. Valid folder names cannot ends with the following strings: .aspx, .ashx, .asmx, .svc , cannot begin or end with a dot, cannot contain consecutive dots and cannot contain any of the following characters: ~ " # % &amp; * : &lt; &gt; ? / \ { | }.</value>
+    <comment>Error message for invalid characters.[Category="Collaboration: Adding/Associating sharepoint locations to CRM records from UI"]</comment>
+  </data>
+  <data name="DocumentManagement.AddLocation.FolderName.Maxlength.Exceeded" xml:space="preserve">
+    <value>You have exceeded the maximum number of {0} characters limit in the folder name field.</value>
+    <comment>{NumberedPlaceholder="{0}"} Placeholder 0 is a number.[Category="Collaboration: Adding/Associating sharepoint locations to CRM records from UI"]</comment>
+  </data>
+  <data name="DocumentManagement.CreateFolder.GenericError" xml:space="preserve">
+    <value>The action could not be performed.</value>
+    <comment>Error message shown to user if there is any other SharePoint error while folder creation.[Category="Collaboration: Adding/Associating sharepoint locations to CRM records from UI"]</comment>
+  </data>
+  <data name="Dialog_DeleteSharePointConfirm_Title" xml:space="preserve">
+    <value>Delete SharePoint Documents</value>
+    <comment>Dialog page title for delete account confirmation dialog page.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="Dialog_DeleteAccountConfirm_Description" xml:space="preserve">
+    <value>Are you sure you want to delete {0} {1}? You can't undo this action.</value>
+    <comment>Dialog page description for delete account confirmation dialog page. {NumberedPlaceholder="{0}","{1}"}. Placeholder 0 is a number representing the number of accounts selected and Placeholder 1 is a singular or plural account entity name (Account/Accounts) depending upon whether one or more accounts are selected.[Category="Orion AIR"]</comment>
+  </data>
+  <data name="Button_Label_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Error_Message_0x8004700c" xml:space="preserve">
+    <value>The specified display name is not valid.</value>
+  </data>
+  <data name="SharePointUpdateFolder" xml:space="preserve">
+    <value>Update Folder</value>
+    <comment>Update Folder Dialog[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="SharePointUpdateFolderDescription" xml:space="preserve">
+    <value>A folder with the same name already exists in this location: {0} Would you like to associate it with the current record?</value>
+    <comment>Update Folder Dialog[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="SharePointAddFolderDescriptionText" xml:space="preserve">
+    <value>To continue, click Confirm.</value>
+    <comment>Create Folder Dialog[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="Web._grid.cmds.dlg_discardcheckout.aspx_discardconfirm" xml:space="preserve">
+    <value>Click Confirm to continue.</value>
+    <comment>confirmation message when checking out a file in sharepoint document entity [Category="SharePoint Document"]</comment>
+  </data>
+  <data name="EditLocationHeaderTitle" xml:space="preserve">
+    <value>Edit Location</value>
+    <comment>Label for edit location dialog header.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="NewFolderDialogHeader" xml:space="preserve">
+    <value>Create a new Folder</value>
+    <comment>This text is used for header section in New Document Dialog for creating a new folder.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="ProcessingLabel" xml:space="preserve">
+    <value>Processing</value>
+    <comment>Label for Processing message[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="Upload_NoFileSelected" xml:space="preserve">
+    <value>No file is selected. To continue, select a file to import.</value>
+    <comment>No File Selected</comment>
+  </data>
+  <data name="PowerPointDialogHeader" xml:space="preserve">
+    <value>Create a new PowerPoint presentation</value>
+    <comment>This text is used for header section in New Document Dialog for creating a new powerpoint.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="WordDocumentDialogHeader" xml:space="preserve">
+    <value>Create a new Word document</value>
+    <comment>This text is used for header section in New Document Dialog for creating a new document.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="ExcelDialogHeader" xml:space="preserve">
+    <value>Create a new Excel spreadsheet</value>
+    <comment>This text is used for header section in New Document Dialog for creating a new excel.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="OneNoteDialogHeader" xml:space="preserve">
+    <value>Create a new OneNote notebook</value>
+    <comment>This text is used for header section in New Document Dialog for creating a new onenote.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="OneNoteInstallConfirmDialogTitle" xml:space="preserve">
+    <value>To do this, you'll need OneNote</value>
+    <comment>Title text to display when prompting the user to install OneNote in MoCA Client.[Category="OneNote"]</comment>
+  </data>
+  <data name="WordInstallConfirmDialogTitle" xml:space="preserve">
+    <value>To do this, you'll need Word</value>
+    <comment>Title text to display when prompting the user to install Word in MoCA Client.[Category="SharepointOnMoca"]</comment>
+  </data>
+  <data name="ExcelInstallConfirmDialogTitle" xml:space="preserve">
+    <value>To do this, you'll need Excel</value>
+    <comment>Title text to display when prompting the user to install Excel in MoCA Client.[Category="SharepointOnMoca"]</comment>
+  </data>
+  <data name="PowerPointInstallConfirmDialogTitle" xml:space="preserve">
+    <value>To do this, you'll need PowerPoint</value>
+    <comment>Title text to display when prompting the user to install PowerPoint in MoCA Client.[Category="SharepointOnMoca"]</comment>
+  </data>
+  <data name="GetOneNoteOkButtonText" xml:space="preserve">
+    <value>Get OneNote</value>
+    <comment>Text to display on confirm dialog button when prompting a user to install OneNote.[Category="OneNote"]</comment>
+  </data>
+  <data name="GetWordOkButtonText" xml:space="preserve">
+    <value>Get Word</value>
+    <comment>Text to display on confirm dialog button when prompting a user to install Word.[Category="SharepointOnMoca"]</comment>
+  </data>
+  <data name="GetExcelOkButtonText" xml:space="preserve">
+    <value>Get Excel</value>
+    <comment>Text to display on confirm dialog button when prompting a user to install Excel.[Category="SharepointOnMoca"]</comment>
+  </data>
+  <data name="GetPowerPointOkButtonText" xml:space="preserve">
+    <value>Get PowerPoint</value>
+    <comment>Text to display on confirm dialog button when prompting a user to install PowerPoint.[Category="SharepointOnMoca"]</comment>
+  </data>
+  <data name="OfficeDocumentsIntuneErrorText" xml:space="preserve">
+    <value>We can’t open the selected file. Check to see if you have the app needed to open it. If you do and the file still won’t open, then it is likely because your system administrator has blocked the use of these types of applications.</value>
+    <comment>Text to display on a dialog when App is Intune Managed and policy is set to block opening of Office Documents.[Category="SharepointOnMoca"]</comment>
+  </data>
+  <data name="Upload_FileSizeGreaterThanMax" xml:space="preserve">
+    <value>Maximum upload limit in Dynamics 365 is 50.00 MB. Larger files can be uploaded directly in SharePoint.</value>
+    <comment>Alert message when uploaded File size is more than 50MB</comment>
+  </data>
+  <data name="Brand_CRM_Short" xml:space="preserve">
+    <value>Dynamics 365</value>
+    <comment>Branding for CRM Shortcut. [Category="Application Infrastructure"]</comment>
+  </data>
+  <data name="Upload_FileSizeLesserThanMin" xml:space="preserve">
+    <value>The specified file is either empty or does not exist. Check that the file name is correct or specify a different file, and try again.</value>
+    <comment>Alert message when uploaded File size is 0MB</comment>
+  </data>
+  <data name="ODB_Confirm_Dialog" xml:space="preserve">
+    <value>Change Document Location</value>
+    <comment>Title for OneDrive confirm Dialog</comment>
+  </data>
+  <data name="ODB_Confirm_Dialog_Description" xml:space="preserve">
+    <value>Folder \ {0} \ already exists in OneDrive for Business </value>
+    <comment>Description for OneDrive confirm Dialog</comment>
+  </data>
+  <data name="ODB_Confirm_Dialog_Sub_Description" xml:space="preserve">
+    <value>Would you like to use this folder anyway?</value>
+    <comment>Sub-description for OneDrive confirm Dialog</comment>
+  </data>
+  <data name="Odb_Location_Title" xml:space="preserve">
+    <value>OneDrive</value>
+    <comment>Label for One Drive dropdown header.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="SharedWithMe_Location_Title" xml:space="preserve">
+    <value>Shared with me</value>
+    <comment>Label for shared with me dropdown header.[Category="SharePoint Document"]</comment>
+  </data>
+  <data name="OneDriveConfigLabel" xml:space="preserve">
+    <value>Your files will be stored in the \{0} folder in OneDrive for Business.</value>
+    <comment>Description label in onedrive config dialog</comment>
+  </data>
+  <data name="OneDriveConfiguration_error_message" xml:space="preserve">
+    <value>The action could not be performed. Please try reloading this page.</value>
+    <comment>Description label when error occurs in configuring OneDrive</comment>
+  </data>
+  <data name="OneDriveConfiguration_cancelled_message" xml:space="preserve">
+    <value>We were unable to set your OneDrive for Business location as the process was cancelled.{0}This setup will start again on your next visit.</value>
+    <comment>Description label when user cancels OneDrive configuration.{NumberedPlaceholder="{0}"} Placeholder 0 will be replaced with ‘\n’ (new line character) in runtime</comment>
+  </data>
+  <data name="OneDriveBusinessSettings_EmptyFolderName_Message" xml:space="preserve">
+    <value>Provide a folder that Dynamics 365 will use to store your personal files.</value>
+    <comment>OneDrive Folder Name Empty Alert Message [Category="OneDrive for Business"]</comment>
+  </data>
+  <data name="All_Locations_Title" xml:space="preserve">
+    <value>All Locations</value>
+    <comment>Displays All Locations option on the dynamic menu builder</comment>
+  </data>
+  <data name="EditParentSiteOrLocationLabel" xml:space="preserve">
+    <value>Parent Site / Location</value>
+    <comment>This text is used for the label of the parent site / location in Edit location Dialog.[Category="SharePoint Document"]</comment>
+  </data>
+</root>

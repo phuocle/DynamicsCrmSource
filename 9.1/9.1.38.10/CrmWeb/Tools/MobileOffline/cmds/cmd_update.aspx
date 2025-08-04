@@ -1,0 +1,1 @@
+<%@ Page Language="C#" Inherits="Microsoft.Crm.Web.Tools.MobileOffline.UpdateMobileOfflineEnabled" %>

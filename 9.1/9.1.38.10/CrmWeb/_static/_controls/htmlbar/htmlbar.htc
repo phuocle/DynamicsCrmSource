@@ -1,0 +1,266 @@
+<public:component lightweight="true">
+<public:method name="htmlExec"/>
+<public:method name="Off"/>
+<public:method name="HandlePopUpClick"/>
+<public:attach event="oncontentready" onevent="Init()"/>
+<public:attach event="onmouseover" onevent="htmlBarOver()"/>
+<public:attach event="onmouseout" onevent="htmlBarOut()"/>
+<public:attach event="onmousedown" onevent="htmlBarDown()"/>
+<public:event name="onformatchange" id="onSaveEvent"/>
+</public:component>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oLastBtn,
+    _oPop,
+    MAXFONTSIZE = 6,
+    DEFAULTFONTS;
+function Init()
+{
+    for(var i = 0; i < this.all.length; i++)
+        this.all(i).unselectable = "on";
+    DEFAULTFONTS = LOCID_HTMLBAR_DEFAULTFONTS.split(",")
+}
+function htmlExec(sCmd,sVal)
+{
+    if(top.document.activeElement.applyformat == false)
+        return;
+    if(!sVal)
+        sVal = null;
+    var formatArgs = createEventObject();
+    formatArgs.sCmd = sCmd;
+    formatArgs.sVal = sVal;
+    onSaveEvent.fire(formatArgs);
+    top.document.execCommand(sCmd,false,sVal);
+    if(sCmd = "insertUnorderedList")
+    {
+        var oUrl = Mscrm.CrmUri.create(window.location.search);
+        if(oUrl.get_query()["etc"] == "127")
+            for(var ULtags = window.document.all["ContentEditor"].getElementsByTagName("UL"),
+                i = 0,
+                mx = ULtags.length; i < mx; i++)
+                if(ULtags[i].className == "")
+                    ULtags[i].className = "Articlesedit_article_div_secEdit"
+    }
+}
+function selTdParent(src)
+{
+    while(!IsNull(src) && src.tagName != "TD")
+        src = src.parentElement;
+    if(IsNull(src))
+        return null;
+    if(src.className.indexOf("htmlBtn") >= 0)
+        return src;
+    return null
+}
+function htmlBarOver()
+{
+    var src = selTdParent(event.srcElement);
+    if(!IsNull(src))
+    {
+        src.style.border = "1px solid #F1C43F";
+        src.style.backgroundColor = "FDEEB3";
+        if(_oLastBtn && _oLastBtn.dropdown == "true" && src != _oLastBtn)
+        {
+            if(_oPop)
+            {
+                _oPop.hide();
+                _oPop = null
+            }
+            Off(_oLastBtn)
+        }
+        _oLastBtn = src
+    }
+}
+function htmlBarOut()
+{
+    var src = selTdParent(event.srcElement);
+    if(!IsNull(src))
+        if(src.dropdown != "true" || !_oPop)
+        {
+            Off(src);
+            _oLastBtn = null
+        }
+}
+function Off(o)
+{
+    o.unselectable = "on";
+    o.style.border = "1px solid transparent";
+    o.style.backgroundColor = "";
+    parent.document.body.onmousedown = null
+}
+function dropdownMake(oParent,s)
+{
+    _oPop = openPopup();
+    _oPop.document.body.innerHTML = s;
+    _oPop.document.body.firstChild.HtmlBar = this;
+    _oPop.show(0,0,0,0);
+    if(LOCID_UI_DIR == "RTL")
+        _oPop.show(-_oPop.document.body.firstChild.offsetWidth + oParent.offsetWidth,25,_oPop.document.body.firstChild.offsetWidth,_oPop.document.body.firstChild.offsetHeight,oParent);
+    else
+        _oPop.show(0,25,_oPop.document.body.firstChild.offsetWidth,_oPop.document.body.firstChild.offsetHeight,oParent);
+    parent.document.body.onmousedown = function()
+    {
+        Off(oParent)
+    }
+}
+function fontNameTableMake()
+{
+    for(var s = "<table onclick='this.HtmlBar.HandlePopUpClick(\"fontname\", event.srcElement);' style='font-size:14px;width:140px;height:150px; border:1px solid #999999; cursor:hand;' cellpadding='3' cellspacing='0'>",
+        i = 0; i < DEFAULTFONTS.length; ++i)
+    {
+        s += "<tr><td onmouseover='runtimeStyle.background=\"#C1D2EE\";' onmouseout='runtimeStyle.background=\"\";' class='htmlFontCell' style='font-family:";
+        s += DEFAULTFONTS[i];
+        s += "' nowrap>";
+        s += DEFAULTFONTS[i];
+        s += "</td></tr>"
+    }
+    s += "</table>";
+    return s
+}
+function fontSizeTableMake()
+{
+    for(var s = "<table onclick='this.HtmlBar.HandlePopUpClick(\"fontsize\", event.srcElement);' style='font-size:14px;width:120px;height:170px; border:1px solid #999999; cursor:hand;' cellpadding='3' cellspacing='0'>",
+        iMagic = 0,
+        i = 0; i < MAXFONTSIZE; i++)
+    {
+        iMagic = i + i + 8;
+        s += "<tr><td onmouseover='runtimeStyle.background=\"#C1D2EE\";' onmouseout='runtimeStyle.background=\"\";' class='htmlFontCell' style='font-family:verdana;font-size:";
+        s += iMagic;
+        s += "pt' val='";
+        s += i + 1;
+        s += "' nowrap>";
+        s += formatString(LOCID_HTMLBAR_FONT_SIZE,iMagic) + "</td></tr>"
+    }
+    s += "</table>";
+    return s
+}
+function buildTD(sColor)
+{
+    return "<td bgcolor=" + sColor + ">&nbsp;</td>"
+}
+function colorTableMake(sType)
+{
+    var s = "<table onclick='this.HtmlBar.HandlePopUpClick(\"" + sType + "\", event.srcElement);' style='font-size:14px;width:150px;height:141px; border:1px solid #999999; cursor:hand;' cellpadding=0 cellspacing=1>";
+    s += "<tr>";
+    s += buildTD("#ffffcc");
+    s += buildTD("#ffff99");
+    s += buildTD("#ffff66");
+    s += buildTD("#ffff33");
+    s += buildTD("#ffff00");
+    s += buildTD("#cccc00");
+    s += buildTD("#999900");
+    s += buildTD("#666600");
+    s += buildTD("#333300");
+    s += "</tr><tr>";
+    s += buildTD("#ffccff");
+    s += buildTD("#ff99ff");
+    s += buildTD("#ff66ff");
+    s += buildTD("#ff33ff");
+    s += buildTD("#ff00ff");
+    s += buildTD("#cc00cc");
+    s += buildTD("#990099");
+    s += buildTD("#660066");
+    s += buildTD("#330033");
+    s += "</tr><tr>";
+    s += buildTD("#ccffff");
+    s += buildTD("#99ffff");
+    s += buildTD("#66ffff");
+    s += buildTD("#33ffff");
+    s += buildTD("#00ffff");
+    s += buildTD("#00cccc");
+    s += buildTD("#009999");
+    s += buildTD("#006666");
+    s += buildTD("#003333");
+    s += "</tr><tr>";
+    s += buildTD("#ffcccc");
+    s += buildTD("#ff9999");
+    s += buildTD("#ff6666");
+    s += buildTD("#ff3333");
+    s += buildTD("#ff0000");
+    s += buildTD("#cc0000");
+    s += buildTD("#990000");
+    s += buildTD("#660000");
+    s += buildTD("#330000");
+    s += "</tr><tr>";
+    s += buildTD("#ccffcc");
+    s += buildTD("#99ff99");
+    s += buildTD("#66ff66");
+    s += buildTD("#33ff33");
+    s += buildTD("#00ff00");
+    s += buildTD("#00cc00");
+    s += buildTD("#009900");
+    s += buildTD("#006600");
+    s += buildTD("#003300");
+    s += "</tr><tr>";
+    s += buildTD("#ccccff");
+    s += buildTD("#9999ff");
+    s += buildTD("#6666ff");
+    s += buildTD("#3333ff");
+    s += buildTD("#0000ff");
+    s += buildTD("#0000cc");
+    s += buildTD("#000099");
+    s += buildTD("#000066");
+    s += buildTD("#000033");
+    s += "</tr><tr>";
+    s += buildTD("#ffffff");
+    s += buildTD("#cccccc");
+    s += buildTD("#999999");
+    s += buildTD("#666666");
+    s += buildTD("#333333");
+    s += buildTD("#ffcc00");
+    s += buildTD("#ff9900");
+    s += buildTD("#ff6600");
+    s += buildTD("#ff3300");
+    s += "</tr><tr>";
+    s += buildTD("#000000");
+    s += buildTD("#ccff00");
+    s += buildTD("#99ff00");
+    s += buildTD("#66ff00");
+    s += buildTD("#33ff00");
+    s += buildTD("#00ccff");
+    s += buildTD("#0099ff");
+    s += buildTD("#0066ff");
+    s += buildTD("#0033ff");
+    s += "</tr></table>";
+    return s
+}
+function htmlBarDown()
+{
+    var src = selTdParent(event.srcElement);
+    event.cancelBubble = true;
+    if(!IsNull(src) && src.dropdown == "true")
+        switch(src.command)
+        {
+            case "fontname":
+                dropdownMake(src,fontNameTableMake());
+                break;
+            case "fontsize":
+                dropdownMake(src,fontSizeTableMake());
+                break;
+            case "fgcolor":
+                dropdownMake(src,colorTableMake("ForeColor"));
+                break
+        }
+}
+function HandlePopUpClick(sCmd,o)
+{
+    var sVal;
+    switch(sCmd)
+    {
+        case "fontname":
+            sVal = o.style.fontFamily;
+            break;
+        case "fontsize":
+            sVal = o.val;
+            break;
+        case "ForeColor":
+            sVal = o.bgColor;
+            break
+    }
+    htmlExec(sCmd,sVal);
+    Off(_oLastBtn);
+    _oPop.hide();
+    _oPop = null
+}
+
+</script>

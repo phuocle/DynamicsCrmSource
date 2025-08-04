@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html manifest="app.manifest">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>Microsoft Dynamics CRM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+	<!-- NOTE: If the list of scripts has any addition/removal, ENSURE that :
+		1. the manifest generator's .targets file accounts for any such change
+		2. The list of scripts at \src\Application\web\Components\application\Utility\MobileUtility\Util.cs : AddNativeBridgeScripts() gets updated
+	-->
+	<script type="text/javascript" src="../nga/scripts/jquery-1.7.1.js"></script>
+	<script type="text/javascript" src="../nga/scripts/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../nga/scripts/MicrosoftAjax.js"></script>
+	<script type="text/javascript" src="../nga/scripts/EncodeDecode.js"></script>
+	<script type="text/javascript" src="../nga/scripts/Microsoft.Crm.Client.Core.Framework.js"></script>
+	<script type="text/javascript" src="../nga/scripts/Microsoft.Crm.Client.Core.Imported.js"></script>
+	<script type="text/javascript" src="../nga/scripts/Microsoft.Crm.Client.Application.PhoneApp.js"></script>
+	<script type="text/javascript">
+		Microsoft.Crm.Client.Application.PhoneApp.StartPage.get_instance().start(window.location.href);
+	</script>
+
+	<!-- Begin MoCA AuthenticationManager Section -->
+	<script type="text/javascript">
+		function authenticatedPageLoaded() {
+			Microsoft.Crm.Client.Core.Framework.AuthenticationManager.get_defaultInstance().onCookieAvailable();
+		}
+	</script>
+	<form method="POST" id="authForm" target="authFrame">
+	<input type="hidden" name="wa" value="wsignin1.0" />
+	<input type="hidden" id="authToken" name="wresult" value="" />
+	<input type="hidden" id="wctx" name="wctx" value="" />
+	</form>
+	<iframe id="authFrame" name="authFrame" src="" style="display: none"></iframe>
+	<!-- End MoCA AuthenticationManager Section -->
+</body>
+</html>

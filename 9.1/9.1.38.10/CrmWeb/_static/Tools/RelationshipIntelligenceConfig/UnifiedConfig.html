@@ -1,0 +1,651 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<!-- meta tag to make ie to run in latest version to support jquery 2.1 version -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+	<link href="/_static/tools/RelationshipIntelligenceConfig/Styles/UnifiedConfig.css" rel="stylesheet" />
+	<script src="/_static/_common/scripts/jquery-3.6.0.min.js"></script>
+	<script src="/_static/_common/scripts/jquery.tmpl.js"></script>
+	<script src="/_static/tools/RelationshipIntelligenceConfig/scripts/unifiedconfig.js"></script>
+	<title></title>
+</head>
+<body class="class-for-relation font-style" role="presentation" tabindex ="-1">
+	<div id="pageloaddiv" class="container pageloaddiv displaynone">
+		<div class="row">
+			<img id="imgLoadingIcon" src="/_imgs/AdvFind/progress.gif" />
+		</div>
+		<div class="row">
+			<span id="spnLoadingText" class="font-style"></span>
+		</div>
+	</div>
+	<div>
+		<div id="headerTitle" class="ms-crm-RefreshDialog-Header-Title ms-crm-TextAutoEllipsis header">
+			<span id="spnRITitle" />
+		</div>
+		<div class="header">
+			<span id="headerDesc" class="ms-crm-RefreshDialog-Header-Desc" />
+		</div>
+	</div>
+	<div id="aciProvisioningErrorDiv" class="errortext-color displaynone updatetenant_error">
+	</div>
+	<div class="updatelinkdiv">
+		<div><a id="updatePopUpEntryLink" class="font-style updateLinkStyle displaynone" onclick="popupForUpdateAccessKey();"></a></div>
+	</div>
+	<div id="noFCBErrorDiv" class="displaynone padding-style5 textNoTabTodisplaypadding">
+		<span id="textNoTabTodisplay" class="errorpreviewtext textNoTabTodisplay"></span>
+	</div>	
+	<div id="disclaimerTextDiv" class="displaynone">
+		<div class="div-spacing6"></div>
+		<div class="disclaimerText">
+			<div class="row font-weight">
+				<span id="disClaimerTerms" class="font-style font-size24"></span>
+			</div>
+			<div class="div-spacing10"></div>
+			<div class="row">
+				<span id="DisclaimerConsentLabel" class="font-weight spnACEnableUse"></span>
+			</div>
+			<div class="div-spacing10">
+			</div>
+			<div class="div-spacing10">
+			</div>
+			<div class="row">
+				<span id="DisclaimerPrivacyStatementLabel" class="font-weight spnACEnableUse"></span>
+			</div>
+			<div class="div-spacing32"></div>
+			<div class="row displayflex">
+				<div class="col-xs-1 checkbox-style1">
+					<input type="checkbox" class="ms-crm-CheckBox" id="chkBoxdisclaimer" tabindex="1" onchange="validateDisclaimerCheckbox()" />
+				</div>
+
+				<div class="col-xs-4 divACEnableUse">
+					<span id="DisclaimerReadTermsCondLabel" class="font-weight spnACEnableUse"></span>
+				</div>
+
+			</div>
+			<div class="div-spacing32"></div>
+			<div class="row displayflex">
+				<div class="col-xs-1 checkbox-style1">
+					<input type="button" class="button-disclaimer" onclick="saveDisclaimerOrgSetting();"  id="btnDisclaimerContinue" />
+					<input type="button" class="button-disclaimer" onclick="openSolutionInstallPackage();" id="btnpackageInstall" />
+				</div>
+			</div>
+		</div>
+		</div>	
+
+		<div id="tabsDiv">
+		<ul class="tabs">
+		<!-- Start Overview-->
+		<li id="liOverviewTab" class="displaynone">
+			<!-- By default Overview tab will be enabled. -->
+			<input type="radio" tabindex="-1" checked name="tabs" id="tabOverview">
+			<label id="lblOVTitle" for="tabOverview"></label>
+			<div id="tab-contentoverview" class="tab-content">
+				<div class="flex-container">
+				  <div class="flex-wrapper">
+				    <div class="each-card col-md-5 col-xs-10">
+				      <div class="card-one">
+				        <div class="card-img">
+				          <span><img src="/_imgs/RelationshipIntelligenceConfig/RA_Cards.png" alt="Relationship Assitant - Base Cards"></span>
+				        </div>
+				        <div class="card-content">
+				          <h2 class="content-title" id="lblBusiCardContentTitle"></h2>
+				          <p class="card-description" id="lblBusiCardContentDesc"></p>
+				        </div>
+				        <div class="card-footer">
+				          <div id="icon-readyToUse">
+				            <span class="circle"><img src="/_imgs/RelationshipIntelligenceConfig/ReadyToUse.png" alt="Ready to Use"/></span>
+				            <span class="card-status" id="lblBusiCardStatus"></span>
+				        </div>
+				          <div><button id="lblConfigure" class="color-blue" onclick="gotoRATab();"></button></div>
+				        </div>
+				      </div>
+				    </div>
+				    <div class="each-card col-md-5 col-xs-10">
+				      <div class="card-two">
+				        <div class="card-img">
+				          <span><img src="/_imgs/RelationshipIntelligenceConfig/SalesInsights.png" alt="Sales Insights"></span>
+				        </div>
+				        <div class="card-content">
+				          <h2 class="content-title" id="lblSalesCardContentTitle"></h2>
+				          <p class="card-description" id="lblSalesCardContentDesc"></p>
+				        </div>
+				        <div class="card-footer">
+				          <div id="icon-notYetInstall">
+				            <span class="circle"><img src="/_imgs/RelationshipIntelligenceConfig/NotYetInstalled.png" alt="NotYetInstalled"/></span>
+				            <span class="card-status" id="lblSalesInsightsStatus"></span>
+				        </div>
+				          <div><button id="lblInstall" class="color-orange" onclick="openSolutionInstallPackage();" title="Install" ></button></div>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+			</div>
+		</li>	
+		<!-- End Overview-->
+		<!-- Start Relationship Assistance-->
+		<li id="liRelationshipAssistanceTab">
+			<!-- By default RelationshipAssistant tab will be enabled. -->
+			<input type="radio" tabindex="-1" checked name="tabs" id="tabRelationshipAssistance">
+			<label id="lblRATitle" for="tabRelationshipAssistance">
+			</label>
+			<div id="tab-contentrelationshipassistance" class="tab-content animated fadeIn">
+				<div id="divRACardsPrviewNotAvailable" class="errorpreviewtext displaynone padding-style5">
+					<span id="textRACardPreviewnotAvailable"></span>
+				</div>
+				<div id="tab-RAC-Container">
+					<div class="class-for-action font-style">
+						<div id="save-div" class="displayflex">
+							<div class="divhover col-xs-2 divwidthauto">
+								<div id="btnSave" class="btnEmailSave" onclick="saveActionCards();">
+									<img id="RAtabSaveIcon" src="/_imgs/RelationshipIntelligenceConfig/Save_16.png" />
+									<span id="spnRASave" class="valign-middle"></span>
+								</div>
+							</div>
+						</div>
+						<div class="container" id="maindivision">
+							<div class="rightmargin25px">
+								<div class="row font-bold">
+									<span id="spnActionCardsDesc"></span>&nbsp;
+								</div>
+							</div>
+							<div class="row container">
+								<ul id="actionCardTreebase" class="row"></ul>
+							</div>
+							<div id="privacystatementdivision" class="container font-style">
+								<div class="rightmargin25px">
+									<div class="div-spacing6">
+										&nbsp;
+									</div>
+									<div id="OrgSettingDiv" class="row displayflex">
+										<div class="col-xs-1 checkbox-style1">
+											<input type="checkbox" class="ms-crm-CheckBox" id="chkActionCardEnableOption" tabindex="2" onclick="">
+										</div>
+										<div class="col-xs-4 divACEnableUse">
+											<span id="spnACEnableUse" class="font-weight spnACEnableUse"></span>
+										</div>
+									</div>
+								</div>
+								<div class="div-spacing6">
+									&nbsp;
+								</div>
+								<div class="row">
+									<div class="ul-image font-weight">
+										<div>
+											<div class="displayflex">
+												<div class="col-xs-1 checkbox-style1">
+													<img id="relationInfoIcon" class="info-image" src="/_imgs/RelationshipIntelligenceConfig/Information.png" />
+												</div>
+												<div class="col-xs-4 divACEnableUse">
+													<span id="spnConsentRA" class="valign-top"></span>&nbsp;
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="div-spacing22">
+									&nbsp;
+								</div>
+							</div>
+							<div class="row container cards-division col-xs-12">
+								<ul id="actionCardTree" class="row"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="cardsloaddiv" class="container pageloaddiv displaynone">
+					<div class="row">
+						<img src="/_imgs/AdvFind/progress.gif" />
+					</div>
+				</div>
+			</div>
+		</li>
+		<!-- End Relationship Assistance-->
+		<!-- Start AutoData Capture-->
+		<li id="liAutoDataCaptureTab">
+			<input type="radio" tabindex="-1" name="tabs" id="tabAutoDataCapture">
+			<label id="lblADCTitle" for="tabAutoDataCapture">
+			</label>
+			<div id="tab-contentAutoDataCapture" class="tab-content animated fadeIn">
+				<div id="divADCPrviewNotAvailable" class="errorpreviewtext displaynone padding-style5">
+					<span id="textADCPreviewnotAvailable"></span>
+				</div>
+				<div id="tab-ADC-Container">
+					<div class="class-for-email font-style">
+						<div class="div-button-save displayflex">
+							<div class="divhover col-xs-2 divwidthauto">
+								<div id="btnADCSave" class="btnEmailSave" onclick="updateADCSetting();">
+									<img id="ADCTabSaveIcon" alt="Save" src="/_imgs/RelationshipIntelligenceConfig/Save_16.png" />
+									<span id="spnADCSave" class="valign-middle"></span>
+								</div>
+							</div>
+						</div>
+						<div class="container main-heading">
+							<div class="padding-bottom6 margin-lft-15">
+								<div class=" font-bold">
+									<span id="lblADCInformation"></span>&nbsp;
+								</div>
+								<div class="div-spacing6">
+									&nbsp;
+								</div>
+								<div class="padding-lft6 row displayflex">
+									<div class="col-xs-1 checkbox-style1">
+										<input type="checkbox" class="ms-crm-CheckBox" id="chkADCOrgSetting" tabindex="2" onclick="" />
+									</div>
+									<div class="col-xs-4 divACEnableUse">
+										<span for="chkADCOrgSetting" id="lblADCOrgSetting" class="font-weight spnACEnableUse">
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="container sub-heading">
+								<div class="row">
+									<div class="ul-image font-weight">
+										<div>
+											<div class="displayflex">
+												<div class="col-xs-1 checkbox-style1">
+													<img id="adcInfoIcon" class="info-image" src="/_imgs/RelationshipIntelligenceConfig/Information.png" />
+												</div>
+												<div class="col-xs-4 divACEnableUse">
+													<span id="lblADCDataConsent" class="valign-top"></span>&nbsp;
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="autocaptureloaddiv" class="container pageloaddiv displaynone">
+					<div class="row">
+						<img src="/_imgs/AdvFind/progress.gif" />
+					</div>
+				</div>
+			</div>
+		</li>
+		<!-- End AutoDataCapture-->
+		<!-- Start RAA -- Relationship Analytics-->
+		<li id="liRelationshipAnalyticsTab">
+			<input type="radio" tabindex="-1" name="tabs" id="tabRelationshipAnalytics">
+			<label id="RAATabTitle" for="tabRelationshipAnalytics">
+			</label>
+			<div id="tab-contentRelationshipAnalytics" class="tab-content animated fadeIn">
+				<div id="divRASolutionNotAvailable" class="errorpreviewtext displaynone padding-style5">
+					<span id="txtRAsoulutionmissing">
+						<a id="lnkRAASolutionInstall" target="_blank" class="a-style font-style"></a>
+					</span>
+				</div>
+				<div id="divRAApreviewNotAvailable" class="errorpreviewtext displaynone padding-style5">
+					<span id="textRAApreviewnotAvailable"></span>
+				</div>
+				<div id="tab-RAA-Container">
+					<div id="RAA-Container-ProvisioningDiv"></div>
+					 <div id="relationshipAnalayticsIframeContainerDiv">
+						<iframe id="relationshipAnalyticsIframe" src=""></iframe>
+					</div>
+				</div>
+			</div>
+		</li>
+		<!-- End RAA Relationship Analytics-->
+		<!-- Start Email Interaction Analysis-->
+		<li id="liEmailInteractionAnalysisTab">
+			<input type="radio" tabindex="-1" name="tabs" id="tabEmailInteractionAnalysis">
+			<label id="lblEIATitle" for="tabEmailInteractionAnalysis">
+			</label>
+			<div id="tab-contentEmailInteractionAnalysis" class="tab-content animated fadeIn">
+				<div id="divEEpreviewNotAvailable" class="errorpreviewtext displaynone padding-style5">
+					<span id="textEEpreviewnotAvailable"></span>
+				</div>
+				<div id="tab-EE-Container">
+					<div id="EE-Container-ProvisioningDiv"></div>
+					 <div id="emailinteractionContentDiv">
+						<div class="class-for-email font-style">
+							<div class="div-button-save displayflex">
+								<div class="divhover col-xs-2 divwidthauto">
+									<div id="btnEmailSave" class="btnEmailSave" onclick="updateOrgSetting();">
+										<img id="EETabSaveIcon" alt="Save" src="/_imgs/RelationshipIntelligenceConfig/Save_16.png" />
+										<span id="spnEIASave" class="valign-middle"></span>
+									</div>
+								</div>
+							</div>
+						<div class="container main-heading">
+							<div class="padding-bottom6 margin-lft-15">
+								<div class=" font-bold">
+									<span id="lblEmailInformation"></span>&nbsp;
+								</div>
+								<div class="div-spacing6">
+									&nbsp;
+								</div>
+								<div class="padding-lft6 row displayflex">
+									<div class="col-xs-1 checkbox-style1">
+										<input type="checkbox" class="ms-crm-CheckBox" id="chkEmailInteraction" tabindex="0" onclick="" />
+									</div>
+									<div class="col-xs-4 divACEnableUse">
+										<span for="chkEmailInteraction" id="lblEmailInteraction" class="font-weight spnACEnableUse">
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="container sub-heading">
+								<div class="row">
+									<div class="ul-image font-weight">
+										<div>
+											<div class="displayflex">
+												<div class="col-xs-1 checkbox-style1">
+													<img id="emailInfoIcon" class="info-image" src="/_imgs/RelationshipIntelligenceConfig/Information.png" />
+												</div>
+												<div class="col-xs-4 divACEnableUse">
+													<span id="lblDataConsent" class="valign-top"></span>&nbsp;
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				<div id="emailengagementloaddiv" class="container pageloaddiv displaynone">
+					<div class="row">
+						<img src="/_imgs/AdvFind/progress.gif" />
+					</div>
+				</div>
+			</div>
+		</li>
+		<!-- End Email Interaction Analysis-->
+	</ul>
+	</div>
+
+	<div id="provisioningDiv" class="body-style font-style displaynone">
+		<div id="provisioningContainer" class="provisioningmaindivision">
+			<!--Provisioning Page 0-->
+				<div id="ChooseSubscriptionPage" class="font-style provisioningcontentdivision oneClickProvisioningContentDivison">
+				   <div class="div-spacing32"></div>
+				   <div class="div-spacing10"></div>
+				   <div class="row displayflex">
+					  <div class="col-xs-10 col-md-10">
+						 <div class="font-weight displayinline" id="chooseSubscriptionDiv"></div>
+					  </div>
+				   </div>
+				   
+				   <div class="div-spacing32"></div>
+				   <div class="div-spacing10"></div>
+				   <div class="selectSubscription">
+					  <div>
+						 <input type="button" class="button-provisionui  " onclick="loadMSFTProvisioningUI()" id="MSFTSetupPage">
+					  </div>
+					  <div>
+						 <input type="button" class="button-provisionui byos" onclick="loadBYOSProvisioningUI()" id="BYOSSetupPage">
+					  </div>
+				   </div>
+				</div>
+				<!--Provisioning Page 1.0-->
+				<div id="SignInMSFT" class="font-style provisioningcontentdivision oneClickProvisioningContentDivison">
+					<div class="div-spacing32"></div>
+					<div class="div-spacing10"></div>
+					<div class="font-weight " id="riBasicDisclaimerDiv"></div>
+					<div id="PrivacyInfoDivForMSFTSub">
+						<div class="div-spacing10"></div>
+						<div class="">
+							<div class="col-xs-10 col-md-10" id="">
+								<div class="div-spacing6"></div>
+							</div>
+						</div>
+						<div class="div-spacing32"></div>
+						<div>
+							<div class="padding-lft6 row displayflex">
+								<div class="col-xs-1 checkbox-style1">
+									<input type="checkbox" class="ms-crm-CheckBox" id="chkPrivacyAgreementForMSFTSub" onclick="" onchange="validateOneClickProvisioningSection()"/>
+								</div>
+								<div class="col-xs-4 divACEnableUse">
+									<span id="provisioningDataConsentForMSFTSub" class="font-weight spnACEnableUse"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="div-spacing32"></div>
+					<div>
+						<input type="button" class="back-button" onclick="goBackToChooseSubscription()" id="backButtonMSFT">
+						<input type="button" class="button-provisionui" onclick="startOneClickLoading()" id="beginOneClickProvisionBtn">
+					</div>
+					<div class="div-spacing32"></div>
+					<span id="provisionerrorDivForMSFTSub" class="errortext-color font-weight"></span>
+					<div class="div-spacing32"></div>
+				</div>
+				<!--Provisioning Page 1-->
+				<div id="SignIn" class="font-style provisioningcontentdivision  oneClickProvisioningContentDivison displaynone">
+					<div class="div-spacing32"></div>
+					<div class="div-spacing10"></div>
+					<div class="row displayflex">
+						<div class="col-xs-10 col-md-10">
+							<div class="font-weight displayinline" id="signInfoDiv">
+							</div>
+							<div id="UpdateDialogHeaderDiv" class="displaynone">
+								<div id="UpdateDialogHeader" class="provisioningHeader displaynone"></div>
+								<div id="UpdateDialogHeaderDesc" class="provisioningHeaderDesc displaynone"></div>
+							</div>
+						</div>
+					</div>
+					<div class="div-spacing10"></div>
+					<div class="div-spacing10"></div>
+					<div class="row displayflex">
+						<div class="col-xs-1 col-md-1 colwidth">
+							<span class="font-weight" id="customerInsightsTextId"></span>
+							<span><img src="/_imgs/frm_required.gif" class="aligntop" /></span>
+						</div>
+						<div class="col-xs-5 col-md-5">
+							<input type="text" id="huburlValue" tabindex="2" class="box" onblur="validateIfEmpty(this);" />
+							<span id="infoIconSpan"><img id="HubNameInfoIcon" src="/_imgs/RelationshipIntelligenceConfig/Information.png" class="aligntop" /></span>
+						</div>
+						<div class="col-xs-5 col-md-5 errordivwidth">
+							<span id="hubUriEmtpyTextErrorId" role="alert" class="errortext-color errortext-align"></span>
+						</div>
+					</div>
+					<div class="div-spacing10"></div>
+					<div class="row displayflex">
+						<div class="col-xs-1 col-md-1 colwidth">
+							<span class="font-weight" id="accessKeyTextId"></span>
+							<span><img src="/_imgs/frm_required.gif" class="aligntop" /></span>
+						</div>
+						<div class="col-xs-5 col-md-5">
+							<input type="password" id="accessKey" class="box" tabindex="2" onblur="validateIfEmtpyAndCompareAccessKeys(this);" />
+						</div>
+						<div class="col-xs-5 col-md-5 errordivwidth">
+							<span id="accessKeyEmtpyTextErrorId" role="alert" class="errortext-color errortext-align">
+							</span>
+						</div>
+					</div>
+					<div class="div-spacing10"></div>
+					<div class="row displayflex">
+						<div class="col-xs-1 col-md-1 colwidth">
+							<span class="font-weight" id="reenterAccessKeyTextId"></span>
+							<img src="/_imgs/frm_required.gif" class="aligntop" />
+						</div>
+						<div class="col-xs-5 col-md-5">
+							<input type="password" id="reEnterAccessKey" tabindex="2" class="box" onblur="validateIfEmtpyAndCompareAccessKeys(this);" />
+						</div>
+						<div class="col-xs-5 col-md-5 errordivwidth">
+							<span id="reenterAccessKeyEmtpyTextErrorId" role="alert" class="errortext-color errortext-align"></span>
+							<span id="reenterAccessKeyCompareTextErrorId" role="alert" class="errortext-color errortext-align"></span>
+						</div>
+					</div>
+					<div id="PrivacyInfoDiv">
+						<div class="div-spacing10"></div>
+						<div class="row displayflex">
+							<div class="col-xs-10 col-md-10" id="tenantlinkinfodivision">
+								<div class="div-spacing6"></div>
+								<span class="font-weight" id="createTenantTextId"></span>
+							</div>
+						</div>
+						<div class="div-spacing32"></div>
+						<div>
+							<div class="padding-lft6 row displayflex">
+								<div class="col-xs-1 checkbox-style1">
+									<input type="checkbox" class="ms-crm-CheckBox" id="chkPrivacyAgreement" onclick="" onchange="validateProvisioningSection()" />
+								</div>
+								<div class="col-xs-4 divACEnableUse">
+									<span id="provisioningDataConsent" class="font-weight spnACEnableUse"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="div-spacing32"></div>
+					<div>
+						<input type="button" class="back-button" onclick="goBackToChooseSubscription()" id="backButton">
+						<input type="button" class="button-provisionui" onclick="startLoading()" id="beginSetupBtn" />
+						<input type="button" class="button-provisionui" style="display:none;" onclick="updateTenantInfo()" id="popupOkBtn" />
+						<input type="button" class="button-provisionui" style="display:none;" onclick="cancelUpdation();" id="popupCancelBtn" />
+					</div>
+					<div class="div-spacing32"></div>
+					<span id="provisionerrorDiv" class="errortext-color font-weight"></span>
+				</div>
+
+				<!--Provisioning Page 1.1 (For Email Engagement when ACI is not enabled)-->
+				<div id="EEAciNotEnabled" class="font-style provisioningcontentdivision displaynone">
+					<div class="div-spacing32"></div>
+					<div class="div-spacing10"></div>
+					<div class="row displayflex">
+						<div class="col-xs-10 col-md-10">
+							<div class="font-weight displayinline" id="EEInfoDiv"></div>
+						</div>
+					</div>
+					<div id="EEPrivacyInfoDiv">
+						<div class="div-spacing10"></div>
+						<div class="div-spacing32"></div>
+						<div>
+							<div class="padding-lft6 row displayflex">
+								<div class="col-xs-1 checkbox-style1">
+									<input type="checkbox" class="ms-crm-CheckBox" id="EEchkPrivacyAgreement" onclick="" onchange="validateEEProvisioningSection()" />
+								</div>
+								<div class="col-xs-4 divACEnableUse">
+									<span id="EEprovisioningDataConsent" class="font-weight spnACEnableUse"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="div-spacing32"></div>
+					<div>
+						<input type="button" class="button-provisionui" onclick="startEELoading()" id="EEbeginSetupBtn" />
+					</div>
+					<div class="div-spacing32"></div>
+					<span id="EEprovisionerrorDiv" class="errortext-color font-weight"></span>
+				</div>
+				<!--EE Provisioning loading Page 1-->
+				<div id="EELoading1" class="provisioningcontentdivision font-style loading-content-style displaynone">
+					<div class="padding-top-bottom">
+						<span id="EEpleaseWaitTextId1"></span>
+					</div>
+					<div>
+						<img src="/_imgs/processing_loader.gif" /><br /><br /><br />
+					</div>
+					<div>
+						<div class="align-multiline" id="provisioningEETextId"></div>
+					</div>
+				</div>
+
+				<!--Provisioning Page 2-->
+				<div id="Loading1" class="provisioningcontentdivision font-style loading-content-style displaynone">
+					<div class="padding-top-bottom">
+						<span id="pleaseWaitTextId1"></span>
+					</div>
+					<div>
+						<img src="/_imgs/processing_loader.gif"/><br /><br /><br />
+					</div>
+					<div>
+						<div class="align-multiline" id="verifyingTextId"></div>
+					</div>
+				</div>
+
+				<!--Provisioning Page 3-->
+				<div id="Loading2" class="provisioningcontentdivision font-style loading-content-style displaynone">
+					<div class="padding-top-bottom">
+						<span id="pleaseWaitTextId2"></span>
+					</div>
+					<div>
+						<img src="/_imgs/processing_loader.gif"/><br /><br /><br />
+					</div>
+					<div>
+						<div class="align-multiline" id="settingUpTextId"></div>
+					</div>
+				</div>
+
+				<!--Provisioning Page 4-->
+				<div id="Loading3" class="provisioningcontentdivision font-style loading-content-style displaynone">
+					<div class="padding-top-bottom">
+						<span id="pleaseWaitTextId3"></span>
+					</div>
+					<div>
+						<img src="/_imgs/processing_loader.gif"/><br /><br /><br />
+					</div>
+					<div>
+						<div class="align-multiline" id="finishingSetupTextId"></div>
+					</div>
+				</div>
+		</div>
+	</div>
+	<div class="ConatinerDiv"></div>
+
+	<!--Actioncards template-->
+	<script id="cardsTemplate" type="text/x-jquery-tmpl">
+		{{each Cards}}
+		<li class='li-style-width col-xs-12'>
+			<div>
+				<div class='row' id='emailcards'>
+					<div class='col-xs-2 div-width10' id='Enabled0'>
+						<input type='checkbox' aria-label='${tooltip}' class='select_${counterclass}' name='${cardTypeChkbox}' ${ischecked} tabindex="2" onchange='checkedUncheckedCardGroup(this);' />
+					</div>
+					<div class='col-xs-2 div-width17' id='CardType0'>
+						<span id="CardItem_${counterclass}_${cardsCounterclass}" class="chkboxalignment" aria-label='${tooltip}' title='${tooltip}' onmouseover="previewcardChangeImage(this);">${title}&nbsp;<img id='CardType-Image' src='${previewiconsrc}' /> </span>
+					</div>
+
+					{{if $value.ValueType !==null && $value.ValueType !==undefined}}
+					{{if $value.ValueType ==='bool'}}
+					<div class='col-xs-3 div-width31'>
+						<span><input type='checkbox' aria-label='${secTitle}' id='cardtype-chkbox-${cardTypeId}' ${booloptionvalue} ${ispubliccarddisabled} title='${publiccardtooltip}' tabindex="2" onchange='secondaryValueOnChange(this);' /></span>
+						<span class="padding5 chkboxalignment" aria-label='${secTitle}' title='${secTitle}'>${secTitle}</span>
+					</div>
+					{{else}}
+					{{if $value.ValueType ==='int'}}
+					<div class='col-xs-3 div-width31'>
+						<span aria-label='${secTitle}' title='${secTitle}'>${secTitle}</span>
+						<span class="padding5"><input type='text' aria-label='${secTitle}' id='cardtype-txtbox-${cardTypeId}' class='cardtype-textbox' value='${txtboxVal}' ${ispubliccarddisabled} title='${publiccardtooltip}' tabindex="2" onchange='secondaryValueOnChange(this);' onkeypress="validateNumber(event);" /></span>
+					</div>
+					{{/if}}
+					{{/if}}
+					{{/if}}
+				</div>
+			</div>
+		</li>
+		{{/each}}
+	</script>
+	<!--Group template of actioncards-->
+	<script id="actioncardGroupTemplate" type="text/x-jquery-tmpl">
+		<li id="card_${groupId}" class="list-style groupCardPosition">
+			<div id="GroupCardDiv">
+				<a href='javascript:void 0' id='grouplink_${groupId}' class='content-style' tabindex='2' aria-label='${grouptooltip}' title='${grouptooltip}' onmousedown='toggleGroup(this, event);' onkeydown="toggleGroup(this, event);">
+					<img id='grouplinkimg_${groupId}' src='${groupnavbariconsrc}' />&nbsp;${groupName}
+				</a>
+				<img id="infoIcon_${groupId}" class="${infoiconclass} displaynone padding-bottom6" title="${infoicontooltip}" src='${infoiconsrc}' />
+			</div>
+			<ul id='groupcardList_${groupId}' class='list font-style font-weight col-xs-12' style='display:none'>
+				<li class='li-style-width col-xs-12'>
+					<div class='div-spacing32'>&nbsp;</div>
+					<div>
+						<div class='row allCards'>
+							<div class='col-xs-2 div-width10'>
+								<input type='checkbox' aria-label='${groupName}' tabindex='2' id='groupcardList_checkBox_${groupId}' ${isgroupcheckboxchecked} onchange='checkedUncheckedAll(this);'>
+							</div>
+							<div class='col-xs-4 div-width17 paddingtop' aria-label='${groupName}' title='${groupName}'><b>${groupName}</b></div>
+							<div class='col-xs-3 paddingtop' aria-label='${cardoptionsResourceKey}' title='${cardoptionsResourceKey}'><b>${cardoptionsResourceKey}</b></div>
+						</div>
+					</div>
+					<div id='Subdivision'></div>
+				</li>
+				{{tmpl($data) "#cardsTemplate"}}
+			</ul>
+		</li>
+	</script>
+</body>
+</html>

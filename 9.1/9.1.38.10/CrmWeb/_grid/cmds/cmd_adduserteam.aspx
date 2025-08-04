@@ -1,0 +1,3 @@
+
+
+<%@ Page language="c#" Inherits="Microsoft.Crm.Application.Pages.Grids.Commands.AddUserToTeam" CodeBehind="Microsoft.Crm.Application.Pages.dll" %>

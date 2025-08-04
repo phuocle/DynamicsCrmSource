@@ -1,0 +1,2008 @@
+body, p, form, table, tr, td, div, tbody, thead, a
+{
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    font-size: 12px; /*color: Black;*/
+}
+
+.DataGridFixedHeader
+{
+    position: relative;
+    top: expression(this.offsetParent.scrollTop);
+}
+
+.header
+{
+    font-weight: bold;
+    line-height: 100%;
+}
+
+.modalPopup.modalDialog {
+    z-index: 100000 !important;
+}
+
+.RadCalendarPopup
+{
+    z-index: 200000 !important;
+}
+.copyright
+{
+    line-height: 110%;
+}
+
+a.textlink:link, a.textlink:visited, a.textlink:active
+{
+    line-height: 110%;
+    text-decoration: none;
+}
+
+.text
+{
+    line-height: 110%;
+}
+
+.textWidth {
+    width: 98%;
+    margin-top: 3px;
+}
+
+.textbold, a.textbold:link, tr.textbold td > *
+{
+    font-weight: bold !important;
+    line-height: 110%;
+}
+
+.redtextbold
+{
+    color: Red !important;
+    font-weight: bold !important;
+    line-height: 110% !important;
+}
+
+a[disabled]
+{
+    color: Gray;
+}
+
+select
+{
+    height: 20px;
+}
+
+.redtext, a.redtext:link, tr.redtext td > *
+{
+    color: red !important;
+    line-height: 110% !important;
+}
+
+.greentext, a.greentext:link, tr.greentext td > *
+{
+    color: green !important;
+}
+
+.bluetext, a.bluetext:link, tr.bluetext td > *
+{
+    color: #2672EB !important;
+}
+
+input, select, textarea
+{
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    font-size: 100%;
+}
+
+a:link, a:visited
+{
+    color: Black;
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    line-height: 110%;
+    text-decoration: none;
+}
+a:hover, a:active
+{
+    color: Black;
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    line-height: 110%;
+    text-decoration: underline;
+}
+
+a#containerNew:hover,  a#containerNew:active {
+    line-height: 100%;
+}
+
+.cleartext
+{
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    font-size: 100%;
+    color: white;
+    line-height: 110%;
+}
+
+.disabledtext
+{
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    font-size: 100%;
+    color: #B1B1B1;
+    line-height: 110%;
+}
+a.disabledtext
+{
+    color: #B1B1B1;
+}
+
+.ajax__calendar
+{
+    position: relative;
+    left: 0px !important;
+    top: 0px !important;
+    visibility: visible;
+    display: block;
+    z-index: 99999999;
+}
+.ajax__calendar iframe
+{
+    left: 0px !important;
+    top: 0px !important;
+}
+
+.viewFilter {
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 0;
+}
+
+.viewFilter td {
+    white-space: nowrap;
+    padding: 0;
+}
+
+.propertyContainer > .RadPicker > .RadInput > input
+{
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    font-size: 12px;
+}
+/*AutoComplete flyout */
+.autocomplete_completionListElement
+{
+    background-color: window;
+    visibility: hidden;
+    margin: 0px !important;
+    color: windowtext;
+    border: buttonshadow;
+    border-width: 1px;
+    border-style: solid;
+    cursor: default;
+    text-align: left;
+    list-style-type: none;
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    font-size: 100%;
+    line-height: 110%;
+    padding: 1px;
+    z-index: 9999;
+}
+
+/* AutoComplete highlighted item */
+.autocomplete_highlightedListItem
+{
+    background-color: #ddd;
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    font-size: 100%;
+    line-height: 110%;
+    color: black;
+    padding: 1px;
+    margin: 0px;
+}
+
+/* AutoComplete item */
+.autocomplete_listItem
+{
+    background-color: window;
+    color: windowtext;
+    padding: 1px;
+    margin: 0px;
+}
+
+.modalHeader
+{
+    cursor: move;
+    background-color: white;
+    border: solid 0px Gray;
+    color: Black;
+    margin: -3px -3px 0px -3px;
+    padding: 3px;
+}
+
+caption
+{
+    text-align: left;
+}
+
+.ViewApprovalItemPanel
+{
+    position: relative;
+    border: solid 1px #ababab;
+    margin: 0 0 0 0;
+    text-align: center;
+    padding: 0 0 5px 0;
+    float: left;
+}
+.ViewApprovalItemImage
+{
+    border: dashed 1px red;
+}
+.ViewApprovalItemName
+{
+    font-weight: normal;
+    display: block;
+    width: 95%;
+    height: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ViewApprovalItemPanelPermissionProblem
+{
+    border: solid 2px red;
+}
+.ViewApprovalItemTools
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+input.ViewApprovalItemToolsButton
+{
+    width: 20px;
+    height: 20px;
+    padding: 1px 0;
+}
+.ViewApprovalItemToolsMessage
+{
+    position: absolute;
+    left: 0;
+    top: 24px;
+    width: 100%;
+    border-top: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    background-color: #eee;
+    margin: 0;
+}
+.ViewApprovalItemToolsMessage * ul
+{
+    list-style-type: none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    text-align: left;
+    line-height: 16px;
+    background-color: #eee;
+}
+.ViewApprovalItemToolsMessage * li
+{
+    border-top: solid 1px #ccc;
+    margin-left: 5px;
+}
+.ShowPointer
+{
+    cursor: pointer;
+}
+.ViewApprovalItemToolsMessage > .ShowPointer
+{
+    float: right;
+}
+tr.alert, tr.alert > td > a
+{
+    color: Red;
+    font-weight: bold;
+}
+tr.alert * a
+{
+    color: Red;
+}
+tr.alert > td
+{
+    color: Red;
+    font-weight: bold;
+}
+
+.pageCaptionContainer 
+{
+    position: absolute;
+    left: 56px;
+    top: 8px
+}
+.pageCaption, a.pageCaption
+{
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    font-size: 125%;
+    font-weight: bold;
+    line-height: 110%;
+}
+
+tr.unread
+{
+    font-weight: bold;
+}
+tr.overdue
+{
+    color: Red;
+}
+tr.overdue * a
+{
+    color: Red;
+}
+tr.overdue * a:hover
+{
+    color: Red;
+}
+.WatermarkText
+{
+    color: #999;
+}
+.tight * td
+{
+    height: 12px;
+    vertical-align: bottom;
+}
+.tight * input
+{
+    height: 12px;
+}
+.propertyContainer
+{
+    width: 340px;
+    height: 24px;
+    position: relative;
+}
+
+.propertyContainer.propertyContainerWithIcon 
+{
+    width: 345px;
+}
+
+.propertyContainer.propertyContainerWithIcon input[type="image"] 
+{
+    width: 85%;
+}
+
+.propertyContainer > input[type="text"], .propertyContainer > textarea, .propertyContainer .RadComboBox_MP_Vista .rcbInputCell .rcbInput
+{
+    width: 214px;
+    z-index: 1;
+}
+.propertyContainer .RadComboBox_MP_Vista .rcbInputCell .rcbInput {
+    padding: 2px;
+}
+.propertyContainer > select, .propertyContainer > table > tbody > tr > td > select
+{
+    width: 220px;
+    z-index: 1;
+}
+
+.propertyContainer > span.text, .propertyContainer > table > tbody > tr > td > span, .propertyContainer > span.textbold
+{
+    width: 120px;
+    top: 4px;
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    height: 24px;
+    z-index: 19;
+}
+.propertyContainer > a.text
+{
+    top: 4px;
+    position: absolute;
+    left: 0;
+    z-index: 19;
+}
+.propertyContainer > span.clearCheck, .propertyContainer > input.clearCheck[type="checkbox"] {
+    left: -20px;
+    position: absolute;
+    top: 1px;
+}
+.propertyContainer > span.redtext, .propertyContainer > table > tbody > tr > td > span.redtext
+{
+    top: 4px;
+    left: 108px;
+    position: absolute;
+    width: 10px;
+}
+.propertyContainer > div > span.labelControl, .propertyContainer > span.labelControl
+{
+    width: 220px;
+    left: 120px;
+    top: 4px;
+    position: absolute;
+}
+.propertyContainer > span.numericLabelRight, .propertyContainer > div > span.numericLabelRight
+{
+    text-align: right;
+    width: 216px;
+}
+.oldBrowserSPANredtext
+{
+    top: 4px;
+    left: 108px;
+    position: absolute;
+}
+
+.propertyContainer > input,
+.propertyContainer > select,
+.propertyContainer > textarea,
+.propertyContainer > .pickerWrapper_Default,
+.propertyContainer > .RadPicker_Default > span > input,
+.propertyContainer > .RadPicker > .RadInput > input,
+.propertyContainer > .DateTimePicker,
+.propertyContainer > .inputControl
+{
+    left: 120px;
+    position: absolute;
+    top: 0;
+}
+
+.propertyContainer > textarea 
+{
+    resize: none;    
+}
+
+.propertyContainer > .text.dataAsLabel, .propertyContainer > div > .text.dataAsLabel
+{
+    left: 120px;
+    width: 220px;
+    overflow: hidden;
+    position: absolute;
+    height: 24px;
+}
+
+.propertyContainer .multiSelectorPanel
+{
+    left: 120px;
+    position: relative;
+    top: 0;
+    margin-bottom: 5px;
+}
+
+.propertyContainer > div.text > input[type="text"]
+{
+    left: 0;
+    top: 1px;
+}
+.propertyContainer > div.text > input[type="submit"]
+{
+    left: 72px;
+}
+.propertyContainer > input[type="checkbox"], 
+.propertyContainer > span > input[type="checkbox"]
+{
+    left: 116px;
+    position: absolute;
+    top: 0;
+}
+.propertyContainer > table.checkboxlist {
+    left: 116px;
+    position: relative;
+    top: -4px;
+}
+.propertyContainer > table.checkboxlist td {
+    padding: 0;
+}
+.propertyContainer > table.checkboxlist label {
+    position: relative;
+    top: -2px;
+}
+.propertyContainer > table.checkboxlist span {
+    display: block; /* this handles checkboxlists where there are attributes added to the ListItem */
+    position: relative;
+    width: auto;
+}
+.propertyContainer.Description 
+{
+    height: 124px;
+}
+.pageContainer
+{
+    position: absolute;
+    top: 56px;
+    left: 50px;
+    z-index: 11;
+    width: 96%;
+}
+div.pageCaption > span.pageCaption
+{
+    position: absolute;
+    left: 48px;
+    top: 12px;
+    font-size: 100%;
+}
+div.pageCaption
+{
+    top: -48px;
+    left: -42px;
+    position: relative;
+    width: 400px; /* arbitrarily big to ensure everything fits*/
+    height: 0px;
+}
+.detailsContainer
+{
+    position: relative;
+    margin-top: 4px;
+    width: 730px;
+    z-index: 16;
+}
+.leftColumn
+{
+    position: relative;
+    margin-left: 6px;
+    width: 342px;
+    float: left;
+}
+.firstColumn
+{
+    position: relative;
+    margin-left: 6px;
+    width: 180px;
+    z-index: 17;
+    float: left;
+}
+.rightColumn
+{
+    position: relative;
+    width: 342px;
+    float: left;
+    left: 42px;
+}
+.separator
+{
+    width: 99.70%;
+    background-position: top;
+    background-image: url(../images/HorizontalRuler.gif);
+    background-repeat: repeat-x;
+    height: 24px;
+    clear: both;
+}
+
+.float.separator
+{
+    clear: none;
+}
+
+.separator > .textbold
+{
+    border-bottom: 1px;
+    vertical-align: middle;
+}
+.separator > span.textbold
+{
+    padding: 4px 0;
+}
+.leftColumnPlaceholder + .rightColumn
+{
+    left: 384px;
+    clear: both;
+}
+.singleColumn
+{
+    position: relative;
+    margin-left: 6px;
+    float: left;
+    clear: both;
+    width: 100%;
+}
+.singleColumnCategories {
+    float: none !important;
+}
+.threeColumnContainer * .singleColumn
+{
+    margin-left: 192px;
+    width: 726px;
+}
+.detailsTab
+{
+    position: relative;
+    float: left;
+    clear: both;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.singleColumn > textarea, .singleColumn > input[type="text"]
+{
+    width: 592px;
+}
+.tabView
+{
+    width: 100%;
+    float: left;
+    z-index: 15;
+    clear: both;
+    border: 0 none;
+    position: relative;
+    left: 2px;
+    right: 2px;
+}
+div.maintainButtons
+{
+    position: relative;
+    left: 2px;
+    right: 2px;
+    text-align: right;
+    clear: both;
+}
+div.maintainButtons > input
+{
+    margin: 2px 0px 2px 2px;
+}
+input.maintainButtonSpacing
+{
+    margin: 2px 0px 2px 2px;
+}
+.maintainButtons
+{
+    width: 100%;
+    min-width: 725px;
+}
+.maintainButtonsThreeColumnContainer
+{
+    min-width: 910px;
+}
+.threeColumnContainer > .tabView
+{
+    position: relative;
+    border-right-width: 0;
+}
+table.overflowContainer, div.overflowContainer
+{
+    position: relative;
+    left: 0px;
+    right: 1%;
+    max-width: 1%;
+}
+table.overflowContainer .tabView
+{
+    min-width: 725px;
+}
+.overflowContainer
+{
+    min-width: 880px;
+    clear: both;
+}
+
+.overflowContainerThreeColumnContainer
+{
+    min-width: 906px;
+    clear: both;
+}
+.tabView + .maintainButtons
+{
+    border: 0 none;
+}
+.tabView + .maintainButtonsThreeColumnContainer
+{
+    border: 0 none;
+}
+.oldBrowserMaintainButtonsPanel
+{
+    border: 0 none;
+    width: 100%;
+    margin: 0;
+}
+.oldBrowserMaintainButtonsTable
+{
+    padding-top: 4px;
+    float: right;
+}
+.oldBrowserINPUTtext, .oldBrowserTEXTAREA, .oldBrowserSELECT, .oldBrowserINPUTcheckbox, .oldBrowserDIV, .oldBrowserINPUTfile
+{
+    left: 120px;
+    position: absolute;
+    top: 0;
+}
+.oldBrowserINPUTcheckbox
+{
+    left: 116px;
+}
+.oldBrowserINPUTtext, .oldBrowserTEXTAREA
+{
+    width: 214px;
+    padding-left: 2px;
+}
+.oldBrowserSELECT
+{
+    width: 220px;
+}
+.clear:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.viewContainer
+{
+    background-color: White;
+    z-index: 15;
+    width: 712px;
+    padding: 3px;
+}
+.detailsPlus
+{
+    clear: both;
+    float: left;
+}
+.detailsPlus + .detailsPlus
+{
+    margin-top: 4px;
+}
+.oldBrowserSPANlabelControl
+{
+    width: 220px;
+    left: 120px;
+    position: absolute;
+}
+.oldBrowserThreeColumnContainer
+{
+    position: relative;
+    left: 186px;
+    width: 726px;
+}
+a.pageCaption:link
+{
+    color: #000;
+    font-weight: bold;
+}
+th.text > a:link, .RadGrid_Office2007 .rgHeader a:link
+{
+    color: #000;
+    font-weight: normal;
+}
+a.text:link, .text
+{
+    color: #000;
+    font-weight: normal;
+}
+tr.text > td
+{
+    font-weight: normal;
+}
+td > a.text:link
+{
+    color: #000;
+}
+td > a:link
+{
+    color: #000;
+    font-weight: normal;
+}
+
+.NonStandardLink:hover
+{
+    background-image: url(../images/NonStandardLink/external_link.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+.NonStandardLinkCompany:hover
+{
+    background-image: url(../images/NonStandardLink/company.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+.NonStandardLinkEmail:hover
+{
+    background-image: url(../images/NonStandardLink/email.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+.NonStandardLinkTransportation:hover
+{
+    background-image: url(../images/NonStandardLink/transportation.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+.NonStandardLinkContact:hover
+{
+    background-image: url(../images/NonStandardLink/contact.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+.NonStandardLinkPlan:hover
+{
+    background-image: url(../images/NonStandardLink/mediaplan.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+.NonStandardLinkMedia:hover
+{
+    background-image: url(../images/NonStandardLink/outlet.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+.NonStandardLinkExpense:hover
+{
+    background-image: url(../images/NonStandardLink/expenseexpense.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+.NonStandardLinkAccount:hover,.NonStandardLinkExpenseItem:hover
+{
+    background-image: url(../images/NonStandardLink/expenseexpense.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+.NonStandardLinkPO:hover
+{
+    background-image: url(../images/NonStandardLink/po.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+.NonStandardLinkMediaUsage:hover
+{
+    background-image: url(../images/NonStandardLink/mediausage.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+.NonStandardLinkProgram:hover
+{
+    background-image: url(../images/NonStandardLink/program.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+.NonStandardLinkTask:hover
+{
+    background-image: url(../images/NonStandardLink/task.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+.NonStandardLinkEvent:hover
+{
+    background-image: url(../images/NonStandardLink/event.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+.NonStandardLinkCampaign:hover
+{
+    background-image: url(../images/NonStandardLink/campaign.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+.NonStandardLinkJob:hover
+{
+    background-image: url(../images/NonStandardLink/job.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+.NonStandardLinkOpportunity:hover
+{
+    background-image: url(../images/NonStandardLink/opportunity.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+.NonStandardLinkRevenueItem:hover
+{
+    background-image: url(../images/NonStandardLink/expense.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+/* *******************************************************************************
+	Modifications to the Telerik RadGrid styling goes here 
+********************************************************************************** */
+body .GroupPanel_Office2007
+{
+    border-width: 0;
+}
+body .GroupPanel_Office2007 td
+{
+    padding: 0;
+    background-color: #ffffff;
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+}
+
+body .GridFilterRow_Office2007 td, body .GridHeader_Office2007, body .ResizeHeader_Office2007
+{
+    padding-left: 1px;
+    padding-right: 2px;
+    border: 0px !important;
+    font-size: inherit;
+}
+
+body .GridFilterRow_Office2007 td
+{
+    background-color: #ffffff;
+    background-image: none;
+}
+
+body .GridRow_Office2007 td, body .GridAltRow_Office2007 td, body .GridEditRow_Office2007 td
+{
+    padding-left: 1px;
+    padding-right: 2px;
+    border-left: 0px;
+}
+
+body .RadGrid_Office2007 .rgHeader
+{
+    color: #000;
+}
+
+body .RadGrid_Office2007 .rgAdd, body .RadGrid_Office2007 .rgRefresh, body .RadGrid_Office2007 .rgEdit, body .RadGrid_Office2007 .rgDel, body .RadGrid_Office2007 .rgFilter, body .RadGrid_Office2007 .rgPagePrev, body .RadGrid_Office2007 .rgPageNext, body .RadGrid_Office2007 .rgPageFirst, body .RadGrid_Office2007 .rgPageLast, body .RadGrid_Office2007 .rgExpand, body .RadGrid_Office2007 .rgCollapse, body .RadGrid_Office2007 .rgSortAsc, body .RadGrid_Office2007 .rgSortDesc, body .RadGrid_Office2007 .rgUpdate, body .RadGrid_Office2007 .rgCancel
+{
+    background-image: none;
+}
+
+body .GridHeaderDiv_Office2007
+{
+    background: inherit;
+}
+
+body .GridHeader_Office2007, body .ResizeHeader_Office2007
+{
+    border-left: 1px solid #ababab;
+    border-bottom: solid 1px #ababab;
+    font-weight: normal !important;
+    font-weight: inherit;
+}
+
+body .GridHeader_Office2007 a
+{
+    color: inherit;
+}
+
+body .GridFilterRow_Office2007 td, body .GridRow_Office2007 td, body .GridAltRow_Office2007 td, body .GridEditRow_Office2007 td, body .GridFooter_Office2007 td, body .GridGroupFooter_Office2007 td
+{
+    border: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+body .GridFilterRow_Office2007 > td:first-child, body .GridRow_Office2007 > td:first-child, body .GridAltRow_Office2007 > td:first-child, body .GridEditRow_Office2007 > td:first-child, body .GridFooter_Office2007 > td:first-child, body .GridGroupFooter_Office2007 > td:first-child
+{
+    border-left-color: inherit;
+}
+
+body .GridRow_Office2007 a, body .GridAltRow_Office2007 a, body .GridEditRow_Office2007 a, body .GridFooter_Office2007 a, body .GridGroupFooter_Office2007 a, body .GridEditForm_Office2007 a
+{
+    color: inherit;
+}
+
+
+body .GridPager_Office2007
+{
+    background: inherit;
+}
+
+body .TopReorderIndicator_Office2007, body .BottomReorderIndicator_Office2007
+{
+    background: inherit;
+}
+
+body .GridFilterRow_Office2007 input[type="text"]
+{
+    color: #ffffff;
+}
+
+body .GroupPanelItems_Office2007
+{
+    border: 1px solid #ababab;
+}
+
+body .GroupHeader_Office2007
+{
+    background: #e4ecf7;
+}
+
+body .GroupHeader_Office2007 td
+{
+    border-bottom: 1px solid #e4ecf7;
+}
+
+body .GridCommandRow_Office2007 td
+{
+    border-bottom: 0 none;
+}
+
+.GridToolTip_Office2007
+{
+    border: 1px solid #ababab;
+}
+
+body .RadGridRTL_Office2007 .GridHeader_Office2007:first-child, body .RadGridRTL_Office2007 .ResizeHeader_Office2007:first-child
+{
+    border-left: 1px solid #ababab;
+}
+
+body .GridHeaderDiv_Office2007
+{
+    background: #ffffff;
+    width: 100% !important;
+}
+
+body .GridPager_Office2007 td
+{
+    background-color: #ffffff;
+    border-bottom-width: 0px;
+    border-top-width: 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+body .RadGrid_Office2007 .rgRow .rgExpandCol, body .RadGrid_Office2007 .rgAltRow .rgExpandCol
+{
+    padding-left: 1px;
+}
+
+/******************************************************************************************************************************************/
+/******************** Added in Aero dev ****************************/
+/******************************************************************************************************************************************/
+body .RadGrid_Office2007
+{
+    border: 0 none;
+}
+
+body .RadGrid_Office2007 .rgClipCells .rgHeader, body .RadGrid_Office2007 .rgClipCells .rgRow > td, body .RadGrid_Office2007 .rgClipCells .rgAltRow > td
+{
+    border: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+body .RadGrid_Office2007 .rgHeader
+{
+    border: none;
+}
+
+body .RadGrid_Office2007 .rgRow TD, body .RadGrid_Office2007 .rgAltRow TD
+{
+    border: none;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+body .RadGrid_Office2007 .rgRow a, body .RadGrid_Office2007 .rgAltRow a, body .RadGrid_Office2007 .rgEditRow a, body .RadGrid_Office2007 .rgFooter a, body .RadGrid_Office2007 .rgEditForm a
+{
+    color: Black;
+}
+
+body .RadGrid_Office2007 .rgRow .rgSorted, body .RadGrid_Office2007 .rgAltRow .rgSorted
+{
+    background-color: #FFFFFF;
+}
+body .RadGrid_Office2007 .rgSelectedRow .rgSorted
+{
+    background: inherit;
+}
+
+body .RadGrid_Office2007 .rgFilterRow td
+{
+    background-color: #ffffff;
+    padding: 2px 2px 2px 1px;
+    border: 0px;
+}
+body .RadGrid_Office2007 .rgFilterBox
+{
+    border: solid 1px #7F9DB9;
+}
+
+body .RadGrid_Office2007 .rgHeader, body .RadGrid_Office2007 th.rgResizeCol
+{
+    padding-top: 1px;
+    padding-bottom: 0px;
+}
+
+body .RadGrid_Office2007 .rgPager td
+{
+    background: #ffffff;
+    padding: 1px 2px 2px 2px;
+}
+
+body .RadGrid_Office2007 .rgPager span
+{
+    color: GrayText;
+}
+
+body .RadGrid_Office2007 th.rgSorted
+{
+    background-position: 0px -2300px;
+    background-color: #C3D8F1;
+}
+
+body .RadGrid_Office2007 .rgPager
+{
+    background: no-repeat;
+}
+
+body .RadGrid_Office2007 .rgGroupHeader td
+{
+    border: none;
+}
+
+body .RadGrid_Office2007
+{
+    border: none;
+}
+body .RadGrid_Office2007 .rgGroupPanel text
+{
+    padding: 0px;
+    border: 0px;
+}
+
+body .RadGrid_Office2007 .rgGroupPanel table
+{
+    border-bottom: none;
+}
+
+body .RadGrid_Web20 .rgGroupItem, body .RadGrid_Office2007 .rgGroupItem
+{
+    background-color: White;
+    background: White;
+    border: 0px;
+    border: none;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 110%;
+    color: Black;
+}
+
+body .GridHeaderDiv_Office2007
+{
+    width: 100% !important;
+}
+
+body .RadGrid_Web20 .rgRow a, body .RadGrid_Web20 .rgAltRow a, body .RadGrid_Web20 .rgEditRow a, body .RadGrid_Web20 .rgFooter a, body .RadGrid_Web20 .rgEditForm a
+{
+    color: Black;
+}
+
+body .RadGrid_Office2007 .rgFooter, body .RadGrid_Web20 .rgFooter
+{
+    background: none;
+}
+
+body .RadGrid_Office2007 .rgGroupPanel td, body .RadGrid_Web20 .rgGroupPanel td
+{
+    background-color: transparent;
+    border: 0px;
+}
+
+body .RadGrid_Web20, body .RadGrid_Web20 .rgMasterTable, body .RadGrid_Web20 .rgPager TABLE, body .RadGrid_Web20 .rgGroupPanel table body .RadGrid_Office2007, body .RadGrid_Office2007 .rgMasterTable, body .RadGrid_Office2007 .rgPager TABLE, body .RadGrid_Office2007 .rgGroupPanel table
+{
+    font: 12px 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif',arial,sans-serif;
+}
+
+body .RadGrid_Office2007 .rgGroupPanel, body .RadGrid_Web20 .rgGroupPanel
+{
+    background: none;
+    border: none;
+}
+
+.rgFooter td
+{
+    font-weight: bold !important;
+    border-top: 1px solid #567DB0 !important;
+    border-collapse: separate;
+    white-space: nowrap;
+}
+
+/* Overrides to RadDock styles go here */
+body .RadDock_Office2007
+{
+    margin: 0px 0px 2px 0px;
+}
+
+body .RadDockZone_Office2007
+{
+    border: 0;
+    padding: 0px 0px 0px 0px !important;
+}
+
+body .RadDock_Office2007 .rdHTitlebar .rdTitlebar
+{
+    height: 24px;
+    background-color: #ffffff;
+    padding: 0;
+    border: 0px;
+}
+
+body .RadDock_Office2007 .rdTopBorder, body .RadDock_Office2007 .rdSideBorders, body .RadDock_Office2007 .rdBottomBorder
+{
+    border: 0;
+    background-color: #ffffff;
+}
+
+body .rgFilterBox
+{
+    color: Black !important;
+    font-size: 100% !important;
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif' !important;
+}
+
+* > .RadDockZone_Office2007.rdVertical /* hidden from IE6 */
+{
+    padding: 0px 0px 0px 0px;
+}
+
+body .rdContent
+{
+    padding: 2px;
+}
+
+body .editableMPViewGrid * .GridRow_Office2007 * input, body .editableMPViewGrid * .GridAltRow_Office2007 * input, body .editableMPViewGrid * .GridRow_Office2007 * select, body .editableMPViewGrid * .GridAltRow_Office2007 * select
+{
+    width: 95%;
+}
+
+body .GridGroupFooter_Office2007 td
+{
+    background-color: #F0F2F4;
+}
+
+body .GridFooter_Office2007 td
+{
+    background-color: #E0E3E6;
+}
+
+body .RightAlignedMPViewGridItem
+{
+    padding-right: 16px !important;
+}
+
+body .RightAlignedMPViewGridHeader
+{
+    padding-right: 18px !important;
+}
+
+body .RightAlignedMPViewGridFilter
+{
+    padding-right: 60px !important;
+}
+
+.RadGrid_Office2007 .rgEditRow.rgSelectedRow
+{
+    background: url("WebResource.axd?d=2rftj8RYRPvI6P0mNH-OgwslCZ2JtHeO0Dy9Jknhk55TUC87R5G-Te1Q2Oor64oPFdCzpBdAlOlhsf2FedFrImQeqH4CTs-Q-CBSiQKy0mL3DYTKbpDd1hV0_jCZ5Mw72g3XU1TueN9I-gh3XAwIhC4yAwOyUMsOVAslUNmA5EM1&t=634572255501985914") repeat-x scroll 0 -3900px #FFCB60;   
+}
+
+.RadGrid_Office2007 .rgEditRow
+{
+    background-color: White;
+}
+
+.GridItemDropIndicator_Office2007
+{
+    z-index: 10000;
+}
+
+/******************************************************************************
+ *
+ * ViewTab customizations
+ *
+ ******************************************************************************/
+
+body .RadTabStrip_Vista .rtsTxt, body .RadTabStrip_Web20 .rtsTxt
+{
+    padding: 4px !important;
+    margin: 0 !important;
+    font-size: 100% !important;
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif' !important;
+}
+
+body .RadTabStrip_Vista .rtsLI, body .RadTabStrip_Vista .rtsLink, body .RadTabStrip_Web20 .rtsLI, body .RadTabStrip_Web20 .rtsLink
+{
+    color: Black;
+    font: 8pt 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif', Arial, sans-serif;
+}
+
+body .RadTabStrip_Vista .rtsIn, body .RadTabStrip_Vista .rtsOut, body .RadTabStrip_Web20 .rtsIn, body .RadTabStrip_Web20 .rtsOut
+{
+    padding: 0 !important;
+}
+
+body .RadTabStrip_Vista .rtsLI, body .RadTabStrip_Web20 .rtsLI
+{
+    background-color: #cfcfcf !important;
+}
+
+body .RadTabStrip_Vista .rtsLink, body .RadTabStrip_Web20 .rtsLink, body .RadTabStrip .rtsLink
+{
+    margin-top: 0px !important;
+    padding: 0 !important;
+}
+
+body .RadTabStripTop_Vista .rtsLI .rtsSelected .rtsIn, body .RadTabStrip_Web20 .rtsLI .rtsSelected .rtsIn
+{
+    font-weight: bold !important;
+}
+
+/*
+ *
+ * RadDatePicker customizations
+ *
+ */
+html body .RadInput_Office2007 .riTextBox, html body .RadInputMgr_Office2007, html body .RadInput_Web20 .riTextBox, html body .RadInputMgr_Web20
+{
+    border-color: #999 #ddd #ddd !important;
+}
+
+html body .RadInput_Office2007 .riHover, html body .RadInput_Hover_Office2007, html body .RadInput_Office2007 .riFocused, html body .RadInput_Focused_Office2007, html body .RadInput_Web20 .riHover, html body .RadInput_Hover_Web20, html body .RadInput_Web20 .riFocused, html body .RadInput_Focused_Web20
+{
+    border-color: #4583AD #BFE5FF #BFE5FF !important;
+}
+
+/*
+ *
+ * RadMenu customizations
+ *
+ */
+body .rmText
+{
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+}
+
+body .RadMenu_Office2007 .rmLink
+{
+    font-family: Tahoma !important;
+    font-size: 8pt !important;
+}
+
+/******************************************************************************
+ *
+ * TreeView customizations
+ *
+ ******************************************************************************/
+
+body .RadTreeView .rtIn
+{
+    margin-left: 1px;
+    padding-top: 0px;
+    padding-right: 3px;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    text-decoration: none;
+    background-image: none;
+    border-width: 0px;
+}
+
+body .RadTreeView .rtTop, body .RadTreeView .rtMid, body .RadTreeView .rtBot
+{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+body .RadTreeView_Vista .rtHover .rtIn
+{
+    background-image: none;
+    border-width: 0px;
+    margin: 0px;
+    padding: 0px 0px 0px 4px;
+}
+
+body .RadTreeView_Vista A.rtIn, body .RadTreeView_Vista .rtIn, body .RadTreeView_Vista .rtSelected .rtIn
+{
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif';
+    font-size: 12px;
+    background-image: none;
+    border: solid 0 transparent;
+}
+
+.editWrap
+{
+    min-height: 13px;
+    cursor: pointer;
+    z-index: auto;
+}
+.editWrap:hover
+{
+    background-color: #ffffff;
+}
+.inlineEditor
+{
+    position: relative;
+}
+.editor
+{
+    clear: both;
+    overflow: hidden;
+    width: 280px !important;
+    height: 40px;
+    border: solid #7F9DB9;
+    border-width: 1px 1px 2px 2px;
+    position: absolute;
+    z-index: 20000;
+    display: block;
+}
+
+.float, .float.left
+{
+    float: left;
+}
+.float.right
+{
+    float: right;
+}
+
+.propertyContainer .column
+{
+    padding: 0px 3px 2px 0;
+}
+.propertyContainer .column.label
+{
+    margin-top: 5px;
+    width: 117px;
+}
+.column
+{
+    padding: 2px 5px 2px 0;
+}
+.column.label
+{
+    width: 117px;
+}
+.column.single
+{
+    width: 600px;
+}
+.row
+{
+    clear: both;
+}
+table.BaseObjectLog
+{
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+table.BaseObjectLog * th
+{
+    background-color: #eee;
+    padding: 5px;
+    margin: 0;
+    border-spacing: 0;
+    text-align: left;
+}
+table.BaseObjectLog * td
+{
+    font-weight: normal;
+    padding: 3px 5px;
+    margin: 0;
+    border-spacing: 0;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+table.BaseObjectLog * td:first-child
+{
+    background-color: #eee;
+    font-weight: bold;
+}
+
+.ThumbNailInProcess
+{
+    position: absolute;
+    left: 0;
+    top: 24px;
+    width: 100%;
+    border-top: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    background-color: #eee;
+    margin: 0;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.ajax__validatorcallout
+{
+    z-index: 99999;
+}
+body .RadComboBox_Vista, body .RadComboBox_Vista .rcbInput, body .RadComboBoxDropDown_Vista
+{
+    font-family: 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif' !important;
+    font-size: 12px !important;
+    font: 12px 'Segoe UI Web Regular', 'Segoe UI', 'Tahoma', 'Helvetica' , Arial, 'sans-serif' !important;
+    color: Black !important;
+}
+
+.chkListStyleRightAlign * td
+{
+    text-align: right;
+}
+
+.chkListStyleLeftAlign * td
+{
+    text-align: left;
+}
+
+.readOnly
+{
+    border: 1px solid DarkGray;
+    height: 16px !important;
+    padding: 3px 0 0 2px;
+    margin: 0;
+    width: 210px;
+    background-color: #f5f5f5;
+}
+
+.imgHover
+{
+    margin: 0 2px;
+    border-width: 0;
+    border-style: none;
+}
+div.imgHover * img.rtImg, div.imgHover * img.rtSelected
+{
+    margin: 1px 0;
+}
+.RadTreeView .rtSp {
+    height: 4px !important;
+}
+.imgHover > ul > li > ul
+{
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+    top: 0px;
+    line-height: 4px;
+}
+
+/* 2011-12-19 CurrencyInput Control */
+.currencyInput
+{
+    position: relative;
+}
+.currencySymbol
+{
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+.currencyInput > input 
+{
+    padding-left: 8px;
+}
+/* Approval Items 2011-11-18 */
+div.approvalItemOuterContainer
+{
+    margin-top: 10px;
+}
+div.approvalItemContainer
+{
+    position: relative;
+}
+div.approvalItemContainerDeleting
+{
+    background-color: Red;
+    border: 5px solid Green;
+}
+table.approvalItemContainer
+{
+    border: 1px solid #ababab;
+    background-color: #FFF;
+    width: 100%;
+    border-spacing: 0;
+    z-index: 500;
+}
+.approvalItemBanner
+{
+    background-color: #ffffff;
+}
+.approvalItemBanner h1
+{
+    margin: 0;
+    padding: .5em;
+    font-size: 14px;
+    font-weight: bold;
+}
+.approvalItemDisplay
+{
+    float: left;
+    padding: 4px;
+    width: 160px;
+    overflow: hidden;
+    background-color: #fff;
+}
+.approvalItemDisplay img
+{
+    border: 1px solid #ababab;
+    margin: 0 30px;
+}
+.approvalItemDisplay p
+{
+    margin-top: 0;
+}
+.itemName
+{
+    text-align: center;
+}
+.approvalItemActionButton
+{
+    height: 30px;
+    width: 158px; /*background-color: #ffffff;*/
+    border: 1px solid #ababab;
+    margin: 2px auto;
+    position: relative;
+}
+.approvalItemActionButton p
+{
+    position: absolute;
+    top: 8px;
+    left: 40px;
+}
+.approvalItemActionButton input
+{
+    margin: 3px 4px;
+}
+.approvalItemActionButton a[disabled]
+{
+    color:grey;
+    line-height: normal;
+	text-decoration:none;
+}
+.approvalItemComment
+{
+    border-left: 1px solid #ababab;
+}
+.approvalItemCommentNew
+{
+    border-bottom: 1px solid #ababab;
+    padding: 4px;
+}
+.approvalItemCommentExisting
+{
+    padding: 4px;
+}
+.approvalItemJob
+{
+    border-top: 1px solid #ababab;
+    padding: 4px;
+}
+.approvalItemJob > ol
+{
+    margin-left: 0;
+    padding-left: 0;
+}
+.approvalItemJob * li
+{
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+div.permissionProblems
+{
+    width: 100%;
+    height: 100%;
+    background-color: #555;
+    float: left;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 1000;
+    zoom: 1;
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+}
+
+.permissionProblemsContent
+{
+    background-color: White;
+    left: 10%;
+    z-index: 1500;
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    padding: 5%;
+    vertical-align: middle;
+    float: left;
+    width: 70%;
+     border: 1px solid #ababab;
+    display: block;
+}
+.permissionProblemsContent > input.imgHover
+{
+    right: -12px;
+    top: -12px;
+    position: absolute;
+}
+.approvalItemCommentContainer
+{
+    width: 100%;
+    position: relative;
+    margin: 4px 0;
+}
+.approvalItemCommentBody
+{
+}
+.approvalItemCommentBodySpacer
+{
+    float: left;
+    display: inline-block;
+    height: 10px;
+}
+.approvalItemCommentContainer > img
+{
+    float: right;
+    display: run-in;
+    margin: 0 0 4px 0;
+    height: 12px;
+    width: 12px;
+}
+.approvalItemCommentTimeStamp
+{
+    float: right;
+    top: 0;
+    margin-left: 6px;
+    margin-bottom: 4px;
+}
+
+ul.permissionProblems
+{
+    margin-bottom: 0px;
+}
+
+.unimportant 
+{
+    color: #777;
+}
+
+.routinglistitem 
+{
+    padding-top: 3px;
+}
+
+.rightColumnClass.column.single
+{
+    width: auto;
+}
+
+.pmeButtonContainer
+{
+    text-align:right;    
+}
+/****FormProperties****/
+
+#FormProperties > div
+{
+    position: static;
+    float: left;
+    margin-right: 40px;
+}
+
+/****End of FormProperties****/
+
+/****MPView****/
+
+.MPViewContainer 
+{
+    background-color: #ffffff;
+    width: 100%; 
+}
+
+.CaptionIcon 
+{
+    height: 32px;
+    width: 32px;
+}
+
+.clear 
+{
+    clear: both;
+}
+
+.ViewGridContainer {
+    width: 100%;
+}
+
+/****End of MPView****/
+
+/****MasterPage Styles****/
+
+.ViewFrameContainer 
+{
+    margin-top: 2px;
+    margin-left: 8px;
+    width: 99%;   
+}
+
+.CancelButton
+{
+    height: 32px;
+    width: 32px;
+}
+
+.maintainButtons.panel 
+{
+    min-width: 730px;
+}
+
+.tabView.panel 
+{
+    width: 100%;
+}
+
+table.overflowContainer 
+{
+    border-collapse: collapse;    
+}
+
+table.overflowContainer, table.overflowContainer th, table.overflowContainer td 
+{
+    border: 0px;
+}
+
+table.overflowContainer td 
+{
+    padding: 0px;
+}
+
+.FormProperties div 
+{
+    float: left;
+}
+
+/****End of MasterPage Styles****/
+
+.maxwidth
+{
+    width: 100%;
+}
+
+/*modern style fix, add view tab top dotted line and margin*/
+div.tabView
+{
+    border-top: 2px dotted #777777;
+    margin-top: 10px;
+}
+
+/* ViewUsers page list icons*/
+img.permissionStatus{
+    width: 16px;
+    height: 16px;
+    border: 0;
+}
+
+/* File maintain form */
+input.fileToolbarButtons[type="image"]:disabled
+{
+    cursor: default;
+}
+
+.modalPopup.importUsers {
+    width: 500px;
+}
+
+.modalPopup.importUsers .ellipsis {
+    white-space: normal;
+}
+
+.modalPopup.importUsers span
+,.modalPopup.importUsers input{
+    margin: 5px 18px;
+    display: block;
+}
+
+.modalPopup.importUsers .textbold{
+    margin-top:20px;
+}
+
+.modalPopup.importUsers img{
+    height: 25px;
+    position: relative;
+    top: 9px;
+    left: -10px;
+
+}
+
+.modalPopup.importUsers .goto {
+    display: inline;
+}
+
+table.tblCaption
+{
+    margin-left:23px;
+}
+
+#tabViews.addTopEmptySpace {
+    padding-top: 100px;
+}
+
+.MaintainVendorStatus
+{
+    width: 459px;
+    margin-bottom: 2px;
+}
+
+.MaintainVendorButtons
+{
+    padding-top: 3px;
+}
+
+.NewButton {
+    left: 8px;
+    position: relative;
+    width: 20px;
+}
+
+.enforcePosition {
+    position: relative;
+    bottom: 5px;
+}
+
+.txtMEMOFIELD {
+    height: 164px;
+    width: 600px !important;
+    position: relative;
+    left: 82px;
+}
+
+.lblMemo {
+    vertical-align: top !important;
+}
+
+.pnlMemo {
+    clear: both;
+    margin: 4px 0px 4px 4px;
+    min-height: 16px;
+}
+
+.panelSeparationMaintainLeadForm {
+    margin-top: 10px;
+    position: relative;
+}
+
+.positionPrivacyAndCookies {
+    margin-left: 8px;
+    position: relative;
+    top: 16px;
+}
+
+.reportViewerBackground {
+    background-color: #F8F8F8 !important;
+    background-image: none !important;
+}
+
+.formBackground {
+    background-color: #f8f8f8 !important;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    overflow: auto;
+}
+
+.addExchangeRatesScrollBar {
+    max-height: 700px;
+    overflow: auto;
+}
+
+.contactInfomationPanel table td {
+    text-align: left;
+}
+
+.contactInfoEditCheckBox,
+.contactInfoNameCheckBox {
+    margin-left: 12px;
+}
+
+.contactInfoHeader span {
+    margin-right: 2px;
+}
+
+.taskEditableGrid {
+    width: 100%;
+    min-width: 1200px;
+}
+
+
+/*Merging style_ie.css*/
+
+.maintainButtons
+{
+	left: 0;
+	/*right: 6px;*/
+	position: relative;
+}
+
+.propertyInputTime
+{
+    margin-top: 10px;
+}

@@ -1,0 +1,60 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready"	onevent="init()"/>
+<public:attach event="onclick"			onevent="filter()"/>
+<public:attach event="onmouseover"		onevent="setStyle(true)"/>
+<public:attach event="onmouseout"		onevent="setStyle(false)"/>
+<public:method name="Reset"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oLast;
+function Reset()
+{
+    _oLast && 
+        SetSelectedStyle(_oLast,false);
+    _oLast = this.rows[0].cells[0];
+    SetSelectedStyle(_oLast,true)
+}
+function init()
+{
+    for(var cell = 0; cell < this.rows[0].cells.length; cell++)
+        if(this.rows[0].cells[cell].className.indexOf("ms-crm-List-DefaultIndex") >= 0)
+            _oLast = this.rows[0].cells[cell];
+    !_oLast && 
+        SetSelectedStyle(_oLast,true)
+}
+function filter()
+{
+    var o = event.srcElement;
+    if(o.tagName == "TD")
+    {
+        var oGrid = window.document.all[this.gridId];
+        if(oGrid.GetParameter("ispreviewmode") == "1" || oGrid.GetParameter("InnerGridDisabled") == "1")
+            return;
+        SetSelectedStyle(_oLast,false);
+        SetSelectedStyle(o,true);
+        _oLast = o;
+        oGrid.SetParameter("filter",_oLast.cellIndex == 0 ? "" : _oLast.filter);
+        oGrid.SetParameter("filterDisplay",_oLast.cellIndex == 0 ? "" : _oLast.innerText);
+        oGrid.ClearPagingCookie();
+        oGrid.PageNumber = 1
+    }
+}
+function setStyle(bOn)
+{
+    var o = event.srcElement;
+    o.tagName == "TD" && o != _oLast && 
+        SetSelectedStyle(o,bOn)
+}
+function SetSelectedStyle(srcElement,bIsSelected)
+{
+    if(bIsSelected)
+    {
+        if(srcElement.className.indexOf(" ms-crm-List-SelectedIndex") == -1)
+            srcElement.className += " ms-crm-List-SelectedIndex"
+    }
+    else
+        srcElement.className = srcElement.className.replace(" ms-crm-List-SelectedIndex","")
+}
+
+</script>
+</public:component>

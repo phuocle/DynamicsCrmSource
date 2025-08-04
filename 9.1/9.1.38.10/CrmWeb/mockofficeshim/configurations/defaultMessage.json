@@ -1,0 +1,128 @@
+{
+  "displayLanguage": "en-US",
+  "installId": "<generated>",
+  "userProfile": {
+    "displayName": "First Name Last Name",
+    "emailAddress": "administrator@example.com"
+  },
+  "mailboxItem": {
+    "internetMessageId": "<generated>",
+    "dateTimeCreated": "2018-02-23T12:00:00.000",
+    "itemId": "<generated>",
+    "itemType": "message",
+    "subject": "Sample Email",
+    "body": "<b>Hello world!</b>",
+    "sender": {
+      "recipientType": "user",
+      "displayName": "Yvonne McKay",
+      "emailAddress": "someone_a@example.com"
+    },
+    "to": [
+      {
+        "recipientType": "user",
+        "displayName": "First Name Last Name",
+        "emailAddress": "administrator@example.com"
+      },
+      {
+        "recipientType": "user",
+        "displayName": "Susanna Stubberod",
+        "emailAddress": "someone_b@example.com"
+      },
+      {
+        "recipientType": "user",
+        "displayName": "Nancy Anderson",
+        "emailAddress": "someonel3@example.com"
+      },
+      {
+        "recipientType": "externalUser",
+        "displayName": "Taras Kharchenko",
+        "emailAddress": "someonel20@example.com"
+      },
+      {
+        "recipientType": "user",
+        "displayName": "Maria Campbell",
+        "emailAddress": "someone_d@example.com"
+      },
+      {
+        "recipientType": "externalUser",
+        "displayName": "Ievgen Galushko",
+        "emailAddress": "someone_o@example.com"
+      },
+      {
+        "recipientType": "user",
+        "displayName": "Peter Houston",
+        "emailAddress": "someonel5@example.com"
+      },
+      {
+        "recipientType": "user",
+        "displayName": "Sidney Higa",
+        "emailAddress": "someone_e@example.com"
+      },
+      {
+        "recipientType": "distributionList",
+        "displayName": "CRM App For Outlook - FTE Dev",
+        "emailAddress": "dl1@example.com"
+      }
+    ],
+    "cc": [
+      {
+        "recipientType": "user",
+        "displayName": "First Name Last Name",
+        "emailAddress": "administrator@example.com"
+      },
+      {
+        "recipientType": "user",
+        "displayName": "Peter Houston",
+        "emailAddress": "someonel5@example.com"
+      },
+      {
+        "recipientType": "user",
+        "displayName": "Scott Konersmann",
+        "emailAddress": "someone_f@example.com"
+      },
+      {
+        "recipientType": "user",
+        "displayName": "Ivan Komashinsky",
+        "emailAddress": "someonel6@example.com"
+      },
+      {
+        "recipientType": "externalUser",
+        "displayName": "Lyudmila Kroshchuk",
+        "emailAddress": "someone_p@example.com"
+      },
+      {
+        "recipientType": "externalUser",
+        "displayName": "Aliaksei Maisenovich",
+        "emailAddress": "someone_q@example.com"
+      },
+      {
+        "recipientType": "user",
+        "displayName": "Robert Lyon",
+        "emailAddress": "someone_g@example.com"
+      },
+      {
+        "recipientType": "distributionList",
+        "displayName": "CRM App For Outlook - Vendor Dev",
+        "emailAddress": "dl2@example.com"
+      }
+    ],
+    "bcc": []
+  },
+  "queryParameters": {
+    "org": "CITTest",
+    "orgId": "",
+    "mailboxId": "",
+    "ed": "",
+    "mailAppMode": "ReadDesktop",
+    "de": "onprem",
+    "sde": "onprem",
+    "showperf": "0",
+    "collectorurl": "",
+    "testmode": "true"
+  },
+  "exchangeProperties": {
+    "ConversationIndex": "AQHTWVzwYFCMJZAWUUG8kYNaDExQBaMMCCku",
+    "DateTimeSent": "2018-02-23T12:10:00.000",
+    "DateTimeReceived": "2018-02-23T12:10:00.000"
+  }
+}

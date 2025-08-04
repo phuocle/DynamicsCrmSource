@@ -1,0 +1,47 @@
+{
+  "displayLanguage": "en-US",
+  "installId": "<generated>",
+  "userProfile": {
+    "displayName": "",
+    "emailAddress": ""
+  },
+  "mailboxItem": {
+    "internetMessageId": "<generated>",
+    "dateTimeCreated": "2018-02-23T12:00:00.000",
+    "itemId": "<generated>",
+    "itemType": "message",
+    "subject": "",
+    "body": "",
+    "sender": {
+      "recipientType": "user",
+      "displayName": "",
+      "emailAddress": ""
+    },
+    "to": [],
+    "cc": [],
+    "bcc": []
+  },
+  "queryParameters": {
+    "org": "CITTest",
+    "orgId": "",
+    "ed": "",
+    "mailAppMode": "ReadDesktop",
+    "de": "onprem",
+    "sde": "onprem",
+    "showperf": "0",
+    "collectorurl": "",
+    "testmode": "true"
+  },
+  "exchangeProperties": {
+    "crmTrackingState": "NotLinked",
+    "crmRegardingId": "",
+    "crmRegardingObjectType": "",
+    "crmRegardingObjectName": "",
+    "crmid": "",
+    "crmIsFollowed": false,
+    "crmObjectType": "",
+    "ConversationIndex": "",
+    "DateTimeSent": "2018-02-23T12:10:00.000",
+    "DateTimeReceived": "2018-02-23T12:10:00.000"
+  }
+}

@@ -1,0 +1,53 @@
+/* The file is AUTO generated on Thu, 10 Jul 2025 23:49:17 UTC */
+/* Do NOT manually modify this file! */
+
+.picklist.ms-crm-Inline-Chrome .ms-crm-Inline-Value {
+  margin-left: 24px;
+}
+.picklist.ms-crm-Inline-Chrome .ms-crm-Inline-Edit {
+  margin-left: 19px;
+  margin-right: 28px;
+}
+.picklist.ms-crm-Inline-Chrome .ui-autocomplete-input {
+  margin-right: 28px;
+}
+.picklist.ms-crm-Inline-Chrome .ui-combobox-toggle {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  border-right: solid 1px #CCCCCC;
+  border-top: solid 1px #CCCCCC;
+  border-bottom: solid 1px #CCCCCC;
+  width: 23px;
+  background-color: #ffffff;
+}
+.picklist.ms-crm-Inline-Chrome .ui-combobox-toggle .ui-ac-dropdown-img {
+  margin-left: 5px;
+  margin-top: 3px;
+}
+.ui-autocomplete .ui-state-hover {
+  background-color: #fde6b9;
+}
+.ui-autocomplete.ui-widget {
+  -ms-touch-action: none;
+}
+.ui-autocomplete.ui-menu {
+  background-color: #ffffff;
+  border: solid 1px #CCCCCC;
+  max-height: 200px;
+  overflow-x: hidden;
+  padding-right: 5px;
+  width: 185px;
+  position: absolute;
+  overflow-y: auto;
+}
+.ui-autocomplete.ui-menu .ui-menu-item a {
+  display: block;
+  line-height: 2;
+  padding: 1px 5px;
+  color: #666666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

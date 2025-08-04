@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <form method="POST" id="authForm" target="authFrame" style="display:none">
+        <input type="hidden" name="wa" value="wsignin1.0" />
+        <input type="hidden" name="wresult" id="wresult" value="" />
+        <input type="hidden" name="wctx" id="wctx" value="" />
+    </form>
+    <iframe id="authFrame" name="authFrame" src="" aria-hidden="true" style="display:none"></iframe>
+
+    <script type="text/javascript">
+        // Global data object to return back to parent frame on success/failure
+        var data = {
+            timestamps: {
+                pageLoad: null,
+                rstrFlowStart: null,
+                successCallback: null,
+                timeout: null
+            },
+            state: null,
+            stateReason: null,
+        };
+
+        // Constants
+        var constants = {
+            // Valid input hash parameters to this page
+            validInputs: {
+                token: 'token',
+                timeout: 'timeout',
+                source: 'source'
+            },
+
+            // Valid source URLs to invoke postMessage
+            validSources: {
+                dev:'https://msteamsintegrationservicedev.azurewebsites.net',
+                dev1: 'https://msteamsintegrationservicedev1.azurewebsites.net',
+                tip: 'https://msteamsintegrationservicetip.azurewebsites.net',
+                prod: 'https://msteamsintegrationservicenam.azurewebsites.net',
+                PRODUCTION: 'https://msteamstabintegration.crm.dynamics.com',
+                INT: 'https://msteamstabservice.crm2.crmlivetie.com',
+                DAILY: 'https://msteamstabservicedaily.crm2.crmlivetie.com'
+            },
+
+            // States of page
+            states: {
+                pageLoaded: 'page loaded',
+                success: 'success',
+                timeout: 'timeout',
+                failure: 'failure'
+            },
+            stateReasons: {
+                sameOrign: 'same origin',
+                crossOrigin: 'cross origin'
+            },
+
+            // Element ids
+            elementIds: {
+                authForm: 'authForm',
+                authFrame: 'authFrame',
+                redirectUrlElement: 'wctx',
+                rstrXmlElement: 'wresult'
+            },
+
+            // Default timeout of 10 sec
+            defaultTimeout: 10000,
+
+            getOrgUrl: function (){
+                return "https://" + location.hostname;
+            },
+
+            getRedirectUrl: function (){
+                return "ru="+encodeURIComponent(constants.getOrgUrl() + "/nga/main.aspx");
+            },
+
+            getRstrXml: function (token){
+                return "<t:RequestSecurityTokenResponse xmlns:t=\"http://schemas.xmlsoap.org/ws/2005/02/trust\">" +
+                    "<t:Lifetime>" +
+                    "<wsu:Created xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">2013-05-21T00:58:40.544Z</wsu:Created>" +
+                    "<wsu:Expires xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">2013-05-22T00:58:40.544Z</wsu:Expires>" +
+                    "</t:Lifetime>" +
+                    "<wsp:AppliesTo xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\">" +
+                    "<EndpointReference xmlns=\"http://www.w3.org/2005/08/addressing\">" +
+                    "<Address>https://kevinwhi9852org2.crm.crmlivetoday.com/</Address>" +
+                    "</EndpointReference>" +
+                    "</wsp:AppliesTo>" +
+                    "<t:RequestedSecurityToken>" +
+                    "<wsse:BinarySecurityToken wsu:Id=\"_febfbc5a-99cf-4298-ae6f-7d752db4cb24-FECE4032DF73C0855F4B4BA9EAEB9E47\" ValueType=\"urn:ietf:params:oauth:token-type:jwt\" EncodingType=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\">"
+                        + (token) + "</wsse:BinarySecurityToken>" +
+                    "</t:RequestedSecurityToken>" +
+                    "<t:TokenType>urn:ietf:params:oauth:token-type:jwt</t:TokenType>" +
+                    "<t:RequestType>http://schemas.xmlsoap.org/ws/2005/02/trust/Issue</t:RequestType>" +
+                    "<t:KeyType>http://schemas.xmlsoap.org/ws/2005/05/identity/NoProofKey</t:KeyType>" +
+                    "</t:RequestSecurityTokenResponse>".replace(/\r?\n?\t?/g, "");
+            },
+
+            getErrorPage: function () {
+                return constants.getOrgUrl() + "/_common/error/errorhandler.aspx";
+            }
+        };
+
+        // Global object to cache parsed hash params
+        var hashParams = { };
+        
+        // Onload function
+        function WindowOnLoad() {
+            data.timestamps.pageLoad = new Date();
+            data.state = constants.states.pageLoaded;
+            parseHashParams()
+            initRstrFlow();
+            initTimeout();
+        }
+
+        // Initialization function for RSTR flow
+        function initRstrFlow() {
+            // Setting form values
+            var binaryEncodedToken = btoa(hashParams[constants.validInputs.token]);
+            var rstrXml = constants.getRstrXml(binaryEncodedToken);
+            var redirect = constants.getRedirectUrl();
+            document.getElementById(constants.elementIds.rstrXmlElement).setAttribute("value", rstrXml);
+            document.getElementById(constants.elementIds.redirectUrlElement).setAttribute("value", redirect);
+            var authForm = document.getElementById(constants.elementIds.authForm);
+            authForm.action = "/";
+
+            // Form submit
+            data.timestamps.rstrFlowStart = new Date();
+            authForm.submit();
+        }
+
+        // Function to parse hash params and store in global cache object hashParams
+        function parseHashParams() {
+            var params = location.hash.substring(1).split('&');
+            for (var i = 0; i < params.length; i++) {
+                var keyValuePair = params[i].split('=');
+                if (keyValuePair.length == 2) {
+                    var key = keyValuePair[0], value = decodeURIComponent(keyValuePair[1]);
+                    if (constants.validInputs[key]) {
+                        hashParams[constants.validInputs[key]] = value;
+                    }                    
+                }
+            }
+        }
+
+        // Setting up timer for failover
+        function initTimeout() {
+            var timeoutInterval = hashParams[constants.validInputs.timeout];
+            if (!timeoutInterval) {
+                // Setting timeout to a default one
+                timeoutInterval = constants.defaultTimeout;
+            }
+            window.setTimeout(timeoutHandler, timeoutInterval);
+        }
+
+        // Timeout handler event
+        function timeoutHandler() {
+            data.timestamps.timeout = new Date();
+            if (data.state != constants.states.success) {
+                data.state = constants.states.timeout;
+                checkFrameOrigin();
+                postMessageToParent();
+            }
+        }
+
+        // Check origin of child frame and set status reason accordingly
+        // Called in case of timeout
+        function checkFrameOrigin() {
+            var iframe = document.getElementById(constants.elementIds.authFrame);
+            if (iframe) {
+                try {
+                    var sourceUrl = iframe.contentWindow.location.href;
+                    if (sourceUrl.startsWith(constants.getErrorPage())) {
+                        // Error page indicates that login failed
+                        data.state = constants.states.failure;
+                    }
+                    // If access href didn't throw exception, it means that it's in same domain
+                    data.stateReason = constants.stateReasons.sameOrign;
+                }
+                catch (ex) {
+                    data.stateReason = constants.stateReasons.crossOrigin;
+                }
+            }
+        }
+
+        // Function called by redirect URL /nga/main.aspx on success
+        function authenticatedPageLoaded() {
+            data.timestamps.successCallback = new Date();
+            data.state = constants.states.success;
+            postMessageToParent();
+        }
+        
+        // Post success/failure message to parent
+        function postMessageToParent() {
+            // Getting source url based on caller
+            var sourceUrl = getSourceUrl();
+            if(sourceUrl){
+                window.parent.postMessage(data, sourceUrl);
+            }
+        }
+
+        // Function to get source URL from input parameter
+        function getSourceUrl(){
+            var source = hashParams[constants.validInputs.source];
+            if (constants.validSources[source]) {
+                return constants.validSources[source];
+            }
+        }
+
+        // Set onload function to start our script
+        window.onload = WindowOnLoad;
+    </script>
+</body>
+</html>

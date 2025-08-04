@@ -1,0 +1,2 @@
+<%@ Page language="c#" Inherits="Microsoft.Crm.Application.Pages.Business.Territories.AreaPage" %>
+

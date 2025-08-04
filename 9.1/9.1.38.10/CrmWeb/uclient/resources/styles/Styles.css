@@ -1,0 +1,3084 @@
+body,
+button,
+input,
+select,
+table,
+textarea {
+  /* TODO: Switch to use this syntax once relatvive font sizes(e.g. 200%, larger) 
+        are removed or set thier own line height, since they don't work well with the default line height */
+  /* font: @DefaultFont; */
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  font-size: 14px;
+  font-family: 'SegoeUI', 'Segoe UI';
+}
+html {
+  font-size: 14px;
+}
+body {
+  background: white;
+  color: #666;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+  display: block;
+}
+a,
+address,
+article,
+aside,
+audio,
+b,
+blockquote,
+body,
+canvas,
+caption,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+dialog,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+hr,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+meter,
+nav,
+object,
+ol,
+optgroup,
+option,
+output,
+p,
+pre,
+progress,
+q,
+section,
+small,
+span,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+textarea,
+tfoot,
+th,
+thead,
+time,
+tr,
+u,
+ul,
+var,
+video {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+th,
+td,
+caption {
+  font-weight: normal;
+  vertical-align: top;
+}
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/*-------------------------------------
+	Fonts
+--------------------------------------*/
+/* Segoe UI should be available in IE, so only add for Non-IE browsers */
+/* Use url calls to get segoe fonts loaded from local resources in Android */
+/* The correct system font is 'Segoe UI', not 'SegoeUI' */
+@font-face {
+  font-family: 'Segoe UI';
+  font-weight: 200;
+  src: local('Segoe UI Light'), url("segoeui_light.woff2?v=1.4.9962-v91onpremise") format("woff2");
+}
+@font-face {
+  font-family: 'Segoe UI';
+  font-weight: 300;
+  src: local('Segoe UI Semilight'), url("segoeui_semilight.woff2?v=1.4.9962-v91onpremise") format("woff2");
+}
+@font-face {
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  src: local('Segoe UI'), url("segoeui_normal.woff2?v=1.4.9962-v91onpremise") format("woff2");
+}
+@font-face {
+  font-family: 'Segoe UI';
+  font-weight: 600;
+  src: local('Segoe UI Semibold'), url("segoeui_semibold.woff2?v=1.4.9962-v91onpremise") format("woff2");
+}
+@font-face {
+  font-family: 'Segoe UI';
+  font-weight: 700;
+  src: local('Segoe UI Bold'), url("segoeui_bold.woff2?v=1.4.9962-v91onpremise") format("woff2");
+}
+/* The font-face declarations below are incorrect. They couple font-family with font-weight.
+For example, when using 'SegoeUI-Bold',
+If user specify font-weigth to 700, firefox will render double the boldness.
+If user does not specify font-weight, chrome will render normal weight. */
+@font-face {
+  font-family: 'SegoeUI';
+  src: local('Segoe UI'), url("segoeui_normal.woff2?v=1.4.9962-v91onpremise") format("woff2");
+}
+@font-face {
+  font-family: 'SegoeUI-Bold';
+  src: local('Segoe UI Bold'), url("segoeui_bold.woff2?v=1.4.9962-v91onpremise") format("woff2");
+}
+@font-face {
+  font-family: 'SegoeUI-Semibold';
+  src: local('Segoe UI Semibold'), url("segoeui_semibold.woff2?v=1.4.9962-v91onpremise") format("woff2");
+}
+@font-face {
+  font-family: 'SegoeUI-Light';
+  src: local('Segoe UI Light'), url("segoeui_light.woff2?v=1.4.9962-v91onpremise") format("woff2");
+}
+@font-face {
+  font-family: 'SegoeUI-Semilight';
+  src: local('Segoe UI Semilight'), url("segoeui_semilight.woff2?v=1.4.9962-v91onpremise") format("woff2");
+}
+/* Font-face with icons for SiteMap */
+@font-face {
+  font-family: 'Dyn CRM Symbol';
+  src: url('CRMMDL2.woff?v=1.4.9962-v91onpremise');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'CRM MDL2';
+  src: url('CRMMDL2.woff?v=1.4.9962-v91onpremise');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'D365 Shell';
+  src: url('D365Shell.woff?v=1.4.9962-v91onpremise');
+}
+/*-------------------------------------
+	IndeterminateProgressBar styles
+--------------------------------------*/
+.indeterminateProgressBar {
+  padding-top: 6px;
+  height: 4px;
+  padding-bottom: 8px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.indeterminateProgressBar .progressDot {
+  position: absolute;
+  width: 100%;
+  font-size: 4px;
+  line-height: 4px;
+  display: block;
+  opacity: 0;
+  -webkit-animation-name: moveProgressDot;
+  animation-name: moveProgressDot;
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.indeterminateProgressBar .progressDot div {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #0072c6;
+  display: block;
+}
+.indeterminateProgressBar .progressDot:nth-child(2) {
+  -webkit-animation-delay: 200ms;
+  animation-delay: 200ms;
+}
+.indeterminateProgressBar .progressDot:nth-child(3) {
+  -webkit-animation-delay: 400ms;
+  animation-delay: 400ms;
+}
+.indeterminateProgressBar .progressDot:nth-child(4) {
+  -webkit-animation-delay: 600ms;
+  animation-delay: 600ms;
+}
+.indeterminateProgressBar .progressDot:nth-child(5) {
+  -webkit-animation-delay: 800ms;
+  animation-delay: 800ms;
+}
+.android4_4 .indeterminateProgressBar .progressDot {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+  -webkit-animation-name: none;
+  animation-name: none;
+}
+.indeterminateProgressBar .ieProgressDot.progressDot {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+  -webkit-animation-name: none;
+  animation-name: none;
+}
+.indeterminateProgressBar.hideProgressBar {
+  display: none;
+}
+.indeterminateProgressBarDotKeyframeSteps 0% {
+  opacity: 1;
+  -webkit-transform: translateX(-5%);
+  -moz-transform: translateX(-5%);
+  -o-transform: translateX(-5%);
+  -ms-transform: translateX(-5%);
+  transform: translateX(-5%);
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+.indeterminateProgressBarDotKeyframeSteps 12.5% {
+  opacity: 1;
+  -webkit-transform: translateX(33%);
+  -moz-transform: translateX(33%);
+  -o-transform: translateX(33%);
+  -ms-transform: translateX(33%);
+  transform: translateX(33%);
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+.indeterminateProgressBarDotKeyframeSteps 50% {
+  opacity: 1;
+  -webkit-transform: translateX(66%);
+  -moz-transform: translateX(66%);
+  -o-transform: translateX(66%);
+  -ms-transform: translateX(66%);
+  transform: translateX(66%);
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+}
+.indeterminateProgressBarDotKeyframeSteps 62.5% {
+  opacity: 1;
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.indeterminateProgressBarDotKeyframeSteps 80% {
+  opacity: 0;
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.indeterminateProgressBarDotKeyframeSteps 100% {
+  opacity: 0;
+  -webkit-transform: translateX(-5%);
+  -moz-transform: translateX(-5%);
+  -o-transform: translateX(-5%);
+  -ms-transform: translateX(-5%);
+  transform: translateX(-5%);
+}
+@-webkit-keyframes moveProgressDot {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(-5%);
+    -moz-transform: translateX(-5%);
+    -o-transform: translateX(-5%);
+    -ms-transform: translateX(-5%);
+    transform: translateX(-5%);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  12.5% {
+    opacity: 1;
+    -webkit-transform: translateX(33%);
+    -moz-transform: translateX(33%);
+    -o-transform: translateX(33%);
+    -ms-transform: translateX(33%);
+    transform: translateX(33%);
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: translateX(66%);
+    -moz-transform: translateX(66%);
+    -o-transform: translateX(66%);
+    -ms-transform: translateX(66%);
+    transform: translateX(66%);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  62.5% {
+    opacity: 1;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  80% {
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(-5%);
+    -moz-transform: translateX(-5%);
+    -o-transform: translateX(-5%);
+    -ms-transform: translateX(-5%);
+    transform: translateX(-5%);
+  }
+}
+@keyframes moveProgressDot {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(-5%);
+    -moz-transform: translateX(-5%);
+    -o-transform: translateX(-5%);
+    -ms-transform: translateX(-5%);
+    transform: translateX(-5%);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  12.5% {
+    opacity: 1;
+    -webkit-transform: translateX(33%);
+    -moz-transform: translateX(33%);
+    -o-transform: translateX(33%);
+    -ms-transform: translateX(33%);
+    transform: translateX(33%);
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: translateX(66%);
+    -moz-transform: translateX(66%);
+    -o-transform: translateX(66%);
+    -ms-transform: translateX(66%);
+    transform: translateX(66%);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  62.5% {
+    opacity: 1;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  80% {
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(-5%);
+    -moz-transform: translateX(-5%);
+    -o-transform: translateX(-5%);
+    -ms-transform: translateX(-5%);
+    transform: translateX(-5%);
+  }
+}
+/*-------------------------------------
+	IndeterminateProgressRing styles
+--------------------------------------*/
+.indeterminateProgressRing {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.indeterminateProgressRing .progressDot {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  left: 15%;
+  top: 15%;
+  opacity: 0;
+  -webkit-transform: rotate(225deg);
+  -moz-transform: rotate(225deg);
+  -o-transform: rotate(225deg);
+  -ms-transform: rotate(225deg);
+  transform: rotate(225deg);
+  -webkit-animation-name: moveIndetermineProgressRingDot;
+  animation-name: moveIndetermineProgressRingDot;
+  -webkit-animation-duration: 5s;
+  animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
+}
+.indeterminateProgressRing .progressDot:after {
+  content: '';
+  position: absolute;
+  width: 17.5%;
+  height: 17.5%;
+  background-color: #0072c6;
+  border-radius: 100%;
+}
+.indeterminateProgressRing .progressDot:nth-child(2) {
+  -webkit-animation-delay: 240ms;
+  animation-delay: 240ms;
+}
+.indeterminateProgressRing .progressDot:nth-child(3) {
+  -webkit-animation-delay: 480ms;
+  animation-delay: 480ms;
+}
+.indeterminateProgressRing .progressDot:nth-child(4) {
+  -webkit-animation-delay: 720ms;
+  animation-delay: 720ms;
+}
+.indeterminateProgressRing .progressDot:nth-child(5) {
+  -webkit-animation-delay: 960ms;
+  animation-delay: 960ms;
+}
+.indeterminateProgressRing.hideProgressBar {
+  display: none;
+}
+.android4_4 .indeterminateProgressRing .progressDot {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+  -webkit-animation-name: none;
+  animation-name: none;
+}
+.indeterminateProgressRing .ieProgressDot.progressDot {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+  -webkit-animation-name: none;
+  animation-name: none;
+}
+.indeterminateProgressRingKeyframeSteps 0% {
+  opacity: 1;
+  -webkit-transform: rotate(225deg);
+  -moz-transform: rotate(225deg);
+  -o-transform: rotate(225deg);
+  -ms-transform: rotate(225deg);
+  transform: rotate(225deg);
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+.indeterminateProgressRingKeyframeSteps 7% {
+  opacity: 1;
+  -webkit-transform: rotate(345deg);
+  -moz-transform: rotate(345deg);
+  -o-transform: rotate(345deg);
+  -ms-transform: rotate(345deg);
+  transform: rotate(345deg);
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+.indeterminateProgressRingKeyframeSteps 30% {
+  opacity: 1;
+  -webkit-transform: rotate(455deg);
+  -moz-transform: rotate(455deg);
+  -o-transform: rotate(455deg);
+  -ms-transform: rotate(455deg);
+  transform: rotate(455deg);
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+}
+.indeterminateProgressRingKeyframeSteps 39% {
+  opacity: 1;
+  -webkit-transform: rotate(690deg);
+  -moz-transform: rotate(690deg);
+  -o-transform: rotate(690deg);
+  -ms-transform: rotate(690deg);
+  transform: rotate(690deg);
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+.indeterminateProgressRingKeyframeSteps 70% {
+  opacity: 1;
+  -webkit-transform: rotate(815deg);
+  -moz-transform: rotate(815deg);
+  -o-transform: rotate(815deg);
+  -ms-transform: rotate(815deg);
+  transform: rotate(815deg);
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+.indeterminateProgressRingKeyframeSteps 75% {
+  opacity: 1;
+  -webkit-transform: rotate(945deg);
+  -moz-transform: rotate(945deg);
+  -o-transform: rotate(945deg);
+  -ms-transform: rotate(945deg);
+  transform: rotate(945deg);
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+.indeterminateProgressRingKeyframeSteps 76% {
+  opacity: 0;
+  -webkit-transform: rotate(945deg);
+  -moz-transform: rotate(945deg);
+  -o-transform: rotate(945deg);
+  -ms-transform: rotate(945deg);
+  transform: rotate(945deg);
+}
+.indeterminateProgressRingKeyframeSteps 100% {
+  opacity: 0;
+  -webkit-transform: rotate(945deg);
+  -moz-transform: rotate(945deg);
+  -o-transform: rotate(945deg);
+  -ms-transform: rotate(945deg);
+  transform: rotate(945deg);
+}
+@-webkit-keyframes moveIndetermineProgressRingDot {
+  0% {
+    opacity: 1;
+    -webkit-transform: rotate(225deg);
+    -moz-transform: rotate(225deg);
+    -o-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    transform: rotate(225deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  7% {
+    opacity: 1;
+    -webkit-transform: rotate(345deg);
+    -moz-transform: rotate(345deg);
+    -o-transform: rotate(345deg);
+    -ms-transform: rotate(345deg);
+    transform: rotate(345deg);
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+  }
+  30% {
+    opacity: 1;
+    -webkit-transform: rotate(455deg);
+    -moz-transform: rotate(455deg);
+    -o-transform: rotate(455deg);
+    -ms-transform: rotate(455deg);
+    transform: rotate(455deg);
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+  }
+  39% {
+    opacity: 1;
+    -webkit-transform: rotate(690deg);
+    -moz-transform: rotate(690deg);
+    -o-transform: rotate(690deg);
+    -ms-transform: rotate(690deg);
+    transform: rotate(690deg);
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+  }
+  70% {
+    opacity: 1;
+    -webkit-transform: rotate(815deg);
+    -moz-transform: rotate(815deg);
+    -o-transform: rotate(815deg);
+    -ms-transform: rotate(815deg);
+    transform: rotate(815deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  75% {
+    opacity: 1;
+    -webkit-transform: rotate(945deg);
+    -moz-transform: rotate(945deg);
+    -o-transform: rotate(945deg);
+    -ms-transform: rotate(945deg);
+    transform: rotate(945deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  76% {
+    opacity: 0;
+    -webkit-transform: rotate(945deg);
+    -moz-transform: rotate(945deg);
+    -o-transform: rotate(945deg);
+    -ms-transform: rotate(945deg);
+    transform: rotate(945deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotate(945deg);
+    -moz-transform: rotate(945deg);
+    -o-transform: rotate(945deg);
+    -ms-transform: rotate(945deg);
+    transform: rotate(945deg);
+  }
+}
+@keyframes moveIndetermineProgressRingDot {
+  0% {
+    opacity: 1;
+    -webkit-transform: rotate(225deg);
+    -moz-transform: rotate(225deg);
+    -o-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    transform: rotate(225deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  7% {
+    opacity: 1;
+    -webkit-transform: rotate(345deg);
+    -moz-transform: rotate(345deg);
+    -o-transform: rotate(345deg);
+    -ms-transform: rotate(345deg);
+    transform: rotate(345deg);
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+  }
+  30% {
+    opacity: 1;
+    -webkit-transform: rotate(455deg);
+    -moz-transform: rotate(455deg);
+    -o-transform: rotate(455deg);
+    -ms-transform: rotate(455deg);
+    transform: rotate(455deg);
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+  }
+  39% {
+    opacity: 1;
+    -webkit-transform: rotate(690deg);
+    -moz-transform: rotate(690deg);
+    -o-transform: rotate(690deg);
+    -ms-transform: rotate(690deg);
+    transform: rotate(690deg);
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+  }
+  70% {
+    opacity: 1;
+    -webkit-transform: rotate(815deg);
+    -moz-transform: rotate(815deg);
+    -o-transform: rotate(815deg);
+    -ms-transform: rotate(815deg);
+    transform: rotate(815deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  75% {
+    opacity: 1;
+    -webkit-transform: rotate(945deg);
+    -moz-transform: rotate(945deg);
+    -o-transform: rotate(945deg);
+    -ms-transform: rotate(945deg);
+    transform: rotate(945deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  76% {
+    opacity: 0;
+    -webkit-transform: rotate(945deg);
+    -moz-transform: rotate(945deg);
+    -o-transform: rotate(945deg);
+    -ms-transform: rotate(945deg);
+    transform: rotate(945deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotate(945deg);
+    -moz-transform: rotate(945deg);
+    -o-transform: rotate(945deg);
+    -ms-transform: rotate(945deg);
+    transform: rotate(945deg);
+  }
+}
+/*-------------------------------------
+	Error popup styles
+--------------------------------------*/
+#app-loading-indicator {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  transform: none;
+  margin: 0;
+}
+#error-app-loading-indicator {
+  position: absolute;
+  /*
+	   sets 'top' as half screen size - half of total container's height
+	   this fixes placement of progress ring.
+	*/
+  top: calc(50% -  (40px + 20px) / 2);
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%);
+}
+#error-app-loading-indicator.centered {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#app-waiting-message {
+  height: 20px;
+}
+#errorPopup-container {
+  color: #333333;
+}
+.errorPopup-wrapper {
+  background: #ffffff;
+  padding: 20px;
+  width: 40rem;
+  border: 2px solid #3B79B7;
+  overflow: hidden;
+  max-height: 80vh;
+  max-width: 100vw;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  /** For Gauntlet compat */
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+#errorPopup-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#errorPopup-technicalDetails {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  word-break: break-all;
+}
+.hideErrorBlock {
+  display: none;
+}
+/*-------------------------------------
+	Application shell styles
+--------------------------------------*/
+#boot-loading-indicator {
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  z-index: auto;
+}
+#shell-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #F8F7F6;
+}
+.noOutline * {
+  outline: none !important;
+}
+.showOutline *:focus {
+  outline: 1px dotted;
+  outline-offset: -2px;
+}
+.showOutline .dialogButtons *:focus,
+.showOutline .lookupDialogButtons *:focus,
+.showOutline .calculatedControlContainer *:focus {
+  outline: 2px dotted #666666 !important;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+.flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+}
+.inlineflexbox {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: inline-flex;
+}
+.webkitScroll {
+  -webkit-overflow-scrolling: touch;
+}
+.webkitScrollAuto {
+  -webkit-overflow-scrolling: auto;
+}
+.modalDialogBackgroundScrollBlock .webkitScroll {
+  -webkit-overflow-scrolling: auto;
+}
+.modalDialogBackgroundScrollBlock div[wj-part="root"] {
+  -webkit-overflow-scrolling: auto !important;
+}
+.forceNewStackContext {
+  transform: rotate(0deg);
+}
+.forceNewStackContextInert {
+  transform: none;
+}
+/*-------------------------------------
+	Toast Notification styles
+--------------------------------------*/
+#toastNotificationRoot > div {
+  cursor: pointer;
+}
+/*-------------------------------------
+	Popup Notification styles
+--------------------------------------*/
+#popupNotificationRoot {
+  flex-direction: column;
+  position: absolute;
+  width: 21.429rem;
+  border-radius: 3px;
+  font-family: "Segoe UI";
+  z-index: 1;
+}
+#popupNotificationRoot .header {
+  height: 2rem;
+  margin: 0.786rem 0.5rem;
+  display: flex;
+}
+#popupNotificationRoot .header .icon-wrapper {
+  height: 19px;
+  width: 19px;
+  margin: 5px 7px;
+}
+#popupNotificationRoot .header .header-text {
+  font-size: 1.143rem;
+  line-height: 2rem;
+  font-family: SegoeUI-Semibold, "Segoe UI Semibold";
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#popupNotificationRoot .body {
+  overflow-y: auto;
+  padding: 0.5rem;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+#popupNotificationRoot .body .row {
+  max-height: 2.857rem;
+  padding: 0 0.25rem;
+  padding-bottom: 0.786rem;
+  display: flex;
+}
+#popupNotificationRoot .body .row .column {
+  font-size: 1rem;
+  line-height: 1.214rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0 0.25rem;
+}
+#popupNotificationRoot .body .row .index {
+  width: 34%;
+}
+#popupNotificationRoot .body .row .value {
+  width: 66%;
+  font-family: SegoeUI-Semibold, "Segoe UI Semibold";
+}
+#popupNotificationRoot .footer {
+  padding: 0.214rem 0.25rem 0.5rem 0.25rem;
+  display: flex;
+}
+#popupNotificationRoot .footer .button {
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-family: SegoeUI-Semibold, "Segoe UI Semibold";
+  margin: 0 0.25rem;
+  flex-grow: 1;
+  height: 2rem;
+  border-radius: 3px;
+}
+#popupNotificationRoot.dark {
+  background-color: #002050;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+#popupNotificationRoot.dark .header .header-text {
+  color: #F2F2F2;
+}
+#popupNotificationRoot.dark .body {
+  border-top: 1px solid #828282;
+}
+#popupNotificationRoot.dark .body .row .column {
+  color: white;
+}
+#popupNotificationRoot.dark .footer .button:focus {
+  outline: 1px dotted white !important;
+}
+#popupNotificationRoot.dark .footer .accept-button {
+  background-color: #6BBF3E;
+  color: #002050;
+}
+#popupNotificationRoot.dark .footer .decline-button {
+  background-color: #913844;
+  color: white;
+}
+#popupNotificationRoot.light {
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+#popupNotificationRoot.light .header .header-text {
+  color: #000000;
+}
+#popupNotificationRoot.light .body {
+  border-top: 1px solid #828282;
+}
+#popupNotificationRoot.light .body .row .column {
+  color: #000000;
+}
+#popupNotificationRoot.light .footer .button:focus {
+  outline: 2px dotted black !important;
+}
+#popupNotificationRoot.light .footer .accept-button {
+  background-color: #0066FF;
+  color: #FFFFFF;
+}
+#popupNotificationRoot.light .footer .decline-button {
+  background-color: #FFFFFF;
+  border: 1px solid #8A8886;
+  color: #323130;
+}
+#popupNotificationRoot.hight-contrast {
+  border: 1px solid black;
+}
+/*-------------------------------------
+	Text Truncation Ellipsis styles
+--------------------------------------*/
+/* create the ... */
+.block-with-text:before {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of block */
+  right: 0;
+  bottom: 0;
+}
+/* hide ... if we have text, which is less than or equal to max lines */
+.block-with-text:after {
+  /* points in the end */
+  content: '';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of text */
+  right: 0;
+  /* set width and height */
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+}
+.block-with-text-noexpansion:after {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of block */
+  right: 0;
+  bottom: 0;
+}
+.block-with-text-noexpansion-rtl:after {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to left bottom corner of block for right-to-left-languages */
+  left: 0;
+  bottom: 0;
+}
+/*adding content: "" for :before since FELA doesnt support it yet*/
+#processControlBreadCrumb li:before,
+#processControlBreadCrumb li > div:before {
+  content: "";
+}
+/*-------------------------------------
+	Native Mobile styles
+--------------------------------------*/
+/* Override z-index set by React Native Modal */
+body > div > div[aria-modal="true"] {
+  z-index: 0 !important;
+}
+/**
+ * @license Copyright (c) Microsoft Corporation. All rights reserved.
+ *
+ * IMPORTANT!
+ * DO NOT MAKE CHANGES TO THIS FILE - THIS FILE IS GENERATED BY A BUILD TASK
+ * IF YOU NEED TO MAKE CHANGES THEY MUST BE MADE IN THE JSON CONFIGURATION FILE
+ */
+.crmSymbolFont {
+  font-family: 'Dyn CRM Symbol';
+}
+.entity-symbol.Entity:before,
+.Entity .entity-symbol:before {
+  content: '\ECDC';
+}
+.entity-symbol.List:before,
+.List .entity-symbol:before {
+  content: '\EA37';
+}
+.entity-symbol.Account:before,
+.Account .entity-symbol:before {
+  content: '\EED6';
+}
+.entity-symbol.Opportunity:before,
+.Opportunity .entity-symbol:before {
+  content: '\F05F';
+}
+.entity-symbol.Timer:before,
+.Timer .entity-symbol:before {
+  content: '\E7C1';
+}
+.entity-symbol.Sharepointdocument:before,
+.Sharepointdocument .entity-symbol:before {
+  content: '\E7C3';
+}
+.entity-symbol.Dashboard:before,
+.Dashboard .entity-symbol:before {
+  content: '\E9FE';
+}
+.entity-symbol.WORKSPACE:before,
+.WORKSPACE .entity-symbol:before {
+  content: '\E9FE';
+}
+.entity-symbol.Lead:before,
+.Lead .entity-symbol:before {
+  content: '\EFD6';
+}
+.entity-symbol.Contact:before,
+.Contact .entity-symbol:before {
+  content: '\E8D4';
+}
+.entity-symbol.Activitypointer:before,
+.Activitypointer .entity-symbol:before {
+  content: '\EFF4';
+}
+.entity-symbol.Drafts:before,
+.Drafts .entity-symbol:before {
+  content: '\F05B';
+}
+.entity-symbol.Systemuser:before,
+.Systemuser .entity-symbol:before {
+  content: '\E77B';
+}
+.entity-symbol.Letter:before,
+.Letter .entity-symbol:before {
+  content: '\ECEF';
+}
+.entity-symbol.Salesorder:before,
+.Salesorder .entity-symbol:before {
+  content: '\F03B';
+}
+.entity-symbol.Calendar:before,
+.Calendar .entity-symbol:before {
+  content: '\E787';
+}
+.entity-symbol.Category:before,
+.Category .entity-symbol:before {
+  content: '\ECA6';
+}
+.entity-symbol.Competitor:before,
+.Competitor .entity-symbol:before {
+  content: '\EE57';
+}
+.entity-symbol.Task:before,
+.Task .entity-symbol:before {
+  content: '\EADF';
+}
+.entity-symbol.Fax:before,
+.Fax .entity-symbol:before {
+  content: '\EF5C';
+}
+.entity-symbol.Email:before,
+.Email .entity-symbol:before {
+  content: '\E715';
+}
+.entity-symbol.Entitlement:before,
+.Entitlement .entity-symbol:before {
+  content: '\EB95';
+}
+.entity-symbol.Phonecall:before,
+.Phonecall .entity-symbol:before {
+  content: '\E717';
+}
+.entity-symbol.Contract:before,
+.Contract .entity-symbol:before {
+  content: '\EB95';
+}
+.entity-symbol.Quote:before,
+.Quote .entity-symbol:before {
+  content: '\F067';
+}
+.entity-symbol.Incident:before,
+.Incident .entity-symbol:before {
+  content: '\E7B9';
+}
+.entity-symbol.Campaign:before,
+.Campaign .entity-symbol:before {
+  content: '\E789';
+}
+.entity-symbol.Connection:before,
+.Connection .entity-symbol:before {
+  content: '\EFD4';
+}
+.entity-symbol.CustomerAddress:before,
+.CustomerAddress .entity-symbol:before {
+  content: '\EEBD';
+}
+.entity-symbol.Position:before,
+.Position .entity-symbol:before {
+  content: '\ECA6';
+}
+.entity-symbol.TransactionCurrency:before,
+.TransactionCurrency .entity-symbol:before {
+  content: '\EAE4';
+}
+.entity-symbol.Appointment:before,
+.Appointment .entity-symbol:before {
+  content: '\E787';
+}
+.entity-symbol.Team:before,
+.Team .entity-symbol:before {
+  content: '\E902';
+}
+.entity-symbol.Invoice:before,
+.Invoice .entity-symbol:before {
+  content: '\EFE4';
+}
+.entity-symbol.Knowledgearticle:before,
+.Knowledgearticle .entity-symbol:before {
+  content: '\F000';
+}
+.entity-symbol.Product:before,
+.Product .entity-symbol:before {
+  content: '\ECDC';
+}
+.entity-symbol.Opportunityproduct:before,
+.Opportunityproduct .entity-symbol:before {
+  content: '\EFE8';
+}
+.entity-symbol.Queue:before,
+.Queue .entity-symbol:before {
+  content: '\EFBF';
+}
+.entity-symbol.Queueitem:before,
+.Queueitem .entity-symbol:before {
+  content: '\EFBF';
+}
+.entity-symbol.Socialprofile:before,
+.Socialprofile .entity-symbol:before {
+  content: '\ECFE';
+}
+.entity-symbol.ChevronRight:before,
+.ChevronRight .entity-symbol:before {
+  content: '\F06C';
+}
+.entity-symbol.Globe:before,
+.Globe .entity-symbol:before {
+  content: '\E774';
+}
+.entity-symbol.Ticker:before,
+.Ticker .entity-symbol:before {
+  content: '\E7BB';
+}
+.entity-symbol.Duration:before,
+.Duration .entity-symbol:before {
+  content: '\E91E';
+}
+.entity-symbol.Timezone:before,
+.Timezone .entity-symbol:before {
+  content: '\EBF9';
+}
+.entity-symbol.Language:before,
+.Language .entity-symbol:before {
+  content: '\F039';
+}
+.entity-symbol.MultipleUsers:before,
+.MultipleUsers .entity-symbol:before {
+  content: '\E716';
+}
+.entity-symbol.Regarding:before,
+.Regarding .entity-symbol:before {
+  content: '\E71B';
+}
+.entity-symbol.Checklist:before,
+.Checklist .entity-symbol:before {
+  content: '\F072';
+}
+.entity-symbol.TwoOptions:before,
+.TwoOptions .entity-symbol:before {
+  content: '\E7B6';
+}
+.entity-symbol.Currency:before,
+.Currency .entity-symbol:before {
+  content: '\EB0D';
+}
+.entity-symbol.DateTime:before,
+.DateTime .entity-symbol:before {
+  content: '\EC92';
+}
+.entity-symbol.OfficeIcon:before,
+.OfficeIcon .entity-symbol:before {
+  content: '\EC29';
+}
+.entity-symbol.OfficeIconWordFileSharedWithMe:before,
+.OfficeIconWordFileSharedWithMe .entity-symbol:before {
+  content: '\F041';
+}
+.entity-symbol.OfficeIconWordFileCheckedOut:before,
+.OfficeIconWordFileCheckedOut .entity-symbol:before {
+  content: '\F048';
+}
+.entity-symbol.OfficeIconExcelFile:before,
+.OfficeIconExcelFile .entity-symbol:before {
+  content: '\EC28';
+}
+.entity-symbol.OfficeIconExcelFileSharedWithMe:before,
+.OfficeIconExcelFileSharedWithMe .entity-symbol:before {
+  content: '\F042';
+}
+.entity-symbol.OfficeIconExcelFileCheckedOut:before,
+.OfficeIconExcelFileCheckedOut .entity-symbol:before {
+  content: '\F049';
+}
+.entity-symbol.OfficeIconPowerPointFile:before,
+.OfficeIconPowerPointFile .entity-symbol:before {
+  content: '\EC2A';
+}
+.entity-symbol.OfficeIconPowerPointFileSharedWithMe:before,
+.OfficeIconPowerPointFileSharedWithMe .entity-symbol:before {
+  content: '\F043';
+}
+.entity-symbol.OfficeIconPowerPointFileCheckedOut:before,
+.OfficeIconPowerPointFileCheckedOut .entity-symbol:before {
+  content: '\F04C';
+}
+.entity-symbol.OfficeIconOneNoteFile:before,
+.OfficeIconOneNoteFile .entity-symbol:before {
+  content: '\EC0D';
+}
+.entity-symbol.OfficeIconOneNoteFileSharedWithMe:before,
+.OfficeIconOneNoteFileSharedWithMe .entity-symbol:before {
+  content: '\F044';
+}
+.entity-symbol.OfficeIconOneNoteFileCheckedOut:before,
+.OfficeIconOneNoteFileCheckedOut .entity-symbol:before {
+  content: '\F04B';
+}
+.entity-symbol.OfficeIconAccessFile:before,
+.OfficeIconAccessFile .entity-symbol:before {
+  content: '\ED69';
+}
+.entity-symbol.OfficeIconAccessFileSharedWithMe:before,
+.OfficeIconAccessFileSharedWithMe .entity-symbol:before {
+  content: '\F047';
+}
+.entity-symbol.OfficeIconAccessFileCheckedOut:before,
+.OfficeIconAccessFileCheckedOut .entity-symbol:before {
+  content: '\F04E';
+}
+.entity-symbol.OfficeIconProjectFile:before,
+.OfficeIconProjectFile .entity-symbol:before {
+  content: '\EDD4';
+}
+.entity-symbol.OfficeIconProjectFileSharedWithMe:before,
+.OfficeIconProjectFileSharedWithMe .entity-symbol:before {
+  content: '\F045';
+}
+.entity-symbol.OfficeIconProjectFileCheckedOut:before,
+.OfficeIconProjectFileCheckedOut .entity-symbol:before {
+  content: '\F04C';
+}
+.entity-symbol.OfficeIconVisioFile:before,
+.OfficeIconVisioFile .entity-symbol:before {
+  content: '\ED7D';
+}
+.entity-symbol.OfficeIconVisioFileSharedWithMe:before,
+.OfficeIconVisioFileSharedWithMe .entity-symbol:before {
+  content: '\F046';
+}
+.entity-symbol.OfficeIconVisioFileCheckedOut:before,
+.OfficeIconVisioFileCheckedOut .entity-symbol:before {
+  content: '\F04D';
+}
+.entity-symbol.OfficeIconHelpFile:before,
+.OfficeIconHelpFile .entity-symbol:before {
+  content: '\F01B';
+}
+.entity-symbol.OfficeIconHelpFileSharedWithMe:before,
+.OfficeIconHelpFileSharedWithMe .entity-symbol:before {
+  content: '\F019';
+}
+.entity-symbol.OfficeIconHelpFileCheckedOut:before,
+.OfficeIconHelpFileCheckedOut .entity-symbol:before {
+  content: '\F01A';
+}
+.entity-symbol.OfficeIconZipFile:before,
+.OfficeIconZipFile .entity-symbol:before {
+  content: '\F012';
+}
+.entity-symbol.OfficeIconZipFileSharedWithMe:before,
+.OfficeIconZipFileSharedWithMe .entity-symbol:before {
+  content: '\F010';
+}
+.entity-symbol.OfficeIconZipFileCheckedOut:before,
+.OfficeIconZipFileCheckedOut .entity-symbol:before {
+  content: '\F011';
+}
+.entity-symbol.OfficeIconSetupFile:before,
+.OfficeIconSetupFile .entity-symbol:before {
+  content: '\F01E';
+}
+.entity-symbol.OfficeIconSetupFileSharedWithMe:before,
+.OfficeIconSetupFileSharedWithMe .entity-symbol:before {
+  content: '\F01C';
+}
+.entity-symbol.OfficeIconSetupFileCheckedOut:before,
+.OfficeIconSetupFileCheckedOut .entity-symbol:before {
+  content: '\F01D';
+}
+.entity-symbol.OfficeIconVideoFile:before,
+.OfficeIconVideoFile .entity-symbol:before {
+  content: '\F013';
+}
+.entity-symbol.OfficeIconVideoFileSharedWithMe:before,
+.OfficeIconVideoFileSharedWithMe .entity-symbol:before {
+  content: '\F015';
+}
+.entity-symbol.OfficeIconVideoFileCheckedOut:before,
+.OfficeIconVideoFileCheckedOut .entity-symbol:before {
+  content: '\F014';
+}
+.entity-symbol.OfficeIconImageFile:before,
+.OfficeIconImageFile .entity-symbol:before {
+  content: '\EB9F';
+}
+.entity-symbol.OfficeIconImageFileSharedWithMe:before,
+.OfficeIconImageFileSharedWithMe .entity-symbol:before {
+  content: '\F020';
+}
+.entity-symbol.OfficeIconImageFileCheckedOut:before,
+.OfficeIconImageFileCheckedOut .entity-symbol:before {
+  content: '\F01F';
+}
+.entity-symbol.OfficeIconAudioFile:before,
+.OfficeIconAudioFile .entity-symbol:before {
+  content: '\F021';
+}
+.entity-symbol.OfficeIconAudioFileSharedWithMe:before,
+.OfficeIconAudioFileSharedWithMe .entity-symbol:before {
+  content: '\F022';
+}
+.entity-symbol.OfficeIconAudioFileCheckedOut:before,
+.OfficeIconAudioFileCheckedOut .entity-symbol:before {
+  content: '\F023';
+}
+.entity-symbol.OfficeIconExecutableFile:before,
+.OfficeIconExecutableFile .entity-symbol:before {
+  content: '\F026';
+}
+.entity-symbol.OfficeIconExecutableFileSharedWithMe:before,
+.OfficeIconExecutableFileSharedWithMe .entity-symbol:before {
+  content: '\F028';
+}
+.entity-symbol.OfficeIconExecutableFileCheckedOut:before,
+.OfficeIconExecutableFileCheckedOut .entity-symbol:before {
+  content: '\F027';
+}
+.entity-symbol.OfficeIconPdfFile:before,
+.OfficeIconPdfFile .entity-symbol:before {
+  content: '\EF5C';
+}
+.entity-symbol.OfficeIconPdfFileSharedWithMe:before,
+.OfficeIconPdfFileSharedWithMe .entity-symbol:before {
+  content: '\F024';
+}
+.entity-symbol.OfficeIconPdfFileCheckedOut:before,
+.OfficeIconPdfFileCheckedOut .entity-symbol:before {
+  content: '\F025';
+}
+.entity-symbol.OfficeIconWebFile:before,
+.OfficeIconWebFile .entity-symbol:before {
+  content: '\F016';
+}
+.entity-symbol.OfficeIconWebFileSharedWithMe:before,
+.OfficeIconWebFileSharedWithMe .entity-symbol:before {
+  content: '\F018';
+}
+.entity-symbol.OfficeIconWebFileCheckedOut:before,
+.OfficeIconWebFileCheckedOut .entity-symbol:before {
+  content: '\F017';
+}
+.entity-symbol.OfficeIconTextFile:before,
+.OfficeIconTextFile .entity-symbol:before {
+  content: '\F029';
+}
+.entity-symbol.OfficeIconTextFileSharedWithMe:before,
+.OfficeIconTextFileSharedWithMe .entity-symbol:before {
+  content: '\F02B';
+}
+.entity-symbol.OfficeIconTextFileCheckedOut:before,
+.OfficeIconTextFileCheckedOut .entity-symbol:before {
+  content: '\F02A';
+}
+.entity-symbol.OfficeIconFolder:before,
+.OfficeIconFolder .entity-symbol:before {
+  content: '\E8B7';
+}
+.entity-symbol.OfficeIconFolderSharedWithMe:before,
+.OfficeIconFolderSharedWithMe .entity-symbol:before {
+  content: '\F02F';
+}
+.entity-symbol.OfficeIconFolderCheckedOut:before,
+.OfficeIconFolderCheckedOut .entity-symbol:before {
+  content: '\F02E';
+}
+.entity-symbol.OfficeIconGenericFile:before,
+.OfficeIconGenericFile .entity-symbol:before {
+  content: '\E7C3';
+}
+.entity-symbol.OfficeIconGenericFileSharedWithMe:before,
+.OfficeIconGenericFileSharedWithMe .entity-symbol:before {
+  content: '\F02D';
+}
+.entity-symbol.OfficeIconGenericFileCheckedOut:before,
+.OfficeIconGenericFileCheckedOut .entity-symbol:before {
+  content: '\F02C';
+}
+.entity-symbol.ScanBarcodeButton:before,
+.ScanBarcodeButton .entity-symbol:before {
+  content: '\EE6F';
+}
+.entity-symbol.Goal:before,
+.Goal .entity-symbol:before {
+  content: '\F5F0';
+}
+.entity-symbol.Metric:before,
+.Metric .entity-symbol:before {
+  content: '\E9E6';
+}
+.entity-symbol.Report:before,
+.Report .entity-symbol:before {
+  content: '\EFFE';
+}
+.entity-symbol.SalesLiterature:before,
+.SalesLiterature .entity-symbol:before {
+  content: '\F058';
+}
+.entity-symbol.msdyusd_task-symbol:before,
+.msdyusd_task-symbol .entity-symbol:before {
+  content: '\F308';
+}
+.entity-symbol.msdyusd_configuration-symbol:before,
+.msdyusd_configuration-symbol .entity-symbol:before {
+  content: '\F01E';
+}
+.entity-symbol.msdyusd_customizationfiles-symbol:before,
+.msdyusd_customizationfiles-symbol .entity-symbol:before {
+  content: '\EFFB';
+}
+.entity-symbol.msdyusd_entitysearch-symbol:before,
+.msdyusd_entitysearch-symbol .entity-symbol:before {
+  content: '\F03C';
+}
+.entity-symbol.msdyusd_uiievent-symbol:before,
+.msdyusd_uiievent-symbol .entity-symbol:before {
+  content: '\F2AA';
+}
+.entity-symbol.msdyusd_form-symbol:before,
+.msdyusd_form-symbol .entity-symbol:before {
+  content: '\E8A1';
+}
+.entity-symbol.uii_option-symbol:before,
+.uii_option-symbol .entity-symbol:before {
+  content: '\F072';
+}
+.entity-symbol.uii_hostedapplication-symbol:before,
+.uii_hostedapplication-symbol .entity-symbol:before {
+  content: '\ECEE';
+}
+.entity-symbol.msdyusd_scriptlet-symbol:before,
+.msdyusd_scriptlet-symbol .entity-symbol:before {
+  content: '\ECCE';
+}
+.entity-symbol.msdyusd_toolbarstrip-symbol:before,
+.msdyusd_toolbarstrip-symbol .entity-symbol:before {
+  content: '\E737';
+}
+.entity-symbol.msdyusd_usersettings-symbol:before,
+.msdyusd_usersettings-symbol .entity-symbol:before {
+  content: '\EF58';
+}
+.entity-symbol.msdyusd_agentscriptaction-symbol:before,
+.msdyusd_agentscriptaction-symbol .entity-symbol:before {
+  content: '\F31B';
+}
+.entity-symbol.msdyusd_auditanddiagnosticssetting-symbol:before,
+.msdyusd_auditanddiagnosticssetting-symbol .entity-symbol:before {
+  content: '\F568';
+}
+.entity-symbol.msdyusd_sessioninformation-symbol:before,
+.msdyusd_sessioninformation-symbol .entity-symbol:before {
+  content: '\EB3B';
+}
+.entity-symbol.msdyusd_windowroute-symbol:before,
+.msdyusd_windowroute-symbol .entity-symbol:before {
+  content: '\E7B4';
+}
+.entity-symbol.Service:before,
+.Service .entity-symbol:before {
+  content: '\EFD2';
+}
+.entity-symbol.ServiceAppointment:before,
+.ServiceAppointment .entity-symbol:before {
+  content: '\EFF1';
+}
+.entity-symbol.Equipment:before,
+.Equipment .entity-symbol:before {
+  content: '\F426';
+}
+.entity-symbol.BusinessUnit:before,
+.BusinessUnit .entity-symbol:before {
+  content: '\E821';
+}
+.entity-symbol.PriceLevel:before,
+.PriceLevel .entity-symbol:before {
+  content: '\EFC6';
+}
+.entity-symbol.GoalRollUpQuery:before,
+.GoalRollUpQuery .entity-symbol:before {
+  content: '\F03C';
+}
+.entity-symbol.UoMSchedule:before,
+.UoMSchedule .entity-symbol:before {
+  content: '\EDEC';
+}
+.entity-symbol.DiscountType:before,
+.DiscountType .entity-symbol:before {
+  content: '\EB07';
+}
+.entity-symbol.Territory:before,
+.Territory .entity-symbol:before {
+  content: '\E800';
+}
+.entity-symbol.Socialactivity:before,
+.Socialactivity .entity-symbol:before {
+  content: '\E8F2';
+}
+.entity-symbol.RoutingRule:before,
+.RoutingRule .entity-symbol:before {
+  content: '\F8A8';
+}
+.entity-symbol.RoutingRuleItem:before,
+.RoutingRuleItem .entity-symbol:before {
+  content: '\EFB0';
+}
+.entity-symbol.msdyn_servicelevelagreement:before,
+.msdyn_servicelevelagreement .entity-symbol:before {
+  content: '\F86A';
+}
+.entity-symbol.msdyn_knowledgearticletemplate:before,
+.msdyn_knowledgearticletemplate .entity-symbol:before {
+  content: '\F802';
+}
+.entity-symbol.msdyn_servicelevelagreementkpi:before,
+.msdyn_servicelevelagreementkpi .entity-symbol:before {
+  content: '\F86B';
+}
+.entity-symbol.msdyn_servicelevelagreementinstance:before,
+.msdyn_servicelevelagreementinstance .entity-symbol:before {
+  content: '\F86C';
+}
+.entity-symbol.Code:before,
+.Code .entity-symbol:before {
+  content: '\E943';
+}
+.entity-symbol.GroupList:before,
+.GroupList .entity-symbol:before {
+  content: '\F168';
+}
+.entity-symbol.CompletedSolid:before,
+.CompletedSolid .entity-symbol:before {
+  content: '\EC61';
+}
+.entity-symbol.WarningSolid:before,
+.WarningSolid .entity-symbol:before {
+  content: '\F736';
+}
+.entity-symbol.Site:before,
+.Site .entity-symbol:before {
+  content: '\E731';
+}
+/**
+ * @license Copyright (c) Microsoft Corporation. All rights reserved.
+ *
+ * IMPORTANT!
+ * DO NOT MAKE CHANGES TO THIS FILE - THIS FILE IS GENERATED BY A BUILD TASK
+ * IF YOU NEED TO MAKE CHANGES THEY MUST BE MADE IN THE JSON CONFIGURATION FILE
+ */
+.symbolFont {
+  font-family: 'Dyn CRM Symbol';
+}
+.Expanded-symbol:before {
+  content: '\E70D';
+}
+.UpArrowHead-symbol:before {
+  content: '\E70E';
+}
+.LeftArrowHead-symbol:before {
+  content: '\E76B';
+}
+body[dir="rtl"] .LeftArrowHead-symbol:before {
+  content: '\E76C';
+}
+.Collapsed-symbol:before {
+  content: '\E76C';
+}
+.Edit-symbol:before {
+  content: '\E70F';
+}
+.Save-symbol:before {
+  content: '\E74E';
+}
+.Delete-symbol:before {
+  content: '\E74D';
+}
+.Remove-symbol:before {
+  content: '\E74D';
+}
+.Resolve-symbol:before {
+  content: '\F005';
+}
+.Add-symbol:before {
+  content: '\EAEE';
+}
+.Cancel-symbol:before {
+  content: '\E711';
+}
+.HandClick-symbol:before {
+  content: '\E7C9';
+}
+.Accept-symbol:before {
+  content: '\E8FB';
+}
+.More-symbol:before {
+  content: '\E712';
+}
+.Favorite-symbol:before {
+  content: '\E735';
+}
+.Placeholder-symbol:before {
+  content: '\EA86';
+}
+.RatingFull-symbol:before {
+  content: '\E735';
+}
+.RatingEmpty-symbol:before {
+  content: '\E734';
+}
+.Options-symbol:before {
+  content: '\E8D0';
+}
+.Manage-symbol:before {
+  content: '\E912';
+}
+.Settings-symbol:before {
+  content: '\E713';
+}
+.Find-symbol:before {
+  content: '\E11A';
+}
+.Help-symbol:before {
+  content: '\E897';
+}
+.ViewNotifications-symbol:before {
+  content: '\E7C1';
+}
+.StageAdvance-symbol:before {
+  content: '\E72A';
+}
+.CheckMark-symbol:before {
+  content: '\E8FB';
+}
+.Locked-symbol:before {
+  content: '\E72E';
+}
+.Lock-symbol:before {
+  content: '\E72E';
+}
+.MoreOptions-symbol:before {
+  content: '\E9D5';
+}
+.ContactInfo-symbol:before {
+  content: '\E779';
+}
+.Pin-symbol:before {
+  content: '\E718';
+}
+.Pinned-symbol:before {
+  content: '\E840';
+}
+.Unpin-symbol:before {
+  content: '\E77A';
+}
+.Refresh-symbol:before {
+  content: '\E72C';
+}
+.Details-symbol:before {
+  content: '\E700';
+}
+.VisualFilter-symbol:before {
+  content: '\E9EC';
+}
+.GlobalFilter-symbol:before {
+  content: '\E71C';
+}
+.CreatePersonalView-symbol:before {
+  content: '\F554';
+}
+.SaveFilterToCurrentPersonalView-symbol:before {
+  content: '\E74E';
+}
+.SaveFilterToNewPersonalView-symbol:before {
+  content: '\E792';
+}
+.Diamond-symbol:before {
+  content: '\F03D';
+}
+.ApplyFilter-symbol:before {
+  content: '\E8FB';
+}
+.CancelFilter-symbol:before {
+  content: '\E711';
+}
+.StreamView-symbol:before {
+  content: '\E8BF';
+}
+.TileView-symbol:before {
+  content: '\E8A9';
+}
+.Import-symbol:before {
+  content: '\E150';
+}
+.Tools-symbol:before {
+  content: '\ED15';
+}
+.Attach-symbol:before {
+  content: '\E723';
+}
+.Filter-symbol:before {
+  content: '\E71C';
+}
+.Copy-symbol:before {
+  content: '\E8C8';
+}
+.HighPriority-symbol:before {
+  content: '\E8C9';
+}
+.ReduceTile-symbol:before {
+  content: '\E976';
+}
+.ExpandTile-symbol:before {
+  content: '\F052';
+}
+.GlobalFilterExpand-symbol:before {
+  content: '\EE62';
+}
+.GlobalFilterCollapse-symbol:before {
+  content: '\25B7';
+}
+.Clear-symbol:before {
+  content: '\E74D';
+}
+.Post-symbol:before {
+  content: '\E90A';
+}
+.OneNote-symbol:before {
+  content: '\F04F';
+}
+.Home-symbol:before {
+  content: '\E80F';
+}
+.SetAsHome-symbol:before {
+  content: '\F00E';
+}
+.BackButton-symbol:before {
+  content: '\E72B';
+}
+.BackButtonWithoutBorder-symbol:before {
+  content: '\E72B';
+}
+.Forward-symbol:before {
+  content: '\E72A';
+}
+.FirstPageButton-symbol:before {
+  content: '\F438';
+}
+.UpArrow-symbol:before {
+  content: '\E74A';
+}
+.DownArrow-symbol:before {
+  content: '\E74B';
+}
+.SetActiveButton-symbol:before {
+  content: '\E7C1';
+}
+.SearchButton-symbol:before {
+  content: '\E721';
+}
+.ForwardButton-symbol:before {
+  content: '\E761';
+}
+.Mail-symbol:before {
+  content: '\E715';
+}
+.CheckedMail-symbol:before {
+  content: '\ED81';
+}
+.FailedMail-symbol:before {
+  content: '\EFAD';
+}
+.Phone-symbol:before {
+  content: '\E717';
+}
+.Letter-symbol:before {
+  content: '\ECEF';
+}
+.Fax-symbol:before {
+  content: '\EF5C';
+}
+.Chat-symbol:before {
+  content: '\E15F';
+}
+.OpenPane-symbol:before {
+  content: '\E89F';
+}
+.ClosePane-symbol:before {
+  content: '\E8A0';
+}
+.AddFriend-symbol:before {
+  content: '\E1E2';
+}
+body[dir="rtl"] .Arrow-symbol:before {
+  content: '\E76B';
+}
+.Arrow-symbol:before {
+  content: '\E76C';
+}
+.DropdownArrow-symbol:before {
+  content: '\E70D';
+}
+.FlsLocked-symbol:before {
+  content: '\E72E';
+}
+.LinkArticle-symbol:before {
+  content: '\E71B';
+}
+.UnlinkArticle-symbol:before {
+  content: '\ED90';
+}
+.CopyLink-symbol:before {
+  content: '\E8C8';
+}
+.EmailLink-symbol:before {
+  content: '\EFAC';
+}
+.Share-symbol:before {
+  content: '\E72D';
+}
+.Assign-symbol:before {
+  content: '\F054';
+}
+.Connect-symbol:before {
+  content: '\EFD4';
+}
+.Opportunity-symbol:before {
+  content: '\E8B7';
+}
+.Appointment-symbol:before {
+  content: '\E787';
+}
+.Task-symbol:before {
+  content: '\E73A';
+}
+.Case-symbol:before {
+  content: '\E90F';
+}
+.PhoneCallIncoming-symbol:before {
+  content: '\E77E';
+}
+.PhoneCallOutgoing-symbol:before {
+  content: '\E77D';
+}
+.LetterIncoming-symbol:before {
+  content: '\F0DB';
+}
+.LetterOutgoing-symbol:before {
+  content: '\F0DC';
+}
+.FaxIncoming-symbol:before {
+  content: '\F0D9';
+}
+.FaxOutgoing-symbol:before {
+  content: '\F0DA';
+}
+.EmailIncoming-symbol:before {
+  content: '\EFAB';
+}
+.EmailOutgoing-symbol:before {
+  content: '\EFAF';
+}
+.SendEmail-symbol:before {
+  content: '\E724';
+}
+.ApplyTemplate-symbol:before {
+  content: '\E8FF';
+}
+.InsertKbArticle-symbol:before {
+  content: '\F029';
+}
+.SalesLiterature-symbol:before {
+  content: '\F058';
+}
+.SendSelected-symbol:before {
+  content: '\EFB8';
+}
+.SaveAndClose-symbol:before {
+  content: '\F038';
+}
+.ReplyEmail-symbol:before {
+  content: '\E97A';
+}
+.ReplyAllEmail-symbol:before {
+  content: '\EE0A';
+}
+.ForwardEmail-symbol:before {
+  content: '\E72A';
+}
+.Close-symbol:before {
+  content: '\E711';
+}
+.Activate-symbol:before {
+  content: '\EFBC';
+}
+.DeActivate-symbol:before {
+  content: '\EFB5';
+}
+.DeleteBulk-symbol:before {
+  content: '\EFBA';
+}
+.SocialActivityIncoming-symbol:before {
+  content: '\ECB5';
+}
+.SocialActivityOutgoing-symbol:before {
+  content: '\ECB5';
+}
+.Dynamics365-symbol:before {
+  content: '\EDCC';
+}
+.CustomActivity-symbol:before {
+  content: '\EFF0';
+}
+.CustomEntity-symbol:before {
+  content: '\EFF7';
+}
+.SystemPost-symbol:before {
+  content: '\EFEF';
+}
+.Convert-symbol:before {
+  content: '\F05C';
+}
+.MarkAsWon-symbol:before {
+  content: '\E9D1';
+}
+.MarkAsLost-symbol:before {
+  content: '\E733';
+}
+.SetRegarding-symbol:before {
+  content: '\EFB9';
+}
+.SaveAsComplete-symbol:before {
+  content: '\E8FB';
+}
+.Process-symbol:before {
+  content: '\F076';
+}
+.SwitchProcess-symbol:before {
+  content: '\E8B1';
+}
+.Abandon-symbol:before {
+  content: '\EA39';
+}
+.Reactivate-symbol:before {
+  content: '\E72C';
+}
+.FinishStage-symbol:before {
+  content: '\E73E';
+}
+.Recalculate-symbol:before {
+  content: '\E8EF';
+}
+.CloseGoal-symbol:before {
+  content: '\F6C1';
+}
+.AlignWithFiscalPeriod-symbol:before {
+  content: '\F6C2';
+}
+.SendDirectEmail-symbol:before {
+  content: '\E78D';
+}
+.OpenMailbox-symbol:before {
+  content: '\F008';
+}
+.ReOpenOpportunity-symbol:before {
+  content: '\E8DE';
+}
+.ReactivateLead-symbol:before {
+  content: '\E77E';
+}
+.Disqualify-symbol:before {
+  content: '\EFFA';
+}
+.Qualify-symbol:before {
+  content: '\EFF9';
+}
+.SelectView-symbol:before {
+  content: '\EC9B';
+}
+.SelectChart-symbol:before {
+  content: '\EFEA';
+}
+.OpenInBrowser-symbol:before {
+  content: '\E909';
+}
+.NewAppointment-symbol:before {
+  content: '\E787';
+}
+.NewRecurringAppointment-symbol:before {
+  content: '\EF5D';
+}
+.NewPhoneCall-symbol:before {
+  content: '\E717';
+}
+.NewLetter-symbol:before {
+  content: '\ECEF';
+}
+.NewFax-symbol:before {
+  content: '\EF5C';
+}
+.NewTask-symbol:before {
+  content: '\EFBC';
+}
+.NewEmail-symbol:before {
+  content: '\EF61';
+}
+.AddExisting-symbol:before {
+  content: '\EFF2';
+}
+.SaveAndEdit-symbol:before {
+  content: '\E792';
+}
+.Default-symbol:before {
+  content: '\EB95';
+}
+.ScrollRight-symbol:before {
+  content: '\00BB';
+}
+.ScrollLeft-symbol:before {
+  content: '\00AB';
+}
+.SaveAndRunRoutingRule-symbol:before {
+  content: '\EFB0';
+}
+.RunRoutingRule-symbol:before {
+  content: '\EFB0';
+}
+.ResolveCase-symbol:before {
+  content: '\EFBC';
+}
+.CancelCase-symbol:before {
+  content: '\EFBA';
+}
+.ReactivateCase-symbol:before {
+  content: '\EFB9';
+}
+.AddToQueue-symbol:before {
+  content: '\EFC1';
+}
+.CreateChildCase-symbol:before {
+  content: '\F00C';
+}
+.MergeRecords-symbol:before {
+  content: '\EFC9';
+}
+.AssociateChildCase-symbol:before {
+  content: '\F00D';
+}
+.SetAsDefault-symbol:before {
+  content: '\EFDB';
+}
+.ConvertKnowledgeArticle-symbol:before {
+  content: '\F000';
+}
+.QueueItemRoute-symbol:before {
+  content: '\EFB0';
+}
+.QueueItemRelease-symbol:before {
+  content: '\EFB8';
+}
+.QueueItemRemove-symbol:before {
+  content: '\EFB7';
+}
+.QueueItemPick-symbol:before {
+  content: '\EF1C';
+}
+.QueueItemDetail-symbol:before {
+  content: '\EFBF';
+}
+.Drilldown-symbol:before {
+  content: '\ECA6';
+}
+.PopOverButton-symbol:before {
+  content: '\EFEC';
+}
+.ExitButton-symbol:before {
+  content: '\E711';
+}
+.ExportToExcel-symbol:before {
+  content: '\F051';
+}
+.WordTemplates-symbol:before {
+  content: '\EC29';
+}
+.DocumentTemplates-symbol:before {
+  content: '\EC28';
+}
+.OpenInPowerBI-symbol:before {
+  content: '\EA1E';
+}
+.OpenPowerBIReport-symbol:before {
+  content: '\EAE7';
+}
+.OpenDelve-symbol:before {
+  content: '\ED76';
+}
+.ArticleLink-symbol:before {
+  content: '\E71B';
+}
+.ArchiveArticle-symbol:before {
+  content: '\F03F';
+}
+.ApproveArticle-symbol:before {
+  content: '\E8FB';
+}
+.DiscardArticle-symbol:before {
+  content: '\E74D';
+}
+.Minor-symbol:before {
+  content: '\F033';
+}
+.Major-symbol:before {
+  content: '\F032';
+}
+.PublishKnowledgeArticle-symbol:before {
+  content: '\F036';
+}
+.RelateArticle-symbol:before {
+  content: '\F037';
+}
+.RelateProduct-symbol:before {
+  content: '\EC8D';
+}
+.RestoreArticle-symbol:before {
+  content: '\E7A7';
+}
+.RevertToDraftArticle-symbol:before {
+  content: '\EFF3';
+}
+.Translate-symbol:before {
+  content: '\F039';
+}
+.UpdateArticle-symbol:before {
+  content: '\E777';
+}
+.RemoveFilter-symbol:before {
+  content: '\E894';
+}
+.Article-symbol:before {
+  content: '\EF0D';
+}
+.Graph-symbol:before {
+  content: '\E9EC';
+}
+.CSR-symbol:before {
+  content: '\E7B9';
+}
+.MembersIcon-symbol:before {
+  content: '\E77B';
+}
+.QueueIcon-symbol:before {
+  content: '\EFC0';
+}
+.SiteMap-symbol:before {
+  content: '\E700';
+}
+.NormalPriority-symbol:before {
+  content: '\E73F';
+}
+.LowPriority-symbol:before {
+  content: '\E8D0';
+}
+.ViewIcon-symbol:before {
+  content: '\F002';
+}
+.RecentCases-symbol:before {
+  content: '\EFD6';
+}
+.KBRecords-symbol:before {
+  content: '\EED6';
+}
+.NumberOfViews-symbol:before {
+  content: '\E890';
+}
+.ResizeHandle-symbol:before {
+  content: '\E784';
+}
+.TaskBasedFlow-symbol:before {
+  content: '\F3D9';
+}
+.InformationIcon-symbol:before {
+  content: '\E783';
+}
+.PencilIcon-symbol:before {
+  content: '\E70F';
+}
+.ErrorIcon-symbol:before {
+  content: '\E783';
+}
+.SuccessIcon-symbol:before {
+  content: '\E930';
+}
+.NotificationIcon-symbol:before {
+  content: '\E946';
+}
+.OptionsetIcon-symbol:before {
+  content: '\ECEF';
+}
+.PanelHeaderImportDataIcon-symbol:before {
+  content: '\F0DB';
+}
+.SidePanelUpload-symbol:before {
+  content: '\E898';
+}
+.New-symbol:before {
+  content: '\E710';
+}
+.DetailsPageClose-symbol:before {
+  content: '\EA39';
+}
+.SendByEmail-symbol:before {
+  content: '\E715';
+}
+.CreateQuote-symbol:before {
+  content: '\EA1A';
+}
+.SettingsListIcon-symbol:before {
+  content: '\F061';
+}
+.ListIcon-symbol:before {
+  content: '\E8FD';
+}
+.ForwardDisable-symbol:before {
+  content: '\E73E';
+}
+.PdfIconFile-symbol:before {
+  content: '\EA90';
+}
+.PresentationFile-symbol:before {
+  content: '\EC2A';
+}
+.OneNoteFile-symbol:before {
+  content: '\EC0D';
+}
+.AccessFile-symbol:before {
+  content: '\ED69';
+}
+.VisioFile-symbol:before {
+  content: '\ED7D';
+}
+.ProjectFile-symbol:before {
+  content: '\EDD4';
+}
+.Plus-symbol:before {
+  content: '\E710';
+}
+.ChevronUp-symbol:before {
+  content: '\E70E';
+}
+.ChevronDown-symbol:before {
+  content: '\E70D';
+}
+.HappySmiley-symbol:before {
+  content: '\E757';
+}
+.SadSmiley-symbol:before {
+  content: '\E76E';
+}
+.CaseResolution-symbol:before {
+  content: '\F062';
+}
+.CampaignResolution-symbol:before {
+  content: '\EFCE';
+}
+.ServiceActivity-symbol:before {
+  content: '\EFF1';
+}
+.Notes-symbol:before {
+  content: '\F00F';
+}
+.Audio-symbol:before {
+  content: '\E720';
+}
+.Camera-symbol:before {
+  content: '\E722';
+}
+.Video-symbol:before {
+  content: '\E714';
+}
+.SharePointEditDocument-symbol:before {
+  content: '\EFB6';
+}
+.SharePointDeleteDocument-symbol:before {
+  content: '\EFBA';
+}
+.SharePointCheckoutDocument-symbol:before {
+  content: '\F02C';
+}
+.SharePointCheckinDocument-symbol:before {
+  content: '\EFB9';
+}
+.SharePointEditDocumentProperties-symbol:before {
+  content: '\EFFC';
+}
+.SharePointDiscardCheckoutDocument-symbol:before {
+  content: '\E711';
+}
+.SharePointNewDocument-symbol:before {
+  content: '\E710';
+}
+.SharePointNewWordDocument-symbol:before {
+  content: '\EC29';
+}
+.SharePointNewExcelDocument-symbol:before {
+  content: '\EC28';
+}
+.SharePointNewPowerPointDocument-symbol:before {
+  content: '\EC2A';
+}
+.SharePointNewOneNoteDocument-symbol:before {
+  content: '\EC0D';
+}
+.SharePointUploadDocument-symbol:before {
+  content: '\E898';
+}
+.SharePointChangeLocation-symbol:before {
+  content: '\E8DE';
+}
+.SharePointAddDocumentLocation-symbol:before {
+  content: '\EA1A';
+}
+.SharePointEditLocation-symbol:before {
+  content: '\E70F';
+}
+.SharePointOpenLocation-symbol:before {
+  content: '\EED6';
+}
+.SharePointOpenDocument-symbol:before {
+  content: '\F029';
+}
+.Image-symbol:before {
+  content: '\EB9F';
+}
+.Html-symbol:before {
+  content: '\F016';
+}
+.ExpandButton-symbol:before {
+  content: '\E93A';
+}
+.AssociatedArticle-symbol:before {
+  content: '\F030';
+}
+.DisassociatedArticle-symbol:before {
+  content: '\EFF5';
+}
+.FormDesign-symbol:before {
+  content: '\E8A1';
+}
+.AutomaticSuggestions-symbol:before {
+  content: '\EFFB';
+}
+.SemanticZoom-symbol:before {
+  content: '\E7B6';
+}
+.SemanticZoomMirrored-symbol:before {
+  content: '\EA67';
+}
+.BackwardButton-symbol:before {
+  content: '\E760';
+}
+.Warning-symbol:before {
+  content: '\E7BA';
+}
+.MultiSelect-symbol:before {
+  content: '\E762';
+}
+.MultiSelectMirrored-symbol:before {
+  content: '\EA98';
+}
+.GlobalFilterClearAll-symbol:before {
+  content: '\EF8F';
+}
+.GlobalFilterExpandedRow-symbol:before {
+  content: '\F08E';
+}
+.GlobalFilterCollapsedRow-symbol:before {
+  content: '\F08F';
+}
+.OfflineStatus-symbol:before {
+  content: '\E701';
+}
+.Reply-symbol:before {
+  content: '\E97A';
+}
+.Warning-symbol:before {
+  content: '\E7BA';
+}
+.Play-symbol:before {
+  content: '\E768';
+}
+.RelationshipAssistant-symbol:before {
+  content: '\EA80';
+}
+.RetireProduct-symbol:before {
+  content: '\EFE5';
+}
+.AddProduct-symbol:before {
+  content: '\EFE7';
+}
+.Spinning-symbol:before {
+  content: '\EA3A';
+}
+.SortButton-symbol:before {
+  content: '\E8CB';
+}
+.SelectButton-symbol:before {
+  content: '\E762';
+}
+.SelectButtonRTL-symbol:before {
+  content: '\EA98';
+}
+.Flows-symbol:before {
+  content: '\EF90';
+}
+.View-symbol:before {
+  content: '\F002';
+}
+.CreateView-symbol:before {
+  content: '\E710';
+}
+.EditView-symbol:before {
+  content: '\E70F';
+}
+.OpenEntityRecord-symbol:before {
+  content: '\ED0F';
+}
+.GuestUser-symbol:before {
+  content: '\EE57';
+}
+.History-symbol:before {
+  content: '\E81C';
+}
+.ReassignRecords-symbol:before {
+  content: '\EF1C';
+}
+.ManageRoles-symbol:before {
+  content: '\EFD3';
+}
+.JoinTeams-symbol:before {
+  content: '\EDBB';
+}
+.ChangeManager-symbol:before {
+  content: '\E748';
+}
+.AddMembers-symbol:before {
+  content: '\EA15';
+}
+.RemoveMembers-symbol:before {
+  content: '\E8F8';
+}
+.Download-symbol:before {
+  content: '\E896';
+}
+.SetAsDefaultView-symbol:before {
+  content: '\ED86';
+}
+.AssociateCategory-symbol:before {
+  content: '\ECA6';
+}
+.Messenger-symbol {
+  content: '\E8F2';
+}
+.TripleColumn-symbol:before {
+  content: '\F1D5';
+}
+.Tiles-symbol:before {
+  content: '\ECA5';
+}
+.HideVisualFilter-symbol:before {
+  content: '\F403';
+}
+.InteractiveDashboard-symbol:before {
+  content: '\F404';
+}
+.LockPricing-symbol:before {
+  content: '\E72E';
+}
+.CreateInvoice-symbol:before {
+  content: '\EFE2';
+}
+.CreateOrder-symbol:before {
+  content: '\EFE2';
+}
+.FulfillOrder-symbol:before {
+  content: '\EFE6';
+}
+.CancelInvoice-symbol:before {
+  content: '\EFE1';
+}
+.ActivateQuote-symbol:before {
+  content: '\EFE0';
+}
+.InvoicePaid-symbol:before {
+  content: '\EFE0';
+}
+.GetProducts-symbol:before {
+  content: '\ECDC';
+}
+.UnlockPricing-symbol:before {
+  content: '\E785';
+}
+.Checkbox-symbol:before {
+  content: '\E739';
+}
+.CheckboxComposite-symbol:before {
+  content: '\E73A';
+}
+.d365Shell {
+  font-family: 'D365 Shell';
+}
+.OfficeWaffle-symbol:before {
+  content: '\E001';
+}
+.RightChevron-symbol:before {
+  content: '\E974';
+}
+.LeftChevron-symbol:before {
+  content: '\E973';
+}
+.GlobalFilterCollapsedRowRTL-symbol:before {
+  content: '\F08D';
+}
+.CancelOrder-symbol:before {
+  content: '\EFE1';
+}
+.UntrackedEmail-symbol:before {
+  content: '\ED80';
+}
+.OpenEmail-symbol:before {
+  content: '\E8C3';
+}
+.DistributionList-symbol:before {
+  content: '\E902';
+}
+.URL-symbol:before {
+  content: '\E774';
+}
+.Ticker-symbol:before {
+  content: '\E7BB';
+}
+.UseCurrentPricing-symbol:before {
+  content: '\EB0D';
+}
+.QuoteCreateInvoice-symbol:before {
+  content: '\EFF4';
+}
+.Revise-symbol:before {
+  content: '\EF1C';
+}
+.CloseQuote-symbol:before {
+  content: '\F066';
+}
+.LinkedInLogo-symbol:before {
+  content: '\F20A';
+}
+.Health-symbol:before {
+  content: '\EAD4';
+}
+.Family-symbol:before {
+  content: '\EBDA';
+}
+.Sports-symbol:before {
+  content: '\EB22';
+}
+.Entertainment-symbol:before {
+  content: '\EA69';
+}
+.OOF-symbol:before {
+  content: '\ED34';
+}
+.CarouselView-symbol:before {
+  content: '\F634';
+}
+.HeartEmpty-symbol:before {
+  content: '\EB51';
+}
+.HeartFilled-symbol:before {
+  content: '\EB52';
+}
+.Follow-symbol:before {
+  content: '\E7A6';
+}
+.Bot-symbol:before {
+  content: '\F08B';
+}
+.PinnedSolid-symbol:before {
+  content: '\F676';
+}
+.FilterSolid-symbol:before {
+  content: '\F412';
+}
+.SystemDocumentTemplates-symbol:before {
+  content: '\F01E';
+}
+.MyDocumentTemplates-symbol:before {
+  content: '\F02D';
+}
+.ViewAllMyDocumentTemplates-symbol:before {
+  content: '\Ed86';
+}
+.EnableSecurityRoles-symbol:before {
+  content: '\ED85';
+}
+.DocumentTemplateUpload-symbol:before {
+  content: '\E898';
+}
+.DocumentTemplateEdit-symbol:before {
+  content: '\EB7E';
+}
+.DocumentTemplateActivate-symbol:before {
+  content: '\EFE0';
+}
+.DocumentTemplateDeactivate-symbol:before {
+  content: '\EFE1';
+}
+.YammerIcon-symbol:before {
+  content: '\ED19';
+}
+.StopIcon-symbol:before {
+  content: '\E71A';
+}
+.ReplaceContentIcon-symbol:before {
+  content: '\EFBD';
+}
+.CloseDateComingSoon-symbol:before {
+  content: '\E91E';
+}
+.NearbyCustomers-symbol:before {
+  content: '\E820';
+}
+.RelevantNews-symbol:before {
+  content: '\E900';
+}
+.UpcomingMeeting-symbol:before {
+  content: '\EE9A';
+}
+.RecentMeeting-symbol:before {
+  content: '\EC92';
+}
+.ReminderWithCall-symbol:before {
+  content: '\EA8F';
+}
+.CardsTask-symbol:before {
+  content: '\EADF';
+}
+.CardsQuote-symbol:before {
+  content: '\F067';
+}
+.CardsOpportunity-symbol:before {
+  content: '\F05F';
+}
+.CardsInvoice-symbol:before {
+  content: '\EFE4';
+}
+.CardsDashboard-symbol:before {
+  content: '\E9FE';
+}
+.CardsLeads-symbol:before {
+  content: '\EFF8';
+}
+.OpportunityNoActivity-symbol:before {
+  content: '\F07B';
+}
+.CaseNoActivity-symbol:before {
+  content: '\F07C';
+}
+.CompetitorMentioned-symbol:before {
+  content: '\EAE2';
+}
+.MeetingRequest-symbol:before {
+  content: '\EBF2';
+}
+.MissedCloseDate-symbol:before {
+  content: '\F07D';
+}
+.IssueDetection-symbol:before {
+  content: '\F077';
+}
+.NoActivityWithAccount-symbol:before {
+  content: '\EA03';
+}
+.YesNo-symbol:before {
+  content: '\E8DF';
+}
+.AgendaActivityServiceAppointment-symbol:before {
+  content: '\F05A';
+}
+.AgendaActivityFax-symbol:before {
+  content: '\EF5C';
+}
+.UpcomingFlight-symbol:before {
+  content: '\E709';
+}
+.OpportunityAtRiskSentiment-symbol:before {
+  content: '\F078';
+}
+.IconDue-symbol:before {
+  content: '\F07E';
+}
+.AddProductFamily-symbol:before {
+  content: '\EFE8';
+}
+.AddProductBundle-symbol:before {
+  content: '\EE30';
+}
+.ProductPublish-symbol:before {
+  content: '\ECDB';
+}
+.CloneProduct-symbol:before {
+  content: '\F1D4';
+}
+.Connection-symbol:before {
+  content: '\EFD4';
+}
+.ConnectionToMe-symbol:before {
+  content: '\E77B';
+}
+.ConnectionToOther-symbol:before {
+  content: '\EE05';
+}
+.ProductUpsell-symbol:before {
+  content: '\F079';
+}
+.SubscriptionAdd-symbol:before {
+  content: '\ED0E';
+}
+.RefreshDevice-symbol:before {
+  content: '\F6F1';
+}
+.BulletListRemove-symbol:before {
+  content: '\EFC3';
+}
+.BulletListAdd-symbol:before {
+  content: '\EFC5';
+}
+.BulletListDownArrow-symbol:before {
+  content: '\EFC2';
+}
+.People-symbol:before {
+  content: '\E716';
+}
+.PeopleBlock-symbol:before {
+  content: '\ED91';
+}
+.CreateQuickCampaign-symbol:before {
+  content: '\EFCD';
+}
+.PageSolid-symbol:before {
+  content: '\E729';
+}
+.Page-symbol:before {
+  content: '\E7C3';
+}
+.OpportunitiesList-symbol:before {
+  content: '\F3D4';
+}
+.BrowseCards-symbol:before {
+  content: '\ED4A';
+}
+.ScatterChart-symbol:before {
+  content: '\EFEB';
+}
+.BarChartHorizontal-symbol:before {
+  content: '\E9EB';
+}
+.BarChartVertical-symbol:before {
+  content: '\E9EC';
+}
+.FunnelChart-symbol:before {
+  content: '\E9F1';
+}
+.PieDouble-symbol:before {
+  content: '\EB04';
+}
+.AdvFind-symbol:before {
+  content: '\E71C';
+}
+.SendAndClose-symbol:before {
+  content: '\F72D';
+}
+.DoubleChevronLeft-symbol:before {
+  content: '\E991';
+}
+.DoubleChevronRight-symbol:before {
+  content: '\EA4D';
+}
+.AreaChart-symbol:before {
+  content: '\E9E6';
+}
+.DonutChart-symbol:before {
+  content: '\F368';
+}
+.TagChart-symbol:before {
+  content: '\F78E';
+}
+.Teaser-symbol:before {
+  content: '\F071';
+}
+.Clone-symbol:before {
+  content: '\EC9B';
+}
+.AreaChartMirrored-symbol:before {
+  content: '\F7D1';
+}
+.BarChartHorizontalMirrored-symbol:before {
+  content: '\F7D2';
+}
+.BarChartVerticalMirrored-symbol:before {
+  content: '\F7D3';
+}
+.AALinkedInLogo-symbol:before {
+  content: '\F20A';
+}
+.Recent-symbol:before {
+  content: '\E823';
+}
+.SharePointIcon-symbol:before {
+  content: '\ED18';
+}
+.OneDriveIcon-symbol:before {
+  content: '\E941';
+}
+.FolderSharedIcon-symbol:before {
+  content: '\F02F';
+}
+.MSTeamsIcon-symbol:before {
+  content: '\F409';
+}
+.AreaSwitcher-symbol:before {
+  content: '\EC8F';
+}
+.Report-symbol:before {
+  content: '\EFFE';
+}
+.ViewHierarchy-symbol:before {
+  content: '\ECA6';
+}
+.ProductPreview-symbol:before {
+  content: '\EFE9';
+}
+.AddTerritoryMember-symbol:before {
+  content: '\E8FA';
+}
+.RemoveTerritoryMember-symbol:before {
+  content: '\F69B';
+}
+.EditDefaultFilter-symbol:before {
+  content: '\F76C';
+}
+.NewServiceActivity-symbol:before {
+  content: '\EFF1';
+}
+.Recurrence-symbol:before {
+  content: '\F4A3';
+}
+.EditSeries-symbol:before {
+  content: '\F7E6';
+}
+.EndSeries-symbol:before {
+  content: '\F7E7';
+}
+.Lead-symbol:before {
+  content: '\EFD6';
+}
+.TableLink-symbol:before {
+  content: '\F77A';
+}
+.TableGroup-symbol:before {
+  content: '\F6D9';
+}
+.ClearDefault-symbol:before {
+  content: '\E711';
+}
+.SetDefault-symbol:before {
+  content: '\E8FB';
+}
+.ThumbsUp-symbol:before {
+  content: '\E8E1';
+}
+.ThumbsDown-symbol:before {
+  content: '\E8E0';
+}
+.ChromeMinimize-symbol:before {
+  content: '\E921';
+}
+.ChromeMaximize-symbol:before {
+  content: '\E922';
+}
+.Expand-symbol:before {
+  content: '\E740';
+}
+.ConnectionRoleManageRecordType-symbol:before {
+  content: '\EFD4';
+}
+.Sync-symbol:before {
+  content: '\E895';
+}
+.ThumbsUpSolid-symbol:before {
+  content: '\F3BF';
+}
+.ThumbsDownSolid-symbol:before {
+  content: '\F3C0';
+}
+.CommandChecker-symbol:before {
+  content: "\E773";
+}
+.MiniContract-symbol:before {
+  content: '\E93B';
+}
+.MiniExpand-symbol:before {
+  content: '\E93A';
+}
+.Print-symbol:before {
+  content: '\E749';
+}
+.NoDataAvailable-symbol:before {
+  content: '\EFC7';
+}
+.MoreVertical-symbol:before {
+  content: '\F2BC';
+}
+.OpenInNewWindow-symbol:before {
+  content: '\E8A7';
+}
+.EditEvent-symbol:before {
+  content: '\F05B';
+}
+.LinkToRecord-symbol:before {
+  content: '\E3F2';
+}
+.UnlinkFromRecord-symbol:before {
+  content: '\E3F3';
+}
+.KnowledgeSearch-symbol:before {
+  content: '\E736';
+}
+.ChevronDownMed-symbol:before {
+  content: '\E972';
+}
+.OpenFolderHorizontal-symbol:before {
+  content: '\ED25';
+}
+.TaskClipboard-symbol:before {
+  content: '\F7EC';
+}
+.ExpandAllRecords-symbol:before {
+  content: '\F859';
+}
+.CollapseAllRecords-symbol:before {
+  content: '\F85A';
+}
+.SelectAll-symbol:before {
+  content: '\E8B3';
+}
+.Embed-symbol:before {
+  content: '\ECCE';
+}
+.MailTemplate-symbol:before {
+  content: '\F643';
+}
+.Monitor-symbol:before {
+  content: '\E9D9';
+}
+.HideInSimpleMode-symbol:before {
+  content: '\EF89';
+}
+.ShowInSimpleMode-symbol:before {
+  content: '\E890';
+}

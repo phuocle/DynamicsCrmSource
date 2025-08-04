@@ -1,0 +1,94 @@
+<html>
+<script>
+    // This htm acts as a form preview loader. It checks the auth status to the crm org before loading the preview
+    // We use an odata api to check user auth. (We will use a health status check api when available)
+    // If response status is 200, the preview is loaded right away
+    // For other responses we open the login flow and after successful authentication load the preview.
+
+
+    // fetch the default solution id to check the auth status. (Replace with health check api once available)
+    var authCheckURL = window.location.origin + "/api/data/v9.0/solutions(solutionid=fd140aaf-4df4-11dd-bd17-0019b9312238)?$select=uniquename";
+    var urlQueryString = new URLSearchParams(window.location.search);
+    var previewUrl = urlQueryString.get('previewURL');
+    var urlToNavigate = window.location.origin + "/designers/designerAuthCheck.aspx"; // this will redirect to login screen if not authenticated
+
+    var reqListener = function (resp) {
+        if (resp.status == 200) {
+            window.location.href = previewUrl;
+        }
+        else {	// if resp.status is 401 or any other
+
+            //// Open a pop up window to run the auth flow and close it when auth flow completes
+            var displayCall = function (urlToNavigate) {
+                var popupWindow = window.open(urlToNavigate, "login", 'width=500, height=600');
+                if (popupWindow && popupWindow.focus)
+                    popupWindow.focus();
+                var pollTimer = window.setInterval(function () {
+                    if (!popupWindow || popupWindow.closed || popupWindow.closed === undefined) {
+                        window.clearInterval(pollTimer);
+                    }
+                    try {
+
+                        if (popupWindow.canLoadPreview) {
+                            window.clearInterval(pollTimer);
+                            popupWindow.close();
+                            window.location.href = previewUrl;
+                        }
+                    } catch (e) {
+
+                    }
+                }, 100);
+            }
+            var btn = document.getElementById("SignIn");
+            document.getElementById("SigninDialog").style.display = "";
+            if (btn) btn.onclick = function () {
+                displayCall(urlToNavigate)
+            };
+        }
+    }
+
+    // send req to authCheckURL
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            reqListener(xhr);
+        }
+    };
+    xhr.open("GET", authCheckURL);
+    xhr.send();
+</script>
+
+<style type="text/css">
+
+</style>
+
+<body style="display: flex;
+    align-items: center;
+    justify-content: center;">
+    <div id="SigninDialog" class="ms-Dialog-main " style="display:none; width: auto;max-width: 340px;min-width: 288px;box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 5px 0px;background-color: rgb(255, 255, 255);box-sizing: border-box;position: relative;text-align: left;max-height: 100%;margin: 0px;font-family: &quot;Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;, sans-serif;-webkit-font-smoothing: antialiased;font-size: 14px;font-weight: 400;color: rgb(51, 51, 51);justify-self: center;align-items: center;">
+        <div class="ms-Dialog-content " style="
+    box-shadow: none;
+    margin-top: 16px;
+    margin-right: 4px;
+    margin-bottom: 16px;
+    margin-left: 4px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    box-sizing: border-box;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    position: relative;
+    ">
+            <p class="ms-Dialog-subText"></p>
+            <div>Your session has expired. Please sign in again.</div>
+            <div style="text-align: center; margin: 16px 0"><button id="SignIn">SignIn</button></div>
+            <p></p>
+        </div>
+    </div>
+</body>
+
+</html>

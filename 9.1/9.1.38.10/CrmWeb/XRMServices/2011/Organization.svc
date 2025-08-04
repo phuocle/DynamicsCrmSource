@@ -1,0 +1,7 @@
+<%@ ServiceHost 
+	Language="C#" 
+	Debug="true" 
+	Service="Microsoft.Crm.Extensibility.OrganizationSdkService, Microsoft.Crm.Extensibility"
+	CodeBehind="Microsoft.Crm.Extensibility.dll" 
+	Factory=Microsoft.Crm.Extensibility.SdkServiceHostFactory
+%>

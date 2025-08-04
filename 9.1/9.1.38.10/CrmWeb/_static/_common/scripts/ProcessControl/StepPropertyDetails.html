@@ -1,0 +1,438 @@
+﻿<link href="../../../_static/_common/scripts/processcontrol/propertyStyle.css" rel="stylesheet" type="text/css">
+<div id="properties" aria-labelledby="StepPropertyDetails_Header">
+	<div class="header ellipsis">
+		<span class="headline1" id="StepPropertyDetails_Header"></span>
+	</div>
+	<div id="contentDivStageProp">
+	<div>
+		<span class="headline2 ellipsis" role="label"  for="descriptionTextbox" id="StepPropertyDetails_StepName"></span>
+		<input class="fieldStage field" type="text" id="descriptionTextbox" aria-labelledby="StepPropertyDetails_StepName">
+	</div>
+	<div id="attributeDiv">
+		<span class="headline2 ellipsis" role="label" for="attributeNameDropDown" id="StepPropertyDetails_DataField"></span>	
+		<select class="field" id="attributeNameDropDown" aria-labelledby="StepPropertyDetails_DataField" role="combobox"></select>
+	</div>
+		<div class="isrequired">
+			<input type="checkbox" id="isRequiredCheckbox" for="" class="required-checkbox" aria-labelledby="StepPropertyDetails_IsRequired" />
+			<span class="headline2 required-label" role="label" id="StepPropertyDetails_IsRequired" ></span>
+		</div>
+	<div>
+		<span class="headline2 ellipsis" role="label" id="StepPropertyDetails_Sequence"></span>
+		<select class="field" id="sequenceDropDown" aria-labelledby="StepPropertyDetails_Sequence" role="combobox"></select>
+	</div>
+</div>
+</div>
+<div class="buttons align-self">
+	<div id="noteForUnsavedchangesIcon" class="warningNotificationSymbol" aria-labelledby="noteForUnsavedchangesIconTooltip">
+		<span aria-live="polite" id="noteForUnsavedchangesIconTooltip" class="ellipsis"></span>
+	</div>
+	<span>
+		<input id="stepSave" type="button" value="" class="ellipsis" role="button" />
+		<input id="stepDiscard" type="button" value="" class="ellipsis" role="button" />
+	</span>
+</div>
+    <script>
+        function isPropertyViewModified() {
+            var editItems = getEditItems();
+            var currentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            var modified = false;
+            var parentStageModel = currentModel._parentStage;
+            var currentPosition = parentStageModel.getStepSequence(currentModel._stepId);
+            modified = modified || (currentModel._description != $('#descriptionTextbox').val());
+            modified = modified || (currentModel._isRequired != $('#isRequiredCheckbox').is(":checked"));
+            modified = modified || (currentModel._attributeName != $("#attributeNameDropDown :selected").val());
+            //TODO : Add this, this failing now in case of a new stage
+            //modified = modified || (currentModel._attributeDisplayName != $("#attributeNameDropDown :selected").text());
+            modified = modified || (currentPosition != $("#sequenceDropDown :selected").val());
+            return modified;
+        }
+		var propertyViewCurrentModel;
+		var propertyViewCurrentModelClone;
+
+        $(function () {
+        	var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+			stopwatch.start();
+            document.getElementById("stepSave").addEventListener('click', sendSaveMessage);
+            document.getElementById("stepDiscard").addEventListener('click', discardCallBack);
+            document.getElementById("descriptionTextbox").addEventListener('change', valueChanged);
+            document.getElementById("attributeNameDropDown").addEventListener('change', attributeNameDropDownChanged);
+            document.getElementById("isRequiredCheckbox").addEventListener('change', valueChanged);
+            document.getElementById("sequenceDropDown").addEventListener('change', valueChanged);
+            setToolTips();
+            setTabindex();
+            setLocalizedHTMLStrings();
+            updateHtmlElements();
+            GenericWorkflowDesigner.BasePropertyView.isPropertyViewModified = isPropertyViewModified;
+            GenericWorkflowDesigner.BasePropertyView.yesCallBack = function (event) {
+                $("#stepSave").click();
+            };
+            var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+            propertyViewCurrentModelClone = propertyViewCurrentModel.getPropertyPageClone();
+            MscrmControls.ProcessDesigner.Validation.Errors.registerPropertyViewCurrentModelClone(propertyViewCurrentModelClone);
+            //MscrmControls.ProcessDesigner.MetadataProvider.getAttributeMetadata(propertyViewCurrentModel._parentStage.entityName, loadAttributeMetadata, getAttributeMetadataFailureCallback);
+            MscrmControls.ProcessDesigner.MetadataProvider.getStepAttributeMetadata(propertyViewCurrentModel._parentStage.entityName, loadAttributeMetadata, getAttributeMetadataFailureCallback);
+            stopwatch.stop();
+            localStorage.setItem("ProcessDesignerControl_BPF_StepPropPageLoad", stopwatch.elapsedMilliseconds.toString());
+            renderErrors();
+            MscrmControls.ProcessDesigner.Validation.Errors.refreshErrorMessages = renderErrors;
+            GenericWorkflowDesigner.BasePropertyView.updateHtmlElements = updateHtmlElements;
+
+            resetUnsavedChanges();
+            GenericWorkflowDesigner.attachInputElementChange("properties", showUnsavedChangesNote);
+            ShowWarningOnViewingStepProperties();
+        });
+
+        function valueChanged() {
+        	propertyViewCurrentModelClone._description = $('#descriptionTextbox').val();
+        	$('#descriptionTextbox').attr("title", $('#descriptionTextbox').val());
+        	propertyViewCurrentModelClone._isRequired = $('#isRequiredCheckbox').is(":checked");
+        	propertyViewCurrentModelClone._attributeName = $("#attributeNameDropDown :selected").val();
+        	propertyViewCurrentModelClone._attributeDisplayName = $("#attributeNameDropDown :selected").text();
+        	$("#attributeNameDropDown").attr("title", $("#attributeNameDropDown :selected").text());
+        	$("#sequenceDropDown").attr("title", $("#sequenceDropDown :selected").text());
+        	if ($('#isRequiredCheckbox').is(":checked")) {
+        	    $('#isRequiredCheckbox').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Label_Field_Required"));
+        	}
+        	else {
+        	    $('#isRequiredCheckbox').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Label_Field_Not_Required"));
+        	}
+        	propertyViewCurrentModelClone.validateOnChange();
+        	renderErrors();
+        }
+
+        function renderErrors() {
+        	var hasError = false;
+            // see if any errors exists in clone model
+            if (propertyViewCurrentModelClone.getErrorCount() > 0) {
+            	MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(propertyViewCurrentModelClone, $('#properties'), propertyViewCurrentModelClone.getErrorMessages());
+            	hasError = true;
+            }
+            // see if any errors exists in activity model
+            else {
+                var model = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+                if (!CommonTypes.Types.Object.isNullOrUndefined(model) && !CommonTypes.Types.String.isNullOrEmpty(model) && model.getErrorCount() > 0 && !propertyViewCurrentModelClone.isValid) {
+                	MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel(), $('#properties'), GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel().getErrorMessages());
+                	hasError = true;
+                }
+                else {
+                    MscrmControls.ProcessDesigner.DOMUtil.renderErrorMessages(propertyViewCurrentModelClone, $('#properties'), propertyViewCurrentModelClone.getErrorMessages());
+                }
+            }
+            return hasError;
+        }
+
+        /* Stores the default step name from the step activity model */
+        var defaultStepName;
+
+        /* Change event handler for attributeNameDropDown */
+        function attributeNameDropDownChanged() {
+        	var selectValue = $(this).val();
+
+            /* Check if DropDown value has not yet been changed by user, after the Step was newly created */
+            if (selectValue != "") {
+
+                /* Remove the Placeholder after user changes the attribute name dropdown option */
+                $("#attributeNameDropDown option[value='']").remove();
+                var stepName = $("#descriptionTextbox").val();
+
+                /* Update the Step Name to match the selected dropdown value if user has not changed it */
+                if (stepName === defaultStepName) {
+                    var newStepName = $("#attributeNameDropDown option:selected").text();
+
+                    // Value shown as text
+                    $('#descriptionTextbox').val(newStepName);
+                }
+            }
+            propertyViewCurrentModelClone._attributeType = $("#attributeNameDropDown :selected").attr("attributeType");
+            propertyViewCurrentModelClone._parentPicklistLogicalName = $("#attributeNameDropDown :selected").attr("parentPicklistLogicalName");
+            propertyViewCurrentModelClone._childPicklistLogicalNames = $("#attributeNameDropDown :selected").attr("childPicklistLogicalNames");
+            if (propertyViewCurrentModelClone._attributeType == MscrmControls.ProcessDesigner.AttributeType.Picklist &&
+                ((!CommonTypes.Types.Object.isNullOrUndefined(propertyViewCurrentModelClone._parentPicklistLogicalName) && propertyViewCurrentModelClone._parentPicklistLogicalName !== "null")
+                ||(!CommonTypes.Types.Object.isNullOrUndefined(propertyViewCurrentModelClone._childPicklistLogicalNames) && propertyViewCurrentModelClone._childPicklistLogicalNames !== "null")))
+            {
+                MscrmControls.ProcessDesigner.ProcessDesignerControl.validationMode = (MscrmControls.ProcessDesigner.ProcessDesignerControl.validationMode == GenericWorkflowDesigner.ValidationMode.None) ? GenericWorkflowDesigner.ValidationMode.Warning : MscrmControls.ProcessDesigner.ProcessDesignerControl.validationMode;
+            }
+            valueChanged();
+            MscrmControls.ProcessDesigner.DOMUtil.renderWarningMessages(propertyViewCurrentModelClone, $('#properties'), propertyViewCurrentModelClone.getwarningMessages());
+        }
+
+		//Set HTML Text
+		function setLocalizedHTMLStrings() {
+			$("#StepPropertyDetails_Header").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_Header"));
+			$("#StepPropertyDetails_StepName").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_StepName"));
+			$("#StepPropertyDetails_DataField").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_DataField"));
+			$("#StepPropertyDetails_Sequence").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_Sequence"));
+			$("#StepPropertyDetails_IsRequired").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_IsRequired"));
+
+			$("#stepSave").val(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Apply'));
+			$("#stepDiscard").val(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString('ProcessDesignerControl_BPF_BranchPropertyDetails_Discard'));
+		}
+
+		/* Set the tool tips for the HTML elements*/
+		function setToolTips() {
+			$("#StepPropertyDetails_StepName").attr("title", MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepNameTooltip"));
+			$("#StepPropertyDetails_DataField").attr("title", MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_TBX_Tooltip_Select_Data_Field"));
+			$("#StepPropertyDetails_IsRequired").attr("title", MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Checkbox_Field_Required"));
+			$("#StepPropertyDetails_Sequence").attr("title", MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_SequenceTooltip"));
+			$('#descriptionTextbox').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepNameTooltip"));
+			$('#stepDiscard').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_DiscardChangesTooltip"));
+			if ($('#stepSave').attr("disabled") == undefined) {
+				$('#stepSave').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Available"));
+			}
+			else {
+				$('#stepSave').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Apply_Unavailable"));
+			}
+			$('#StepPropertyDetails_IsRequired').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Checkbox_Field_Required"));
+			if ($('#isRequiredCheckbox').is(":checked")) {
+			    $('#isRequiredCheckbox').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Label_Field_Required"));
+			}
+			else {
+			    $('#isRequiredCheckbox').attr('title', MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_Tooltip_Label_Field_Not_Required"));
+			}
+		}
+
+		/* Set the tabindex for the HTML elements*/
+		function setTabindex() {
+			$('#descriptionTextbox').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#attributeNameDropDown').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#isRequiredCheckbox').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#sequenceDropDown').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#noteForUnsavedchangesIcon').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#stepSave').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+			$('#stepDiscard').attr('tabindex', GenericWorkflowDesigner.Settings.tabIndexValue);
+		}
+
+		/* Update the Html elements based on the available model properties */
+		function updateHtmlElements() {
+			var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+			var attributeNameDropdown = $('#attributeNameDropDown');
+			// Description
+			// Added current name as description
+			$('#descriptionTextbox').val(propertyViewCurrentModel._description);
+			$('#descriptionTextbox').attr("title",propertyViewCurrentModel._description);
+
+			// Attribute Name Drop Down
+			var attributeName = propertyViewCurrentModel._attributeName;
+
+			/* Check if DropDown value has not yet been changed by user, after the Step was newly created */
+			if (attributeName === "") {
+				/* Prepend the placeholder to attributeNameDropdown if attribute name has not been updated */
+				attributeNameDropdown.prepend('<option value="">' + MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_Select") + '</option>');
+				attributeNameDropdown.val("");
+				$("#attributeNameDropDown").attr("title", MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_PropertyPage_EmptyDropDowntooltip"));
+			}
+			else {
+				/* Bind just the attribute logical name to the 'attributeName' Dropdown, until the metadata is received from Metadata Provider */
+				attributeNameDropdown.append('<option value="' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeName) + '">' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeName) + '</option>');
+				attributeNameDropdown.val(attributeName);
+				$("#attributeNameDropDown").attr("title", propertyViewCurrentModel._attributeDisplayName);
+			}
+
+			// Is Required Check-box
+			var isRequired = propertyViewCurrentModel._isRequired;
+			$('#isRequiredCheckbox').prop('checked', isRequired);
+			
+			//Update the sequence dropdown			
+			updateSequenceDropdown(); 
+
+			// Set the Default Step Name
+			defaultStepName = propertyViewCurrentModel._defaultStepName;
+		}
+
+		// populates previously saved values in all the data fields.
+		function discardCallBack() {
+			var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+			stopwatch.start();
+			var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+
+			// Description or step name
+			
+			$('#descriptionTextbox').val(propertyViewCurrentModel._description);
+			$('#descriptionTextbox').attr("title",(propertyViewCurrentModel._description));
+
+			// attribute Name dropdown
+			$('#attributeNameDropDown').val(propertyViewCurrentModel._attributeName);
+			$('#attributeNameDropDown').attr("title", $('#attributeNameDropDown :selected').text());
+
+			// Is Required Check-box
+			var isRequired = propertyViewCurrentModel._isRequired;
+			$('#isRequiredCheckbox').prop('checked', isRequired);
+
+			// Is Required Check-box
+			var parentStageModel = propertyViewCurrentModel._parentStage;
+			var currentSequence = parentStageModel.getStepSequence(propertyViewCurrentModel._stepId);
+			$('#sequenceDropDown').val(currentSequence);
+			$('#sequenceDropDown').attr("title", (currentSequence));
+			resetUnsavedChanges();
+			stopwatch.stop();
+			localStorage.setItem("ProcessDesignerControl_BPF_StepDiscardTime", stopwatch.elapsedMilliseconds.toString());
+			propertyViewCurrentModelClone.clearWarningMessages();
+			MscrmControls.ProcessDesigner.DOMUtil.removeErrorMessages($('#properties'), 'warningLabel', 'warningElement');
+		}
+
+		function updateSequenceDropdown() {
+			//Populate the dropdown options
+		    var sequenceDropdownElement = $('#sequenceDropDown');
+		    var sequenceDropdownElementOptions = $('#sequenceDropDown option');
+			var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+			var parentStageModel = propertyViewCurrentModel._parentStage;
+			var stepsCount = parentStageModel.steps.length;
+			sequenceDropdownElementOptions.remove();
+			for (var i = 1; i <= stepsCount; i++) {
+				sequenceDropdownElement.append('<option value="' + i + '">' + i + '</option>');
+			}
+			
+			//Update the value of this dropdown to the sequence no. of current selected step
+			//TODO : <11May2016> : <depati> : <Use the _sequence attribute once the code for it is complete>
+			//sequenceDropdownElement.val(propertyViewCurrentModel._sequence);
+			var currentSequence = parentStageModel.getStepSequence(propertyViewCurrentModel._stepId);
+			sequenceDropdownElement.val(currentSequence);
+			$('#sequenceDropDown').attr("title", currentSequence);
+		}
+		function loadAttributeMetadata(list) {
+			// Filter the Composite fields from the list
+			var filteredAttributeList = [];
+			for (var attribute in list) {
+				if (!MscrmControls.ProcessDesigner.MetadataProxy.IsAttributeNotAllowed(list[attribute].logicalName)) {
+					filteredAttributeList.push(list[attribute]);
+				}
+			}
+			list = filteredAttributeList;
+
+			var attributeNameDropdown = $('#attributeNameDropDown');
+			// Clear the existing options from attributeNameDropdown
+			var attributeName = attributeNameDropdown.val();
+			attributeNameDropdown.empty();
+
+			// Bind the entire attribute metadata to the 'attributeName' Dropdown, now that it is received from Metadata Provider
+			for (var i = 0; i < list.length; i++) {
+				var attributeData = list[i];
+				var parentPicklistLogicalName = ((CommonTypes.Types.Object.isNullOrUndefined(attributeData.parentPicklistLogicalName)) || attributeData.parentPicklistLogicalName.length == 0) ? null : attributeData.parentPicklistLogicalName;
+				if (!CommonTypes.Types.Object.isNullOrUndefined(parentPicklistLogicalName) || !CommonTypes.Types.Object.isNullOrUndefined(attributeData.childPicklistLogicalNames)) {
+					attributeNameDropdown.append('<option isSystemControl=' + attributeData.isSystemControl + ' parentPicklistLogicalName=' + parentPicklistLogicalName + ' childPicklistLogicalNames=' + attributeData.childPicklistLogicalNames + ' attributeType=' + attributeData.attributeType + ' value="' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeData.logicalName) + '">' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeData.displayName) + '</option>');
+				}
+				else {
+					attributeNameDropdown.append('<option isSystemControl=' + attributeData.isSystemControl + ' attributeType=' + attributeData.attributeType + ' value="' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeData.logicalName) + '">' + GenericWorkflowDesigner.CrmEncodeDecode.CrmHtmlEncode(attributeData.displayName) + '</option>');
+				}
+			}
+
+			/* Check if DropDown value has not yet been changed by user, after the Step was newly created */
+			if (attributeName === "") {
+				/* Prepend the placeholder to attributeNameDropdown if attribute name has not been updated */
+				attributeNameDropdown.prepend('<option value="">' + MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_StepPropertyDetails_Select") + '</option>');
+				attributeNameDropdown.val("");
+			}
+			else {
+				attributeNameDropdown.val(attributeName);
+			}
+		}
+
+		function getAttributeMetadataFailureCallback() {
+			// TODO : 29/04/2016 : v-mandh :Implement Error Handling
+		}        
+
+        /* Retrieve the updated values from Html elements */
+		function getEditItems() {
+			var stepName = $("#descriptionTextbox").val();
+			if (MscrmControls.ProcessDesigner.Util.isEmptyString(stepName)) {
+				stepName = MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_BPFStepActivity_StepName");
+				$("#descriptionTextbox").val(stepName)
+			}
+			var editItems = {
+				_stepName: stepName,
+				_description: $("#descriptionTextbox").val(),
+				_attributeName: $("#attributeNameDropDown :selected").val(),
+				_isRequired: $('#isRequiredCheckbox').is(":checked"),
+				_attributeDisplayName: $("#attributeNameDropDown :selected").text(),
+				_sequence: $('#sequenceDropDown :selected').val(),
+				_isSystemControl: $("#attributeNameDropDown :selected").attr("isSystemControl") == 'true',
+				_attributeType : $("#attributeNameDropDown :selected").attr("attributeType"),
+				_parentPicklistLogicalName : $("#attributeNameDropDown :selected").attr("parentPicklistLogicalName")
+			}
+			return editItems;
+		}
+
+        /* Retrieve the updated values from Html elements and return them back to the parent using post message */
+        function sendSaveMessage() {
+            var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+            stopwatch.start();
+
+            // Indicate to Telemetry that Property Page was saved
+            MscrmControls.ProcessDesigner.isPropertyPageSaved = true;
+
+            var editItems = getEditItems();
+            var validProperties = propertyViewCurrentModelClone.validateOnAction(MscrmControls.ProcessDesigner.Validation.Level.Apply);
+            if (validProperties) {
+                var propertyViewCurrentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+                var parentStageModel = propertyViewCurrentModel._parentStage;
+                var currentPosition = parentStageModel.getStepSequence(propertyViewCurrentModel._stepId);
+                var stageId = parentStageModel.stageId;
+
+                // Publish the event for sequence property being updated. The corresponding stage will respond to this event
+                var sequenceData = {
+                    //TODO : <11May2016> : <depati> : <Use the _sequence attribute once the code for it is complete>
+                    //currentPosition: GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel()._sequence,
+                    currentPosition: currentPosition,
+                    newPosition: $("#sequenceDropDown :selected").val(),
+                    stageId: stageId
+                }
+                //GenericWorkflowDesigner.eventManager.trigger(GenericWorkflowDesigner.FrameworkEvents.stepSequencePropertyUpdated, sequenceData);
+                GenericWorkflowDesigner.eventManager.trigger(MscrmControls.ProcessDesigner.Events.StepSequencePropertyUpdated, sequenceData);
+
+                // FIXME : find why "GenericWorkflowDesigner.currentModel" is getting over written with StageActivity.
+                GenericWorkflowDesigner.currentModel = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+                GenericWorkflowDesigner.eventManager.trigger(GenericWorkflowDesigner.FrameworkEvents.updateProperty, editItems);
+            }
+            //Refresh the errors based on user entered values
+            if (!renderErrors()) {
+            	resetUnsavedChanges();
+            }
+            stopwatch.stop();
+            localStorage.setItem("ProcessDesignerControl_BPF_StepApplyTime", stopwatch.elapsedMilliseconds.toString());
+            propertyViewCurrentModelClone.clearWarningMessages();
+            MscrmControls.ProcessDesigner.DOMUtil.removeErrorMessages($('#properties'), 'warningLabel', 'warningElement');
+        }
+
+		dialogMessageTypes = {
+			Information: 0,
+			Warning: 1,
+			Error: 2
+		}
+
+		function showUnsavedChangesNote() {
+			$("#noteForUnsavedchangesIcon").css("display", "block");
+			if ($("#noteForUnsavedchangesIconTooltip").text() === "") {
+				$("#noteForUnsavedchangesIconTooltip").text(MscrmControls.ProcessDesigner.MetadataProvider.getLocalizedString("ProcessDesignerControl_BPF_UnSavePropertyChangesTooltip"));
+			}
+		}
+
+		function resetUnsavedChanges() {
+			$("#noteForUnsavedchangesIcon").css("display", "none");
+			$("#noteForUnsavedchangesIconTooltip").text("");
+		}
+
+		function ShowWarningOnViewingStepProperties() {
+			var model = GenericWorkflowDesigner.PropertyView.getPropertyViewCurrentModel();
+			if (!CommonTypes.Types.Object.isNullOrUndefined(model)
+				&& !CommonTypes.Types.String.isNullOrEmpty(model)
+				&& (model.getErrorCount() > 0 && !propertyViewCurrentModelClone.isValid
+				&& CommonTypes.Types.Object.isNullOrUndefined(model.getErrorMessages()["#attributeNameDropDown"]))
+				|| model.getErrorCount() == 0)
+			{
+				var stopwatch = new GenericWorkflowDesigner.Stopwatch();
+				stopwatch.start();
+				var selectedAttribute = $("#attributeNameDropDown :selected").val();
+				var parentPicklistLogicalName = $("#attributeNameDropDown :selected").attr("parentPicklistLogicalName");
+				var childPicklistLogicalNames = $("#attributeNameDropDown :selected").attr("childPicklistLogicalNames");
+				if (selectedAttribute.length > 0
+				&& (!CommonTypes.Types.Object.isNullOrUndefined(parentPicklistLogicalName) || !CommonTypes.Types.Object.isNullOrUndefined(childPicklistLogicalNames))) {
+					MscrmControls.ProcessDesigner.ProcessDesignerControl.validationMode = (MscrmControls.ProcessDesigner.ProcessDesignerControl.validationMode == GenericWorkflowDesigner.ValidationMode.None) ? GenericWorkflowDesigner.ValidationMode.Warning : MscrmControls.ProcessDesigner.ProcessDesignerControl.validationMode;
+					propertyViewCurrentModelClone.validateOnChange();
+					MscrmControls.ProcessDesigner.DOMUtil.renderWarningMessages(propertyViewCurrentModelClone, $('#properties'), propertyViewCurrentModelClone.getwarningMessages());
+				}
+				stopwatch.stop();
+				localStorage.setItem("ProcessDesignerControl_BPF_StepPropPageViewValidateDependentOptionSet", stopwatch.elapsedMilliseconds.toString());
+			}
+		}
+    </script>

@@ -1,0 +1,18 @@
+#inPageHelpIframe {
+height:136px;
+width:100%;
+display:block;
+}
+.visor-sliver-dn {
+text-align:center;
+cursor:pointer;
+height:12px;
+display:block;
+}
+
+.visor-sliver-up {
+text-align:center;
+cursor:pointer;
+height:13px;
+display:block;
+}

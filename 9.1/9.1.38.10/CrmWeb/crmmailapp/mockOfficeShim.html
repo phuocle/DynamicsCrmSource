@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>OWA shim test</title>
+	<style>
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed,
+		figure, figcaption, footer, header, hgroup,
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure,
+		footer, header, hgroup, menu, nav, section {
+			display: block;
+		}
+
+		body {
+			line-height: 1;
+			vertical-align: middle;
+		}
+
+		ol, ul {
+			list-style: none;
+		}
+
+		blockquote, q {
+			quotes: none;
+		}
+
+			blockquote:before, blockquote:after,
+			q:before, q:after {
+				content: '';
+				content: none;
+			}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		#mockShimAlerts {
+			position: absolute;
+			bottom: 30px;
+			right: 30px;
+			width: 50%;
+		}
+
+		.alert {
+			padding: 15px;
+			margin-bottom: 20px;
+			border: 1px solid transparent;
+			border-radius: 4px;
+		}
+
+		.alert-danger {
+			background-color: #f2dede;
+			border-color: #ebccd1;
+			color: #a94442;
+		}
+
+		#mockShimLoader {
+			position: absolute;
+			margin-top: -41px;
+			margin-left: -41px;
+			left: 50%;
+			top: 50%;
+			border: 16px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 16px solid #3498db;
+			width: 50px;
+			height: 50px;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+		}
+
+
+		@-webkit-keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+			}
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+	<script type="text/javascript">
+		function insertAlert(className, text) {
+			var elem = document.createElement("div");
+			elem.className = "alert " + className;
+			elem.innerText = text;
+			document.getElementById("mockShimAlerts").appendChild(elem);
+		}
+		function info(msg) {
+			if (window.console) {
+				console.info(msg);
+			}
+		}
+		function success(msg) {
+			if (window.console) {
+				console.info(msg);
+			}
+		}
+		function hideGlobalLoader() {
+			document.getElementById("mockShimLoader").style.display = "none";
+		}
+		function error(msg) {
+			if (window.console) {
+				console.error(msg);
+			}
+			insertAlert("alert-danger", msg);
+			hideGlobalLoader();
+		}
+		function getQueryParameters() {
+			var queryParams = {};
+			if (window.location.search && window.location.search.length > 0) {
+				var searchStr = window.location.search.substring(1);
+				var params = searchStr.split("&");
+				for (var index = 0; index < params.length; index++) {
+					var param = params[index].split("=");
+					if (param.length > 0) {
+						queryParams[param[0]] = decodeURIComponent(param[1].replace(/\+/g, " "));
+					}
+				}
+				return queryParams;
+			}
+		}
+		// Add a helper method 'format' to strings
+		if (!String.prototype.format) {
+			String.prototype.format = function () {
+				var args = arguments;
+				return this.replace(/{(\d+)}/g, function (match, i) {
+					return typeof args[i] != 'undefined'
+						? args[i]
+						: match
+					;
+				});
+			};
+		}
+	</script>
+</head>
+<body>
+	<div id="originalShim"></div>
+	<div id="mockShimPane">
+		<div id="mockShimLoader"></div>
+		<div id="mockShimAlerts"></div>
+		<form id="mockShimConfiguration">
+			<div id="dragbar"></div>
+			<header style="font-size: 20px; padding: 20px;">Mail App Config</header>
+		</form>
+	</div>
+
+	<script type="text/javascript">var sharedScriptsLoadStartTime = Date.now();</script>
+	<script type="text/javascript" src="/uclient/scripts/es6-shim.js"></script>
+	<script type="text/javascript" src="/uclient/scripts/bluebird.js"></script>
+	<script type="text/javascript">var sharedScriptsLoadEndTime = Date.now();</script>
+
+	<script type="text/javascript">
+		var CRM_VERSION_NUMERIC_VALUE = "9.1.0038.0010";
+		var SHIM_VERSION_NUMERIC_VALUE = "1.2.652-240702-221507-v91onpremise";
+		(function () {
+			info("Parsing query parameters.");
+
+			var params = getQueryParameters();
+			var configFileName = ['defaultAppointment.json', 'defaultMessage.json', 'empty.json'];
+			if (!params || !params["configFileName"] || configFileName.indexOf(params["configFileName"]) === -1) {
+				error("configFileName is not specified or if specified not a right one.");
+				return;
+			}
+			success("Done.");
+			var request = new XMLHttpRequest();
+			var testShimRoot = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "") + "/mockOfficeShim";
+			request.onload = function () {
+				if (request.status == 200) {
+					success("Done.");
+					try {
+						info("Parsing configuration.")
+						var responseFromServer = JSON.parse(request.responseText);
+						var regX = /(<([^>]+)>)/ig;
+						responseFromServer.mailboxItem.body = responseFromServer.mailboxItem.body.replace(regX, "");
+						window.mockOfficeShimConfiguration = responseFromServer;
+						success("Done.");
+						//<link rel="stylesheet" type="text/css" href="theme.css">
+						info("Adding mockOfficeShim style.");
+						var style = document.createElement("link");
+						style.type = "text/css";
+						style.rel = "stylesheet";
+						document.head.appendChild(style);
+
+						style.setAttribute("href", testShimRoot + "/styles/mockOfficeShim.css");
+						success("Done.");
+
+						info("Adding mock app script.");
+						//webpack bootstap fire before our scripts and define this property but shouldn't.
+						window["webpackJsonp"] = null;
+
+						var script = document.createElement("script");
+						script.defer = true;
+						script.type = "text/javascript";
+						script.src = testShimRoot + "/scripts/mockShim.js";
+						script.onload = function ()
+						{
+							//be sure that mockShim executes after mockAppCommon
+							info("Adding mockOfficeShim script.");
+							var script = document.createElement("script");
+							script.defer = true;
+							script.type = "text/javascript";
+							script.src = testShimRoot + "/scripts/mockShimPreload.js";
+							document.body.appendChild(script);
+							success("Done.");
+						};
+						document.body.appendChild(script);
+						success("Done.");
+					}
+					catch (err) {
+						error("Exception occurs: {0} \r\nStack: {1}".format(err.message, err.stack));
+					}
+				}
+			};
+			request.onloadend = function () {
+				if (request.status != 200) {
+					error("Error happens during configuration loading. Status Code: '{0}', Status Text: '{1}'".format(request.status, request.statusText));
+				}
+			};
+			info("Loading configuration: '{0}'.".format(params["configFileName"]));
+			request.open('GET', "{0}/configurations/{1}".format(testShimRoot, params["configFileName"]), true);
+			request.setRequestHeader("accept", "application/json");
+			request.send();
+		})();
+	</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+(window.bundleExecutionMarkers=window.bundleExecutionMarkers||{})["scripts/es5/mailapp.js?v=1.4.9962-v91onpremise"]={begin:performance.now()},(window.__wpJsonpUci=window.__wpJsonpUci||[]).push([[78],{jFlZ:function(e,n,r){"use strict";r.r(n),r.d(n,"decorateUrl",(function(){return s})),r.d(n,"decorateInput",(function(){return u}));var i=r("4pqm"),o=r("smWO"),t=r("NxDw");
+/**
+ * @license Copyright (c) Microsoft Corporation. All rights reserved.
+ */
+function s(e,n,r,s,u){var d=new i.a(e.href),p=d.searchParams;return u&&p&&p.has(o.d)&&Number.parseInt(p.get(o.d),10)===t.a.MailApp&&p.delete(o.d),d}function u(e,n,r){return e}}}]),window.bundleExecutionMarkers["scripts/es5/mailapp.js?v=1.4.9962-v91onpremise"].end=window.performance.now(),window.reportBundleExecutionTimes&&window.reportBundleExecutionTimes();

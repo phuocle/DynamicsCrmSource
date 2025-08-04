@@ -1,0 +1,108 @@
+<public:component lightweight="true">
+<public:method name="search"/>
+<public:method name="clearSearch"/>
+<public:method name="selectChange"/>
+<public:method name="findValueKeyDown"/>
+<public:attach event="ondocumentready" onevent="initialize()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oLookup,
+    _oTypePicker,
+    _oFindInput,
+    _loadingHtml = null,
+    _oContentContainer,
+    _runButton,
+    _clearButton;
+function initialize()
+{
+    _oLookup = window.document.getElementById(element.ContextId);
+    _oTypePicker = element.all["selObjects"];
+    _oFindInput = element.all["findValue"];
+    var oContentContainerId = element.CategoryId + "_gridParent";
+    _oContentContainer = element.all[oContentContainerId];
+    _runButton = element.all("btnGo");
+    _clearButton = element.all(element.CategoryId + "_clearCriteriaButton");
+    LoadData()
+}
+function search()
+{
+    _oFindInput.focus();
+    var hintText = Mscrm.CrmUIBehavior.getBehaviorByName(_oFindInput,"HintText");
+    hintText.NotifyFocus();
+    LoadData()
+}
+function LoadData()
+{
+    if(_oLookup.Disabled)
+    {
+        _oContentContainer.innerHTML = "<div style='padding:4;text-align:center;color:#999999;'>" + LOCID_NORECORDS + "</div>";
+        return
+    }
+    element.document.body.cursor = "wait";
+    if(_loadingHtml != null)
+        _oContentContainer.innerHTML = _loadingHtml;
+    _oLookup.RaiseSetAdditionalParamsEvent();
+    var lookupService = new RemoteCommand("LookupService","RetrieveFormAssistantHtml");
+    lookupService.SetParameter("categoryId",element.CategoryId);
+    lookupService.SetParameter("typeCode",_oTypePicker.value);
+    lookupService.SetParameter("bindingColumns",_oLookup.bindingcolumns === null ? "" : _oLookup.bindingcolumns);
+    lookupService.SetParameter("additionalParameters",_oLookup.additionalparams);
+    lookupService.SetParameter("searchValue",_oFindInput.value);
+    lookupService.Execute(searchHandler)
+}
+function searchHandler(result)
+{
+    _loadingHtml = _oContentContainer.innerHTML;
+    if(result.Success && typeof result.ReturnValue == "string")
+    {
+        _oContentContainer.innerHTML = result.ReturnValue;
+        !IsNull(_oFindInput) && _oFindInput.value != "" && 
+            showCancelFindButton()
+    }
+    else
+        _oContentContainer.innerHTML = "<div style='padding:4;text-align:center;color:#999999;'>" + LOCID_NORECORDS + "</div>"
+}
+function selectChange(o)
+{
+    LoadData()
+}
+function findValueKeyDown()
+{
+    if(event.keyCode == KEY_ENTER)
+        search();
+    else
+        event.keyCode != KEY_DOWN && event.keyCode != KEY_TAB && event.keyCode != KEY_ALT && 
+            showRunFindButton()
+}
+function clearSearch()
+{
+    showRunFindButton();
+    if(!IsNull(_oFindInput))
+        _oFindInput.value = "";
+    search();
+    if(!IsNull(_oFindInput))
+    {
+        _oFindInput.focus();
+        _oFindInput.NotifyTextChanged()
+    }
+}
+function showRunFindButton()
+{
+    if(!IsNull(_runButton))
+    {
+        _runButton.style.display = "inline";
+        if(!IsNull(_runButton.firstChild))
+            _runButton.firstChild.src = _runButton.firstChild.imgBase + ".gif"
+    }
+    if(!IsNull(_clearButton))
+        _clearButton.style.display = "none"
+}
+function showCancelFindButton()
+{
+    _clearButton.style.display = "inline";
+    _runButton.style.display = "none";
+    _clearButton.firstChild.src = _clearButton.firstChild.imgBase + ".gif"
+}
+
+</script>
+</public:component>

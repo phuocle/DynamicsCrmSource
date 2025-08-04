@@ -1,0 +1,86 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="entity">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="fields" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="field" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="attributes" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="attribute" minOccurs="1" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="name" type="xs:string" use="required" />
+															<xs:attribute name="objecttypecode" type="ObjectTypeCode" use="required" />
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="name" type="xs:string" use="required" />
+									<xs:attribute name="description" type="xs:string" use="required" />
+									<xs:attribute name="datatype" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="text" />
+												<xs:enumeration value="textarea" />
+												<xs:enumeration value="integer" />
+												<xs:enumeration value="float" />
+												<xs:enumeration value="money" />
+												<xs:enumeration value="picklist" />
+												<xs:enumeration value="lookup" />
+												<xs:enumeration value="boolean" />
+												<xs:enumeration value="datetime" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="validforcreate" type="xs:boolean" use="required" />
+									<xs:attribute name="validforupdate" type="xs:boolean" use="required" />
+									<xs:attribute name="validforread" type="xs:boolean" use="required" />
+									<xs:attribute name="isrequired" type="xs:boolean" use="required" />
+									<xs:attribute name="maxlength" type="xs:positiveInteger" use="required" />
+									<xs:attribute name="multiselect" type="xs:boolean" use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="objecttypecode" type="ObjectTypeCode" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="ObjectTypeCode">
+		<xs:restriction base="xs:integer">
+			<xs:enumeration value="0" />
+			<xs:enumeration value="1" />
+			<xs:enumeration value="2" />
+			<xs:enumeration value="3" />
+			<xs:enumeration value="4" />
+			<xs:enumeration value="5" />
+			<xs:enumeration value="8" />
+			<xs:enumeration value="9" />
+			<xs:enumeration value="10" />
+			<xs:enumeration value="11" />
+			<xs:enumeration value="12" />
+			<xs:enumeration value="13" />
+			<xs:enumeration value="14" />
+			<xs:enumeration value="15" />
+			<xs:enumeration value="16" />
+			<xs:enumeration value="112" />
+			<xs:enumeration value="113" />
+			<xs:enumeration value="117" />
+			<xs:enumeration value="121" />
+			<xs:enumeration value="122" />
+			<xs:enumeration value="123" />
+			<xs:enumeration value="124" />
+			<xs:enumeration value="130" />
+			<xs:enumeration value="131" />
+			<xs:enumeration value="132" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

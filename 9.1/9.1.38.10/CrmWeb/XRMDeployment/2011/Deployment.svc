@@ -1,0 +1,7 @@
+<%@ ServiceHost 
+	Language="C#" 
+	Debug="false" 
+	Service="Microsoft.Xrm.Sdk.Deployment.DeploymentService, Microsoft.Crm.DeploymentService"
+	CodeBehind="Microsoft.Crm.DeploymentService.dll" 
+	Factory=Microsoft.Xrm.Sdk.Deployment.DeploymentServiceHostFactory
+%>

@@ -1,0 +1,47 @@
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="Microsoft.Crm.Common.Application.Web.Pages.PlainGlobal"
+	CodeBehind="Microsoft.Crm.Application.Pages.dll" %>
+<%@ Register TagPrefix="cnt" Namespace="Microsoft.Crm.Application.Controls" Assembly="Microsoft.Crm.Application.Components.Application" %>
+<%@ Register TagPrefix="loc" Namespace="Microsoft.Crm.Application.Controls.Localization"
+	Assembly="Microsoft.Crm.Application.Components.Application" %>
+
+<!DOCTYPE html>
+<html>
+	<head id="Head1" runat="server">
+		<!-- Page Title-->
+		<title><loc:Text ID="crmLiveHeaderTitle" ResourceId="HomePage_CRM_Live_Title" runat="server"/></title>
+
+		<!-- AppHeader control used for adding page title, linking script files, linking style sheets and rendering jscript variables. -->
+		<asp:Panel ID="HeaderPanel" runat="server"/>
+		
+		<% =CssLinkHtmlIfNoHeaderPresent() %>
+
+		<!-- Page header -->
+		<asp:contentplaceholder id="globalPageHeader" runat="server" />
+
+		<!-- Page scripts -->
+		<script type="text/javascript">
+		
+			function startup()
+			{
+				<asp:contentplaceholder id="globalPageLoadScript" runat="server" />
+				
+				// Set initial object focus
+				var controlId = <asp:Literal ID="InitialControlId" runat="server"/>;
+				if (controlId != null)
+				{
+					$(controlId).focus();
+				}
+			}
+			
+			AddOnLoadEvent(startup);
+					   
+			<asp:contentplaceholder id="globalPageScript" runat="server" />
+
+		</script>	
+	</head>
+	<body style="overflow:auto; position:relative">
+		<asp:ContentPlaceHolder ID="globalPageContent" runat="server">
+		</asp:ContentPlaceHolder>          
+		<input type="hidden" id="PageId" value="" runat="server"/>
+	</body>
+</html>

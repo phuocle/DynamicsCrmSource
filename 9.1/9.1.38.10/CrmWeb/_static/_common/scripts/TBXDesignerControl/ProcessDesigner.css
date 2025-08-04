@@ -1,0 +1,2082 @@
+.button {
+  line-height: normal;
+  height: auto;
+  width: auto;
+  text-align: inherit;
+  cursor: default;
+  border-width: 0px;
+  border-style: initial;
+  background-repeat: inherit;
+  padding-left: inherit;
+  padding-right: inherit;
+}
+.commandButton {
+  background-color: #ffffff;
+  display: inline-block;
+  white-space: nowrap;
+  cursor: default;
+  height: 28px;
+  border: none;
+}
+.commandButton:hover,
+.commandButton:focus {
+  background-color: #d7ebf9;
+}
+a.commandButton,
+a.commandButton:hover,
+a.commandButton:focus {
+  text-decoration: none;
+}
+div.selected > div.tile > div.stageTile,
+div.selected > div.tile > div.rootTile,
+div.selected > div.tile > div.conditionTile,
+div.tileItemsMenu div.tile.selected > div {
+  color: #0072c6;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+/* Styles for tile hover */
+div.stageTile:hover,
+div.rootTile:hover,
+div.conditionTile:hover,
+.hoverOverDroppable div.stageTile,
+.hoverOverDroppable div.rootTile,
+.hoverOverDroppable div.conditionTile {
+  box-shadow: inset 0px 0px 0 5000px rgba(237, 189, 90, 0.3);
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+div.stageTile:hover .tileButtonDiv,
+div.stageTile:hover .tileImageWrapper {
+  background-color: #577C8A !important;
+}
+div.stageTile:hover .tileCountSpanSymbol-size,
+div.stageTile:hover .canvasAreaTileTitle3,
+div.stageTile:hover .canvasAreaTileTitle4,
+div.stageTile:hover .tileButtonImage,
+div.stageTile:hover .tileFontIcon {
+  color: #FBE3B0;
+}
+div.conditionTile:hover .tileImageWrapper,
+div.conditionTile:hover .lib-iconContainer,
+div.conditionTile:hover .condition-footer-div {
+  background-color: #7D718A !important;
+}
+/* End of styles for tile hover */
+.hoverOverDroppableHighlight {
+  background-color: #dddddd;
+}
+.hoverOverDroppableHighlight div.emptyTile,
+.hoverOverDroppableHighlight div.stageTile,
+.hoverOverDroppableHighlight div.conditionTile {
+  color: #dddddd;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.zoomOut div.emptyTile {
+  background: #eeeeee;
+}
+.hoverOverDroppable div.emptyTile {
+  -webkit-box-shadow: inset 0 0 0 2px #888888;
+  -moz-box-shadow: inset 0 0 0 2px #888888;
+  box-shadow: inset 0 0 0 2px #888888;
+}
+div.selected > div.tile > div.emptyTile,
+div.tile > div.emptyTile:hover,
+.zoomOut div.selected > div.tile > div.emptyTile,
+.zoomOut div.tile > div.emptyTile:hover,
+.zoomOut .hoverOverDroppable div.tile > div.emptyTile {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
+.ie8 .hoverOverDroppable div.emptyTile {
+  border: 2px solid #888888;
+  padding: 0;
+}
+._MBValidateOff {
+  background-color: #D7EBF9 !important;
+  border-color: #D7EBF9 !important;
+}
+.zoomOut div.stageTile:hover,
+.zoomOut div.rootTile:hover,
+.zoomOut div.conditionTile:hover,
+.zoomOut .hoverOverDroppable div.stageTile,
+.zoomOut .hoverOverDroppable div.rootTile,
+.zoomOut .hoverOverDroppable div.conditionTile {
+  outline: 2px solid #8cbfe5;
+}
+.zoomOut div.selected > div.tile > div.stageTile,
+.zoomOut div.selected > div.tile > div.rootTile,
+.zoomOut div.selected > div.tile > div.conditionTile {
+  outline: 2px solid #0072c6;
+}
+/* Process property */
+.process_prop_title {
+  font-size: 24px;
+  /* _locID_css@font-size="ProcessDesigner_ProcessPropTitle_FontSize" _locComment="Font Size" */
+  margin: 0px 0px 20px 0px;
+}
+/* CreateStep property */
+.process_prop_title {
+  font-size: 24px;
+  /* _locID_css@font-size="ProcessDesigner_ProcessPropTitle_FontSize" _locComment="Font Size" */
+  margin: 0px 0px 20px 0px;
+}
+.wf_prop_field_group {
+  margin: 0px 0px 10px 0px;
+}
+.wf_prop_field {
+  display: inline-block;
+  width: 100px;
+  padding: 4px 0px;
+  margin-right: 6px;
+  color: grey;
+  vertical-align: top;
+}
+.wf_prop_value {
+  display: inline-block;
+  border: 1px solid grey;
+  width: 250px;
+  padding: 4px 6px;
+}
+.wf_prop_header_line {
+  font-weight: bold;
+  color: grey;
+  margin: 30px 0px 10px 0px;
+}
+.description_box {
+  border: 1px solid grey;
+  margin-right: 30px;
+  background-color: #eeeeee;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  overflow-x: auto;
+  max-height: 100px;
+  min-height: 50px;
+  padding: 2px 5px;
+}
+/* Workflow Properties */
+.wf_prop_subheader_line {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: gray;
+  margin: 30px 0px 10px 0px;
+}
+.process_prop {
+  background-color: #f6f6f6;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.process_child_top {
+  padding-top: 20px;
+}
+.process_child {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.wf_scrollable_filled_group_normal {
+  bottom: 0px;
+  left: 20px;
+  right: 0px;
+  overflow-y: auto;
+  top: 110px;
+}
+a.link {
+  text-decoration: underline;
+}
+.tileTableCell {
+  vertical-align: middle;
+  width: 100%;
+}
+.tileInner {
+  display: block;
+  height: inherit;
+}
+.see-details-span {
+  float: right;
+}
+.stringTruncation {
+  width: 100%;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 17px;
+}
+.stageTile .tileImageWrapper,
+.emptyTile .tileImageWrapper,
+.connectTile .tileImageWrapper,
+#libraryElementtbx .tileImageWrapper,
+#libraryElementpbl .tileImageWrapper,
+#libraryElementcustom .tileImageWrapper,
+.stageTile .lib-iconContainer,
+.emptyTile .lib-iconContainer,
+.connectTile .lib-iconContainer,
+#libraryElementtbx .lib-iconContainer,
+#libraryElementpbl .lib-iconContainer,
+#libraryElementcustom .lib-iconContainer {
+  background-color: #317bd1 !important;
+}
+div.stageTile span.tileImageWrapper,
+div.stepTile span.tileImageWrapper,
+div.labelTile span.tileImageWrapper,
+div.sectionLabelTile span.tileImageWrapper,
+div.conditionTile span.tileImageWrapper {
+  padding-top: 5px;
+}
+.conditionTile .tileImageWrapper,
+.conditionTile .lib-iconContainer {
+  background-color: #8871cf !important;
+}
+.conditionTile span.emptyTileTitle {
+  text-align: left;
+  width: 75%;
+  margin-left: 4px;
+}
+.stepCountSpanWrapper,
+.triggerCountSpanWrapper {
+  margin-right: 5px;
+  height: 16px;
+  width: 16px;
+}
+.stepTile,
+.labelTile,
+.sectionLabelTile {
+  display: flex;
+}
+.parentStepDiv {
+  width: 45px;
+  border-bottom: 1px solid #DDDDDD;
+}
+.stepTile .tileImageWrapper,
+.stepTile .stepImageWrapper {
+  display: block;
+  height: 34px;
+  width: 34px;
+  float: left;
+  margin: 10px 10px 10px 12px;
+  background-color: #358717;
+  text-align: center;
+  padding-top: 5px;
+  border-radius: 5px;
+}
+.stepTile .lib-iconContainer {
+  background-color: #358717 !important;
+}
+.labelTile .tileImageWrapper,
+.labelTile .stepImageWrapper {
+  display: block;
+  height: 34px;
+  width: 34px;
+  float: left;
+  margin: 10px 10px 10px 12px;
+  background-color: #53b671;
+  text-align: center;
+  padding-top: 5px;
+  border-radius: 5px;
+}
+.labelTile .lib-iconContainer {
+  background-color: #53b671 !important;
+}
+.sectionLabelTile .tileImageWrapper,
+.sectionLabelTile .stepImageWrapper {
+  display: block;
+  height: 34px;
+  width: 34px;
+  float: left;
+  margin: 10px 10px 10px 12px;
+  background-color: #317bd1;
+  text-align: center;
+  padding-top: 5px;
+  border-radius: 5px;
+}
+.sectionLabelTile .lib-iconContainer {
+  background-color: #317bd1 !important;
+}
+.stepImageWrapper-size {
+  font-size: 16px;
+  color: white;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  font-weight: 100;
+}
+.workflowImageWrapper {
+  display: block;
+  height: 34px;
+  width: 34px;
+  float: left;
+  margin: 10px 10px 10px 12px;
+  background-color: #725a0d;
+  text-align: center;
+  padding-top: 5px;
+  border-radius: 5px;
+}
+.zoomItem {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 1000;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.zoomItem:hover {
+  background-color: transparent;
+}
+wf_table {
+  margin: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 30px;
+}
+.wf_row {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+}
+.wf_row.wf_header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+.wf_row.wf_header * {
+  text-align: center;
+}
+.wf_row.wf_header > :not(.wf_col_right) {
+  border-right: 1px solid lightgray;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.wf_col_1 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 8.0%;
+}
+.wf_col_2 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 16.0%;
+}
+.wf_col_3 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 24%;
+}
+.wf_col_4 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 32.5%;
+}
+.wf_col_5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 40.5%;
+}
+.wf_col_6 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 49.5%;
+}
+.wf_col_7 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 57.0%;
+}
+.wf_col_8 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 66.0%;
+}
+.wf_col_9 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 74.0%;
+}
+.wf_col_10 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 82.5%;
+}
+.wf_col_11 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 91%;
+}
+.wf_col_12 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 99%;
+}
+.wf_col_half {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 49.5%;
+}
+.wf_col_third {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 32.5%;
+}
+.wf_col_inner {
+  padding-left: 5px;
+}
+.collapse_button {
+  width: 12px;
+  height: 12px;
+  background-image: url("../../../../_imgs/ProcessDesigner/section_down.png"), url("img/ProcessDesigner/section_down.png");
+  background-size: cover;
+  display: inline-block;
+}
+.collapsed > .collapse_button {
+  background-image: url("../../../../_imgs/ProcessDesigner/section_right.png"), url("img/ProcessDesigner/section_right.png");
+}
+.role_assignment_table.collapsed {
+  display: none;
+}
+.collapsable.collapsed {
+  display: none;
+}
+.collapsible_table {
+  margin-right: 20px;
+}
+.collapsible_table.collapsed {
+  margin-right: 20px;
+  display: none;
+}
+.collapse_label {
+  display: inline-block;
+  font-weight: bold;
+  color: inherit;
+}
+/* Business Process Flow Properties */
+/* StageStep Property Panel */
+.process_required_checkbox {
+  height: 12px;
+  width: 12px;
+}
+.tileStatus {
+  position: absolute;
+  left: -8px;
+  bottom: -8px;
+}
+.tileStatusImg {
+  width: 16px;
+  height: 16px;
+}
+.activity-list-container {
+  left: 10px;
+  height: auto;
+  width: 150px;
+  border: 1px solid #BBBBBB;
+  z-index: 100000;
+  position: absolute;
+  background-color: white;
+  border-radius: 5px;
+}
+.connectactivity-list-container {
+  left: 350px;
+  height: auto;
+  width: 145px;
+  border: 1px solid #BBBBBB;
+  z-index: 100000;
+  position: absolute;
+  background-color: white;
+  border-radius: 5px;
+}
+.activity-list-category {
+  font-weight: bold;
+  list-style-type: none;
+  text-align: start;
+  margin: 4px 5px 0px 5px;
+}
+.activity-list-title {
+  margin-left: 6px;
+  width: 130px;
+  display: block;
+}
+.activity-list-listitem:focus,
+.activity-list-title:focus {
+  border: 2px solid #8CBFE5;
+}
+.activityOptionTitle {
+  width: 130px;
+  height: 30px;
+  color: black;
+  font-size: 9pt;
+  font-weight: 400;
+  background-color: #ffffff;
+  border: none;
+  border-bottom: 1px solid #CCCCCC;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center;
+}
+.activityOptionTitle:hover {
+  background-color: lightgrey;
+}
+.connectactivityOptionTitle {
+  width: 130px;
+  height: 30px;
+  color: black;
+  font-size: 9pt;
+  font-weight: 400;
+  background-color: #ffffff;
+  border: none;
+  border-bottom: 1px solid #CCCCCC;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center;
+}
+.connectactivityOptionTitle:disabled {
+  color: #7F8FA7;
+}
+.connectactivityOptionTitle:hover:enabled {
+  background-color: lightgrey;
+}
+.connectactivityOptionTitle:focus:enabled {
+  background-color: lightgrey;
+}
+.connectorSecondPoint {
+  position: absolute;
+  height: 92px;
+  width: 272px;
+  border: #EDBD5A 3px solid;
+}
+.connectorSecondPoint:hover {
+  background-color: #EDBD5A;
+  opacity: 0.5;
+}
+.connectFirstPointNotificationMessage {
+  position: absolute;
+  padding-left: 5px;
+  padding-top: 5px;
+  font-size: 13px;
+  font-family: Segoe UI;
+  color: #95DCEF;
+}
+.connectSecondPointNotificationMessage {
+  position: absolute;
+  padding-left: 5px;
+  padding-top: 5px;
+  font-size: 13px;
+  font-family: Segoe UI;
+  color: #EDBD5A;
+}
+ul.activity-list li:last-child span.activityOptionTitle {
+  border-bottom: none;
+}
+.activity-list {
+  list-style-type: none;
+  width: 100%;
+  margin: 0px;
+}
+.activity-item:hover {
+  cursor: default;
+}
+.step-list {
+  list-style-type: none;
+}
+.step-item:hover {
+  cursor: default;
+  border: 1px;
+  outline-color: aliceblue;
+}
+.step-detail-div {
+  overflow: hidden;
+  width: 271px;
+  display: inline-block;
+}
+.editview-step-list {
+  list-style-type: none;
+  margin-bottom: 0px !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/* Make changes to match Canvas Scrollbar Redlines */
+#canvasWrapper {
+  overflow: hidden !important;
+}
+#zoomCanvasWrapper {
+  overflow: auto !important;
+  top: 60px !important;
+  right: 6px;
+  padding-top: 20px;
+  /* Using escaped string ~"" to ensure the values are not pre-calculated by the less file*/
+  height: calc(100% - 66px) !important;
+  width: calc(100% - 6px) !important;
+}
+/* ZoomCanvasWrapper Scrollbar CSS for IE */
+#zoomCanvasWrapper {
+  scrollbar-base-color: #AAAAAA;
+  scrollbar-highlight-color: #AAAAAA;
+  scrollbar-track-color: #666666;
+  scrollbar-arrow-color: #AAAAAA;
+  scrollbar-shadow-color: #AAAAAA;
+}
+/* ZoomCanvasWrapper Scrollbar CSS for Webkit Browsers - Chrome */
+#zoomCanvasWrapper::-webkit-scrollbar {
+  height: 23px;
+  width: 18px;
+}
+#zoomCanvasWrapper::-webkit-scrollbar-button:horizontal:increment {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKcAAAAjCAYAAADxNxoiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAE8SURBVHhe7dxRCsJADITh6lmkR+uhxbsoC12oC1s62ZQO+n+wKNImaZwnH7wty/KeAEP39RWwQzhhi3DCFuGELcIJW4QTtggnbBFO2CKcsEU4YYtwwhbhhC3CCVuEE7YIJ2wRTtginLBFOGGLcMIW4YQt63DOj3l999+u2sPV+x8O59kPkFFfrVGu752jlGv3ROtsZ65HUa9X79sarTEUzowHOCJjQYrn67m++9b7vGd0L5l7VWZv+0bmyKgRDmdGc0XGghTtl6kGs4rOkLlPdfZyfXsUvdnVZwqFM6u5ImtBitpT7d2KzDLas4rUKfO2R9Hrqc4SCmdp0jtnUOuqy9yT9UyRmUZ7R+9v74vUyahh/Xc05QuNLviXXLWHq/fPfyXB1vBPScBZCCdsEU7YIpywRThhi3DC1DR9ABMje5e9TrHuAAAAAElFTkSuQmCC') no-repeat;
+  background-position: -32px -7px !important;
+  width: 15px;
+}
+#zoomCanvasWrapper::-webkit-scrollbar-button:horizontal:decrement {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKcAAAAjCAYAAADxNxoiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAE8SURBVHhe7dxRCsJADITh6lmkR+uhxbsoC12oC1s62ZQO+n+wKNImaZwnH7wty/KeAEP39RWwQzhhi3DCFuGELcIJW4QTtggnbBFO2CKcsEU4YYtwwhbhhC3CCVuEE7YIJ2wRTtginLBFOGGLcMIW4YQt63DOj3l999+u2sPV+x8O59kPkFFfrVGu752jlGv3ROtsZ65HUa9X79sarTEUzowHOCJjQYrn67m++9b7vGd0L5l7VWZv+0bmyKgRDmdGc0XGghTtl6kGs4rOkLlPdfZyfXsUvdnVZwqFM6u5ImtBitpT7d2KzDLas4rUKfO2R9Hrqc4SCmdp0jtnUOuqy9yT9UyRmUZ7R+9v74vUyahh/Xc05QuNLviXXLWHq/fPfyXB1vBPScBZCCdsEU7YIpywRThhi3DC1DR9ABMje5e9TrHuAAAAAElFTkSuQmCC') no-repeat;
+  background-position: -96px -7px !important;
+  width: 15px;
+}
+#zoomCanvasWrapper::-webkit-scrollbar-button:vertical:increment {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKcAAAAjCAYAAADxNxoiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAE8SURBVHhe7dxRCsJADITh6lmkR+uhxbsoC12oC1s62ZQO+n+wKNImaZwnH7wty/KeAEP39RWwQzhhi3DCFuGELcIJW4QTtggnbBFO2CKcsEU4YYtwwhbhhC3CCVuEE7YIJ2wRTtginLBFOGGLcMIW4YQt63DOj3l999+u2sPV+x8O59kPkFFfrVGu752jlGv3ROtsZ65HUa9X79sarTEUzowHOCJjQYrn67m++9b7vGd0L5l7VWZv+0bmyKgRDmdGc0XGghTtl6kGs4rOkLlPdfZyfXsUvdnVZwqFM6u5ImtBitpT7d2KzDLas4rUKfO2R9Hrqc4SCmdp0jtnUOuqy9yT9UyRmUZ7R+9v74vUyahh/Xc05QuNLviXXLWHq/fPfyXB1vBPScBZCCdsEU7YIpywRThhi3DC1DR9ABMje5e9TrHuAAAAAElFTkSuQmCC') no-repeat;
+  background-position: -58px -18px !important;
+  margin: 0 0 0 6px !important;
+  height: 15px;
+  width: 16px;
+}
+#zoomCanvasWrapper::-webkit-scrollbar-button:vertical:decrement {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKcAAAAjCAYAAADxNxoiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAE8SURBVHhe7dxRCsJADITh6lmkR+uhxbsoC12oC1s62ZQO+n+wKNImaZwnH7wty/KeAEP39RWwQzhhi3DCFuGELcIJW4QTtggnbBFO2CKcsEU4YYtwwhbhhC3CCVuEE7YIJ2wRTtginLBFOGGLcMIW4YQt63DOj3l999+u2sPV+x8O59kPkFFfrVGu752jlGv3ROtsZ65HUa9X79sarTEUzowHOCJjQYrn67m++9b7vGd0L5l7VWZv+0bmyKgRDmdGc0XGghTtl6kGs4rOkLlPdfZyfXsUvdnVZwqFM6u5ImtBitpT7d2KzDLas4rUKfO2R9Hrqc4SCmdp0jtnUOuqy9yT9UyRmUZ7R+9v74vUyahh/Xc05QuNLviXXLWHq/fPfyXB1vBPScBZCCdsEU7YIpywRThhi3DC1DR9ABMje5e9TrHuAAAAAElFTkSuQmCC') no-repeat;
+  background-position: -3px -18px !important;
+  margin: 0 0 0 6px !important;
+  height: 15px;
+  width: 16px;
+}
+#zoomCanvasWrapper::-webkit-scrollbar-track:vertical {
+  background: #666666;
+  border: thin solid #666666;
+  margin: 0 0 0 6px !important;
+}
+#zoomCanvasWrapper::-webkit-scrollbar-track:horizontal {
+  background: #666666;
+  border: thin solid #666666;
+}
+#zoomCanvasWrapper::-webkit-scrollbar-thumb:vertical {
+  background: #AAAAAA;
+  border: thin solid #666666;
+  border-width: 0 0 0 10px;
+}
+#zoomCanvasWrapper::-webkit-scrollbar-thumb:horizontal {
+  background: #AAAAAA;
+  border: thin solid #666666;
+  border-width: 15px 0 0 0;
+}
+#zoomCanvasWrapper::-webkit-scrollbar-corner {
+  background: #666666;
+}
+/* Below is the Step List View Scrollbar CSS for IE */
+#sortable {
+  scrollbar-base-color: gray;
+  scrollbar-highlight-color: gray;
+  scrollbar-track-color: white;
+  scrollbar-arrow-color: gray;
+  scrollbar-shadow-color: gray;
+  width: 266px;
+}
+/* Below is the Step List View Scrollbar CSS for Webkit Browsers - Chrome */
+/* this targets the default scrollbar (compulsory) */
+#sortable::-webkit-scrollbar {
+  width: 13px;
+}
+/* the new scrollbar will have a flat appearance with the set background color */
+#sortable::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+/* this will style the thumb, ignoring the track */
+#sortable::-webkit-scrollbar-thumb {
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0 4px 0 5px;
+  background-clip: padding-box;
+  background-color: gray;
+}
+.tilebutton {
+  float: right;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  padding-right: 6px;
+  padding-left: 6px;
+  display: inline-flex;
+}
+html.rtl .tilebutton {
+  float: left;
+}
+html.rtl .tileInner {
+  float: none !important;
+}
+div.stageTile.selected {
+  border-width: 3px 3px 5px 3px;
+  border-color: #EDBD5A;
+  border-style: solid;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  height: 93px;
+  width: 272px;
+}
+div.conditionTile.selected {
+  border-width: 3px 3px 5px 3px;
+  border-color: #EDBD5A;
+  border-style: solid;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  height: 93px;
+  width: 272px;
+  z-index: 201;
+}
+.cutTile {
+  opacity: 0.5;
+}
+.ui-widget-header {
+  border: #ffffff;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  border: none;
+  background: none;
+  font-weight: inherit;
+  color: #555555;
+}
+.ui-widget-content {
+  border: none;
+  background-color: white;
+}
+.ui-dialog .ui-dialog-title {
+  margin: -0.9em 0px;
+}
+.stepCount {
+  margin-left: 100px;
+  width: 50px;
+  font-weight: bold;
+}
+.stepLabel {
+  font-size: 15pt;
+  font-weight: bold;
+  margin-left: 8px;
+}
+.seeDetailsStepLabel {
+  margin-top: 10px;
+}
+.seeDetailsTPLabel {
+  margin-top: 10px;
+}
+.steptileImage {
+  width: 32px;
+  height: 32px;
+  margin-left: 3px;
+  margin-top: 14px;
+}
+.editViewTileTitle {
+  width: 225px;
+  font-size: 9pt;
+  height: 55px;
+  border-bottom: 1px solid #DDDDDD;
+  color: grey;
+  padding-left: 10px;
+}
+.tileCountSpanSymbol-size {
+  font-size: 16px;
+  color: white;
+}
+.tileFontIcon {
+  font-size: 16px;
+  color: white;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1px;
+  display: -ms-flexbox;
+  -ms-flex-pack: center;
+}
+.lib-fonticon-size {
+  color: white;
+  font-size: 16px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  margin: 2px 2px 0 0;
+  display: -ms-flexbox;
+  -ms-flex-pack: center;
+}
+.yesBranchFontIcon {
+  font-size: 13px;
+  color: white;
+}
+.noBranchFontIcon {
+  font-size: 13px;
+  color: #8871CF;
+}
+.toolbar-fontIcons-size {
+  font-size: 16px;
+}
+.zoomIcon-fontIcons-size {
+  font-size: 16px;
+}
+.tileButtonImage {
+  font-size: 11px;
+  margin-right: 4px;
+  color: white;
+  font-weight: bolder;
+  line-height: 32px;
+}
+.stageTileSymbol::before {
+  content: "\E7C3";
+}
+.conditionTileSymbol::before {
+  content: "\F00D";
+}
+.stepTileSymbol::before {
+  content: "\E7B6";
+}
+.labelTileSymbol::before {
+  content: "\EF0D";
+}
+.workflowImageWrapper {
+  display: block;
+  height: 34px;
+  width: 34px;
+  float: left;
+  margin: 10px 10px 10px 12px;
+  background-color: yellow;
+  text-align: center;
+  padding-top: 5px;
+  border-radius: 5px;
+}
+.globalButtonAreaTable td {
+  padding: 10px;
+  padding-top: 0px;
+}
+.globalWorkflowListHolder {
+  position: absolute;
+  bottom: 100%;
+  width: 100%;
+  overflow-y: auto;
+  max-height: 150px;
+}
+.globalWorkflowListHolder ul {
+  max-height: 150px;
+  width: 100%;
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-before: 0px;
+  -webkit-margin-end: 0px;
+}
+.globalWorkflowListHolder li {
+  background-color: white;
+  height: fit-content;
+  width: 100%;
+}
+.workflowImageWrapper-size {
+  font-size: 16px;
+  color: white;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2px;
+}
+.connectorTileSymbol::before {
+  content: "\E1D8";
+}
+.tbxTileSymbol::before {
+  content: "\E17C";
+}
+.pblTileSymbol::before {
+  content: "\E13C";
+}
+.customTileSymbol::before {
+  content: "\E17D";
+}
+.downArrowSymbol::before {
+  content: "\E10B";
+}
+.triggerTileSymbol::before {
+  content: "\E9F3";
+}
+.yesBranchSymbol::before {
+  content: "\E8FB";
+}
+.noBranchSymbol::before {
+  content: "\E711";
+}
+.addToolbarSymbol::before {
+  content: "\E710";
+}
+.cutToolbarSymbol::before {
+  content: "\E8C6";
+}
+.copyToolbarSymbol::before {
+  content: "\E8C8";
+}
+.pasteToolbarSymbol::before {
+  content: "\E77F";
+}
+.deleteToolbarSymbol::before {
+  content: "\E74D";
+}
+.snapshotToolbarSymbol::before {
+  content: "\E722";
+}
+.connectorToolbarSymbol::before {
+  content: "\EF90";
+}
+.zoomInSymbol::before {
+  content: "\E8A3";
+}
+.zoomOutSymbol::before {
+  content: "\E71F";
+}
+.fitToScreenSymbol::before {
+  content: "\E9A6";
+}
+.collapseSymbol::before {
+  content: "\E011";
+}
+.expandSymbol::before {
+  content: "\E010";
+}
+.workflowSymbol::before {
+  content: "\E9F3";
+}
+/* TODO: The below CSS classes need to be applied to the Workflow Tile based on its corresponding value specified in it's Property Page */
+.workflowSymbol-Entry::before {
+  content: "\F06D";
+}
+.workflowSymbol-Exit::before {
+  content: "\F06E";
+}
+.workflowSymbol-Finish::before {
+  content: "\F06F";
+}
+.workflowSymbol-Abandon::before {
+  content: "\F070";
+}
+.workflowSymbol-Apply::before {
+  content: "\EA01";
+}
+/** Font styles as per ProcessDesigner Hi-Fi redlines*/
+.utilityBarItem-normal-mode {
+  font-family: Segoe UI;
+  font-size: 11px;
+  color: #001F4E;
+  font-weight: normal;
+}
+.utilityBarItem-selected-mode {
+  font-family: 'Segoe UI Semibold';
+  font-size: 11px;
+  color: #000000;
+}
+.utilityBarItem-disabled-mode {
+  font-family: 'Segoe UI Semibold';
+  font-size: 11px;
+  color: #7F8FA7;
+}
+.canvasAreaTileTitle3 {
+  font-family: 'Segoe UI Semibold';
+  font-size: 11px;
+  color: #FFFFFF;
+  display: inline-flex;
+  vertical-align: top;
+}
+.canvasAreaTileTitle4 {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  color: #FFFFFF;
+  font-weight: normal;
+  margin: 6px 5px 5px 5px;
+  display: inline-block;
+  width: 42px;
+}
+.canvasAreaTileTitle5 {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  color: #666666;
+  font-weight: normal;
+  width: 190px;
+}
+.canvasAreaTileTitle6 {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  color: #000000;
+  font-weight: normal;
+  display: inline-block;
+  width: 150px;
+}
+.stepTitle {
+  font-family: 'Segoe UI Semibold' !important;
+}
+/** Over-ridden styles to comply with the redlines*/
+.workspaceWrapper {
+  position: absolute !important;
+  width: 76% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+#toolpane {
+  width: 23% !important;
+  height: calc(100% - 58px) !important;
+}
+#library {
+  height: calc(100% - 28px) !important;
+  width: 100% !important;
+}
+#property {
+  height: calc(100% - 28px) !important;
+}
+.conductorContentContainer .RootView-interactionCentricForm {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: white !important;
+}
+.conductorContentContainer .RootView-interactionCentricForm .InteractionCentricFormBody {
+  width: 100% !important;
+  padding: 0 1.3% !important;
+  height: 100% !important;
+}
+.row {
+  margin: 0 !important;
+}
+.col-xs-12 {
+  padding: 0 !important;
+}
+.conductorContentContainer .RootView-interactionCentricForm .InteractionCentricFormBody .tabElement .columnOverflow:hover > table {
+  width: 100% !important;
+  height: 100% !important;
+}
+.interactionCentricForm .InteractionCentricFormBody .tabElement .columnOverflow .section_vertical .section_control:not(.re_control).noLabel {
+  padding: 0 !important;
+}
+.conductorContentContainer .RootView-interactionCentricForm .InteractionCentricFormBody .tabElement .columnOverflow .section_vertical .section_control:not(.re_control).noLabel {
+  padding-left: 0 !important;
+}
+.formHeaderContainer {
+  background-color: #efefef !important;
+  padding-left: 1.3% !important;
+}
+.conductorContentContainer .RootView-interactionCentricForm .InteractionCentricFormBody .tabElement {
+  height: 100% !important;
+}
+.conductorContentContainer .RootView-interactionCentricForm .InteractionCentricFormBody .tabElement.selected {
+  height: 100% !important;
+}
+.conductorContentContainer .RootView-interactionCentricForm .InteractionCentricFormBody .tabElement .columnOverflow.columnScrollVisible {
+  overflow: hidden !important;
+  height: 100% !important;
+}
+table.sectionLayout {
+  margin-top: 0 !important;
+  height: 100% !important;
+}
+td.gridCell {
+  height: 100% !important;
+}
+.conductorContentContainer .RootView-interactionCentricForm .InteractionCentricFormBody .tabElement .columnOverflow {
+  height: 100% !important;
+  padding-right: 0 !important;
+  overflow: hidden !important;
+  margin-top: 0 !important;
+}
+.conductorContentContainer .RootView-interactionCentricForm .InteractionCentricFormBody .tabElement .columnOverflow .section_vertical {
+  height: 100% !important;
+  background-color: white !important;
+}
+.zoomIconHolder {
+  right: 1.7% !important;
+}
+.grid_row_content {
+  height: 100% !important;
+}
+#workflow-Count-Wrapper {
+  border-bottom: 1px solid #DDDDDD;
+  height: 45px;
+  margin-left: 5px;
+  margin-right: 13px;
+  overflow-x: hidden;
+}
+#workflow-Count-Wrapper.noWorkflow {
+  border-bottom: none !important;
+}
+.disableArrowButton {
+  color: #7F8FA7;
+  opacity: 0.8;
+}
+/** Footer styles */
+.bpfStatusArea {
+  background-color: #ECECEC;
+  line-height: 28px;
+  padding-left: 20px;
+  right: 0 !important;
+}
+.pcc_updown_div {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  display: none;
+}
+.bpfConfFooter {
+  position: absolute;
+  left: 0px !important;
+  right: 0px !important;
+  bottom: 0px !important;
+  border-top: none !important;
+}
+/** End of Footer styles */
+/** Mozilla specific styles */
+@-moz-document url-prefix() {
+  #step-Count-Wrapper {
+    white-space: normal !important;
+  }
+  .canvasAreaTileTitle4 {
+    float: left !important;
+  }
+  .tileButtonImage {
+    float: right !important;
+  }
+}
+/** End of Mozilla specific styles */
+/** End of ProcessDesigner Hi-Fi redlines*/
+/* Changes to support 200% Zoom mode */
+@media (max-width: 800px) {
+  #zoomCanvasWrapper {
+    top: 9.5vh !important;
+    /* Using escaped string ~"" to ensure the values are not pre-calculated by the less file*/
+    height: calc(100% - 10.5vh) !important;
+  }
+  #process_configurator_container {
+    margin: 1.2% 1.2% 0 1.2% !important;
+  }
+  .bpfConfForm .bpfConfContent {
+    height: 100%;
+    width: 100%;
+  }
+  .bpfConfForm #DesignerArea {
+    position: static;
+    left: 0px;
+    right: 0px;
+    margin: 0px !important;
+  }
+  .bpfConfForm #DesignerArea div.workspaceWrapper {
+    height: calc(100vh - 200px) !important;
+    margin-bottom: 3px;
+  }
+  .bpfConfForm #DesignerArea div#toolpane {
+    height: calc(100vh - 200px) !important;
+    margin-bottom: 3px;
+  }
+  .bpfConfDetailSpacer {
+    height: 30px !important;
+  }
+  #processDetailArea {
+    width: 100%;
+  }
+}
+/* End of changes for 200% Zoom mode */
+/** Header specific styles */
+#header {
+  margin: 0px !important;
+  height: 45px;
+}
+.topheader {
+  font-family: 'Segoe UI Semibold';
+  background-color: #004980;
+}
+div#BusinessProcessType {
+  font-size: 14px !important;
+  padding-left: 30px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: #ffffff;
+  font-family: 'Segoe UI';
+  text-transform: none;
+}
+.bottomheader {
+  font-family: 'Segoe UI Semibold';
+  margin: 0;
+  width: 100%;
+  display: inline-block;
+}
+.processname {
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-bottom: 11px;
+  font-family: 'Segoe UI Semibold';
+  color: #000000;
+  width: 34%;
+  height: 45px;
+  float: left;
+}
+.processmenu {
+  float: left;
+  width: 66%;
+}
+LI.ms-crm-Menu {
+  padding-top: 0px !important;
+  height: 16px !important;
+  padding-left: 5px;
+  outline: 0 !important;
+}
+li#mnucrmMenuBarhelp {
+  padding-left: 3px;
+}
+li#mnuaction {
+  padding-left: 8px;
+}
+SPAN.ms-crm-Menu-Label {
+  font-family: 'CRMMDL2';
+  height: auto !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: 30px !important;
+  vertical-align: middle;
+  cursor: pointer;
+}
+SPAN.ms-crm-Menu-Label-Hovered,
+SPAN.ms-crm-Menu-Label-Opened {
+  font-family: 'CRMMDL2';
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: auto !important;
+  border: none !important;
+  height: 30px !important;
+  vertical-align: middle;
+  background: none !important;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+SPAN.ms-crm-Menu-Label-Hovered a:hover span.ms-crm-MenuItem-TextFirst,
+SPAN.ms-crm-Menu-Label-Opened a:hover span.ms-crm-MenuItem-TextFirst,
+SPAN.ms-crm-Menu-Label-Hovered a:hover span.ms-crm-MenuItem-TextLTR,
+SPAN.ms-crm-Menu-Label-Opened a:hover span.ms-crm-MenuItem-TextLTR {
+  color: #828282 !important;
+}
+SPAN.ms-crm-Menu-Label-Hovered a:hover span.ms-crm-MenuItem-TextFirst span,
+SPAN.ms-crm-Menu-Label-Opened a:hover span.ms-crm-MenuItem-TextFirst span,
+SPAN.ms-crm-Menu-Label-Hovered a:hover span.ms-crm-MenuItem-TextLTR span,
+SPAN.ms-crm-Menu-Label-Opened a:hover span.ms-crm-MenuItem-TextLTR span {
+  outline: 0 !important;
+}
+SPAN.ms-crm-Menu-Label a:focus,
+SPAN.ms-crm-Menu-Label-Hovered a:focus,
+SPAN.ms-crm-Menu-Label-Opened a:focus {
+  outline: 1px dashed black !important;
+}
+LI.ms-crm-Menu-Read {
+  padding-right: 0px;
+}
+div#ProcessTitle {
+  font-size: 16px !important;
+  line-height: 16px;
+  float: left;
+  font-family: 'Segoe UI Semibold';
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  max-width: 90%;
+}
+span a span.ms-crm-MenuItem-TextFirst {
+  color: #000000 !important;
+  font-size: 12px;
+  line-height: 16px;
+  font-family: 'Segoe UI';
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+span a SPAN.ms-crm-MenuItem-TextLTR {
+  color: #000000 !important;
+  font-size: 12px;
+  line-height: 16px;
+  font-family: 'Segoe UI';
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+span.ms-crm-MenuItem-TextFirst::before {
+  font-family: 'CRMMDL2';
+  font-size: 16px !important;
+  padding-right: 6px;
+  vertical-align: bottom;
+}
+span.ms-crm-MenuItem-TextLTR::before {
+  font-family: 'CRMMDL2';
+  font-size: 12px;
+  padding-right: 5px;
+  vertical-align: bottom;
+}
+.menu-Save span.ms-crm-MenuItem-TextFirst::before {
+  content: "\E74E";
+}
+.menu-ValidateOff span.ms-crm-MenuItem-TextFirst::before {
+  content: "\EADF";
+}
+.menu-ValidateOn span.ms-crm-MenuItem-TextFirst::before {
+  content: "\EADF";
+}
+.menu-Update span.ms-crm-MenuItem-TextFirst::before {
+  content: "\EA01";
+}
+.menu-SaveAs span.ms-crm-MenuItem-TextFirst::before {
+  content: "\E792";
+  font-size: 17px !important;
+}
+.menu-RoleAssignment span.ms-crm-MenuItem-TextFirst::before {
+  content: "\EFD4";
+}
+.menu-Order span.ms-crm-MenuItem-TextFirst::before {
+  content: "\EFF6";
+}
+.menu-Activate span.ms-crm-MenuItem-TextFirst::before {
+  content: "\E761";
+  font-size: 17px !important;
+}
+.menu-Deactivate span.ms-crm-MenuItem-TextFirst::before {
+  content: "\E760";
+  font-size: 17px !important;
+}
+.menu-Dependencies span.ms-crm-MenuItem-TextFirst::before {
+  content: "\F003";
+}
+#mnucrmMenuBarhelp span.ms-crm-MenuItem-TextLTR::before {
+  content: "\E897";
+  font-size: 14px;
+}
+.menu-BusinessRules span.ms-crm-MenuItem-TextFirst::before {
+  content: "\F027";
+}
+img.ms-crm-Menu-DownArrow {
+  height: 18px !important;
+  vertical-align: middle !important;
+}
+.expandCollapseContainer {
+  cursor: pointer;
+  padding-top: 1px;
+  font-family: 'CRMMDL2';
+  font-size: 14px;
+  margin-left: 2px !important;
+  padding-left: 0px !important;
+  margin-top: 5px !important;
+  padding-top: 0px !important;
+}
+.expandCollapseContainer:focus {
+  outline: dashed 2px black !important;
+}
+.expandFontIcon::before {
+  content: "\E70D";
+  font-size: 12px;
+  padding-left: 3px;
+  vertical-align: text-bottom;
+}
+.collapseFontIcon::before {
+  content: "\E70E";
+  font-size: 12px;
+  padding-left: 3px;
+  vertical-align: text-bottom;
+}
+.bpfConfExpandCollapseImg {
+  float: left;
+  height: 16px !important;
+  width: 18px !important;
+  margin-left: 0px !important;
+  margin-top: 0px !important;
+  padding-left: 0px !important;
+}
+.confProcessDetailsArea input[readonly] {
+  background-color: #ebebe4;
+}
+hr.divider {
+  border-bottom: 1px solid #666666;
+  margin: 0;
+  padding: 0;
+}
+.appMenu {
+  overflow: hidden;
+  width: 100%;
+  background-repeat: repeat-x;
+  display: flex;
+  margin: 0;
+  float: right;
+  justify-content: flex-end;
+  padding-right: 20px;
+  height: 45px;
+}
+.ms-crm-MenuBar-Left {
+  height: 30px;
+  padding-top: 7px !important;
+  padding-bottom: 7px !important;
+  margin-top: 0 !important;
+}
+SPAN.ms-crm-MenuItem-TextRTL,
+img.ms-crm-Menu-ButtonRTL {
+  color: #ffffff;
+  font-size: 12px;
+  padding-bottom: 3px;
+  outline: none;
+}
+SPAN.ms-crm-MenuItem-Text {
+  height: 16px;
+  vertical-align: top;
+  color: #ffffff;
+  padding-left: 5px;
+}
+#process_configurator_container {
+  margin: 4px 1.2% 0 1.2% !important;
+  overflow: hidden;
+  cursor: default;
+}
+.toolbarItemContainer {
+  padding-left: 0px !important;
+  padding-right: 7px;
+}
+.toolbarItem {
+  padding: 0px !important;
+}
+._MBValidateOff {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+li._MBValidateOff span.ms-crm-Menu-Label {
+  font-family: 'CRMMDL2';
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: auto !important;
+  border-width: 0px !important;
+  border-style: none !important;
+  height: 30px !important;
+  vertical-align: middle;
+}
+#processDetailArea {
+  margin: 0px 30px !important;
+}
+img.ms-crm-Menu-DownArrow {
+  height: 18px;
+  vertical-align: middle;
+}
+#DesignerArea div.workspaceWrapper {
+  height: calc(100vh - 200px) !important;
+  margin-bottom: 3px;
+}
+#DesignerArea div#toolpane {
+  height: calc(100vh - 200px) !important;
+  margin-bottom: 3px;
+}
+LI.ms-crm-VS-MenuItem {
+  width: auto !important;
+  height: auto !important;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 10px !important;
+}
+.ms-crm-VS-MenuItem-Sep {
+  display: none !important;
+}
+.ms-crm-VS-MenuItem-Sep-Hover {
+  display: none !important;
+}
+.ms-crm-VS-MenuItem-Icon-Rest {
+  display: none !important;
+}
+.ms-crm-VS-MenuItem-Icon-Hover {
+  display: none !important;
+}
+.ms-crm-VS-MenuItem-Separator-h {
+  margin-top: 4px !important;
+  padding-bottom: 5px !important;
+}
+.ms-crm-VS-MenuItem-Separator-hf {
+  display: none !important;
+}
+.ms-crm-VS-MenuItem-Separator-hf-Hover {
+  display: none !important;
+}
+.ms-crm-VS-MenuItem-Separator-hm {
+  display: none !important;
+}
+.ms-crm-VS-MenuItem-Separator-hm-Hover {
+  display: none !important;
+}
+.ms-crm-VS-MenuItem-Separator-hl {
+  background-color: #C9C9C9 !important;
+  width: 100% !important;
+}
+.ms-crm-VS-MenuItem-Title {
+  font-family: 'Segoe UI';
+  margin-left: 4px !important;
+  color: #0072C5;
+  width: 100% !important;
+}
+.ms-crm-VS-MenuItem-Title-Hover {
+  font-family: 'Segoe UI';
+  margin-left: 4px !important;
+  padding-left: 0px !important;
+  background-color: #D7EBF9 !important;
+  width: 100% !important;
+}
+.rtl div#BusinessProcessType {
+  padding-right: 30px;
+  padding-left: 0px;
+  padding-bottom: 6px !important;
+}
+.rtl .processname {
+  padding-left: 0px;
+  padding-right: 25px;
+  float: right;
+}
+.rtl #ProcessTitle {
+  float: right;
+}
+.rtl .bpfConfExpandCollapseImg {
+  padding-left: 0px;
+  margin-left: 0px;
+  margin-right: 0px !important;
+  margin-top: 0px !important;
+}
+.rtl .expandFontIcon::before {
+  padding-right: 3px !important;
+  vertical-align: text-bottom;
+}
+.rtl .collapseFontIcon::before {
+  vertical-align: text-bottom;
+}
+.rtl LI.ms-crm-Menu {
+  margin-left: 0px !important;
+  padding-left: 0px;
+  padding-right: 6px;
+}
+.rtl .appMenu {
+  padding-right: 0px;
+  padding-left: 20px;
+}
+.rtl span.ms-crm-Menu-Label {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  vertical-align: text-top;
+  height: 30px !important;
+  vertical-align: middle;
+  vertical-align: -webkit-baseline-middle;
+}
+.rtl span.ms-crm-Menu-Label-Hovered,
+.rtl span.ms-crm-Menu-Label-Opened {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  height: 30px !important;
+  vertical-align: middle;
+}
+.ms-crm-MenuItem-TextRTL {
+  color: #ffffff !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: 0px !important;
+  font-size: 12px !important;
+  line-height: 16px;
+  font-family: 'Segoe UI';
+  display: inline-block;
+  vertical-align: middle !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+.rtl span.ms-crm-MenuItem-TextFirst::before {
+  font-family: 'CRMMDL2';
+  font-size: 16px;
+  padding-right: 7px;
+  padding-left: 0px;
+  vertical-align: bottom;
+  display: inline-block;
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.rtl #mnucrmMenuBarhelp {
+  padding-left: 0px;
+  padding-right: 5px;
+}
+.rtl .expandCollapseContainer {
+  margin-top: 4px !important;
+  margin-left: 0px !important;
+  margin-right: 3px !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  padding-top: 0px;
+}
+a.ms-crm-Menu-Label {
+  outline: none !important;
+  vertical-align: middle;
+  vertical-align: -webkit-baseline-middle;
+}
+img#mnuDown,
+#mnucrmMenuBarhelp span a img.ms-crm-Menu-DownArrow {
+  display: none;
+}
+#mnucrmMenuBarhelp span.ms-crm-MenuItem-TextLTR::after {
+  font-family: 'CRMMDL2';
+  content: "\E70D";
+  font-size: 8px;
+  vertical-align: middle;
+  padding-left: 6px;
+}
+#mnucrmMenuBarhelp span.ms-crm-MenuItem-TextRTL::after {
+  font-family: 'CRMMDL2';
+  content: "\E70D";
+  font-size: 8px;
+  vertical-align: middle;
+  padding-right: 10px;
+}
+.ms-crm-modalDialog {
+  height: auto !important;
+}
+div.ms-crm-VS-Menu {
+  height: auto !important;
+}
+UL.ms-crm-VS-Menu,
+UL.ms-crm-AVS-Menu {
+  padding: 4px 0px !important;
+}
+.rtl li#mnuaction {
+  padding-right: 8px !important;
+}
+.rtl span.ms-crm-MenuItem-TextFirst::after {
+  font-family: 'CRMMDL2';
+  font-size: 16px !important;
+  padding-right: 8px;
+  vertical-align: bottom;
+}
+.rtl span.ms-crm-MenuItem-TextLTR::after {
+  font-family: 'CRMMDL2';
+  font-size: 16px;
+  padding-right: 8px;
+  vertical-align: bottom;
+}
+.rtl span.ms-crm-MenuItem-TextRTL::after {
+  font-family: 'CRMMDL2';
+  font-size: 16px;
+  padding-right: 8px;
+  vertical-align: bottom;
+}
+.rtl .menu-Save span.ms-crm-MenuItem-TextFirst::before {
+  content: "\E74E";
+}
+.rtl .menu-ValidateOff span.ms-crm-MenuItem-TextFirst::before {
+  content: "\EADF";
+}
+.rtl .menu-ValidateOn span.ms-crm-MenuItem-TextFirst::before {
+  content: "\EADF";
+}
+.rtl .menu-Update span.ms-crm-MenuItem-TextFirst::before {
+  content: "\EA01";
+}
+.rtl .menu-SaveAs span.ms-crm-MenuItem-TextFirst::before {
+  content: "\E792";
+  font-size: 17px !important;
+}
+.rtl .menu-RoleAssignment span.ms-crm-MenuItem-TextFirst::before {
+  content: "\EFD4";
+}
+.rtl .menu-Order span.ms-crm-MenuItem-TextFirst::before {
+  content: "\EFF6";
+}
+.rtl .menu-Activate span.ms-crm-MenuItem-TextFirst::before {
+  content: "\E761";
+  font-size: 17px !important;
+}
+.rtl .menu-Deactivate span.ms-crm-MenuItem-TextFirst::before {
+  content: "\E760";
+  font-size: 17px !important;
+}
+.rtl .menu-Dependencies span.ms-crm-MenuItem-TextFirst::before {
+  content: "\F003";
+}
+.rtl .menu-VisualizeProcess span.ms-crm-MenuItem-TextFirst::before {
+  content: "\F00D";
+}
+.rtl #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextRTL::after {
+  font-family: 'CRMMDL2';
+  content: "\E70D";
+  font-size: 8px;
+  vertical-align: middle;
+  padding-left: 0px;
+  padding-right: 7px !important;
+}
+.rtl #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextRTL::before {
+  font-family: 'CRMMDL2';
+  content: "\E897";
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: bottom;
+  padding-right: 4px;
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+#mnuaction span.ms-crm-MenuItem-TextLTR {
+  font-weight: bold;
+  vertical-align: inherit;
+}
+#mnuaction span.ms-crm-MenuItem-TextRTL {
+  font-weight: bold;
+  vertical-align: inherit;
+}
+#mnuaction span.ms-crm-MenuItem-TextLTR::before {
+  content: "\E712";
+  font-size: 17px;
+}
+.rtl #mnuaction span.ms-crm-MenuItem-TextRTL::before {
+  font-family: 'CRMMDL2';
+  display: inline-block;
+  vertical-align: bottom;
+  font-size: 17px;
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+#mnuaction span.ms-crm-MenuItem-TextRTL::before {
+  content: "\E712";
+  font-size: 17px;
+}
+#Dialog_mnucrmMenuBarhelp,
+#Dialog_mnuaction {
+  top: 72px !important;
+}
+DIV.ms-crm-modalDialog-shadow {
+  top: 72px !important;
+}
+/* Details Section */
+#processDetailArea {
+  margin: 1px 0px 8px 15px !important;
+}
+.configuratorDetailsDiv {
+  float: left;
+  margin-bottom: 8px;
+  padding-left: 0px !important;
+  width: 50% !important;
+}
+.bpfConfDetailSpacer {
+  display: none;
+}
+.configuratorControlsDiv .bpfConfLabelDiv {
+  float: left;
+  width: 30%;
+  overflow: hidden;
+  padding-left: 12px;
+}
+.configuratorControlsDiv .confInput {
+  float: left;
+  margin-left: 0px;
+  width: 70%;
+  margin: 0;
+}
+.configuratorDescriptionDiv {
+  width: 100%;
+}
+.configuratorDescriptionDiv .bpfConfLabelDiv {
+  width: 15% !important;
+  float: left;
+  overflow: hidden;
+  padding-left: 12px;
+}
+.configuratorDescriptionDiv .confDescriptionLabel {
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+.configuratorTextAreaDiv {
+  width: 85% !important;
+}
+.configuratorControlsDiv .confLabel {
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  float: left;
+  max-width: 88%;
+  height: 20px;
+}
+.cond-prop-container input {
+  margin: 0;
+  width: 100% !important;
+  height: 28px !important;
+}
+SPAN.ms-crm-Menu-Label-Hovered a.ms-crm-Menu-Label,
+SPAN.ms-crm-Menu-Label-Opened .ms-crm-Menu-Label {
+  font-family: 'CRMMDL2';
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+  padding-top: 6px !important;
+  padding-bottom: 13px !important;
+  height: 30px !important;
+  background: none !important;
+  vertical-align: middle;
+}
+SPAN.ms-crm-Menu-Label-Hovered a:hover span.ms-crm-MenuItem-TextFirst,
+SPAN.ms-crm-Menu-Label-Hovered a:hover span.ms-crm-MenuItem-TextLTR {
+  color: #828282 !important;
+}
+SPAN.ms-crm-Menu-Label a.ms-crm-Menu-Label {
+  font-family: 'CRMMDL2';
+  height: auto !important;
+  padding-right: 6px !important;
+  padding-left: 6px !important;
+  padding-top: 6px !important;
+  padding-bottom: 13px !important;
+  height: 30px !important;
+  vertical-align: middle;
+}
+span.ms-crm-Menu-Label-Hovered a.ms-crm-Menu-Label:focus {
+  padding-top: 4px !important;
+  padding-bottom: 11px !important;
+}
+body.keyboardFocusClass span.keyboardFocusClass a.ms-crm-Menu-Label.keyboardFocusClass {
+  padding-top: 6px !important;
+  padding-bottom: 13px !important;
+}
+@-moz-document url-prefix() {
+  span a span.ms-crm-MenuItem-TextFirst,
+  span.ms-crm-MenuItem-TextLTR {
+    margin-top: 7px !important;
+  }
+  body.keyboardFocusClass span.keyboardFocusClass a.ms-crm-Menu-Label.keyboardFocusClass {
+    padding-top: 2px !important;
+    padding-bottom: 13px !important;
+  }
+  span.ms-crm-Menu-Label-Hovered a.ms-crm-Menu-Label:focus {
+    /* span.ms-crm-Menu-Label:focus, */
+    border: 1px dashed #fff !important;
+    padding-top: 2px !important;
+    padding-bottom: 13px !important;
+  }
+  span.ms-crm-Menu-Label-Hovered a.ms-crm-Menu-Label,
+  SPAN.ms-crm-Menu-Label-Opened .ms-crm-Menu-Label {
+    padding-top: 2px !important;
+    padding-bottom: 13px !important;
+  }
+}
+/*High Contrast hotfix*/
+@-moz-document url-prefix() {
+  span a span.ms-crm-MenuItem-TextFirst,
+  span.ms-crm-MenuItem-TextLTR {
+    margin-top: 7px !important;
+  }
+  body.keyboardFocusClass span.keyboardFocusClass a.ms-crm-Menu-Label.keyboardFocusClass {
+    padding-top: 2px !important;
+    padding-bottom: 14px !important;
+  }
+  span.ms-crm-Menu-Label-Hovered a.ms-crm-Menu-Label:focus {
+    /* span.ms-crm-Menu-Label:focus, */
+    border: 1px dashed #fff !important;
+    padding-top: 2px !important;
+    padding-bottom: 14px !important;
+  }
+  span.ms-crm-Menu-Label-Hovered a.ms-crm-Menu-Label,
+  SPAN.ms-crm-Menu-Label-Opened .ms-crm-Menu-Label {
+    padding-top: 2px !important;
+    padding-bottom: 14px !important;
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  body.keyboardFocusClass span.keyboardFocusClass a.ms-crm-Menu-Label.keyboardFocusClass {
+    padding-top: 6px !important;
+    padding-bottom: 13px !important;
+  }
+  span.ms-crm-Menu-Label-Hovered a.ms-crm-Menu-Label:focus {
+    padding-top: 6px !important;
+    padding-bottom: 13px !important;
+  }
+}
+/*Edge*/
+@supports (-ms-ime-align:auto) {
+  body.keyboardFocusClass span.keyboardFocusClass a.ms-crm-Menu-Label.keyboardFocusClass {
+    padding-top: 6px !important;
+    padding-bottom: 13px !important;
+  }
+  span.ms-crm-Menu-Label-Hovered a.ms-crm-Menu-Label.keyboardFocusClass {
+    padding-top: 6px !important;
+    padding-bottom: 13px !important;
+  }
+}
+@media only screen and (max-width: 1355px) {
+  .processname {
+    width: 30% !important;
+  }
+  .processmenu {
+    width: 70% !important;
+  }
+}
+@media only screen and (max-width: 1225px) {
+  .processname {
+    width: 60% !important;
+  }
+  .processmenu {
+    width: 40% !important;
+  }
+  .ms-crm-MenuItem-TextFirst {
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 26px !important;
+  }
+  .ms-crm-MenuItem-TextFirst::before {
+    text-indent: 0;
+    float: left;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+  .rtl .ms-crm-MenuItem-TextFirst::after {
+    text-indent: 0;
+    float: left;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+  #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextLTR {
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 26px !important;
+    max-width: 26px !important;
+  }
+  #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextLTR::before {
+    text-indent: 0 !important;
+    float: left !important;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+  .rtl #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextLTR::after {
+    text-indent: 0 !important;
+    float: left !important;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+  #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextRTL {
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 26px !important;
+    max-width: 26px !important;
+  }
+  #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextRTL::before {
+    text-indent: 0 !important;
+    float: left !important;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+  .rtl #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextRTL::after {
+    text-indent: 0 !important;
+    float: left !important;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+  .rtl #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextRTL::before {
+    display: none;
+  }
+  #mnucrmMenuBarhelp {
+    padding-left: 10px !important;
+  }
+  #mnuaction {
+    padding-left: 10px !important;
+  }
+  LI.ms-crm-Menu {
+    padding-left: 10px !important;
+    padding-right: 0px !important;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  span a span.ms-crm-MenuItem-TextFirst,
+  span a SPAN.ms-crm-MenuItem-TextLTR,
+  .ms-crm-MenuItem-TextRTL {
+    max-width: 100px !important;
+  }
+}
+@media only screen and (max-width: 960px) {
+  .processname {
+    width: 50% !important;
+  }
+  .processmenu {
+    width: 50% !important;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .processname {
+    width: 40% !important;
+  }
+  .processmenu {
+    width: 60% !important;
+  }
+  div#ProcessTitle {
+    max-width: 80% !important;
+  }
+  LI.ms-crm-Menu,
+  #mnucrmMenuBarhelp {
+    padding-left: 5px !important;
+  }
+  li#mnuaction {
+    padding-left: 3px !important;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .processname {
+    width: 30% !important;
+  }
+  .processmenu {
+    width: 70% !important;
+  }
+  div#ProcessTitle {
+    max-width: 70% !important;
+  }
+  LI.ms-crm-Menu,
+  #mnucrmMenuBarhelp,
+  li#mnuaction {
+    padding-left: 7px !important;
+  }
+  .ms-crm-MenuItem-TextFirst::before,
+  #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextLTR::before {
+    padding-right: 2px !important;
+    padding-left: 2px !important;
+  }
+  .ms-crm-MenuItem-TextFirst,
+  #mnucrmMenuBarhelp span.ms-crm-MenuItem-TextLTR {
+    width: 20px !important;
+  }
+}

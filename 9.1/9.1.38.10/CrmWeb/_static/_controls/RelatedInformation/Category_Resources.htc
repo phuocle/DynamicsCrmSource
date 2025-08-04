@@ -1,0 +1,66 @@
+<public:component lightweight="true">
+<public:method name="ResourceSpecificationTreeClick"/>
+<public:event id="OnListItemClickedEvent" name="OnListItemClicked"/>
+<public:attach event="ondocumentready" onevent="initialize()"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+function initialize()
+{
+    this.attachEvent("OnListItemClicked",PopulateFormControl)
+}
+function PopulateFormControl()
+{
+    RelatedInformationPane.PopulateFormControl()
+}
+function ResourceClicked(name,id,objectType,resourceSpecId,effortrequired)
+{
+    var oEvent = createEventObject();
+    oEvent.Context = element.ContextId;
+    oEvent.DisplayName = name;
+    oEvent.Value = id;
+    oEvent.ObjectType = objectType;
+    oEvent.ResourceSpecId = resourceSpecId;
+    oEvent.Effort = effortrequired;
+    OnListItemClickedEvent.fire(oEvent)
+}
+function ResourceSpecificationTreeClick()
+{
+    var oTree = element.document.all.ResourceSpecificationTree,
+        selectedNodeId = oTree.GetNodeId(event.srcElement);
+    if(selectedNodeId == null || selectedNodeId < 0)
+        return;
+    oTree.SelectedNodeId = selectedNodeId;
+    var oElement,
+        sObjectType = "",
+        selectedNodeElement = oTree.GetNodeElement(selectedNodeId);
+    oElement = selectedNodeElement.selectSingleNode("type");
+    if(oElement !== null)
+    {
+        sObjectType = oElement.text;
+        if(sObjectType == Equipment || sObjectType == SystemUser)
+        {
+            var sDisplayName = "";
+            oElement = selectedNodeElement.selectSingleNode("name");
+            if(oElement !== null)
+                sDisplayName = oElement.text;
+            var resourceId = "";
+            oElement = selectedNodeElement.selectSingleNode("id");
+            if(oElement !== null)
+                resourceId = oElement.text;
+            var parentNode = selectedNodeElement.parentNode;
+            while(parentNode != null)
+            {
+                var parentType = parentNode.selectSingleNode("type").text;
+                if(parentType == ResourceSpec)
+                    break;
+                parentNode = parentNode.parentNode
+            }
+            var resourceSpecId = parentNode.selectSingleNode("id").text,
+                effortrequired = parentNode.selectSingleNode("effortrequired").text;
+            ResourceClicked(sDisplayName,resourceId.toUpperCase(),sObjectType,resourceSpecId,effortrequired)
+        }
+    }
+}
+
+</script>
+</public:component>

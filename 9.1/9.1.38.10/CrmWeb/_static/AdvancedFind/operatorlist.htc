@@ -1,0 +1,106 @@
+<public:component lightweight="true" tagName="OperatorList">
+<public:attach event="ondocumentready" onevent="InitOnDocReady()"/>
+<public:event name="onchange" id="OnChangeHandler"/>
+<public:property name="Value" get="GetValue" put="SetValue"/>
+<public:property name="Field" put="SetField"/>
+<public:property name="ParentControl"/>
+<public:property name="Container"/>
+<public:method name="GetOperatorList"/>
+<public:method name="SetMode"/>
+<html xmlns:Crm>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _oAutoShow = null,
+    _sValue = null,
+    _oField = null,
+    _bInitComplete = false;
+Sys.Application.add_load(SysInit);
+function SysInit()
+{
+    Init()
+}
+function InitOnDocReady()
+{
+    Sys.Application.get_isInitialized() && !_bInitComplete && 
+        Init()
+}
+function Init()
+{
+    element.innerHTML = "<Crm:AutoShow id='" + ParentControl.id + "OP'/>";
+    _bInitComplete = true;
+    _oAutoShow = element.firstChild;
+    _oAutoShow.Container = Container;
+    var innerControlId = _oAutoShow.id + "_select";
+    with(_oAutoShow)
+    {
+        InnerControlHtml = "<select id='" + innerControlId + "' class='ms-crm-SelectBox'></select>";
+        DefaultText = LOCID_AF_SELECTCOND
+    }
+    SetField(_oField);
+    SetValue(_sValue);
+    SetMode(Container.Mode)
+}
+function GetOperatorList()
+{
+    return _oAutoShow.InnerControl
+}
+function GetValue()
+{
+    return _sValue
+}
+function SetValue(sValue)
+{
+    _sValue = sValue;
+    if(_bInitComplete && !IsNull(_oField) && !IsNull(_oField.datatype))
+    {
+        var oOpList = GetOperatorList(),
+            oOpCtrl = $find(oOpList.id);
+        _oAutoShow.Value = _sValue;
+        oOpList.selectedIndex = oOpList.selectedIndex == -1 ? 0 : oOpList.selectedIndex;
+        _sValue = _oAutoShow.Value;
+        _oAutoShow.Text = oOpCtrl.get_selectedText();
+        RaiseEvent(OnChangeHandler)
+    }
+}
+function OperatorChanged()
+{
+    _sValue = $find(GetOperatorList().id).get_dataValue();
+    RaiseEvent(OnChangeHandler)
+}
+function SetField(oVal)
+{
+    _oField = oVal;
+    if(_bInitComplete && !IsNull(_oField))
+    {
+        GetOperatorList().detachEvent("onchange",OperatorChanged);
+        with(_oAutoShow)
+        {
+            var sOpDataType = Container.ClientCache.GetOpDataType(_oField);
+            if(!IsNull(_oField["nameattr"]))
+                sOpDataType += "withname";
+            InnerControlHtml = Container.ClientCache.GetElement("Operator",sOpDataType).outerHTML
+        }
+        var fnCallback = Container.OnPopulateOperatorList;
+        if(!IsNull(fnCallback) && "function" == typeof fnCallback)
+        {
+            oArgs = {};
+            oArgs.sEntityName = ParentControl.EntityName;
+            oArgs.oField = _oField;
+            oArgs.oOperatorList = _oAutoShow.InnerControl;
+            fnCallback(oArgs)
+        }
+        GetOperatorList().attachEvent("onchange",OperatorChanged);
+        SetValue(_sValue ? _sValue : $find(GetOperatorList().id).get_dataValue());
+        SetMode(Container.Mode)
+    }
+}
+function SetMode(iMode)
+{
+    _oAutoShow.Disabled = iMode == Container.ModesEnum.Simple;
+    _oAutoShow.SetMode(iMode)
+}
+
+</script>
+</head>
+</html>
+</public:component>

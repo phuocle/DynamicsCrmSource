@@ -1,0 +1,200 @@
+<public:component lightweight="true">
+<public:attach event="ondocumentready" onevent="initDocumentReady()"/>
+<public:attach event="ondetach" onevent="disposePresenceControl()"/>
+<public:method name="InitializeLookupPresence"/>
+<public:method name="QueryLookupPresence"/>
+<script language="JavaScript"></script><script type="text/javascript">
+
+var _bPresenceControlInited = false,
+    _presenceControl = null,
+    _commandQueryPresenceGrid = null;
+function createPresenceControl()
+{
+    try
+    {
+        if(!_bPresenceControlInited)
+        {
+            _presenceControl = createPresenceControlInstance();
+            if(_presenceControl)
+                _presenceControl.OnStatusChange = onPresenceControlOnStatusChange
+        }
+    }
+    catch(e)
+    {
+        _presenceControl = null
+    }
+    _bPresenceControlInited = true;
+    return _presenceControl
+}
+function disposePresenceControl()
+{
+    try
+    {
+        if(_presenceControl)
+        {
+            destroyPresenceControlInstance(_presenceControl);
+            _presenceControl = null;
+            _bPresenceControlInited = false
+        }
+    }
+    catch(e)
+    {
+    }
+}
+function getSPANSArray()
+{
+    try
+    {
+        var oLookupField = getLookupField();
+        return oLookupField ? oLookupField.getElementsByTagName("SPAN") : null
+    }
+    catch(e)
+    {
+        return null
+    }
+}
+function onPresenceControlOnStatusChange(name,state,id)
+{
+    var aoSPANS = getSPANSArray();
+    aoSPANS && 
+        presenceUpdateState(aoSPANS,id,state)
+}
+function initDocumentReady()
+{
+    if(window.document.media != "print")
+    {
+        if(window.top && window.top.initActionQueue)
+            window.top.initActionQueue.push(InitializeLookupPresence);
+        else
+            window.setTimeout(InitializeLookupPresence,10);
+        attachWindowOnUnload(disposePresenceControl)
+    }
+}
+function InitializeLookupPresence()
+{
+    var aoSPANS = getSPANSArray();
+    aoSPANS && 
+        QueryLookupPresence(aoSPANS)
+}
+function QueryLookupPresence(aoSPANS)
+{
+    if(!_bPresenceEnabled)
+        return;
+    var oIds = {},
+        xmlSipRequest = null,
+        aoPresenceInfo = null;
+    if(!aoSPANS)
+        aoSPANS = [];
+    for(i = 0; i < aoSPANS.length; i++)
+    {
+        var oSPAN = aoSPANS[i];
+        if(oSPAN && IsPresenceType(oSPAN.otype) && typeof oIds[oSPAN.oid] == "undefined")
+        {
+            if(hasSipAttribute(oSPAN) && oSPAN.sip != "EMAIL_ADDRESS")
+            {
+                if(!aoPresenceInfo)
+                    aoPresenceInfo = [];
+                aoPresenceInfo.push(createPresenceInfo(oSPAN.oid,oSPAN.sip))
+            }
+            else
+            {
+                if(!xmlSipRequest)
+                    xmlSipRequest = "<grid>";
+                xmlSipRequest += addElementSipRequest(oSPAN)
+            }
+            oIds[oSPAN.oid] = 1
+        }
+    }
+    if((xmlSipRequest || aoPresenceInfo) && createPresenceControl() && _presenceControl && _presenceControl.PresenceEnabled)
+    {
+        aoPresenceInfo && 
+            enablePresence(aoSPANS,aoPresenceInfo);
+        if(xmlSipRequest)
+        {
+            xmlSipRequest += "</grid>";
+            if(_commandQueryPresenceGrid == null)
+                _commandQueryPresenceGrid = new RemoteCommand("PresenceService","QuerySipInfo");
+            _commandQueryPresenceGrid.SetParameter("entityListXml",xmlSipRequest);
+            _commandQueryPresenceGrid.Execute(queryPresenceComplete)
+        }
+    }
+}
+function presenceUpdateState(aoSPANS,oid,state)
+{
+    var oImg = null,
+        oSPAN = findElementById(aoSPANS,oid);
+    if(oSPAN != null)
+    {
+        var oImg = oSPAN.children[0];
+        while(typeof oImg != "undefined" && oImg.tagName != "IMG")
+            oImg = oImg.children[0];
+        if(typeof oImg != "undefined" && oImg.state != state)
+        {
+            oImg.className = "ms-crm-Lookup-PresenceItem";
+            var imageSrc = getPresenceUri(state);
+            oImg.imageSrc = imageSrc;
+            oImg.src = imageSrc;
+            oImg.state = state
+        }
+    }
+    return oImg
+}
+function presenceControlShowOOUIMouse()
+{
+    presenceControlShowOOUI(0)
+}
+function presenceControlShowOOUIFocus()
+{
+    presenceControlShowOOUI(1)
+}
+function presenceControlHideOOUI()
+{
+    _presenceControl.HideOOUI()
+}
+function presenceControlShowOOUI(inputType)
+{
+    var oImg = window.event.srcElement,
+        oSPAN = oImg;
+    while(oSPAN && typeof oSPAN.oid == "undefined")
+        oSPAN = oSPAN.parentElement;
+    var objRet = getImageLocation(oImg),
+        oouiX = objRet.oouiX,
+        oouiY = objRet.oouiY,
+        sipUri = oImg.sipuri;
+    _presenceControl.ShowOOUI(sipUri,inputType,oouiX,oouiY)
+}
+function enablePresence(aoSPANS,aoPresenceInfo)
+{
+    for(var i = 0; i < aoPresenceInfo.length; i++)
+    {
+        var oPresenceInfo = aoPresenceInfo[i],
+            oid = oPresenceInfo.oid,
+            sipuri = oPresenceInfo.sipuri;
+        if(sipuri.length > 0)
+        {
+            var state = _presenceControl.GetStatus(sipuri,oid),
+                oImg = presenceUpdateState(aoSPANS,oid,state);
+            if(oImg != null)
+            {
+                oImg.sipuri = sipuri;
+                oImg.onmouseover = presenceControlShowOOUIMouse;
+                oImg.onfocusin = presenceControlShowOOUIFocus;
+                oImg.onmouseout = presenceControlHideOOUI;
+                oImg.onfocusout = presenceControlHideOOUI
+            }
+        }
+    }
+}
+function queryPresenceComplete(oResult)
+{
+    if(oResult.Success && oResult.ReturnValue != "")
+    {
+        var aoSPANS = getLookupField().getElementsByTagName("SPAN"),
+            aoPresenceInfo = createPresenceInfoArray(oResult);
+        enablePresence(aoSPANS,aoPresenceInfo)
+    }
+    return oResult.Success
+}
+
+</script>
+</public:component>
